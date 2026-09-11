@@ -1,0 +1,14 @@
+{
+  "id": "tooltip-hover",
+  "name": "CSS Tooltip",
+  "description": "Pure CSS tooltip on hover and focus. No JavaScript required. Supports top and bottom placement.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "tooltip",
+    "hover",
+    "popover",
+    "hint"
+  ],
+  "html": "<div class=\"ai-flex ai-gap-6 ai-items-center\">\n  <span class=\"ai-tooltip\" data-tooltip=\"Edit this item\">\n    <button class=\"ai-btn ai-btn-outline ai-btn-sm\">Hover me (top)</button>\n  </span>\n  <span class=\"ai-tooltip ai-tooltip-bottom\" data-tooltip=\"Save changes\">\n    <button class=\"ai-btn ai-btn-secondary ai-btn-sm\">Hover me (bottom)</button>\n  </span>\n  <span class=\"ai-tooltip\" data-tooltip=\"Keyboard accessible too\">\n    <button class=\"ai-btn ai-btn-ghost ai-btn-sm\">Focus me</button>\n  </span>\n</div>"
+}

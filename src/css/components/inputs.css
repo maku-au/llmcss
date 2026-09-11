@@ -1,0 +1,296 @@
+@layer components {
+  /* Form Field Containers */
+  .ai-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ai-space-1);
+    margin-bottom: var(--ai-space-4);
+  }
+
+  .ai-form-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ai-text-primary);
+  }
+
+  .ai-form-label.is-required::after,
+  .ai-form-label[data-required="true"]::after {
+    content: " *";
+    color: var(--ai-danger);
+    font-weight: 700;
+  }
+
+  .ai-form-hint {
+    font-size: 0.75rem;
+    color: var(--ai-text-muted);
+  }
+
+  .ai-form-error {
+    font-size: 0.75rem;
+    color: var(--ai-danger);
+  }
+
+  /* Text Inputs & Selects */
+  .ai-input,
+  .ai-textarea {
+    width: 100%;
+    font-family: var(--ai-font-sans);
+    font-size: 0.875rem;
+    background-color: var(--ai-surface-0);
+    color: var(--ai-text-primary);
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-base);
+    padding: var(--ai-space-2) var(--ai-space-3);
+    height: 2.5rem;
+    transition: border-color var(--ai-duration-fast) var(--ai-ease-out),
+                box-shadow var(--ai-duration-fast) var(--ai-ease-out),
+                background-color var(--ai-duration-fast) var(--ai-ease-out);
+  }
+
+  .ai-select {
+    width: 100%;
+    font-family: var(--ai-font-sans);
+    font-size: 0.875rem;
+    background-color: var(--ai-surface-0);
+    color: var(--ai-text-primary);
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-base);
+    padding: var(--ai-space-2) 2.25rem var(--ai-space-2) var(--ai-space-3);
+    height: 2.5rem;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem 1rem;
+    transition: border-color var(--ai-duration-fast) var(--ai-ease-out),
+                box-shadow var(--ai-duration-fast) var(--ai-ease-out),
+                background-color var(--ai-duration-fast) var(--ai-ease-out);
+  }
+
+  .ai-textarea {
+    height: auto;
+    min-height: 5rem;
+    resize: vertical;
+  }
+
+  .ai-input::placeholder,
+  .ai-textarea::placeholder {
+    color: var(--ai-text-muted);
+  }
+
+  .ai-input:hover,
+  .ai-textarea:hover,
+  .ai-select:hover {
+    border-color: var(--ai-border-strong);
+  }
+
+  /* Precision Active & Focus State */
+  .ai-input:focus,
+  .ai-input:focus-visible,
+  .ai-input.is-focused,
+  .ai-textarea:focus,
+  .ai-textarea:focus-visible,
+  .ai-textarea.is-focused,
+  .ai-select:focus,
+  .ai-select:focus-visible,
+  .ai-select.is-focused {
+    border-color: var(--ai-accent);
+    outline: none;
+    box-shadow: 0 0 0 1px var(--ai-accent), 0 0 0 3.5px var(--ai-accent-subtle);
+    background-color: var(--ai-surface-0);
+  }
+
+  /* Error & Validation States */
+  .ai-input.is-error,
+  .ai-textarea.is-error,
+  .ai-select.is-error,
+  .ai-input[aria-invalid="true"],
+  .ai-textarea[aria-invalid="true"],
+  .ai-select[aria-invalid="true"] {
+    border-color: var(--ai-danger);
+  }
+
+  .ai-input.is-error:focus,
+  .ai-input.is-error:focus-visible,
+  .ai-textarea.is-error:focus,
+  .ai-textarea.is-error:focus-visible,
+  .ai-select.is-error:focus,
+  .ai-select.is-error:focus-visible,
+  .ai-input[aria-invalid="true"]:focus,
+  .ai-input[aria-invalid="true"]:focus-visible,
+  .ai-textarea[aria-invalid="true"]:focus,
+  .ai-textarea[aria-invalid="true"]:focus-visible,
+  .ai-select[aria-invalid="true"]:focus,
+  .ai-select[aria-invalid="true"]:focus-visible {
+    border-color: var(--ai-danger);
+    box-shadow: 0 0 0 1px var(--ai-danger), 0 0 0 3.5px var(--ai-danger-subtle);
+  }
+
+  .ai-input:disabled,
+  .ai-textarea:disabled,
+  .ai-select:disabled {
+    background-color: var(--ai-surface-1);
+    color: var(--ai-text-muted);
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  /* Input with prefix/suffix addons */
+  .ai-input-group {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+  }
+  .ai-input-group > .ai-input {
+    flex: 1;
+    border-radius: 0;
+  }
+  .ai-input-group > :first-child {
+    border-top-left-radius: var(--ai-radius-base);
+    border-bottom-left-radius: var(--ai-radius-base);
+  }
+  .ai-input-group > :last-child {
+    border-top-right-radius: var(--ai-radius-base);
+    border-bottom-right-radius: var(--ai-radius-base);
+  }
+  .ai-input-addon {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--ai-space-3);
+    background-color: var(--ai-surface-1);
+    border: 1px solid var(--ai-border);
+    color: var(--ai-text-muted);
+    font-size: 0.875rem;
+  }
+  .ai-input-group > .ai-input-addon + .ai-input {
+    border-left: none;
+  }
+  .ai-input-group > .ai-input + .ai-input-addon {
+    border-left: none;
+  }
+
+  /* Modern Switch Toggle */
+  .ai-switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    gap: var(--ai-space-2);
+  }
+
+  .ai-switch-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .ai-switch-track {
+    position: relative;
+    width: 2.75rem;
+    height: 1.5rem;
+    background-color: var(--ai-surface-2);
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-full);
+    transition: background-color var(--ai-duration-fast) var(--ai-ease-out),
+                border-color var(--ai-duration-fast) var(--ai-ease-out);
+  }
+
+  .ai-switch-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: calc(1.5rem - 6px);
+    height: calc(1.5rem - 6px);
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: var(--ai-shadow-sm);
+    transition: transform var(--ai-duration-fast) var(--ai-ease-out);
+  }
+
+  .ai-switch-input:checked + .ai-switch-track {
+    background-color: var(--ai-accent);
+    border-color: var(--ai-accent);
+  }
+
+  .ai-switch-input:checked + .ai-switch-track .ai-switch-thumb {
+    transform: translateX(1.25rem);
+  }
+
+  /* Custom Checkbox */
+  .ai-checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ai-space-2);
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.875rem;
+    color: var(--ai-text-primary);
+  }
+
+  .ai-checkbox-input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.125rem;
+    height: 1.125rem;
+    border: 1px solid var(--ai-border-strong);
+    border-radius: var(--ai-radius-sm);
+    background-color: var(--ai-surface-0);
+    display: inline-grid;
+    place-content: center;
+    transition: all var(--ai-duration-fast) var(--ai-ease-out);
+    margin: 0;
+  }
+
+  .ai-checkbox-input::before {
+    content: "";
+    width: 0.55rem;
+    height: 0.35rem;
+    border-left: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    transform: rotate(-45deg) scale(0);
+    transform-origin: center;
+    transition: transform var(--ai-duration-fast) var(--ai-ease-out);
+    margin-bottom: 2px;
+  }
+
+  .ai-checkbox-input:checked {
+    background-color: var(--ai-accent);
+    border-color: var(--ai-accent);
+  }
+
+  .ai-checkbox-input:checked::before {
+    transform: rotate(-45deg) scale(1);
+  }
+
+  /* Keyboard Focus Indicators for Custom Controls */
+  .ai-switch-input:focus-visible + .ai-switch-track {
+    outline: none;
+    box-shadow: var(--ai-focus-ring);
+  }
+
+  .ai-checkbox-input:focus-visible {
+    outline: none;
+    box-shadow: var(--ai-focus-ring);
+  }
+
+  /* Prevent iOS Safari Viewport Auto-Zoom on Form Inputs */
+  @media (max-width: 768px) {
+    .ai-input,
+    .ai-textarea,
+    .ai-select {
+      font-size: 1rem !important;
+    }
+  }
+
+  /* Coarse Pointer (Touch) Minimum Tap Heights */
+  @media (pointer: coarse) {
+    .ai-input,
+    .ai-select {
+      min-height: var(--ai-touch-min, 44px);
+    }
+  }
+}

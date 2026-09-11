@@ -1,0 +1,14 @@
+{
+  "id": "badge-status",
+  "name": "Status & Craft Badges",
+  "description": "Precision architectural badges, high-contrast inverted tags, and jewel hardware status pips without cartoonish pastel washes.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "badge",
+    "pill",
+    "status",
+    "tag"
+  ],
+  "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-2 ai-items-center\">\n  <span class=\"ai-badge ai-badge-solid\">RECOMMENDED</span>\n  <span class=\"ai-badge ai-badge-default\">Default</span>\n  <span class=\"ai-badge ai-badge-pro\">PRO ACCESS</span>\n  <span class=\"ai-badge ai-badge-success ai-badge-dot\">Operational</span>\n  <span class=\"ai-badge ai-badge-warning ai-badge-dot\">Degraded</span>\n  <span class=\"ai-badge ai-badge-danger ai-badge-dot\">Offline</span>\n  <span class=\"ai-badge ai-badge-outline\">Outline Tag</span>\n  <span class=\"ai-badge ai-badge-mono\">128 tok/s</span>\n</div>"
+}

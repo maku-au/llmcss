@@ -1,0 +1,14 @@
+{
+  "id": "timeline-log",
+  "name": "Timeline Log",
+  "description": "Vertical event log with pips. For deploys, agent steps, and audit trails.",
+  "category": "application",
+  "tier": "free",
+  "tags": [
+    "timeline",
+    "log",
+    "history",
+    "activity"
+  ],
+  "html": "<ol class=\"ai-timeline\">\n  <li class=\"ai-timeline-item\">\n    <div class=\"ai-timeline-title\">Registry published</div>\n    <div class=\"ai-timeline-meta\">origin · 2m ago</div>\n  </li>\n  <li class=\"ai-timeline-item\">\n    <div class=\"ai-timeline-title\">Token issued</div>\n    <div class=\"ai-timeline-meta\">polar webhook · 18m ago</div>\n  </li>\n  <li class=\"ai-timeline-item\">\n    <div class=\"ai-timeline-title\">Pro component added</div>\n    <div class=\"ai-timeline-meta\">tool-trace · yesterday</div>\n  </li>\n</ol>"
+}

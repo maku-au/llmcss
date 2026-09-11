@@ -1,0 +1,13 @@
+{
+  "id": "input-text",
+  "name": "Form Inputs & Groups",
+  "description": "Clean form fields with label hierarchy, subtle focus states, and helper messaging.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "form",
+    "input",
+    "field"
+  ],
+  "html": "<div class=\"ai-grid ai-gap-4\" style=\"max-width: 24rem;\">\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label\" for=\"user-email\">Email Address</label>\n    <input type=\"email\" id=\"user-email\" class=\"ai-input\" placeholder=\"name@company.com\" />\n    <span class=\"ai-form-hint\">We'll send your workspace invite here.</span>\n  </div>\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label\" for=\"user-bio\">Description</label>\n    <textarea id=\"user-bio\" class=\"ai-textarea\" placeholder=\"Tell us about your project...\"></textarea>\n  </div>\n</div>"
+}

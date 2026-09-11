@@ -1,0 +1,391 @@
+@layer components {
+  /* ==========================================================================
+     BREADCRUMBS - Navigation trail with separator chevrons
+     ========================================================================== */
+  .ai-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--ai-space-1);
+    list-style: none;
+    font-size: 0.875rem;
+  }
+
+  .ai-breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ai-space-1);
+  }
+
+  .ai-breadcrumb-item + .ai-breadcrumb-item::before {
+    content: "/";
+    color: var(--ai-text-muted);
+    font-size: 0.75rem;
+    margin-right: var(--ai-space-1);
+  }
+
+  .ai-breadcrumb-item a {
+    color: var(--ai-text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--ai-duration-fast);
+  }
+
+  .ai-breadcrumb-item a:hover {
+    color: var(--ai-text-primary);
+  }
+
+  .ai-breadcrumb-item.is-current {
+    color: var(--ai-text-primary);
+    font-weight: 600;
+  }
+
+  /* ==========================================================================
+     TOOLTIP - CSS-only tooltip on hover/focus
+     ========================================================================== */
+  .ai-tooltip {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .ai-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%) scale(0.95);
+    padding: var(--ai-space-1) var(--ai-space-2);
+    background-color: var(--ai-primary);
+    color: var(--ai-primary-text);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.4;
+    white-space: nowrap;
+    border-radius: var(--ai-radius-sm);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--ai-duration-fast) var(--ai-ease-out),
+                transform var(--ai-duration-fast) var(--ai-ease-out);
+    z-index: 50;
+  }
+
+  .ai-tooltip:hover::after,
+  .ai-tooltip:focus-within::after {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+
+  .ai-tooltip.ai-tooltip-bottom::after {
+    bottom: auto;
+    top: calc(100% + 6px);
+  }
+
+  /* ==========================================================================
+     PAGINATION - Page navigation with active state and ellipsis
+     ========================================================================== */
+  .ai-pagination {
+    display: flex;
+    align-items: center;
+    gap: var(--ai-space-1);
+    list-style: none;
+  }
+
+  .ai-pagination-item {
+    display: inline-flex;
+  }
+
+  .ai-pagination-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 var(--ai-space-2);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--ai-text-secondary);
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--ai-radius-sm);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--ai-duration-fast) var(--ai-ease-out);
+  }
+
+  .ai-pagination-link:hover {
+    background-color: var(--ai-surface-1);
+    border-color: var(--ai-border);
+    color: var(--ai-text-primary);
+  }
+
+  .ai-pagination-link.is-active {
+    background-color: var(--ai-primary);
+    color: var(--ai-primary-text);
+    border-color: var(--ai-primary);
+    font-weight: 600;
+  }
+
+  .ai-pagination-link.is-disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .ai-pagination-ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    font-size: 0.8125rem;
+    color: var(--ai-text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* ==========================================================================
+     DIVIDER - Horizontal/vertical dividers with optional label
+     ========================================================================== */
+  .ai-divider {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: none;
+    margin: var(--ai-space-6) 0;
+    gap: var(--ai-space-3);
+    color: var(--ai-text-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ai-divider::before,
+  .ai-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--ai-border);
+  }
+
+  .ai-divider:empty::after {
+    display: none;
+  }
+
+  .ai-divider-vertical {
+    display: inline-block;
+    width: 1px;
+    height: 1.25em;
+    background-color: var(--ai-border);
+    margin: 0 var(--ai-space-2);
+    vertical-align: middle;
+  }
+
+  /* ==========================================================================
+     EMPTY STATE - Placeholder for no-data sections
+     ========================================================================== */
+  .ai-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--ai-space-12) var(--ai-space-6);
+    color: var(--ai-text-muted);
+  }
+
+  .ai-empty-state-icon {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: var(--ai-space-4);
+    color: var(--ai-text-muted);
+    opacity: 0.5;
+  }
+
+  .ai-empty-state-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ai-text-primary);
+    margin-bottom: var(--ai-space-1);
+  }
+
+  .ai-empty-state-description {
+    font-size: 0.875rem;
+    color: var(--ai-text-secondary);
+    max-width: 24rem;
+    line-height: 1.5;
+    margin-bottom: var(--ai-space-6);
+  }
+
+  /* ==========================================================================
+     TEXTAREA WITH CHARACTER COUNTER
+     ========================================================================== */
+  .ai-textarea-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ai-space-1);
+  }
+
+  .ai-textarea-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--ai-text-muted);
+  }
+
+  /* ==========================================================================
+     RADIO BUTTON GROUP
+     ========================================================================== */
+  .ai-radio {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ai-space-2);
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.875rem;
+    color: var(--ai-text-primary);
+  }
+
+  .ai-radio-input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.125rem;
+    height: 1.125rem;
+    border: 1px solid var(--ai-border-strong);
+    border-radius: 50%;
+    background-color: var(--ai-surface-0);
+    display: inline-grid;
+    place-content: center;
+    transition: all var(--ai-duration-fast) var(--ai-ease-out);
+    margin: 0;
+  }
+
+  .ai-radio-input::before {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: #ffffff;
+    transform: scale(0);
+    transition: transform var(--ai-duration-fast) var(--ai-ease-out);
+  }
+
+  .ai-radio-input:checked {
+    background-color: var(--ai-accent);
+    border-color: var(--ai-accent);
+  }
+
+  .ai-radio-input:checked::before {
+    transform: scale(1);
+  }
+
+  .ai-radio-input:focus-visible {
+    outline: none;
+    box-shadow: var(--ai-focus-ring);
+  }
+
+  .ai-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ai-space-3);
+  }
+
+  .ai-radio-group.ai-radio-group-horizontal {
+    flex-direction: row;
+    gap: var(--ai-space-6);
+  }
+
+  /* ==========================================================================
+     SIDEBAR NAVIGATION (Collapsible with sections)
+     ========================================================================== */
+  .ai-sidebar-section {
+    padding: var(--ai-space-2) 0;
+  }
+
+  .ai-sidebar-section + .ai-sidebar-section {
+    border-top: 1px solid var(--ai-border-subtle);
+  }
+
+  .ai-sidebar-section-title {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--ai-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: var(--ai-space-2) var(--ai-space-3) var(--ai-space-1);
+  }
+
+  .ai-sidebar-badge {
+    margin-left: auto;
+    font-size: 0.625rem;
+    font-weight: 600;
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--ai-radius-full);
+    background-color: var(--ai-surface-2);
+    color: var(--ai-text-muted);
+  }
+
+  .ai-sidebar-item.is-active .ai-sidebar-badge {
+    background-color: var(--ai-accent);
+    color: var(--ai-primary-text);
+  }
+
+  /* ==========================================================================
+     NOTIFICATION LIST
+     ========================================================================== */
+  .ai-notification-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-lg);
+    background-color: var(--ai-surface-0);
+    overflow: hidden;
+  }
+
+  .ai-notification-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--ai-space-3);
+    padding: var(--ai-space-4);
+    border-bottom: 1px solid var(--ai-border-subtle);
+    transition: background-color var(--ai-duration-fast);
+  }
+
+  .ai-notification-item:last-child {
+    border-bottom: none;
+  }
+
+  .ai-notification-item:hover {
+    background-color: var(--ai-surface-1);
+  }
+
+  .ai-notification-item.is-unread {
+    background-color: rgba(var(--ai-accent-rgb, 59, 130, 246), 0.04);
+  }
+
+  .ai-notification-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: var(--ai-accent);
+    flex-shrink: 0;
+    margin-top: 0.375rem;
+  }
+
+  .ai-notification-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ai-notification-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ai-text-primary);
+    line-height: 1.4;
+  }
+
+  .ai-notification-meta {
+    font-size: 0.75rem;
+    color: var(--ai-text-muted);
+    margin-top: var(--ai-space-1);
+  }
+}

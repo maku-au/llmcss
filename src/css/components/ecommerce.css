@@ -1,0 +1,143 @@
+@layer components {
+  /* ==========================================================================
+     E-COMMERCE COMPONENTS
+     ========================================================================== */
+
+  /* Product Card */
+  .ai-product-card {
+    background-color: var(--ai-surface-0);
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform var(--ai-duration-normal) var(--ai-ease-out),
+                box-shadow var(--ai-duration-normal) var(--ai-ease-out),
+                border-color var(--ai-duration-normal) var(--ai-ease-out);
+  }
+
+  .ai-product-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--ai-border-strong);
+    box-shadow: var(--ai-shadow-lg);
+  }
+
+  .ai-product-media {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background-color: var(--ai-surface-1);
+    overflow: hidden;
+  }
+
+  .ai-product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--ai-duration-slow) var(--ai-ease-out);
+  }
+
+  .ai-product-card:hover .ai-product-img {
+    transform: scale(1.05);
+  }
+
+  .ai-product-badge-float {
+    position: absolute;
+    top: var(--ai-space-3);
+    left: var(--ai-space-3);
+    z-index: 2;
+  }
+
+  .ai-product-body {
+    padding: var(--ai-space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--ai-space-2);
+    flex: 1;
+  }
+
+  .ai-product-category {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--ai-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ai-product-title {
+    font-family: var(--ai-font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ai-text-primary);
+    line-height: 1.3;
+  }
+
+  .ai-product-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--ai-space-2);
+    margin-top: auto;
+    padding-top: var(--ai-space-2);
+  }
+
+  .ai-product-price {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--ai-text-primary);
+  }
+
+  .ai-product-compare-price {
+    font-size: 0.875rem;
+    color: var(--ai-text-muted);
+    text-decoration: line-through;
+  }
+
+  /* Cart Item in Drawer */
+  .ai-cart-item {
+    display: flex;
+    align-items: center;
+    gap: var(--ai-space-4);
+    padding: var(--ai-space-3) 0;
+    border-bottom: 1px solid var(--ai-border-subtle);
+  }
+
+  .ai-cart-thumb {
+    width: 4rem;
+    height: 4rem;
+    border-radius: var(--ai-radius-md);
+    object-fit: cover;
+    background-color: var(--ai-surface-1);
+    border: 1px solid var(--ai-border);
+  }
+
+  .ai-cart-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .ai-cart-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ai-text-primary);
+  }
+
+  .ai-cart-subtext {
+    font-size: 0.75rem;
+    color: var(--ai-text-muted);
+  }
+
+  .ai-cart-stepper {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-sm);
+  }
+
+  .ai-cart-stepper button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    color: var(--ai-text-secondary);
+  }
+}

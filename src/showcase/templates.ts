@@ -1,0 +1,608 @@
+import '../css/index.css';
+import '../runtime/index';
+import {
+  wireframeTemplates,
+  pageBlueprints,
+  assembleBlueprintHtml
+} from '../registry/templates';
+import type { WireframeTemplate, PageBlueprint } from '../registry/schema';
+import { applyDisplayFont, bindFontSwitchers, getActiveFontId } from './fonts';
+
+// ============================================================================
+// STATE DEFINITIONS
+// ============================================================================
+let activeCategory = 'all';
+let activeBlueprintId: string | null = null;
+let searchQuery = '';
+let currentViewport = '100%';
+let previewMode: 'wireframe' | 'themed' = 'wireframe';
+
+// Theme state persisted in localStorage
+let activeSkin = localStorage.getItem('cssai-skin') || 'modern';
+let activeTheme = localStorage.getItem('cssai-theme') || document.documentElement.getAttribute('data-ai-theme') || 'light';
+
+// DOM Elements
+const templatesStream = document.getElementById('templates-stream');
+const blueprintBar = document.getElementById('blueprint-bar');
+const blueprintBanner = document.getElementById('blueprint-banner');
+const categoryNav = document.getElementById('category-nav');
+const searchInput = document.getElementById('template-search') as HTMLInputElement | null;
+const skinSwitcher = document.getElementById('skin-switcher') as HTMLSelectElement | null;
+const themeToggle = document.getElementById('theme-mode-toggle');
+const toastContainer = document.getElementById('toast-container');
+const fullPreviewModal = document.getElementById('blueprint-preview-modal');
+const fullPreviewContent = document.getElementById('blueprint-preview-content');
+const fullPreviewTitle = document.getElementById('blueprint-preview-title');
+
+// ============================================================================
+// TOAST NOTIFICATIONS
+// ============================================================================
+function showToast(message: string, type: 'success' | 'info' | 'error' = 'success') {
+  const toast = document.createElement('div');
+  toast.className = `ai-toast ai-toast-${type}`;
+  toast.innerHTML = `
+    <span class="ai-toast-message">${message}</span>
+    <button class="ai-toast-close">&times;</button>
+  `;
+  toastContainer?.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    setTimeout(() => toast.remove(), 200);
+  }, 2800);
+}
+
+function copyToClipboard(text: string, label: string, triggerBtn?: HTMLElement) {
+  navigator.clipboard.writeText(text).then(() => {
+    showToast(`Copied ${label} to clipboard!`);
+    if (triggerBtn) {
+      const originalText = triggerBtn.textContent;
+      triggerBtn.textContent = '✓ Copied!';
+      triggerBtn.style.borderColor = 'var(--ai-accent)';
+      setTimeout(() => {
+        triggerBtn.textContent = originalText;
+        triggerBtn.style.borderColor = '';
+      }, 1500);
+    }
+  }).catch(() => {
+    showToast(`Failed to copy to clipboard`, 'error');
+  });
+}
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+// ============================================================================
+// GLOBAL THEME & TOKEN ENGINE
+// ============================================================================
+function applyThemeSettings() {
+  const root = document.documentElement;
+
+  // Palette Skin
+  if (activeSkin === 'modern') {
+    root.removeAttribute('data-ai-skin');
+  } else {
+    root.setAttribute('data-ai-skin', activeSkin);
+  }
+  localStorage.setItem('cssai-skin', activeSkin);
+  if (skinSwitcher) skinSwitcher.value = activeSkin;
+
+  // Light / Dark Mode
+  root.setAttribute('data-ai-theme', activeTheme);
+  localStorage.setItem('cssai-theme', activeTheme);
+  applyDisplayFont(getActiveFontId());
+}
+
+// ============================================================================
+// BLUEPRINT RECIPES CONTROLLER
+// ============================================================================
+function renderBlueprintBar() {
+  if (!blueprintBar) return;
+
+  blueprintBar.innerHTML = `
+    <button class="blueprint-tab-btn ${activeBlueprintId === null ? 'is-active' : ''}" data-bp="all">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <rect width="7" height="7" x="3" y="3" rx="1"/>
+        <rect width="7" height="7" x="14" y="3" rx="1"/>
+        <rect width="7" height="7" x="14" y="14" rx="1"/>
+        <rect width="7" height="7" x="3" y="14" rx="1"/>
+      </svg>
+      <span>All sections</span>
+    </button>
+    ${pageBlueprints.map((bp) => `
+      <button class="blueprint-tab-btn ${activeBlueprintId === bp.id ? 'is-active' : ''}" data-bp="${bp.id}">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+          <path d="M6 6h10"/>
+          <path d="M6 10h10"/>
+        </svg>
+        <span>${({
+          'saas-landing': 'SaaS landing',
+          'developer-tool': 'Developer tool',
+          'editorial-manifesto': 'Editorial',
+          'dashboard-shell': 'Dashboard',
+        } as Record<string, string>)[bp.id] || bp.name}</span>
+      </button>
+    `).join('')}
+  `;
+
+  blueprintBar.querySelectorAll('.blueprint-tab-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const bpId = btn.getAttribute('data-bp');
+      if (bpId === 'all') {
+        activeBlueprintId = null;
+      } else {
+        activeBlueprintId = bpId;
+      }
+      renderBlueprintBar();
+      renderBlueprintBanner();
+      renderTemplates();
+    });
+  });
+}
+
+function renderBlueprintBanner() {
+  if (!blueprintBanner) return;
+
+  if (!activeBlueprintId) {
+    blueprintBanner.style.display = 'none';
+    blueprintBanner.innerHTML = '';
+    return;
+  }
+
+  const bp = pageBlueprints.find((b) => b.id === activeBlueprintId);
+  if (!bp) return;
+
+  blueprintBanner.style.display = 'block';
+  blueprintBanner.innerHTML = `
+    <div class="blueprint-banner-card">
+      <div class="ai-flex ai-justify-between ai-items-start ai-gap-4" style="flex-wrap: wrap;">
+        <div style="max-width: 48rem;">
+          <h2 class="ai-font-display" style="font-size: 1.125rem; font-weight: 700; margin-bottom: 0.35rem;">
+            ${bp.name}
+          </h2>
+          <p class="ai-text-sm ai-text-secondary" style="margin-bottom: 0.75rem;">
+            ${bp.sections.length} sections
+          </p>
+          <div class="blueprint-flow-pills">
+            ${bp.sections.map((secId, idx) => {
+              const sec = wireframeTemplates.find((t) => t.id === secId);
+              return `
+                <span class="blueprint-flow-pill">
+                  <span class="flow-num">${idx + 1}</span>
+                  <span>${sec ? sec.name : secId}</span>
+                </span>
+                ${idx < bp.sections.length - 1 ? '<span class="flow-arrow">&rarr;</span>' : ''}
+              `;
+            }).join('')}
+          </div>
+        </div>
+        <div class="ai-flex ai-flex-col ai-gap-2" style="min-width: 220px;">
+          <button class="ai-btn ai-btn-primary ai-btn-sm ai-w-full ai-justify-center" id="copy-blueprint-html-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <span>Copy Full Page HTML</span>
+          </button>
+          <button class="ai-btn ai-btn-outline ai-btn-sm ai-w-full ai-justify-center" id="copy-blueprint-cli-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>
+            <span>CLI: llmcss blueprint ${bp.id}</span>
+          </button>
+          <button class="ai-btn ai-btn-ghost ai-btn-sm ai-w-full ai-justify-center" id="preview-blueprint-full-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span>Open Assembled Preview</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('copy-blueprint-html-btn')?.addEventListener('click', (e) => {
+    const fullHtml = assembleBlueprintHtml(bp.id);
+    if (fullHtml) {
+      copyToClipboard(fullHtml, `${bp.name} (Full Page HTML)`, e.currentTarget as HTMLElement);
+    }
+  });
+
+  document.getElementById('copy-blueprint-cli-btn')?.addEventListener('click', (e) => {
+    const cmd = `npx llmcss template blueprint ${bp.id}`;
+    copyToClipboard(cmd, 'CLI Command', e.currentTarget as HTMLElement);
+  });
+
+  document.getElementById('preview-blueprint-full-btn')?.addEventListener('click', () => {
+    openFullPreview(bp);
+  });
+}
+
+function openFullPreview(bp: PageBlueprint) {
+  if (!fullPreviewModal || !fullPreviewContent || !fullPreviewTitle) return;
+
+  fullPreviewTitle.textContent = `${bp.name} - Live Assembled Blueprint`;
+  const fullHtml = assembleBlueprintHtml(bp.id);
+
+  fullPreviewContent.innerHTML = `
+    <div class="full-assembled-wrapper ${previewMode === 'wireframe' ? 'is-wireframe-mode' : ''}">
+      ${fullHtml}
+    </div>
+  `;
+
+  fullPreviewModal.classList.add('is-open');
+}
+
+// ============================================================================
+// TEMPLATES RENDERING ENGINE
+// ============================================================================
+function getFilteredTemplates(): { template: WireframeTemplate; recipeIndex?: number }[] {
+  let list = wireframeTemplates;
+
+  // Filter by active blueprint if selected
+  if (activeBlueprintId) {
+    const bp = pageBlueprints.find((b) => b.id === activeBlueprintId);
+    if (bp) {
+      return bp.sections.map((secId, idx) => {
+        const found = wireframeTemplates.find((t) => t.id === secId);
+        return {
+          template: found || {
+            id: secId,
+            name: secId,
+            section: 'features' as const,
+            tier: 'free' as const,
+            tags: [],
+            placement: 'Section',
+            guidance: { placement: '', bestUsedFor: '', avoidWhen: '', pairsWith: [] },
+            html: `<div>Section ${secId}</div>`
+          },
+          recipeIndex: idx + 1
+        };
+      });
+    }
+  }
+
+  // Filter by category
+  if (activeCategory !== 'all') {
+    list = list.filter((t) => t.section === activeCategory);
+  }
+
+  // Filter by search query
+  if (searchQuery.trim()) {
+    const q = searchQuery.toLowerCase();
+    list = list.filter((t) =>
+      t.name.toLowerCase().includes(q) ||
+      t.id.toLowerCase().includes(q) ||
+      t.tags.some((tag) => tag.toLowerCase().includes(q)) ||
+      t.placement.toLowerCase().includes(q) ||
+      t.guidance.bestUsedFor.toLowerCase().includes(q)
+    );
+  }
+
+  return list.map((template) => ({ template }));
+}
+
+function renderTemplates() {
+  if (!templatesStream) return;
+
+  const items = getFilteredTemplates();
+
+  if (items.length === 0) {
+    templatesStream.innerHTML = `
+      <div class="ai-empty-state" style="padding: 4rem 1rem; text-align: center; background: var(--ai-surface-0); border: 1px dashed var(--ai-border); border-radius: var(--ai-radius-lg);">
+        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔍</div>
+        <h3 style="font-family: var(--ai-font-display); font-size: 1.125rem; font-weight: 700;">No wireframe templates match your filter</h3>
+        <p style="font-size: 0.875rem; color: var(--ai-text-secondary); margin-top: 0.25rem;">Try resetting your search query or selecting "All Sections".</p>
+        <button class="ai-btn ai-btn-outline ai-btn-sm ai-mt-4" id="reset-filter-btn">Reset Filters</button>
+      </div>
+    `;
+    document.getElementById('reset-filter-btn')?.addEventListener('click', () => {
+      activeCategory = 'all';
+      activeBlueprintId = null;
+      searchQuery = '';
+      if (searchInput) searchInput.value = '';
+      renderBlueprintBar();
+      renderBlueprintBanner();
+      updateCategoryButtons();
+      renderTemplates();
+    });
+    return;
+  }
+
+  templatesStream.innerHTML = items.map(({ template, recipeIndex }) => `
+    <article class="template-item-card" id="card-${template.id}">
+      <!-- Section Header Bar -->
+      <div class="template-card-header">
+        <div class="ai-flex ai-items-center ai-gap-3" style="flex-wrap: wrap;">
+          ${recipeIndex ? `<span class="recipe-step-badge">Step ${recipeIndex}</span>` : ''}
+          <h3 class="template-title">${template.name}</h3>
+          <span class="ai-badge ai-badge-outline ai-badge-xs">${template.section}</span>
+          <span class="template-placement-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            ${template.placement}
+          </span>
+          <span class="ai-badge ai-badge-secondary ai-badge-xs">${template.tier.toUpperCase()}</span>
+        </div>
+        <div class="ai-flex ai-items-center ai-gap-2">
+          <button class="ai-btn ai-btn-ghost ai-btn-xs toggle-guidance-btn" data-target="guidance-${template.id}">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            <span>Guidance</span>
+          </button>
+          <button class="ai-btn ai-btn-outline ai-btn-xs copy-html-btn" data-id="${template.id}">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <span>Copy HTML</span>
+          </button>
+          <button class="ai-btn ai-btn-ghost ai-btn-xs copy-cli-btn" data-id="${template.id}" title="Copy CLI Command">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>
+            <span>CLI</span>
+          </button>
+          <button class="ai-btn ai-btn-ghost ai-btn-xs toggle-code-btn" data-target="code-${template.id}">
+            <span>&lt;/&gt;</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Architectural Placement & Usage Guidance Box -->
+      <div class="template-guidance-drawer" id="guidance-${template.id}">
+        <div class="guidance-grid">
+          <div class="guidance-col">
+            <div class="guidance-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <span>Placement In Page Structure</span>
+            </div>
+            <div class="guidance-text">${template.guidance.placement}</div>
+          </div>
+          <div class="guidance-col">
+            <div class="guidance-label" style="color: var(--ai-success);">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Best Used For</span>
+            </div>
+            <div class="guidance-text">${template.guidance.bestUsedFor}</div>
+          </div>
+          <div class="guidance-col">
+            <div class="guidance-label" style="color: var(--ai-danger);">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" x2="9" y1="9" y2="15"/><line x1="9" x2="15" y1="9" y2="15"/></svg>
+              <span>Avoid When</span>
+            </div>
+            <div class="guidance-text">${template.guidance.avoidWhen}</div>
+          </div>
+          ${template.guidance.pairsWith.length > 0 ? `
+            <div class="guidance-col">
+              <div class="guidance-label">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
+                <span>Recommended Adjacent Sections</span>
+              </div>
+              <div class="guidance-pairs">
+                ${template.guidance.pairsWith.map((pairId) => `
+                  <button class="guidance-pair-tag jump-to-pair" data-jump="${pairId}">${pairId}</button>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+      </div>
+
+      <!-- Live Preview Canvas -->
+      <div class="template-canvas-container" style="width: ${currentViewport}; max-width: 100%;">
+        <div class="template-preview-frame ${previewMode === 'wireframe' ? 'is-wireframe-mode' : ''}">
+          ${template.html}
+        </div>
+      </div>
+
+      <!-- Expandable Code Panel -->
+      <div class="template-code-panel" id="code-${template.id}">
+        <div class="ai-flex ai-justify-between ai-items-center ai-mb-2">
+          <span style="font-family: var(--ai-font-mono); font-size: 0.75rem; color: var(--ai-text-muted);">
+            HTML &bull; ${template.id}.html
+          </span>
+          <button class="ai-btn ai-btn-ghost ai-btn-xs copy-snippet-btn" data-id="${template.id}">
+            Copy Code
+          </button>
+        </div>
+        <pre><code>${escapeHtml(template.html)}</code></pre>
+      </div>
+    </article>
+  `).join('');
+
+  // Wire event handlers
+  attachTemplateCardHandlers();
+}
+
+function attachTemplateCardHandlers() {
+  // Guidance toggles
+  document.querySelectorAll('.toggle-guidance-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      if (targetId) {
+        const el = document.getElementById(targetId);
+        el?.classList.toggle('is-open');
+        btn.classList.toggle('is-active', el?.classList.contains('is-open'));
+      }
+    });
+  });
+
+  // Code toggles
+  document.querySelectorAll('.toggle-code-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      if (targetId) {
+        const el = document.getElementById(targetId);
+        el?.classList.toggle('is-open');
+        btn.classList.toggle('is-active', el?.classList.contains('is-open'));
+      }
+    });
+  });
+
+  // Copy HTML
+  document.querySelectorAll('.copy-html-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const id = btn.getAttribute('data-id');
+      const t = wireframeTemplates.find((x) => x.id === id);
+      if (t) {
+        copyToClipboard(t.html, `${t.name} HTML`, e.currentTarget as HTMLElement);
+      }
+    });
+  });
+
+  // Copy Code snippet
+  document.querySelectorAll('.copy-snippet-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const id = btn.getAttribute('data-id');
+      const t = wireframeTemplates.find((x) => x.id === id);
+      if (t) {
+        copyToClipboard(t.html, `${t.name} HTML`, e.currentTarget as HTMLElement);
+      }
+    });
+  });
+
+  // Copy CLI command
+  document.querySelectorAll('.copy-cli-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const id = btn.getAttribute('data-id');
+      if (id) {
+        copyToClipboard(`npx llmcss template get ${id}`, `CLI Command`, e.currentTarget as HTMLElement);
+      }
+    });
+  });
+
+  // Jump to pair
+  document.querySelectorAll('.jump-to-pair').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const jumpId = btn.getAttribute('data-jump');
+      if (jumpId) {
+        // Clear blueprint filter if active so target can be viewed
+        if (activeBlueprintId) {
+          activeBlueprintId = null;
+          renderBlueprintBar();
+          renderBlueprintBanner();
+          renderTemplates();
+        }
+        const targetEl = document.getElementById(`card-${jumpId}`);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          targetEl.classList.add('is-highlighted');
+          setTimeout(() => targetEl.classList.remove('is-highlighted'), 2000);
+        } else {
+          // Reset category filter if it was hidden
+          activeCategory = 'all';
+          updateCategoryButtons();
+          renderTemplates();
+          const el = document.getElementById(`card-${jumpId}`);
+          el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+}
+
+function updateCategoryButtons() {
+  categoryNav?.querySelectorAll('.category-filter-btn').forEach((btn) => {
+    const cat = btn.getAttribute('data-category');
+    if (cat === activeCategory) {
+      btn.classList.add('is-active');
+    } else {
+      btn.classList.remove('is-active');
+    }
+  });
+}
+
+// ============================================================================
+// INITIALIZATION
+// ============================================================================
+function init() {
+  bindFontSwitchers(() => applyThemeSettings());
+  applyThemeSettings();
+
+  // 1. Render Blueprints
+  renderBlueprintBar();
+  renderBlueprintBanner();
+
+  // 2. Render Initial Templates
+  renderTemplates();
+
+  // 3. Category Nav Handlers
+  categoryNav?.querySelectorAll('.category-filter-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const cat = btn.getAttribute('data-category');
+      if (cat) {
+        activeCategory = cat;
+        // Reset blueprint selection when clicking category
+        activeBlueprintId = null;
+        renderBlueprintBar();
+        renderBlueprintBanner();
+        updateCategoryButtons();
+        renderTemplates();
+      }
+    });
+  });
+
+  // 4. Search Handler
+  searchInput?.addEventListener('input', (e) => {
+    searchQuery = (e.target as HTMLInputElement).value;
+    renderTemplates();
+  });
+
+  // 5. Preview Mode Toggle (Wireframe vs Themed)
+  const modeButtons = document.querySelectorAll('.preview-mode-btn');
+  modeButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const mode = btn.getAttribute('data-mode') as 'wireframe' | 'themed';
+      if (mode) {
+        previewMode = mode;
+        modeButtons.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        document.querySelectorAll('.template-preview-frame').forEach((frame) => {
+          if (previewMode === 'wireframe') {
+            frame.classList.add('is-wireframe-mode');
+          } else {
+            frame.classList.remove('is-wireframe-mode');
+          }
+        });
+      }
+    });
+  });
+
+  // 6. Viewport Controls
+  const viewportButtons = document.querySelectorAll('.viewport-btn');
+  viewportButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const width = btn.getAttribute('data-viewport') || '100%';
+      currentViewport = width;
+      viewportButtons.forEach((b) => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      document.querySelectorAll('.template-canvas-container').forEach((c) => {
+        (c as HTMLElement).style.width = width;
+      });
+    });
+  });
+
+  // 7. Light/Dark Mode Toggle
+  themeToggle?.addEventListener('click', () => {
+    activeTheme = activeTheme === 'light' ? 'dark' : 'light';
+    applyThemeSettings();
+  });
+
+  // 8. Skin Switcher Dropdown
+  skinSwitcher?.addEventListener('change', (e) => {
+    activeSkin = (e.target as HTMLSelectElement).value;
+    applyThemeSettings();
+  });
+
+  // 9. Full Preview Modal Dismiss
+  document.querySelectorAll('[data-dismiss="modal"]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      fullPreviewModal?.classList.remove('is-open');
+    });
+  });
+  fullPreviewModal?.addEventListener('click', (e) => {
+    if (e.target === fullPreviewModal) {
+      fullPreviewModal.classList.remove('is-open');
+    }
+  });
+
+  // 10. Copy All Blueprint CLI
+  document.getElementById('header-copy-cli-btn')?.addEventListener('click', (e) => {
+    copyToClipboard('npx llmcss template list', 'CLI Template Command', e.currentTarget as HTMLElement);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', init);

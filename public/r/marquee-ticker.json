@@ -1,0 +1,16 @@
+{
+  "id": "marquee-ticker",
+  "name": "Infinite Marquee Logo Ticker",
+  "description": "Pure native CSS smooth infinite horizontal logo & trust badge ticker with pause-on-hover.",
+  "category": "marketing",
+  "tier": "free",
+  "tags": [
+    "marquee",
+    "ticker",
+    "logo",
+    "carousel",
+    "marketing",
+    "animation"
+  ],
+  "html": "<div class=\"ai-marquee\" style=\"background: var(--ai-surface-1); border: 1px solid var(--ai-border); border-radius: var(--ai-radius-lg); padding: var(--ai-space-4) 0;\">\n  <div class=\"ai-marquee-track\">\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">ALPHA NET</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">VECTOR SYS</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">QUANTUM LABS</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">NEXUS DATA</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">KINETIC CORE</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">SYNAPSE AI</span>\n  </div>\n  <div class=\"ai-marquee-track\" aria-hidden=\"true\">\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">ALPHA NET</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">VECTOR SYS</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">QUANTUM LABS</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">NEXUS DATA</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">KINETIC CORE</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">SYNAPSE AI</span>\n  </div>\n</div>"
+}

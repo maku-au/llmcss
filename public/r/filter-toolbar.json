@@ -1,0 +1,15 @@
+{
+  "id": "filter-toolbar",
+  "name": "Filter Toolbar & Pill Tags",
+  "description": "Application filter header with quick-select pill tags, search field, and sort control.",
+  "category": "application",
+  "tier": "free",
+  "tags": [
+    "filter",
+    "toolbar",
+    "tags",
+    "search",
+    "application"
+  ],
+  "html": "<div class=\"ai-filter-toolbar\">\n  <div class=\"ai-filter-tags\">\n    <span class=\"ai-text-xs ai-font-medium ai-text-muted\" style=\"margin-right: 0.25rem;\">Filter:</span>\n    <button class=\"ai-filter-tag is-active\">All (48)</button>\n    <button class=\"ai-filter-tag\">Production</button>\n    <button class=\"ai-filter-tag\">Staging</button>\n    <button class=\"ai-filter-tag\">Failed</button>\n  </div>\n  <div class=\"ai-flex ai-items-center ai-gap-2\">\n    <input type=\"text\" class=\"ai-input\" placeholder=\"Filter jobs...\" style=\"height: 1.875rem; font-size: 0.75rem; width: 10rem;\" />\n    <select class=\"ai-select\" style=\"height: 1.875rem; font-size: 0.75rem; padding: 0 1.5rem 0 0.5rem;\">\n      <option>Latest</option>\n      <option>Oldest</option>\n      <option>Duration</option>\n    </select>\n  </div>\n</div>"
+}

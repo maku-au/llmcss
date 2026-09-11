@@ -1,0 +1,38 @@
+{
+  "name": "llmcss",
+  "version": "0.1.0",
+  "description": "Native CSS for agents and humans. MIT core; Pro is a paid catalog.",
+  "type": "module",
+  "main": "dist/index.js",
+  "style": "dist/llmcss.css",
+  "bin": {
+    "llmcss": "./bin/cssai.mjs",
+    "llmcss-mcp": "./bin/cssai-mcp.mjs",
+    "cssai": "./bin/cssai.mjs",
+    "cssai-mcp": "./bin/cssai-mcp.mjs"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && GOMAXPROCS=1 vite build && node src/registry/build-registry.mjs",
+    "build:registry": "node src/registry/build-registry.mjs",
+    "preview": "vite preview",
+    "test": "node tests/verify.mjs",
+    "test:cli": "node bin/cssai.mjs list",
+    "mcp": "node bin/cssai-mcp.mjs"
+  },
+  "keywords": [
+    "css",
+    "ui-library",
+    "ai-agent",
+    "design-system",
+    "web-components",
+    "tailwind-alternative",
+    "relume-alternative"
+  ],
+  "author": "LLMCSS",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "vite": "^6.1.1"
+  }
+}

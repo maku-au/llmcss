@@ -1,0 +1,15 @@
+{
+  "id": "notification-list",
+  "name": "Notification List",
+  "description": "Grouped notification items with unread indicators, timestamps, and hover states.",
+  "category": "application",
+  "tier": "free",
+  "tags": [
+    "notification",
+    "alert",
+    "inbox",
+    "message",
+    "feed"
+  ],
+  "html": "<div class=\"ai-notification-list\" style=\"max-width: 28rem;\">\n  <div class=\"ai-notification-item is-unread\">\n    <span class=\"ai-notification-dot\"></span>\n    <div class=\"ai-notification-content\">\n      <p class=\"ai-notification-title\">Deployment completed successfully</p>\n      <p class=\"ai-notification-meta\">Production environment - 2 minutes ago</p>\n    </div>\n  </div>\n  <div class=\"ai-notification-item is-unread\">\n    <span class=\"ai-notification-dot\"></span>\n    <div class=\"ai-notification-content\">\n      <p class=\"ai-notification-title\">New team member joined the workspace</p>\n      <p class=\"ai-notification-meta\">Sarah Chen accepted the invite - 15 minutes ago</p>\n    </div>\n  </div>\n  <div class=\"ai-notification-item\">\n    <span class=\"ai-notification-dot\" style=\"background-color: transparent;\"></span>\n    <div class=\"ai-notification-content\">\n      <p class=\"ai-notification-title\">Weekly usage report ready</p>\n      <p class=\"ai-notification-meta\">Analytics - 2 hours ago</p>\n    </div>\n  </div>\n  <div class=\"ai-notification-item\">\n    <span class=\"ai-notification-dot\" style=\"background-color: transparent;\"></span>\n    <div class=\"ai-notification-content\">\n      <p class=\"ai-notification-title\">SSL certificate renewed</p>\n      <p class=\"ai-notification-meta\">Infrastructure - Yesterday at 11:42 AM</p>\n    </div>\n  </div>\n</div>"
+}

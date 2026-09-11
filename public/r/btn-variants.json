@@ -1,0 +1,14 @@
+{
+  "id": "btn-variants",
+  "name": "Button Variants",
+  "description": "High-craft buttons across solid primary, secondary, outline, ghost, and accent variants.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "button",
+    "action",
+    "cta",
+    "input"
+  ],
+  "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-3 ai-items-center\">\n  <button class=\"ai-btn ai-btn-primary\">Primary Action</button>\n  <button class=\"ai-btn ai-btn-secondary\">Secondary</button>\n  <button class=\"ai-btn ai-btn-outline\">Outline</button>\n  <button class=\"ai-btn ai-btn-ghost\">Ghost</button>\n  <button class=\"ai-btn ai-btn-accent\">Accent Blue</button>\n  <button class=\"ai-btn ai-btn-danger\">Destructive</button>\n  <button class=\"ai-btn ai-btn-primary is-loading\">Loading</button>\n</div>"
+}

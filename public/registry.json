@@ -1,0 +1,888 @@
+{
+  "version": "0.1.0",
+  "generatedAt": "2026-09-11T14:32:11.999Z",
+  "stats": {
+    "total": 60,
+    "free": 47,
+    "pro": 13,
+    "categories": {
+      "primitive": 34,
+      "marketing": 8,
+      "application": 16,
+      "ecommerce": 2
+    }
+  },
+  "components": [
+    {
+      "id": "btn-variants",
+      "name": "Button Variants",
+      "description": "High-craft buttons across solid primary, secondary, outline, ghost, and accent variants.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "button",
+        "action",
+        "cta",
+        "input"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-3 ai-items-center\">\n  <button class=\"ai-btn ai-btn-primary\">Primary Action</button>\n  <button class=\"ai-btn ai-btn-secondary\">Secondary</button>\n  <button class=\"ai-btn ai-btn-outline\">Outline</button>\n  <button class=\"ai-btn ai-btn-ghost\">Ghost</button>\n  <button class=\"ai-btn ai-btn-accent\">Accent Blue</button>\n  <button class=\"ai-btn ai-btn-danger\">Destructive</button>\n  <button class=\"ai-btn ai-btn-primary is-loading\">Loading</button>\n</div>"
+    },
+    {
+      "id": "btn-sizes",
+      "name": "Button Sizes & Icons",
+      "description": "Modular button sizing scale from extra-small (xs) to extra-large (xl) plus icon buttons.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "button",
+        "size",
+        "icon"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-3 ai-items-center\">\n  <button class=\"ai-btn ai-btn-primary ai-btn-xs\">Extra Small</button>\n  <button class=\"ai-btn ai-btn-primary ai-btn-sm\">Small</button>\n  <button class=\"ai-btn ai-btn-primary\">Standard</button>\n  <button class=\"ai-btn ai-btn-primary ai-btn-lg\">Large</button>\n  <button class=\"ai-btn ai-btn-outline ai-btn-icon\" aria-label=\"Settings\">\n    <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"3\"></circle><path d=\"M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z\"></path></svg>\n  </button>\n</div>"
+    },
+    {
+      "id": "input-text",
+      "name": "Form Inputs & Groups",
+      "description": "Clean form fields with label hierarchy, subtle focus states, and helper messaging.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "form",
+        "input",
+        "field"
+      ],
+      "html": "<div class=\"ai-grid ai-gap-4\" style=\"max-width: 24rem;\">\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label\" for=\"user-email\">Email Address</label>\n    <input type=\"email\" id=\"user-email\" class=\"ai-input\" placeholder=\"name@company.com\" />\n    <span class=\"ai-form-hint\">We'll send your workspace invite here.</span>\n  </div>\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label\" for=\"user-bio\">Description</label>\n    <textarea id=\"user-bio\" class=\"ai-textarea\" placeholder=\"Tell us about your project...\"></textarea>\n  </div>\n</div>"
+    },
+    {
+      "id": "input-addon",
+      "name": "Input Addons & Domain Prefix",
+      "description": "Segmented input groups with prefix labels and integrated action buttons.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "input",
+        "addon",
+        "domain"
+      ],
+      "html": "<div class=\"ai-form-group\" style=\"max-width: 28rem;\">\n  <label class=\"ai-form-label\">Project URL</label>\n  <div class=\"ai-input-group\">\n    <span class=\"ai-input-addon\">https://</span>\n    <input type=\"text\" class=\"ai-input\" placeholder=\"my-app\" />\n    <span class=\"ai-input-addon\">.llmcss.io</span>\n  </div>\n</div>"
+    },
+    {
+      "id": "switch-toggle",
+      "name": "Tactile Switch & Checkbox",
+      "description": "Accessible toggle switches and checkboxes with physical spring transitions.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "switch",
+        "toggle",
+        "checkbox"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-col ai-gap-4\">\n  <label class=\"ai-switch\">\n    <input type=\"checkbox\" class=\"ai-switch-input\" checked />\n    <span class=\"ai-switch-track\"><span class=\"ai-switch-thumb\"></span></span>\n    <span class=\"ai-text-sm ai-font-medium\">Automatic Backups</span>\n  </label>\n  <label class=\"ai-checkbox\">\n    <input type=\"checkbox\" class=\"ai-checkbox-input\" checked />\n    <span>Notify me when teammates comment</span>\n  </label>\n</div>"
+    },
+    {
+      "id": "card-standard",
+      "name": "Standard Card Container",
+      "description": "Structured card layout with header, body content, and action footer.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "card",
+        "surface",
+        "container"
+      ],
+      "html": "<div class=\"ai-card\" style=\"max-width: 24rem;\">\n  <div class=\"ai-card-header\">\n    <h3 class=\"ai-card-title\">Project Deployment</h3>\n    <p class=\"ai-card-description\">Production deployment configured for edge nodes.</p>\n  </div>\n  <div class=\"ai-card-body\">\n    <p class=\"ai-text-sm\">Last deployed 14 minutes ago via commit <code>8f42d19</code> to <strong>production-syd</strong>.</p>\n  </div>\n  <div class=\"ai-card-footer\">\n    <span class=\"ai-badge ai-badge-success ai-badge-dot\">Online</span>\n    <button class=\"ai-btn ai-btn-outline ai-btn-xs\">View Logs</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "badge-status",
+      "name": "Status & Craft Badges",
+      "description": "Precision architectural badges, high-contrast inverted tags, and jewel hardware status pips without cartoonish pastel washes.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "badge",
+        "pill",
+        "status",
+        "tag"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-2 ai-items-center\">\n  <span class=\"ai-badge ai-badge-solid\">RECOMMENDED</span>\n  <span class=\"ai-badge ai-badge-default\">Default</span>\n  <span class=\"ai-badge ai-badge-pro\">PRO ACCESS</span>\n  <span class=\"ai-badge ai-badge-success ai-badge-dot\">Operational</span>\n  <span class=\"ai-badge ai-badge-warning ai-badge-dot\">Degraded</span>\n  <span class=\"ai-badge ai-badge-danger ai-badge-dot\">Offline</span>\n  <span class=\"ai-badge ai-badge-outline\">Outline Tag</span>\n  <span class=\"ai-badge ai-badge-mono\">128 tok/s</span>\n</div>"
+    },
+    {
+      "id": "avatar-group",
+      "name": "Avatars & Avatar Group",
+      "description": "User avatar icons, initials, and overlapping team member piles.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "avatar",
+        "user",
+        "team"
+      ],
+      "html": "<div class=\"ai-flex ai-items-center ai-gap-6\">\n  <div class=\"ai-avatar-group\">\n    <div class=\"ai-avatar ai-avatar-sm\" style=\"background-color: var(--ai-surface-3);\">+4</div>\n    <div class=\"ai-avatar ai-avatar-sm\" style=\"background-color: #3b82f6; color: white;\">JD</div>\n    <div class=\"ai-avatar ai-avatar-sm\" style=\"background-color: #10b981; color: white;\">SK</div>\n    <div class=\"ai-avatar ai-avatar-sm\" style=\"background-color: #f59e0b; color: white;\">AL</div>\n  </div>\n  <div class=\"ai-avatar\">\n    <span class=\"ai-font-bold\">EA</span>\n  </div>\n</div>"
+    },
+    {
+      "id": "modal-dialog",
+      "name": "Modal Dialog Box",
+      "description": "Accessible modal dialog with frosted backdrop, header, body, and action buttons.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "modal",
+        "dialog",
+        "overlay",
+        "popup"
+      ],
+      "html": "<button class=\"ai-btn ai-btn-primary\" data-ai-toggle=\"modal\" data-ai-target=\"#demo-modal\">\n  Open Modal Dialog\n</button>\n\n<div id=\"demo-modal\" class=\"ai-modal\">\n  <div class=\"ai-modal-backdrop\" data-ai-dismiss=\"modal\"></div>\n  <div class=\"ai-modal-box\">\n    <div class=\"ai-modal-header\">\n      <h3 class=\"ai-modal-title\">Confirm Database Reset</h3>\n      <button class=\"ai-modal-close\" data-ai-dismiss=\"modal\">&times;</button>\n    </div>\n    <div class=\"ai-modal-body\">\n      <p>Are you sure you want to reset the staging database? All mock records and schema migrations will revert to initial seed.</p>\n    </div>\n    <div class=\"ai-modal-footer\">\n      <button class=\"ai-btn ai-btn-outline\" data-ai-dismiss=\"modal\">Cancel</button>\n      <button class=\"ai-btn ai-btn-danger\" data-ai-dismiss=\"modal\">Reset Database</button>\n    </div>\n  </div>\n</div>",
+      "webComponentHtml": "<ai-modal id=\"demo-modal\">\n  <div class=\"ai-modal-backdrop\"></div>\n  <div class=\"ai-modal-box\">\n    <div class=\"ai-modal-header\">\n      <h3 class=\"ai-modal-title\">Web Component Dialog</h3>\n      <button class=\"ai-modal-close\" data-ai-dismiss=\"modal\">&times;</button>\n    </div>\n    <div class=\"ai-modal-body\">\n      <p>Rendered natively via &lt;ai-modal&gt; custom element with Light DOM styling.</p>\n    </div>\n    <div class=\"ai-modal-footer\">\n      <button class=\"ai-btn ai-btn-primary\" data-ai-dismiss=\"modal\">Got it</button>\n    </div>\n  </div>\n</ai-modal>"
+    },
+    {
+      "id": "tabs-system",
+      "name": "Interactive Tabs",
+      "description": "Underline and segmented pill tab bars with keyboard and click delegation.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "tabs",
+        "navigation",
+        "panel"
+      ],
+      "html": "<div class=\"ai-tabs\">\n  <div class=\"ai-tabs-list\">\n    <button class=\"ai-tab is-active\" data-ai-tab=\"#tab-overview\">Overview</button>\n    <button class=\"ai-tab\" data-ai-tab=\"#tab-analytics\">Analytics</button>\n    <button class=\"ai-tab\" data-ai-tab=\"#tab-settings\">Settings</button>\n  </div>\n  <div id=\"tab-overview\" class=\"ai-tab-panel is-active\">\n    <p class=\"ai-text-secondary\">Overview tab content displaying system health and recent build outputs.</p>\n  </div>\n  <div id=\"tab-analytics\" class=\"ai-tab-panel\">\n    <p class=\"ai-text-secondary\">Analytics tab content displaying traffic and user engagement charts.</p>\n  </div>\n  <div id=\"tab-settings\" class=\"ai-tab-panel\">\n    <p class=\"ai-text-secondary\">Workspace preferences and security configurations.</p>\n  </div>\n</div>",
+      "webComponentHtml": "<ai-tabs>\n  <div class=\"ai-tabs-list\">\n    <button class=\"ai-tab is-active\" data-ai-tab=\"#tab-1\">Account</button>\n    <button class=\"ai-tab\" data-ai-tab=\"#tab-2\">Security</button>\n  </div>\n  <div id=\"tab-1\" class=\"ai-tab-panel is-active\"><p>Manage your account settings.</p></div>\n  <div id=\"tab-2\" class=\"ai-tab-panel\"><p>Configure 2FA and sessions.</p></div>\n</ai-tabs>"
+    },
+    {
+      "id": "dropdown-menu",
+      "name": "Dropdown Action Menu",
+      "description": "Contextual popup dropdown with item icons, dividers, and click-outside dismissal.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "dropdown",
+        "menu",
+        "actions"
+      ],
+      "html": "<div style=\"min-height: 14rem; padding-bottom: 11rem; display: flex; justify-content: center; align-items: flex-start; padding-top: var(--ai-space-2);\">\n  <div class=\"ai-dropdown\">\n    <button class=\"ai-btn ai-btn-outline\" data-ai-toggle=\"dropdown\">\n      Options\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"m6 9 6 6 6-6\"/></svg>\n    </button>\n    <ul class=\"ai-dropdown-menu\">\n      <li class=\"ai-dropdown-header\">Workspace</li>\n      <li><button class=\"ai-dropdown-item\">View Team</button></li>\n      <li><button class=\"ai-dropdown-item\">Billing & Plans</button></li>\n      <li class=\"ai-dropdown-divider\"></li>\n      <li><button class=\"ai-dropdown-item is-danger\">Sign Out</button></li>\n    </ul>\n  </div>\n</div>"
+    },
+    {
+      "id": "accordion-faq",
+      "name": "Collapsible Accordion",
+      "description": "Smooth expanding accordion items with animated chevron rotation.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "accordion",
+        "collapse",
+        "faq"
+      ],
+      "html": "<div class=\"ai-accordion\">\n  <div class=\"ai-accordion-item is-open\" open>\n    <button class=\"ai-accordion-trigger\" data-ai-toggle=\"accordion\">\n      How does LLMCSS eliminate the 'AI look'?\n      <span class=\"ai-accordion-chevron\">▼</span>\n    </button>\n    <div class=\"ai-accordion-content\">\n      LLMCSS uses high-craft typography pairings, subtle physical borders, calibrated surfaces, and asymmetric bento layouts rather than cookie-cutter purple gradients and over-rounded cards.\n    </div>\n  </div>\n  <div class=\"ai-accordion-item\">\n    <button class=\"ai-accordion-trigger\" data-ai-toggle=\"accordion\">\n      Can I use this without a build tool or Vite?\n      <span class=\"ai-accordion-chevron\">▼</span>\n    </button>\n    <div class=\"ai-accordion-content\">\n      Yes! LLMCSS is written in 100% pure modern native CSS with CSS layers and variables. You can load it via a single &lt;link&gt; tag.\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "id": "table-data",
+      "name": "Data Table with Striping",
+      "description": "Clean responsive data table with sticky headers, hover highlights, and badges.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "table",
+        "data",
+        "grid",
+        "list"
+      ],
+      "html": "<div class=\"ai-table-container\">\n  <table class=\"ai-table ai-table-hover\">\n    <thead>\n      <tr>\n        <th>Repository</th>\n        <th>Environment</th>\n        <th>Branch</th>\n        <th>Status</th>\n        <th>Updated</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"ai-font-semibold\">llmcss-core</td>\n        <td>Production</td>\n        <td><code>main</code></td>\n        <td><span class=\"ai-badge ai-badge-success ai-badge-dot\">Active</span></td>\n        <td>2m ago</td>\n      </tr>\n      <tr>\n        <td class=\"ai-font-semibold\">llmcss-docs</td>\n        <td>Staging</td>\n        <td><code>preview/v1</code></td>\n        <td><span class=\"ai-badge ai-badge-accent ai-badge-dot\">Building</span></td>\n        <td>15m ago</td>\n      </tr>\n      <tr>\n        <td class=\"ai-font-semibold\">llmcss-mcp</td>\n        <td>Edge</td>\n        <td><code>feat/tools</code></td>\n        <td><span class=\"ai-badge ai-badge-warning ai-badge-dot\">Queued</span></td>\n        <td>1h ago</td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+    },
+    {
+      "id": "alert-callouts",
+      "name": "Contextual Alert Banners",
+      "description": "Informative alert cards for success, warning, danger, and informational messages.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "alert",
+        "notice",
+        "banner"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-col ai-gap-3\">\n  <div class=\"ai-alert ai-alert-info\">\n    <svg class=\"ai-alert-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 16v-4\"/><path d=\"M12 8h.01\"/></svg>\n    <div>\n      <strong class=\"ai-font-semibold\">Maintenance scheduled:</strong> Edge servers will undergo routine maintenance at 02:00 UTC.\n    </div>\n  </div>\n  <div class=\"ai-alert ai-alert-success\">\n    <svg class=\"ai-alert-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"/><path d=\"22 4 12 14.01 9 11.01\"/></svg>\n    <div>\n      <strong class=\"ai-font-semibold\">Success:</strong> Your new API license key has been verified and applied to your workspace.\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "id": "navbar-modern",
+      "name": "Responsive Navigation Header",
+      "description": "Modern glassmorphism navigation header with desktop links, CTA, and slide-out mobile drawer.",
+      "category": "marketing",
+      "tier": "free",
+      "tags": [
+        "navbar",
+        "header",
+        "navigation",
+        "responsive",
+        "mobile"
+      ],
+      "html": "<header class=\"ai-navbar\">\n  <div class=\"ai-container\">\n    <div class=\"ai-navbar-inner\">\n      <a href=\"#\" class=\"ai-brand\">\n        <svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polygon points=\"12 2 2 7 12 12 22 7 12 2\"/><polyline points=\"2 17 12 22 22 17\"/><polyline points=\"2 12 12 17 22 12\"/></svg>\n        <span>LLMCSS</span>\n      </a>\n      <nav class=\"ai-nav-links\">\n        <a href=\"#components\" class=\"ai-nav-link\">Components</a>\n        <a href=\"#templates\" class=\"ai-nav-link\">Templates</a>\n        <a href=\"#pricing\" class=\"ai-nav-link\">Pricing</a>\n        <a href=\"#docs\" class=\"ai-nav-link\">Documentation</a>\n      </nav>\n      <div class=\"ai-flex ai-items-center ai-gap-2\">\n        <a href=\"#login\" class=\"ai-btn ai-btn-ghost ai-btn-xs ai-sm:inline-flex ai-hidden\">Log in</a>\n        <a href=\"#start\" class=\"ai-btn ai-btn-primary ai-btn-xs\">Get Started</a>\n        <button class=\"ai-btn ai-btn-outline ai-btn-xs ai-md:hidden\" data-ai-toggle=\"drawer\" data-ai-target=\"#mobile-nav-drawer\" aria-label=\"Toggle Menu\">\n          <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><line x1=\"3\" y1=\"12\" x2=\"21\" y2=\"12\"/><line x1=\"3\" y1=\"6\" x2=\"21\" y2=\"6\"/><line x1=\"3\" y1=\"18\" x2=\"21\" y2=\"18\"/></svg>\n        </button>\n      </div>\n    </div>\n  </div>\n</header>\n\n<!-- Mobile Navigation Drawer -->\n<div id=\"mobile-nav-drawer\" class=\"ai-drawer ai-drawer-left\">\n  <div class=\"ai-drawer-backdrop\" data-ai-dismiss=\"drawer\"></div>\n  <div class=\"ai-drawer-panel\" style=\"max-width: 18rem;\">\n    <div class=\"ai-drawer-header\">\n      <a href=\"#\" class=\"ai-brand\" style=\"font-size: 1rem;\">\n        <span>LLMCSS</span>\n      </a>\n      <button class=\"ai-modal-close\" data-ai-dismiss=\"drawer\">&times;</button>\n    </div>\n    <div class=\"ai-drawer-body\">\n      <nav class=\"ai-flex ai-flex-col ai-gap-2\">\n        <a href=\"#components\" class=\"ai-sidebar-item\">Components</a>\n        <a href=\"#templates\" class=\"ai-sidebar-item\">Templates</a>\n        <a href=\"#pricing\" class=\"ai-sidebar-item\">Pricing</a>\n        <a href=\"#docs\" class=\"ai-sidebar-item\">Documentation</a>\n      </nav>\n    </div>\n    <div class=\"ai-drawer-footer\">\n      <button class=\"ai-btn ai-btn-primary ai-w-full ai-btn-sm\" data-ai-dismiss=\"drawer\">Sign In</button>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "id": "hero-split",
+      "name": "Split Screen Marketing Hero",
+      "description": "High-converting hero section with badge, strong typographic lead, CTA buttons, and UI preview.",
+      "category": "marketing",
+      "tier": "free",
+      "tags": [
+        "hero",
+        "landing",
+        "headline"
+      ],
+      "html": "<section class=\"ai-hero\">\n  <div class=\"ai-container\">\n    <div class=\"ai-hero-split\">\n      <div>\n        <h1 class=\"ai-hero-title\">\n          Build software that looks human, not generated.\n        </h1>\n        <p class=\"ai-hero-lead\">\n          The open UI library built for AI agents and design engineers. Pure native CSS, tokenized skinning, and zero cookie-cutter templates.\n        </p>\n        <div class=\"ai-hero-actions\">\n          <button class=\"ai-btn ai-btn-primary ai-btn-lg\">Browse 100+ Components</button>\n          <button class=\"ai-btn ai-btn-outline ai-btn-lg\">Documentation</button>\n        </div>\n      </div>\n      <div class=\"ai-hero-visual\">\n        <div style=\"background-color: var(--ai-surface-0); padding: var(--ai-space-8); border-radius: inherit;\">\n          <div class=\"ai-flex ai-justify-between ai-items-center\" style=\"margin-bottom: var(--ai-space-6);\">\n            <span class=\"ai-text-xs ai-font-mono ai-text-muted\">app.analytics.ts</span>\n            <span class=\"ai-badge ai-badge-success ai-badge-dot\">Live Stream</span>\n          </div>\n          <div class=\"ai-grid ai-grid-cols-2 ai-gap-4\">\n            <div class=\"ai-kpi-card\" style=\"padding: var(--ai-space-4);\">\n              <span class=\"ai-kpi-label\">Weekly Active Users</span>\n              <span class=\"ai-kpi-value\" style=\"font-size: 1.5rem;\">48,290</span>\n              <span class=\"ai-kpi-trend is-up\">↑ +24.8%</span>\n            </div>\n            <div class=\"ai-kpi-card\" style=\"padding: var(--ai-space-4);\">\n              <span class=\"ai-kpi-label\">Conversion Rate</span>\n              <span class=\"ai-kpi-value\" style=\"font-size: 1.5rem;\">4.12%</span>\n              <span class=\"ai-kpi-trend is-up\">↑ +1.2%</span>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>"
+    },
+    {
+      "id": "hero-bento-pro",
+      "name": "Asymmetric Bento Hero (PRO)",
+      "description": "Flagship bento grid hero with tactile borders, live interactive code previews, and luxury surface physics.",
+      "category": "marketing",
+      "tier": "pro",
+      "tags": [
+        "hero",
+        "bento",
+        "pro",
+        "luxury"
+      ],
+      "locked": true,
+      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Asymmetric Bento Hero</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "pricing-tier-cards",
+      "name": "3-Tier Pricing Table",
+      "description": "Clear pricing tiers with popular plan highlight, feature lists, and monthly/annual toggles.",
+      "category": "marketing",
+      "tier": "free",
+      "tags": [
+        "pricing",
+        "plans",
+        "conversion"
+      ],
+      "html": "<section style=\"padding: var(--ai-space-16) 0;\">\n  <div class=\"ai-container\">\n    <div class=\"ai-text-center\" style=\"max-width: 36rem; margin: 0 auto;\">\n      <h2 style=\"font-size: 2.25rem;\">Predictable, Transparent Pricing</h2>\n      <p style=\"margin-top: var(--ai-space-2);\">Start building for free. Upgrade to Pro when you need advanced marketing and SaaS templates.</p>\n    </div>\n    <div class=\"ai-pricing-grid\">\n      <!-- Free Plan -->\n      <div class=\"ai-pricing-card\">\n        <div class=\"ai-pricing-header\">\n          <h3 class=\"ai-pricing-plan\">Starter (Free)</h3>\n          <p class=\"ai-text-sm ai-text-secondary\">For individual developers and open source projects.</p>\n          <div class=\"ai-pricing-amount\">\n            <span class=\"ai-pricing-price\">$0</span>\n            <span class=\"ai-pricing-period\">/ month</span>\n          </div>\n        </div>\n        <ul class=\"ai-pricing-features\">\n          <li class=\"ai-pricing-feature-item\">✓ 40+ Core UI Primitives</li>\n          <li class=\"ai-pricing-feature-item\">✓ Pure Modern CSS Token Engine</li>\n          <li class=\"ai-pricing-feature-item\">✓ Light-DOM Custom Elements</li>\n          <li class=\"ai-pricing-feature-item\">✓ Public llms.txt & Docs</li>\n        </ul>\n        <button class=\"ai-btn ai-btn-outline ai-w-full\">Get Started Free</button>\n      </div>\n\n      <!-- Pro Plan (Featured) -->\n      <div class=\"ai-pricing-card ai-pricing-featured ai-card-pro\">\n        <div class=\"ai-pricing-header\">\n          <div class=\"ai-flex ai-justify-between ai-items-center\">\n            <h3 class=\"ai-pricing-plan\">LLMCSS Pro</h3>\n            <span class=\"ai-badge ai-badge-solid\">POPULAR</span>\n          </div>\n          <p class=\"ai-text-sm ai-text-secondary\">For agencies, AI builders, and fast-moving teams.</p>\n          <div class=\"ai-pricing-amount\">\n            <span class=\"ai-pricing-price\">$9</span>\n            <span class=\"ai-pricing-period\">/ month</span>\n          </div>\n        </div>\n        <ul class=\"ai-pricing-features\">\n          <li class=\"ai-pricing-feature-item\">✓ Everything in Starter</li>\n          <li class=\"ai-pricing-feature-item\">✓ 150+ Pro Marketing & Bento Sections</li>\n          <li class=\"ai-pricing-feature-item\">✓ Complete SaaS & App Layout Templates</li>\n          <li class=\"ai-pricing-feature-item\">✓ Dedicated MCP Server Integration</li>\n          <li class=\"ai-pricing-feature-item\">✓ Private CLI Token Access</li>\n        </ul>\n        <button class=\"ai-btn ai-btn-primary ai-w-full\">Upgrade to Pro</button>\n      </div>\n\n      <!-- Enterprise Plan -->\n      <div class=\"ai-pricing-card\">\n        <div class=\"ai-pricing-header\">\n          <h3 class=\"ai-pricing-plan\">Team / Enterprise</h3>\n          <p class=\"ai-text-sm ai-text-secondary\">For high-scale organizations building agent fleets.</p>\n          <div class=\"ai-pricing-amount\">\n            <span class=\"ai-pricing-price\">Custom</span>\n          </div>\n        </div>\n        <ul class=\"ai-pricing-features\">\n          <li class=\"ai-pricing-feature-item\">✓ Unlimited Team Seats</li>\n          <li class=\"ai-pricing-feature-item\">✓ Custom Theme Archetype Design</li>\n          <li class=\"ai-pricing-feature-item\">✓ Dedicated SLA & Support</li>\n          <li class=\"ai-pricing-feature-item\">✓ Figma Tokens Sync</li>\n        </ul>\n        <button class=\"ai-btn ai-btn-outline ai-w-full\">Contact Sales</button>\n      </div>\n    </div>\n  </div>\n</section>"
+    },
+    {
+      "id": "footer-multi-col",
+      "name": "Multi-Column Modern Footer",
+      "description": "Comprehensive footer with brand statement, navigation columns, and copyright.",
+      "category": "marketing",
+      "tier": "free",
+      "tags": [
+        "footer",
+        "navigation",
+        "legal"
+      ],
+      "html": "<footer class=\"ai-footer\">\n  <div class=\"ai-container\">\n    <div class=\"ai-footer-grid\">\n      <div>\n        <a href=\"#\" class=\"ai-brand\" style=\"margin-bottom: var(--ai-space-4);\">\n          <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polygon points=\"12 2 2 7 12 12 22 7 12 2\"/><polyline points=\"2 17 12 22 22 17\"/><polyline points=\"2 12 12 17 22 12\"/></svg>\n          <span>LLMCSS</span>\n        </a>\n        <p class=\"ai-text-sm\" style=\"max-width: 20rem;\">\n          High-craft UI library engineered for human developers and autonomous AI agents.\n        </p>\n      </div>\n      <div>\n        <h4 class=\"ai-text-xs ai-font-sans ai-font-semibold ai-text-muted\" style=\"text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--ai-space-4);\">Product</h4>\n        <ul class=\"ai-footer-list\">\n          <li><a href=\"#\" class=\"ai-text-secondary\">Components</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Marketing Sections</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">SaaS Dashboard</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Themes</a></li>\n        </ul>\n      </div>\n      <div>\n        <h4 class=\"ai-text-xs ai-font-sans ai-font-semibold ai-text-muted\" style=\"text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--ai-space-4);\">Agentic Tools</h4>\n        <ul class=\"ai-footer-list\">\n          <li><a href=\"#\" class=\"ai-text-secondary\">MCP Server</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">CLI Reference</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">llms.txt Specification</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Agent Rules</a></li>\n        </ul>\n      </div>\n      <div>\n        <h4 class=\"ai-text-xs ai-font-sans ai-font-semibold ai-text-muted\" style=\"text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--ai-space-4);\">Company</h4>\n        <ul class=\"ai-footer-list\">\n          <li><a href=\"#\" class=\"ai-text-secondary\">About</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Pricing</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Privacy</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Terms</a></li>\n        </ul>\n      </div>\n    </div>\n    <div class=\"ai-flex ai-justify-between ai-items-center ai-border-t\" style=\"padding-top: var(--ai-space-6);\">\n      <p class=\"ai-text-xs ai-text-muted\">© 2026 LLMCSS Inc. All rights reserved.</p>\n      <div class=\"ai-flex ai-gap-4\">\n        <a href=\"#\" class=\"ai-text-xs ai-text-muted\">GitHub</a>\n        <a href=\"#\" class=\"ai-text-xs ai-text-muted\">Discord</a>\n        <a href=\"#\" class=\"ai-text-xs ai-text-muted\">X (Twitter)</a>\n      </div>\n    </div>\n  </div>\n</footer>"
+    },
+    {
+      "id": "kpi-metric-cards",
+      "name": "SaaS Metric & KPI Summary",
+      "description": "4-card dashboard metric summary with percentage change trends and clean numbers.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "dashboard",
+        "kpi",
+        "metrics",
+        "stats"
+      ],
+      "html": "<div class=\"ai-grid ai-grid-cols-1 ai-md:grid-cols-2 ai-lg:grid-cols-4 ai-gap-4\">\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Monthly Recurring Revenue</span>\n    <span class=\"ai-kpi-value\">$124,500</span>\n    <span class=\"ai-kpi-trend is-up\">↑ +14.2% from last month</span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Active Subscriptions</span>\n    <span class=\"ai-kpi-value\">1,482</span>\n    <span class=\"ai-kpi-trend is-up\">↑ +8.4%</span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Churn Rate</span>\n    <span class=\"ai-kpi-value\">1.18%</span>\n    <span class=\"ai-kpi-trend is-down\">↓ -0.3% improvement</span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Agent Queries / Day</span>\n    <span class=\"ai-kpi-value\">4.8M</span>\n    <span class=\"ai-kpi-trend is-up\">↑ +42% spike</span>\n  </div>\n</div>"
+    },
+    {
+      "id": "command-palette-pro",
+      "name": "Command Palette ⌘K (PRO)",
+      "description": "Keyboard-driven search & quick command dialog with group headers, shortcut badges, and live filter.",
+      "category": "application",
+      "tier": "pro",
+      "tags": [
+        "command",
+        "search",
+        "palette",
+        "pro",
+        "keyboard"
+      ],
+      "locked": true,
+      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Command Palette ⌘K</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "auth-login-card",
+      "name": "Authentication Login Card",
+      "description": "Focused login card with social provider buttons, email/password form, and forgot password link.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "auth",
+        "login",
+        "signup",
+        "form"
+      ],
+      "html": "<div class=\"ai-auth-card\" style=\"margin: 0 auto;\">\n  <div class=\"ai-text-center\" style=\"margin-bottom: var(--ai-space-6);\">\n    <h3 class=\"ai-card-title\" style=\"font-size: 1.5rem;\">Welcome back</h3>\n    <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: 0.25rem;\">Enter your credentials to access your agent workspace.</p>\n  </div>\n  <form class=\"ai-flex ai-flex-col ai-gap-4\">\n    <div class=\"ai-form-group\" style=\"margin-bottom: 0;\">\n      <label class=\"ai-form-label\" for=\"auth-email\">Email</label>\n      <input type=\"email\" id=\"auth-email\" class=\"ai-input\" placeholder=\"you@domain.com\" required />\n    </div>\n    <div class=\"ai-form-group\" style=\"margin-bottom: 0;\">\n      <div class=\"ai-flex ai-justify-between ai-items-center\">\n        <label class=\"ai-form-label\" for=\"auth-pass\">Password</label>\n        <a href=\"#forgot\" class=\"ai-text-xs ai-text-accent\">Forgot password?</a>\n      </div>\n      <input type=\"password\" id=\"auth-pass\" class=\"ai-input\" placeholder=\"••••••••\" required />\n    </div>\n    <button type=\"submit\" class=\"ai-btn ai-btn-primary ai-w-full\" style=\"margin-top: var(--ai-space-2);\">Sign In</button>\n  </form>\n  <div class=\"ai-text-center\" style=\"margin-top: var(--ai-space-6); border-top: 1px solid var(--ai-border); padding-top: var(--ai-space-4);\">\n    <p class=\"ai-text-xs ai-text-secondary\">Don't have an account? <a href=\"#signup\" class=\"ai-text-accent ai-font-semibold\">Sign up</a></p>\n  </div>\n</div>"
+    },
+    {
+      "id": "product-card",
+      "name": "Modern E-Commerce Product Card",
+      "description": "Clean product card with hover zoom, discount pill badge, title, price, and Quick Add action.",
+      "category": "ecommerce",
+      "tier": "free",
+      "tags": [
+        "ecommerce",
+        "product",
+        "shop",
+        "card"
+      ],
+      "html": "<div class=\"ai-product-card\" style=\"max-width: 20rem;\">\n  <div class=\"ai-product-media\">\n    <span class=\"ai-badge ai-badge-solid ai-product-badge-float\">NEW ARRIVAL</span>\n    <img class=\"ai-product-img\" src=\"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80\" alt=\"Minimalist Studio Headphones\" />\n  </div>\n  <div class=\"ai-product-body\">\n    <h4 class=\"ai-product-title\">Aether Precision Wireless Studio Headphones</h4>\n    <span class=\"ai-product-category\">Audio & Acoustics</span>\n    <div class=\"ai-product-price-row\">\n      <span class=\"ai-product-price\">$349.00</span>\n      <span class=\"ai-product-compare-price\">$420.00</span>\n    </div>\n    <button class=\"ai-btn ai-btn-primary ai-btn-sm ai-w-full\" style=\"margin-top: var(--ai-space-3);\">\n      Add to Cart\n    </button>\n  </div>\n</div>"
+    },
+    {
+      "id": "cart-drawer-pro",
+      "name": "Slide-Out Cart Drawer (PRO)",
+      "description": "Full slide-out shopping bag drawer with line items, quantity steppers, subtotal, and checkout CTA.",
+      "category": "ecommerce",
+      "tier": "pro",
+      "tags": [
+        "cart",
+        "drawer",
+        "checkout",
+        "pro",
+        "ecommerce"
+      ],
+      "locked": true,
+      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Slide-Out Cart Drawer</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "animated-loaders",
+      "name": "Animated Spinners & Pulse Radars",
+      "description": "Pure CSS architectural circular arc spinners, dual orbital rings, and real-time live pulse radar dots.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "animation",
+        "spinner",
+        "loader",
+        "pulse",
+        "motion"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-6 ai-items-center\" style=\"padding: var(--ai-space-4);\">\n  <div class=\"ai-flex ai-items-center ai-gap-3\">\n    <span class=\"ai-spinner ai-spinner-sm\"></span>\n    <span class=\"ai-spinner\"></span>\n    <span class=\"ai-spinner ai-spinner-lg\"></span>\n  </div>\n  <div class=\"ai-flex ai-items-center ai-gap-3\">\n    <div class=\"ai-spinner-ring\"></div>\n    <span class=\"ai-text-xs ai-text-secondary ai-font-mono\">Orbital</span>\n  </div>\n  <div class=\"ai-flex ai-items-center ai-gap-2\">\n    <span class=\"ai-pulse-dot\"></span>\n    <span class=\"ai-text-xs ai-font-medium\">Connecting</span>\n  </div>\n  <div class=\"ai-flex ai-items-center ai-gap-2\">\n    <span class=\"ai-pulse-dot ai-pulse-dot-success\"></span>\n    <span class=\"ai-text-xs ai-font-medium\" style=\"color: var(--ai-success);\">Operational</span>\n  </div>\n</div>"
+    },
+    {
+      "id": "progress-bars",
+      "name": "Animated Progress & Loading Bars",
+      "description": "Determinate progress meters, indeterminate sliding shimmer bars for network/AI streams, and striped upload bars.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "progress",
+        "loading",
+        "animation",
+        "meter",
+        "bar"
+      ],
+      "html": "<div class=\"ai-grid ai-gap-5\" style=\"max-width: 28rem;\">\n  <div>\n    <div class=\"ai-flex ai-justify-between ai-text-xs ai-font-medium\" style=\"margin-bottom: 0.375rem;\">\n      <span>Indeterminate (Network Stream)</span>\n      <span class=\"ai-font-mono ai-text-secondary\">Syncing...</span>\n    </div>\n    <div class=\"ai-progress ai-progress-indeterminate\">\n      <div class=\"ai-progress-bar\"></div>\n    </div>\n  </div>\n  <div>\n    <div class=\"ai-flex ai-justify-between ai-text-xs ai-font-medium\" style=\"margin-bottom: 0.375rem;\">\n      <span>Model Weights Downloaded</span>\n      <span class=\"ai-font-mono\">68%</span>\n    </div>\n    <div class=\"ai-progress\">\n      <div class=\"ai-progress-bar\" style=\"width: 68%;\"></div>\n    </div>\n  </div>\n  <div>\n    <div class=\"ai-flex ai-justify-between ai-text-xs ai-font-medium\" style=\"margin-bottom: 0.375rem;\">\n      <span>Dataset Chunk Upload</span>\n      <span class=\"ai-font-mono\" style=\"color: var(--ai-success);\">Active</span>\n    </div>\n    <div class=\"ai-progress ai-progress-striped\">\n      <div class=\"ai-progress-bar ai-progress-bar-success\" style=\"width: 85%;\"></div>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "id": "interactive-slider",
+      "name": "Tactile Range Sliders",
+      "description": "Custom-styled range sliders with responsive track fill, hover glow thumb, and mono value readout.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "slider",
+        "range",
+        "input",
+        "control",
+        "form"
+      ],
+      "html": "<div class=\"ai-grid ai-gap-4\" style=\"max-width: 24rem;\">\n  <div class=\"ai-slider-wrapper\">\n    <div class=\"ai-slider-header\">\n      <label for=\"temp-slider\">Temperature</label>\n      <span class=\"ai-slider-value\">0.72</span>\n    </div>\n    <input type=\"range\" id=\"temp-slider\" class=\"ai-range\" min=\"0\" max=\"1\" step=\"0.01\" value=\"0.72\" />\n  </div>\n  <div class=\"ai-slider-wrapper\">\n    <div class=\"ai-slider-header\">\n      <label for=\"token-slider\">Max Output Tokens</label>\n      <span class=\"ai-slider-value\">4,096</span>\n    </div>\n    <input type=\"range\" id=\"token-slider\" class=\"ai-slider\" min=\"256\" max=\"8192\" step=\"256\" value=\"4096\" />\n  </div>\n</div>"
+    },
+    {
+      "id": "skeleton-card",
+      "name": "Shimmer Skeleton Loader",
+      "description": "Hardware-accelerated content placeholder shimmer skeletons for cards, avatars, and text blocks.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "skeleton",
+        "shimmer",
+        "loading",
+        "placeholder",
+        "animation"
+      ],
+      "html": "<div class=\"ai-card\" style=\"max-width: 24rem; padding: var(--ai-space-5);\">\n  <div class=\"ai-flex ai-items-center ai-gap-3\" style=\"margin-bottom: var(--ai-space-4);\">\n    <div class=\"ai-skeleton ai-skeleton-avatar\"></div>\n    <div style=\"flex: 1;\">\n      <div class=\"ai-skeleton ai-skeleton-title\" style=\"width: 50%;\"></div>\n      <div class=\"ai-skeleton ai-skeleton-text\" style=\"width: 75%; margin-bottom: 0;\"></div>\n    </div>\n  </div>\n  <div class=\"ai-skeleton ai-skeleton-rect\" style=\"height: 7rem; margin-bottom: var(--ai-space-3);\"></div>\n  <div class=\"ai-skeleton ai-skeleton-text\" style=\"width: 90%;\"></div>\n  <div class=\"ai-skeleton ai-skeleton-text\" style=\"width: 65%;\"></div>\n</div>"
+    },
+    {
+      "id": "stepper-flow",
+      "name": "Stepper Progress Flow",
+      "description": "Multi-step wizard and checkout flow indicator with completed, active, and upcoming stages.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "stepper",
+        "wizard",
+        "navigation",
+        "progress",
+        "flow"
+      ],
+      "html": "<div class=\"ai-stepper\" style=\"max-width: 32rem;\">\n  <div class=\"ai-step-item is-completed\">\n    <div class=\"ai-step-circle\">✓</div>\n    <span class=\"ai-step-label\">Account</span>\n  </div>\n  <div class=\"ai-step-item is-active\">\n    <div class=\"ai-step-circle\">2</div>\n    <span class=\"ai-step-label\">Workspace</span>\n  </div>\n  <div class=\"ai-step-item\">\n    <div class=\"ai-step-circle\">3</div>\n    <span class=\"ai-step-label\">Billing</span>\n  </div>\n  <div class=\"ai-step-item\">\n    <div class=\"ai-step-circle\">4</div>\n    <span class=\"ai-step-label\">Complete</span>\n  </div>\n</div>"
+    },
+    {
+      "id": "segmented-toggle",
+      "name": "Segmented Control Switch",
+      "description": "Tactile multi-option segmented toggle bar with sliding active pill state.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "segmented",
+        "toggle",
+        "switch",
+        "tab",
+        "control"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-4 ai-items-center\">\n  <div class=\"ai-segmented\" role=\"tablist\">\n    <button class=\"ai-segmented-btn is-active\" role=\"tab\" aria-selected=\"true\">Monthly</button>\n    <button class=\"ai-segmented-btn\" role=\"tab\" aria-selected=\"false\">Annual (Save 20%)</button>\n  </div>\n  <div class=\"ai-segmented\" role=\"tablist\">\n    <button class=\"ai-segmented-btn is-active\" role=\"tab\" aria-selected=\"true\">Code</button>\n    <button class=\"ai-segmented-btn\" role=\"tab\" aria-selected=\"false\">Preview</button>\n    <button class=\"ai-segmented-btn\" role=\"tab\" aria-selected=\"false\">Docs</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "popover-anchor",
+      "name": "Popover Anchor Card",
+      "description": "Contextual popover tooltip card with precise directional pointer arrow and action links.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "popover",
+        "tooltip",
+        "anchor",
+        "floating",
+        "overlay"
+      ],
+      "html": "<div style=\"padding-top: 6.5rem; display: flex; justify-content: center;\">\n  <div class=\"ai-popover-anchor\">\n    <div class=\"ai-popover\">\n      <div class=\"ai-flex ai-items-center ai-gap-2\" style=\"margin-bottom: 0.375rem;\">\n        <span class=\"ai-pulse-dot ai-pulse-dot-success\"></span>\n        <span class=\"ai-font-semibold ai-text-xs\">Agent Worker #4 Active</span>\n      </div>\n      <p class=\"ai-text-xs ai-text-secondary\" style=\"margin-bottom: 0.5rem; line-height: 1.4;\">Running automated test suite across 34 components.</p>\n      <div class=\"ai-flex ai-justify-between ai-items-center\">\n        <a href=\"#\" class=\"ai-text-xs ai-font-medium ai-text-accent\">View Stream &rarr;</a>\n        <span class=\"ai-font-mono ai-text-xs ai-text-muted\">450ms</span>\n      </div>\n      <div class=\"ai-popover-arrow\"></div>\n    </div>\n    <button class=\"ai-btn ai-btn-outline ai-btn-sm\">Cluster Status [Live]</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "toast-stack",
+      "name": "Stacked Toast with Countdown",
+      "description": "Multi-toast notification stack featuring auto-dismiss animated countdown progress indicators.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "toast",
+        "notification",
+        "alert",
+        "stack",
+        "animation"
+      ],
+      "html": "<div class=\"ai-grid ai-gap-3\" style=\"max-width: 24rem;\">\n  <div class=\"ai-toast ai-toast-success ai-toast-countdown\">\n    <span class=\"ai-toast-message\">Deployment completed to edge servers.</span>\n    <button class=\"ai-toast-close\">&times;</button>\n    <div class=\"ai-toast-progress\"></div>\n  </div>\n  <div class=\"ai-toast ai-toast-info ai-toast-countdown\">\n    <span class=\"ai-toast-message\">New API Key created: <code>llmcss_live_8f...</code></span>\n    <button class=\"ai-toast-close\">&times;</button>\n    <div class=\"ai-toast-progress\"></div>\n  </div>\n</div>"
+    },
+    {
+      "id": "marquee-ticker",
+      "name": "Infinite Marquee Logo Ticker",
+      "description": "Pure native CSS smooth infinite horizontal logo & trust badge ticker with pause-on-hover.",
+      "category": "marketing",
+      "tier": "free",
+      "tags": [
+        "marquee",
+        "ticker",
+        "logo",
+        "carousel",
+        "marketing",
+        "animation"
+      ],
+      "html": "<div class=\"ai-marquee\" style=\"background: var(--ai-surface-1); border: 1px solid var(--ai-border); border-radius: var(--ai-radius-lg); padding: var(--ai-space-4) 0;\">\n  <div class=\"ai-marquee-track\">\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">ALPHA NET</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">VECTOR SYS</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">QUANTUM LABS</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">NEXUS DATA</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">KINETIC CORE</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">SYNAPSE AI</span>\n  </div>\n  <div class=\"ai-marquee-track\" aria-hidden=\"true\">\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">ALPHA NET</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">VECTOR SYS</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">QUANTUM LABS</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">NEXUS DATA</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">KINETIC CORE</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">SYNAPSE AI</span>\n  </div>\n</div>"
+    },
+    {
+      "id": "filter-toolbar",
+      "name": "Filter Toolbar & Pill Tags",
+      "description": "Application filter header with quick-select pill tags, search field, and sort control.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "filter",
+        "toolbar",
+        "tags",
+        "search",
+        "application"
+      ],
+      "html": "<div class=\"ai-filter-toolbar\">\n  <div class=\"ai-filter-tags\">\n    <span class=\"ai-text-xs ai-font-medium ai-text-muted\" style=\"margin-right: 0.25rem;\">Filter:</span>\n    <button class=\"ai-filter-tag is-active\">All (48)</button>\n    <button class=\"ai-filter-tag\">Production</button>\n    <button class=\"ai-filter-tag\">Staging</button>\n    <button class=\"ai-filter-tag\">Failed</button>\n  </div>\n  <div class=\"ai-flex ai-items-center ai-gap-2\">\n    <input type=\"text\" class=\"ai-input\" placeholder=\"Filter jobs...\" style=\"height: 1.875rem; font-size: 0.75rem; width: 10rem;\" />\n    <select class=\"ai-select\" style=\"height: 1.875rem; font-size: 0.75rem; padding: 0 1.5rem 0 0.5rem;\">\n      <option>Latest</option>\n      <option>Oldest</option>\n      <option>Duration</option>\n    </select>\n  </div>\n</div>"
+    },
+    {
+      "id": "bento-editorial-pro",
+      "name": "Asymmetric Editorial Bento (Pro)",
+      "description": "High-craft 3-column asymmetric bento layout with live terminal code pill, telemetry stats, and architectural surface accents.",
+      "category": "marketing",
+      "tier": "pro",
+      "tags": [
+        "bento",
+        "grid",
+        "editorial",
+        "hero",
+        "marketing",
+        "pro"
+      ],
+      "locked": true,
+      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Asymmetric Editorial Bento</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "pricing-matrix-pro",
+      "name": "Enterprise Pricing Matrix (Pro)",
+      "description": "Full enterprise feature comparison matrix with sticky left column, tier breakdowns, and tiered action buttons.",
+      "category": "marketing",
+      "tier": "pro",
+      "tags": [
+        "pricing",
+        "matrix",
+        "comparison",
+        "table",
+        "marketing",
+        "pro"
+      ],
+      "locked": true,
+      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Enterprise Pricing Matrix</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "ai-chat-thread",
+      "name": "AI Conversational Thread (Pro)",
+      "description": "Full interactive conversational AI chat thread with streaming status, code snippet preview, and prompt input dock.",
+      "category": "application",
+      "tier": "pro",
+      "tags": [
+        "chat",
+        "conversation",
+        "ai",
+        "thread",
+        "assistant",
+        "pro"
+      ],
+      "locked": true,
+      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">AI Conversational Thread</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "tool-trace",
+      "name": "Tool Trace (Pro)",
+      "description": "Step list for tool calls: name, status pip, duration, and expandable I/O.",
+      "category": "application",
+      "tier": "pro",
+      "tags": [
+        "agent",
+        "trace",
+        "tools",
+        "mcp",
+        "pro"
+      ],
+      "locked": true,
+      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Tool Trace</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "approval-bar",
+      "name": "Approval Bar (Pro)",
+      "description": "Sticky action bar for allow / deny / edit on a pending agent action.",
+      "category": "application",
+      "tier": "pro",
+      "tags": [
+        "agent",
+        "approval",
+        "bar",
+        "pro"
+      ],
+      "locked": true,
+      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Approval Bar</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "thought-chain",
+      "name": "Thought Chain (Pro)",
+      "description": "Collapsible reasoning steps with a live streaming state.",
+      "category": "application",
+      "tier": "pro",
+      "tags": [
+        "agent",
+        "reasoning",
+        "chain",
+        "pro"
+      ],
+      "locked": true,
+      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Thought Chain</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "agent-workspace",
+      "name": "Agent Workspace (Pro)",
+      "description": "Three-pane workspace: thread, canvas, and context rail.",
+      "category": "application",
+      "tier": "pro",
+      "tags": [
+        "agent",
+        "workspace",
+        "layout",
+        "pro"
+      ],
+      "locked": true,
+      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Agent Workspace</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "mcp-widget-shell",
+      "name": "MCP Widget Shell (Pro)",
+      "description": "Card shell for an MCP tool result with schema badge and copy.",
+      "category": "application",
+      "tier": "pro",
+      "tags": [
+        "mcp",
+        "widget",
+        "agent",
+        "pro"
+      ],
+      "locked": true,
+      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">MCP Widget Shell</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "streaming-status",
+      "name": "Streaming Status (Pro)",
+      "description": "Indeterminate progress plus token/sec readout for live generation.",
+      "category": "application",
+      "tier": "pro",
+      "tags": [
+        "streaming",
+        "status",
+        "agent",
+        "pro"
+      ],
+      "locked": true,
+      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Streaming Status</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "citation-list",
+      "name": "Citation List (Pro)",
+      "description": "Numbered source list with domain, snippet, and open action.",
+      "category": "application",
+      "tier": "pro",
+      "tags": [
+        "citations",
+        "sources",
+        "rag",
+        "pro"
+      ],
+      "locked": true,
+      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Citation List</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "breadcrumb-nav",
+      "name": "Breadcrumb Navigation",
+      "description": "Accessible breadcrumb trail with slash separators, linked ancestors, and a current page indicator.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "breadcrumb",
+        "navigation",
+        "trail",
+        "path"
+      ],
+      "html": "<nav aria-label=\"Breadcrumb\">\n  <ol class=\"ai-breadcrumb\">\n    <li class=\"ai-breadcrumb-item\"><a href=\"#\">Dashboard</a></li>\n    <li class=\"ai-breadcrumb-item\"><a href=\"#\">Projects</a></li>\n    <li class=\"ai-breadcrumb-item\"><a href=\"#\">Design System</a></li>\n    <li class=\"ai-breadcrumb-item is-current\" aria-current=\"page\">Components</li>\n  </ol>\n</nav>"
+    },
+    {
+      "id": "tooltip-hover",
+      "name": "CSS Tooltip",
+      "description": "Pure CSS tooltip on hover and focus. No JavaScript required. Supports top and bottom placement.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "tooltip",
+        "hover",
+        "popover",
+        "hint"
+      ],
+      "html": "<div class=\"ai-flex ai-gap-6 ai-items-center\">\n  <span class=\"ai-tooltip\" data-tooltip=\"Edit this item\">\n    <button class=\"ai-btn ai-btn-outline ai-btn-sm\">Hover me (top)</button>\n  </span>\n  <span class=\"ai-tooltip ai-tooltip-bottom\" data-tooltip=\"Save changes\">\n    <button class=\"ai-btn ai-btn-secondary ai-btn-sm\">Hover me (bottom)</button>\n  </span>\n  <span class=\"ai-tooltip\" data-tooltip=\"Keyboard accessible too\">\n    <button class=\"ai-btn ai-btn-ghost ai-btn-sm\">Focus me</button>\n  </span>\n</div>"
+    },
+    {
+      "id": "pagination-controls",
+      "name": "Pagination",
+      "description": "Page navigation with previous/next arrows, active page highlight, and ellipsis for large sets.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "pagination",
+        "paging",
+        "navigation",
+        "list"
+      ],
+      "html": "<nav aria-label=\"Pagination\">\n  <ul class=\"ai-pagination\">\n    <li class=\"ai-pagination-item\">\n      <a href=\"#\" class=\"ai-pagination-link is-disabled\" aria-disabled=\"true\">&larr; Prev</a>\n    </li>\n    <li class=\"ai-pagination-item\">\n      <a href=\"#\" class=\"ai-pagination-link is-active\" aria-current=\"page\">1</a>\n    </li>\n    <li class=\"ai-pagination-item\">\n      <a href=\"#\" class=\"ai-pagination-link\">2</a>\n    </li>\n    <li class=\"ai-pagination-item\">\n      <a href=\"#\" class=\"ai-pagination-link\">3</a>\n    </li>\n    <li class=\"ai-pagination-item\">\n      <span class=\"ai-pagination-ellipsis\">...</span>\n    </li>\n    <li class=\"ai-pagination-item\">\n      <a href=\"#\" class=\"ai-pagination-link\">12</a>\n    </li>\n    <li class=\"ai-pagination-item\">\n      <a href=\"#\" class=\"ai-pagination-link\">Next &rarr;</a>\n    </li>\n  </ul>\n</nav>"
+    },
+    {
+      "id": "divider-separator",
+      "name": "Divider / Separator",
+      "description": "Horizontal and vertical dividers with optional centered label text. Useful for sectioning content.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "divider",
+        "separator",
+        "hr",
+        "line",
+        "rule"
+      ],
+      "html": "<div style=\"max-width: 28rem;\">\n  <p class=\"ai-text-sm ai-text-secondary\">Content above the divider.</p>\n  <div class=\"ai-divider\"></div>\n  <p class=\"ai-text-sm ai-text-secondary\">Content below the plain divider.</p>\n  <div class=\"ai-divider\">or continue with</div>\n  <p class=\"ai-text-sm ai-text-secondary\">Content below the labeled divider.</p>\n  <div class=\"ai-flex ai-items-center ai-gap-4\" style=\"margin-top: var(--ai-space-6);\">\n    <span class=\"ai-text-sm\">Item A</span>\n    <span class=\"ai-divider-vertical\"></span>\n    <span class=\"ai-text-sm\">Item B</span>\n    <span class=\"ai-divider-vertical\"></span>\n    <span class=\"ai-text-sm\">Item C</span>\n  </div>\n</div>"
+    },
+    {
+      "id": "textarea-counter",
+      "name": "Textarea with Character Counter",
+      "description": "Multi-line text input with label, helper text, and a live character count footer.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "textarea",
+        "form",
+        "input",
+        "counter",
+        "multiline"
+      ],
+      "html": "<div style=\"max-width: 28rem;\">\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label\" for=\"bio-field\">Bio</label>\n    <div class=\"ai-textarea-group\">\n      <textarea id=\"bio-field\" class=\"ai-textarea\" placeholder=\"Write a short bio...\" rows=\"4\" maxlength=\"280\">Design engineer building component systems for autonomous agents.</textarea>\n      <div class=\"ai-textarea-footer\">\n        <span class=\"ai-form-hint\">Keep it concise and direct.</span>\n        <span class=\"ai-font-mono\" style=\"font-size: 0.6875rem;\">63 / 280</span>\n      </div>\n    </div>\n  </div>\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label is-required\" for=\"feedback-field\">Feedback</label>\n    <textarea id=\"feedback-field\" class=\"ai-textarea is-error\" placeholder=\"Describe the issue...\" rows=\"3\" aria-invalid=\"true\">Too short</textarea>\n    <span class=\"ai-form-error\">Feedback must be at least 20 characters.</span>\n  </div>\n</div>"
+    },
+    {
+      "id": "checkbox-radio-group",
+      "name": "Checkbox & Radio Controls",
+      "description": "Styled checkbox and radio button groups with labels, keyboard focus states, and accessible markup.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "checkbox",
+        "radio",
+        "form",
+        "input",
+        "toggle",
+        "select"
+      ],
+      "html": "<div class=\"ai-flex ai-gap-12\" style=\"max-width: 32rem;\">\n  <div>\n    <span class=\"ai-form-label\" style=\"margin-bottom: var(--ai-space-3); display: block;\">Notifications</span>\n    <div style=\"display: flex; flex-direction: column; gap: var(--ai-space-3);\">\n      <label class=\"ai-checkbox\">\n        <input type=\"checkbox\" class=\"ai-checkbox-input\" checked />\n        Email notifications\n      </label>\n      <label class=\"ai-checkbox\">\n        <input type=\"checkbox\" class=\"ai-checkbox-input\" checked />\n        Push notifications\n      </label>\n      <label class=\"ai-checkbox\">\n        <input type=\"checkbox\" class=\"ai-checkbox-input\" />\n        SMS alerts\n      </label>\n    </div>\n  </div>\n  <div>\n    <span class=\"ai-form-label\" style=\"margin-bottom: var(--ai-space-3); display: block;\">Plan</span>\n    <div class=\"ai-radio-group\">\n      <label class=\"ai-radio\">\n        <input type=\"radio\" name=\"plan\" class=\"ai-radio-input\" checked />\n        Community (Free)\n      </label>\n      <label class=\"ai-radio\">\n        <input type=\"radio\" name=\"plan\" class=\"ai-radio-input\" />\n        Pro ($9/mo)\n      </label>\n      <label class=\"ai-radio\">\n        <input type=\"radio\" name=\"plan\" class=\"ai-radio-input\" />\n        Enterprise (Custom)\n      </label>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "id": "empty-state",
+      "name": "Empty State",
+      "description": "Placeholder component for no-data views with icon, title, description, and call-to-action button.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "empty",
+        "placeholder",
+        "no-data",
+        "blank",
+        "zero-state"
+      ],
+      "html": "<div class=\"ai-empty-state\" style=\"border: 1px dashed var(--ai-border); border-radius: var(--ai-radius-lg);\">\n  <svg class=\"ai-empty-state-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"></path>\n    <polyline points=\"14 2 14 8 20 8\"></polyline>\n    <line x1=\"16\" y1=\"13\" x2=\"8\" y2=\"13\"></line>\n    <line x1=\"16\" y1=\"17\" x2=\"8\" y2=\"17\"></line>\n    <polyline points=\"10 9 9 9 8 9\"></polyline>\n  </svg>\n  <h3 class=\"ai-empty-state-title\">No documents yet</h3>\n  <p class=\"ai-empty-state-description\">\n    Create your first document to get started. Documents are automatically saved and synced across your workspace.\n  </p>\n  <button class=\"ai-btn ai-btn-primary ai-btn-sm\">Create Document</button>\n</div>"
+    },
+    {
+      "id": "sidebar-nav",
+      "name": "Sidebar Navigation",
+      "description": "Collapsible sidebar with grouped sections, section titles, nav items with icons, count badges, and active state.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "sidebar",
+        "navigation",
+        "menu",
+        "drawer",
+        "app"
+      ],
+      "html": "<div style=\"width: 16rem;\">\n  <nav class=\"ai-sidebar\" style=\"height: auto; border: 1px solid var(--ai-border); border-radius: var(--ai-radius-lg); overflow: hidden;\">\n    <div class=\"ai-sidebar-header\">\n      <span class=\"ai-font-semibold\" style=\"font-size: 0.9375rem;\">Workspace</span>\n    </div>\n    <ul class=\"ai-sidebar-nav\">\n      <li class=\"ai-sidebar-section\">\n        <span class=\"ai-sidebar-section-title\">Main</span>\n        <a href=\"#\" class=\"ai-sidebar-item is-active\">\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"7\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\"/></svg>\n          Dashboard\n          <span class=\"ai-sidebar-badge\">12</span>\n        </a>\n        <a href=\"#\" class=\"ai-sidebar-item\">\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><polyline points=\"14 2 14 8 20 8\"/></svg>\n          Documents\n        </a>\n        <a href=\"#\" class=\"ai-sidebar-item\">\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><polyline points=\"12 6 12 12 16 14\"/></svg>\n          Activity\n          <span class=\"ai-sidebar-badge\">3</span>\n        </a>\n      </li>\n      <li class=\"ai-sidebar-section\">\n        <span class=\"ai-sidebar-section-title\">Account</span>\n        <a href=\"#\" class=\"ai-sidebar-item\">\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z\"/></svg>\n          Settings\n        </a>\n      </li>\n    </ul>\n  </nav>\n</div>"
+    },
+    {
+      "id": "stats-dashboard",
+      "name": "Stats Dashboard Row",
+      "description": "Horizontal row of key stat KPI cards with large metrics, trend indicators, and comparison labels.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "stats",
+        "dashboard",
+        "kpi",
+        "metrics",
+        "analytics"
+      ],
+      "html": "<div class=\"ai-grid ai-grid-cols-1 ai-md:grid-cols-4 ai-gap-4\">\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Total Revenue</span>\n    <span class=\"ai-kpi-value\">$48,290</span>\n    <span class=\"ai-kpi-trend is-up\">\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>\n      +12.3% vs last month\n    </span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Active Users</span>\n    <span class=\"ai-kpi-value\">2,847</span>\n    <span class=\"ai-kpi-trend is-up\">\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>\n      +8.1% vs last month\n    </span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Bounce Rate</span>\n    <span class=\"ai-kpi-value\">24.6%</span>\n    <span class=\"ai-kpi-trend is-down\">\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polyline points=\"23 18 13.5 8.5 8.5 13.5 1 6\"/><polyline points=\"17 18 23 18 23 12\"/></svg>\n      -3.2% vs last month\n    </span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Avg. Session</span>\n    <span class=\"ai-kpi-value\">4m 32s</span>\n    <span class=\"ai-kpi-trend is-up\">\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>\n      +18.7% vs last month\n    </span>\n  </div>\n</div>"
+    },
+    {
+      "id": "notification-list",
+      "name": "Notification List",
+      "description": "Grouped notification items with unread indicators, timestamps, and hover states.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "notification",
+        "alert",
+        "inbox",
+        "message",
+        "feed"
+      ],
+      "html": "<div class=\"ai-notification-list\" style=\"max-width: 28rem;\">\n  <div class=\"ai-notification-item is-unread\">\n    <span class=\"ai-notification-dot\"></span>\n    <div class=\"ai-notification-content\">\n      <p class=\"ai-notification-title\">Deployment completed successfully</p>\n      <p class=\"ai-notification-meta\">Production environment - 2 minutes ago</p>\n    </div>\n  </div>\n  <div class=\"ai-notification-item is-unread\">\n    <span class=\"ai-notification-dot\"></span>\n    <div class=\"ai-notification-content\">\n      <p class=\"ai-notification-title\">New team member joined the workspace</p>\n      <p class=\"ai-notification-meta\">Sarah Chen accepted the invite - 15 minutes ago</p>\n    </div>\n  </div>\n  <div class=\"ai-notification-item\">\n    <span class=\"ai-notification-dot\" style=\"background-color: transparent;\"></span>\n    <div class=\"ai-notification-content\">\n      <p class=\"ai-notification-title\">Weekly usage report ready</p>\n      <p class=\"ai-notification-meta\">Analytics - 2 hours ago</p>\n    </div>\n  </div>\n  <div class=\"ai-notification-item\">\n    <span class=\"ai-notification-dot\" style=\"background-color: transparent;\"></span>\n    <div class=\"ai-notification-content\">\n      <p class=\"ai-notification-title\">SSL certificate renewed</p>\n      <p class=\"ai-notification-meta\">Infrastructure - Yesterday at 11:42 AM</p>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "id": "kbd-shortcuts",
+      "name": "Keyboard Shortcuts",
+      "description": "Inline kbd keys for command palettes, docs, and shortcut legends.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "kbd",
+        "keyboard",
+        "shortcut",
+        "docs"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-4 ai-items-center\">\n  <span class=\"ai-flex ai-items-center ai-gap-1\"><kbd class=\"ai-kbd\">⌘</kbd><kbd class=\"ai-kbd\">K</kbd><span class=\"ai-text-xs ai-text-muted\">Command palette</span></span>\n  <span class=\"ai-flex ai-items-center ai-gap-1\"><kbd class=\"ai-kbd\">⌘</kbd><kbd class=\"ai-kbd\">Enter</kbd><span class=\"ai-text-xs ai-text-muted\">Submit</span></span>\n  <span class=\"ai-flex ai-items-center ai-gap-1\"><kbd class=\"ai-kbd\">Esc</kbd><span class=\"ai-text-xs ai-text-muted\">Dismiss</span></span>\n</div>"
+    },
+    {
+      "id": "quote-pull",
+      "name": "Pull Quote",
+      "description": "Editorial quote with a single left rule. Title face comes from the font switcher, not the theme.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "quote",
+        "blockquote",
+        "editorial",
+        "testimonial"
+      ],
+      "html": "<blockquote class=\"ai-quote\">\n  <p>One title face. Themes change color, not the alphabet.</p>\n  <footer>LLMCSS typesetting note</footer>\n</blockquote>"
+    },
+    {
+      "id": "code-block",
+      "name": "Code Block",
+      "description": "Monospace snippet well for CLI, tokens, and agent output.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "code",
+        "pre",
+        "snippet",
+        "docs"
+      ],
+      "html": "<pre class=\"ai-code-block\"><code>npx llmcss add quote-pull\nnpx llmcss add kbd-shortcuts</code></pre>"
+    },
+    {
+      "id": "file-dropzone",
+      "name": "File Dropzone",
+      "description": "Dashed upload well for attachments and dataset drops.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "upload",
+        "file",
+        "dropzone",
+        "form"
+      ],
+      "html": "<div class=\"ai-dropzone\" role=\"button\" tabindex=\"0\">\n  <strong style=\"color: var(--ai-text-primary);\">Drop a file</strong>\n  <span class=\"ai-text-xs\">PNG, JSON, or CSV up to 8MB</span>\n  <button class=\"ai-btn ai-btn-outline ai-btn-sm\" type=\"button\" style=\"margin-top: var(--ai-space-2);\">Browse</button>\n</div>"
+    },
+    {
+      "id": "timeline-log",
+      "name": "Timeline Log",
+      "description": "Vertical event log with pips. For deploys, agent steps, and audit trails.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "timeline",
+        "log",
+        "history",
+        "activity"
+      ],
+      "html": "<ol class=\"ai-timeline\">\n  <li class=\"ai-timeline-item\">\n    <div class=\"ai-timeline-title\">Registry published</div>\n    <div class=\"ai-timeline-meta\">origin · 2m ago</div>\n  </li>\n  <li class=\"ai-timeline-item\">\n    <div class=\"ai-timeline-title\">Token issued</div>\n    <div class=\"ai-timeline-meta\">polar webhook · 18m ago</div>\n  </li>\n  <li class=\"ai-timeline-item\">\n    <div class=\"ai-timeline-title\">Pro component added</div>\n    <div class=\"ai-timeline-meta\">tool-trace · yesterday</div>\n  </li>\n</ol>"
+    },
+    {
+      "id": "split-button",
+      "name": "Split Button",
+      "description": "Primary action plus a menu chevron for secondary variants.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "button",
+        "split",
+        "menu",
+        "action"
+      ],
+      "html": "<div class=\"ai-flex\">\n  <button class=\"ai-btn ai-btn-primary\" type=\"button\" style=\"border-top-right-radius: 0; border-bottom-right-radius: 0;\">Deploy</button>\n  <button class=\"ai-btn ai-btn-primary\" type=\"button\" aria-label=\"More deploy options\" style=\"border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 0.55rem; padding-right: 0.55rem;\">\n    <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"m6 9 6 6 6-6\"/></svg>\n  </button>\n</div>"
+    }
+  ]
+}

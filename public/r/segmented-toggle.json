@@ -1,0 +1,15 @@
+{
+  "id": "segmented-toggle",
+  "name": "Segmented Control Switch",
+  "description": "Tactile multi-option segmented toggle bar with sliding active pill state.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "segmented",
+    "toggle",
+    "switch",
+    "tab",
+    "control"
+  ],
+  "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-4 ai-items-center\">\n  <div class=\"ai-segmented\" role=\"tablist\">\n    <button class=\"ai-segmented-btn is-active\" role=\"tab\" aria-selected=\"true\">Monthly</button>\n    <button class=\"ai-segmented-btn\" role=\"tab\" aria-selected=\"false\">Annual (Save 20%)</button>\n  </div>\n  <div class=\"ai-segmented\" role=\"tablist\">\n    <button class=\"ai-segmented-btn is-active\" role=\"tab\" aria-selected=\"true\">Code</button>\n    <button class=\"ai-segmented-btn\" role=\"tab\" aria-selected=\"false\">Preview</button>\n    <button class=\"ai-segmented-btn\" role=\"tab\" aria-selected=\"false\">Docs</button>\n  </div>\n</div>"
+}

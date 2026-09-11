@@ -1,0 +1,14 @@
+{
+  "id": "tabs-system",
+  "name": "Interactive Tabs",
+  "description": "Underline and segmented pill tab bars with keyboard and click delegation.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "tabs",
+    "navigation",
+    "panel"
+  ],
+  "html": "<div class=\"ai-tabs\">\n  <div class=\"ai-tabs-list\">\n    <button class=\"ai-tab is-active\" data-ai-tab=\"#tab-overview\">Overview</button>\n    <button class=\"ai-tab\" data-ai-tab=\"#tab-analytics\">Analytics</button>\n    <button class=\"ai-tab\" data-ai-tab=\"#tab-settings\">Settings</button>\n  </div>\n  <div id=\"tab-overview\" class=\"ai-tab-panel is-active\">\n    <p class=\"ai-text-secondary\">Overview tab content displaying system health and recent build outputs.</p>\n  </div>\n  <div id=\"tab-analytics\" class=\"ai-tab-panel\">\n    <p class=\"ai-text-secondary\">Analytics tab content displaying traffic and user engagement charts.</p>\n  </div>\n  <div id=\"tab-settings\" class=\"ai-tab-panel\">\n    <p class=\"ai-text-secondary\">Workspace preferences and security configurations.</p>\n  </div>\n</div>",
+  "webComponentHtml": "<ai-tabs>\n  <div class=\"ai-tabs-list\">\n    <button class=\"ai-tab is-active\" data-ai-tab=\"#tab-1\">Account</button>\n    <button class=\"ai-tab\" data-ai-tab=\"#tab-2\">Security</button>\n  </div>\n  <div id=\"tab-1\" class=\"ai-tab-panel is-active\"><p>Manage your account settings.</p></div>\n  <div id=\"tab-2\" class=\"ai-tab-panel\"><p>Configure 2FA and sessions.</p></div>\n</ai-tabs>"
+}

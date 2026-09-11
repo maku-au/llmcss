@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en" data-ai-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LLMCSS | The Non-AI Looking UI Framework for Agents &amp; Humans</title>
+  <meta name="description" content="Native CSS for agents and humans. MIT core. Pro catalog at $9/mo." />
+  <meta property="og:title" content="LLMCSS" />
+  <meta property="og:description" content="Native CSS for agents and humans. MIT core. Pro catalog at $9/mo." />
+  <meta property="og:url" content="https://llmcss.io/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/css/index.css" />
+  <style>
+    /* --------------------------------------------------------------------------
+       Site Header & Precision Elements
+       -------------------------------------------------------------------------- */
+    .site-nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ai-text-secondary);
+      text-decoration: none;
+      transition: color var(--ai-duration-fast);
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--ai-radius-xs);
+    }
+    .site-nav-link:hover,
+    .site-nav-link.is-active {
+      color: var(--ai-text-primary);
+      background-color: var(--ai-surface-1);
+    }
+    @media (min-width: 900px) {
+      #desktop-nav {
+        display: flex !important;
+      }
+    }
+
+    /* Refined Precision Search Bar */
+    .search-bar-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 13.5rem;
+      max-width: 100%;
+    }
+    @media (max-width: 900px) {
+      .search-bar-wrap {
+        width: 10rem;
+      }
+    }
+    @media (max-width: 640px) {
+      .search-bar-wrap {
+        display: none;
+      }
+    }
+    .search-bar-wrap .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      color: var(--ai-text-muted);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+    }
+    .search-bar-wrap .search-input {
+      width: 100%;
+      height: 2rem;
+      padding: 0 2.25rem 0 2.25rem;
+      font-family: var(--ai-font-sans);
+      font-size: 0.8125rem;
+      background-color: var(--ai-surface-1);
+      border: 1px solid var(--ai-border);
+      border-radius: var(--ai-radius-xs);
+      color: var(--ai-text-primary);
+      transition: all var(--ai-duration-fast);
+    }
+    .search-bar-wrap .search-input::placeholder {
+      color: var(--ai-text-muted);
+      font-size: 0.8125rem;
+    }
+    .search-bar-wrap .search-input:focus {
+      background-color: var(--ai-surface-0);
+      border-color: var(--ai-border-strong);
+      outline: none;
+      box-shadow: 0 0 0 1px var(--ai-border-strong);
+    }
+    .search-bar-wrap .search-kbd {
+      position: absolute;
+      right: 0.5rem;
+      padding: 0.1rem 0.35rem;
+      font-family: var(--ai-font-mono);
+      font-size: 0.625rem;
+      color: var(--ai-text-muted);
+      background: var(--ai-surface-2);
+      border: 1px solid var(--ai-border);
+      border-radius: var(--ai-radius-xs);
+      pointer-events: none;
+      line-height: 1.2;
+    }
+
+    /* Micro Badges */
+    .nav-count {
+      font-family: var(--ai-font-sans);
+      font-variant-numeric: tabular-nums;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: var(--ai-text-muted);
+      margin-left: auto;
+    }
+    .tag-pro-pill {
+      font-family: var(--ai-font-sans);
+      font-size: 0.5625rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ai-text-primary);
+      background: var(--ai-surface-2);
+      border: 1px solid var(--ai-border-strong);
+      padding: 0.1rem 0.35rem;
+      border-radius: var(--ai-radius-xs);
+      margin-left: auto;
+    }
+
+    /* --------------------------------------------------------------------------
+       Homepage Layout & Hero Preview Dock
+       -------------------------------------------------------------------------- */
+    .hero-section {
+      padding: var(--ai-space-24) 0 var(--ai-space-24);
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--ai-border);
+      background-color: var(--ai-bg);
+    }
+    
+    /* --------------------------------------------------------------------------
+       STUDIO STYLER (UNBLURRED LIVE INSPECTOR)
+       -------------------------------------------------------------------------- */
+    #core-styler-drawer .ai-drawer-backdrop {
+      background-color: transparent !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    #core-styler-drawer .ai-drawer-panel {
+      width: 100%;
+      max-width: 25rem;
+      border-left: 1px solid var(--ai-border-strong);
+      box-shadow: -16px 0 48px -12px rgba(0, 0, 0, 0.25), -1px 0 0 var(--ai-border);
+      background-color: var(--ai-surface-0);
+    }
+    .styler-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+    }
+    .styler-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .styler-section-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ai-text-secondary);
+      letter-spacing: 0.02em;
+      font-family: var(--ai-font-sans);
+    }
+    .styler-section-val {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: var(--ai-text-muted);
+      font-family: var(--ai-font-mono);
+    }
+    .styler-theme-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.375rem;
+    }
+    .styler-theme-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.625rem;
+      background: var(--ai-surface-0);
+      border: 1px solid var(--ai-border);
+      border-radius: var(--ai-radius-sm);
+      cursor: pointer;
+      transition: all var(--ai-duration-fast);
+      text-align: left;
+    }
+    .styler-theme-btn:hover {
+      border-color: var(--ai-border-strong);
+      background: var(--ai-surface-1);
+    }
+    .styler-theme-btn.is-active {
+      border-color: var(--ai-text-primary);
+      background: var(--ai-surface-1);
+    }
+    .styler-swatch-pip {
+      width: 0.625rem;
+      height: 0.625rem;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .styler-theme-name {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--ai-text-secondary);
+      line-height: 1.2;
+    }
+    .styler-theme-btn.is-active .styler-theme-name {
+      font-weight: 600;
+      color: var(--ai-text-primary);
+    }
+    .styler-segmented-track {
+      display: flex;
+      background: var(--ai-surface-1);
+      padding: 2px;
+      border-radius: var(--ai-radius-xs);
+      border: 1px solid var(--ai-border-subtle);
+      gap: 1px;
+    }
+    .styler-segmented-item {
+      flex: 1;
+      padding: 0.3rem 0.4rem;
+      font-size: 0.75rem;
+      font-family: var(--ai-font-sans);
+      font-weight: 450;
+      color: var(--ai-text-muted);
+      background: transparent;
+      border: none;
+      border-radius: calc(var(--ai-radius-xs) - 1px);
+      cursor: pointer;
+      transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
+      text-align: center;
+    }
+    .styler-segmented-item:hover {
+      color: var(--ai-text-primary);
+    }
+    .styler-segmented-item.is-active {
+      background: var(--ai-surface-0);
+      color: var(--ai-text-primary);
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+    .styler-swatch-row {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+    .styler-accent-swatch {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      border: 2px solid var(--ai-surface-0);
+      box-shadow: 0 0 0 1px var(--ai-border);
+      cursor: pointer;
+      transition: transform var(--ai-duration-fast), box-shadow var(--ai-duration-fast);
+    }
+    .styler-accent-swatch:hover {
+      transform: scale(1.15);
+    }
+    .styler-accent-swatch.is-active {
+      box-shadow: 0 0 0 2px var(--ai-surface-0), 0 0 0 4px var(--ai-text-primary);
+    }
+    .styler-code-disclosure summary::-webkit-details-marker {
+      display: none;
+    }
+
+    /* Per-Component Customizer Bar */
+    .component-customizer-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--ai-space-4);
+      background: var(--ai-surface-1);
+      border-bottom: 1px solid var(--ai-border);
+      padding: var(--ai-space-3) var(--ai-space-5);
+      font-size: 0.75rem;
+    }
+    .customizer-group {
+      display: flex;
+      align-items: center;
+      gap: var(--ai-space-2);
+    }
+    .customizer-label {
+      font-family: var(--ai-font-sans);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--ai-text-muted);
+      letter-spacing: 0.02em;
+    }
+    .customizer-pills {
+      display: flex;
+      gap: 0.25rem;
+      background: var(--ai-surface-0);
+      padding: 2px;
+      border: 1px solid var(--ai-border);
+      border-radius: var(--ai-radius-xs);
+    }
+    .customizer-pill-btn {
+      padding: 0.15rem 0.5rem;
+      font-size: 0.6875rem;
+      font-family: var(--ai-font-sans);
+      font-weight: 500;
+      color: var(--ai-text-secondary);
+      background: transparent;
+      border: none;
+      border-radius: calc(var(--ai-radius-xs) - 1px);
+      cursor: pointer;
+      transition: all var(--ai-duration-fast);
+    }
+    .customizer-pill-btn:hover {
+      color: var(--ai-text-primary);
+    }
+    .customizer-pill-btn.is-active {
+      background: var(--ai-surface-2);
+      color: var(--ai-text-primary);
+      font-weight: 600;
+    }
+    .hero-dock {
+      margin-top: var(--ai-space-12);
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: var(--ai-space-4);
+      background: var(--ai-surface-1);
+      padding: var(--ai-space-4);
+      border: 1px solid var(--ai-border);
+      border-radius: var(--ai-radius-xl);
+      box-shadow: var(--ai-shadow-lg);
+    }
+    @media (min-width: 900px) {
+      .hero-dock {
+        grid-template-columns: 1fr 1.1fr 1fr;
+      }
+    }
+    .hero-dock-card {
+      background: var(--ai-surface-0);
+      border: 1px solid var(--ai-border);
+      border-radius: var(--ai-radius-md);
+      padding: var(--ai-space-5);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--ai-space-4);
+    }
+    .hero-dock-title {
+      font-family: var(--ai-font-sans);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ai-text-primary);
+    }
+
+    /* --------------------------------------------------------------------------
+       Component Collection Explorer Layout
+       -------------------------------------------------------------------------- */
+    .collection-section {
+      padding: var(--ai-space-24) 0;
+      scroll-margin-top: 4rem;
+    }
+    .showcase-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: var(--ai-space-8);
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .showcase-layout {
+        grid-template-columns: 1fr;
+      }
+      .showcase-sidebar {
+        position: static !important;
+        height: auto !important;
+      }
+    }
+    .showcase-sidebar {
+      position: sticky;
+      top: 5.5rem;
+      background: transparent;
+      border: none;
+      padding: 0;
+      box-shadow: none;
+    }
+    .showcase-nav-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0.375rem 0.5rem;
+      border-radius: var(--ai-radius-sm);
+      border: none;
+      background: transparent;
+      font-size: 0.8125rem;
+      font-weight: 450;
+      color: var(--ai-text-secondary);
+      cursor: pointer;
+      transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
+      text-align: left;
+    }
+    .showcase-nav-btn:hover {
+      color: var(--ai-text-primary);
+      background-color: var(--ai-surface-1);
+    }
+    .showcase-nav-btn.is-active {
+      color: var(--ai-text-primary);
+      background-color: var(--ai-surface-1);
+      font-weight: 600;
+    }
+    .showcase-count {
+      font-family: var(--ai-font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+      color: var(--ai-text-muted);
+      background: transparent;
+      border: none;
+      padding: 0;
+      line-height: 1;
+    }
+    .showcase-nav-btn.is-active .showcase-count {
+      color: var(--ai-text-secondary);
+      font-weight: 600;
+    }
+    .assistant-doc-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.35rem 0.5rem;
+      border-radius: var(--ai-radius-sm);
+      border: none;
+      background: transparent;
+      color: var(--ai-text-muted);
+      font-family: var(--ai-font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
+    }
+    .assistant-doc-link:hover {
+      color: var(--ai-text-primary);
+      background-color: var(--ai-surface-1);
+    }
+    .assistant-doc-link svg {
+      opacity: 0.4;
+      transition: opacity var(--ai-duration-fast);
+    }
+    .assistant-doc-link:hover svg {
+      opacity: 0.9;
+    }
+    .component-box {
+      border: 1px solid var(--ai-border);
+      border-radius: var(--ai-radius-md);
+      background-color: var(--ai-surface-0);
+      margin-bottom: var(--ai-space-6);
+      overflow: hidden;
+      transition: border-color var(--ai-duration-fast);
+    }
+    .component-box:hover {
+      border-color: var(--ai-border-strong);
+    }
+    .component-box-header {
+      padding: var(--ai-space-3) var(--ai-space-5);
+      border-bottom: 1px solid var(--ai-border-subtle);
+      background-color: var(--ai-surface-1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--ai-space-3);
+    }
+    .component-preview-canvas {
+      padding: var(--ai-space-8) var(--ai-space-6);
+      background-color: var(--ai-bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 10rem;
+      overflow-x: auto;
+      transition: width 0.3s ease;
+      margin: 0 auto;
+    }
+    .component-preview-canvas.preview-has-dropdown,
+    .component-preview-canvas:has(.ai-dropdown) {
+      min-height: 16rem;
+      align-items: flex-start;
+      padding-top: var(--ai-space-6);
+      padding-bottom: var(--ai-space-6);
+    }
+    .component-code-panel {
+      border-top: 1px solid var(--ai-border);
+      background-color: var(--ai-surface-0);
+      padding: var(--ai-space-4) var(--ai-space-6);
+      display: none;
+    }
+    .component-code-panel.is-expanded {
+      display: block;
+    }
+    .component-code-panel pre {
+      margin: 0;
+      font-size: 0.8125rem;
+      max-height: 20rem;
+      overflow-y: auto;
+      border-radius: var(--ai-radius-xs);
+    }
+
+    /* Philosophy / Value Cards */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: var(--ai-space-6);
+      margin-top: var(--ai-space-8);
+    }
+    @media (min-width: 640px) {
+      .philosophy-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .philosophy-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    .philosophy-card {
+      background: var(--ai-surface-0);
+      border: 1px solid var(--ai-border);
+      border-radius: var(--ai-radius-md);
+      padding: var(--ai-space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--ai-space-3);
+      transition: all var(--ai-duration-fast);
+    }
+    .philosophy-card:hover {
+      border-color: var(--ai-border-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Comparison Table Container */
+    .matrix-wrapper {
+      overflow-x: auto;
+      background: var(--ai-surface-0);
+      border: 1px solid var(--ai-border);
+      border-radius: var(--ai-radius-md);
+    }
+
+    /* Framework Compatibility Rail (Unboxed, High-Craft) */
+    .ecosystem-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--ai-text-secondary);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      transition: color var(--ai-duration-fast);
+      cursor: default;
+    }
+    .ecosystem-item:hover {
+      color: var(--ai-text-primary);
+    }
+    .ecosystem-item svg {
+      opacity: 0.6;
+      transition: opacity var(--ai-duration-fast), stroke var(--ai-duration-fast);
+      flex-shrink: 0;
+    }
+    .ecosystem-item:hover svg {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body id="top">
+
+  <!-- ==========================================================================
+       GLOBAL TOP NAVBAR
+       ========================================================================== -->
+  <header class="ai-navbar" style="height: 3.75rem; border-bottom: 1px solid var(--ai-border); background-color: var(--ai-surface-0); position: sticky; top: 0; z-index: 45;">
+    <div class="ai-container ai-flex ai-justify-between ai-items-center" style="max-width: 1440px;">
+      <!-- Left: Brand Logo & Links -->
+      <div class="ai-flex ai-items-center ai-gap-6">
+        <a href="/" class="ai-brand" style="font-size: 1.125rem; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0;">
+            <rect x="3" y="3" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <rect x="9" y="9" width="12" height="12" rx="2.5" fill="currentColor"/>
+          </svg>
+          <span style="font-family: var(--ai-font-display); font-weight: 800; letter-spacing: -0.03em;">LLMCSS</span>
+        </a>
+        <nav class="ai-flex ai-items-center ai-gap-1" style="display: none;" id="desktop-nav">
+          <a href="/components.html" class="site-nav-link">Components</a>
+          <a href="/templates.html" class="site-nav-link">Templates</a>
+          <a href="/quickstart" class="site-nav-link">Docs</a>
+          <a href="#pricing" class="site-nav-link">Pricing</a>
+          <a href="/account" class="site-nav-link">Account</a>
+        </nav>
+      </div>
+
+      <!-- Right: Styler, theme, Get Pro -->
+      <div class="ai-flex ai-items-center ai-gap-2">
+        <!-- Core Styler Drawer Trigger Button -->
+        <button id="open-styler-btn" class="ai-btn ai-btn-outline ai-btn-xs ai-flex ai-items-center ai-gap-1" data-ai-toggle="drawer" data-ai-target="#core-styler-drawer" style="height: 2rem; font-weight: 600;" title="Open Global Design System Styler">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Core Styler</span>
+        </button>
+
+        <select id="font-switcher" class="ai-select" style="height: 2rem; font-size: 0.75rem; width: 8.75rem; padding: 0 0.5rem; border-radius: var(--ai-radius-xs);" aria-label="Title font"></select>
+        <!-- Skin Selector (Synchronized with Core Styler) -->
+        <select id="skin-switcher" class="ai-select" style="height: 2rem; font-size: 0.75rem; width: 7.5rem; padding: 0 0.5rem; border-radius: var(--ai-radius-xs);">
+          <option value="modern" selected>Minimal</option>
+          <option value="executive">Slate</option>
+          <option value="fintech">Titanium</option>
+          <option value="obsidian">Obsidian</option>
+          <option value="editorial">Editorial</option>
+          <option value="enterprise">Enterprise</option>
+          <option value="emerald">Emerald</option>
+          <option value="violet">Violet</option>
+          <option value="rose">Rose</option>
+        </select>
+
+        <!-- Light/Dark Mode Line Icon Toggle -->
+        <button id="theme-mode-toggle" class="ai-btn ai-btn-outline ai-btn-xs ai-btn-icon" title="Toggle Light/Dark Mode" aria-label="Toggle Light/Dark Mode" style="width: 2rem; height: 2rem; padding: 0; display: inline-flex; align-items: center; justify-content: center;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+
+        <a href="/api/checkout.php" class="ai-btn ai-btn-primary ai-btn-xs" style="height: 2rem; display: inline-flex; align-items: center;">
+          Get Pro
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+  <section class="hero-section">
+    <div class="ai-container" style="max-width: 1200px; position: relative; z-index: 1;">
+      <div class="ai-text-center" style="max-width: 52rem; margin: 0 auto;">
+        <h1 class="ai-font-display" style="font-size: clamp(2.25rem, 5vw, 3.75rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.04em; color: var(--ai-text-primary);">
+          Tactile, human-crafted interfaces for AI agents &amp; engineers.
+        </h1>
+
+        <p class="ai-text-secondary" style="margin-top: var(--ai-space-4); font-size: clamp(1rem, 2vw, 1.1875rem); line-height: 1.6; max-width: 44rem; margin-left: auto; margin-right: auto;">
+          An open modern CSS system engineered to eliminate the generic AI look. Powered by native container queries, cascading CSS variables, light-DOM web components, and a dedicated stdio MCP server.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="ai-flex ai-justify-center ai-items-center ai-flex-wrap ai-gap-4" style="margin-top: var(--ai-space-8);">
+          <a href="/components.html" class="ai-btn ai-btn-primary ai-btn-lg" id="hero-browse-btn" style="min-width: 12rem;">
+            Browse components
+          </a>
+          <a href="/quickstart" class="ai-btn ai-btn-outline ai-btn-lg">
+            Quickstart
+          </a>
+          <button class="ai-bento-code-pill" id="hero-copy-pill" style="height: 2.75rem; padding: 0 1rem; cursor: pointer; background: var(--ai-surface-0);" title="Click to copy CLI command">
+            <span class="ai-text-muted ai-font-mono" style="font-weight: 600; opacity: 0.6; margin-right: -0.1rem;">$</span>
+            <span>npx llmcss init</span>
+            <span class="ai-badge ai-badge-outline" style="font-size: 0.625rem; margin-left: 0.5rem;">Copy</span>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Interactive Hero Preview Dock -->
+      <div class="hero-dock">
+        <!-- Card 1: Motion Engine & Smooth Transitions -->
+        <div class="hero-dock-card">
+          <div class="ai-flex ai-justify-between ai-items-center">
+            <span class="hero-dock-title">Motion Engine</span>
+            <span class="ai-badge ai-badge-neutral" style="font-size: 0.6875rem; font-weight: 500;">Hardware Accelerated</span>
+          </div>
+          <div>
+            <div class="ai-flex ai-justify-between ai-items-center" style="margin-bottom: var(--ai-space-3);">
+              <span class="ai-text-xs ai-font-medium">Composited Pipeline</span>
+              <span class="ai-text-xs ai-text-muted" style="font-feature-settings: 'tnum';">60 fps</span>
+            </div>
+            <div class="ai-progress ai-progress-indeterminate" style="margin-bottom: var(--ai-space-3);">
+              <div class="ai-progress-bar"></div>
+            </div>
+            <div class="ai-flex ai-items-center ai-gap-3">
+              <span class="ai-spinner"></span>
+              <span class="ai-text-xs ai-text-secondary">Transform &amp; opacity &bull; Zero reflow</span>
+            </div>
+          </div>
+          <div class="ai-flex ai-justify-between ai-items-center ai-text-xs ai-text-muted">
+            <span>Pure CSS Keyframes</span>
+            <span style="font-feature-settings: 'tnum';">&lt; 1.5KB gzipped</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Tactile Controls & Native Inputs -->
+        <div class="hero-dock-card" style="border-color: var(--ai-border-strong);">
+          <div class="ai-flex ai-justify-between ai-items-center">
+            <span class="hero-dock-title">Tactile Controls</span>
+            <span class="ai-badge ai-badge-neutral" style="font-size: 0.6875rem; font-weight: 500;">Native Inputs</span>
+          </div>
+          <div class="ai-slider-wrapper">
+            <div class="ai-slider-header">
+              <span class="ai-text-xs ai-font-medium">Spring Damping Ratio</span>
+              <span class="ai-slider-value">0.72</span>
+            </div>
+            <input type="range" class="ai-range" min="0" max="1" step="0.01" value="0.72" />
+          </div>
+          <div class="ai-flex ai-justify-between ai-items-center">
+            <div class="ai-segmented" role="tablist">
+              <button class="ai-segmented-btn is-active" style="padding: 0.2rem 0.5rem; font-size: 0.6875rem;">Linear</button>
+              <button class="ai-segmented-btn" style="padding: 0.2rem 0.5rem; font-size: 0.6875rem;">Ease Out</button>
+              <button class="ai-segmented-btn" style="padding: 0.2rem 0.5rem; font-size: 0.6875rem;">Spring</button>
+            </div>
+            <span class="ai-text-xs ai-text-muted">cubic-bezier</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Container Queries & Micro-Layouts -->
+        <div class="hero-dock-card">
+          <div class="ai-flex ai-justify-between ai-items-center">
+            <span class="hero-dock-title">Container Queries</span>
+            <span class="tag-pro-pill">PRO</span>
+          </div>
+          <div style="padding: var(--ai-space-1) 0;">
+            <div class="ai-flex ai-items-center ai-gap-2" style="margin-bottom: 0.35rem;">
+              <span class="ai-text-xs ai-font-semibold">Context-Aware Micro-Layouts</span>
+            </div>
+            <p class="ai-text-xs ai-text-secondary" style="line-height: 1.5; margin: 0;">
+              Self-responsive component boundaries that adapt seamlessly to parent container width without global viewport queries.
+            </p>
+          </div>
+          <div class="ai-flex ai-justify-between ai-items-center ai-text-xs">
+            <span class="ai-text-muted">Intrinsic Sizing</span>
+            <span class="ai-text-accent ai-font-medium">Native CSS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FRAMEWORK COMPATIBILITY RAIL (STATIC, HUMAN-CRAFTED)
+       ========================================================================== -->
+  <section style="border-bottom: 1px solid var(--ai-border); background: var(--ai-surface-0); padding: var(--ai-space-8) 0;">
+    <div class="ai-container" style="max-width: 1440px;">
+      <div class="ai-flex ai-justify-between ai-items-center ai-flex-wrap ai-gap-4">
+        <span class="ai-text-xs ai-font-semibold ai-text-muted" style="letter-spacing: 0.04em; text-transform: uppercase;">Compatible Ecosystem</span>
+        <div class="ai-flex ai-flex-wrap ai-items-center ai-gap-6">
+          <span class="ecosystem-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 9h16"/><path d="M9 4v16"/></svg>
+            Vanilla HTML5
+          </span>
+          <span class="ecosystem-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="m4.93 7.5 14.14 9"/><path d="m4.93 16.5 14.14-9"/></svg>
+            Astro SSR
+          </span>
+          <span class="ecosystem-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            Next.js
+          </span>
+          <span class="ecosystem-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-2 20"/><path d="M4 7h16"/><path d="M4 17h16"/></svg>
+            SvelteKit
+          </span>
+          <span class="ecosystem-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Vue / Nuxt
+          </span>
+          <span class="ecosystem-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 4-4-4-4"/><path d="m8 8-4 4 4 4"/><path d="m14 4-4 16"/></svg>
+            Web Components
+          </span>
+          <span class="ecosystem-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 8 6 4-6 4Z"/></svg>
+            Stdio MCP
+          </span>
+          <span class="ecosystem-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/></svg>
+            Zero-Build CDN
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       PHILOSOPHY & ARCHITECTURAL ADVANTAGES
+       ========================================================================== -->
+  <section id="philosophy" style="padding: var(--ai-space-24) 0; border-bottom: 1px solid var(--ai-border); background: var(--ai-surface-1);">
+    <div class="ai-container" style="max-width: 1440px;">
+      <div class="ai-text-center" style="max-width: 48rem; margin: 0 auto;">
+        <h2 class="ai-font-display" style="font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 700; letter-spacing: -0.03em;">
+          Designed to eliminate the generic AI look.
+        </h2>
+        <p class="ai-text-secondary" style="margin-top: var(--ai-space-3); font-size: 1rem;">
+          Most AI-generated sites feature puffy gradients, massive radius pills, and 80-class Tailwind strings. LLMCSS fixes this at the architectural layer.
+        </p>
+      </div>
+
+      <div class="philosophy-grid">
+        <div class="philosophy-card">
+          <h3 class="ai-font-semibold" style="font-size: 1.125rem;">Zero-Token Cascading Theme Variables</h3>
+          <p class="ai-text-secondary ai-text-sm" style="line-height: 1.5;">
+            Cascading CSS variables on root automatically handle dark mode and skins. Cuts LLM output token bloat by ~68% compared to Tailwind's repetitious <code>dark:</code> utilities.
+          </p>
+        </div>
+
+        <div class="philosophy-card">
+          <h3 class="ai-font-semibold" style="font-size: 1.125rem;">Native Container Queries &amp; Auto-Fit</h3>
+          <p class="ai-text-secondary ai-text-sm" style="line-height: 1.5;">
+            Components adapt intrinsically to their container size (sidebar vs dashboard) via <code>.ai-cq</code> and <code>.ai-grid-auto-fit</code>, eliminating rigid viewport media queries.
+          </p>
+        </div>
+
+        <div class="philosophy-card">
+          <h3 class="ai-font-semibold" style="font-size: 1.125rem;">Sub-2.5KB Dual-Mode Micro-Runtime</h3>
+          <p class="ai-text-secondary ai-text-sm" style="line-height: 1.5;">
+            Zero React/Emotion lock-in. Full Light-DOM Web Components (<code>&lt;ai-modal&gt;</code>) and data-attribute delegation without any external dependencies.
+          </p>
+        </div>
+
+        <div class="philosophy-card">
+          <h3 class="ai-font-semibold" style="font-size: 1.125rem;">Crisp Architectural Radii &amp; Physics</h3>
+          <p class="ai-text-secondary ai-text-sm" style="line-height: 1.5;">
+            No bubbly round corners or blurry glows. Calibrated 2px-10px architectural radii, physical 1px borders, subtle noise surfaces, and 9 curated theme archetypes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       COMPETITIVE ARCHITECTURE COMPARISON
+       ========================================================================== -->
+  <section id="comparison" style="padding: var(--ai-space-24) 0; border-bottom: 1px solid var(--ai-border);">
+    <div class="ai-container" style="max-width: 1440px;">
+      <div class="ai-text-center" style="max-width: 44rem; margin: 0 auto var(--ai-space-8);">
+        <h2 class="ai-font-display" style="font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 700; letter-spacing: -0.03em;">
+          How LLMCSS outclasses other frameworks.
+        </h2>
+      </div>
+
+      <div class="matrix-wrapper">
+        <table class="ai-matrix-table">
+          <thead>
+            <tr>
+              <th class="ai-matrix-feature-col" style="width: 25%;">Feature Dimension</th>
+              <th style="width: 18%;">Tailwind CSS</th>
+              <th style="width: 18%;">Bootstrap / Bulma</th>
+              <th style="width: 18%;">Chakra UI / MUI</th>
+              <th style="width: 21%; background-color: var(--ai-surface-1); color: var(--ai-accent); font-weight: 700;">LLMCSS (Our Engine)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="ai-matrix-feature-col">Token Cost for AI Agents</td>
+              <td>❌ 20-50+ classes per component; high token cost</td>
+              <td>⚠️ Moderate; frequent v4 vs v5 hallucination</td>
+              <td>❌ Verbose JSX props bloat context window</td>
+              <td style="background-color: var(--ai-surface-1); font-weight: 600;">✓ ~68% Token Savings via semantic composition</td>
+            </tr>
+            <tr>
+              <td class="ai-matrix-feature-col">Dark Mode Architecture</td>
+              <td>⚠️ Repetitive <code>dark:</code> prefix on every styled attribute</td>
+              <td>⚠️ Global CSS swap or JS toggle</td>
+              <td>⚠️ Runtime JS context (Emotion / styled-components)</td>
+              <td style="background-color: var(--ai-surface-1); font-weight: 600;">✓ 0-Token Cascading CSS Variables</td>
+            </tr>
+            <tr>
+              <td class="ai-matrix-feature-col">Responsive Strategy</td>
+              <td>⚠️ Viewport <code>@media</code> defaults (opt-in container plugin)</td>
+              <td>❌ Rigid 12-column float/flex grid</td>
+              <td>⚠️ Style props with responsive arrays</td>
+              <td style="background-color: var(--ai-surface-1); font-weight: 600;">✓ Native Container Queries (<code>.ai-cq</code>)</td>
+            </tr>
+            <tr>
+              <td class="ai-matrix-feature-col">Motion &amp; Animations</td>
+              <td>⚠️ 4 basic utility keyframes (spin, ping, pulse, bounce)</td>
+              <td>❌ Minimal fade/collapse transitions</td>
+              <td>⚠️ Framer Motion dependency (&gt;40KB JS)</td>
+              <td style="background-color: var(--ai-surface-1); font-weight: 600;">✓ Pure Native CSS Motion Engine (&lt;1.5KB gzipped)</td>
+            </tr>
+            <tr>
+              <td class="ai-matrix-feature-col">JavaScript Runtime</td>
+              <td>✅ 0KB runtime</td>
+              <td>⚠️ Bootstrap: ~60KB bundle with Popper.js / Bulma: 0KB but no interactivity</td>
+              <td>❌ 150-300KB+ (React + CSS-in-JS + animation libs)</td>
+              <td style="background-color: var(--ai-surface-1); font-weight: 600;">✓ &lt;2.5KB gzipped Micro-Runtime (Dual-Mode)</td>
+            </tr>
+            <tr>
+              <td class="ai-matrix-feature-col">Agent Tooling (MCP / Linter)</td>
+              <td>❌ None built-in</td>
+              <td>❌ None</td>
+              <td>❌ None</td>
+              <td style="background-color: var(--ai-surface-1); font-weight: 600;">✓ Stdio MCP Server + CLI Linter</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       COMPONENT SYSTEM SPOTLIGHT (#collection)
+       ========================================================================== -->
+  <section class="collection-section" id="collection" style="padding: var(--ai-space-24) 0; border-bottom: 1px solid var(--ai-border); background: var(--ai-surface-0);">
+    <div class="ai-container" style="max-width: 1440px;">
+      <div class="ai-flex ai-justify-between ai-items-end ai-flex-wrap ai-gap-6" style="margin-bottom: var(--ai-space-10);">
+        <div>
+          <span class="ai-text-xs ai-font-semibold ai-text-muted" style="letter-spacing: 0.04em; text-transform: uppercase;">Component Catalog</span>
+          <h2 class="ai-font-display" style="font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 700; letter-spacing: -0.03em; margin-top: 0.25rem;">
+            47 Engineered Components. Zero Runtime Bloat.
+          </h2>
+          <p class="ai-text-secondary" style="margin-top: var(--ai-space-2); max-width: 42rem; font-size: 1rem; line-height: 1.6;">
+            Every component is crafted with pure CSS variables and optional zero-dependency Light-DOM Web Components. Tested against token hallucination and designed to eliminate the generic AI aesthetic.
+          </p>
+        </div>
+        <div class="ai-flex ai-gap-3 ai-items-center">
+          <a href="/components.html" class="ai-btn ai-btn-primary ai-btn-md ai-flex ai-items-center ai-gap-2">
+            <span>Explore Full Component Catalog (47)</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Feature Highlight Categories Bento -->
+      <div class="ai-grid ai-grid-cols-1 ai-md:grid-cols-2 ai-lg:grid-cols-4 ai-gap-4">
+        <!-- Card 1: Primitives -->
+        <a href="/components.html" class="ai-card" style="padding: var(--ai-space-6); text-decoration: none; color: inherit; border: 1px solid var(--ai-border); transition: border-color var(--ai-duration-fast), transform var(--ai-duration-fast); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 class="ai-font-display" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Primitives &amp; Controls</h3>
+            <p class="ai-text-secondary ai-text-xs" style="line-height: 1.6;">
+              Buttons, input groups, segmented switches, slider range pickers, accordion drawers, dropdowns, and micro-toasts.
+            </p>
+          </div>
+          <div class="ai-flex ai-items-center ai-justify-between ai-text-xs" style="margin-top: var(--ai-space-6);">
+            <span class="ai-text-muted ai-font-mono">29 Primitives &bull; MIT</span>
+            <span class="ai-text-accent ai-font-medium">Explore &rarr;</span>
+          </div>
+        </a>
+
+        <!-- Card 2: Marketing Bento -->
+        <a href="/components.html" class="ai-card" style="padding: var(--ai-space-6); text-decoration: none; color: inherit; border: 1px solid var(--ai-border); transition: border-color var(--ai-duration-fast), transform var(--ai-duration-fast); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 class="ai-font-display" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Marketing &amp; Hero</h3>
+            <p class="ai-text-secondary ai-text-xs" style="line-height: 1.6;">
+              Bento grids, architectural pricing matrices, feature pillars, badge rails, and editorial hero layouts.
+            </p>
+          </div>
+          <div class="ai-flex ai-items-center ai-justify-between ai-text-xs" style="margin-top: var(--ai-space-6);">
+            <span class="ai-text-muted ai-font-mono">8 Components</span>
+            <span class="ai-text-accent ai-font-medium">Explore &rarr;</span>
+          </div>
+        </a>
+
+        <!-- Card 3: Application UI -->
+        <a href="/components.html" class="ai-card" style="padding: var(--ai-space-6); text-decoration: none; color: inherit; border: 1px solid var(--ai-border); transition: border-color var(--ai-duration-fast), transform var(--ai-duration-fast); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 class="ai-font-display" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">SaaS &amp; App UI</h3>
+            <p class="ai-text-secondary ai-text-xs" style="line-height: 1.6;">
+              Self-responsive container query cards, KPI sparklines, data tables, notification queues, and navigation sidebars.
+            </p>
+          </div>
+          <div class="ai-flex ai-items-center ai-justify-between ai-text-xs" style="margin-top: var(--ai-space-6);">
+            <span class="ai-text-muted ai-font-mono">8 Components</span>
+            <span class="ai-text-accent ai-font-medium">Explore &rarr;</span>
+          </div>
+        </a>
+
+        <!-- Card 4: E-Commerce -->
+        <a href="/components.html" class="ai-card" style="padding: var(--ai-space-6); text-decoration: none; color: inherit; border: 1px solid var(--ai-border); transition: border-color var(--ai-duration-fast), transform var(--ai-duration-fast); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 class="ai-font-display" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">E-Commerce</h3>
+            <p class="ai-text-secondary ai-text-xs" style="line-height: 1.6;">
+              Tactile product showcase cards, pricing tiers, and monetary-calibrated transactional surfaces.
+            </p>
+          </div>
+          <div class="ai-flex ai-items-center ai-justify-between ai-text-xs" style="margin-top: var(--ai-space-6);">
+            <span class="ai-text-muted ai-font-mono">2 Components</span>
+            <span class="ai-text-accent ai-font-medium">Explore &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       PRICING
+       ========================================================================== -->
+  <section id="pricing" style="padding: var(--ai-space-24) 0; border-bottom: 1px solid var(--ai-border); background: var(--ai-surface-1);">
+    <div class="ai-container" style="max-width: 1080px;">
+      <div class="ai-text-center" style="max-width: 44rem; margin: 0 auto var(--ai-space-12);">
+        <h2 class="ai-font-display" style="font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 700; letter-spacing: -0.03em;">
+          Free MIT core. Pro is $9/month.
+        </h2>
+        <p class="ai-text-secondary" style="margin-top: var(--ai-space-2);">
+          You keep the CSS you copy. Pro is a subscription catalog, not a lock-in runtime.
+        </p>
+      </div>
+      <div class="ai-grid ai-grid-cols-1 ai-md:grid-cols-2 ai-gap-6">
+        <div class="ai-card" style="padding: var(--ai-space-8);">
+          <div class="ai-flex ai-justify-between ai-items-center">
+            <h3 class="ai-card-title">Community</h3>
+            <span class="ai-badge ai-badge-neutral">MIT</span>
+          </div>
+          <div class="ai-pricing-amount" style="margin: var(--ai-space-4) 0;">
+            <span class="ai-pricing-price" style="font-size: 2.5rem; font-weight: 700;">$0</span>
+            <span class="ai-pricing-period">/ forever</span>
+          </div>
+          <ul class="ai-pricing-features" style="list-style: none; display: flex; flex-direction: column; gap: var(--ai-space-3); font-size: 0.875rem;">
+            <li>✓ Token layer, primitives, docs, gallery</li>
+            <li>✓ Free registry and local MCP</li>
+            <li>✓ <code class="ai-text-xs">npx llmcss add btn-variants</code></li>
+          </ul>
+          <a href="/components.html" class="ai-btn ai-btn-outline ai-w-full" style="margin-top: var(--ai-space-6);">Browse free components</a>
+        </div>
+        <div class="ai-card ai-card-pro" style="padding: var(--ai-space-8); border: 1px solid var(--ai-border-strong); box-shadow: var(--ai-shadow-md);">
+          <div class="ai-flex ai-justify-between ai-items-center">
+            <h3 class="ai-card-title">Pro</h3>
+            <span class="ai-badge ai-badge-solid">POLAR</span>
+          </div>
+          <div class="ai-pricing-amount" style="margin: var(--ai-space-4) 0;">
+            <span class="ai-pricing-price" style="font-size: 2.5rem; font-weight: 700;">$9</span>
+            <span class="ai-pricing-period">/ month</span>
+          </div>
+          <ul class="ai-pricing-features" style="list-style: none; display: flex; flex-direction: column; gap: var(--ai-space-3); font-size: 0.875rem;">
+            <li>✓ Token-gated Pro registry</li>
+            <li>✓ Zip backup of the Pro catalog</li>
+            <li>✓ Cancel anytime. Token is revoked at period end.</li>
+          </ul>
+          <a href="/api/checkout.php" class="ai-btn ai-btn-primary ai-w-full" style="margin-top: var(--ai-space-6);">Subscribe ($9/mo USD)</a>
+        </div>
+      </div>
+      <p class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-8); text-align: center; max-width: 36rem; margin-left: auto; margin-right: auto;">
+        Digital goods: Pro is a downloadable catalog. Refunds follow Polar’s policy. MIT core stays free either way.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="ai-footer">
+    <div class="ai-container" style="max-width: 1440px;">
+      <div class="ai-footer-grid">
+        <div>
+          <a href="#top" class="ai-brand" style="font-size: 1.25rem; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0;">
+              <rect x="3" y="3" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <rect x="9" y="9" width="12" height="12" rx="2.5" fill="currentColor"/>
+            </svg>
+            <span style="font-family: var(--ai-font-display); font-weight: 800; letter-spacing: -0.03em;">LLMCSS</span>
+          </a>
+          <p class="ai-text-secondary ai-text-xs" style="margin-top: var(--ai-space-3); max-width: 20rem; line-height: 1.6;">
+            The non-AI looking UI framework built for agentic coders and human craftsmen.
+          </p>
+          <div class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-4);">
+            &copy; 2026 LLMCSS Project (<a href="https://llmcss.io" target="_blank" style="color: inherit; text-decoration: underline;">llmcss.io</a>). Open-source core under MIT.
+          </div>
+        </div>
+
+        <div>
+          <span class="ai-font-semibold ai-text-xs ai-font-sans ai-text-muted" style="text-transform: uppercase; letter-spacing: 0.05em;">Catalog</span>
+          <ul class="ai-footer-list" style="margin-top: var(--ai-space-3);">
+            <li><a href="#collection" class="site-nav-link" style="padding: 0;">Primitives (29)</a></li>
+            <li><a href="#collection" class="site-nav-link" style="padding: 0;">Marketing (8)</a></li>
+            <li><a href="#collection" class="site-nav-link" style="padding: 0;">Application UI (8)</a></li>
+            <li><a href="#collection" class="site-nav-link" style="padding: 0;">E-Commerce (2)</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="ai-font-semibold ai-text-xs ai-font-sans ai-text-muted" style="text-transform: uppercase; letter-spacing: 0.05em;">Agent Docs</span>
+          <ul class="ai-footer-list" style="margin-top: var(--ai-space-3);">
+            <li><a href="/quickstart" class="site-nav-link" style="padding: 0;">Quickstart</a></li>
+            <li><a href="/llms.txt" target="_blank" class="site-nav-link" style="padding: 0;">llms.txt</a></li>
+            <li><a href="/llms-full.txt" target="_blank" class="site-nav-link" style="padding: 0;">llms-full.txt</a></li>
+            <li><a href="/registry.json" target="_blank" class="site-nav-link" style="padding: 0;">registry.json</a></li>
+            <li><a href="#comparison" class="site-nav-link" style="padding: 0;">Architecture Matrix</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="ai-font-semibold ai-text-xs ai-font-sans ai-text-muted" style="text-transform: uppercase; letter-spacing: 0.05em;">CLI &amp; Tooling</span>
+          <ul class="ai-footer-list" style="margin-top: var(--ai-space-3);">
+            <li><code class="ai-text-xs">npx llmcss list</code></li>
+            <li><code class="ai-text-xs">npx llmcss add &lt;id&gt;</code></li>
+            <li><code class="ai-text-xs">npx llmcss validate</code></li>
+            <li><code class="ai-text-xs">npx llmcss-mcp</code></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PRO SUBSCRIPTION PAYWALL MODAL -->
+  <div id="pro-pricing-modal" class="ai-modal">
+    <div class="ai-modal-backdrop" data-ai-dismiss="modal"></div>
+    <div class="ai-modal-box ai-modal-box-lg">
+      <div class="ai-modal-header">
+        <h3 style="font-size: 1rem; font-weight: 700; margin: 0; color: var(--ai-text-primary);">LLMCSS Pro</h3>
+        <button class="ai-modal-close" data-ai-dismiss="modal">&times;</button>
+      </div>
+      <div class="ai-modal-body">
+        <div class="ai-text-center" style="margin-bottom: var(--ai-space-6);">
+          <h2 style="font-size: 1.75rem;">Unlock the Pro catalog</h2>
+          <p class="ai-text-secondary" style="margin-top: 0.25rem;">
+            License token + zip after Polar checkout. Cancel anytime. Digital goods: see the refund note on this page.
+          </p>
+        </div>
+
+        <div class="ai-card ai-card-pro" style="padding: var(--ai-space-6); border: 1px solid var(--ai-border-strong); max-width: 28rem; margin: 0 auto;">
+          <div class="ai-flex ai-justify-between ai-items-center">
+            <h3 class="ai-card-title">Pro</h3>
+            <span class="ai-badge ai-badge-solid">$9 / month</span>
+          </div>
+          <div class="ai-pricing-amount" style="margin: var(--ai-space-3) 0;">
+            <span class="ai-pricing-price" style="font-size: 2.25rem;">$9</span>
+            <span class="ai-pricing-period">/ month</span>
+          </div>
+          <p class="ai-text-sm ai-text-secondary">Billed monthly via Polar. Token is shown once on the success page.</p>
+          <ul class="ai-pricing-features" style="margin: var(--ai-space-4) 0; list-style: none; display: flex; flex-direction: column; gap: var(--ai-space-2); font-size: 0.8125rem;">
+            <li>✓ All Pro sections and templates</li>
+            <li>✓ Token-gated registry + MCP</li>
+            <li>✓ Zip backup of the Pro catalog</li>
+          </ul>
+          <a href="/api/checkout.php" class="ai-btn ai-btn-primary ai-w-full">Subscribe with Polar ($9/mo)</a>
+          <p class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-3);">You will return here to <a href="/account">/account</a> with a one-time token.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       GLOBAL CORE DESIGN SYSTEM STYLER DRAWER
+       ========================================================================== -->
+  <div class="ai-drawer" id="core-styler-drawer">
+    <div class="ai-drawer-backdrop" data-ai-dismiss="drawer"></div>
+    <div class="ai-drawer-panel">
+      <div class="ai-drawer-header" style="padding: 1.125rem 1.5rem; border-bottom: 1px solid var(--ai-border);">
+        <div class="ai-flex ai-items-center ai-gap-2">
+          <span style="font-size: 0.9375rem; font-weight: 600; color: var(--ai-text-primary); letter-spacing: -0.01em;">Theme &amp; Token Canvas</span>
+        </div>
+        <div class="ai-flex ai-items-center ai-gap-2">
+          <button id="styler-theme-toggle" class="ai-btn ai-btn-ghost ai-btn-icon ai-btn-xs" title="Toggle Light/Dark Mode">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          </button>
+          <button class="ai-btn ai-btn-ghost ai-btn-icon ai-btn-xs" data-ai-dismiss="drawer" aria-label="Close Styler" style="color: var(--ai-text-muted);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="ai-drawer-body" style="overflow-y: auto; padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1.25rem;">
+        <!-- 1. Theme Palette -->
+        <div class="styler-section">
+          <div class="styler-section-header">
+            <span class="styler-section-title">Theme Palette</span>
+            <span class="styler-section-val" id="styler-active-theme-label">Minimal</span>
+          </div>
+          <div class="styler-theme-grid" id="styler-theme-grid">
+            <button class="styler-theme-btn is-active" data-skin="modern">
+              <span class="styler-swatch-pip" style="background: #2563eb;"></span>
+              <span class="styler-theme-name">Minimal</span>
+            </button>
+            <button class="styler-theme-btn" data-skin="executive">
+              <span class="styler-swatch-pip" style="background: #0f172a;"></span>
+              <span class="styler-theme-name">Slate</span>
+            </button>
+            <button class="styler-theme-btn" data-skin="fintech">
+              <span class="styler-swatch-pip" style="background: #0f766e;"></span>
+              <span class="styler-theme-name">Titanium</span>
+            </button>
+            <button class="styler-theme-btn" data-skin="obsidian">
+              <span class="styler-swatch-pip" style="background: #09090b; box-shadow: 0 0 0 1px rgba(255,255,255,0.3);"></span>
+              <span class="styler-theme-name">Obsidian</span>
+            </button>
+            <button class="styler-theme-btn" data-skin="editorial">
+              <span class="styler-swatch-pip" style="background: #8c4a27;"></span>
+              <span class="styler-theme-name">Editorial</span>
+            </button>
+            <button class="styler-theme-btn" data-skin="enterprise">
+              <span class="styler-swatch-pip" style="background: #0284c7;"></span>
+              <span class="styler-theme-name">Enterprise</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Corner Geometry -->
+        <div class="styler-section">
+          <div class="styler-section-header">
+            <span class="styler-section-title">Title font</span>
+            <span class="styler-section-val">One face for headings</span>
+          </div>
+          <select id="styler-font-switcher" class="ai-select" style="width: 100%; height: 2rem; font-size: 0.8125rem;" aria-label="Title font"></select>
+        </div>
+
+        <div class="styler-section">
+          <div class="styler-section-header">
+            <span class="styler-section-title">Corner Geometry</span>
+            <span class="styler-section-val" id="styler-radius-label">Balanced (4-8px)</span>
+          </div>
+          <div class="styler-segmented-track">
+            <button class="styler-segmented-item styler-radius-btn" data-radius="sharp">Sharp</button>
+            <button class="styler-segmented-item styler-radius-btn" data-radius="precision">Precision</button>
+            <button class="styler-segmented-item styler-radius-btn is-active" data-radius="balanced">Balanced</button>
+            <button class="styler-segmented-item styler-radius-btn" data-radius="smooth">Smooth</button>
+          </div>
+        </div>
+
+        <!-- 3. Spacing & Density -->
+        <div class="styler-section">
+          <div class="styler-section-header">
+            <span class="styler-section-title">Interface Density</span>
+            <span class="styler-section-val" id="styler-density-label">Standard (1.0x)</span>
+          </div>
+          <div class="styler-segmented-track">
+            <button class="styler-segmented-item styler-density-btn" data-density="compact">Compact</button>
+            <button class="styler-segmented-item styler-density-btn is-active" data-density="standard">Standard</button>
+            <button class="styler-segmented-item styler-density-btn" data-density="spacious">Spacious</button>
+          </div>
+        </div>
+
+        <!-- 4. Accent Color -->
+        <div class="styler-section">
+          <div class="styler-section-header">
+            <span class="styler-section-title">Primary Accent</span>
+          </div>
+          <div class="styler-swatch-row">
+            <button class="styler-accent-swatch is-active" data-accent="default" style="background: #2563eb;" title="Default Blue"></button>
+            <button class="styler-accent-swatch" data-accent="steel" style="background: #475569;" title="Slate Steel"></button>
+            <button class="styler-accent-swatch" data-accent="teal" style="background: #0f766e;" title="Fintech Teal"></button>
+            <button class="styler-accent-swatch" data-accent="emerald" style="background: #059669;" title="Emerald"></button>
+            <button class="styler-accent-swatch" data-accent="violet" style="background: #7c3aed;" title="Violet"></button>
+            <button class="styler-accent-swatch" data-accent="rose" style="background: #e11d48;" title="Rose"></button>
+            <button class="styler-accent-swatch" data-accent="amber" style="background: #d97706;" title="Amber"></button>
+          </div>
+        </div>
+
+        <!-- 5. Token Export Blueprint -->
+        <div class="styler-section" style="border-top: 1px solid var(--ai-border-subtle); padding-top: var(--ai-space-4);">
+          <div class="ai-flex ai-justify-between ai-items-center">
+            <span class="styler-section-title">CSS Blueprint</span>
+            <button class="ai-btn ai-btn-outline ai-btn-xs" id="copy-styler-css-btn">Copy CSS</button>
+          </div>
+          <details class="styler-code-disclosure" style="margin-top: 0.25rem;">
+            <summary class="ai-text-xs ai-text-muted" style="cursor: pointer; user-select: none; display: flex; align-items: center; gap: 0.25rem;">
+              <span>View generated :root tokens</span>
+              <span style="font-size: 0.75rem;">▾</span>
+            </summary>
+            <pre style="margin-top: 0.5rem; background: var(--ai-surface-1); border: 1px solid var(--ai-border); border-radius: var(--ai-radius-xs); padding: 0.75rem; font-size: 0.7rem; font-family: var(--ai-font-mono); color: var(--ai-text-primary); max-height: 8rem; overflow-y: auto;"><code id="styler-css-output">:root {
+  /* Default LLMCSS tokens active */
+}</code></pre>
+          </details>
+        </div>
+      </div>
+
+      <div class="ai-drawer-footer" style="padding: var(--ai-space-4) var(--ai-space-6); border-top: 1px solid var(--ai-border-subtle); display: flex; justify-content: space-between; align-items: center; background: var(--ai-surface-1);">
+        <button class="ai-btn ai-btn-ghost ai-btn-xs" id="reset-styler-btn" style="color: var(--ai-text-muted);">Reset Defaults</button>
+        <button class="ai-btn ai-btn-primary ai-btn-xs" data-ai-dismiss="drawer">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Core Styler Quick-Launcher Button -->
+  <button id="floating-styler-btn" class="ai-btn ai-btn-primary ai-btn-xs" data-ai-toggle="drawer" data-ai-target="#core-styler-drawer" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 40; display: flex; align-items: center; gap: 0.375rem; border: 1px solid var(--ai-border-strong); box-shadow: var(--ai-shadow-md);" title="Open Styler">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    <span>Styler</span>
+  </button>
+
+  <!-- Toast Notification Container -->
+  <div class="ai-toast-container" id="toast-container"></div>
+
+  <!-- Entry Script -->
+  <script type="module" src="/src/showcase/main.ts"></script>
+</body>
+</html>

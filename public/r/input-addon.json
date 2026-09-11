@@ -1,0 +1,13 @@
+{
+  "id": "input-addon",
+  "name": "Input Addons & Domain Prefix",
+  "description": "Segmented input groups with prefix labels and integrated action buttons.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "input",
+    "addon",
+    "domain"
+  ],
+  "html": "<div class=\"ai-form-group\" style=\"max-width: 28rem;\">\n  <label class=\"ai-form-label\">Project URL</label>\n  <div class=\"ai-input-group\">\n    <span class=\"ai-input-addon\">https://</span>\n    <input type=\"text\" class=\"ai-input\" placeholder=\"my-app\" />\n    <span class=\"ai-input-addon\">.llmcss.io</span>\n  </div>\n</div>"
+}

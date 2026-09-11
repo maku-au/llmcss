@@ -1,0 +1,103 @@
+@layer components {
+  .ai-kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    padding: 0.1rem 0.4rem;
+    font-family: var(--ai-font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--ai-text-primary);
+    background: var(--ai-surface-1);
+    border: 1px solid var(--ai-border);
+    border-bottom-width: 2px;
+    border-radius: var(--ai-radius-xs);
+  }
+
+  .ai-quote {
+    margin: 0;
+    padding: var(--ai-space-6) 0 var(--ai-space-6) var(--ai-space-6);
+    border-left: 2px solid var(--ai-border-strong);
+  }
+  .ai-quote p {
+    font-family: var(--ai-font-display);
+    font-size: 1.25rem;
+    line-height: 1.45;
+    color: var(--ai-text-primary);
+    margin: 0;
+  }
+  .ai-quote footer {
+    margin-top: var(--ai-space-3);
+    font-size: 0.8125rem;
+    color: var(--ai-text-muted);
+  }
+
+  .ai-code-block {
+    margin: 0;
+    padding: var(--ai-space-4);
+    background: var(--ai-surface-1);
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-md);
+    overflow-x: auto;
+  }
+  .ai-code-block code {
+    font-family: var(--ai-font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--ai-text-primary);
+  }
+
+  .ai-dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ai-space-2);
+    padding: var(--ai-space-8);
+    text-align: center;
+    border: 1px dashed var(--ai-border-strong);
+    border-radius: var(--ai-radius-md);
+    background: var(--ai-surface-1);
+    color: var(--ai-text-secondary);
+    font-size: 0.875rem;
+  }
+
+  .ai-timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .ai-timeline-item {
+    position: relative;
+    padding: 0 0 var(--ai-space-5) 1.25rem;
+    border-left: 1px solid var(--ai-border);
+  }
+  .ai-timeline-item:last-child {
+    padding-bottom: 0;
+    border-left-color: transparent;
+  }
+  .ai-timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -4px;
+    top: 0.35rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--ai-text-primary);
+  }
+  .ai-timeline-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ai-text-primary);
+  }
+  .ai-timeline-meta {
+    margin-top: 0.15rem;
+    font-size: 0.75rem;
+    color: var(--ai-text-muted);
+  }
+}

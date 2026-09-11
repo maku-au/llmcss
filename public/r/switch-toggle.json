@@ -1,0 +1,13 @@
+{
+  "id": "switch-toggle",
+  "name": "Tactile Switch & Checkbox",
+  "description": "Accessible toggle switches and checkboxes with physical spring transitions.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "switch",
+    "toggle",
+    "checkbox"
+  ],
+  "html": "<div class=\"ai-flex ai-flex-col ai-gap-4\">\n  <label class=\"ai-switch\">\n    <input type=\"checkbox\" class=\"ai-switch-input\" checked />\n    <span class=\"ai-switch-track\"><span class=\"ai-switch-thumb\"></span></span>\n    <span class=\"ai-text-sm ai-font-medium\">Automatic Backups</span>\n  </label>\n  <label class=\"ai-checkbox\">\n    <input type=\"checkbox\" class=\"ai-checkbox-input\" checked />\n    <span>Notify me when teammates comment</span>\n  </label>\n</div>"
+}

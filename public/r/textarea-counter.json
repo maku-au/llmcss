@@ -1,0 +1,15 @@
+{
+  "id": "textarea-counter",
+  "name": "Textarea with Character Counter",
+  "description": "Multi-line text input with label, helper text, and a live character count footer.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "textarea",
+    "form",
+    "input",
+    "counter",
+    "multiline"
+  ],
+  "html": "<div style=\"max-width: 28rem;\">\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label\" for=\"bio-field\">Bio</label>\n    <div class=\"ai-textarea-group\">\n      <textarea id=\"bio-field\" class=\"ai-textarea\" placeholder=\"Write a short bio...\" rows=\"4\" maxlength=\"280\">Design engineer building component systems for autonomous agents.</textarea>\n      <div class=\"ai-textarea-footer\">\n        <span class=\"ai-form-hint\">Keep it concise and direct.</span>\n        <span class=\"ai-font-mono\" style=\"font-size: 0.6875rem;\">63 / 280</span>\n      </div>\n    </div>\n  </div>\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label is-required\" for=\"feedback-field\">Feedback</label>\n    <textarea id=\"feedback-field\" class=\"ai-textarea is-error\" placeholder=\"Describe the issue...\" rows=\"3\" aria-invalid=\"true\">Too short</textarea>\n    <span class=\"ai-form-error\">Feedback must be at least 20 characters.</span>\n  </div>\n</div>"
+}

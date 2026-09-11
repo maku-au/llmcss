@@ -1,0 +1,14 @@
+{
+  "id": "quote-pull",
+  "name": "Pull Quote",
+  "description": "Editorial quote with a single left rule. Title face comes from the font switcher, not the theme.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "quote",
+    "blockquote",
+    "editorial",
+    "testimonial"
+  ],
+  "html": "<blockquote class=\"ai-quote\">\n  <p>One title face. Themes change color, not the alphabet.</p>\n  <footer>LLMCSS typesetting note</footer>\n</blockquote>"
+}

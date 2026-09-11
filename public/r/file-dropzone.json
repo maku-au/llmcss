@@ -1,0 +1,14 @@
+{
+  "id": "file-dropzone",
+  "name": "File Dropzone",
+  "description": "Dashed upload well for attachments and dataset drops.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "upload",
+    "file",
+    "dropzone",
+    "form"
+  ],
+  "html": "<div class=\"ai-dropzone\" role=\"button\" tabindex=\"0\">\n  <strong style=\"color: var(--ai-text-primary);\">Drop a file</strong>\n  <span class=\"ai-text-xs\">PNG, JSON, or CSV up to 8MB</span>\n  <button class=\"ai-btn ai-btn-outline ai-btn-sm\" type=\"button\" style=\"margin-top: var(--ai-space-2);\">Browse</button>\n</div>"
+}

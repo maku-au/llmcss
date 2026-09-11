@@ -1,0 +1,14 @@
+{
+  "id": "breadcrumb-nav",
+  "name": "Breadcrumb Navigation",
+  "description": "Accessible breadcrumb trail with slash separators, linked ancestors, and a current page indicator.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "breadcrumb",
+    "navigation",
+    "trail",
+    "path"
+  ],
+  "html": "<nav aria-label=\"Breadcrumb\">\n  <ol class=\"ai-breadcrumb\">\n    <li class=\"ai-breadcrumb-item\"><a href=\"#\">Dashboard</a></li>\n    <li class=\"ai-breadcrumb-item\"><a href=\"#\">Projects</a></li>\n    <li class=\"ai-breadcrumb-item\"><a href=\"#\">Design System</a></li>\n    <li class=\"ai-breadcrumb-item is-current\" aria-current=\"page\">Components</li>\n  </ol>\n</nav>"
+}

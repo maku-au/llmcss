@@ -1,0 +1,47 @@
+@layer components {
+  /* Tables */
+  .ai-table-container {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-lg);
+    background-color: var(--ai-surface-0);
+  }
+
+  .ai-table {
+    width: 100%;
+    text-align: left;
+    font-size: 0.875rem;
+    color: var(--ai-text-secondary);
+  }
+
+  .ai-table th {
+    background-color: var(--ai-surface-1);
+    color: var(--ai-text-primary);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: var(--ai-space-3) var(--ai-space-4);
+    border-bottom: 1px solid var(--ai-border);
+    white-space: nowrap;
+  }
+
+  .ai-table td {
+    padding: var(--ai-space-3) var(--ai-space-4);
+    border-bottom: 1px solid var(--ai-border-subtle);
+    vertical-align: middle;
+  }
+
+  .ai-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .ai-table-hover tbody tr:hover {
+    background-color: var(--ai-surface-1);
+  }
+
+  .ai-table-striped tbody tr:nth-child(even) {
+    background-color: var(--ai-surface-1);
+  }
+}

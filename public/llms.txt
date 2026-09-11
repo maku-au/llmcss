@@ -1,0 +1,63 @@
+# LLMCSS: The Human-Craft UI Framework for Agents & Humans
+> An open, modern UI system engineered specifically for AI agents and human developers to build clean, tactile, non-cookie-cutter interfaces with zero AI slop.
+
+## Quickstart
+- Humans: https://llmcss.io/quickstart
+- Repo: https://github.com/maku-au/llmcss/blob/main/QUICKSTART.md
+- Stylesheet: https://llmcss.io/llmcss.css
+- `npx llmcss add btn-variants`
+
+## Quick Facts
+- **Pure Native CSS**: Zero build steps, zero Tailwind runtime dependencies, uses `@layer` (reset, tokens, base, components, utilities).
+- **Design Direction Harness**: 4 curated archetypes and 10 deterministic anti-slop laws to ensure autonomous agents generate human-craft interfaces.
+- **Modern Responsive Engine**: Native Container Queries (`.ai-cq`, `@container`) and intrinsic auto-fit grids (`.ai-grid-auto-fit`) eliminate media query bloat.
+- **Hardware-Accelerated Motion**: Pure CSS spinners, indeterminate progress bars, tactile sliders, shimmer skeletons, with strict `prefers-reduced-motion` compliance.
+- **Dual-Mode**: Standard semantic HTML with `data-ai-*` attributes or Light-DOM custom elements (`<ai-modal>`, `<ai-tabs>`, `<ai-dropdown>`, etc.).
+- **Curated Archetypes**: Theme skins via `[data-ai-skin="executive|fintech|obsidian|editorial|enterprise|emerald|violet|rose"]`.
+- **Monetization**: Free open-source primitives and starter sections (MIT); Pro catalog for advanced bento, SaaS dashboards, and e-commerce flows.
+
+## The 4 Design Direction Archetypes
+1. **Executive Slate** (`data-ai-skin="executive"`): High-density data workspace, cool slate neutrals, 4px architectural radius, tabular numerals.
+2. **Fintech Titanium** (`data-ai-skin="fintech"`): Institutional clarity, warm titanium stone neutrals, 6px radius, emerald and teal accents, generous whitespace.
+3. **Obsidian Minimal** (`data-ai-skin="obsidian"`): Pure monochrome precision, pitch-black background (#000000), stark white accents, 0px-2px sharp radii.
+4. **Editorial Atelier** (`data-ai-skin="editorial"`): Typographic publishing aesthetic, warm paper substrate, serif display headlines, crisp hairline borders.
+
+## The 10 Anti-Slop Laws for AI Agents
+1. **Never Nest Cards**: Flatten hierarchy with whitespace (`--ai-space-6`) or subtle hairline rules (`.ai-divider`).
+2. **Never Pulse Static Dots**: Steady jewel pips (`.ai-status-pip`) for static states; reserve `.is-streaming` strictly for live telemetry.
+3. **Never Use Thick Left Stripes**: Uniform 1px architectural borders with a 6px status jewel pip.
+4. **Never Use Electric Purple Gradients**: Multi-stop physical elevation shadows on solid neutral surfaces.
+5. **Never Stamp Monospace Eyebrows**: Lead directly with clear, confident headlines.
+6. **Never Crush Letter-Spacing**: Body tracking at 0; negative tracking only on display titles (`-0.02em` to `-0.035em`).
+7. **Never Use Low-Contrast Text**: WCAG AA compliant contrast on all surfaces and states.
+8. **Never Create Identical KPI Grids**: Anchor a dominant metric with supporting secondary metrics.
+9. **Never Auto-Scroll Marquees**: Clean, static, scannable badge rails and grids.
+10. **Always Theme Browser Surfaces**: Caret color, custom scrollbars, selection, and tabular numerals.
+
+## Wireframe Section Templates & Page Blueprints
+- **14 Composable Section Templates**: Header (`wireframe-nav-minimal`, `wireframe-nav-banner`), Hero (`wireframe-hero-split`, `wireframe-hero-centered`, `wireframe-hero-editorial`), Social Proof (`wireframe-social-proof-bar`), Features (`wireframe-features-bento`, `wireframe-features-alternating`), Comparison (`wireframe-comparison-matrix`), Pricing (`wireframe-pricing-tiers`), FAQ (`wireframe-faq-accordion`), CTA (`wireframe-cta-card`), Footer (`wireframe-footer-columns`), App Shell (`wireframe-app-shell`).
+- **4 Full-Page Blueprints / Recipes**:
+  1. `saas-landing`: Nav -> Split Hero -> Social Proof Rail -> Bento Features -> Pricing Tiers -> FAQ -> CTA -> Footer.
+  2. `developer-tool`: Banner Nav -> Centered Hero -> Social Proof Rail -> Alternating Features -> Comparison Matrix -> CTA -> Footer.
+  3. `editorial-manifesto`: Minimal Nav -> Editorial Hero -> Social Proof Rail -> Bento Features -> FAQ -> CTA -> Footer.
+  4. `dashboard-shell`: Full Application Viewport Shell with Sidebar, Topbar, Metric Row, and Data Canvas.
+- **CLI Commands**:
+  - `npx llmcss templates`: List all 14 section templates with placement guidance.
+  - `npx llmcss template get <id>`: Output clean semantic HTML for a section.
+  - `npx llmcss template blueprints`: List full-page composition recipes.
+  - `npx llmcss template blueprint <name>`: Assemble and output full-page HTML.
+- **MCP Server Tools**: `list_wireframe_templates`, `get_wireframe_template`, `get_page_blueprint`.
+- **Templates Registry JSON**: https://llmcss.io/templates.json
+
+## Agent Tooling & Verification
+- CLI Design Harness: `npx llmcss harness [executive|fintech|obsidian|editorial]`
+- CLI Design Quality Audit: `npx llmcss audit <file>` (validates against all 10 anti-slop rules)
+- CLI Linter and Validator: `npx llmcss validate <file>` and `npx llmcss lint --fix <file>` (auto-migrates non-prefixed classes)
+- CLI Component Installer: `npx llmcss add <component-id>`
+- CLI Template Extractor: `npx llmcss template get <id>` and `npx llmcss template blueprint <name>`
+- Stdio MCP Server: `npx llmcss-mcp` (exposes `llmcss_get_harness`, `llmcss_slop_audit`, `search_components`, `get_component_markup`, `validate_markup`, `list_tokens`, `list_wireframe_templates`, `get_wireframe_template`, `get_page_blueprint`)
+- Registry Index: https://llmcss.io/registry.json
+- Per-component (free): https://llmcss.io/r/{id}.json
+- Templates Index: https://llmcss.io/templates.json
+- Full Agent Specification & Code Patterns: https://llmcss.io/llms-full.txt
+- Agent rules: https://github.com/maku-au/llmcss/blob/main/AGENTS.md

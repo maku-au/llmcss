@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+*.sqlite
+*.sqlite-journal
+.DS_Store
+.idea/
+.vscode/
+*.log
+error_log
+php_errorlog
+
+# Origin-only (never publish)
+OPERATOR.md
+.env.example
+bin/deploy-public.sh
+.llmcss/

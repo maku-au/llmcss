@@ -1,0 +1,15 @@
+{
+  "id": "animated-loaders",
+  "name": "Animated Spinners & Pulse Radars",
+  "description": "Pure CSS architectural circular arc spinners, dual orbital rings, and real-time live pulse radar dots.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "animation",
+    "spinner",
+    "loader",
+    "pulse",
+    "motion"
+  ],
+  "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-6 ai-items-center\" style=\"padding: var(--ai-space-4);\">\n  <div class=\"ai-flex ai-items-center ai-gap-3\">\n    <span class=\"ai-spinner ai-spinner-sm\"></span>\n    <span class=\"ai-spinner\"></span>\n    <span class=\"ai-spinner ai-spinner-lg\"></span>\n  </div>\n  <div class=\"ai-flex ai-items-center ai-gap-3\">\n    <div class=\"ai-spinner-ring\"></div>\n    <span class=\"ai-text-xs ai-text-secondary ai-font-mono\">Orbital</span>\n  </div>\n  <div class=\"ai-flex ai-items-center ai-gap-2\">\n    <span class=\"ai-pulse-dot\"></span>\n    <span class=\"ai-text-xs ai-font-medium\">Connecting</span>\n  </div>\n  <div class=\"ai-flex ai-items-center ai-gap-2\">\n    <span class=\"ai-pulse-dot ai-pulse-dot-success\"></span>\n    <span class=\"ai-text-xs ai-font-medium\" style=\"color: var(--ai-success);\">Operational</span>\n  </div>\n</div>"
+}

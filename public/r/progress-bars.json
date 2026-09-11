@@ -1,0 +1,15 @@
+{
+  "id": "progress-bars",
+  "name": "Animated Progress & Loading Bars",
+  "description": "Determinate progress meters, indeterminate sliding shimmer bars for network/AI streams, and striped upload bars.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "progress",
+    "loading",
+    "animation",
+    "meter",
+    "bar"
+  ],
+  "html": "<div class=\"ai-grid ai-gap-5\" style=\"max-width: 28rem;\">\n  <div>\n    <div class=\"ai-flex ai-justify-between ai-text-xs ai-font-medium\" style=\"margin-bottom: 0.375rem;\">\n      <span>Indeterminate (Network Stream)</span>\n      <span class=\"ai-font-mono ai-text-secondary\">Syncing...</span>\n    </div>\n    <div class=\"ai-progress ai-progress-indeterminate\">\n      <div class=\"ai-progress-bar\"></div>\n    </div>\n  </div>\n  <div>\n    <div class=\"ai-flex ai-justify-between ai-text-xs ai-font-medium\" style=\"margin-bottom: 0.375rem;\">\n      <span>Model Weights Downloaded</span>\n      <span class=\"ai-font-mono\">68%</span>\n    </div>\n    <div class=\"ai-progress\">\n      <div class=\"ai-progress-bar\" style=\"width: 68%;\"></div>\n    </div>\n  </div>\n  <div>\n    <div class=\"ai-flex ai-justify-between ai-text-xs ai-font-medium\" style=\"margin-bottom: 0.375rem;\">\n      <span>Dataset Chunk Upload</span>\n      <span class=\"ai-font-mono\" style=\"color: var(--ai-success);\">Active</span>\n    </div>\n    <div class=\"ai-progress ai-progress-striped\">\n      <div class=\"ai-progress-bar ai-progress-bar-success\" style=\"width: 85%;\"></div>\n    </div>\n  </div>\n</div>"
+}

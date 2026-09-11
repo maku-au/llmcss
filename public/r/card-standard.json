@@ -1,0 +1,13 @@
+{
+  "id": "card-standard",
+  "name": "Standard Card Container",
+  "description": "Structured card layout with header, body content, and action footer.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "card",
+    "surface",
+    "container"
+  ],
+  "html": "<div class=\"ai-card\" style=\"max-width: 24rem;\">\n  <div class=\"ai-card-header\">\n    <h3 class=\"ai-card-title\">Project Deployment</h3>\n    <p class=\"ai-card-description\">Production deployment configured for edge nodes.</p>\n  </div>\n  <div class=\"ai-card-body\">\n    <p class=\"ai-text-sm\">Last deployed 14 minutes ago via commit <code>8f42d19</code> to <strong>production-syd</strong>.</p>\n  </div>\n  <div class=\"ai-card-footer\">\n    <span class=\"ai-badge ai-badge-success ai-badge-dot\">Online</span>\n    <button class=\"ai-btn ai-btn-outline ai-btn-xs\">View Logs</button>\n  </div>\n</div>"
+}

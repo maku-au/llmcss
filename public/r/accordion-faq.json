@@ -1,0 +1,13 @@
+{
+  "id": "accordion-faq",
+  "name": "Collapsible Accordion",
+  "description": "Smooth expanding accordion items with animated chevron rotation.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "accordion",
+    "collapse",
+    "faq"
+  ],
+  "html": "<div class=\"ai-accordion\">\n  <div class=\"ai-accordion-item is-open\" open>\n    <button class=\"ai-accordion-trigger\" data-ai-toggle=\"accordion\">\n      How does LLMCSS eliminate the 'AI look'?\n      <span class=\"ai-accordion-chevron\">▼</span>\n    </button>\n    <div class=\"ai-accordion-content\">\n      LLMCSS uses high-craft typography pairings, subtle physical borders, calibrated surfaces, and asymmetric bento layouts rather than cookie-cutter purple gradients and over-rounded cards.\n    </div>\n  </div>\n  <div class=\"ai-accordion-item\">\n    <button class=\"ai-accordion-trigger\" data-ai-toggle=\"accordion\">\n      Can I use this without a build tool or Vite?\n      <span class=\"ai-accordion-chevron\">▼</span>\n    </button>\n    <div class=\"ai-accordion-content\">\n      Yes! LLMCSS is written in 100% pure modern native CSS with CSS layers and variables. You can load it via a single &lt;link&gt; tag.\n    </div>\n  </div>\n</div>"
+}

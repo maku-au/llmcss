@@ -1,0 +1,14 @@
+{
+  "id": "code-block",
+  "name": "Code Block",
+  "description": "Monospace snippet well for CLI, tokens, and agent output.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "code",
+    "pre",
+    "snippet",
+    "docs"
+  ],
+  "html": "<pre class=\"ai-code-block\"><code>npx llmcss add quote-pull\nnpx llmcss add kbd-shortcuts</code></pre>"
+}

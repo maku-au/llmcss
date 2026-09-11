@@ -1,0 +1,15 @@
+{
+  "id": "toast-stack",
+  "name": "Stacked Toast with Countdown",
+  "description": "Multi-toast notification stack featuring auto-dismiss animated countdown progress indicators.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "toast",
+    "notification",
+    "alert",
+    "stack",
+    "animation"
+  ],
+  "html": "<div class=\"ai-grid ai-gap-3\" style=\"max-width: 24rem;\">\n  <div class=\"ai-toast ai-toast-success ai-toast-countdown\">\n    <span class=\"ai-toast-message\">Deployment completed to edge servers.</span>\n    <button class=\"ai-toast-close\">&times;</button>\n    <div class=\"ai-toast-progress\"></div>\n  </div>\n  <div class=\"ai-toast ai-toast-info ai-toast-countdown\">\n    <span class=\"ai-toast-message\">New API Key created: <code>llmcss_live_8f...</code></span>\n    <button class=\"ai-toast-close\">&times;</button>\n    <div class=\"ai-toast-progress\"></div>\n  </div>\n</div>"
+}

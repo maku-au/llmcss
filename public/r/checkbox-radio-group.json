@@ -1,0 +1,16 @@
+{
+  "id": "checkbox-radio-group",
+  "name": "Checkbox & Radio Controls",
+  "description": "Styled checkbox and radio button groups with labels, keyboard focus states, and accessible markup.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "checkbox",
+    "radio",
+    "form",
+    "input",
+    "toggle",
+    "select"
+  ],
+  "html": "<div class=\"ai-flex ai-gap-12\" style=\"max-width: 32rem;\">\n  <div>\n    <span class=\"ai-form-label\" style=\"margin-bottom: var(--ai-space-3); display: block;\">Notifications</span>\n    <div style=\"display: flex; flex-direction: column; gap: var(--ai-space-3);\">\n      <label class=\"ai-checkbox\">\n        <input type=\"checkbox\" class=\"ai-checkbox-input\" checked />\n        Email notifications\n      </label>\n      <label class=\"ai-checkbox\">\n        <input type=\"checkbox\" class=\"ai-checkbox-input\" checked />\n        Push notifications\n      </label>\n      <label class=\"ai-checkbox\">\n        <input type=\"checkbox\" class=\"ai-checkbox-input\" />\n        SMS alerts\n      </label>\n    </div>\n  </div>\n  <div>\n    <span class=\"ai-form-label\" style=\"margin-bottom: var(--ai-space-3); display: block;\">Plan</span>\n    <div class=\"ai-radio-group\">\n      <label class=\"ai-radio\">\n        <input type=\"radio\" name=\"plan\" class=\"ai-radio-input\" checked />\n        Community (Free)\n      </label>\n      <label class=\"ai-radio\">\n        <input type=\"radio\" name=\"plan\" class=\"ai-radio-input\" />\n        Pro ($9/mo)\n      </label>\n      <label class=\"ai-radio\">\n        <input type=\"radio\" name=\"plan\" class=\"ai-radio-input\" />\n        Enterprise (Custom)\n      </label>\n    </div>\n  </div>\n</div>"
+}

@@ -1,0 +1,111 @@
+@layer base {
+  html, body {
+    max-width: 100vw;
+    overflow-x: clip;
+  }
+
+  body {
+    background-color: var(--ai-bg);
+    color: var(--ai-text-primary);
+    font-family: var(--ai-font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    caret-color: var(--ai-accent);
+    text-underline-offset: 0.2em;
+    scrollbar-color: var(--ai-border-strong) var(--ai-surface-1);
+    scrollbar-width: thin;
+    transition: background-color var(--ai-duration-normal) var(--ai-ease-out),
+                color var(--ai-duration-normal) var(--ai-ease-out);
+  }
+
+  /* Native Accessible Page Markers */
+  [aria-current="page"],
+  [aria-current="step"] {
+    font-weight: 600;
+  }
+
+  /* Custom Webkit Scrollbars */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--ai-surface-1);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--ai-border-strong);
+    border-radius: var(--ai-radius-xs);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--ai-text-muted);
+  }
+
+  ::selection {
+    background-color: rgba(var(--ai-accent-rgb), 0.25);
+    color: inherit;
+  }
+
+  /* Optical Tabular Numerals for Precision Data */
+  table, .ai-table, .ai-matrix-table, .ai-kpi-value, .ai-badge-mono, [data-tabular] {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Optical Typography Hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--ai-font-display);
+    color: var(--ai-text-primary);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+
+  h1 { font-size: clamp(2.25rem, 5vw, 3.75rem); letter-spacing: -0.035em; font-weight: 700; }
+  h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); letter-spacing: -0.03em; }
+  h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); }
+  h4 { font-size: 1.25rem; }
+  h5 { font-size: 1.125rem; }
+  h6 { font-size: 1rem; font-weight: 600; }
+
+  p {
+    color: var(--ai-text-secondary);
+    line-height: 1.625;
+  }
+
+  small {
+    font-size: 0.875rem;
+    color: var(--ai-text-muted);
+  }
+
+  code, kbd, samp, pre {
+    font-family: var(--ai-font-mono);
+    font-size: 0.875em;
+  }
+
+  code:not(pre code) {
+    background-color: var(--ai-surface-1);
+    color: var(--ai-text-primary);
+    padding: 0.15em 0.4em;
+    border-radius: var(--ai-radius-sm);
+    border: 1px solid var(--ai-border);
+  }
+
+  pre {
+    background-color: var(--ai-surface-1);
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-md);
+    padding: var(--ai-space-4);
+    overflow-x: auto;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--ai-border);
+    margin: var(--ai-space-8) 0;
+  }
+
+  /* Universal Focus State */
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--ai-focus-ring);
+  }
+}

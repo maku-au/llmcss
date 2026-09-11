@@ -1,0 +1,15 @@
+{
+  "id": "navbar-modern",
+  "name": "Responsive Navigation Header",
+  "description": "Modern glassmorphism navigation header with desktop links, CTA, and slide-out mobile drawer.",
+  "category": "marketing",
+  "tier": "free",
+  "tags": [
+    "navbar",
+    "header",
+    "navigation",
+    "responsive",
+    "mobile"
+  ],
+  "html": "<header class=\"ai-navbar\">\n  <div class=\"ai-container\">\n    <div class=\"ai-navbar-inner\">\n      <a href=\"#\" class=\"ai-brand\">\n        <svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polygon points=\"12 2 2 7 12 12 22 7 12 2\"/><polyline points=\"2 17 12 22 22 17\"/><polyline points=\"2 12 12 17 22 12\"/></svg>\n        <span>LLMCSS</span>\n      </a>\n      <nav class=\"ai-nav-links\">\n        <a href=\"#components\" class=\"ai-nav-link\">Components</a>\n        <a href=\"#templates\" class=\"ai-nav-link\">Templates</a>\n        <a href=\"#pricing\" class=\"ai-nav-link\">Pricing</a>\n        <a href=\"#docs\" class=\"ai-nav-link\">Documentation</a>\n      </nav>\n      <div class=\"ai-flex ai-items-center ai-gap-2\">\n        <a href=\"#login\" class=\"ai-btn ai-btn-ghost ai-btn-xs ai-sm:inline-flex ai-hidden\">Log in</a>\n        <a href=\"#start\" class=\"ai-btn ai-btn-primary ai-btn-xs\">Get Started</a>\n        <button class=\"ai-btn ai-btn-outline ai-btn-xs ai-md:hidden\" data-ai-toggle=\"drawer\" data-ai-target=\"#mobile-nav-drawer\" aria-label=\"Toggle Menu\">\n          <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><line x1=\"3\" y1=\"12\" x2=\"21\" y2=\"12\"/><line x1=\"3\" y1=\"6\" x2=\"21\" y2=\"6\"/><line x1=\"3\" y1=\"18\" x2=\"21\" y2=\"18\"/></svg>\n        </button>\n      </div>\n    </div>\n  </div>\n</header>\n\n<!-- Mobile Navigation Drawer -->\n<div id=\"mobile-nav-drawer\" class=\"ai-drawer ai-drawer-left\">\n  <div class=\"ai-drawer-backdrop\" data-ai-dismiss=\"drawer\"></div>\n  <div class=\"ai-drawer-panel\" style=\"max-width: 18rem;\">\n    <div class=\"ai-drawer-header\">\n      <a href=\"#\" class=\"ai-brand\" style=\"font-size: 1rem;\">\n        <span>LLMCSS</span>\n      </a>\n      <button class=\"ai-modal-close\" data-ai-dismiss=\"drawer\">&times;</button>\n    </div>\n    <div class=\"ai-drawer-body\">\n      <nav class=\"ai-flex ai-flex-col ai-gap-2\">\n        <a href=\"#components\" class=\"ai-sidebar-item\">Components</a>\n        <a href=\"#templates\" class=\"ai-sidebar-item\">Templates</a>\n        <a href=\"#pricing\" class=\"ai-sidebar-item\">Pricing</a>\n        <a href=\"#docs\" class=\"ai-sidebar-item\">Documentation</a>\n      </nav>\n    </div>\n    <div class=\"ai-drawer-footer\">\n      <button class=\"ai-btn ai-btn-primary ai-w-full ai-btn-sm\" data-ai-dismiss=\"drawer\">Sign In</button>\n    </div>\n  </div>\n</div>"
+}

@@ -1,0 +1,78 @@
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php7_module>
+   php_flag log_errors On
+</IfModule>
+<IfModule lsapi_module>
+   php_flag log_errors On
+</IfModule>
+# END cPanel-generated php ini directives, do not edit
+
+Options -Indexes -MultiViews
+RewriteEngine On
+RewriteBase /
+
+# Deny secrets and source-like files
+<FilesMatch "(^\\.env|\\.sqlite|\\.sql|\\.bak)$">
+  Require all denied
+</FilesMatch>
+<FilesMatch "^(lib\\.php|issue-token\\.php|revoke-token\\.php|license-cron\\.php)$">
+  Require all denied
+</FilesMatch>
+
+# Deny shared lib over HTTP
+RewriteRule ^api/lib\.php$ - [F,L]
+
+# Extensionless API
+RewriteRule ^api/(checkout|polar-webhook|validate|reveal|download-zip|pro-registry)/?$ api/$1.php [L,QSA]
+
+# Pro registry is PHP (never cache)
+RewriteRule ^r/pro/([A-Za-z0-9_-]+)\.json$ api/pro-registry.php?name=$1 [L,QSA,NC]
+
+# Existing files (including /api/*.php)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Pretty HTML
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+<IfModule LiteSpeed>
+  RewriteRule ^api/ - [E=cache-control:no-cache]
+  RewriteRule ^r/pro/ - [E=cache-control:no-cache]
+  RewriteRule ^account - [E=cache-control:no-cache]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always unset X-Powered-By
+</IfModule>
+
+<FilesMatch "\\.(html)$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=120, must-revalidate"
+  </IfModule>
+</FilesMatch>
+
+<FilesMatch "^registry\\.json$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=300"
+  </IfModule>
+</FilesMatch>
+
+<FilesMatch "\\.(css|js|svg|woff2)$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </IfModule>
+</FilesMatch>
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php84” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php84 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

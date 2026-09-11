@@ -1,0 +1,14 @@
+{
+  "id": "kbd-shortcuts",
+  "name": "Keyboard Shortcuts",
+  "description": "Inline kbd keys for command palettes, docs, and shortcut legends.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "kbd",
+    "keyboard",
+    "shortcut",
+    "docs"
+  ],
+  "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-4 ai-items-center\">\n  <span class=\"ai-flex ai-items-center ai-gap-1\"><kbd class=\"ai-kbd\">⌘</kbd><kbd class=\"ai-kbd\">K</kbd><span class=\"ai-text-xs ai-text-muted\">Command palette</span></span>\n  <span class=\"ai-flex ai-items-center ai-gap-1\"><kbd class=\"ai-kbd\">⌘</kbd><kbd class=\"ai-kbd\">Enter</kbd><span class=\"ai-text-xs ai-text-muted\">Submit</span></span>\n  <span class=\"ai-flex ai-items-center ai-gap-1\"><kbd class=\"ai-kbd\">Esc</kbd><span class=\"ai-text-xs ai-text-muted\">Dismiss</span></span>\n</div>"
+}
