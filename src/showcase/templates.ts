@@ -308,23 +308,12 @@ function renderTemplates() {
     return;
   }
 
-  templatesStream.innerHTML = items.map(({ template, recipeIndex }) => `
+  templatesStream.innerHTML = items.map(({ template }) => `
     <article class="template-item-card" id="card-${template.id}">
-      <!-- Section Header Bar -->
       <div class="template-card-header">
-        <div class="ai-flex ai-items-center ai-gap-3" style="flex-wrap: wrap;">
-          ${recipeIndex ? `<span class="recipe-step-badge">Step ${recipeIndex}</span>` : ''}
-          <h3 class="template-title">${template.name}</h3>
-          <span class="ai-badge ai-badge-outline ai-badge-xs">${template.section}</span>
-          <span class="template-placement-pill">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            ${template.placement}
-          </span>
-          <span class="ai-badge ai-badge-secondary ai-badge-xs">${template.tier.toUpperCase()}</span>
-        </div>
+        <h3 class="template-title">${template.name}</h3>
         <div class="ai-flex ai-items-center ai-gap-2">
           <button class="ai-btn ai-btn-ghost ai-btn-xs toggle-guidance-btn" data-target="guidance-${template.id}">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
             <span>Guidance</span>
           </button>
           <button class="ai-btn ai-btn-outline ai-btn-xs copy-html-btn" data-id="${template.id}">
@@ -346,30 +335,30 @@ function renderTemplates() {
         <div class="guidance-grid">
           <div class="guidance-col">
             <div class="guidance-label">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-              <span>Placement In Page Structure</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+              <span>Placement</span>
             </div>
-            <div class="guidance-text">${template.guidance.placement}</div>
+            <div class="guidance-text">${template.placement ? template.placement + '. ' : ''}${template.guidance.placement}</div>
           </div>
           <div class="guidance-col">
-            <div class="guidance-label" style="color: var(--ai-success);">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Best Used For</span>
+            <div class="guidance-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>Use for</span>
             </div>
             <div class="guidance-text">${template.guidance.bestUsedFor}</div>
           </div>
           <div class="guidance-col">
-            <div class="guidance-label" style="color: var(--ai-danger);">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" x2="9" y1="9" y2="15"/><line x1="9" x2="15" y1="9" y2="15"/></svg>
-              <span>Avoid When</span>
+            <div class="guidance-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              <span>Avoid</span>
             </div>
             <div class="guidance-text">${template.guidance.avoidWhen}</div>
           </div>
           ${template.guidance.pairsWith.length > 0 ? `
             <div class="guidance-col">
               <div class="guidance-label">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
-                <span>Recommended Adjacent Sections</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                <span>Pairs with</span>
               </div>
               <div class="guidance-pairs">
                 ${template.guidance.pairsWith.map((pairId) => `
