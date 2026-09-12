@@ -1,8 +1,8 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-09-11T14:32:12.014Z",
+  "generatedAt": "2026-09-12T02:10:24.700Z",
   "stats": {
-    "totalTemplates": 17,
+    "totalTemplates": 18,
     "totalBlueprints": 4,
     "sections": {
       "header": 3,
@@ -14,7 +14,7 @@
       "faq": 1,
       "cta": 1,
       "footer": 1,
-      "app-shell": 1
+      "app-shell": 2
     }
   },
   "wireframeTemplates": [
@@ -429,6 +429,28 @@
         ]
       },
       "html": "<header class=\"ai-navbar\" role=\"banner\">\n  <div class=\"ai-container ai-navbar-inner\">\n    <a href=\"#\" class=\"ai-brand\" aria-label=\"Docs home\">\n      <span>LLMCSS Docs</span>\n    </a>\n    <nav class=\"ai-nav-links\" aria-label=\"Docs\">\n      <a href=\"#primitives\" class=\"ai-nav-link\">Primitives</a>\n      <a href=\"#templates\" class=\"ai-nav-link\">Templates</a>\n      <a href=\"#tokens\" class=\"ai-nav-link\">Tokens</a>\n    </nav>\n    <a href=\"#llms\" class=\"ai-btn ai-btn-outline ai-btn-sm\">llms.txt</a>\n  </div>\n</header>"
+    },
+    {
+      "id": "wireframe-dash-header",
+      "name": "Dashboard Header",
+      "section": "app-shell",
+      "tier": "free",
+      "tags": [
+        "dashboard",
+        "header",
+        "app-shell",
+        "page"
+      ],
+      "placement": "Top of an authenticated app page, under the product top bar.",
+      "guidance": {
+        "placement": "Below the app chrome. Title plus one primary action. Do not restamp four KPI tiles here.",
+        "bestUsedFor": "Overview, reports, billing, and resource list pages.",
+        "avoidWhen": "Marketing heroes or docs nav.",
+        "pairsWith": [
+          "wireframe-app-shell"
+        ]
+      },
+      "html": "<div class=\"ai-app-content\">\n  <div class=\"ai-page-header\">\n    <div>\n      <h1>Overview</h1>\n      <p class=\"ai-page-header-meta\">Production workspace</p>\n    </div>\n    <div class=\"ai-flex ai-gap-2\">\n      <button class=\"ai-btn ai-btn-outline ai-btn-sm\" type=\"button\">Export</button>\n      <button class=\"ai-btn ai-btn-primary ai-btn-sm\" type=\"button\">New report</button>\n    </div>\n  </div>\n</div>"
     }
   ],
   "pageBlueprints": [

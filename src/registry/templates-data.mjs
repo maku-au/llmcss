@@ -894,6 +894,32 @@ export const wireframeTemplates = [
     <a href="#llms" class="ai-btn ai-btn-outline ai-btn-sm">llms.txt</a>
   </div>
 </header>`
+  },
+  {
+    id: 'wireframe-dash-header',
+    name: 'Dashboard Header',
+    section: 'app-shell',
+    tier: 'free',
+    tags: ['dashboard', 'header', 'app-shell', 'page'],
+    placement: 'Top of an authenticated app page, under the product top bar.',
+    guidance: {
+      placement: 'Below the app chrome. Title plus one primary action. Do not restamp four KPI tiles here.',
+      bestUsedFor: 'Overview, reports, billing, and resource list pages.',
+      avoidWhen: 'Marketing heroes or docs nav.',
+      pairsWith: ['wireframe-app-shell']
+    },
+    html: `<div class="ai-app-content">
+  <div class="ai-page-header">
+    <div>
+      <h1>Overview</h1>
+      <p class="ai-page-header-meta">Production workspace</p>
+    </div>
+    <div class="ai-flex ai-gap-2">
+      <button class="ai-btn ai-btn-outline ai-btn-sm" type="button">Export</button>
+      <button class="ai-btn ai-btn-primary ai-btn-sm" type="button">New report</button>
+    </div>
+  </div>
+</div>`
   }
 ];
 

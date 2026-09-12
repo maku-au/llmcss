@@ -1,14 +1,14 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-09-11T14:32:11.999Z",
+  "generatedAt": "2026-09-12T02:10:24.682Z",
   "stats": {
-    "total": 60,
-    "free": 47,
+    "total": 73,
+    "free": 60,
     "pro": 13,
     "categories": {
       "primitive": 34,
       "marketing": 8,
-      "application": 16,
+      "application": 29,
       "ecommerce": 2
     }
   },
@@ -883,6 +883,199 @@
         "action"
       ],
       "html": "<div class=\"ai-flex\">\n  <button class=\"ai-btn ai-btn-primary\" type=\"button\" style=\"border-top-right-radius: 0; border-bottom-right-radius: 0;\">Deploy</button>\n  <button class=\"ai-btn ai-btn-primary\" type=\"button\" aria-label=\"More deploy options\" style=\"border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 0.55rem; padding-right: 0.55rem;\">\n    <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"m6 9 6 6 6-6\"/></svg>\n  </button>\n</div>"
+    },
+    {
+      "id": "page-header",
+      "name": "Dashboard Page Header",
+      "description": "Title, short meta, and a pair of actions for app pages.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "dashboard",
+        "header",
+        "page",
+        "toolbar",
+        "app"
+      ],
+      "html": "<div class=\"ai-page-header\">\n  <div>\n    <h1>Overview</h1>\n    <p class=\"ai-page-header-meta\">Workspace production · last deploy 14m ago</p>\n  </div>\n  <div class=\"ai-flex ai-gap-2\">\n    <button class=\"ai-btn ai-btn-outline ai-btn-sm\" type=\"button\">Export</button>\n    <button class=\"ai-btn ai-btn-primary ai-btn-sm\" type=\"button\">New report</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "app-topbar",
+      "name": "App Top Bar",
+      "description": "Search field, muted count, and avatar for the dashboard chrome.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "dashboard",
+        "topbar",
+        "search",
+        "header",
+        "app"
+      ],
+      "html": "<div class=\"ai-topbar\">\n  <input class=\"ai-input\" type=\"search\" placeholder=\"Search resources...\" aria-label=\"Search\" />\n  <span class=\"ai-text-xs ai-text-muted\" style=\"white-space: nowrap;\">12 unread</span>\n  <span class=\"ai-avatar ai-avatar-sm\" aria-hidden=\"true\">AC</span>\n</div>"
+    },
+    {
+      "id": "quota-meter",
+      "name": "Quota Meter",
+      "description": "Used vs limit with a determinate bar. One metric, tabular numbers.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "dashboard",
+        "quota",
+        "usage",
+        "progress",
+        "storage"
+      ],
+      "html": "<div class=\"ai-quota\" style=\"max-width: 24rem;\">\n  <div class=\"ai-quota-head\">\n    <span>Build minutes</span>\n    <strong>1,240 / 2,000</strong>\n  </div>\n  <div class=\"ai-progress\"><div class=\"ai-progress-bar\" style=\"width: 62%;\"></div></div>\n  <span class=\"ai-text-xs ai-text-muted\">Resets on the 1st</span>\n</div>"
+    },
+    {
+      "id": "spark-stat",
+      "name": "Sparkline Stat",
+      "description": "One dominant KPI with a 7-day sparkline. Do not stamp four identical tiles.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "dashboard",
+        "kpi",
+        "sparkline",
+        "chart",
+        "metric"
+      ],
+      "html": "<div class=\"ai-spark-stat\" style=\"max-width: 28rem;\">\n  <div>\n    <span class=\"ai-kpi-label\">Requests</span>\n    <div class=\"ai-kpi-value\">128k</div>\n    <span class=\"ai-kpi-trend is-up\">+9.4% vs last week</span>\n  </div>\n  <svg class=\"ai-spark\" viewBox=\"0 0 120 40\" fill=\"none\" aria-hidden=\"true\">\n    <polyline points=\"0,28 17,24 34,26 51,18 68,20 85,12 102,14 120,8\" stroke=\"currentColor\" stroke-width=\"1.75\" />\n  </svg>\n</div>"
+    },
+    {
+      "id": "donut-stat",
+      "name": "Donut Stat",
+      "description": "Single completion ring using a conic gradient. Center is the number.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "dashboard",
+        "donut",
+        "chart",
+        "progress",
+        "metric"
+      ],
+      "html": "<div class=\"ai-donut-wrap\">\n  <div class=\"ai-donut\" aria-hidden=\"true\"><div class=\"ai-donut-hole\">68%</div></div>\n  <div>\n    <div class=\"ai-font-semibold\">Job success</div>\n    <p class=\"ai-text-sm ai-text-secondary\" style=\"margin: 0.25rem 0 0;\">1,024 of 1,504 runs finished clean this week.</p>\n  </div>\n</div>"
+    },
+    {
+      "id": "settings-list",
+      "name": "Settings List",
+      "description": "Stacked preference rows: title, hint, and a switch. No nested cards.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "dashboard",
+        "settings",
+        "form",
+        "switch",
+        "list"
+      ],
+      "html": "<div class=\"ai-settings-list\" style=\"max-width: 32rem;\">\n  <div class=\"ai-settings-row\">\n    <div>\n      <div class=\"ai-font-medium\">Deploy previews</div>\n      <p class=\"ai-text-secondary\">Open a preview URL on every push to main.</p>\n    </div>\n    <label class=\"ai-switch\"><input type=\"checkbox\" class=\"ai-switch-input\" checked /><span class=\"ai-switch-track\"><span class=\"ai-switch-thumb\"></span></span></label>\n  </div>\n  <div class=\"ai-settings-row\">\n    <div>\n      <div class=\"ai-font-medium\">Failure mail</div>\n      <p class=\"ai-text-secondary\">Email the owner when a run exits non-zero.</p>\n    </div>\n    <label class=\"ai-switch\"><input type=\"checkbox\" class=\"ai-switch-input\" /><span class=\"ai-switch-track\"><span class=\"ai-switch-thumb\"></span></span></label>\n  </div>\n  <div class=\"ai-settings-row\">\n    <div>\n      <div class=\"ai-font-medium\">Public registry</div>\n      <p class=\"ai-text-secondary\">Allow anonymous reads of free components.</p>\n    </div>\n    <label class=\"ai-switch\"><input type=\"checkbox\" class=\"ai-switch-input\" checked /><span class=\"ai-switch-track\"><span class=\"ai-switch-thumb\"></span></span></label>\n  </div>\n</div>"
+    },
+    {
+      "id": "log-console",
+      "name": "Log Console",
+      "description": "Dense monospace run log with level color and tabular timestamps.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "dashboard",
+        "log",
+        "console",
+        "terminal",
+        "ops"
+      ],
+      "html": "<pre class=\"ai-log\" style=\"max-width: 36rem;\"><code><span class=\"ai-log-line\"><span class=\"ai-log-ts\">14:02:11</span> <span class=\"ai-log-ok\">ok</span> registry built 60 components</span>\n<span class=\"ai-log-line\"><span class=\"ai-log-ts\">14:02:18</span> <span class=\"ai-log-ok\">ok</span> origin sync public_html</span>\n<span class=\"ai-log-line\"><span class=\"ai-log-ts\">14:03:02</span> <span class=\"ai-log-warn\">warn</span> cf cache still hot on /r/*</span>\n<span class=\"ai-log-line\"><span class=\"ai-log-ts\">14:03:41</span> <span class=\"ai-log-err\">fail</span> polar webhook 403 (bot fight)</span></code></pre>"
+    },
+    {
+      "id": "health-grid",
+      "name": "Service Health",
+      "description": "Mixed service statuses with 6px pips. Not four identical KPI tiles.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "dashboard",
+        "health",
+        "status",
+        "ops",
+        "monitor"
+      ],
+      "html": "<div class=\"ai-health\" style=\"max-width: 28rem;\">\n  <div class=\"ai-health-row\">\n    <span class=\"ai-health-name\"><span class=\"ai-pip ai-pip-ok\"></span> Origin</span>\n    <span class=\"ai-text-xs ai-text-muted\">200 · 41ms</span>\n  </div>\n  <div class=\"ai-health-row\">\n    <span class=\"ai-health-name\"><span class=\"ai-pip ai-pip-ok\"></span> Registry</span>\n    <span class=\"ai-text-xs ai-text-muted\">200 · 18ms</span>\n  </div>\n  <div class=\"ai-health-row\">\n    <span class=\"ai-health-name\"><span class=\"ai-pip ai-pip-warn\"></span> Webhook</span>\n    <span class=\"ai-text-xs ai-text-muted\">retry in 12s</span>\n  </div>\n  <div class=\"ai-health-row\">\n    <span class=\"ai-health-name\"><span class=\"ai-pip ai-pip-err\"></span> Object store</span>\n    <span class=\"ai-text-xs ai-text-muted\">timeout</span>\n  </div>\n</div>"
+    },
+    {
+      "id": "kanban-column",
+      "name": "Kanban Column",
+      "description": "One board column with compact work items. Items are rows, not nested cards.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "dashboard",
+        "kanban",
+        "board",
+        "tasks",
+        "workflow"
+      ],
+      "html": "<div class=\"ai-kanban\">\n  <div class=\"ai-kanban-head\"><span>In review</span><span class=\"ai-text-muted\">3</span></div>\n  <div class=\"ai-kanban-item\">Quota meter CSS <span class=\"ai-text-xs ai-text-muted\">#184</span></div>\n  <div class=\"ai-kanban-item\">Polar zip download <span class=\"ai-text-xs ai-text-muted\">#191</span></div>\n  <div class=\"ai-kanban-item\">Account dark flash <span class=\"ai-text-xs ai-text-muted\">#203</span></div>\n</div>"
+    },
+    {
+      "id": "inbox-list",
+      "name": "Inbox List",
+      "description": "Ticket or message rows with unread weight and timestamps.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "dashboard",
+        "inbox",
+        "list",
+        "tickets",
+        "support"
+      ],
+      "html": "<div style=\"max-width: 32rem;\">\n  <div class=\"ai-inbox-item is-unread\">\n    <span class=\"ai-pip ai-pip-ok\"></span>\n    <div>\n      <div class=\"ai-inbox-title\">Build failed on main</div>\n      <div class=\"ai-text-xs ai-text-muted\">origin · php -l api/lib.php</div>\n    </div>\n    <span class=\"ai-text-xs ai-text-muted\">2m</span>\n  </div>\n  <div class=\"ai-inbox-item is-unread\">\n    <span class=\"ai-pip\"></span>\n    <div>\n      <div class=\"ai-inbox-title\">Seat request from acme</div>\n      <div class=\"ai-text-xs ai-text-muted\">billing</div>\n    </div>\n    <span class=\"ai-text-xs ai-text-muted\">1h</span>\n  </div>\n  <div class=\"ai-inbox-item\">\n    <span class=\"ai-pip ai-pip-ok\"></span>\n    <div>\n      <div class=\"ai-inbox-title\">Certificate renewed</div>\n      <div class=\"ai-text-xs ai-text-muted\">infra</div>\n    </div>\n    <span class=\"ai-text-xs ai-text-muted\">1d</span>\n  </div>\n</div>"
+    },
+    {
+      "id": "bar-chart",
+      "name": "Distribution Bars",
+      "description": "Horizontal bars for a breakdown. Labels plus tabular percents.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "dashboard",
+        "chart",
+        "bars",
+        "analytics"
+      ],
+      "html": "<div class=\"ai-bars\" style=\"max-width: 28rem;\">\n  <div class=\"ai-bar-row\"><span>Free CLI</span><div class=\"ai-bar-track\"><div class=\"ai-bar-fill\" style=\"width: 62%;\"></div></div><span>62%</span></div>\n  <div class=\"ai-bar-row\"><span>Gallery</span><div class=\"ai-bar-track\"><div class=\"ai-bar-fill\" style=\"width: 24%;\"></div></div><span>24%</span></div>\n  <div class=\"ai-bar-row\"><span>MCP</span><div class=\"ai-bar-track\"><div class=\"ai-bar-fill\" style=\"width: 14%;\"></div></div><span>14%</span></div>\n</div>"
+    },
+    {
+      "id": "detail-list",
+      "name": "Resource Detail",
+      "description": "Definition list for an entity: id, region, owner, updated.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "dashboard",
+        "detail",
+        "definition",
+        "meta"
+      ],
+      "html": "<dl class=\"ai-detail\" style=\"max-width: 28rem;\">\n  <dt>ID</dt><dd>prj_8f2c1a</dd>\n  <dt>Region</dt><dd>syd-1</dd>\n  <dt>Owner</dt><dd>ops@llmcss.io</dd>\n  <dt>Updated</dt><dd>2026-09-12 14:03</dd>\n</dl>"
+    },
+    {
+      "id": "date-range",
+      "name": "Date Range Fields",
+      "description": "From and to inputs for dashboard filters.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "dashboard",
+        "date",
+        "filter",
+        "form",
+        "range"
+      ],
+      "html": "<div class=\"ai-flex ai-gap-3 ai-flex-wrap\" style=\"max-width: 28rem;\">\n  <label class=\"ai-form-group\" style=\"flex: 1;\">\n    <span class=\"ai-form-label\">From</span>\n    <input class=\"ai-input\" type=\"date\" value=\"2026-09-01\" />\n  </label>\n  <label class=\"ai-form-group\" style=\"flex: 1;\">\n    <span class=\"ai-form-label\">To</span>\n    <input class=\"ai-input\" type=\"date\" value=\"2026-09-12\" />\n  </label>\n</div>"
     }
   ]
 }

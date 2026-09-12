@@ -1,0 +1,15 @@
+{
+  "id": "log-console",
+  "name": "Log Console",
+  "description": "Dense monospace run log with level color and tabular timestamps.",
+  "category": "application",
+  "tier": "free",
+  "tags": [
+    "dashboard",
+    "log",
+    "console",
+    "terminal",
+    "ops"
+  ],
+  "html": "<pre class=\"ai-log\" style=\"max-width: 36rem;\"><code><span class=\"ai-log-line\"><span class=\"ai-log-ts\">14:02:11</span> <span class=\"ai-log-ok\">ok</span> registry built 60 components</span>\n<span class=\"ai-log-line\"><span class=\"ai-log-ts\">14:02:18</span> <span class=\"ai-log-ok\">ok</span> origin sync public_html</span>\n<span class=\"ai-log-line\"><span class=\"ai-log-ts\">14:03:02</span> <span class=\"ai-log-warn\">warn</span> cf cache still hot on /r/*</span>\n<span class=\"ai-log-line\"><span class=\"ai-log-ts\">14:03:41</span> <span class=\"ai-log-err\">fail</span> polar webhook 403 (bot fight)</span></code></pre>"
+}

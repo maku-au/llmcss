@@ -1,0 +1,15 @@
+{
+  "id": "page-header",
+  "name": "Dashboard Page Header",
+  "description": "Title, short meta, and a pair of actions for app pages.",
+  "category": "application",
+  "tier": "free",
+  "tags": [
+    "dashboard",
+    "header",
+    "page",
+    "toolbar",
+    "app"
+  ],
+  "html": "<div class=\"ai-page-header\">\n  <div>\n    <h1>Overview</h1>\n    <p class=\"ai-page-header-meta\">Workspace production · last deploy 14m ago</p>\n  </div>\n  <div class=\"ai-flex ai-gap-2\">\n    <button class=\"ai-btn ai-btn-outline ai-btn-sm\" type=\"button\">Export</button>\n    <button class=\"ai-btn ai-btn-primary ai-btn-sm\" type=\"button\">New report</button>\n  </div>\n</div>"
+}

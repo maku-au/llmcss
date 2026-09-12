@@ -1,0 +1,15 @@
+{
+  "id": "date-range",
+  "name": "Date Range Fields",
+  "description": "From and to inputs for dashboard filters.",
+  "category": "application",
+  "tier": "free",
+  "tags": [
+    "dashboard",
+    "date",
+    "filter",
+    "form",
+    "range"
+  ],
+  "html": "<div class=\"ai-flex ai-gap-3 ai-flex-wrap\" style=\"max-width: 28rem;\">\n  <label class=\"ai-form-group\" style=\"flex: 1;\">\n    <span class=\"ai-form-label\">From</span>\n    <input class=\"ai-input\" type=\"date\" value=\"2026-09-01\" />\n  </label>\n  <label class=\"ai-form-group\" style=\"flex: 1;\">\n    <span class=\"ai-form-label\">To</span>\n    <input class=\"ai-input\" type=\"date\" value=\"2026-09-12\" />\n  </label>\n</div>"
+}

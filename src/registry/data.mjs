@@ -1444,4 +1444,246 @@ npx llmcss add kbd-shortcuts</code></pre>`,
   </button>
 </div>`,
   },
+  {
+    id: 'page-header',
+    name: 'Dashboard Page Header',
+    description: 'Title, short meta, and a pair of actions for app pages.',
+    category: 'application',
+    tier: 'free',
+    tags: ['dashboard', 'header', 'page', 'toolbar', 'app'],
+    html: `<div class="ai-page-header">
+  <div>
+    <h1>Overview</h1>
+    <p class="ai-page-header-meta">Workspace production · last deploy 14m ago</p>
+  </div>
+  <div class="ai-flex ai-gap-2">
+    <button class="ai-btn ai-btn-outline ai-btn-sm" type="button">Export</button>
+    <button class="ai-btn ai-btn-primary ai-btn-sm" type="button">New report</button>
+  </div>
+</div>`,
+  },
+  {
+    id: 'app-topbar',
+    name: 'App Top Bar',
+    description: 'Search field, muted count, and avatar for the dashboard chrome.',
+    category: 'application',
+    tier: 'free',
+    tags: ['dashboard', 'topbar', 'search', 'header', 'app'],
+    html: `<div class="ai-topbar">
+  <input class="ai-input" type="search" placeholder="Search resources..." aria-label="Search" />
+  <span class="ai-text-xs ai-text-muted" style="white-space: nowrap;">12 unread</span>
+  <span class="ai-avatar ai-avatar-sm" aria-hidden="true">AC</span>
+</div>`,
+  },
+  {
+    id: 'quota-meter',
+    name: 'Quota Meter',
+    description: 'Used vs limit with a determinate bar. One metric, tabular numbers.',
+    category: 'application',
+    tier: 'free',
+    tags: ['dashboard', 'quota', 'usage', 'progress', 'storage'],
+    html: `<div class="ai-quota" style="max-width: 24rem;">
+  <div class="ai-quota-head">
+    <span>Build minutes</span>
+    <strong>1,240 / 2,000</strong>
+  </div>
+  <div class="ai-progress"><div class="ai-progress-bar" style="width: 62%;"></div></div>
+  <span class="ai-text-xs ai-text-muted">Resets on the 1st</span>
+</div>`,
+  },
+  {
+    id: 'spark-stat',
+    name: 'Sparkline Stat',
+    description: 'One dominant KPI with a 7-day sparkline. Do not stamp four identical tiles.',
+    category: 'application',
+    tier: 'free',
+    tags: ['dashboard', 'kpi', 'sparkline', 'chart', 'metric'],
+    html: `<div class="ai-spark-stat" style="max-width: 28rem;">
+  <div>
+    <span class="ai-kpi-label">Requests</span>
+    <div class="ai-kpi-value">128k</div>
+    <span class="ai-kpi-trend is-up">+9.4% vs last week</span>
+  </div>
+  <svg class="ai-spark" viewBox="0 0 120 40" fill="none" aria-hidden="true">
+    <polyline points="0,28 17,24 34,26 51,18 68,20 85,12 102,14 120,8" stroke="currentColor" stroke-width="1.75" />
+  </svg>
+</div>`,
+  },
+  {
+    id: 'donut-stat',
+    name: 'Donut Stat',
+    description: 'Single completion ring using a conic gradient. Center is the number.',
+    category: 'application',
+    tier: 'free',
+    tags: ['dashboard', 'donut', 'chart', 'progress', 'metric'],
+    html: `<div class="ai-donut-wrap">
+  <div class="ai-donut" aria-hidden="true"><div class="ai-donut-hole">68%</div></div>
+  <div>
+    <div class="ai-font-semibold">Job success</div>
+    <p class="ai-text-sm ai-text-secondary" style="margin: 0.25rem 0 0;">1,024 of 1,504 runs finished clean this week.</p>
+  </div>
+</div>`,
+  },
+  {
+    id: 'settings-list',
+    name: 'Settings List',
+    description: 'Stacked preference rows: title, hint, and a switch. No nested cards.',
+    category: 'application',
+    tier: 'free',
+    tags: ['dashboard', 'settings', 'form', 'switch', 'list'],
+    html: `<div class="ai-settings-list" style="max-width: 32rem;">
+  <div class="ai-settings-row">
+    <div>
+      <div class="ai-font-medium">Deploy previews</div>
+      <p class="ai-text-secondary">Open a preview URL on every push to main.</p>
+    </div>
+    <label class="ai-switch"><input type="checkbox" class="ai-switch-input" checked /><span class="ai-switch-track"><span class="ai-switch-thumb"></span></span></label>
+  </div>
+  <div class="ai-settings-row">
+    <div>
+      <div class="ai-font-medium">Failure mail</div>
+      <p class="ai-text-secondary">Email the owner when a run exits non-zero.</p>
+    </div>
+    <label class="ai-switch"><input type="checkbox" class="ai-switch-input" /><span class="ai-switch-track"><span class="ai-switch-thumb"></span></span></label>
+  </div>
+  <div class="ai-settings-row">
+    <div>
+      <div class="ai-font-medium">Public registry</div>
+      <p class="ai-text-secondary">Allow anonymous reads of free components.</p>
+    </div>
+    <label class="ai-switch"><input type="checkbox" class="ai-switch-input" checked /><span class="ai-switch-track"><span class="ai-switch-thumb"></span></span></label>
+  </div>
+</div>`,
+  },
+  {
+    id: 'log-console',
+    name: 'Log Console',
+    description: 'Dense monospace run log with level color and tabular timestamps.',
+    category: 'application',
+    tier: 'free',
+    tags: ['dashboard', 'log', 'console', 'terminal', 'ops'],
+    html: `<pre class="ai-log" style="max-width: 36rem;"><code><span class="ai-log-line"><span class="ai-log-ts">14:02:11</span> <span class="ai-log-ok">ok</span> registry built 60 components</span>
+<span class="ai-log-line"><span class="ai-log-ts">14:02:18</span> <span class="ai-log-ok">ok</span> origin sync public_html</span>
+<span class="ai-log-line"><span class="ai-log-ts">14:03:02</span> <span class="ai-log-warn">warn</span> cf cache still hot on /r/*</span>
+<span class="ai-log-line"><span class="ai-log-ts">14:03:41</span> <span class="ai-log-err">fail</span> polar webhook 403 (bot fight)</span></code></pre>`,
+  },
+  {
+    id: 'health-grid',
+    name: 'Service Health',
+    description: 'Mixed service statuses with 6px pips. Not four identical KPI tiles.',
+    category: 'application',
+    tier: 'free',
+    tags: ['dashboard', 'health', 'status', 'ops', 'monitor'],
+    html: `<div class="ai-health" style="max-width: 28rem;">
+  <div class="ai-health-row">
+    <span class="ai-health-name"><span class="ai-pip ai-pip-ok"></span> Origin</span>
+    <span class="ai-text-xs ai-text-muted">200 · 41ms</span>
+  </div>
+  <div class="ai-health-row">
+    <span class="ai-health-name"><span class="ai-pip ai-pip-ok"></span> Registry</span>
+    <span class="ai-text-xs ai-text-muted">200 · 18ms</span>
+  </div>
+  <div class="ai-health-row">
+    <span class="ai-health-name"><span class="ai-pip ai-pip-warn"></span> Webhook</span>
+    <span class="ai-text-xs ai-text-muted">retry in 12s</span>
+  </div>
+  <div class="ai-health-row">
+    <span class="ai-health-name"><span class="ai-pip ai-pip-err"></span> Object store</span>
+    <span class="ai-text-xs ai-text-muted">timeout</span>
+  </div>
+</div>`,
+  },
+  {
+    id: 'kanban-column',
+    name: 'Kanban Column',
+    description: 'One board column with compact work items. Items are rows, not nested cards.',
+    category: 'application',
+    tier: 'free',
+    tags: ['dashboard', 'kanban', 'board', 'tasks', 'workflow'],
+    html: `<div class="ai-kanban">
+  <div class="ai-kanban-head"><span>In review</span><span class="ai-text-muted">3</span></div>
+  <div class="ai-kanban-item">Quota meter CSS <span class="ai-text-xs ai-text-muted">#184</span></div>
+  <div class="ai-kanban-item">Polar zip download <span class="ai-text-xs ai-text-muted">#191</span></div>
+  <div class="ai-kanban-item">Account dark flash <span class="ai-text-xs ai-text-muted">#203</span></div>
+</div>`,
+  },
+  {
+    id: 'inbox-list',
+    name: 'Inbox List',
+    description: 'Ticket or message rows with unread weight and timestamps.',
+    category: 'application',
+    tier: 'free',
+    tags: ['dashboard', 'inbox', 'list', 'tickets', 'support'],
+    html: `<div style="max-width: 32rem;">
+  <div class="ai-inbox-item is-unread">
+    <span class="ai-pip ai-pip-ok"></span>
+    <div>
+      <div class="ai-inbox-title">Build failed on main</div>
+      <div class="ai-text-xs ai-text-muted">origin · php -l api/lib.php</div>
+    </div>
+    <span class="ai-text-xs ai-text-muted">2m</span>
+  </div>
+  <div class="ai-inbox-item is-unread">
+    <span class="ai-pip"></span>
+    <div>
+      <div class="ai-inbox-title">Seat request from acme</div>
+      <div class="ai-text-xs ai-text-muted">billing</div>
+    </div>
+    <span class="ai-text-xs ai-text-muted">1h</span>
+  </div>
+  <div class="ai-inbox-item">
+    <span class="ai-pip ai-pip-ok"></span>
+    <div>
+      <div class="ai-inbox-title">Certificate renewed</div>
+      <div class="ai-text-xs ai-text-muted">infra</div>
+    </div>
+    <span class="ai-text-xs ai-text-muted">1d</span>
+  </div>
+</div>`,
+  },
+  {
+    id: 'bar-chart',
+    name: 'Distribution Bars',
+    description: 'Horizontal bars for a breakdown. Labels plus tabular percents.',
+    category: 'application',
+    tier: 'free',
+    tags: ['dashboard', 'chart', 'bars', 'analytics'],
+    html: `<div class="ai-bars" style="max-width: 28rem;">
+  <div class="ai-bar-row"><span>Free CLI</span><div class="ai-bar-track"><div class="ai-bar-fill" style="width: 62%;"></div></div><span>62%</span></div>
+  <div class="ai-bar-row"><span>Gallery</span><div class="ai-bar-track"><div class="ai-bar-fill" style="width: 24%;"></div></div><span>24%</span></div>
+  <div class="ai-bar-row"><span>MCP</span><div class="ai-bar-track"><div class="ai-bar-fill" style="width: 14%;"></div></div><span>14%</span></div>
+</div>`,
+  },
+  {
+    id: 'detail-list',
+    name: 'Resource Detail',
+    description: 'Definition list for an entity: id, region, owner, updated.',
+    category: 'application',
+    tier: 'free',
+    tags: ['dashboard', 'detail', 'definition', 'meta'],
+    html: `<dl class="ai-detail" style="max-width: 28rem;">
+  <dt>ID</dt><dd>prj_8f2c1a</dd>
+  <dt>Region</dt><dd>syd-1</dd>
+  <dt>Owner</dt><dd>ops@llmcss.io</dd>
+  <dt>Updated</dt><dd>2026-09-12 14:03</dd>
+</dl>`,
+  },
+  {
+    id: 'date-range',
+    name: 'Date Range Fields',
+    description: 'From and to inputs for dashboard filters.',
+    category: 'application',
+    tier: 'free',
+    tags: ['dashboard', 'date', 'filter', 'form', 'range'],
+    html: `<div class="ai-flex ai-gap-3 ai-flex-wrap" style="max-width: 28rem;">
+  <label class="ai-form-group" style="flex: 1;">
+    <span class="ai-form-label">From</span>
+    <input class="ai-input" type="date" value="2026-09-01" />
+  </label>
+  <label class="ai-form-group" style="flex: 1;">
+    <span class="ai-form-label">To</span>
+    <input class="ai-input" type="date" value="2026-09-12" />
+  </label>
+</div>`,
+  },
 ];

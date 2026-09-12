@@ -1,0 +1,15 @@
+{
+  "id": "quota-meter",
+  "name": "Quota Meter",
+  "description": "Used vs limit with a determinate bar. One metric, tabular numbers.",
+  "category": "application",
+  "tier": "free",
+  "tags": [
+    "dashboard",
+    "quota",
+    "usage",
+    "progress",
+    "storage"
+  ],
+  "html": "<div class=\"ai-quota\" style=\"max-width: 24rem;\">\n  <div class=\"ai-quota-head\">\n    <span>Build minutes</span>\n    <strong>1,240 / 2,000</strong>\n  </div>\n  <div class=\"ai-progress\"><div class=\"ai-progress-bar\" style=\"width: 62%;\"></div></div>\n  <span class=\"ai-text-xs ai-text-muted\">Resets on the 1st</span>\n</div>"
+}

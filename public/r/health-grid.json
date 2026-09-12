@@ -1,0 +1,15 @@
+{
+  "id": "health-grid",
+  "name": "Service Health",
+  "description": "Mixed service statuses with 6px pips. Not four identical KPI tiles.",
+  "category": "application",
+  "tier": "free",
+  "tags": [
+    "dashboard",
+    "health",
+    "status",
+    "ops",
+    "monitor"
+  ],
+  "html": "<div class=\"ai-health\" style=\"max-width: 28rem;\">\n  <div class=\"ai-health-row\">\n    <span class=\"ai-health-name\"><span class=\"ai-pip ai-pip-ok\"></span> Origin</span>\n    <span class=\"ai-text-xs ai-text-muted\">200 · 41ms</span>\n  </div>\n  <div class=\"ai-health-row\">\n    <span class=\"ai-health-name\"><span class=\"ai-pip ai-pip-ok\"></span> Registry</span>\n    <span class=\"ai-text-xs ai-text-muted\">200 · 18ms</span>\n  </div>\n  <div class=\"ai-health-row\">\n    <span class=\"ai-health-name\"><span class=\"ai-pip ai-pip-warn\"></span> Webhook</span>\n    <span class=\"ai-text-xs ai-text-muted\">retry in 12s</span>\n  </div>\n  <div class=\"ai-health-row\">\n    <span class=\"ai-health-name\"><span class=\"ai-pip ai-pip-err\"></span> Object store</span>\n    <span class=\"ai-text-xs ai-text-muted\">timeout</span>\n  </div>\n</div>"
+}
