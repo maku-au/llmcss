@@ -642,7 +642,7 @@ switch (command) {
   case 'template': {
     const sub = args[1] || 'list';
     if (sub === 'list') {
-      console.log('\n✦ LLMCSS Wireframe Section Templates Catalog (14 Sections)\n');
+      console.log(`\n✦ LLMCSS Wireframe Section Templates Catalog (${wireframeTemplates.length} Sections)\n`);
       const sections = ['header', 'hero', 'features', 'social-proof', 'comparison', 'pricing', 'faq', 'cta', 'footer', 'app-shell'];
       for (const sec of sections) {
         const matching = wireframeTemplates.filter((t) => t.section === sec);
@@ -718,7 +718,7 @@ Commands:
   llmcss search <query>          Search components by keyword or tag
   llmcss add <component-id>      Install component markup into your project
   llmcss info <component-id>     Output raw component metadata & schema
-  llmcss templates               List all 14 wireframe section templates
+  llmcss templates               List all wireframe section templates
   llmcss template get <id>       Output clean semantic HTML for a wireframe section
   llmcss template blueprints     List full-page composition blueprints / recipes
   llmcss template blueprint <id> Generate full assembled HTML for a page blueprint

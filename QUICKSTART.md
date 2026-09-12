@@ -1,8 +1,8 @@
-# LLMCSS Quickstart
+# LLMCSS quickstart
 
-LLMCSS is a CSS library. Prefix is `ai-*`. You can copy CSS, use the CLI, or point an agent at the MCP server.
+LLMCSS is a CSS library. Class prefix is `ai-*`. Copy CSS, use the CLI, or point an agent at the MCP server.
 
-Site: [llmcss.io](https://llmcss.io) · Gallery: [components](https://llmcss.io/components.html) · This page on the site: [llmcss.io/quickstart](https://llmcss.io/quickstart)
+This page also lives at [llmcss.io/quickstart](https://llmcss.io/quickstart). Gallery: [llmcss.io/components.html](https://llmcss.io/components.html).
 
 ## 1. Link the stylesheet
 
@@ -18,7 +18,9 @@ Site: [llmcss.io](https://llmcss.io) · Gallery: [components](https://llmcss.io/
 </html>
 ```
 
-Optional fonts (body, titles, mono):
+Dark mode: `data-ai-theme="dark"` on `<html>`. Skin: `data-ai-skin="obsidian"` (also `editorial`, `executive`, `fintech`, `enterprise`, `emerald`, `violet`, `rose`).
+
+Optional fonts (body, display, mono):
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,31 +28,26 @@ Optional fonts (body, titles, mono):
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
 ```
 
-Dark mode: `data-ai-theme="dark"` on `<html>`.  
-Skin: `data-ai-skin="obsidian"` (also `executive`, `fintech`, `editorial`, `enterprise`).
-
-## 2. Copy a free component
-
-Browse [llmcss.io/components.html](https://llmcss.io/components.html) and copy HTML, or:
+## 2. Get a component
 
 ```bash
 npx llmcss list
 npx llmcss add btn-variants
 ```
 
-That writes `components/primitive/btn-variants.html`. Paste the markup into your page. The stylesheet above already has the classes.
+`add` writes `components/primitive/btn-variants.html`. Paste the markup into your page; the stylesheet above already has the classes. Or copy HTML straight from the gallery, or fetch JSON:
 
-JSON for agents:
-
-- Catalog: `https://llmcss.io/registry.json`
-- One free component: `https://llmcss.io/r/btn-variants.json`
+```bash
+curl https://llmcss.io/registry.json
+curl https://llmcss.io/r/btn-variants.json
+```
 
 ## 3. A first layout
 
 ```html
 <div class="ai-container" style="max-width: 40rem; padding: var(--ai-space-8);">
   <h1>Hello</h1>
-  <p class="ai-text-secondary">Body uses Plus Jakarta. Titles use the display face.</p>
+  <p class="ai-text-secondary">Body uses the sans token. Titles use the display token.</p>
   <div class="ai-flex ai-gap-2" style="margin-top: var(--ai-space-4);">
     <button class="ai-btn ai-btn-primary">Continue</button>
     <button class="ai-btn ai-btn-outline">Cancel</button>
@@ -60,7 +57,22 @@ JSON for agents:
 
 Rules of thumb: no nested cards, no pulsing dots on static status, no purple gradients. Full list: [AGENTS.md](AGENTS.md).
 
-## 4. Templates
+## 4. Interactive components
+
+Two ways to get modal, drawer, dropdown, accordion, tabs, toast, and command palette behavior:
+
+```html
+<button data-ai-toggle="modal" data-ai-target="#example">Open</button>
+<div id="example" class="ai-modal">…</div>
+```
+
+```html
+<ai-modal id="example">…</ai-modal>
+```
+
+Both are optional. CSS-only markup renders and themes correctly without any JavaScript; the runtime adds focus trapping, Escape-to-close, and `aria-expanded` sync on top.
+
+## 5. Templates
 
 ```bash
 npx llmcss templates
@@ -68,36 +80,39 @@ npx llmcss template get wireframe-nav-minimal
 npx llmcss template blueprint saas-landing
 ```
 
-Gallery: [llmcss.io/templates.html](https://llmcss.io/templates.html)
+18 section templates, 4 full-page blueprints. Gallery: [llmcss.io/templates.html](https://llmcss.io/templates.html).
 
-## 5. Agents (MCP)
+## 6. Agents (MCP)
 
 ```bash
 npx llmcss-mcp
 ```
 
-Point your editor at that stdio server. It reads the public catalog at llmcss.io.
+Point your editor at that stdio server. It reads the public catalog at llmcss.io and exposes `search_components`, `get_component_markup`, `validate_markup`, `list_tokens`, `llmcss_get_harness`, `llmcss_slop_audit`, `list_wireframe_templates`, `get_wireframe_template`, `get_page_blueprint`.
 
-## 6. Pro (optional)
+## 7. Pro (optional)
 
-Pro is $9/month. After checkout you get a token (shown once).
+Pro is $9/month via Polar. After checkout you get a token, shown once.
 
 ```bash
 npx llmcss login llmcss_live_...
 npx llmcss add tool-trace
 ```
 
-Or paste the token under **License** on the components gallery.
+Or paste the token under License on the components gallery.
 
 ## Commands
 
 | Command | What it does |
 |---|---|
 | `npx llmcss list` | Free + Pro ids |
-| `npx llmcss add <id>` | Write HTML into `components/` |
-| `npx llmcss validate <file>` | Catch non-`ai-` classes |
-| `npx llmcss lint --fix <file>` | Auto-prefix common misses |
-| `npx llmcss audit <file>` | Anti-slop checks |
-| `npx llmcss-mcp` | Local MCP (stdio) |
+| `npx llmcss search <query>` | Search by keyword, tag, or alias |
+| `npx llmcss add <id>` | Write component HTML into `components/` |
+| `npx llmcss validate <file>` | Flag non-`ai-` classes |
+| `npx llmcss lint --fix <file>` | Auto-prefix common legacy classes |
+| `npx llmcss audit <file>` | Anti-slop design checks |
+| `npx llmcss templates` | List wireframe section templates |
+| `npx llmcss template blueprint <id>` | Assemble a full page |
+| `npx llmcss-mcp` | Local MCP server (stdio) |
 
 This repo is the MIT core. Pro source is not here.

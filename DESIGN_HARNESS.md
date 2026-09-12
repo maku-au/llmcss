@@ -5,7 +5,7 @@ The LLMCSS Design Direction Harness eliminates the generic "AI look" (puffy grad
 
 ---
 
-## 1. The 10 Non-Negotiable Anti-Slop Laws
+## 1. The 11 Non-Negotiable Anti-Slop Laws
 
 Every AI coding agent generating interfaces with LLMCSS must strictly comply with these ten laws:
 

@@ -36,14 +36,14 @@
 10. **Always Theme Browser Surfaces**: Caret color, custom scrollbars, selection, and tabular numerals.
 
 ## Wireframe Section Templates & Page Blueprints
-- **14 Composable Section Templates**: Header (`wireframe-nav-minimal`, `wireframe-nav-banner`), Hero (`wireframe-hero-split`, `wireframe-hero-centered`, `wireframe-hero-editorial`), Social Proof (`wireframe-social-proof-bar`), Features (`wireframe-features-bento`, `wireframe-features-alternating`), Comparison (`wireframe-comparison-matrix`), Pricing (`wireframe-pricing-tiers`), FAQ (`wireframe-faq-accordion`), CTA (`wireframe-cta-card`), Footer (`wireframe-footer-columns`), App Shell (`wireframe-app-shell`).
+- **18 Composable Section Templates**: Header (`wireframe-nav-minimal`, `wireframe-nav-banner`, `wireframe-docs-header`), Hero (`wireframe-hero-split`, `wireframe-hero-centered`, `wireframe-hero-editorial`), Social Proof (`wireframe-social-proof-bar`, `wireframe-quote-band`), Features (`wireframe-features-bento`, `wireframe-features-alternating`, `wireframe-changelog`), Comparison (`wireframe-comparison-matrix`), Pricing (`wireframe-pricing-tiers`), FAQ (`wireframe-faq-accordion`), CTA (`wireframe-cta-card`), Footer (`wireframe-footer-columns`), App Shell (`wireframe-app-shell`, `wireframe-dash-header`).
 - **4 Full-Page Blueprints / Recipes**:
   1. `saas-landing`: Nav -> Split Hero -> Social Proof Rail -> Bento Features -> Pricing Tiers -> FAQ -> CTA -> Footer.
   2. `developer-tool`: Banner Nav -> Centered Hero -> Social Proof Rail -> Alternating Features -> Comparison Matrix -> CTA -> Footer.
   3. `editorial-manifesto`: Minimal Nav -> Editorial Hero -> Social Proof Rail -> Bento Features -> FAQ -> CTA -> Footer.
   4. `dashboard-shell`: Full Application Viewport Shell with Sidebar, Topbar, Metric Row, and Data Canvas.
 - **CLI Commands**:
-  - `npx llmcss templates`: List all 14 section templates with placement guidance.
+  - `npx llmcss templates`: List all 18 section templates with placement guidance.
   - `npx llmcss template get <id>`: Output clean semantic HTML for a section.
   - `npx llmcss template blueprints`: List full-page composition recipes.
   - `npx llmcss template blueprint <name>`: Assemble and output full-page HTML.
