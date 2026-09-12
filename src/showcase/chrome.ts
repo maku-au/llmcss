@@ -2,6 +2,8 @@ import { components } from '../registry/components';
 import { getBrowserToken, validateToken } from './license';
 
 const MOON = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>`;
+const BURGER = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>`;
+const CLOSE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg>`;
 const SUN = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`;
 
 export const catalogStats = (() => {
@@ -72,41 +74,53 @@ function searchHtml(): string {
   return '';
 }
 
-function stylerBtn(): string {
-  if (!document.getElementById('core-styler-drawer')) return '';
-  return `<button type="button" id="open-styler-btn" class="ai-btn ai-btn-outline ai-btn-xs" style="height: 2rem;" data-ai-toggle="drawer" data-ai-target="#core-styler-drawer">Styler</button>`;
+function hasStyler(): boolean {
+  return !!document.getElementById('core-styler-drawer');
+}
+
+function stylerBtn(id: string, extraClass = ''): string {
+  if (!hasStyler()) return '';
+  return `<button type="button" id="${id}" class="ai-btn ai-btn-outline ai-btn-xs ${extraClass}" style="height: 2rem;" data-ai-toggle="drawer" data-ai-target="#core-styler-drawer">Styler</button>`;
+}
+
+function navLinksHtml(): string {
+  return `${navLink('/components.html', 'components', 'Components')}
+    ${navLink('/templates.html', 'templates', 'Templates')}
+    ${navLink('/quickstart', 'docs', 'Docs')}
+    ${navLink('/#pricing', 'pricing', 'Pricing')}
+    ${navLink('/account', 'account', 'Account')}`;
 }
 
 function headerHtml(licensed: boolean): string {
   return `<div class="ai-container site-header-inner">
-    <a href="/" class="ai-brand" style="font-size: 1.125rem; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+    <a href="/" class="ai-brand site-brand">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0;"><rect x="3" y="3" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="9" y="9" width="12" height="12" rx="2.5" fill="currentColor"/></svg>
-      <span style="font-family: var(--ai-font-display); font-weight: 800; letter-spacing: -0.03em;">LLMCSS</span>
+      <span>LLMCSS</span>
     </a>
     <nav class="site-nav" id="desktop-nav" aria-label="Primary">
-      ${navLink('/components.html', 'components', 'Components')}
-      ${navLink('/templates.html', 'templates', 'Templates')}
-      ${navLink('/quickstart', 'docs', 'Docs')}
-      ${navLink('/#pricing', 'pricing', 'Pricing')}
-      ${navLink('/account', 'account', 'Account')}
+      ${navLinksHtml()}
     </nav>
+    <div class="site-header-search">${searchHtml()}</div>
     <div class="site-header-actions">
-      ${searchHtml()}
-      ${stylerBtn()}
+      ${stylerBtn('open-styler-btn', 'site-desktop-only')}
       <button type="button" id="theme-mode-toggle" class="ai-btn ai-btn-outline ai-btn-xs ai-btn-icon" style="width: 2rem; height: 2rem; padding: 0; display: inline-flex; align-items: center; justify-content: center;">${currentTheme() === 'dark' ? SUN : MOON}</button>
-      ${proCtaHtml(licensed)}
-      <button type="button" class="ai-btn ai-btn-outline ai-btn-xs site-menu-btn" id="site-menu-btn" aria-label="Open menu" aria-expanded="false">Menu</button>
+      <span class="site-desktop-only">${proCtaHtml(licensed)}</span>
+      <button type="button" class="ai-btn ai-btn-outline ai-btn-xs site-menu-btn" id="site-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">${BURGER}</button>
     </div>
   </div>`;
 }
 
 function menuHtml(licensed: boolean): string {
-  return `${navLink('/components.html', 'components', 'Components')}
-    ${navLink('/templates.html', 'templates', 'Templates')}
-    ${navLink('/quickstart', 'docs', 'Docs')}
-    ${navLink('/#pricing', 'pricing', 'Pricing')}
-    ${navLink('/account', 'account', 'Account')}
-    ${licensed ? `<a href="/account" class="ai-btn ai-btn-outline">Licensed</a>` : `<a href="/api/checkout.php" class="ai-btn ai-btn-primary">Get Pro · $9/mo</a>`}`;
+  const cta = licensed
+    ? `<a href="/account" class="ai-btn ai-btn-outline">Licensed</a>`
+    : `<a href="/api/checkout.php" class="ai-btn ai-btn-primary">Get Pro · $9/mo</a>`;
+  return `<nav class="site-menu-links" aria-label="Primary">
+      ${navLinksHtml()}
+    </nav>
+    <div class="site-menu-actions">
+      ${stylerBtn('site-menu-styler-btn')}
+      ${cta}
+    </div>`;
 }
 
 export function footerHtml(): string {
@@ -218,8 +232,24 @@ export async function mountChrome() {
   });
 
   const menuBtn = document.getElementById('site-menu-btn');
-  menuBtn?.addEventListener('click', () => {
-    const open = menu?.classList.toggle('is-open');
+  const sheet = menu;
+  const setMenu = (open: boolean) => {
+    if (!menuBtn) return;
+    if (open && header) sheet.style.top = `${header.offsetHeight}px`;
+    sheet.classList.toggle('is-open', open);
+    document.documentElement.classList.toggle('site-menu-open', open);
     menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menuBtn.innerHTML = open ? CLOSE : BURGER;
+  };
+  menuBtn?.addEventListener('click', () => setMenu(!sheet.classList.contains('is-open')));
+  sheet.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a, button')) setMenu(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sheet.classList.contains('is-open')) setMenu(false);
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 900 && sheet.classList.contains('is-open')) setMenu(false);
   });
 }
