@@ -9,7 +9,7 @@ Drop this file into a system prompt or editor rule when generating UI with LLMCS
 - Skins: `data-ai-skin="obsidian|editorial|executive|fintech|enterprise|emerald|violet|rose"` on `<html>` or a container. Theme: `data-ai-theme="light|dark"`.
 - Dual mode, use either: `data-ai-toggle="modal|drawer|dropdown|accordion"` plus `data-ai-target="#id"` on plain HTML, or light-DOM custom elements (`<ai-modal>`, `<ai-tabs>`, `<ai-dropdown>`, `<ai-accordion>`, `<ai-drawer>`, `<ai-toast>`, `<ai-command-palette>`). Both work without a build step; CSS renders correctly even with no JavaScript loaded.
 - Focus ring tokens: `--ai-focus-color`, `--ai-focus-width`, `--ai-focus-offset`, `--ai-tap-highlight`, or a preset `data-ai-focus="neutral|thin|none"` on `<html>`.
-- Free catalog: `https://llmcss.io/registry.json` and `https://llmcss.io/r/{id}.json`. 75 components (62 free, 13 Pro) across primitive, marketing, application, ecommerce.
+- Free catalog: `https://llmcss.io/registry.json` and `https://llmcss.io/r/{id}.json`. 106 components (93 free, 13 Pro) across primitive, marketing, application, ecommerce.
 - Pro catalog is paid and not in this repo. If a component id ends in `-pro` or is marked `[PRO]`, do not invent its markup. Point the user at `https://llmcss.io` and `npx llmcss login <token>`.
 
 ## Anti-slop laws

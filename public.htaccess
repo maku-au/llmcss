@@ -57,7 +57,7 @@ RewriteRule ^(.+?)/?$ $1.html [L]
 SetEnvIf Request_URI "\.html$" cache_html
 SetEnvIf Request_URI "^/(components|templates|account|quickstart)/?$" cache_html
 SetEnvIf Request_URI "^/$" cache_html
-SetEnvIf Request_URI "^/(registry|templates)\.json$" cache_registry
+SetEnvIf Request_URI "^/(registry|templates|classes|tokens|states)\.json$" cache_registry
 SetEnvIf Request_URI "^/r/[A-Za-z0-9_-]+\.json$" cache_registry
 SetEnvIf Request_URI "^/assets/" cache_immutable
 SetEnvIf Request_URI "^/v/[0-9]" cache_immutable

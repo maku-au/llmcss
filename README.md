@@ -24,7 +24,7 @@ That is the whole install. Everything else in this repo is optional: a CLI, an M
 
 ## What this is
 
-75 components (62 free, 13 Pro) across four categories, plus 18 wireframe section templates and 4 page blueprints. All CSS, no JavaScript required. An optional runtime adds modal, drawer, dropdown, accordion, tabs, toast, and command palette behavior, either via `data-ai-*` attributes on plain HTML or via light-DOM custom elements (`<ai-modal>`, `<ai-tabs>`, `<ai-dropdown>`, `<ai-accordion>`, `<ai-drawer>`, `<ai-toast>`, `<ai-command-palette>`).
+106 components (93 free, 13 Pro) across four categories, plus 18 wireframe section templates and 4 page blueprints. All CSS, no JavaScript required. An optional runtime adds modal, drawer, dropdown, accordion, tabs, toast, and command palette behavior, either via `data-ai-*` attributes on plain HTML or via light-DOM custom elements (`<ai-modal>`, `<ai-tabs>`, `<ai-dropdown>`, `<ai-accordion>`, `<ai-drawer>`, `<ai-toast>`, `<ai-command-palette>`).
 
 ## Install
 
@@ -72,23 +72,13 @@ A stdio JSON-RPC server for editors and agents. It talks to the public catalog a
 
 Ids only. Full metadata: `npx llmcss info <id>` or `https://llmcss.io/r/{id}.json`. `*` marks Pro.
 
-**Primitive (34):** btn-variants, btn-sizes, input-text, input-addon, switch-toggle, card-standard, badge-status, avatar-group, modal-dialog, tabs-system, dropdown-menu, accordion-faq, table-data, alert-callouts, animated-loaders, progress-bars, interactive-slider, skeleton-card, stepper-flow, segmented-toggle, popover-anchor, toast-stack, breadcrumb-nav, tooltip-hover, pagination-controls, divider-separator, textarea-counter, checkbox-radio-group, empty-state, kbd-shortcuts, quote-pull, code-block, file-dropzone, split-button
+**Primitive (48):** btn-variants, btn-sizes, input-text, input-addon, switch-toggle, card-standard, badge-status, avatar-group, modal-dialog, tabs-system, dropdown-menu, accordion-faq, table-data, alert-callouts, animated-loaders, progress-bars, interactive-slider, skeleton-card, stepper-flow, segmented-toggle, popover-anchor, toast-stack, breadcrumb-nav, tooltip-hover, pagination-controls, divider-separator, textarea-counter, checkbox-radio-group, empty-state, kbd-shortcuts, quote-pull, code-block, file-dropzone, split-button, collapse-details, carousel-snap, floating-label, list-group, btn-group, level-bar, media-object, panel-list, notification-block, file-input, title-subtitle, chip-removable, select-native, input-icon
 
-**Marketing (10):** navbar-modern, mobile-nav-drawer, mobile-nav-dropdown, hero-split, hero-bento-pro*, pricing-tier-cards, footer-multi-col, marquee-ticker, bento-editorial-pro*, pricing-matrix-pro*
+**Marketing (21):** navbar-modern, mobile-nav-drawer, mobile-nav-dropdown, hero-split, hero-bento-pro*, pricing-tier-cards, footer-multi-col, marquee-ticker, bento-editorial-pro*, pricing-matrix-pro*, section-shift, feature-grid, feature-list, stats-band, cta-band, callout-editorial, testimonial-grid, team-grid, announcement-bar, consent-bar, faq-section
 
-**Application (29):** kpi-metric-cards, command-palette-pro*, auth-login-card, filter-toolbar, ai-chat-thread*, tool-trace*, approval-bar*, thought-chain*, agent-workspace*, mcp-widget-shell*, streaming-status*, citation-list*, sidebar-nav, stats-dashboard, notification-list, timeline-log, page-header, app-topbar, quota-meter, spark-stat, donut-stat, settings-list, log-console, health-grid, kanban-column, inbox-list, bar-chart, detail-list, date-range
+**Application (34):** kpi-metric-cards, command-palette-pro*, auth-login-card, filter-toolbar, ai-chat-thread*, tool-trace*, approval-bar*, thought-chain*, agent-workspace*, mcp-widget-shell*, streaming-status*, citation-list*, sidebar-nav, stats-dashboard, notification-list, timeline-log, page-header, app-topbar, quota-meter, spark-stat, donut-stat, settings-list, log-console, health-grid, kanban-column, inbox-list, bar-chart, detail-list, date-range, data-grid, bulk-action-bar, tree-view, onboarding-checklist, error-state
 
-**Ecommerce (2):** product-card, cart-drawer-pro*
-
-## Machine-readable manifests
-
-Generated from the stylesheet at build time, so they cannot drift:
-
-- `/classes.json`: every `ai-*` class, its family, and which `ai-sm:`, `ai-md:`, `ai-lg:`, `ai-xl:`, `ai-cq:` prefixes exist for it
-- `/tokens.json`: every `--ai-*` token with its value per theme, skin, and focus preset
-- `/states.json`: every `is-*` state class and `data-ai-*` attribute, with allowed values
-
-The MCP server exposes them as `list_classes`, `list_tokens`, and `list_states`.
+**Ecommerce (3):** product-card, cart-drawer-pro*, product-grid
 
 ## Customizing
 

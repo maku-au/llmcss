@@ -1,6 +1,6 @@
 {
  "version": "0.1.0",
- "generatedAt": "2026-09-12T04:24:10.741Z",
+ "generatedAt": "2026-09-12T04:24:54.191Z",
  "note": "Every ai-* class in llmcss.css. variants lists the responsive (sm 640px, md 768px, lg 1024px, xl 1280px) and container-query (cq) prefixes that exist for the class, written as ai-md:name. Nothing outside this list exists; do not invent classes.",
  "stats": {
   "total": 1176,
