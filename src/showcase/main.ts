@@ -2,6 +2,8 @@ import '../css/index.css';
 import '../runtime/index';
 import { components } from '../registry/components';
 import { applyDisplayFont, bindFontSwitchers, getActiveFontId, DISPLAY_FONTS } from './fonts';
+import { mountChrome, catalogStats, currentTheme } from './chrome';
+import { getBrowserToken, setBrowserToken, validateToken } from './license';
 
 // ============================================================================
 // STATE DEFINITIONS
@@ -34,9 +36,10 @@ const componentCustomizations: Record<string, ComponentCustomization> = {};
 
 // DOM Elements
 const streamEl = document.getElementById('components-stream');
-const searchInput = document.getElementById('catalog-search') as HTMLInputElement | null;
+let searchInput = document.getElementById('catalog-search') as HTMLInputElement | null;
 const skinSwitcher = document.getElementById('skin-switcher') as HTMLSelectElement | null;
-const themeToggle = document.getElementById('theme-mode-toggle');
+let themeToggle = document.getElementById('theme-mode-toggle');
+const proHtmlCache = new Map<string, string>();
 const toastContainer = document.getElementById('toast-container');
 
 // ============================================================================
@@ -101,6 +104,7 @@ function applyGlobalTokens() {
   }
 
   // 2. Light / Dark Theme Mode
+  activeTheme = currentTheme();
   root.setAttribute('data-ai-theme', activeTheme);
   localStorage.setItem('cssai-theme', activeTheme);
   updateThemeToggleIcon(activeTheme);
@@ -743,11 +747,7 @@ function applyComponentCustomization(id: string) {
     previewContainer.innerHTML = customizedHtml;
   }
 
-  // Update Code Panel
-  const codeEl = document.querySelector(`#code-${id} pre code`);
-  if (codeEl) {
-    codeEl.innerHTML = escapeHtml(customizedHtml);
-  }
+  // Preview only. Copy HTML stays the registry snippet.
 
   // Re-bind events inside preview if slider or controls
   rebindPreviewControls(id);
@@ -799,6 +799,8 @@ function updateSidebarCounts() {
 
   const countTierFree = document.getElementById('count-tier-free');
   if (countTierFree) countTierFree.textContent = String(freeCount);
+  const countTierPro = document.getElementById('count-tier-pro');
+  if (countTierPro) countTierPro.textContent = String(components.filter((c) => c.tier === 'pro').length);
 }
 
 function renderComponents() {
@@ -816,6 +818,29 @@ function renderComponents() {
 
     return matchCat && matchTier && matchSearch;
   });
+
+  const resultEl = document.getElementById('catalog-result-count');
+  if (resultEl) {
+    resultEl.textContent = `${filtered.length} of ${components.length}`;
+  }
+
+  if (filtered.length === 0) {
+    streamEl.innerHTML = `<div class="ai-empty-state" style="padding: 3rem 1rem; text-align: center; border: 1px dashed var(--ai-border); border-radius: var(--ai-radius-md);">
+      <h3 class="ai-font-display" style="font-size: 1.125rem;">No matches${searchQuery ? ` for “${escapeHtml(searchQuery)}”` : ''}</h3>
+      <p class="ai-text-sm ai-text-secondary" style="margin-top: 0.35rem;">Try another query or reset filters.</p>
+      <button type="button" class="ai-btn ai-btn-outline ai-btn-sm" id="reset-catalog-btn" style="margin-top: 1rem;">Reset</button>
+    </div>`;
+    document.getElementById('reset-catalog-btn')?.addEventListener('click', () => {
+      activeCategory = 'all';
+      activeTier = 'all';
+      searchQuery = '';
+      if (searchInput) searchInput.value = '';
+      document.querySelectorAll('.filter-category').forEach((b) => b.classList.toggle('is-active', b.getAttribute('data-cat') === 'all'));
+      document.querySelectorAll('.filter-tier').forEach((b) => b.classList.toggle('is-active', b.getAttribute('data-tier') === 'all'));
+      renderComponents();
+    });
+    return;
+  }
 
   if (filtered.length === 0) {
     streamEl.innerHTML = `
@@ -868,8 +893,8 @@ function renderComponents() {
             </button>
             ${
               isPro
-                ? `<button class="ai-btn ai-btn-primary ai-btn-xs unlock-pro-btn" data-ai-toggle="modal" data-ai-target="#pro-pricing-modal">
-                     Unlock Pro ($9/mo)
+                ? `<button class="ai-btn ai-btn-primary ai-btn-xs unlock-pro-btn" data-id="${comp.id}">
+                     Unlock Pro
                    </button>`
                 : `<button class="ai-btn ai-btn-primary ai-btn-xs copy-html-btn" data-id="${comp.id}">
                      Copy HTML
@@ -893,10 +918,9 @@ function renderComponents() {
 npx llmcss login &lt;token&gt;
 npx llmcss add ${comp.id}</code></pre>`
               : `<div class="ai-flex ai-justify-between ai-items-center" style="margin-bottom: var(--ai-space-2);">
-            <span class="ai-text-xs ai-font-mono ai-text-muted">HTML Blueprint</span>
-            <button class="ai-btn ai-btn-ghost ai-btn-xs copy-html-btn" data-id="${comp.id}">Copy Code</button>
+            <span class="ai-text-xs ai-font-mono ai-text-muted">HTML</span>
           </div>
-          <pre><code>${escapeHtml(currentHtml)}</code></pre>`
+          <pre><code>${escapeHtml(comp.html)}</code></pre>`
           }
         </div>
       </article>
@@ -986,8 +1010,18 @@ function bindComponentEvents() {
         showToast('Pro source is not public. Subscribe to unlock.', 'error');
         return;
       }
-      const customizedHtml = generateCustomizedHtml(comp);
-      copyToClipboard(customizedHtml, `${comp.name} HTML`, btn);
+      copyToClipboard(comp.html, `${comp.name} HTML`, btn);
+    });
+  });
+
+  document.querySelectorAll<HTMLElement>('.unlock-pro-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      if (getBrowserToken()) {
+        await hydrateProCards();
+        return;
+      }
+      const modal = document.getElementById('license-modal');
+      modal?.classList.add('is-open');
     });
   });
 
@@ -1022,6 +1056,7 @@ document.querySelectorAll('.filter-category').forEach((btn) => {
     btn.classList.add('is-active');
     activeCategory = btn.getAttribute('data-cat') || 'all';
     renderComponents();
+    hydrateProCards();
   });
 });
 
@@ -1032,14 +1067,16 @@ document.querySelectorAll('.filter-tier').forEach((btn) => {
     btn.classList.add('is-active');
     activeTier = btn.getAttribute('data-tier') || 'all';
     renderComponents();
+    hydrateProCards();
   });
 });
 
 // Search input handler
 if (searchInput) {
   searchInput.addEventListener('input', () => {
-    searchQuery = searchInput.value;
+    searchQuery = searchInput?.value || '';
     renderComponents();
+    hydrateProCards();
   });
 }
 
@@ -1184,41 +1221,37 @@ document.querySelectorAll('.hero-dock .ai-segmented-btn').forEach((btn) => {
   });
 });
 
-function getBrowserToken(): string {
-  return localStorage.getItem('llmcss_token') || '';
-}
-
 async function hydrateProCards() {
   const token = getBrowserToken();
   if (!token || !streamEl) return;
-  const check = await fetch('/api/validate.php', {
-    headers: { Authorization: 'Bearer ' + token, Accept: 'application/json' },
-    cache: 'no-store',
-  });
-  const valid = await check.json().catch(() => ({}));
+  const valid = await validateToken(token);
   if (!valid.valid) return;
 
   for (const comp of components) {
     if (comp.tier !== 'pro') continue;
     const card = document.getElementById(`comp-${comp.id}`);
     if (!card) continue;
-    const res = await fetch(`/r/pro/${comp.id}.json`, {
-      headers: { Authorization: 'Bearer ' + token, Accept: 'application/json' },
-      cache: 'no-store',
-    });
-    if (!res.ok) continue;
-    const data = await res.json().catch(() => ({}));
-    if (!data.html) continue;
-    comp.html = data.html;
+    let html = proHtmlCache.get(comp.id);
+    if (!html) {
+      const res = await fetch(`/r/pro/${comp.id}.json`, {
+        headers: { Authorization: 'Bearer ' + token, Accept: 'application/json' },
+        cache: 'no-store',
+      });
+      if (!res.ok) continue;
+      const data = await res.json().catch(() => ({}));
+      if (!data.html) continue;
+      html = data.html as string;
+      proHtmlCache.set(comp.id, html);
+    }
+    comp.html = html;
     const canvas = card.querySelector('.component-preview-canvas > div');
-    if (canvas) canvas.innerHTML = data.html;
+    if (canvas) canvas.innerHTML = html;
     const panel = card.querySelector(`#code-${comp.id}`);
     if (panel) {
       panel.innerHTML = `<div class="ai-flex ai-justify-between ai-items-center" style="margin-bottom: var(--ai-space-2);">
-            <span class="ai-text-xs ai-font-mono ai-text-muted">HTML Blueprint</span>
-            <button class="ai-btn ai-btn-ghost ai-btn-xs copy-html-btn" data-id="${comp.id}">Copy Code</button>
+            <span class="ai-text-xs ai-font-mono ai-text-muted">HTML</span>
           </div>
-          <pre><code>${escapeHtml(data.html)}</code></pre>`;
+          <pre><code>${escapeHtml(html)}</code></pre>`;
     }
     const unlock = card.querySelector('.unlock-pro-btn') as HTMLElement | null;
     if (unlock) {
@@ -1234,12 +1267,9 @@ async function hydrateProCards() {
 }
 
 async function activateBrowserLicense(token: string): Promise<boolean> {
-  const res = await fetch('/api/validate.php', {
-    headers: { Authorization: 'Bearer ' + token, Accept: 'application/json' },
-  });
-  const data = await res.json().catch(() => ({}));
+  const data = await validateToken(token);
   if (!data.valid) return false;
-  localStorage.setItem('llmcss_token', token);
+  setBrowserToken(token);
   return true;
 }
 
@@ -1260,13 +1290,27 @@ document.getElementById('license-activate-btn')?.addEventListener('click', async
   }
 });
 
-// ============================================================================
-// INITIALIZATION
-// ============================================================================
-bindFontSwitchers(() => applyGlobalTokens());
-applyGlobalTokens();
-updateSidebarCounts();
-renderComponents();
-hydrateProCards();
-console.log(`[LLMCSS Showcase] Initialized successfully with ${components.length} components.`);
+async function boot() {
+  await mountChrome();
+  searchInput = document.getElementById('catalog-search') as HTMLInputElement | null;
+  themeToggle = document.getElementById('theme-mode-toggle');
+  bindFontSwitchers(() => applyGlobalTokens());
+  applyGlobalTokens();
+  updateSidebarCounts();
+  renderComponents();
+  await hydrateProCards();
+  searchInput?.addEventListener('input', () => {
+    searchQuery = searchInput?.value || '';
+    renderComponents();
+    hydrateProCards();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'TEXTAREA') {
+      e.preventDefault();
+      searchInput?.focus();
+    }
+  });
+  console.log(`[LLMCSS Showcase] Initialized successfully with ${components.length} components.`);
+}
+boot();
 

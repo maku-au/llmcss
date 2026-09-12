@@ -7,6 +7,7 @@ import {
 } from '../registry/templates';
 import type { WireframeTemplate, PageBlueprint } from '../registry/schema';
 import { applyDisplayFont, bindFontSwitchers, getActiveFontId } from './fonts';
+import { mountChrome, currentTheme } from './chrome';
 
 // ============================================================================
 // STATE DEFINITIONS
@@ -26,9 +27,9 @@ const templatesStream = document.getElementById('templates-stream');
 const blueprintBar = document.getElementById('blueprint-bar');
 const blueprintBanner = document.getElementById('blueprint-banner');
 const categoryNav = document.getElementById('category-nav');
-const searchInput = document.getElementById('template-search') as HTMLInputElement | null;
+let searchInput = document.getElementById('template-search') as HTMLInputElement | null;
 const skinSwitcher = document.getElementById('skin-switcher') as HTMLSelectElement | null;
-const themeToggle = document.getElementById('theme-mode-toggle');
+let themeToggle = document.getElementById('theme-mode-toggle');
 const toastContainer = document.getElementById('toast-container');
 const fullPreviewModal = document.getElementById('blueprint-preview-modal');
 const fullPreviewContent = document.getElementById('blueprint-preview-content');
@@ -93,6 +94,7 @@ function applyThemeSettings() {
   if (skinSwitcher) skinSwitcher.value = activeSkin;
 
   // Light / Dark Mode
+  activeTheme = currentTheme();
   root.setAttribute('data-ai-theme', activeTheme);
   localStorage.setItem('cssai-theme', activeTheme);
   applyDisplayFont(getActiveFontId());
@@ -167,16 +169,16 @@ function renderBlueprintBanner() {
             ${bp.name}
           </h2>
           <p class="ai-text-sm ai-text-secondary" style="margin-bottom: 0.75rem;">
-            ${bp.sections.length} sections
+            ${bp.description} ${bp.sections.length} section${bp.sections.length === 1 ? '' : 's'}.
           </p>
           <div class="blueprint-flow-pills">
             ${bp.sections.map((secId, idx) => {
               const sec = wireframeTemplates.find((t) => t.id === secId);
               return `
-                <span class="blueprint-flow-pill">
+                <button type="button" class="blueprint-flow-pill jump-to-pair" data-jump="${secId}">
                   <span class="flow-num">${idx + 1}</span>
                   <span>${sec ? sec.name : secId}</span>
-                </span>
+                </button>
                 ${idx < bp.sections.length - 1 ? '<span class="flow-arrow">&rarr;</span>' : ''}
               `;
             }).join('')}
@@ -189,11 +191,11 @@ function renderBlueprintBanner() {
           </button>
           <button class="ai-btn ai-btn-outline ai-btn-sm ai-w-full ai-justify-center" id="copy-blueprint-cli-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>
-            <span>CLI: llmcss blueprint ${bp.id}</span>
+            <span>npx llmcss template blueprint ${bp.id}</span>
           </button>
           <button class="ai-btn ai-btn-ghost ai-btn-sm ai-w-full ai-justify-center" id="preview-blueprint-full-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span>Open Assembled Preview</span>
+            <span>Preview full page</span>
           </button>
         </div>
       </div>
@@ -289,9 +291,8 @@ function renderTemplates() {
   if (items.length === 0) {
     templatesStream.innerHTML = `
       <div class="ai-empty-state" style="padding: 4rem 1rem; text-align: center; background: var(--ai-surface-0); border: 1px dashed var(--ai-border); border-radius: var(--ai-radius-lg);">
-        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔍</div>
-        <h3 style="font-family: var(--ai-font-display); font-size: 1.125rem; font-weight: 700;">No wireframe templates match your filter</h3>
-        <p style="font-size: 0.875rem; color: var(--ai-text-secondary); margin-top: 0.25rem;">Try resetting your search query or selecting "All Sections".</p>
+        <h3 style="font-family: var(--ai-font-display); font-size: 1.125rem; font-weight: 700;">No templates match</h3>
+        <p style="font-size: 0.875rem; color: var(--ai-text-secondary); margin-top: 0.25rem;">Clear search or choose All.</p>
         <button class="ai-btn ai-btn-outline ai-btn-sm ai-mt-4" id="reset-filter-btn">Reset Filters</button>
       </div>
     `;
@@ -308,21 +309,21 @@ function renderTemplates() {
     return;
   }
 
-  templatesStream.innerHTML = items.map(({ template }) => `
+  const recipeTotal = items.filter((i) => i.recipeIndex).length;
+  templatesStream.innerHTML = items.map(({ template, recipeIndex }) => `
     <article class="template-item-card" id="card-${template.id}">
       <div class="template-card-header">
-        <h3 class="template-title">${template.name}</h3>
         <div class="ai-flex ai-items-center ai-gap-2">
-          <button class="ai-btn ai-btn-ghost ai-btn-xs toggle-guidance-btn" data-target="guidance-${template.id}">
+          ${recipeIndex ? `<span class="ai-text-xs ai-text-muted">${recipeIndex} of ${recipeTotal}</span>` : ''}
+          <h3 class="template-title">${template.name}</h3>
+        </div>
+        <div class="ai-flex ai-items-center ai-gap-2">
+          <button class="ai-btn ai-btn-ghost ai-btn-xs toggle-guidance-btn" data-target="guidance-${template.id}" aria-expanded="false">
             <span>Guidance</span>
           </button>
           <button class="ai-btn ai-btn-outline ai-btn-xs copy-html-btn" data-id="${template.id}">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             <span>Copy HTML</span>
-          </button>
-          <button class="ai-btn ai-btn-ghost ai-btn-xs copy-cli-btn" data-id="${template.id}" title="Copy CLI Command">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>
-            <span>CLI</span>
           </button>
           <button class="ai-btn ai-btn-ghost ai-btn-xs toggle-code-btn" data-target="code-${template.id}">
             <span>&lt;/&gt;</span>
@@ -361,9 +362,10 @@ function renderTemplates() {
                 <span>Pairs with</span>
               </div>
               <div class="guidance-pairs">
-                ${template.guidance.pairsWith.map((pairId) => `
-                  <button class="guidance-pair-tag jump-to-pair" data-jump="${pairId}">${pairId}</button>
-                `).join('')}
+                ${template.guidance.pairsWith.map((pairId) => {
+                  const pair = wireframeTemplates.find((t) => t.id === pairId);
+                  return `<button class="guidance-pair-tag jump-to-pair" data-jump="${pairId}">${pair ? pair.name : pairId}</button>`;
+                }).join('')}
               </div>
             </div>
           ` : ''}
@@ -381,11 +383,9 @@ function renderTemplates() {
       <div class="template-code-panel" id="code-${template.id}">
         <div class="ai-flex ai-justify-between ai-items-center ai-mb-2">
           <span style="font-family: var(--ai-font-mono); font-size: 0.75rem; color: var(--ai-text-muted);">
-            HTML &bull; ${template.id}.html
+            npx llmcss template get ${template.id}
           </span>
-          <button class="ai-btn ai-btn-ghost ai-btn-xs copy-snippet-btn" data-id="${template.id}">
-            Copy Code
-          </button>
+          <button class="ai-btn ai-btn-ghost ai-btn-xs copy-snippet-btn" data-id="${template.id}">Copy</button>
         </div>
         <pre><code>${escapeHtml(template.html)}</code></pre>
       </div>
@@ -486,7 +486,14 @@ function attachTemplateCardHandlers() {
 function updateCategoryButtons() {
   categoryNav?.querySelectorAll('.category-filter-btn').forEach((btn) => {
     const cat = btn.getAttribute('data-category');
-    if (cat === activeCategory) {
+    const count = cat === 'all' ? wireframeTemplates.length : wireframeTemplates.filter((t) => t.section === cat).length;
+    const label = (btn.getAttribute('data-label') || btn.textContent || '').replace(/\s*\d+$/, '').trim();
+    if (!btn.getAttribute('data-label')) btn.setAttribute('data-label', label);
+    btn.textContent = `${btn.getAttribute('data-label')} ${count}`;
+    btn.toggleAttribute('disabled', !!activeBlueprintId);
+    if (activeBlueprintId) {
+      btn.classList.remove('is-active');
+    } else if (cat === activeCategory) {
       btn.classList.add('is-active');
     } else {
       btn.classList.remove('is-active');
@@ -497,9 +504,13 @@ function updateCategoryButtons() {
 // ============================================================================
 // INITIALIZATION
 // ============================================================================
-function init() {
+async function init() {
+  await mountChrome();
+  searchInput = document.getElementById('template-search') as HTMLInputElement | null;
+  themeToggle = document.getElementById('theme-mode-toggle');
   bindFontSwitchers(() => applyThemeSettings());
   applyThemeSettings();
+  updateCategoryButtons();
 
   // 1. Render Blueprints
   renderBlueprintBar();
@@ -576,16 +587,21 @@ function init() {
     applyThemeSettings();
   });
 
-  // 9. Full Preview Modal Dismiss
+  const closePreview = () => fullPreviewModal?.classList.remove('is-open');
   document.querySelectorAll('[data-dismiss="modal"]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      fullPreviewModal?.classList.remove('is-open');
-    });
+    btn.addEventListener('click', closePreview);
   });
   fullPreviewModal?.addEventListener('click', (e) => {
-    if (e.target === fullPreviewModal) {
-      fullPreviewModal.classList.remove('is-open');
-    }
+    if (e.target === fullPreviewModal) closePreview();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePreview();
+  });
+  const copyPreview = document.getElementById('copy-preview-html');
+  copyPreview?.addEventListener('click', (e) => {
+    if (!activeBlueprintId) return;
+    const html = assembleBlueprintHtml(activeBlueprintId);
+    if (html) copyToClipboard(html, 'Page HTML', e.currentTarget as HTMLElement);
   });
 
   // 10. Copy All Blueprint CLI

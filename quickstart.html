@@ -15,20 +15,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/css/index.css" />
+  <script>
+    (function () {
+      var t = localStorage.getItem('cssai-theme');
+      if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-ai-theme', t);
+    })();
+  </script>
   <style>
-    .site-nav-link {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--ai-text-secondary);
-      text-decoration: none;
-      padding: 0.25rem 0.5rem;
-      border-radius: var(--ai-radius-xs);
-    }
-    .site-nav-link:hover,
-    .site-nav-link.is-active {
-      color: var(--ai-text-primary);
-      background-color: var(--ai-surface-1);
-    }
     .qs-step { margin-top: var(--ai-space-12); }
     .qs-step pre {
       margin-top: var(--ai-space-3);
@@ -43,34 +36,27 @@
   </style>
 </head>
 <body>
-  <header class="ai-navbar" style="height: 3.75rem; border-bottom: 1px solid var(--ai-border); background: var(--ai-surface-0); position: sticky; top: 0; z-index: 45;">
-    <div class="ai-container ai-flex ai-justify-between ai-items-center" style="max-width: 1440px;">
-      <a href="/" class="ai-brand" style="font-size: 1.125rem; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
-        <span style="font-family: var(--ai-font-display); font-weight: 800; letter-spacing: -0.03em;">LLMCSS</span>
-      </a>
-      <nav class="ai-flex ai-items-center ai-gap-1">
-        <a href="/components.html" class="site-nav-link">Components</a>
-        <a href="/templates.html" class="site-nav-link">Templates</a>
-        <a href="/quickstart" class="site-nav-link is-active">Docs</a>
-        <a href="/#pricing" class="site-nav-link">Pricing</a>
-        <a href="/account" class="site-nav-link">Account</a>
-        <a href="/api/checkout.php" class="ai-btn ai-btn-primary ai-btn-sm" style="margin-left: 0.5rem;">Get Pro</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="ai-container" style="max-width: 44rem; padding: var(--ai-space-16) var(--ai-space-4) var(--ai-space-24);">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="site-header" class="site-header"></header>
+  <main id="main" class="ai-container" style="max-width: 44rem; padding: var(--ai-space-16) var(--ai-space-4) var(--ai-space-24);">
     <h1>Quickstart</h1>
+    <p class="ai-text-sm" style="margin-top: var(--ai-space-3);">
+      <a href="#qs-css">Install</a> ·
+      <a href="#qs-component">Component</a> ·
+      <a href="#qs-layout">Layout</a> ·
+      <a href="#qs-pro">Pro</a>
+    </p>
     <p class="ai-text-secondary" style="margin-top: var(--ai-space-2);">CSS library. Classes are <code>ai-*</code>. Copy CSS, use the CLI, or point an agent at MCP.</p>
 
-    <section class="qs-step">
+    <section class="qs-step" id="qs-css">
       <h2>1. Link the stylesheet</h2>
       <pre><code>&lt;link rel="stylesheet" href="https://llmcss.io/llmcss.css" /&gt;
 &lt;button class="ai-btn ai-btn-primary"&gt;Save&lt;/button&gt;</code></pre>
       <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-3);">Dark mode: <code>data-ai-theme="dark"</code> on <code>&lt;html&gt;</code>. Skin: <code>data-ai-skin="obsidian"</code>.</p>
+      <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-3);">That file is CSS only. Buttons and layout work. Modals, tabs, and <code>data-ai-toggle</code> need the optional runtime from this repo (<code>src/runtime</code>) after you clone it. Skip that for a static page.</p>
     </section>
 
-    <section class="qs-step">
+    <section class="qs-step" id="qs-component">
       <h2>2. Copy a free component</h2>
       <p class="ai-text-secondary" style="margin-top: var(--ai-space-2);">Open the <a href="/components.html">gallery</a> and copy HTML, or:</p>
       <pre><code>npx llmcss list
@@ -78,7 +64,7 @@ npx llmcss add btn-variants</code></pre>
       <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-3);">Writes <code>components/primitive/btn-variants.html</code>. Agents can fetch <code>https://llmcss.io/r/btn-variants.json</code>.</p>
     </section>
 
-    <section class="qs-step">
+    <section class="qs-step" id="qs-layout">
       <h2>3. A first layout</h2>
       <pre><code>&lt;div class="ai-container" style="max-width: 40rem; padding: var(--ai-space-8);"&gt;
   &lt;h1&gt;Hello&lt;/h1&gt;
@@ -105,19 +91,15 @@ npx llmcss template blueprint saas-landing</code></pre>
       <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-3);">Stdio MCP. It talks to llmcss.io. Nothing to host yourself.</p>
     </section>
 
-    <section class="qs-step">
+    <section class="qs-step" id="qs-pro">
       <h2>6. Pro</h2>
-      <p class="ai-text-secondary" style="margin-top: var(--ai-space-2);">$9/month. Token is shown once after checkout.</p>
+      <p class="ai-text-secondary" style="margin-top: var(--ai-space-2);">$9/month Polar subscription. Token is shown once on <a href="/account">/account</a>.</p>
       <pre><code>npx llmcss login llmcss_live_...
 npx llmcss add tool-trace</code></pre>
-      <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-3);">Or paste the token under License on the <a href="/components.html">components</a> page. <a href="/#pricing">Pricing</a></p>
+      <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-3);"><a href="/account">Account</a> · <a href="/#pricing">Pricing</a></p>
     </section>
   </main>
-  <script>
-    (function () {
-      var t = localStorage.getItem('cssai-theme');
-      if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-ai-theme', t);
-    })();
-  </script>
+  <footer id="site-footer" class="site-footer"></footer>
+  <script type="module" src="/src/showcase/docs.ts"></script>
 </body>
 </html>

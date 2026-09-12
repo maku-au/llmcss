@@ -1,16 +1,14 @@
+import { mountChrome } from './chrome';
+import { downloadProZip, getBrowserToken, setBrowserToken, validateToken } from './license';
+
 const params = new URLSearchParams(location.search);
 const checkoutId = params.get('checkout_id');
 const revealBox = document.getElementById('reveal-box');
+const statusBox = document.getElementById('status-box');
 const form = document.getElementById('validate-form') as HTMLFormElement | null;
 const input = document.getElementById('token-input') as HTMLInputElement | null;
 const out = document.getElementById('validate-out');
-const themeToggle = document.getElementById('theme-mode-toggle');
-
-function applyAccountTheme() {
-  const saved = localStorage.getItem('cssai-theme');
-  const theme = saved === 'dark' || saved === 'light' ? saved : 'light';
-  document.documentElement.setAttribute('data-ai-theme', theme);
-}
+const validateBtn = document.getElementById('validate-btn') as HTMLButtonElement | null;
 
 function show(el: HTMLElement | null, html: string) {
   if (!el) return;
@@ -18,10 +16,13 @@ function show(el: HTMLElement | null, html: string) {
   el.innerHTML = html;
 }
 
-function waitingMarkup(extra = ''): string {
-  return `<p class="ai-text-sm ai-text-secondary">Waiting for Polar webhook...</p>
-    <div class="ai-progress ai-progress-indeterminate" style="margin-top: var(--ai-space-3);"><div class="ai-progress-bar"></div></div>
-    ${extra}`;
+function hide(el: HTMLElement | null) {
+  if (el) el.style.display = 'none';
+}
+
+function maskToken(token: string): string {
+  if (token.length < 16) return token;
+  return token.slice(0, 14) + '…' + token.slice(-4);
 }
 
 function bindCopy(token: string) {
@@ -37,25 +38,62 @@ function bindCopy(token: string) {
         }, 2000);
       }
     } catch {
-      /* ignore */
+      if (btn) btn.textContent = 'Copy failed';
     }
+  });
+  document.getElementById('download-zip-btn')?.addEventListener('click', async () => {
+    const ok = await downloadProZip(token);
+    const zipOut = document.getElementById('zip-status');
+    if (zipOut) zipOut.textContent = ok ? 'Download started.' : 'Zip download failed.';
   });
 }
 
-function renderToken(token: string) {
+function renderFreshToken(token: string) {
   if (!revealBox) return;
   show(
     revealBox,
-    `
-        <h2 class="ai-card-title">License token (shown once)</h2>
-        <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-2);">Copy it now. We will not display it again.</p>
-        <pre style="margin-top: var(--ai-space-4); overflow-x: auto;"><code id="token-once">${token}</code></pre>
-        <button class="ai-btn ai-btn-outline ai-btn-sm" type="button" id="copy-token" style="margin-top: var(--ai-space-3);">Copy token</button>
-        <p class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-4);">Zip backup: send this token as Bearer to /api/download-zip.php</p>
-      `
+    `<h2 class="ai-card-title">License token (shown once)</h2>
+     <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-2);">Save it now. We will not display the full key again.</p>
+     <pre style="margin-top: var(--ai-space-4); overflow-x: auto;"><code id="token-once">${token}</code></pre>
+     <div class="ai-flex ai-gap-2" style="margin-top: var(--ai-space-3); flex-wrap: wrap;">
+       <button class="ai-btn ai-btn-outline ai-btn-sm" type="button" id="copy-token">Copy token</button>
+       <button class="ai-btn ai-btn-primary ai-btn-sm" type="button" id="download-zip-btn">Download zip</button>
+       <a href="/components.html" class="ai-btn ai-btn-ghost ai-btn-sm">Open gallery</a>
+     </div>
+     <p id="zip-status" class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-3);"></p>`
   );
-  localStorage.setItem('llmcss_token', token);
+  setBrowserToken(token);
   bindCopy(token);
+}
+
+async function showActive(token: string) {
+  const data = await validateToken(token);
+  if (!statusBox) return;
+  if (!data.valid) {
+    hide(statusBox);
+    return;
+  }
+  const created = data.created_at ? new Date(data.created_at) : null;
+  const when = created && !Number.isNaN(created.getTime())
+    ? created.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+    : '';
+  show(
+    statusBox,
+    `<div class="ai-flex ai-justify-between ai-items-center ai-flex-wrap ai-gap-3">
+      <div>
+        <span class="ai-badge ai-badge-success">Active</span>
+        <span class="ai-text-sm" style="margin-left: 0.5rem;">${data.plan || 'Pro'} ${data.prefix || ''}${when ? ' · issued ' + when : ''}</span>
+        <p class="ai-text-xs ai-text-muted" style="margin-top: 0.35rem;">Saved key ${maskToken(token)}</p>
+      </div>
+      <button type="button" class="ai-btn ai-btn-outline ai-btn-sm" id="download-zip-btn">Download zip</button>
+    </div>
+    <p id="zip-status" class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-3);"></p>`
+  );
+  document.getElementById('download-zip-btn')?.addEventListener('click', async () => {
+    const ok = await downloadProZip(token);
+    const zipOut = document.getElementById('zip-status');
+    if (zipOut) zipOut.textContent = ok ? 'Download started.' : 'Zip download failed.';
+  });
 }
 
 async function pollOnce(): Promise<'ok' | 'wait' | 'done'> {
@@ -63,12 +101,17 @@ async function pollOnce(): Promise<'ok' | 'wait' | 'done'> {
   const res = await fetch('/api/reveal.php?checkout_id=' + encodeURIComponent(checkoutId), { cache: 'no-store' });
   const data = await res.json().catch(() => ({}));
   if (res.status === 404) return 'wait';
+  if (res.status === 403) {
+    show(revealBox, `<p class="ai-text-sm">This checkout is revoked or refunded.</p>`);
+    return 'ok';
+  }
   if (data.token) {
-    renderToken(data.token);
+    renderFreshToken(data.token);
+    await showActive(data.token);
     return 'ok';
   }
   if (data.shown_once === false) {
-    show(revealBox, `<p class="ai-text-sm">Token already revealed for this checkout. Use the paste box below or ask the operator to re-issue.</p>`);
+    show(revealBox, `<p class="ai-text-sm">Token already revealed for this checkout. Paste the saved key below, or email webmaster@llmcss.io.</p>`);
     return 'ok';
   }
   return 'done';
@@ -76,56 +119,82 @@ async function pollOnce(): Promise<'ok' | 'wait' | 'done'> {
 
 async function startPoll() {
   if (!checkoutId || !revealBox) return;
-  revealBox.style.display = 'block';
-  show(revealBox, waitingMarkup());
+  show(revealBox, `<p class="ai-text-sm ai-text-secondary">Confirming payment...</p>
+    <div class="ai-progress ai-progress-indeterminate" style="margin-top: var(--ai-space-3);"><div class="ai-progress-bar"></div></div>`);
   const delays = [1000, 1000, 1500, 1500, 2000, 2000, 2500, 3000, 4000, 5000, 6000, 8000, 8000];
-  for (let i = 0; i < delays.length; i++) {
+  for (const d of delays) {
     const state = await pollOnce();
     if (state === 'ok') return;
     if (state === 'wait') {
-      await new Promise((r) => setTimeout(r, delays[i]));
+      await new Promise((r) => setTimeout(r, d));
       continue;
     }
     break;
   }
   show(
     revealBox,
-    `<p class="ai-text-sm">Still waiting on Polar. You can retry without reloading.</p>
-     <button type="button" class="ai-btn ai-btn-outline ai-btn-sm" id="retry-reveal" style="margin-top: var(--ai-space-3);">Check again</button>`
+    `<p class="ai-text-sm">Payment may still be settling. Retry, open your Polar receipt, or email webmaster@llmcss.io.</p>
+     <div class="ai-flex ai-gap-2" style="margin-top: var(--ai-space-3); flex-wrap: wrap;">
+       <button type="button" class="ai-btn ai-btn-outline ai-btn-sm" id="retry-reveal">Check again</button>
+       <a class="ai-btn ai-btn-ghost ai-btn-sm" href="https://polar.sh">Polar</a>
+     </div>`
   );
-  document.getElementById('retry-reveal')?.addEventListener('click', () => {
-    startPoll();
-  });
+  document.getElementById('retry-reveal')?.addEventListener('click', () => startPoll());
 }
 
-applyAccountTheme();
-themeToggle?.addEventListener('click', () => {
-  const next = document.documentElement.getAttribute('data-ai-theme') === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('cssai-theme', next);
-  applyAccountTheme();
-});
+function paintValidate(data: Awaited<ReturnType<typeof validateToken>>) {
+  if (!out) return;
+  if (data.error === 'empty') {
+    out.innerHTML = '<span class="ai-badge ai-badge-neutral">Enter a token</span>';
+    return;
+  }
+  if (data.error === 'offline') {
+    out.innerHTML = '<span class="ai-badge ai-badge-warning">Offline</span>';
+    return;
+  }
+  if (data.error === 'rate_limited') {
+    out.innerHTML = '<span class="ai-badge ai-badge-warning">Too many tries</span>';
+    return;
+  }
+  if (data.valid) {
+    const created = data.created_at ? new Date(data.created_at) : null;
+    const when = created && !Number.isNaN(created.getTime())
+      ? created.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+      : '';
+    out.innerHTML = `<span class="ai-badge ai-badge-success">Active</span>
+      <span class="ai-text-sm" style="margin-left: 0.5rem;">${data.plan || 'Pro'} ${data.prefix || ''}${when ? ' · issued ' + when : ''}</span>`;
+  } else {
+    out.innerHTML = '<span class="ai-badge ai-badge-danger">Not valid</span>';
+  }
+}
 
-if (checkoutId) startPoll();
+async function boot() {
+  await mountChrome();
+  const saved = getBrowserToken();
+  if (saved && input) input.value = saved;
+  if (saved) {
+    const data = await validateToken(saved);
+    paintValidate(data);
+    if (data.valid) await showActive(saved);
+  }
+  if (checkoutId) await startPoll();
+}
 
 form?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const token = (input?.value || '').trim();
   if (!out) return;
-  out.innerHTML = '<span class="ai-spinner ai-spinner-sm" aria-hidden="true"></span> Checking...';
-  const res = await fetch('/api/validate.php', {
-    headers: { Authorization: 'Bearer ' + token, Accept: 'application/json' },
-  });
-  const data = await res.json().catch(() => ({}));
-  if (data.valid) {
-    localStorage.setItem('llmcss_token', token);
-    const created = data.created_at ? new Date(data.created_at) : null;
-    const when =
-      created && !Number.isNaN(created.getTime())
-        ? created.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
-        : '';
-    out.innerHTML = `<span class="ai-badge ai-badge-success">Active</span>
-      <span class="ai-text-sm" style="margin-left: 0.5rem;">Pro ${data.prefix || ''}${when ? ' · issued ' + when : ''}</span>`;
-  } else {
-    out.innerHTML = '<span class="ai-badge ai-badge-danger">Not valid</span>';
+  if (!token) {
+    paintValidate({ valid: false, error: 'empty' });
+    return;
   }
+  if (validateBtn) validateBtn.disabled = true;
+  out.innerHTML = '<span class="ai-spinner ai-spinner-sm" aria-hidden="true"></span> Checking...';
+  const data = await validateToken(token);
+  if (data.valid) setBrowserToken(token);
+  paintValidate(data);
+  if (data.valid) await showActive(token);
+  if (validateBtn) validateBtn.disabled = false;
 });
+
+boot();

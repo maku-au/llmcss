@@ -4,77 +4,54 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Account | LLMCSS</title>
-  <meta name="description" content="LLMCSS license token and Pro account." />
+  <meta name="description" content="LLMCSS Pro is a $9/month Polar subscription. Your license token is shown once after checkout." />
   <meta property="og:title" content="Account | LLMCSS" />
-  <meta property="og:description" content="View your one-time license token and validate a Pro key." />
+  <meta property="og:description" content="Manage your LLMCSS Pro license token." />
   <meta property="og:url" content="https://llmcss.io/account" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/css/index.css" />
-  <style>
-    .site-nav-link {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--ai-text-secondary);
-      text-decoration: none;
-      padding: 0.25rem 0.5rem;
-      border-radius: var(--ai-radius-xs);
-    }
-    .site-nav-link:hover,
-    .site-nav-link.is-active {
-      color: var(--ai-text-primary);
-      background-color: var(--ai-surface-1);
-    }
-  </style>
+  <script>
+    (function () {
+      var t = localStorage.getItem('cssai-theme');
+      if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-ai-theme', t);
+    })();
+  </script>
 </head>
 <body>
-  <header class="ai-navbar" style="height: 3.75rem; border-bottom: 1px solid var(--ai-border); background: var(--ai-surface-0);">
-    <div class="ai-container ai-flex ai-justify-between ai-items-center" style="max-width: 1440px;">
-      <a href="/" class="ai-brand" style="font-size: 1.125rem; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
-        <span style="font-family: var(--ai-font-display); font-weight: 800; letter-spacing: -0.03em;">LLMCSS</span>
-      </a>
-      <nav class="ai-flex ai-items-center ai-gap-1">
-        <a href="/components.html" class="site-nav-link">Components</a>
-        <a href="/templates.html" class="site-nav-link">Templates</a>
-        <a href="/quickstart" class="site-nav-link">Docs</a>
-        <a href="/#pricing" class="site-nav-link">Pricing</a>
-        <a href="/account" class="site-nav-link is-active">Account</a>
-        <button id="theme-mode-toggle" class="ai-btn ai-btn-outline ai-btn-xs ai-btn-icon" title="Toggle Light/Dark Mode" aria-label="Toggle Light/Dark Mode" type="button" style="width: 2rem; height: 2rem; padding: 0; display: inline-flex; align-items: center; justify-content: center; margin-left: 0.35rem;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-          </svg>
-        </button>
-        <a href="/api/checkout.php" class="ai-btn ai-btn-primary ai-btn-sm" style="margin-left: 0.5rem;">Get Pro</a>
-      </nav>
-    </div>
-  </header>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="site-header" class="site-header"></header>
+  <main id="main" class="ai-container" style="max-width: 40rem; padding: var(--ai-space-16) var(--ai-space-4) var(--ai-space-24);">
+    <h1>Your license</h1>
+    <p class="ai-text-secondary" style="margin-top: var(--ai-space-2);">
+      Pro is a <strong>$9/month</strong> Polar subscription. The key is shown once after payment. Refunds follow
+      <a href="https://polar.sh">Polar</a> policy. Questions: webmaster@llmcss.io
+    </p>
 
-  <main class="ai-container" style="max-width: 40rem; padding: var(--ai-space-16) var(--ai-space-4);">
-    <h1 class="ai-font-display" style="font-size: 2rem; font-weight: 700; letter-spacing: -0.03em;">Your license</h1>
-    <p class="ai-text-secondary" style="margin-top: var(--ai-space-2);">After Polar checkout the token is shown once. Paste a saved token to check it. Digital goods: refunds follow Polar policy.</p>
-
-    <div id="reveal-box" class="ai-card" style="padding: var(--ai-space-6); margin-top: var(--ai-space-8); display: none;"></div>
+    <div id="status-box" class="ai-card" style="padding: var(--ai-space-6); margin-top: var(--ai-space-8); display: none;"></div>
+    <div id="reveal-box" class="ai-card" style="padding: var(--ai-space-6); margin-top: var(--ai-space-6); display: none;"></div>
 
     <div class="ai-card" style="padding: var(--ai-space-6); margin-top: var(--ai-space-6);">
       <h2 class="ai-card-title">Paste a token</h2>
       <form id="validate-form" class="ai-flex ai-flex-col ai-gap-3" style="margin-top: var(--ai-space-4);">
         <input id="token-input" class="ai-input" type="text" autocomplete="off" placeholder="llmcss_live_..." />
-        <button class="ai-btn ai-btn-primary" type="submit">Validate</button>
+        <button class="ai-btn ai-btn-primary" type="submit" id="validate-btn">Validate</button>
       </form>
       <p id="validate-out" class="ai-text-sm" style="margin-top: var(--ai-space-3);"></p>
     </div>
 
     <div class="ai-card" style="padding: var(--ai-space-6); margin-top: var(--ai-space-6);">
       <h2 class="ai-card-title">Use it</h2>
+      <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-2);">Unlock Pro in the <a href="/components.html">gallery</a>, or in the CLI:</p>
       <pre style="margin-top: var(--ai-space-3); font-size: 0.8125rem; overflow-x: auto;"><code>npx llmcss login &lt;token&gt;
-npx llmcss add tool-trace
-npx llmcss-mcp</code></pre>
+npx llmcss add tool-trace</code></pre>
     </div>
   </main>
+  <footer id="site-footer" class="site-footer"></footer>
   <script type="module" src="/src/showcase/account.ts"></script>
 </body>
 </html>
