@@ -1,0 +1,10 @@
+{
+  "html.customData": ["./public/html-custom-data.json"],
+  "css.customData": ["./public/css-custom-data.json"],
+  "less.customData": ["./public/css-custom-data.json"],
+  "scss.customData": ["./public/css-custom-data.json"],
+  "editor.snippetSuggestions": "top",
+  "files.associations": {
+    "*.code-snippets": "jsonc"
+  }
+}

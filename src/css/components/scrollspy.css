@@ -1,0 +1,125 @@
+@layer components {
+  /* ==========================================================================
+     Scrollspy: a sticky in-page outline.
+     The active link is marked with a hairline on the inline-start edge that
+     replaces the rail's own hairline, so the indicator appears to move. No
+     glow, no bar animation. With scrollspy.ts absent the author's own
+     .is-active link stays marked and every link still jumps to its section.
+     ========================================================================== */
+
+  .ai-scrollspy {
+    position: sticky;
+    inset-block-start: var(--ai-space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--ai-space-2);
+    align-self: start;
+  }
+
+  .ai-scrollspy-title {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--ai-text-muted);
+  }
+
+  .ai-scrollspy-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-inline-start: 1px solid var(--ai-border);
+  }
+
+  .ai-scrollspy-link {
+    display: block;
+    margin-inline-start: -1px;
+    padding: var(--ai-space-2) var(--ai-space-3);
+    border-inline-start: 1px solid transparent;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: var(--ai-text-muted);
+    text-decoration: none;
+    transition: color var(--ai-duration-fast) var(--ai-ease-out),
+                border-color var(--ai-duration-fast) var(--ai-ease-out);
+  }
+  .ai-scrollspy-link:hover {
+    color: var(--ai-text-primary);
+    border-inline-start-color: var(--ai-border-strong);
+  }
+  .ai-scrollspy-link:focus-visible {
+    outline: none;
+    box-shadow: var(--ai-focus-ring);
+    border-radius: var(--ai-radius-sm);
+  }
+  .ai-scrollspy-link.is-active,
+  .ai-scrollspy-link[aria-current="location"] {
+    color: var(--ai-text-primary);
+    font-weight: 600;
+    border-inline-start-color: var(--ai-accent);
+  }
+
+  /* Second level entries, indented under their parent */
+  .ai-scrollspy-link.is-nested {
+    padding-inline-start: var(--ai-space-6);
+    font-size: 0.75rem;
+  }
+
+  /* --------------------------------------------------------------------------
+     Demo scaffolding: outline beside a scrolling pane of sections
+     -------------------------------------------------------------------------- */
+  .ai-scrollspy-layout {
+    display: grid;
+    gap: var(--ai-space-6);
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+  @media (min-width: 48rem) {
+    .ai-scrollspy-layout {
+      grid-template-columns: minmax(9rem, 14rem) minmax(0, 1fr);
+    }
+  }
+
+  .ai-scrollspy-pane {
+    max-block-size: 20rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-inline-end: var(--ai-space-2);
+    scroll-behavior: smooth;
+    scrollbar-color: var(--ai-surface-3) transparent;
+  }
+
+  .ai-scrollspy-section {
+    scroll-margin-block-start: var(--ai-space-2);
+    padding-block-end: var(--ai-space-6);
+  }
+  .ai-scrollspy-section + .ai-scrollspy-section {
+    border-block-start: 1px solid var(--ai-border-subtle);
+    padding-block-start: var(--ai-space-6);
+  }
+
+  .ai-scrollspy-heading {
+    margin: 0 0 var(--ai-space-2);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ai-text-primary);
+  }
+
+  .ai-scrollspy-body {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--ai-text-secondary);
+    max-inline-size: 60ch;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ai-scrollspy-link {
+      transition: none;
+    }
+    .ai-scrollspy-pane {
+      scroll-behavior: auto;
+    }
+  }
+}

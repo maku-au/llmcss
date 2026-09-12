@@ -1,75 +1,60 @@
-# LLMCSS: The Human-Craft UI Framework for Agents & Humans
-> An open, modern UI system engineered specifically for AI agents and human developers to build clean, tactile, non-cookie-cutter interfaces with zero AI slop.
+# LLMCSS
 
-## Machine-readable manifests (generated from the CSS, never hand-edited)
+> Native CSS UI framework for AI coding agents and human developers. One prefix, `ai-*`, no build step.
 
-- https://llmcss.io/classes.json : every ai-* class with its family and which responsive (ai-sm:/md:/lg:/xl:) and container-query (ai-cq:) prefixes exist. If a class is not in this file it does not exist.
-- https://llmcss.io/tokens.json : every --ai-* token with its value in light, dark, each skin, and each focus preset.
-- https://llmcss.io/states.json : every is-* state class, plus every data-ai-* attribute with allowed values and what applies it (author or runtime).
-- https://llmcss.io/registry.json and https://llmcss.io/r/{id}.json : component catalog and per-component HTML (free ids only). Pro ids are served from https://llmcss.io/r/pro/{id}.json with `Authorization: Bearer <token>`; without a token the registry entry has `locked: true` and `html: null`.
+LLMCSS is a pure-CSS component library plus generated manifests that tell an agent exactly which classes and tokens exist.
+1176 `ai-*` classes and 82 `--ai-*` tokens ship in one stylesheet under `@layer reset, tokens, base, components, utilities`.
+106 components (93 free, 13 Pro), 18 wireframe section templates, and 4 page blueprints are addressable by id.
+An optional 1-file runtime adds modal, drawer, dropdown, accordion, tabs, toast, and command palette behavior.
+Eleven anti-slop laws below are the design contract; `npx llmcss audit <file>` enforces them.
+
+## Install
+
+```html
+<link rel="stylesheet" href="https://llmcss.io/llmcss.css" />
+<script src="https://llmcss.io/llmcss.js" defer></script>
+```
+
+The stylesheet is the whole install. The script is optional and only needed for interactive components.
+Pin a release with the versioned path: https://llmcss.io/v/0.2.0/llmcss.css (served immutable; the unversioned path always tracks latest).
+
+## Machine-readable manifests, generated from the CSS
+
+- https://llmcss.io/classes.json : every `ai-*` class with its family and the responsive (`ai-sm:`, `ai-md:`, `ai-lg:`, `ai-xl:`) and container-query (`ai-cq:`) prefixes that exist for it. If a class is not in this file, it does not exist.
+- https://llmcss.io/tokens.json : every `--ai-*` token with its value in light, dark, each skin, and each focus preset.
+- https://llmcss.io/states.json : every `is-*` state class, plus every `data-ai-*` attribute with allowed values and whether the author or the runtime applies it.
+- https://llmcss.io/registry.json and https://llmcss.io/r/{id}.json : component catalog and free component HTML.
 - https://llmcss.io/templates.json : wireframe section templates and page blueprints.
-- MCP tools list_classes, list_tokens, list_states return the same data.
-- Runtime for interactive components: `<script src="https://llmcss.io/llmcss.js" defer></script>`. Required for data-ai-toggle (modal, drawer, dropdown, accordion), data-ai-tab, data-ai-dismiss, and the <ai-*> custom elements. Nesting rules: a dropdown toggle sits inside .ai-dropdown; an accordion toggle inside .ai-accordion-item; tabs inside .ai-tabs with data-ai-tab="#panel-id"; modal and drawer toggles use data-ai-target="#id". Pure CSS components never need it.
+- MCP tools `list_classes`, `list_tokens`, `list_states` return the same data.
 
-## Quickstart
-- Humans: https://llmcss.io/quickstart
-- Repo: https://github.com/maku-au/llmcss/blob/main/QUICKSTART.md
-- Stylesheet: https://llmcss.io/llmcss.css
-- `npx llmcss add btn-variants`
+## Runtime
 
-## Quick Facts
-- **Pure Native CSS**: Zero build steps, zero Tailwind runtime dependencies, uses `@layer` (reset, tokens, base, components, utilities).
-- **Design Direction Harness**: 4 curated archetypes and 10 deterministic anti-slop laws to ensure autonomous agents generate human-craft interfaces.
-- **Modern Responsive Engine**: Native Container Queries (`.ai-cq`, `@container`) and intrinsic auto-fit grids (`.ai-grid-auto-fit`) eliminate media query bloat.
-- **Hardware-Accelerated Motion**: Pure CSS spinners, indeterminate progress bars, tactile sliders, shimmer skeletons, with strict `prefers-reduced-motion` compliance.
-- **Dual-Mode**: Standard semantic HTML with `data-ai-*` attributes or Light-DOM custom elements (`<ai-modal>`, `<ai-tabs>`, `<ai-dropdown>`, etc.).
-- **Curated Archetypes**: Theme skins via `[data-ai-skin="executive|fintech|obsidian|editorial|enterprise|emerald|violet|rose"]`.
-- **Focus ring**: tokens `--ai-focus-color`, `--ai-focus-width`, `--ai-focus-offset`, `--ai-tap-highlight`. Presets on `<html>`: `data-ai-focus="neutral|thin|none"`. Rings only appear for `:focus-visible` (keyboard), never on tap.
-- **Monetization**: Free open-source primitives and starter sections (MIT); Pro catalog for advanced bento, SaaS dashboards, and e-commerce flows.
+Load the script once per page when you use `data-ai-toggle="modal|drawer|dropdown|accordion"`, `data-ai-dismiss="modal|drawer|toast"`, `data-ai-tab="#panel"`, or the `<ai-modal> <ai-drawer> <ai-dropdown> <ai-accordion> <ai-tabs> <ai-toast> <ai-command-palette>` custom elements. Modal and drawer toggles carry `data-ai-target="#id"` and the target holds a backdrop plus a box or panel; a dropdown toggle sits inside `.ai-dropdown`; an accordion toggle inside `.ai-accordion-item`; tabs sit inside `.ai-tabs`. Open state is the `open` attribute and the `.is-open` class interchangeably. Everything else is CSS-only.
 
-## The 4 Design Direction Archetypes
-1. **Executive Slate** (`data-ai-skin="executive"`): High-density data workspace, cool slate neutrals, 4px architectural radius, tabular numerals.
-2. **Fintech Titanium** (`data-ai-skin="fintech"`): Institutional clarity, warm titanium stone neutrals, 6px radius, emerald and teal accents, generous whitespace.
-3. **Obsidian Minimal** (`data-ai-skin="obsidian"`): Pure monochrome precision, pitch-black background (#000000), stark white accents, 0px-2px sharp radii.
-4. **Editorial Atelier** (`data-ai-skin="editorial"`): Typographic publishing aesthetic, warm paper substrate, serif display headlines, crisp hairline borders.
+## Pro
 
-## The 10 Anti-Slop Laws for AI Agents
-1. **Never Nest Cards**: Flatten hierarchy with whitespace (`--ai-space-6`) or subtle hairline rules (`.ai-divider`).
-2. **Never Pulse Static Dots**: Steady jewel pips (`.ai-status-pip`) for static states; reserve `.is-streaming` strictly for live telemetry.
-3. **Never Use Thick Left Stripes**: Uniform 1px architectural borders with a 6px status jewel pip.
-4. **Never Use Electric Purple Gradients**: Multi-stop physical elevation shadows on solid neutral surfaces.
-5. **Never Stamp Monospace Eyebrows**: Lead directly with clear, confident headlines.
-6. **Never Crush Letter-Spacing**: Body tracking at 0; negative tracking only on display titles (`-0.02em` to `-0.035em`).
-7. **Never Use Low-Contrast Text**: WCAG AA compliant contrast on all surfaces and states.
-8. **Never Create Identical KPI Grids**: Anchor a dominant metric with supporting secondary metrics.
-9. **Never Auto-Scroll Marquees**: Clean, static, scannable badge rails and grids.
-10. **Always Theme Browser Surfaces**: Caret color, custom scrollbars, selection, and tabular numerals.
-11. **Never Use Square Grid Backgrounds**: No graph-paper or dot-grid backgrounds. Use solid surfaces (`--ai-surface-0/1`) and 1px hairline borders.
+13 of the 106 components are Pro. Their `registry.json` entry has `locked: true` and `html: null`, and no file exists at `/r/{id}.json`. Real markup comes from `GET https://llmcss.io/r/pro/{id}.json` with `Authorization: Bearer <token>`. `npx llmcss add <pro-id>` exits 1 with a login hint until `npx llmcss login <token>` has stored a token. Never write Pro markup from memory.
 
-## Wireframe Section Templates & Page Blueprints
-- **18 Composable Section Templates**: Header (`wireframe-nav-minimal`, `wireframe-nav-banner`, `wireframe-docs-header`), Hero (`wireframe-hero-split`, `wireframe-hero-centered`, `wireframe-hero-editorial`), Social Proof (`wireframe-social-proof-bar`, `wireframe-quote-band`), Features (`wireframe-features-bento`, `wireframe-features-alternating`, `wireframe-changelog`), Comparison (`wireframe-comparison-matrix`), Pricing (`wireframe-pricing-tiers`), FAQ (`wireframe-faq-accordion`), CTA (`wireframe-cta-card`), Footer (`wireframe-footer-columns`), App Shell (`wireframe-app-shell`, `wireframe-dash-header`).
-- **4 Full-Page Blueprints / Recipes**:
-  1. `saas-landing`: Nav -> Split Hero -> Social Proof Rail -> Bento Features -> Pricing Tiers -> FAQ -> CTA -> Footer.
-  2. `developer-tool`: Banner Nav -> Centered Hero -> Social Proof Rail -> Alternating Features -> Comparison Matrix -> CTA -> Footer.
-  3. `editorial-manifesto`: Minimal Nav -> Editorial Hero -> Social Proof Rail -> Bento Features -> FAQ -> CTA -> Footer.
-  4. `dashboard-shell`: Full Application Viewport Shell with Sidebar, Topbar, Metric Row, and Data Canvas.
-- **CLI Commands**:
-  - `npx llmcss templates`: List all 18 section templates with placement guidance.
-  - `npx llmcss template get <id>`: Output clean semantic HTML for a section.
-  - `npx llmcss template blueprints`: List full-page composition recipes.
-  - `npx llmcss template blueprint <name>`: Assemble and output full-page HTML.
-- **MCP Server Tools**: `list_wireframe_templates`, `get_wireframe_template`, `get_page_blueprint`.
-- **Templates Registry JSON**: https://llmcss.io/templates.json
+## Anti-slop laws
 
-## Agent Tooling & Verification
-- CLI Design Harness: `npx llmcss harness [executive|fintech|obsidian|editorial]`
-- CLI Design Quality Audit: `npx llmcss audit <file>` (validates against all 10 anti-slop rules)
-- CLI Linter and Validator: `npx llmcss validate <file>` and `npx llmcss lint --fix <file>` (auto-migrates non-prefixed classes)
-- CLI Component Installer: `npx llmcss add <component-id>`
-- CLI Template Extractor: `npx llmcss template get <id>` and `npx llmcss template blueprint <name>`
-- Stdio MCP Server: `npx llmcss-mcp` (exposes `llmcss_get_harness`, `llmcss_slop_audit`, `search_components`, `get_component_markup`, `validate_markup`, `list_tokens`, `list_wireframe_templates`, `get_wireframe_template`, `get_page_blueprint`)
-- Registry Index: https://llmcss.io/registry.json
-- Per-component (free): https://llmcss.io/r/{id}.json
-- Templates Index: https://llmcss.io/templates.json
-- Full Agent Specification & Code Patterns: https://llmcss.io/llms-full.txt
-- Agent rules: https://github.com/maku-au/llmcss/blob/main/AGENTS.md
+[laws:start]
+1. Never nest containers: Do not put a bordered card inside another bordered card. Nested boxes waste screen real estate and create dizzying visual layers. Instead: Use generous whitespace (`--ai-space-6`), subtle hairline rules (`<hr class="ai-divider">`), or distinct background shifts (`var(--ai-surface-1)`).
+2. Never pulse static status pips: Never attach continuous breathing or pulsing animations (`@keyframes pulse`) to steady states like "System Normal", "Online", or "Completed". Flashing elements demand attention when nothing has changed. Instead: Render a calm, static jewel pip with `.ai-status-pip` and `box-shadow: 0 0 0 2px color-mix(...)`. Reserve `.ai-status-pip.is-streaming` strictly for ongoing inference or active data transmission.
+3. Never use colored left-stripe borders: Do not place thick 3px to 5px colored vertical stripes on the left edge of cards, toasts, or dialogs. This 2012-era alert tell makes every element scream for attention. Instead: Use a 1px uniform architectural border (`border: 1px solid var(--ai-border)`), accompanied by a subtle 6px status jewel pip or an inline icon.
+4. Never use electric purple or cyan halos and radial glows: Avoid murky dark backgrounds flooded with saturated purple-to-blue gradients or zero-offset neon drop shadows. Instead: Build depth using multi-stop physical elevation with a slight vertical offset: `box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 8px 16px -4px rgba(0, 0, 0, 0.04);`.
+5. Never stamp formulaic eyebrows above headlines: Avoid adding an uppercase monospace overline (`01 // FEATURES` or `OVERVIEW`) above every heading. When repeated everywhere, eyebrows become visual noise that delays reading the headline. Instead: Lead directly with a confident, well-typeset headline (`h1` or `h2`). If context is needed, fold it into the heading or the supporting sentence.
+6. Never crush letter-spacing below -0.04em or justify body text: Do not apply extreme negative letter-spacing that makes characters collide, and never use `text-align: justify`, which causes distracting typographic rivers. Instead: Keep body text at tracking `0` with `line-height: 1.6`. Restrict negative tracking to large display headings (`-0.02em` to `-0.035em`).
+7. Never place low-contrast gray text on colored backgrounds: Never render neutral `#71717a` gray text over an accent surface or a tinted banner. Instead: Ensure WCAG AA compliance (minimum 4.5:1 for body copy, 3:1 for large display). When the background is tinted, tint the secondary text from the same hue.
+8. Never create flat, identical metric grids: Do not display 4 identical KPI cards with identical weights and icons. Instead: Establish clear hierarchy. Make the primary metric anchor dominant in size (`font-size: 2.5rem; font-weight: 700;`), with supporting secondary metrics grouped in tighter rows or tables below.
+9. Never auto-scroll copy: Do not force readers to wait for auto-scrolling tickers or animated marquee loops to read supported integrations or technologies. Instead: Render a clean, static, responsive badge rail (`.ai-badge-neutral`) or a balanced grid that users can scan at their own speed.
+10. Always theme native browser surfaces: An interface is incomplete if native browser affordances revert to un-themed system defaults. Instead: Verify text selection (`::selection`), caret color (`caret-color: var(--ai-accent)`), custom scrollbars (`scrollbar-color`), link underline offset (`text-underline-offset: 0.2em`), and tabular numerals (`font-variant-numeric: tabular-nums`).
+11. Never use square grid backgrounds: Avoid covering backgrounds in repeating 20px to 40px square grid lines, dot grids, or mesh graph paper patterns built from intersecting linear-gradient declarations. This is one of the most overused, robotic hallmarks of AI-generated template kits. Instead: Lead with clean, distraction-free solid surfaces (`var(--ai-surface-0)`, `var(--ai-bg)`, `var(--ai-surface-1)`) structured with subtle 1px hairline architectural borders (`var(--ai-border)`).
+[laws:end]
+
+## More
+
+- Full agent specification, worked examples, page skeleton, token and utility reference: https://llmcss.io/llms-full.txt
+- Human quickstart: https://llmcss.io/quickstart
+- Component gallery: https://llmcss.io/components
+- Template gallery: https://llmcss.io/templates
+- Drop-in system prompt: https://github.com/maku-au/llmcss/blob/main/AGENTS.md

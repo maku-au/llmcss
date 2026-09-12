@@ -1,0 +1,1492 @@
+{
+ "version": 1.1,
+ "properties": [
+  {
+   "name": "--ai-accent",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#2563eb`\n- `dark`: `#3b82f6`\n- `obsidian`: `#18181b`\n- `obsidian:dark`: `#f5f5f5`\n- `editorial`: `#8c4a27`\n- `editorial:dark`: `#c48259`\n- `executive`: `#2563eb`\n- `executive:dark`: `#38bdf8`\n- `fintech`: `#0f766e`\n- `fintech:dark`: `#2dd4bf`\n- `enterprise`: `#0284c7`\n- `enterprise:dark`: `#38bdf8`\n- `accent:emerald`: `#059669`\n- `emerald`: `#059669`\n- `accent:violet`: `#7c3aed`\n- `violet`: `#7c3aed`\n- `accent:rose`: `#e11d48`\n- `rose`: `#e11d48`\n- `accent:teal`: `#0f766e`\n- `accent:steel`: `#475569`\n- `accent:amber`: `#d97706`"
+   },
+   "values": [
+    {
+     "name": "#2563eb"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-accent-hover",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#1d4ed8`\n- `dark`: `#60a5fa`\n- `obsidian`: `#09090b`\n- `obsidian:dark`: `#ffffff`\n- `editorial`: `#733c1f`\n- `editorial:dark`: `#d4956d`\n- `executive`: `#1d4ed8`\n- `executive:dark`: `#7dd3fc`\n- `fintech`: `#115e59`\n- `fintech:dark`: `#5eead4`\n- `enterprise`: `#0369a1`\n- `enterprise:dark`: `#7dd3fc`\n- `accent:emerald`: `#047857`\n- `emerald`: `#047857`\n- `accent:violet`: `#6d28d9`\n- `violet`: `#6d28d9`\n- `accent:rose`: `#be123c`\n- `rose`: `#be123c`\n- `accent:teal`: `#115e59`\n- `accent:steel`: `#334155`\n- `accent:amber`: `#b45309`"
+   },
+   "values": [
+    {
+     "name": "#1d4ed8"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-accent-rgb",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `37, 99, 235`\n- `dark`: `59, 130, 246`\n- `executive`: `37, 99, 235`\n- `executive:dark`: `56, 189, 248`\n- `fintech`: `15, 118, 110`\n- `fintech:dark`: `45, 212, 191`\n- `accent:emerald`: `5, 150, 105`\n- `emerald`: `5, 150, 105`\n- `accent:violet`: `124, 58, 237`\n- `violet`: `124, 58, 237`\n- `accent:rose`: `225, 29, 72`\n- `rose`: `225, 29, 72`\n- `accent:teal`: `15, 118, 110`\n- `accent:steel`: `71, 85, 105`\n- `accent:amber`: `217, 119, 6`"
+   },
+   "values": [
+    {
+     "name": "37, 99, 235"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-accent-subtle",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `rgba(37, 99, 235, 0.08)`\n- `dark`: `rgba(59, 130, 246, 0.15)`\n- `editorial`: `rgba(140, 74, 39, 0.1)`\n- `executive`: `rgba(37, 99, 235, 0.08)`\n- `executive:dark`: `rgba(56, 189, 248, 0.12)`\n- `fintech`: `rgba(15, 118, 110, 0.09)`\n- `fintech:dark`: `rgba(45, 212, 191, 0.14)`\n- `accent:emerald`: `color-mix(in srgb, #059669 10%, transparent)`\n- `emerald`: `color-mix(in srgb, #059669 10%, transparent)`\n- `accent:violet`: `color-mix(in srgb, #7c3aed 10%, transparent)`\n- `violet`: `color-mix(in srgb, #7c3aed 10%, transparent)`\n- `accent:rose`: `color-mix(in srgb, #e11d48 10%, transparent)`\n- `rose`: `color-mix(in srgb, #e11d48 10%, transparent)`\n- `accent:teal`: `color-mix(in srgb, #0f766e 10%, transparent)`\n- `accent:steel`: `color-mix(in srgb, #475569 10%, transparent)`\n- `accent:amber`: `color-mix(in srgb, #d97706 10%, transparent)`"
+   },
+   "values": [
+    {
+     "name": "rgba(37, 99, 235, 0.08)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-accent-text",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#ffffff`\n- `dark`: `#ffffff`\n- `obsidian:dark`: `#09090b`\n- `executive:dark`: `#082f49`\n- `fintech:dark`: `#042f2e`\n- `enterprise:dark`: `#082f49`\n- `accent:emerald`: `#09090b`\n- `emerald`: `#09090b`\n- `accent:violet`: `#ffffff`\n- `violet`: `#ffffff`\n- `accent:rose`: `#ffffff`\n- `rose`: `#ffffff`\n- `accent:teal`: `#ffffff`\n- `accent:steel`: `#ffffff`\n- `accent:amber`: `#09090b`"
+   },
+   "values": [
+    {
+     "name": "#ffffff"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-bg",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#f4f4f5`\n- `dark`: `#09090b`\n- `obsidian`: `#fbfbfb`\n- `obsidian:dark`: `#000000`\n- `editorial`: `#faf7f2`\n- `editorial:dark`: `#161412`\n- `executive`: `#f8fafc`\n- `executive:dark`: `#090d16`\n- `fintech`: `#f8f8f6`\n- `fintech:dark`: `#0c0a09`\n- `enterprise`: `#f8fafc`\n- `enterprise:dark`: `#0b1120`"
+   },
+   "values": [
+    {
+     "name": "#f4f4f5"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-border",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `rgba(24, 24, 27, 0.1)`\n- `dark`: `rgba(255, 255, 255, 0.08)`\n- `obsidian`: `rgba(9, 9, 11, 0.08)`\n- `obsidian:dark`: `rgba(255, 255, 255, 0.12)`\n- `editorial`: `rgba(38, 33, 28, 0.12)`\n- `editorial:dark`: `rgba(242, 237, 228, 0.1)`\n- `executive`: `rgba(15, 23, 42, 0.1)`\n- `executive:dark`: `rgba(255, 255, 255, 0.09)`\n- `fintech`: `rgba(28, 25, 23, 0.1)`\n- `fintech:dark`: `rgba(250, 250, 249, 0.09)`\n- `enterprise`: `#e2e8f0`\n- `enterprise:dark`: `rgba(255, 255, 255, 0.1)`"
+   },
+   "values": [
+    {
+     "name": "rgba(24, 24, 27, 0.1)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-border-hover",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `rgba(24, 24, 27, 0.2)`\n- `dark`: `rgba(255, 255, 255, 0.16)`\n- `executive`: `rgba(15, 23, 42, 0.2)`\n- `executive:dark`: `rgba(255, 255, 255, 0.18)`\n- `fintech`: `rgba(28, 25, 23, 0.2)`\n- `fintech:dark`: `rgba(250, 250, 249, 0.18)`"
+   },
+   "values": [
+    {
+     "name": "rgba(24, 24, 27, 0.2)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-border-strong",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `rgba(24, 24, 27, 0.25)`\n- `dark`: `rgba(255, 255, 255, 0.2)`\n- `obsidian`: `rgba(9, 9, 11, 0.16)`\n- `obsidian:dark`: `rgba(255, 255, 255, 0.22)`\n- `editorial`: `rgba(38, 33, 28, 0.22)`\n- `editorial:dark`: `rgba(242, 237, 228, 0.2)`\n- `executive`: `rgba(15, 23, 42, 0.25)`\n- `executive:dark`: `rgba(255, 255, 255, 0.22)`\n- `fintech`: `rgba(28, 25, 23, 0.25)`\n- `fintech:dark`: `rgba(250, 250, 249, 0.22)`"
+   },
+   "values": [
+    {
+     "name": "rgba(24, 24, 27, 0.25)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-border-subtle",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `rgba(24, 24, 27, 0.05)`\n- `dark`: `rgba(255, 255, 255, 0.04)`\n- `obsidian`: `rgba(9, 9, 11, 0.04)`\n- `obsidian:dark`: `rgba(255, 255, 255, 0.06)`\n- `editorial`: `rgba(38, 33, 28, 0.06)`\n- `executive`: `rgba(15, 23, 42, 0.05)`\n- `executive:dark`: `rgba(255, 255, 255, 0.04)`\n- `fintech`: `rgba(28, 25, 23, 0.05)`\n- `fintech:dark`: `rgba(250, 250, 249, 0.04)`"
+   },
+   "values": [
+    {
+     "name": "rgba(24, 24, 27, 0.05)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-chart-1",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#2563eb`"
+   },
+   "values": [
+    {
+     "name": "#2563eb"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-chart-2",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#0d9488`"
+   },
+   "values": [
+    {
+     "name": "#0d9488"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-chart-3",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#f59e0b`"
+   },
+   "values": [
+    {
+     "name": "#f59e0b"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-chart-4",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#8b5cf6`"
+   },
+   "values": [
+    {
+     "name": "#8b5cf6"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-chart-5",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#ec4899`"
+   },
+   "values": [
+    {
+     "name": "#ec4899"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-chart-6",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#64748b`"
+   },
+   "values": [
+    {
+     "name": "#64748b"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-danger",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#dc2626`\n- `dark`: `#ef4444`"
+   },
+   "values": [
+    {
+     "name": "#dc2626"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-danger-subtle",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `rgba(220, 38, 38, 0.1)`\n- `dark`: `rgba(239, 68, 68, 0.15)`"
+   },
+   "values": [
+    {
+     "name": "rgba(220, 38, 38, 0.1)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-danger-text",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#ffffff`\n- `dark`: `#ffffff`"
+   },
+   "values": [
+    {
+     "name": "#ffffff"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-duration-fast",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `150ms`"
+   },
+   "values": [
+    {
+     "name": "150ms"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-duration-normal",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `250ms`"
+   },
+   "values": [
+    {
+     "name": "250ms"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-duration-slow",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `450ms`"
+   },
+   "values": [
+    {
+     "name": "450ms"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-ease-in-out",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `cubic-bezier(0.4, 0, 0.2, 1)`"
+   },
+   "values": [
+    {
+     "name": "cubic-bezier(0.4, 0, 0.2, 1)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-ease-out",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `cubic-bezier(0.16, 1, 0.3, 1)`"
+   },
+   "values": [
+    {
+     "name": "cubic-bezier(0.16, 1, 0.3, 1)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-ease-smooth",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `cubic-bezier(0.16, 1, 0.3, 1)`"
+   },
+   "values": [
+    {
+     "name": "cubic-bezier(0.16, 1, 0.3, 1)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-ease-spring",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `cubic-bezier(0.16, 1, 0.3, 1)`"
+   },
+   "values": [
+    {
+     "name": "cubic-bezier(0.16, 1, 0.3, 1)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-focus-color",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `color-mix(in srgb, var(--ai-accent) 65%, transparent)`\n- `dark`: `color-mix(in srgb, var(--ai-accent) 65%, transparent)`\n- `focus:neutral`: `var(--ai-text-primary)`"
+   },
+   "values": [
+    {
+     "name": "color-mix(in srgb, var(--ai-accent) 65%, transparent)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-focus-offset",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `2px`\n- `dark`: `2px`\n- `focus:thin`: `0px`"
+   },
+   "values": [
+    {
+     "name": "2px"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-focus-ring",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `0 0 0 var(--ai-focus-offset) var(--ai-bg), 0 0 0 calc(var(--ai-focus-offset) + var(--ai-focus-width)) var(--ai-focus-color)`\n- `dark`: `0 0 0 var(--ai-focus-offset) var(--ai-bg), 0 0 0 calc(var(--ai-focus-offset) + var(--ai-focus-width)) var(--ai-focus-color)`\n- `focus:none`: `none`"
+   },
+   "values": [
+    {
+     "name": "0 0 0 var(--ai-focus-offset) var(--ai-bg), 0 0 0 calc(var(--ai-focus-offset) + var(--ai-focus-width)) var(--ai-focus-color)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-focus-width",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `2px`\n- `dark`: `2px`\n- `focus:thin`: `1.5px`\n- `focus:none`: `0px`"
+   },
+   "values": [
+    {
+     "name": "2px"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-font-display",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `'Sora', 'Plus Jakarta Sans', sans-serif`"
+   },
+   "values": [
+    {
+     "name": "'Sora', 'Plus Jakarta Sans', sans-serif"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-font-mono",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace`"
+   },
+   "values": [
+    {
+     "name": "'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-font-sans",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`"
+   },
+   "values": [
+    {
+     "name": "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-font-serif",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `'Newsreader', 'Editorial New', Georgia, Cambria, serif`"
+   },
+   "values": [
+    {
+     "name": "'Newsreader', 'Editorial New', Georgia, Cambria, serif"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-info",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#0284c7`\n- `dark`: `#38bdf8`"
+   },
+   "values": [
+    {
+     "name": "#0284c7"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-info-subtle",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `rgba(2, 132, 199, 0.1)`\n- `dark`: `rgba(56, 189, 248, 0.15)`"
+   },
+   "values": [
+    {
+     "name": "rgba(2, 132, 199, 0.1)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-primary",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#18181b`\n- `dark`: `#f4f4f5`\n- `obsidian`: `#09090b`\n- `obsidian:dark`: `#ffffff`\n- `editorial`: `#26211c`\n- `editorial:dark`: `#f2ede4`\n- `executive`: `#0f172a`\n- `executive:dark`: `#f8fafc`\n- `fintech`: `#1c1917`\n- `fintech:dark`: `#fafaf9`\n- `enterprise`: `#0f172a`\n- `enterprise:dark`: `#38bdf8`"
+   },
+   "values": [
+    {
+     "name": "#18181b"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-primary-hover",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#27272a`\n- `dark`: `#ffffff`\n- `obsidian`: `#27272a`\n- `obsidian:dark`: `#e5e5e5`\n- `editorial`: `#3b342c`\n- `editorial:dark`: `#ffffff`\n- `executive`: `#1e293b`\n- `executive:dark`: `#ffffff`\n- `fintech`: `#292524`\n- `fintech:dark`: `#ffffff`\n- `enterprise`: `#1e293b`\n- `enterprise:dark`: `#7dd3fc`"
+   },
+   "values": [
+    {
+     "name": "#27272a"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-primary-text",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#ffffff`\n- `dark`: `#09090b`\n- `obsidian`: `#ffffff`\n- `obsidian:dark`: `#000000`\n- `editorial`: `#faf7f2`\n- `editorial:dark`: `#161412`\n- `executive`: `#ffffff`\n- `executive:dark`: `#090d16`\n- `fintech`: `#fbfaf8`\n- `fintech:dark`: `#0c0a09`\n- `enterprise`: `#ffffff`\n- `enterprise:dark`: `#0b1120`"
+   },
+   "values": [
+    {
+     "name": "#ffffff"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-radius-2xl",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `10px`"
+   },
+   "values": [
+    {
+     "name": "10px"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-radius-base",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `var(--ai-radius-xs)`\n- `obsidian`: `var(--ai-radius-xs)`\n- `editorial`: `var(--ai-radius-xs)`\n- `executive`: `var(--ai-radius-sm)`\n- `fintech`: `var(--ai-radius-xs)`\n- `enterprise`: `var(--ai-radius-xs)`"
+   },
+   "values": [
+    {
+     "name": "var(--ai-radius-xs)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-radius-full",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `9999px`"
+   },
+   "values": [
+    {
+     "name": "9999px"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-radius-lg",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `6px`"
+   },
+   "values": [
+    {
+     "name": "6px"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-radius-md",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `4px`"
+   },
+   "values": [
+    {
+     "name": "4px"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-radius-none",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `0px`"
+   },
+   "values": [
+    {
+     "name": "0px"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-radius-sm",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `3px`"
+   },
+   "values": [
+    {
+     "name": "3px"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-radius-xl",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `8px`"
+   },
+   "values": [
+    {
+     "name": "8px"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-radius-xs",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `2px`"
+   },
+   "values": [
+    {
+     "name": "2px"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-shadow-inner",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `inset 0 1px 2px 0 rgba(0, 0, 0, 0.06)`\n- `dark`: `inset 0 1px 2px 0 rgba(0, 0, 0, 0.4)`"
+   },
+   "values": [
+    {
+     "name": "inset 0 1px 2px 0 rgba(0, 0, 0, 0.06)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-shadow-lg",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)`\n- `dark`: `0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.5)`"
+   },
+   "values": [
+    {
+     "name": "0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-shadow-md",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05)`\n- `dark`: `0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.4)`"
+   },
+   "values": [
+    {
+     "name": "0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-shadow-sm",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `0 1px 2px 0 rgba(0, 0, 0, 0.05)`\n- `dark`: `0 1px 2px 0 rgba(0, 0, 0, 0.4)`"
+   },
+   "values": [
+    {
+     "name": "0 1px 2px 0 rgba(0, 0, 0, 0.05)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-shadow-xl",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.03)`\n- `dark`: `0 20px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.6)`"
+   },
+   "values": [
+    {
+     "name": "0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.03)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-0",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `0px`"
+   },
+   "values": [
+    {
+     "name": "0px"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-1",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `0.25rem`"
+   },
+   "values": [
+    {
+     "name": "0.25rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-10",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `2.5rem`"
+   },
+   "values": [
+    {
+     "name": "2.5rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-12",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `3rem`"
+   },
+   "values": [
+    {
+     "name": "3rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-16",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `4rem`"
+   },
+   "values": [
+    {
+     "name": "4rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-2",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `0.5rem`"
+   },
+   "values": [
+    {
+     "name": "0.5rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-20",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `5rem`"
+   },
+   "values": [
+    {
+     "name": "5rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-24",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `6rem`"
+   },
+   "values": [
+    {
+     "name": "6rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-3",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `0.75rem`"
+   },
+   "values": [
+    {
+     "name": "0.75rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-32",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `8rem`"
+   },
+   "values": [
+    {
+     "name": "8rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-4",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `1rem`"
+   },
+   "values": [
+    {
+     "name": "1rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-5",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `1.25rem`"
+   },
+   "values": [
+    {
+     "name": "1.25rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-6",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `1.5rem`"
+   },
+   "values": [
+    {
+     "name": "1.5rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-8",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `2rem`"
+   },
+   "values": [
+    {
+     "name": "2rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-success",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#16a34a`\n- `dark`: `#22c55e`"
+   },
+   "values": [
+    {
+     "name": "#16a34a"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-success-subtle",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `rgba(22, 163, 74, 0.1)`\n- `dark`: `rgba(34, 197, 94, 0.15)`"
+   },
+   "values": [
+    {
+     "name": "rgba(22, 163, 74, 0.1)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-success-text",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#ffffff`\n- `dark`: `#052e16`"
+   },
+   "values": [
+    {
+     "name": "#ffffff"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-surface-0",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#ffffff`\n- `dark`: `#121215`\n- `obsidian`: `#ffffff`\n- `obsidian:dark`: `#0a0a0a`\n- `editorial`: `#ffffff`\n- `editorial:dark`: `#1d1a17`\n- `executive`: `#ffffff`\n- `executive:dark`: `#0f172a`\n- `fintech`: `#ffffff`\n- `fintech:dark`: `#141210`\n- `enterprise`: `#ffffff`\n- `enterprise:dark`: `#111827`"
+   },
+   "values": [
+    {
+     "name": "#ffffff"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-surface-1",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#ececee`\n- `dark`: `#18181b`\n- `obsidian`: `#f4f4f5`\n- `obsidian:dark`: `#141414`\n- `editorial`: `#f3efe6`\n- `editorial:dark`: `#282420`\n- `executive`: `#f1f5f9`\n- `executive:dark`: `#172033`\n- `fintech`: `#f2f1ee`\n- `fintech:dark`: `#1c1917`\n- `enterprise`: `#f1f5f9`\n- `enterprise:dark`: `#1f2937`"
+   },
+   "values": [
+    {
+     "name": "#ececee"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-surface-2",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#e1e1e4`\n- `dark`: `#27272a`\n- `obsidian`: `#e4e4e7`\n- `obsidian:dark`: `#1e1e1e`\n- `editorial`: `#e8e2d5`\n- `editorial:dark`: `#38322c`\n- `executive`: `#e2e8f0`\n- `executive:dark`: `#1e293b`\n- `fintech`: `#e7e5e1`\n- `fintech:dark`: `#292524`\n- `enterprise`: `#e2e8f0`\n- `enterprise:dark`: `#374151`"
+   },
+   "values": [
+    {
+     "name": "#e1e1e4"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-surface-3",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#d1d1d6`\n- `dark`: `#3f3f46`\n- `obsidian`: `#d4d4d8`\n- `obsidian:dark`: `#2d2d2d`\n- `editorial`: `#d9d1c0`\n- `editorial:dark`: `#4a433b`\n- `executive`: `#cbd5e1`\n- `executive:dark`: `#334155`\n- `fintech`: `#d6d3cd`\n- `fintech:dark`: `#44403c`\n- `enterprise`: `#cbd5e1`\n- `enterprise:dark`: `#4b5563`"
+   },
+   "values": [
+    {
+     "name": "#d1d1d6"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-tap-highlight",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `transparent`\n- `dark`: `transparent`"
+   },
+   "values": [
+    {
+     "name": "transparent"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-text-inverted",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#fafafa`\n- `dark`: `#09090b`"
+   },
+   "values": [
+    {
+     "name": "#fafafa"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-text-muted",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#66666f`\n- `dark`: `#8b8b94`\n- `obsidian`: `#71717a`\n- `obsidian:dark`: `#7a7a7a`\n- `editorial`: `#877d71`\n- `editorial:dark`: `#857b6e`\n- `executive`: `#64748b`\n- `executive:dark`: `#64748b`\n- `fintech`: `#78716c`\n- `fintech:dark`: `#78716c`\n- `enterprise`: `#64748b`\n- `enterprise:dark`: `#6b7280`"
+   },
+   "values": [
+    {
+     "name": "#66666f"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-text-primary",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#18181b`\n- `dark`: `#f4f4f5`\n- `obsidian`: `#09090b`\n- `obsidian:dark`: `#ededed`\n- `editorial`: `#26211c`\n- `editorial:dark`: `#f2ede4`\n- `executive`: `#0f172a`\n- `executive:dark`: `#f8fafc`\n- `fintech`: `#1c1917`\n- `fintech:dark`: `#fafaf9`\n- `enterprise`: `#0f172a`\n- `enterprise:dark`: `#f9fafb`"
+   },
+   "values": [
+    {
+     "name": "#18181b"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-text-secondary",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#52525b`\n- `dark`: `#a1a1aa`\n- `obsidian`: `#52525b`\n- `obsidian:dark`: `#9a9a9a`\n- `editorial`: `#574f46`\n- `editorial:dark`: `#b8aea0`\n- `executive`: `#475569`\n- `executive:dark`: `#94a3b8`\n- `fintech`: `#57534e`\n- `fintech:dark`: `#a8a29e`\n- `enterprise`: `#475569`\n- `enterprise:dark`: `#9ca3af`"
+   },
+   "values": [
+    {
+     "name": "#52525b"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-touch-min",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `44px`"
+   },
+   "values": [
+    {
+     "name": "44px"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-warning",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#ea580c`\n- `dark`: `#f97316`"
+   },
+   "values": [
+    {
+     "name": "#ea580c"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-warning-subtle",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `rgba(234, 88, 12, 0.1)`\n- `dark`: `rgba(249, 115, 22, 0.15)`"
+   },
+   "values": [
+    {
+     "name": "rgba(234, 88, 12, 0.1)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  }
+ ],
+ "atDirectives": [
+  {
+   "name": "@layer",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS declares `@layer reset, tokens, base, components, utilities;` once at the top of the stylesheet. Put your own overrides in a later layer, or outside every layer, so they win without `!important`."
+   }
+  }
+ ],
+ "pseudoClasses": [],
+ "pseudoElements": []
+}

@@ -19,7 +19,7 @@ import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { components } from '../src/registry/data.mjs';
 import { wireframeTemplates, pageBlueprints, assembleBlueprintHtml } from '../src/registry/templates-data.mjs';
-import { validateMarkup, structuralAudit } from '../src/registry/validate.mjs';
+import { validateMarkup, structuralAudit, classTokens } from '../src/registry/validate.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -718,6 +718,348 @@ switch (command) {
     process.exit(1);
   }
 
+  case 'trim': {
+    const TRIM_HELP = `
+✦ llmcss trim - optional stylesheet subsetting
+
+Usage:
+  npx llmcss trim <glob...> [--out <file>]
+
+  npx llmcss trim "src/**/*.html" "app/views/**/*.erb"
+  npx llmcss trim "index.html" "components.html" --out public/llmcss.min.css
+
+Scans the matched markup for ai-* class tokens, then writes a stylesheet that
+keeps the reset, tokens and base layers verbatim and keeps only the rules in
+the components and utilities layers whose selector names a class you use.
+
+THIS IS OPTIONAL. The full stylesheet is the supported default: it is one
+cached file, it costs nothing per page, and it never breaks when you paste new
+markup from the gallery or from an agent. Reach for trim only when you have a
+fixed, fully static set of pages and you have measured that the stylesheet is
+actually your bottleneck. A trimmed file goes stale the moment your markup
+changes, so regenerate it in the same step that builds your pages.
+
+Known limits: classes assembled at runtime (string concatenation, template
+interpolation, a CMS field, a class map in JS) are invisible to the scanner and
+their rules get dropped. Keep the full stylesheet if any of that applies.
+
+Options:
+  --out <file>   Output path. Default: llmcss.trim.css in the current directory.
+  --help         Show this text.
+
+Source stylesheet: dist/llmcss.css if it exists, otherwise it is fetched from
+https://llmcss.io/llmcss.css with curl.
+
+Glob syntax: ** matches any number of directories, * matches within one path
+segment, ? matches one character. Quote your globs so the shell does not expand
+them first.
+`;
+    const trimArgs = args.slice(1);
+    if (trimArgs.length === 0 || trimArgs.includes('--help') || trimArgs.includes('-h')) {
+      console.log(TRIM_HELP);
+      break;
+    }
+
+    const patterns = [];
+    let outPath = 'llmcss.trim.css';
+    for (let i = 0; i < trimArgs.length; i++) {
+      if (trimArgs[i] === '--out' || trimArgs[i] === '-o') {
+        outPath = trimArgs[++i];
+        if (!outPath) {
+          console.error('--out needs a file path.');
+          process.exit(1);
+        }
+      } else {
+        patterns.push(trimArgs[i]);
+      }
+    }
+    if (patterns.length === 0) {
+      console.error('Please give at least one glob: `llmcss trim "src/**/*.html"`');
+      process.exit(1);
+    }
+
+    // --- Minimal glob: ** across segments, * within a segment, ? one char ---
+    const SCANNABLE = new Set(['.html', '.htm', '.xhtml', '.jsx', '.tsx', '.js', '.mjs', '.ts', '.vue', '.svelte', '.php', '.erb', '.astro', '.twig', '.hbs', '.blade']);
+    const SKIP_DIRS = new Set(['node_modules', '.git', '.svn', 'dist', 'build', '.next', '.svelte-kit', 'vendor', 'coverage']);
+
+    function globToRegExp(pattern) {
+      let re = '';
+      for (let i = 0; i < pattern.length; i++) {
+        const ch = pattern[i];
+        if (ch === '*') {
+          if (pattern[i + 1] === '*') {
+            // ** : any number of segments. Swallow a following slash so that
+            // "src/**/*.html" also matches "src/a.html".
+            i++;
+            if (pattern[i + 1] === '/') {
+              i++;
+              re += '(?:[^/]*\\/)*';
+            } else {
+              re += '.*';
+            }
+          } else {
+            re += '[^/]*';
+          }
+        } else if (ch === '?') {
+          re += '[^/]';
+        } else if ('\\^$.|+()[]{}'.includes(ch)) {
+          re += '\\' + ch;
+        } else {
+          re += ch;
+        }
+      }
+      return new RegExp('^' + re + '$');
+    }
+
+    function walk(dir, acc) {
+      let entries;
+      try {
+        entries = fs.readdirSync(dir, { withFileTypes: true });
+      } catch {
+        return acc;
+      }
+      for (const e of entries) {
+        if (e.name.startsWith('.') && e.name !== '.') continue;
+        const full = path.join(dir, e.name);
+        if (e.isDirectory()) {
+          if (SKIP_DIRS.has(e.name)) continue;
+          walk(full, acc);
+        } else if (e.isFile()) {
+          acc.push(full);
+        }
+      }
+      return acc;
+    }
+
+    function expand(pattern) {
+      const norm = pattern.replace(/\\/g, '/');
+      if (!/[*?]/.test(norm)) {
+        return fs.existsSync(norm) && fs.statSync(norm).isFile() ? [norm] : [];
+      }
+      const segs = norm.split('/');
+      const baseSegs = [];
+      for (const s of segs) {
+        if (/[*?]/.test(s)) break;
+        baseSegs.push(s);
+      }
+      const base = baseSegs.length ? baseSegs.join('/') : '.';
+      const re = globToRegExp(norm);
+      const all = walk(base, []);
+      return all
+        .map((f) => f.replace(/\\/g, '/').replace(/^\.\//, ''))
+        .filter((f) => re.test(f) || re.test('./' + f));
+    }
+
+    const files = [];
+    const seenFiles = new Set();
+    for (const p of patterns) {
+      for (const f of expand(p)) {
+        if (seenFiles.has(f)) continue;
+        if (!SCANNABLE.has(path.extname(f).toLowerCase())) continue;
+        seenFiles.add(f);
+        files.push(f);
+      }
+    }
+    if (files.length === 0) {
+      console.error(`No markup files matched. Patterns: ${patterns.join(' ')}`);
+      console.error('Quote your globs, and check the extension is one of: ' + [...SCANNABLE].join(' '));
+      process.exit(1);
+    }
+
+    // --- Collect used ai-* tokens ---
+    const used = new Set();
+    const CE_TAGS = ['ai-modal', 'ai-tabs', 'ai-dropdown', 'ai-accordion', 'ai-drawer', 'ai-toast', 'ai-command-palette'];
+    for (const f of files) {
+      const src = fs.readFileSync(f, 'utf-8');
+      for (const t of classTokens(src)) {
+        if (t.startsWith('ai-')) used.add(t);
+      }
+      // A custom element used as a tag styles itself through the same rules as
+      // its class, so <ai-modal> must count as ai-modal being in play.
+      for (const tag of CE_TAGS) {
+        if (new RegExp('<' + tag + '[\\s/>]', 'i').test(src)) used.add(tag);
+      }
+    }
+    // Responsive and container prefixes are written ai-md:gap-4 in markup and
+    // .ai-md\:gap-4 in CSS; both forms end up in the set unescaped.
+    const overlayUsed = [...used].some((c) => /^ai-(modal|drawer)\b/.test(c));
+
+    // --- Load the stylesheet ---
+    let css = '';
+    let source = '';
+    // A dist/llmcss.css in the working directory is the more specific intent
+    // (someone built it here); the copy inside the installed package is the
+    // fallback for `npx llmcss trim` in a project that never builds the CSS.
+    const localDist = path.resolve(process.cwd(), 'dist', 'llmcss.css');
+    const pkgDist = path.resolve(__dirname, '..', 'dist', 'llmcss.css');
+    if (fs.existsSync(localDist)) {
+      css = fs.readFileSync(localDist, 'utf-8');
+      source = path.relative(process.cwd(), localDist) || localDist;
+    } else if (fs.existsSync(pkgDist)) {
+      css = fs.readFileSync(pkgDist, 'utf-8');
+      source = pkgDist;
+    } else {
+      const url = `${originBase()}/llmcss.css`;
+      try {
+        css = execFileSync('curl', ['-sS', '-L', '--max-time', '30', url], { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 });
+      } catch (err) {
+        console.error(`Could not read dist/llmcss.css and could not fetch ${url}.`);
+        console.error('Run `npm run build` first, or check your network.');
+        process.exit(1);
+      }
+      if (!css || !css.includes('@layer')) {
+        console.error(`Fetched ${url} but it does not look like the LLMCSS stylesheet.`);
+        process.exit(1);
+      }
+      source = url;
+    }
+
+    // --- Tolerant brace walker: split a stylesheet into top-level blocks ---
+    // Same approach as rules() in src/registry/build-manifests.mjs: find the
+    // next "{", count braces to its match, and treat what came before as the
+    // head. Strings and comments are not tracked, which is fine for the built
+    // stylesheet because it contains no brace inside a string.
+    function blocks(text) {
+      const out = [];
+      let i = 0;
+      while (i < text.length) {
+        const open = text.indexOf('{', i);
+        if (open < 0) {
+          const tail = text.slice(i).trim();
+          if (tail) out.push({ head: tail, body: null, atRuleOnly: true });
+          break;
+        }
+        const head = text.slice(i, open).trim();
+        let depth = 1;
+        let j = open + 1;
+        while (j < text.length && depth > 0) {
+          if (text[j] === '{') depth++;
+          else if (text[j] === '}') depth--;
+          j++;
+        }
+        out.push({ head, body: text.slice(open + 1, j - 1), atRuleOnly: false });
+        i = j;
+      }
+      return out;
+    }
+
+    // .ai-md\:gap-4 -> ai-md:gap-4 ; .ai-w-1\/2 -> ai-w-1/2
+    function selectorClasses(selector) {
+      const out = [];
+      for (const m of selector.matchAll(/\.(ai-(?:\\.|[\w-])*)/g)) {
+        out.push(m[1].replace(/\\(.)/g, '$1'));
+      }
+      return out;
+    }
+
+    const KEEP_AT = /^@(keyframes|-webkit-keyframes|property|font-face|counter-style|charset|namespace|font-feature-values)\b/;
+    const NEST_AT = /^@(media|supports|container|layer|scope)\b/;
+
+    let keptRules = 0;
+    let droppedRules = 0;
+
+    function filterBody(text) {
+      const parts = [];
+      for (const b of blocks(text)) {
+        if (b.atRuleOnly) {
+          // A statement at-rule such as `@layer a,b,c;`
+          parts.push(b.head.endsWith(';') ? b.head : b.head + ';');
+          continue;
+        }
+        const head = b.head;
+        if (KEEP_AT.test(head)) {
+          // Keyframes, @property and @font-face are cheap and are referenced by
+          // rules we may keep, so dropping one would silently break animation.
+          parts.push(`${head}{${b.body}}`);
+          continue;
+        }
+        if (NEST_AT.test(head)) {
+          const inner = filterBody(b.body);
+          if (inner.trim()) parts.push(`${head}{${inner}}`);
+          continue;
+        }
+        if (head.startsWith('@')) {
+          // Unknown at-rule: keep it rather than guess.
+          parts.push(`${head}{${b.body}}`);
+          continue;
+        }
+        const classes = selectorClasses(head);
+        let keep;
+        if (classes.length === 0) {
+          // No ai-* class in the selector at all: an element or :has() rule such
+          // as the scroll lock. Keep it only when an overlay is in play.
+          keep = overlayUsed;
+        } else {
+          keep = classes.some((c) => used.has(c));
+        }
+        if (keep) {
+          keptRules++;
+          parts.push(`${head}{${b.body}}`);
+        } else {
+          droppedRules++;
+        }
+      }
+      return parts.join('');
+    }
+
+    const VERBATIM_LAYERS = /^@layer\s+(reset|tokens|base)\s*$/;
+    const outParts = [];
+    let verbatimBlocks = 0;
+    for (const b of blocks(css)) {
+      if (b.atRuleOnly) {
+        outParts.push(b.head.endsWith(';') ? b.head : b.head + ';');
+        continue;
+      }
+      // The first block's head carries the layer order statement plus `@layer reset`.
+      const stmt = b.head.match(/^([\s\S]*;)\s*(@layer[\s\S]*)$/);
+      const lead = stmt ? stmt[1] : '';
+      const head = stmt ? stmt[2].trim() : b.head;
+      if (lead) outParts.push(lead);
+
+      if (VERBATIM_LAYERS.test(head)) {
+        verbatimBlocks++;
+        outParts.push(`${head}{${b.body}}`);
+        continue;
+      }
+      if (KEEP_AT.test(head)) {
+        outParts.push(`${head}{${b.body}}`);
+        continue;
+      }
+      if (NEST_AT.test(head) || head.startsWith('@')) {
+        const inner = filterBody(b.body);
+        if (inner.trim()) outParts.push(`${head}{${inner}}`);
+        continue;
+      }
+      const classes = selectorClasses(head);
+      const keep = classes.length === 0 ? overlayUsed : classes.some((c) => used.has(c));
+      if (keep) {
+        keptRules++;
+        outParts.push(`${head}{${b.body}}`);
+      } else {
+        droppedRules++;
+      }
+    }
+
+    const result = outParts.join('');
+    const outDir = path.dirname(path.resolve(outPath));
+    if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+    fs.writeFileSync(outPath, result, 'utf-8');
+
+    const before = Buffer.byteLength(css, 'utf8');
+    const after = Buffer.byteLength(result, 'utf8');
+    const pct = before ? ((1 - after / before) * 100).toFixed(1) : '0.0';
+    console.log(`\n✦ llmcss trim`);
+    console.log(`  Source:      ${source}`);
+    console.log(`  Scanned:     ${files.length} file${files.length === 1 ? '' : 's'}, ${used.size} distinct ai-* classes in use`);
+    console.log(`  Verbatim:    ${verbatimBlocks} reset/tokens/base blocks kept whole`);
+    console.log(`  Rules:       ${keptRules} kept, ${droppedRules} dropped`);
+    console.log(`  Bytes:       ${before} before -> ${after} after (${pct}% smaller)`);
+    console.log(`  Output:      ${outPath}`);
+    console.log(`\n  Reminder: the full stylesheet is the supported default. A trimmed`);
+    console.log(`  file is only valid for the markup scanned above.\n`);
+    break;
+  }
+
   case 'help':
   default: {
     console.log(`
@@ -736,6 +1078,7 @@ Commands:
   llmcss audit <file>            Run automated design quality audit on HTML/CSS file
   llmcss validate <file>         Check file for non-standard or hallucinated classes
   llmcss lint --fix <file>       Auto-migrate legacy or hallucinated classes to LLMCSS
+  llmcss trim <glob...>          Optional: subset llmcss.css to the classes your markup uses
   llmcss init                    Initialize LLMCSS configuration in project
   llmcss login <key>             Authenticate with your Pro license key
 `);

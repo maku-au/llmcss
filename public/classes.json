@@ -1,9 +1,9 @@
 {
  "version": "0.1.0",
- "generatedAt": "2026-09-12T04:28:32.876Z",
+ "generatedAt": "2026-09-12T05:32:17.555Z",
  "note": "Every ai-* class in llmcss.css. variants lists the responsive (sm 640px, md 768px, lg 1024px, xl 1280px) and container-query (cq) prefixes that exist for the class, written as ai-md:name. Nothing outside this list exists; do not invent classes.",
  "stats": {
-  "total": 1176,
+  "total": 1243,
   "families": {
    "spacing": 238,
    "utilities": 44,
@@ -14,9 +14,10 @@
    "application": 29,
    "layout": 16,
    "badges": 28,
+   "forms-extra": 31,
    "effects": 22,
    "base": 12,
-   "dashboard": 44,
+   "dashboard": 43,
    "display": 8,
    "borders": 22,
    "navigation": 24,
@@ -25,7 +26,8 @@
    "extras": 40,
    "cards": 13,
    "tables": 12,
-   "inputs": 15,
+   "inputs": 14,
+   "commerce-extra": 29,
    "grid": 87,
    "flex": 65,
    "interaction": 102,
@@ -36,6 +38,7 @@
    "animations": 33,
    "modals": 11,
    "ecommerce": 10,
+   "scrollspy": 9,
    "tabs": 5,
    "toasts": 12
   }
@@ -546,6 +549,36 @@
    "variants": []
   },
   {
+   "class": "ai-avatar-status",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-avatar-status-away",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-avatar-status-busy",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-avatar-status-offline",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-avatar-status-online",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
    "class": "ai-avatar-xl",
    "family": "badges",
    "file": "components/badges.css",
@@ -1014,6 +1047,54 @@
    "variants": []
   },
   {
+   "class": "ai-calendar",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-calendar-day",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-calendar-footer",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-calendar-header",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-calendar-nav",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-calendar-panel",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-calendar-title",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-calendar-weekday",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
    "class": "ai-callout",
    "family": "marketing",
    "file": "components/marketing.css",
@@ -1137,6 +1218,102 @@
    "class": "ai-checklist-mark",
    "family": "dashboard",
    "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkout",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkout-actions",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkout-body",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkout-item",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkout-items",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkout-label",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkout-meta",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkout-name",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkout-note",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkout-price",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkout-promo",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkout-row",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkout-thumb",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkout-title",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkout-totals",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkout-value",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
    "variants": []
   },
   {
@@ -1499,6 +1676,36 @@
    "class": "ai-columns-auto",
    "family": "grid",
    "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-combobox",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-combobox-empty",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-combobox-hint",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-combobox-list",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-combobox-option",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
    "variants": []
   },
   {
@@ -2843,8 +3050,8 @@
   },
   {
    "class": "ai-input",
-   "family": "dashboard",
-   "file": "components/dashboard.css",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
    "variants": []
   },
   {
@@ -2855,8 +3062,8 @@
   },
   {
    "class": "ai-input-group",
-   "family": "inputs",
-   "file": "components/inputs.css",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
    "variants": []
   },
   {
@@ -2940,6 +3147,12 @@
    "class": "ai-items-stretch",
    "family": "flex",
    "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-js",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
    "variants": []
   },
   {
@@ -4205,6 +4418,12 @@
    "variants": []
   },
   {
+   "class": "ai-order",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
    "class": "ai-order-1",
    "family": "flex",
    "file": "utilities.css",
@@ -4285,6 +4504,18 @@
    "variants": []
   },
   {
+   "class": "ai-order-date",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-order-eta",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
    "class": "ai-order-first",
    "family": "flex",
    "file": "utilities.css",
@@ -4292,6 +4523,24 @@
     "lg",
     "md"
    ]
+  },
+  {
+   "class": "ai-order-head",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-order-id",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-order-label",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
   },
   {
    "class": "ai-order-last",
@@ -4303,12 +4552,42 @@
    ]
   },
   {
+   "class": "ai-order-meta",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
    "class": "ai-order-none",
    "family": "flex",
    "file": "utilities.css",
    "variants": [
     "md"
    ]
+  },
+  {
+   "class": "ai-order-pip",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-order-step",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-order-title",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-order-track",
+   "family": "commerce-extra",
+   "file": "components/commerce-extra.css",
+   "variants": []
   },
   {
    "class": "ai-origin-bottom",
@@ -4607,6 +4886,18 @@
    "class": "ai-panel-header",
    "family": "extras",
    "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-password",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-password-toggle",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
    "variants": []
   },
   {
@@ -5470,6 +5761,54 @@
    "variants": []
   },
   {
+   "class": "ai-rating",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rating-count",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rating-fill",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rating-input",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rating-star",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rating-static",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rating-track",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rating-value",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
    "class": "ai-relative",
    "family": "position",
    "file": "utilities.css",
@@ -5797,6 +6136,60 @@
    "class": "ai-scroll-x",
    "family": "tables",
    "file": "components/tables.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scrollspy",
+   "family": "scrollspy",
+   "file": "components/scrollspy.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scrollspy-body",
+   "family": "scrollspy",
+   "file": "components/scrollspy.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scrollspy-heading",
+   "family": "scrollspy",
+   "file": "components/scrollspy.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scrollspy-layout",
+   "family": "scrollspy",
+   "file": "components/scrollspy.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scrollspy-link",
+   "family": "scrollspy",
+   "file": "components/scrollspy.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scrollspy-list",
+   "family": "scrollspy",
+   "file": "components/scrollspy.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scrollspy-pane",
+   "family": "scrollspy",
+   "file": "components/scrollspy.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scrollspy-section",
+   "family": "scrollspy",
+   "file": "components/scrollspy.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scrollspy-title",
+   "family": "scrollspy",
+   "file": "components/scrollspy.css",
    "variants": []
   },
   {
@@ -6361,6 +6754,18 @@
    "class": "ai-stepper",
    "family": "application",
    "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-stepper-btn",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-stepper-input",
+   "family": "forms-extra",
+   "file": "components/forms-extra.css",
    "variants": []
   },
   {

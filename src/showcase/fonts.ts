@@ -29,6 +29,11 @@ export const DISPLAY_FONTS: DisplayFont[] = [
 
 const STORAGE_KEY = 'llmcss-font';
 const LINK_ID = 'llmcss-display-font';
+const PREVIEW_LINK_ID = 'llmcss-font-preview';
+const PICKER_SELECTOR = '#font-switcher, #styler-font-switcher';
+
+const CHEVRON = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`;
+const CHECK = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>`;
 
 export function getActiveFontId(): string {
   const saved = localStorage.getItem(STORAGE_KEY);
@@ -54,6 +59,55 @@ export function loadDisplayFont(font: DisplayFont) {
   document.head.appendChild(link);
 }
 
+// Every face at one weight, in one request, so the picker can show each name
+// in its own font. Loaded the first time a picker opens, never on page load.
+function loadPreviewFaces() {
+  if (document.getElementById(PREVIEW_LINK_ID)) return;
+  const families = DISPLAY_FONTS.filter((f) => f.google)
+    .map((f) => (f.google as string).split(':')[0] + ':wght@600')
+    .join('&family=');
+  const link = document.createElement('link');
+  link.id = PREVIEW_LINK_ID;
+  link.rel = 'stylesheet';
+  link.href = `https://fonts.googleapis.com/css2?family=${families}&display=swap`;
+  document.head.appendChild(link);
+}
+
+function pickerHtml(currentId: string): string {
+  const current = DISPLAY_FONTS.find((f) => f.id === currentId) || DISPLAY_FONTS[0];
+  const group = (kind: 'sans' | 'serif', label: string) =>
+    `<li class="ai-dropdown-header">${label}</li>` +
+    DISPLAY_FONTS.filter((f) => f.kind === kind)
+      .map(
+        (f) => `<li><button type="button" class="ai-dropdown-item ai-font-option${f.id === currentId ? ' is-active' : ''}" role="option" aria-selected="${f.id === currentId}" data-font="${f.id}" style="font-family: ${f.family};">${f.name}<span class="ai-font-option-check">${CHECK}</span></button></li>`
+      )
+      .join('');
+  return `<button type="button" class="ai-btn ai-btn-outline ai-btn-sm ai-w-full ai-justify-between ai-dropdown-trigger ai-font-trigger" data-ai-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" aria-label="Title font: ${current.name}">
+      <span class="ai-font-trigger-label" style="font-family: ${current.family};">${current.name}</span>${CHEVRON}
+    </button>
+    <ul class="ai-dropdown-menu ai-font-menu" role="listbox" aria-label="Title font">
+      ${group('sans', 'Sans')}
+      ${group('serif', 'Serif')}
+    </ul>`;
+}
+
+function syncPickers(fontId: string) {
+  const font = DISPLAY_FONTS.find((f) => f.id === fontId) || DISPLAY_FONTS[0];
+  document.querySelectorAll<HTMLElement>(PICKER_SELECTOR).forEach((picker) => {
+    const label = picker.querySelector<HTMLElement>('.ai-font-trigger-label');
+    if (label) {
+      label.textContent = font.name;
+      label.style.fontFamily = font.family;
+    }
+    picker.querySelector('.ai-font-trigger')?.setAttribute('aria-label', `Title font: ${font.name}`);
+    picker.querySelectorAll<HTMLElement>('.ai-font-option').forEach((opt) => {
+      const on = opt.getAttribute('data-font') === font.id;
+      opt.classList.toggle('is-active', on);
+      opt.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+  });
+}
+
 export function applyDisplayFont(fontId: string) {
   const font = DISPLAY_FONTS.find((f) => f.id === fontId) || DISPLAY_FONTS[0];
   const root = document.documentElement;
@@ -66,25 +120,32 @@ export function applyDisplayFont(fontId: string) {
   root.setAttribute('data-ai-font', font.id);
   localStorage.setItem(STORAGE_KEY, font.id);
   loadDisplayFont(font);
-  document.querySelectorAll<HTMLSelectElement>('#font-switcher, #styler-font-switcher').forEach((el) => {
-    el.value = font.id;
-  });
+  syncPickers(font.id);
 }
 
 export function fillFontSwitchers() {
-  const html = DISPLAY_FONTS.map((f) => `<option value="${f.id}">${f.name}</option>`).join('');
-  document.querySelectorAll<HTMLSelectElement>('#font-switcher, #styler-font-switcher').forEach((el) => {
-    if (!el.options.length) el.innerHTML = html;
+  const current = getActiveFontId();
+  document.querySelectorAll<HTMLElement>(PICKER_SELECTOR).forEach((el) => {
+    if (!el.querySelector('.ai-font-menu')) {
+      el.classList.add('ai-dropdown', 'ai-font-picker');
+      el.innerHTML = pickerHtml(current);
+    }
   });
 }
 
 export function bindFontSwitchers(onChange?: () => void) {
   fillFontSwitchers();
   const current = getActiveFontId();
-  document.querySelectorAll<HTMLSelectElement>('#font-switcher, #styler-font-switcher').forEach((el) => {
-    el.value = current;
-    el.addEventListener('change', () => {
-      applyDisplayFont(el.value);
+  document.querySelectorAll<HTMLElement>(PICKER_SELECTOR).forEach((picker) => {
+    // Faces load the first time the menu is opened, not before
+    picker.querySelector('.ai-font-trigger')?.addEventListener('click', loadPreviewFaces, { once: true });
+    picker.addEventListener('click', (e) => {
+      const opt = (e.target as HTMLElement).closest<HTMLElement>('.ai-font-option');
+      if (!opt) return;
+      applyDisplayFont(opt.getAttribute('data-font') || 'sora');
+      picker.classList.remove('is-open');
+      picker.removeAttribute('open');
+      picker.querySelector('.ai-font-trigger')?.setAttribute('aria-expanded', 'false');
       onChange?.();
     });
   });

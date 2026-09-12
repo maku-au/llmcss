@@ -23,6 +23,8 @@
     animation: ai-fade-in var(--ai-duration-normal) var(--ai-ease-out);
   }
 
+  /* --ai-drawer-width  panel width cap (--ai-drawer-offset, below, holds the
+     top and bottom sheets clear of a sticky header) */
   .ai-drawer-panel {
     position: fixed;
     top: 0;

@@ -862,3 +862,44 @@
 .ai-docs-step code { font-family: var(--ai-font-mono); }
 
 }
+
+@layer components {
+  /* Styler font picker: a dropdown whose options render in their own face */
+  .ai-font-picker {
+    display: block;
+    width: 100%;
+  }
+  .ai-font-picker .ai-font-trigger {
+    height: 2.25rem;
+    font-weight: 500;
+  }
+  .ai-font-picker .ai-font-trigger-label {
+    font-size: 0.9375rem;
+  }
+  .ai-font-picker .ai-font-menu {
+    width: 100%;
+    max-height: 18rem;
+    overflow-y: auto;
+    padding-block: var(--ai-space-1);
+  }
+  .ai-font-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1rem;
+    line-height: 1.2;
+    padding-block: 0.55rem;
+  }
+  .ai-font-option .ai-font-option-check {
+    display: none;
+    color: var(--ai-accent);
+  }
+  .ai-font-option.is-active .ai-font-option-check,
+  .ai-font-option[aria-selected="true"] .ai-font-option-check {
+    display: inline-flex;
+  }
+  .ai-font-option.is-active {
+    background-color: var(--ai-surface-1);
+  }
+}

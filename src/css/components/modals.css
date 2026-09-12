@@ -50,8 +50,11 @@
   .ai-modal-box-lg { max-width: 48rem; }
   .ai-modal-box-sm { max-width: 24rem; }
 
+  /* --ai-modal-padding sets the dialog's inline rhythm: the full padding of the
+     body and the inline padding of the header and footer, so all three stay
+     optically aligned. (--ai-modal-width caps the box, above.) */
   .ai-modal-header {
-    padding: var(--ai-space-5) var(--ai-space-6);
+    padding: var(--ai-space-5) var(--ai-modal-padding, var(--ai-space-6));
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -65,15 +68,17 @@
     color: var(--ai-text-primary);
   }
 
+  /* Full padding from --ai-modal-padding; see .ai-modal-header above. */
   .ai-modal-body {
-    padding: var(--ai-space-6);
+    padding: var(--ai-modal-padding, var(--ai-space-6));
     color: var(--ai-text-secondary);
     font-size: 0.9375rem;
     line-height: 1.6;
   }
 
+  /* Inline padding from --ai-modal-padding; see .ai-modal-header above. */
   .ai-modal-footer {
-    padding: var(--ai-space-4) var(--ai-space-6);
+    padding: var(--ai-space-4) var(--ai-modal-padding, var(--ai-space-6));
     background-color: var(--ai-surface-1);
     border-top: 1px solid var(--ai-border-subtle);
     display: flex;

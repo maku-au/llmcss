@@ -269,23 +269,82 @@
   }
 
   /* --------------------------------------------------------------------------
-     Accent Color Overrides
+     ACCENTS (data-ai-accent)
+
+     Accent is not a skin. The five archetypes above own surfaces, radius and
+     type; an accent owns --ai-accent* and nothing else, so the two compose:
+     <html data-ai-skin="executive" data-ai-accent="amber">.
+
+     Set data-ai-accent on <html> or on ANY container to retint that subtree
+     only. Custom properties inherit, so a container accent already governs its
+     own subtree; the repeated [data-ai-accent] on each selector is a deliberate
+     specificity bump (0,3,0) so that an accent set on <html> alongside a skin
+     still outranks the archetype rules above, which qualify with :root and
+     data-ai-theme.
+
+     --ai-accent-text is fixed per accent from the measured contrast of label
+     text on the accent fill (WCAG AA body text, 4.5:1): white where it passes,
+     #09090b where it does not. Ratios are in the accent comments below.
+
+     data-ai-skin="emerald|violet|rose" is a DEPRECATED alias for the accent of
+     the same name: it is listed on the same rule so it keeps working unchanged.
+     Remove in 1.0; migrate to data-ai-accent.
      -------------------------------------------------------------------------- */
+
+  /* emerald: white 3.77:1 (fails AA), #09090b 5.28:1 -> dark label text */
+  [data-ai-accent="emerald"][data-ai-accent][data-ai-accent],
   [data-ai-skin="emerald"] {
     --ai-accent: #059669;
     --ai-accent-hover: #047857;
-    --ai-accent-subtle: rgba(5, 150, 105, 0.1);
+    --ai-accent-subtle: color-mix(in srgb, #059669 10%, transparent);
+    --ai-accent-rgb: 5, 150, 105;
+    --ai-accent-text: #09090b;
   }
 
+  /* violet: white 5.70:1 -> white label text */
+  [data-ai-accent="violet"][data-ai-accent][data-ai-accent],
   [data-ai-skin="violet"] {
     --ai-accent: #7c3aed;
     --ai-accent-hover: #6d28d9;
-    --ai-accent-subtle: rgba(124, 58, 237, 0.1);
+    --ai-accent-subtle: color-mix(in srgb, #7c3aed 10%, transparent);
+    --ai-accent-rgb: 124, 58, 237;
+    --ai-accent-text: #ffffff;
   }
 
+  /* rose: white 4.70:1 -> white label text */
+  [data-ai-accent="rose"][data-ai-accent][data-ai-accent],
   [data-ai-skin="rose"] {
     --ai-accent: #e11d48;
     --ai-accent-hover: #be123c;
-    --ai-accent-subtle: rgba(225, 29, 72, 0.1);
+    --ai-accent-subtle: color-mix(in srgb, #e11d48 10%, transparent);
+    --ai-accent-rgb: 225, 29, 72;
+    --ai-accent-text: #ffffff;
+  }
+
+  /* teal: white 5.47:1 -> white label text */
+  [data-ai-accent="teal"][data-ai-accent][data-ai-accent] {
+    --ai-accent: #0f766e;
+    --ai-accent-hover: #115e59;
+    --ai-accent-subtle: color-mix(in srgb, #0f766e 10%, transparent);
+    --ai-accent-rgb: 15, 118, 110;
+    --ai-accent-text: #ffffff;
+  }
+
+  /* steel: white 7.58:1 -> white label text */
+  [data-ai-accent="steel"][data-ai-accent][data-ai-accent] {
+    --ai-accent: #475569;
+    --ai-accent-hover: #334155;
+    --ai-accent-subtle: color-mix(in srgb, #475569 10%, transparent);
+    --ai-accent-rgb: 71, 85, 105;
+    --ai-accent-text: #ffffff;
+  }
+
+  /* amber: white 3.19:1 (fails AA), #09090b 6.24:1 -> dark label text */
+  [data-ai-accent="amber"][data-ai-accent][data-ai-accent] {
+    --ai-accent: #d97706;
+    --ai-accent-hover: #b45309;
+    --ai-accent-subtle: color-mix(in srgb, #d97706 10%, transparent);
+    --ai-accent-rgb: 217, 119, 6;
+    --ai-accent-text: #09090b;
   }
 }

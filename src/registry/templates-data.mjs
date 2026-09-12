@@ -76,7 +76,7 @@ export const wireframeTemplates = [
     html: `<div class="ai-section-banner" role="region" aria-label="Announcement">
   <div class="ai-container ai-flex ai-items-center ai-justify-between ai-py-2" style="font-size: 0.8125rem;">
     <div class="ai-flex ai-items-center ai-gap-2">
-      <span class="ai-badge ai-badge-primary ai-badge-sm">NEW</span>
+      <span class="ai-badge ai-badge-solid ai-badge-sm">NEW</span>
       <span>LLMCSS v2.4 is released: Zero runtime JS, pure semantic CSS wireframes.</span>
     </div>
     <a href="#release-notes" class="ai-link" style="font-size: 0.8125rem; font-weight: 600;">Read Notes &rarr;</a>

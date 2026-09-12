@@ -234,7 +234,8 @@
   button.ai-list-group-item:hover {
     background-color: var(--ai-surface-1);
   }
-  .ai-list-group-item.is-active {
+  .ai-list-group-item.is-active,
+  .ai-list-group-item[aria-current] {
     background-color: var(--ai-accent-subtle);
     color: var(--ai-text-primary);
   }

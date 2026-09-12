@@ -1,0 +1,381 @@
+{
+ "version": 1.1,
+ "tags": [
+  {
+   "name": "ai-modal",
+   "description": {
+    "kind": "markdown",
+    "value": "Dialog overlay. Open it with a button carrying data-ai-toggle=\"modal\" data-ai-target=\"#id\", or with window.LLMCSS.open(). Add the open attribute for the initial state."
+   },
+   "attributes": [
+    {
+     "name": "open",
+     "description": {
+      "kind": "markdown",
+      "value": "Open state. Interchangeable with the is-open class; the runtime sets both."
+     },
+     "valueSet": "v"
+    }
+   ],
+   "references": [
+    {
+     "name": "LLMCSS components",
+     "url": "https://llmcss.io/components"
+    }
+   ]
+  },
+  {
+   "name": "ai-tabs",
+   "description": {
+    "kind": "markdown",
+    "value": "Tab set. Each button.ai-tab inside carries data-ai-tab=\"#panel-id\"; the runtime syncs aria-selected and tabindex."
+   },
+   "attributes": [
+    {
+     "name": "open",
+     "description": {
+      "kind": "markdown",
+      "value": "Open state. Interchangeable with the is-open class; the runtime sets both."
+     },
+     "valueSet": "v"
+    }
+   ],
+   "references": [
+    {
+     "name": "LLMCSS components",
+     "url": "https://llmcss.io/components"
+    }
+   ]
+  },
+  {
+   "name": "ai-dropdown",
+   "description": {
+    "kind": "markdown",
+    "value": "Menu anchored to a trigger. The trigger carries data-ai-toggle=\"dropdown\". Closes on outside click and on Escape."
+   },
+   "attributes": [
+    {
+     "name": "open",
+     "description": {
+      "kind": "markdown",
+      "value": "Open state. Interchangeable with the is-open class; the runtime sets both."
+     },
+     "valueSet": "v"
+    }
+   ],
+   "references": [
+    {
+     "name": "LLMCSS components",
+     "url": "https://llmcss.io/components"
+    }
+   ]
+  },
+  {
+   "name": "ai-accordion",
+   "description": {
+    "kind": "markdown",
+    "value": "Disclosure group. Each item is an .ai-accordion-item whose trigger carries data-ai-toggle=\"accordion\"."
+   },
+   "attributes": [
+    {
+     "name": "open",
+     "description": {
+      "kind": "markdown",
+      "value": "Open state. Interchangeable with the is-open class; the runtime sets both."
+     },
+     "valueSet": "v"
+    }
+   ],
+   "references": [
+    {
+     "name": "LLMCSS components",
+     "url": "https://llmcss.io/components"
+    }
+   ]
+  },
+  {
+   "name": "ai-drawer",
+   "description": {
+    "kind": "markdown",
+    "value": "Edge panel. Open it with data-ai-toggle=\"drawer\" data-ai-target=\"#id\". Locks page scroll unless .ai-drawer-no-lock is present."
+   },
+   "attributes": [
+    {
+     "name": "open",
+     "description": {
+      "kind": "markdown",
+      "value": "Open state. Interchangeable with the is-open class; the runtime sets both."
+     },
+     "valueSet": "v"
+    }
+   ],
+   "references": [
+    {
+     "name": "LLMCSS components",
+     "url": "https://llmcss.io/components"
+    }
+   ]
+  },
+  {
+   "name": "ai-toast",
+   "description": {
+    "kind": "markdown",
+    "value": "Transient notification. A child with data-ai-dismiss=\"toast\" removes it."
+   },
+   "attributes": [
+    {
+     "name": "open",
+     "description": {
+      "kind": "markdown",
+      "value": "Open state. Interchangeable with the is-open class; the runtime sets both."
+     },
+     "valueSet": "v"
+    }
+   ],
+   "references": [
+    {
+     "name": "LLMCSS components",
+     "url": "https://llmcss.io/components"
+    }
+   ]
+  },
+  {
+   "name": "ai-command-palette",
+   "description": {
+    "kind": "markdown",
+    "value": "Filterable command list. Typing in the inner input filters the items."
+   },
+   "attributes": [
+    {
+     "name": "open",
+     "description": {
+      "kind": "markdown",
+      "value": "Open state. Interchangeable with the is-open class; the runtime sets both."
+     },
+     "valueSet": "v"
+    }
+   ],
+   "references": [
+    {
+     "name": "LLMCSS components",
+     "url": "https://llmcss.io/components"
+    }
+   ]
+  }
+ ],
+ "globalAttributes": [
+  {
+   "name": "data-ai-toggle",
+   "description": {
+    "kind": "markdown",
+    "value": "Runtime toggle. modal and drawer need data-ai-target=\"#id\"; dropdown needs a .ai-dropdown ancestor; accordion needs a .ai-accordion-item ancestor.\n\nGoes on: button. Set by: author."
+   },
+   "values": [
+    {
+     "name": "modal"
+    },
+    {
+     "name": "drawer"
+    },
+    {
+     "name": "dropdown"
+    },
+    {
+     "name": "accordion"
+    }
+   ],
+   "references": [
+    {
+     "name": "states.json",
+     "url": "https://llmcss.io/states.json"
+    }
+   ]
+  },
+  {
+   "name": "data-ai-target",
+   "description": {
+    "kind": "markdown",
+    "value": "Selector of the modal or drawer to open.\n\nGoes on: the toggle button. Set by: author."
+   },
+   "references": [
+    {
+     "name": "states.json",
+     "url": "https://llmcss.io/states.json"
+    }
+   ]
+  },
+  {
+   "name": "data-ai-dismiss",
+   "description": {
+    "kind": "markdown",
+    "value": "Closes the nearest overlay of that kind.\n\nGoes on: button or backdrop inside the overlay. Set by: author."
+   },
+   "values": [
+    {
+     "name": "modal"
+    },
+    {
+     "name": "drawer"
+    },
+    {
+     "name": "toast"
+    }
+   ],
+   "references": [
+    {
+     "name": "states.json",
+     "url": "https://llmcss.io/states.json"
+    }
+   ]
+  },
+  {
+   "name": "data-ai-tab",
+   "description": {
+    "kind": "markdown",
+    "value": "Activates the panel; the runtime syncs aria-selected and tabindex.\n\nGoes on: button.ai-tab inside .ai-tabs. Set by: author."
+   },
+   "references": [
+    {
+     "name": "states.json",
+     "url": "https://llmcss.io/states.json"
+    }
+   ]
+  },
+  {
+   "name": "data-ai-theme",
+   "description": {
+    "kind": "markdown",
+    "value": "Color mode. Dark is never applied from the OS setting; set it yourself.\n\nGoes on: html or any container. Set by: author."
+   },
+   "values": [
+    {
+     "name": "light"
+    },
+    {
+     "name": "dark"
+    }
+   ],
+   "references": [
+    {
+     "name": "states.json",
+     "url": "https://llmcss.io/states.json"
+    }
+   ]
+  },
+  {
+   "name": "data-ai-skin",
+   "description": {
+    "kind": "markdown",
+    "value": "Archetype: surfaces, radius and type. emerald, violet and rose are deprecated aliases of data-ai-accent of the same name and will be removed in 1.0; use data-ai-accent instead.\n\nGoes on: html or any container. Set by: author."
+   },
+   "values": [
+    {
+     "name": "obsidian"
+    },
+    {
+     "name": "editorial"
+    },
+    {
+     "name": "executive"
+    },
+    {
+     "name": "fintech"
+    },
+    {
+     "name": "enterprise"
+    },
+    {
+     "name": "emerald"
+    },
+    {
+     "name": "violet"
+    },
+    {
+     "name": "rose"
+    }
+   ],
+   "references": [
+    {
+     "name": "states.json",
+     "url": "https://llmcss.io/states.json"
+    }
+   ]
+  },
+  {
+   "name": "data-ai-focus",
+   "description": {
+    "kind": "markdown",
+    "value": "Focus ring preset. Absent means the accent ring.\n\nGoes on: html. Set by: author."
+   },
+   "values": [
+    {
+     "name": "neutral"
+    },
+    {
+     "name": "thin"
+    },
+    {
+     "name": "none"
+    }
+   ],
+   "references": [
+    {
+     "name": "states.json",
+     "url": "https://llmcss.io/states.json"
+    }
+   ]
+  },
+  {
+   "name": "data-ai-density",
+   "description": {
+    "kind": "markdown",
+    "value": "Scales the spacing steps components use for padding. Absent means standard.\n\nGoes on: html or any container. Set by: author."
+   },
+   "values": [
+    {
+     "name": "compact"
+    },
+    {
+     "name": "spacious"
+    }
+   ],
+   "references": [
+    {
+     "name": "states.json",
+     "url": "https://llmcss.io/states.json"
+    }
+   ]
+  },
+  {
+   "name": "data-ai-toast-position",
+   "description": {
+    "kind": "markdown",
+    "value": "Where the toast stack sits. Absent means bottom-right.\n\nGoes on: .ai-toast-container. Set by: author."
+   },
+   "values": [
+    {
+     "name": "top-right"
+    },
+    {
+     "name": "top-center"
+    },
+    {
+     "name": "top-left"
+    },
+    {
+     "name": "bottom-left"
+    },
+    {
+     "name": "bottom-center"
+    }
+   ],
+   "references": [
+    {
+     "name": "states.json",
+     "url": "https://llmcss.io/states.json"
+    }
+   ]
+  }
+ ],
+ "valueSets": []
+}

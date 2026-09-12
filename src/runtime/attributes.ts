@@ -94,14 +94,16 @@ export function initDataAttributes(prefix = 'ai') {
     }
   }
 
-  function topOverlay(): Element | null {
+  // Topmost modal overlay; with includeModeless, the most recent open overlay
+  // of any kind (Escape should still dismiss a modeless panel).
+  function topOverlay(includeModeless = false): Element | null {
     prune();
     for (let i = stack.length - 1; i >= 0; i--) {
-      if (!isModeless(stack[i].el)) return stack[i].el;
+      if (includeModeless || !isModeless(stack[i].el)) return stack[i].el;
     }
     // Overlays opened by other code (custom elements, scripts) are not on the
     // stack; fall back to the last open one in DOM order.
-    const open = Array.from(document.querySelectorAll(overlaySelector)).filter((o) => isOpen(o) && !isModeless(o));
+    const open = Array.from(document.querySelectorAll(overlaySelector)).filter((o) => isOpen(o) && (includeModeless || !isModeless(o)));
     return open.length ? open[open.length - 1] : null;
   }
 
@@ -228,7 +230,7 @@ export function initDataAttributes(prefix = 'ai') {
   document.addEventListener('keydown', (event) => {
     // Escape: close the topmost overlay, otherwise any open dropdown
     if (event.key === 'Escape') {
-      const top = topOverlay();
+      const top = topOverlay(true);
       if (top) {
         event.preventDefault();
         closeOverlay(top);

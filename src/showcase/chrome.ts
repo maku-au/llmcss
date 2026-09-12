@@ -89,6 +89,12 @@ const NAV: Array<[string, string, string]> = [
   ['/account', 'account', 'Account'],
 ];
 
+const VERSION = typeof __LLMCSS_VERSION__ === 'string' ? __LLMCSS_VERSION__ : '';
+const CHANGELOG = 'https://github.com/maku-au/llmcss/blob/main/CHANGELOG.md';
+const VERSION_BADGE = VERSION
+  ? `<a href="${CHANGELOG}" class="ai-badge ai-badge-mono ai-badge-sm ai-hidden ai-md:inline-flex" title="Changelog">v${VERSION}</a>`
+  : '';
+
 const BRAND = `<a href="/" class="ai-brand">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0;"><rect x="3" y="3" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="9" y="9" width="12" height="12" rx="2.5" fill="currentColor"/></svg>
       <span>LLMCSS</span>
@@ -101,6 +107,7 @@ function headerHtml(licensed: boolean): string {
   const search = searchHtml();
   return `<div class="ai-container ai-container-lg ai-navbar-inner">
     ${BRAND}
+    ${VERSION_BADGE}
     <nav class="ai-nav-links ai-hidden ai-lg:flex" id="desktop-nav" aria-label="Primary">
       ${NAV.map(([href, id, label]) => navLink(href, id, label)).join('\n      ')}
     </nav>
@@ -153,7 +160,7 @@ export function footerHtml(): string {
       <div>
         ${BRAND}
         <p class="ai-text-secondary ai-text-xs" style="margin-top: var(--ai-space-3); max-width: 20rem; line-height: 1.6;">Native CSS for agents and humans. MIT core. Pro catalog $9/mo.</p>
-        <div class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-4);">&copy; 2026 LLMCSS. MIT core.</div>
+        <div class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-4);">&copy; 2026 LLMCSS. MIT core.${VERSION ? ` <a href="${CHANGELOG}" class="ai-link-muted">Version ${VERSION}</a>` : ''}</div>
       </div>
       ${col('Catalog', [
         link('/components.html', `Components (${s.total})`),

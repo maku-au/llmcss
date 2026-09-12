@@ -15,6 +15,9 @@
     color: var(--ai-text-secondary);
   }
 
+  /* --ai-table-cell-padding is the padding shorthand for every th and td. Set
+     it on the table (or a container) to re-space the grid in one place; that is
+     how .ai-table-compact and .ai-density-compact do it. */
   .ai-table th {
     background-color: var(--ai-surface-1);
     color: var(--ai-text-primary);
@@ -22,13 +25,13 @@
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    padding: var(--ai-space-3) var(--ai-space-4);
+    padding: var(--ai-table-cell-padding, var(--ai-space-3) var(--ai-space-4));
     border-bottom: 1px solid var(--ai-border);
     white-space: nowrap;
   }
 
   .ai-table td {
-    padding: var(--ai-space-3) var(--ai-space-4);
+    padding: var(--ai-table-cell-padding, var(--ai-space-3) var(--ai-space-4));
     border-bottom: 1px solid var(--ai-border-subtle);
     vertical-align: middle;
   }
@@ -133,9 +136,8 @@
 
 @layer components {
   /* Density, sticky header, selection, and sort affordances */
-  .ai-table-compact th,
-  .ai-table-compact td {
-    padding: var(--ai-space-2) var(--ai-space-3);
+  .ai-table-compact {
+    --ai-table-cell-padding: var(--ai-space-2) var(--ai-space-3);
   }
   .ai-table-sticky thead th {
     position: sticky;

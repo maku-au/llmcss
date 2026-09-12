@@ -117,15 +117,53 @@ function buildClasses(files) {
 function parseTokens(file, into, labelFor) {
   const css = fs.readFileSync(file, 'utf8');
   for (const r of rules(css)) {
-    const label = labelFor(r.selector);
-    if (!label) continue;
+    const labels = [labelFor(r.selector)].flat().filter(Boolean);
+    if (!labels.length) continue;
     for (const m of r.body.matchAll(/(--ai-[\w-]+)\s*:\s*([^;]+);/g)) {
       const name = m[1];
       const entry = into.get(name) || { token: name, values: {} };
-      if (!(label in entry.values)) entry.values[label] = m[2].trim();
+      for (const label of labels) {
+        if (!(label in entry.values)) entry.values[label] = m[2].trim();
+      }
       into.set(name, entry);
     }
   }
+}
+
+// Per-component tunables: every var(--ai-x, <default>) read inside a component
+// stylesheet whose token is not already declared in tokens.css. The fallback is
+// read with paren balancing so nested var() defaults survive intact.
+function buildComponentTokens(declaredInTokens) {
+  const out = new Map();
+  const dir = path.join(cssDir, 'components');
+  for (const file of fs.readdirSync(dir).sort()) {
+    if (!file.endsWith('.css') || file === 'showcase.css') continue;
+    const component = path.basename(file, '.css');
+    const css = fs.readFileSync(path.join(dir, file), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+    for (const r of rules(css)) {
+      for (const v of r.body.matchAll(/var\(\s*(--ai-[\w-]+)\s*,/g)) {
+        const token = v[1];
+        if (declaredInTokens.has(token) || out.has(token)) continue;
+        // The property this fallback is read under: last "name:" before the var().
+        const before = r.body.slice(0, v.index);
+        const property = (before.match(/([-a-zA-Z]+)\s*:[^:;{}]*$/) || [])[1];
+        // Fallback text, closing at the var()'s own paren.
+        let depth = 1;
+        let i = v.index + v[0].length;
+        for (; i < r.body.length && depth > 0; i++) {
+          if (r.body[i] === '(') depth++;
+          else if (r.body[i] === ')') depth--;
+        }
+        out.set(token, {
+          token,
+          default: r.body.slice(v.index + v[0].length, i - 1).trim(),
+          component,
+          property: property || '',
+        });
+      }
+    }
+  }
+  return [...out.values()].sort((a, b) => a.token.localeCompare(b.token));
 }
 
 function buildTokens() {
@@ -139,9 +177,15 @@ function buildTokens() {
     return null;
   });
   parseTokens(path.join(cssDir, 'themes.css'), tokens, (sel) => {
+    const labels = [];
+    // data-ai-accent contexts; a rule may carry both (the deprecated skin alias).
+    for (const m of sel.matchAll(/data-ai-accent="([\w-]+)"/g)) {
+      const label = 'accent:' + m[1];
+      if (!labels.includes(label)) labels.push(label);
+    }
     const skin = skinOf(sel);
-    if (!skin) return null;
-    return dark(sel) ? `${skin}:dark` : skin;
+    if (skin) labels.push(dark(sel) ? `${skin}:dark` : skin);
+    return labels;
   });
   return [...tokens.values()].sort((a, b) => a.token.localeCompare(b.token));
 }
@@ -169,15 +213,17 @@ function buildManifests() {
   );
 
   const tokens = buildTokens();
+  const componentTokens = buildComponentTokens(new Set(tokens.map((t) => t.token)));
   fs.writeFileSync(
     path.join(publicDir, 'tokens.json'),
     JSON.stringify(
       {
         version: '0.1.0',
         generatedAt: now,
-        note: 'Every --ai-* custom property with its value per context: light (default), dark (data-ai-theme="dark"), <skin> and <skin>:dark (data-ai-skin), focus:<preset> (data-ai-focus). Override any of them on :root or a container.',
-        stats: { total: tokens.length },
+        note: 'Every --ai-* custom property with its value per context: light (default), dark (data-ai-theme="dark"), <skin> and <skin>:dark (data-ai-skin), accent:<name> (data-ai-accent), focus:<preset> (data-ai-focus). Override any of them on :root or a container. componentTokens lists the per-component tunables that are not declared anywhere by default: each is read as var(<token>, <default>) by that component, so setting it on the component, a container, or :root changes only that property.',
+        stats: { total: tokens.length, componentTokens: componentTokens.length },
         tokens,
+        componentTokens,
       },
       null,
       1
@@ -186,7 +232,8 @@ function buildManifests() {
 
   const attributes = [
     { attribute: 'data-ai-theme', values: ['light', 'dark'], on: 'html or any container', appliedBy: 'author', purpose: 'Color mode. Dark is never applied from the OS setting; set it yourself.' },
-    { attribute: 'data-ai-skin', values: ['obsidian', 'editorial', 'executive', 'fintech', 'enterprise', 'emerald', 'violet', 'rose'], on: 'html or any container', appliedBy: 'author', purpose: 'Archetype. The first five change surfaces, radius and type; emerald, violet and rose change only the accent.' },
+    { attribute: 'data-ai-skin', values: ['obsidian', 'editorial', 'executive', 'fintech', 'enterprise', 'emerald', 'violet', 'rose'], on: 'html or any container', appliedBy: 'author', purpose: 'Archetype: surfaces, radius and type. emerald, violet and rose are deprecated aliases of data-ai-accent of the same name and will be removed in 1.0; use data-ai-accent instead.' },
+    { attribute: 'data-ai-accent', values: ['emerald', 'violet', 'rose', 'teal', 'steel', 'amber'], on: 'html or any container', appliedBy: 'author', purpose: 'Accent only: sets --ai-accent, --ai-accent-hover, --ai-accent-subtle, --ai-accent-rgb and a contrast-checked --ai-accent-text. Composes with any data-ai-skin and outranks the skin accent. Absent means the blue default.' },
     { attribute: 'data-ai-density', values: ['compact', 'spacious'], on: 'html or any container', appliedBy: 'author', purpose: 'Scales the spacing steps components use for padding. Absent means standard.' },
     { attribute: 'data-ai-focus', values: ['neutral', 'thin', 'none'], on: 'html', appliedBy: 'author', purpose: 'Focus ring preset. Absent means the accent ring.' },
     { attribute: 'data-ai-toggle', values: ['modal', 'drawer', 'dropdown', 'accordion'], on: 'button', appliedBy: 'author', purpose: 'Runtime toggle. modal and drawer need data-ai-target="#id"; dropdown needs a .ai-dropdown ancestor; accordion needs a .ai-accordion-item ancestor.' },
@@ -197,7 +244,8 @@ function buildManifests() {
     { attribute: 'open', values: [''], on: '.ai-modal, .ai-drawer, .ai-accordion-item, .ai-dropdown', appliedBy: 'runtime or author', purpose: 'Open state. Interchangeable with the is-open class; the runtime sets both.' },
     { attribute: 'aria-expanded', values: ['true', 'false'], on: 'toggle buttons', appliedBy: 'runtime', purpose: 'Kept in sync for every trigger that points at an overlay, dropdown, or accordion item.' },
     { attribute: 'aria-sort', values: ['ascending', 'descending'], on: 'th inside .ai-table', appliedBy: 'author', purpose: 'Shows the sort indicator.' },
-    { attribute: 'aria-selected', values: ['true'], on: 'tr inside .ai-table', appliedBy: 'author', purpose: 'Highlights the selected row.' },
+    { attribute: 'aria-selected', values: ['true'], on: 'tr inside .ai-table, button.ai-tab', appliedBy: 'runtime or author', purpose: 'Selected row or active tab. Interchangeable with the is-active class on tabs; the runtime sets both.' },
+    { attribute: 'aria-current', values: ['page', 'step', 'true'], on: '.ai-nav-link, .ai-sidebar-item, .ai-pagination-link, .ai-breadcrumb-item', appliedBy: 'author', purpose: 'Marks the current item. Interchangeable with is-active (is-current on breadcrumbs); the selectors match the attribute\'s presence, so remove it rather than setting aria-current="false".' },
   ];
   fs.writeFileSync(
     path.join(publicDir, 'states.json'),

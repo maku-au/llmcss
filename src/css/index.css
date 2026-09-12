@@ -32,6 +32,9 @@
 @import "./components/application.css";
 @import "./components/dashboard.css";
 @import "./components/navigation.css";
+@import "./components/forms-extra.css";
+@import "./components/commerce-extra.css";
+@import "./components/scrollspy.css";
 @import "./components/showcase.css";
 
 /* Utilities */

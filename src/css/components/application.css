@@ -10,6 +10,7 @@
     background-color: var(--ai-bg);
   }
 
+  /* --ai-sidebar-width  rail width; .is-collapsed sets it to the icon rail */
   .ai-sidebar {
     width: var(--ai-sidebar-width, 16rem);
     background-color: var(--ai-surface-0);
@@ -66,7 +67,9 @@
     color: var(--ai-text-primary);
   }
 
-  .ai-sidebar-item.is-active {
+  /* State twin: .is-active mirrors aria-current="page" on the current item. */
+  .ai-sidebar-item.is-active,
+  .ai-sidebar-item[aria-current] {
     background-color: var(--ai-surface-2);
     color: var(--ai-text-primary);
     font-weight: 600;
@@ -114,9 +117,12 @@
     letter-spacing: 0.04em;
   }
 
+  /* --ai-kpi-value-size is the metric's type size. Set it on a wrapper to
+     rescale every value inside it; .ai-spark-stat and .ai-kpi-card.is-primary
+     (dashboard.css) do exactly that. */
   .ai-kpi-value {
     font-family: var(--ai-font-display);
-    font-size: 2rem;
+    font-size: var(--ai-kpi-value-size, 2rem);
     font-weight: 700;
     color: var(--ai-text-primary);
     line-height: 1.1;
@@ -346,8 +352,7 @@
   .ai-density-compact .ai-sidebar-item {
     padding-block: var(--ai-space-2);
   }
-  .ai-density-compact .ai-table th,
-  .ai-density-compact .ai-table td {
-    padding: var(--ai-space-2) var(--ai-space-3);
+  .ai-density-compact .ai-table {
+    --ai-table-cell-padding: var(--ai-space-2) var(--ai-space-3);
   }
 }

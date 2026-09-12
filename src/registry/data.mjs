@@ -6,7 +6,9 @@ function lockedPreview(name) {
 </div>`;
 }
 
-export const components = [
+import { extraComponents } from './data-extra.mjs';
+
+const baseComponents = [
   /* ==========================================================================
      PRIMITIVES - BUTTONS & CONTROLS
      ========================================================================== */
@@ -128,7 +130,7 @@ export const components = [
     tags: ['badge', 'pill', 'status', 'tag'],
     html: `<div class="ai-flex ai-flex-wrap ai-gap-2 ai-items-center">
   <span class="ai-badge ai-badge-solid">RECOMMENDED</span>
-  <span class="ai-badge ai-badge-default">Default</span>
+  <span class="ai-badge ai-badge-neutral">Default</span>
   <span class="ai-badge ai-badge-pro">PRO ACCESS</span>
   <span class="ai-badge ai-badge-success ai-badge-dot">Operational</span>
   <span class="ai-badge ai-badge-warning ai-badge-dot">Degraded</span>
@@ -341,7 +343,7 @@ export const components = [
     </div>
   </div>
   <div class="ai-alert ai-alert-success" role="status">
-    <svg class="ai-alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="22 4 12 14.01 9 11.01"/></svg>
+    <svg class="ai-alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01 9 11.01"/></svg>
     <div>
       <strong class="ai-font-semibold">Success:</strong> Your new API license key has been verified and applied to your workspace.
     </div>
@@ -2400,4 +2402,69 @@ npx llmcss add kbd-shortcuts</code></pre>`,
   </div>
 </div>`,
   },
+  {
+    id: 'permission-dialog',
+    name: 'Permission Dialog',
+    description: 'Modal that asks the user to allow or deny a scoped agent action, with a per capability risk read and a remember for this session option.',
+    category: 'application',
+    tier: 'pro',
+    tags: ['agent', 'permission', 'modal', 'approval', 'security', 'pro'],
+    html: lockedPreview('Permission Dialog'),
+  },
+  {
+    id: 'diff-view',
+    name: 'Diff View',
+    description: 'Line level before and after diff with paired gutters, tinted added and removed rows, and a collapsed run of unchanged lines.',
+    category: 'application',
+    tier: 'pro',
+    tags: ['diff', 'code', 'review', 'agent', 'pro'],
+    html: lockedPreview('Diff View'),
+  },
+  {
+    id: 'split-pane',
+    name: 'Split Pane',
+    description: 'Two resizable panes joined by a keyboard adjustable separator, horizontal by default and stacked on the vertical variant.',
+    category: 'application',
+    tier: 'pro',
+    tags: ['layout', 'split', 'resize', 'panes', 'workspace', 'pro'],
+    html: lockedPreview('Split Pane'),
+  },
+  {
+    id: 'prompt-composer',
+    name: 'Prompt Composer',
+    description: 'Auto growing prompt textarea with a model chip, attachment chips, a token counter with a quota hint, and a send action.',
+    category: 'application',
+    tier: 'pro',
+    tags: ['prompt', 'composer', 'input', 'chat', 'agent', 'pro'],
+    html: lockedPreview('Prompt Composer'),
+  },
+  {
+    id: 'cost-meter',
+    name: 'Cost Meter',
+    description: 'Spend and token meter with warn and hard stop notches on the bar, a period label, and a projection at the current rate.',
+    category: 'application',
+    tier: 'pro',
+    tags: ['cost', 'budget', 'meter', 'usage', 'billing', 'pro'],
+    html: lockedPreview('Cost Meter'),
+  },
+  {
+    id: 'model-picker',
+    name: 'Model Picker',
+    description: 'Single choice model list showing provider, context window and price per million tokens, with the selected state driven entirely by CSS.',
+    category: 'application',
+    tier: 'pro',
+    tags: ['model', 'picker', 'radio', 'settings', 'agent', 'pro'],
+    html: lockedPreview('Model Picker'),
+  },
+  {
+    id: 'run-status-header',
+    name: 'Run Status Header',
+    description: 'Page header for a live agent run: title, run id, status pip, elapsed timer, step count and the run controls, plus a finished variant.',
+    category: 'application',
+    tier: 'pro',
+    tags: ['agent', 'run', 'status', 'header', 'telemetry', 'pro'],
+    html: lockedPreview('Run Status Header'),
+  },
 ];
+
+export const components = [...baseComponents, ...extraComponents];

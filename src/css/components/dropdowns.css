@@ -6,12 +6,14 @@
     display: inline-block;
   }
 
+  /* --ai-dropdown-offset  gap between the trigger and the menu
+     --ai-dropdown-width   floor for the menu width */
   .ai-dropdown-menu {
     display: none;
     position: absolute;
-    top: calc(100% + var(--ai-space-1));
+    top: calc(100% + var(--ai-dropdown-offset, var(--ai-space-1)));
     left: 0;
-    min-width: 12rem;
+    min-width: var(--ai-dropdown-width, 12rem);
     background-color: var(--ai-surface-0);
     border: 1px solid var(--ai-border);
     border-radius: var(--ai-radius-lg);

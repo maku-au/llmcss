@@ -1,0 +1,523 @@
+@layer components {
+  /* ==========================================================================
+     Form and identity primitives: combobox, calendar, number stepper,
+     password toggle, avatar status dot, rating stars.
+     Every block renders and stays usable with the runtime absent.
+     ========================================================================== */
+
+  /* --------------------------------------------------------------------------
+     Combobox: text input plus listbox
+     <div class="ai-combobox">
+       <input class="ai-input" role="combobox" aria-expanded="false"
+              aria-controls="city-list" aria-autocomplete="list">
+       <ul class="ai-combobox-list" role="listbox" id="city-list">
+         <li class="ai-combobox-option" role="option">Sydney</li>
+       </ul>
+     </div>
+     Without JavaScript the list opens on :focus-within and filters nothing.
+     combobox.ts adds .is-ready to the wrapper and then owns .is-open.
+     -------------------------------------------------------------------------- */
+  .ai-combobox {
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+
+  .ai-combobox-list {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-start: calc(100% + var(--ai-space-1));
+    z-index: 40;
+    display: none;
+    max-block-size: 14rem;
+    margin: 0;
+    padding: var(--ai-space-1);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    list-style: none;
+    background-color: var(--ai-surface-0);
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-md);
+    box-shadow: var(--ai-shadow-md);
+    scrollbar-color: var(--ai-surface-3) transparent;
+  }
+
+  /* No-JavaScript fallback: focus opens the list */
+  .ai-combobox:focus-within > .ai-combobox-list {
+    display: block;
+  }
+
+  /* Runtime present: the open state is explicit, never focus driven */
+  .ai-combobox.is-ready:not(.is-open) > .ai-combobox-list {
+    display: none;
+  }
+  .ai-combobox.is-ready.is-open > .ai-combobox-list {
+    display: block;
+  }
+
+  .ai-combobox-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ai-space-3);
+    padding: var(--ai-space-2) var(--ai-space-3);
+    border-radius: var(--ai-radius-sm);
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: var(--ai-text-primary);
+    cursor: pointer;
+  }
+  .ai-combobox-option[hidden] {
+    display: none;
+  }
+  .ai-combobox-option:hover,
+  .ai-combobox-option.is-active {
+    background-color: var(--ai-surface-1);
+  }
+  .ai-combobox-option.is-active {
+    box-shadow: inset 0 0 0 1px var(--ai-border-strong);
+  }
+  .ai-combobox-option[aria-selected="true"] {
+    color: var(--ai-text-primary);
+    font-weight: 600;
+  }
+  .ai-combobox-option[aria-disabled="true"] {
+    color: var(--ai-text-muted);
+    cursor: not-allowed;
+  }
+
+  /* Trailing hint inside an option, for a region or category */
+  .ai-combobox-hint {
+    flex: 0 0 auto;
+    font-size: 0.75rem;
+    color: var(--ai-text-muted);
+  }
+
+  /* Shown by the runtime when a query matches nothing */
+  .ai-combobox-empty {
+    padding: var(--ai-space-3);
+    font-size: 0.8125rem;
+    color: var(--ai-text-muted);
+  }
+
+  /* --------------------------------------------------------------------------
+     Calendar: month grid on the WAI-ARIA date picker grid pattern
+     -------------------------------------------------------------------------- */
+  .ai-calendar-panel {
+    display: block;
+    padding: var(--ai-space-3);
+    background-color: var(--ai-surface-0);
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-lg);
+  }
+
+  .ai-calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ai-space-2);
+    padding-block-end: var(--ai-space-2);
+  }
+
+  .ai-calendar-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--ai-text-primary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ai-calendar-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ai-space-1);
+  }
+
+  .ai-calendar {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ai-calendar th,
+  .ai-calendar td {
+    padding: 0;
+    text-align: center;
+  }
+
+  .ai-calendar-weekday {
+    padding-block: var(--ai-space-1) var(--ai-space-2);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--ai-text-muted);
+  }
+  .ai-calendar-weekday abbr {
+    text-decoration: none;
+    border-block-end: 0;
+    cursor: default;
+  }
+
+  .ai-calendar-day {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 100%;
+    aspect-ratio: 1;
+    min-block-size: 2rem;
+    padding: 0;
+    font: inherit;
+    font-size: 0.8125rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--ai-text-primary);
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--ai-radius-md);
+    cursor: pointer;
+    transition: background-color var(--ai-duration-fast) var(--ai-ease-out),
+                color var(--ai-duration-fast) var(--ai-ease-out),
+                border-color var(--ai-duration-fast) var(--ai-ease-out);
+  }
+  .ai-calendar-day:hover {
+    background-color: var(--ai-surface-1);
+  }
+  .ai-calendar-day:focus-visible {
+    outline: none;
+    box-shadow: var(--ai-focus-ring);
+  }
+  .ai-calendar-day.is-muted {
+    color: var(--ai-text-muted);
+  }
+  .ai-calendar-day.is-today {
+    border-color: var(--ai-border-strong);
+    font-weight: 600;
+  }
+  .ai-calendar-day.is-selected {
+    background-color: var(--ai-accent);
+    border-color: var(--ai-accent);
+    color: var(--ai-accent-text);
+    font-weight: 600;
+  }
+  .ai-calendar-day.is-selected:hover {
+    background-color: var(--ai-accent-hover);
+  }
+  .ai-calendar-day:disabled {
+    color: var(--ai-text-muted);
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .ai-calendar-day:disabled:hover {
+    background-color: transparent;
+  }
+
+  .ai-calendar-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ai-space-3);
+    margin-block-start: var(--ai-space-3);
+    padding-block-start: var(--ai-space-3);
+    border-block-start: 1px solid var(--ai-border-subtle);
+    font-size: 0.75rem;
+    color: var(--ai-text-muted);
+  }
+
+  /* --------------------------------------------------------------------------
+     Number stepper: joined minus, native number input, plus
+     Native arrow keys and the spin buttons keep working with no JavaScript;
+     combobox.ts wires the [data-ai-step] buttons for pointer users.
+     -------------------------------------------------------------------------- */
+  .ai-stepper-input {
+    display: inline-flex;
+    align-items: stretch;
+    inline-size: fit-content;
+    max-inline-size: 100%;
+  }
+
+  .ai-stepper-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    flex: 0 0 auto;
+    padding: 0;
+    color: var(--ai-text-primary);
+    background-color: var(--ai-surface-0);
+    border: 1px solid var(--ai-border);
+    cursor: pointer;
+    transition: background-color var(--ai-duration-fast) var(--ai-ease-out),
+                border-color var(--ai-duration-fast) var(--ai-ease-out);
+  }
+  .ai-stepper-btn:first-child {
+    border-start-start-radius: var(--ai-radius-base);
+    border-end-start-radius: var(--ai-radius-base);
+  }
+  .ai-stepper-btn:last-child {
+    border-start-end-radius: var(--ai-radius-base);
+    border-end-end-radius: var(--ai-radius-base);
+  }
+  .ai-stepper-btn:hover {
+    background-color: var(--ai-surface-1);
+    border-color: var(--ai-border-strong);
+  }
+  .ai-stepper-btn:focus-visible {
+    outline: none;
+    box-shadow: var(--ai-focus-ring);
+    position: relative;
+    z-index: 1;
+  }
+  .ai-stepper-btn:disabled {
+    color: var(--ai-text-muted);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  .ai-stepper-btn::before {
+    content: "";
+    inline-size: 0.75rem;
+    block-size: 0.75rem;
+    background-color: currentColor;
+    -webkit-mask: var(--ai-stepper-glyph) center / contain no-repeat;
+    mask: var(--ai-stepper-glyph) center / contain no-repeat;
+  }
+  .ai-stepper-btn {
+    --ai-stepper-glyph: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M5 12h14'/%3E%3C/svg%3E");
+  }
+  .ai-stepper-btn.is-increment {
+    --ai-stepper-glyph: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M12 5v14'/%3E%3Cpath d='M5 12h14'/%3E%3C/svg%3E");
+  }
+
+  .ai-stepper-input > .ai-input {
+    inline-size: 4rem;
+    min-inline-size: 0;
+    text-align: center;
+    border-radius: 0;
+    border-inline: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .ai-stepper-input > .ai-input:focus,
+  .ai-stepper-input > .ai-input:focus-visible {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Native spinners are redundant next to the buttons */
+  .ai-stepper-input > .ai-input::-webkit-outer-spin-button,
+  .ai-stepper-input > .ai-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+  .ai-stepper-input > .ai-input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  /* --------------------------------------------------------------------------
+     Password field with a show and hide button
+     CSS cannot change an input type, so the button is a real button and
+     combobox.ts wires [data-ai-password-toggle]. With the runtime absent the
+     field is a plain, fully usable password input and the button is hidden.
+     -------------------------------------------------------------------------- */
+  .ai-password {
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+  .ai-password > .ai-input {
+    padding-inline-end: 2.75rem;
+  }
+
+  .ai-password-toggle {
+    position: absolute;
+    inset-inline-end: var(--ai-space-1);
+    inset-block-start: 50%;
+    translate: 0 -50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2rem;
+    block-size: 2rem;
+    padding: 0;
+    color: var(--ai-text-muted);
+    background: transparent;
+    border: 0;
+    border-radius: var(--ai-radius-sm);
+    cursor: pointer;
+  }
+  .ai-js .ai-password > .ai-password-toggle {
+    display: inline-flex;
+  }
+  .ai-password-toggle:hover {
+    color: var(--ai-text-primary);
+    background-color: var(--ai-surface-1);
+  }
+  .ai-password-toggle:focus-visible {
+    outline: none;
+    box-shadow: var(--ai-focus-ring);
+  }
+  .ai-password-toggle::before {
+    content: "";
+    inline-size: 1rem;
+    block-size: 1rem;
+    background-color: currentColor;
+    -webkit-mask: var(--ai-password-glyph) center / contain no-repeat;
+    mask: var(--ai-password-glyph) center / contain no-repeat;
+  }
+  .ai-password-toggle {
+    --ai-password-glyph: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E");
+  }
+  .ai-password.is-visible > .ai-password-toggle {
+    color: var(--ai-text-primary);
+    --ai-password-glyph: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3l18 18'/%3E%3Cpath d='M10.6 6.2A9.8 9.8 0 0 1 12 6c6.4 0 10 6 10 6a17 17 0 0 1-3.2 3.9'/%3E%3Cpath d='M6.3 7.6A17 17 0 0 0 2 12s3.6 6 10 6a9.6 9.6 0 0 0 4-.8'/%3E%3C/svg%3E");
+  }
+
+  /* --------------------------------------------------------------------------
+     Avatar status dot, ringed with the surface colour
+     -------------------------------------------------------------------------- */
+  .ai-avatar:has(> .ai-avatar-status) {
+    overflow: visible;
+  }
+  .ai-avatar:has(> .ai-avatar-status) > img {
+    border-radius: var(--ai-radius-full);
+  }
+
+  .ai-avatar-status {
+    --ai-dot-size: 0.6875rem;
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-end: 0;
+    inline-size: var(--ai-dot-size);
+    block-size: var(--ai-dot-size);
+    border-radius: var(--ai-radius-full);
+    background-color: var(--ai-text-muted);
+    box-shadow: 0 0 0 2px var(--ai-surface-0);
+  }
+  .ai-avatar-sm > .ai-avatar-status {
+    --ai-dot-size: 0.5rem;
+  }
+  .ai-avatar-lg > .ai-avatar-status,
+  .ai-avatar-xl > .ai-avatar-status {
+    --ai-dot-size: 0.9375rem;
+  }
+
+  .ai-avatar-status-online {
+    background-color: var(--ai-success);
+  }
+  .ai-avatar-status-away {
+    background-color: var(--ai-warning);
+  }
+  .ai-avatar-status-offline {
+    background-color: var(--ai-text-muted);
+  }
+  .ai-avatar-status-busy {
+    background-color: var(--ai-danger);
+  }
+
+  /* --------------------------------------------------------------------------
+     Rating stars
+     Interactive: reversed radios, so :checked ~ label paints the star and every
+     lower star. Read only: a track of muted stars with a fractional fill.
+     -------------------------------------------------------------------------- */
+  .ai-rating {
+    --ai-star-size: 1.375rem;
+    --ai-star-glyph: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2.1l2.9 6.1 6.6.9-4.8 4.7 1.2 6.7-5.9-3.2-5.9 3.2 1.2-6.7L2.5 9.1l6.6-.9z'/%3E%3C/svg%3E");
+    position: relative;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--ai-space-1);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-inline-size: 0;
+  }
+  .ai-rating > legend {
+    padding: 0;
+  }
+
+  .ai-rating-input {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .ai-rating-star {
+    display: inline-block;
+    inline-size: var(--ai-star-size);
+    block-size: var(--ai-star-size);
+    background-color: var(--ai-surface-3);
+    cursor: pointer;
+    -webkit-mask: var(--ai-star-glyph) center / contain no-repeat;
+    mask: var(--ai-star-glyph) center / contain no-repeat;
+    transition: background-color var(--ai-duration-fast) var(--ai-ease-out);
+  }
+
+  .ai-rating-input:checked ~ .ai-rating-star {
+    background-color: var(--ai-warning);
+  }
+
+  /* Hover preview wins over the checked value while the pointer is down the row */
+  .ai-rating:hover > .ai-rating-star {
+    background-color: var(--ai-surface-3);
+  }
+  .ai-rating > .ai-rating-star:hover,
+  .ai-rating > .ai-rating-star:hover ~ .ai-rating-star {
+    background-color: var(--ai-warning);
+  }
+
+  .ai-rating-input:focus-visible + .ai-rating-star {
+    outline: var(--ai-focus-width) solid var(--ai-focus-color);
+    outline-offset: var(--ai-focus-offset);
+  }
+
+  /* Read only display with a fractional fill: style="--ai-rating-fill: 86%" */
+  .ai-rating-static {
+    --ai-star-size: 1rem;
+    --ai-star-glyph: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2.1l2.9 6.1 6.6.9-4.8 4.7 1.2 6.7-5.9-3.2-5.9 3.2 1.2-6.7L2.5 9.1l6.6-.9z'/%3E%3C/svg%3E");
+    position: relative;
+    display: inline-block;
+    inline-size: calc(var(--ai-star-size) * 5);
+    block-size: var(--ai-star-size);
+    vertical-align: -0.15em;
+  }
+  .ai-rating-track,
+  .ai-rating-fill {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    block-size: 100%;
+    -webkit-mask: var(--ai-star-glyph) 0 0 / var(--ai-star-size) var(--ai-star-size) repeat-x;
+    mask: var(--ai-star-glyph) 0 0 / var(--ai-star-size) var(--ai-star-size) repeat-x;
+  }
+  .ai-rating-track {
+    inline-size: 100%;
+    background-color: var(--ai-surface-3);
+  }
+  .ai-rating-fill {
+    inline-size: var(--ai-rating-fill, 0%);
+    background-color: var(--ai-warning);
+  }
+
+  .ai-rating-value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ai-text-primary);
+    font-variant-numeric: tabular-nums;
+  }
+  .ai-rating-count {
+    font-size: 0.8125rem;
+    color: var(--ai-text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ai-calendar-day,
+    .ai-stepper-btn,
+    .ai-rating-star {
+      transition: none;
+    }
+  }
+}

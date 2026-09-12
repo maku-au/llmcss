@@ -1,15 +1,17 @@
 {
  "version": "0.1.0",
- "generatedAt": "2026-09-12T04:28:32.876Z",
+ "generatedAt": "2026-09-12T05:32:17.555Z",
  "note": "State classes are set by the author for static markup or by the runtime for interactive components. usedBy lists the classes that appear in the same selector.",
  "states": [
   {
    "class": "is-active",
    "usedBy": [
+    "ai-combobox-option",
     "ai-filter-tag",
     "ai-list-group-item",
     "ai-nav-link",
     "ai-pagination-link",
+    "ai-scrollspy-link",
     "ai-segmented-btn",
     "ai-sidebar-badge",
     "ai-sidebar-item",
@@ -53,14 +55,25 @@
     "ai-checklist-item",
     "ai-checklist-label",
     "ai-checklist-mark",
+    "ai-order-pip",
+    "ai-order-step",
     "ai-step-circle",
     "ai-step-item"
    ]
   },
   {
+   "class": "is-credit",
+   "usedBy": [
+    "ai-checkout-value"
+   ]
+  },
+  {
    "class": "is-current",
    "usedBy": [
-    "ai-breadcrumb-item"
+    "ai-breadcrumb-item",
+    "ai-order-label",
+    "ai-order-pip",
+    "ai-order-step"
    ]
   },
   {
@@ -101,6 +114,12 @@
    ]
   },
   {
+   "class": "is-increment",
+   "usedBy": [
+    "ai-stepper-btn"
+   ]
+  },
+  {
    "class": "is-loading",
    "usedBy": [
     "ai-btn",
@@ -110,12 +129,26 @@
    ]
   },
   {
+   "class": "is-muted",
+   "usedBy": [
+    "ai-calendar-day"
+   ]
+  },
+  {
+   "class": "is-nested",
+   "usedBy": [
+    "ai-scrollspy-link"
+   ]
+  },
+  {
    "class": "is-open",
    "usedBy": [
     "ai-accordion-chevron",
     "ai-accordion-content",
     "ai-accordion-item",
     "ai-accordion-trigger",
+    "ai-combobox",
+    "ai-combobox-list",
     "ai-drawer",
     "ai-drawer-no-lock",
     "ai-dropdown",
@@ -130,7 +163,6 @@
    "class": "is-primary",
    "usedBy": [
     "ai-kpi-card",
-    "ai-kpi-value",
     "ai-stat",
     "ai-stat-value"
    ]
@@ -139,6 +171,13 @@
    "class": "is-read",
    "usedBy": [
     "ai-notification-dot"
+   ]
+  },
+  {
+   "class": "is-ready",
+   "usedBy": [
+    "ai-combobox",
+    "ai-combobox-list"
    ]
   },
   {
@@ -151,6 +190,12 @@
    "class": "is-reversed",
    "usedBy": [
     "ai-hero-split"
+   ]
+  },
+  {
+   "class": "is-selected",
+   "usedBy": [
+    "ai-calendar-day"
    ]
   },
   {
@@ -168,6 +213,20 @@
     "ai-pulse-dot",
     "ai-pulse-dot-streaming",
     "ai-status-pip"
+   ]
+  },
+  {
+   "class": "is-today",
+   "usedBy": [
+    "ai-calendar-day"
+   ]
+  },
+  {
+   "class": "is-total",
+   "usedBy": [
+    "ai-checkout-label",
+    "ai-checkout-row",
+    "ai-checkout-value"
    ]
   },
   {
@@ -190,6 +249,21 @@
    "class": "is-up",
    "usedBy": [
     "ai-kpi-trend"
+   ]
+  },
+  {
+   "class": "is-upcoming",
+   "usedBy": [
+    "ai-order-label",
+    "ai-order-pip",
+    "ai-order-step"
+   ]
+  },
+  {
+   "class": "is-visible",
+   "usedBy": [
+    "ai-password",
+    "ai-password-toggle"
    ]
   }
  ],
@@ -218,7 +292,21 @@
    ],
    "on": "html or any container",
    "appliedBy": "author",
-   "purpose": "Archetype. The first five change surfaces, radius and type; emerald, violet and rose change only the accent."
+   "purpose": "Archetype: surfaces, radius and type. emerald, violet and rose are deprecated aliases of data-ai-accent of the same name and will be removed in 1.0; use data-ai-accent instead."
+  },
+  {
+   "attribute": "data-ai-accent",
+   "values": [
+    "emerald",
+    "violet",
+    "rose",
+    "teal",
+    "steel",
+    "amber"
+   ],
+   "on": "html or any container",
+   "appliedBy": "author",
+   "purpose": "Accent only: sets --ai-accent, --ai-accent-hover, --ai-accent-subtle, --ai-accent-rgb and a contrast-checked --ai-accent-text. Composes with any data-ai-skin and outranks the skin accent. Absent means the blue default."
   },
   {
    "attribute": "data-ai-density",
@@ -329,9 +417,20 @@
    "values": [
     "true"
    ],
-   "on": "tr inside .ai-table",
+   "on": "tr inside .ai-table, button.ai-tab",
+   "appliedBy": "runtime or author",
+   "purpose": "Selected row or active tab. Interchangeable with the is-active class on tabs; the runtime sets both."
+  },
+  {
+   "attribute": "aria-current",
+   "values": [
+    "page",
+    "step",
+    "true"
+   ],
+   "on": ".ai-nav-link, .ai-sidebar-item, .ai-pagination-link, .ai-breadcrumb-item",
    "appliedBy": "author",
-   "purpose": "Highlights the selected row."
+   "purpose": "Marks the current item. Interchangeable with is-active (is-current on breadcrumbs); the selectors match the attribute's presence, so remove it rather than setting aria-current=\"false\"."
   }
  ]
 }

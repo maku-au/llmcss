@@ -1,0 +1,335 @@
+@layer components {
+  /* ==========================================================================
+     Commerce blocks: checkout summary and order status tracker.
+     Both are static markup: no runtime, no JavaScript, no animation.
+     ========================================================================== */
+
+  /* --------------------------------------------------------------------------
+     Checkout summary
+     One flat surface. Line items, then a hairline, then the totals ledger,
+     the promo field and the order action. Never wrap this in another card.
+     -------------------------------------------------------------------------- */
+  .ai-checkout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ai-space-5);
+    padding: var(--ai-space-6);
+    background-color: var(--ai-surface-0);
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-lg);
+  }
+
+  .ai-checkout-title {
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--ai-text-primary);
+  }
+
+  .ai-checkout-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ai-space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ai-checkout-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--ai-space-3);
+  }
+
+  .ai-checkout-thumb {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    inline-size: 3rem;
+    block-size: 3rem;
+    overflow: hidden;
+    background-color: var(--ai-surface-2);
+    border: 1px solid var(--ai-border-subtle);
+    border-radius: var(--ai-radius-md);
+    font-family: var(--ai-font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--ai-text-secondary);
+  }
+  .ai-checkout-thumb img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  .ai-checkout-body {
+    flex: 1 1 auto;
+    min-inline-size: 0;
+  }
+
+  .ai-checkout-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--ai-text-primary);
+  }
+
+  .ai-checkout-meta {
+    margin-block-start: 0.15rem;
+    font-size: 0.75rem;
+    color: var(--ai-text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ai-checkout-price {
+    flex: 0 0 auto;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ai-text-primary);
+    text-align: end;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ai-checkout-totals {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ai-space-2);
+    margin: 0;
+    padding-block-start: var(--ai-space-5);
+    border-block-start: 1px solid var(--ai-border);
+  }
+
+  .ai-checkout-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--ai-space-4);
+  }
+
+  .ai-checkout-label {
+    font-size: 0.875rem;
+    color: var(--ai-text-secondary);
+  }
+
+  .ai-checkout-value {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--ai-text-primary);
+    text-align: end;
+    font-variant-numeric: tabular-nums;
+  }
+  .ai-checkout-value.is-credit {
+    color: var(--ai-success);
+  }
+
+  .ai-checkout-row.is-total {
+    margin-block-start: var(--ai-space-2);
+    padding-block-start: var(--ai-space-3);
+    border-block-start: 1px solid var(--ai-border);
+  }
+  .ai-checkout-row.is-total .ai-checkout-label {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--ai-text-primary);
+  }
+  .ai-checkout-row.is-total .ai-checkout-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .ai-checkout-promo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ai-space-2);
+  }
+  .ai-checkout-promo > .ai-input-group > .ai-input {
+    min-inline-size: 0;
+  }
+
+  .ai-checkout-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ai-space-2);
+  }
+
+  .ai-checkout-note {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--ai-text-muted);
+    text-align: center;
+  }
+
+  /* --------------------------------------------------------------------------
+     Order status tracker
+     Four steps, three states. The current step is a calm filled pip with a
+     ring: it never pulses, because nothing about it is changing.
+     -------------------------------------------------------------------------- */
+  .ai-order {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ai-space-5);
+    padding: var(--ai-space-6);
+    background-color: var(--ai-surface-0);
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-lg);
+  }
+
+  .ai-order-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--ai-space-4);
+    flex-wrap: wrap;
+  }
+
+  .ai-order-title {
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--ai-text-primary);
+  }
+
+  .ai-order-eta {
+    font-size: 0.8125rem;
+    color: var(--ai-text-secondary);
+    text-align: end;
+    font-variant-numeric: tabular-nums;
+  }
+  .ai-order-eta strong {
+    display: block;
+    font-size: 0.9375rem;
+    color: var(--ai-text-primary);
+  }
+
+  .ai-order-track {
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ai-order-step {
+    position: relative;
+    flex: 1 1 0;
+    min-inline-size: 0;
+    padding-inline: var(--ai-space-1);
+    text-align: center;
+  }
+
+  /* Connector to the next step, behind the pip */
+  .ai-order-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    inset-block-start: calc(0.375rem - 1px);
+    inset-inline-start: 50%;
+    inline-size: 100%;
+    block-size: 2px;
+    background-color: var(--ai-border);
+  }
+  .ai-order-step.is-completed:not(:last-child)::after {
+    background-color: var(--ai-success);
+  }
+
+  .ai-order-pip {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 0.75rem;
+    block-size: 0.75rem;
+    border-radius: var(--ai-radius-full);
+    background-color: var(--ai-surface-0);
+    box-shadow: inset 0 0 0 2px var(--ai-border-strong);
+  }
+
+  .ai-order-step.is-completed .ai-order-pip {
+    background-color: var(--ai-success);
+    box-shadow: inset 0 0 0 1px var(--ai-success);
+  }
+  .ai-order-step.is-current .ai-order-pip {
+    background-color: var(--ai-accent);
+    box-shadow: 0 0 0 3px var(--ai-accent-subtle), inset 0 0 0 1px var(--ai-accent);
+  }
+  .ai-order-step.is-upcoming .ai-order-pip {
+    background-color: var(--ai-surface-0);
+    box-shadow: inset 0 0 0 2px var(--ai-border-strong);
+  }
+
+  .ai-order-label {
+    display: block;
+    margin-block-start: var(--ai-space-2);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--ai-text-secondary);
+  }
+  .ai-order-step.is-current .ai-order-label {
+    font-weight: 600;
+    color: var(--ai-text-primary);
+  }
+  .ai-order-step.is-upcoming .ai-order-label {
+    color: var(--ai-text-muted);
+  }
+
+  .ai-order-date {
+    display: block;
+    margin-block-start: 0.15rem;
+    font-size: 0.6875rem;
+    color: var(--ai-text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ai-order-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ai-space-4);
+    flex-wrap: wrap;
+    padding-block-start: var(--ai-space-4);
+    border-block-start: 1px solid var(--ai-border);
+    font-size: 0.8125rem;
+    color: var(--ai-text-secondary);
+  }
+
+  .ai-order-id {
+    font-family: var(--ai-font-mono);
+    font-size: 0.8125rem;
+    color: var(--ai-text-primary);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.01em;
+    word-break: break-all;
+  }
+
+  /* Narrow containers: stack the tracker and run the connector down the block */
+  @media (max-width: 30rem) {
+    .ai-order-track {
+      flex-direction: column;
+      gap: var(--ai-space-4);
+    }
+    .ai-order-step {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--ai-space-3);
+      padding-inline: 0;
+      text-align: start;
+    }
+    .ai-order-step:not(:last-child)::after {
+      inset-block-start: 0.75rem;
+      inset-inline-start: calc(0.375rem - 1px);
+      inline-size: 2px;
+      block-size: calc(100% + var(--ai-space-4));
+    }
+    .ai-order-pip {
+      margin-block-start: 0.2rem;
+      flex: 0 0 auto;
+    }
+    .ai-order-label {
+      margin-block-start: 0;
+    }
+  }
+}

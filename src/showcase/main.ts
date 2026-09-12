@@ -191,26 +191,20 @@ function applyGlobalTokens() {
   }
   localStorage.setItem('cssai-density', activeDensity);
 
-  // 5. Accent Override
-  const accentMap: Record<string, { accent: string; hover: string; subtle: string; rgb: string } | null> = {
-    default: null,
-    steel: { accent: '#475569', hover: '#334155', subtle: 'rgba(71, 85, 105, 0.12)', rgb: '71, 85, 105' },
-    teal: { accent: '#0f766e', hover: '#115e59', subtle: 'rgba(15, 118, 110, 0.12)', rgb: '15, 118, 110' },
-    emerald: { accent: '#059669', hover: '#047857', subtle: 'rgba(5, 150, 105, 0.12)', rgb: '5, 150, 105' },
-    violet: { accent: '#7c3aed', hover: '#6d28d9', subtle: 'rgba(124, 58, 237, 0.12)', rgb: '124, 58, 237' },
-    rose: { accent: '#e11d48', hover: '#be123c', subtle: 'rgba(225, 29, 72, 0.12)', rgb: '225, 29, 72' },
-    amber: { accent: '#d97706', hover: '#b45309', subtle: 'rgba(217, 119, 6, 0.12)', rgb: '217, 119, 6' },
-  };
-
-  const accentOverride = accentMap[activeAccent];
-  if (accentOverride) {
-    root.style.setProperty('--ai-accent', accentOverride.accent);
-    root.style.setProperty('--ai-accent-hover', accentOverride.hover);
-    root.style.setProperty('--ai-accent-subtle', accentOverride.subtle);
-    root.style.setProperty('--ai-accent-rgb', accentOverride.rgb);
+  // 5. Accent Override.
+  // Accents live in the stylesheet as data-ai-accent, so the Styler only sets
+  // the attribute: no inline variables, and the exported CSS stays one line.
+  // Every swatch id in the Styler markup (steel, teal, emerald, violet, rose,
+  // amber) maps to an accent in themes.css; 'default' is the stock blue and is
+  // expressed by removing the attribute.
+  const ACCENTS = ['steel', 'teal', 'emerald', 'violet', 'rose', 'amber'];
+  if (ACCENTS.includes(activeAccent)) {
+    root.setAttribute('data-ai-accent', activeAccent);
   } else {
-    ['--ai-accent', '--ai-accent-hover', '--ai-accent-subtle', '--ai-accent-rgb'].forEach((p) => root.style.removeProperty(p));
+    root.removeAttribute('data-ai-accent');
   }
+  // Clear any inline accent left by an older build of the Styler.
+  ['--ai-accent', '--ai-accent-hover', '--ai-accent-subtle', '--ai-accent-rgb'].forEach((p) => root.style.removeProperty(p));
   localStorage.setItem('cssai-accent', activeAccent);
 
   applyDisplayFont(getActiveFontId());
@@ -301,8 +295,8 @@ function updateCoreStylerUI() {
       lines.push('  --ai-space-2: 0.625rem; --ai-space-4: 1.25rem; --ai-space-6: 1.75rem;');
     }
     if (activeAccent !== 'default') {
-      const rootStyle = document.documentElement.style;
-      const acc = rootStyle.getPropertyValue('--ai-accent');
+      lines.push(`  /* Accent: <html data-ai-accent="${activeAccent}">, or set the token directly: */`);
+      const acc = getComputedStyle(document.documentElement).getPropertyValue('--ai-accent').trim();
       if (acc) lines.push(`  --ai-accent: ${acc};`);
     }
     const font = DISPLAY_FONTS.find((f) => f.id === getActiveFontId());

@@ -1,15 +1,15 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-09-12T04:28:32.745Z",
+  "generatedAt": "2026-09-12T05:32:17.395Z",
   "stats": {
-    "total": 106,
-    "free": 93,
-    "pro": 13,
+    "total": 122,
+    "free": 102,
+    "pro": 20,
     "categories": {
-      "primitive": 48,
+      "primitive": 54,
       "marketing": 21,
-      "application": 34,
-      "ecommerce": 3
+      "application": 42,
+      "ecommerce": 5
     }
   },
   "components": [
@@ -104,7 +104,7 @@
         "status",
         "tag"
       ],
-      "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-2 ai-items-center\">\n  <span class=\"ai-badge ai-badge-solid\">RECOMMENDED</span>\n  <span class=\"ai-badge ai-badge-default\">Default</span>\n  <span class=\"ai-badge ai-badge-pro\">PRO ACCESS</span>\n  <span class=\"ai-badge ai-badge-success ai-badge-dot\">Operational</span>\n  <span class=\"ai-badge ai-badge-warning ai-badge-dot\">Degraded</span>\n  <span class=\"ai-badge ai-badge-danger ai-badge-dot\">Offline</span>\n  <span class=\"ai-badge ai-badge-outline\">Outline Tag</span>\n  <span class=\"ai-badge ai-badge-mono\">128 tok/s</span>\n</div>"
+      "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-2 ai-items-center\">\n  <span class=\"ai-badge ai-badge-solid\">RECOMMENDED</span>\n  <span class=\"ai-badge ai-badge-neutral\">Default</span>\n  <span class=\"ai-badge ai-badge-pro\">PRO ACCESS</span>\n  <span class=\"ai-badge ai-badge-success ai-badge-dot\">Operational</span>\n  <span class=\"ai-badge ai-badge-warning ai-badge-dot\">Degraded</span>\n  <span class=\"ai-badge ai-badge-danger ai-badge-dot\">Offline</span>\n  <span class=\"ai-badge ai-badge-outline\">Outline Tag</span>\n  <span class=\"ai-badge ai-badge-mono\">128 tok/s</span>\n</div>"
     },
     {
       "id": "avatar-group",
@@ -199,7 +199,7 @@
         "notice",
         "banner"
       ],
-      "html": "<div class=\"ai-flex ai-flex-col ai-gap-3\">\n  <div class=\"ai-alert ai-alert-info\" role=\"status\">\n    <svg class=\"ai-alert-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 16v-4\"/><path d=\"M12 8h.01\"/></svg>\n    <div>\n      <strong class=\"ai-font-semibold\">Maintenance scheduled:</strong> Edge servers will undergo routine maintenance at 02:00 UTC.\n    </div>\n  </div>\n  <div class=\"ai-alert ai-alert-success\" role=\"status\">\n    <svg class=\"ai-alert-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"/><path d=\"22 4 12 14.01 9 11.01\"/></svg>\n    <div>\n      <strong class=\"ai-font-semibold\">Success:</strong> Your new API license key has been verified and applied to your workspace.\n    </div>\n  </div>\n</div>"
+      "html": "<div class=\"ai-flex ai-flex-col ai-gap-3\">\n  <div class=\"ai-alert ai-alert-info\" role=\"status\">\n    <svg class=\"ai-alert-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 16v-4\"/><path d=\"M12 8h.01\"/></svg>\n    <div>\n      <strong class=\"ai-font-semibold\">Maintenance scheduled:</strong> Edge servers will undergo routine maintenance at 02:00 UTC.\n    </div>\n  </div>\n  <div class=\"ai-alert ai-alert-success\" role=\"status\">\n    <svg class=\"ai-alert-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"/><path d=\"M22 4 12 14.01 9 11.01\"/></svg>\n    <div>\n      <strong class=\"ai-font-semibold\">Success:</strong> Your new API license key has been verified and applied to your workspace.\n    </div>\n  </div>\n</div>"
     },
     {
       "id": "navbar-modern",
@@ -1572,6 +1572,272 @@
         "empty-state"
       ],
       "html": "<div class=\"ai-empty-state is-error\" style=\"max-width: 28rem;\">\n  <div class=\"ai-empty-state-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 8v4\"/><path d=\"M12 16h.01\"/></svg></div>\n  <h3 class=\"ai-empty-state-title\">Could not load deployments</h3>\n  <p class=\"ai-empty-state-description\">The API returned 503 twice. Nothing was changed. Try again, or send the request id to support.</p>\n  <div class=\"ai-flex ai-gap-2 ai-justify-center\" style=\"margin-top: var(--ai-space-4);\">\n    <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-sm\">Retry</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Copy request id</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "permission-dialog",
+      "name": "Permission Dialog",
+      "description": "Modal that asks the user to allow or deny a scoped agent action, with a per capability risk read and a remember for this session option.",
+      "category": "application",
+      "tier": "pro",
+      "tags": [
+        "agent",
+        "permission",
+        "modal",
+        "approval",
+        "security",
+        "pro"
+      ],
+      "locked": true,
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Permission Dialog <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "diff-view",
+      "name": "Diff View",
+      "description": "Line level before and after diff with paired gutters, tinted added and removed rows, and a collapsed run of unchanged lines.",
+      "category": "application",
+      "tier": "pro",
+      "tags": [
+        "diff",
+        "code",
+        "review",
+        "agent",
+        "pro"
+      ],
+      "locked": true,
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Diff View <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "split-pane",
+      "name": "Split Pane",
+      "description": "Two resizable panes joined by a keyboard adjustable separator, horizontal by default and stacked on the vertical variant.",
+      "category": "application",
+      "tier": "pro",
+      "tags": [
+        "layout",
+        "split",
+        "resize",
+        "panes",
+        "workspace",
+        "pro"
+      ],
+      "locked": true,
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Split Pane <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "prompt-composer",
+      "name": "Prompt Composer",
+      "description": "Auto growing prompt textarea with a model chip, attachment chips, a token counter with a quota hint, and a send action.",
+      "category": "application",
+      "tier": "pro",
+      "tags": [
+        "prompt",
+        "composer",
+        "input",
+        "chat",
+        "agent",
+        "pro"
+      ],
+      "locked": true,
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Prompt Composer <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "cost-meter",
+      "name": "Cost Meter",
+      "description": "Spend and token meter with warn and hard stop notches on the bar, a period label, and a projection at the current rate.",
+      "category": "application",
+      "tier": "pro",
+      "tags": [
+        "cost",
+        "budget",
+        "meter",
+        "usage",
+        "billing",
+        "pro"
+      ],
+      "locked": true,
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Cost Meter <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "model-picker",
+      "name": "Model Picker",
+      "description": "Single choice model list showing provider, context window and price per million tokens, with the selected state driven entirely by CSS.",
+      "category": "application",
+      "tier": "pro",
+      "tags": [
+        "model",
+        "picker",
+        "radio",
+        "settings",
+        "agent",
+        "pro"
+      ],
+      "locked": true,
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Model Picker <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "run-status-header",
+      "name": "Run Status Header",
+      "description": "Page header for a live agent run: title, run id, status pip, elapsed timer, step count and the run controls, plus a finished variant.",
+      "category": "application",
+      "tier": "pro",
+      "tags": [
+        "agent",
+        "run",
+        "status",
+        "header",
+        "telemetry",
+        "pro"
+      ],
+      "locked": true,
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Run Status Header <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "combobox-autocomplete",
+      "name": "Combobox Autocomplete",
+      "description": "Text field with a filtered listbox, arrow key navigation, and aria-activedescendant. Without the runtime the list opens on focus and filters nothing, and a field using a native datalist is left untouched.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "combobox",
+        "autocomplete",
+        "listbox",
+        "form",
+        "search",
+        "aria"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-col ai-gap-5\" style=\"max-width: 24rem;\">\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label\" for=\"cb-region\">Deployment region</label>\n    <div class=\"ai-combobox\">\n      <input id=\"cb-region\" class=\"ai-input\" type=\"text\" role=\"combobox\" aria-expanded=\"false\" aria-controls=\"cb-region-list\" aria-autocomplete=\"list\" autocomplete=\"off\" placeholder=\"Start typing a city\" />\n      <ul class=\"ai-combobox-list\" id=\"cb-region-list\" role=\"listbox\" aria-label=\"Deployment region\">\n        <li class=\"ai-combobox-option\" role=\"option\" aria-selected=\"false\">Sydney <span class=\"ai-combobox-hint\">ap-southeast-2</span></li>\n        <li class=\"ai-combobox-option\" role=\"option\" aria-selected=\"false\">Singapore <span class=\"ai-combobox-hint\">ap-southeast-1</span></li>\n        <li class=\"ai-combobox-option\" role=\"option\" aria-selected=\"false\">Frankfurt <span class=\"ai-combobox-hint\">eu-central-1</span></li>\n        <li class=\"ai-combobox-option\" role=\"option\" aria-selected=\"false\">Sao Paulo <span class=\"ai-combobox-hint\">sa-east-1</span></li>\n        <li class=\"ai-combobox-option\" role=\"option\" aria-selected=\"false\">Oregon <span class=\"ai-combobox-hint\">us-west-2</span></li>\n        <li class=\"ai-combobox-option\" role=\"option\" aria-disabled=\"true\">Osaka <span class=\"ai-combobox-hint\">at capacity</span></li>\n        <li class=\"ai-combobox-empty\" hidden>No region matches that name.</li>\n      </ul>\n    </div>\n    <span class=\"ai-form-hint\">Arrow keys move through matches, Enter selects, Escape closes.</span>\n  </div>\n\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label\" for=\"cb-native\">Billing currency</label>\n    <input id=\"cb-native\" class=\"ai-input\" type=\"text\" list=\"cb-native-options\" autocomplete=\"off\" placeholder=\"AUD\" />\n    <datalist id=\"cb-native-options\">\n      <option value=\"AUD\"></option>\n      <option value=\"EUR\"></option>\n      <option value=\"SGD\"></option>\n      <option value=\"USD\"></option>\n    </datalist>\n    <span class=\"ai-form-hint\">A field with a list attribute keeps the browser datalist and is never enhanced.</span>\n  </div>\n</div>"
+    },
+    {
+      "id": "calendar-datepicker",
+      "name": "Calendar Date Picker",
+      "description": "Month grid on the WAI-ARIA date picker grid pattern, with today, selected, outside-month and unavailable days plus tabular numerals. Static markup, so it renders complete with no JavaScript.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "calendar",
+        "date",
+        "picker",
+        "grid",
+        "form",
+        "aria"
+      ],
+      "html": "<div class=\"ai-calendar-panel\" style=\"max-width: 20rem;\">\n  <div class=\"ai-calendar-header\">\n    <button type=\"button\" class=\"ai-btn ai-btn-ghost ai-btn-icon ai-btn-sm\" aria-label=\"Previous month, August 2026\">\n      <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m15 18-6-6 6-6\"/></svg>\n    </button>\n    <span class=\"ai-calendar-title\" id=\"cal-label\" aria-live=\"polite\">September 2026</span>\n    <button type=\"button\" class=\"ai-btn ai-btn-ghost ai-btn-icon ai-btn-sm\" aria-label=\"Next month, October 2026\">\n      <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"/></svg>\n    </button>\n  </div>\n  <table class=\"ai-calendar\" role=\"grid\" aria-labelledby=\"cal-label\">\n    <thead>\n      <tr>\n        <th scope=\"col\" class=\"ai-calendar-weekday\"><abbr title=\"Monday\">Mon</abbr></th>\n        <th scope=\"col\" class=\"ai-calendar-weekday\"><abbr title=\"Tuesday\">Tue</abbr></th>\n        <th scope=\"col\" class=\"ai-calendar-weekday\"><abbr title=\"Wednesday\">Wed</abbr></th>\n        <th scope=\"col\" class=\"ai-calendar-weekday\"><abbr title=\"Thursday\">Thu</abbr></th>\n        <th scope=\"col\" class=\"ai-calendar-weekday\"><abbr title=\"Friday\">Fri</abbr></th>\n        <th scope=\"col\" class=\"ai-calendar-weekday\"><abbr title=\"Saturday\">Sat</abbr></th>\n        <th scope=\"col\" class=\"ai-calendar-weekday\"><abbr title=\"Sunday\">Sun</abbr></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day is-muted\" tabindex=\"-1\" disabled>31</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>1</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>2</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>3</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>4</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>5</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>6</button></td>\n      </tr>\n      <tr>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>7</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>8</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>9</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>10</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>11</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day is-today\" tabindex=\"-1\" aria-current=\"date\">12</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">13</button></td>\n      </tr>\n      <tr>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">14</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">15</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">16</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">17</button></td>\n        <td role=\"gridcell\" aria-selected=\"true\"><button type=\"button\" class=\"ai-calendar-day is-selected\" tabindex=\"0\">18</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">19</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">20</button></td>\n      </tr>\n      <tr>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">21</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">22</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">23</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">24</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">25</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">26</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">27</button></td>\n      </tr>\n      <tr>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">28</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">29</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">30</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day is-muted\" tabindex=\"-1\" disabled>1</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day is-muted\" tabindex=\"-1\" disabled>2</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day is-muted\" tabindex=\"-1\" disabled>3</button></td>\n        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day is-muted\" tabindex=\"-1\" disabled>4</button></td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"ai-calendar-footer\">\n    <span>Selected: Friday 18 September</span>\n    <span>Earliest install date</span>\n  </div>\n</div>"
+    },
+    {
+      "id": "number-stepper",
+      "name": "Number Stepper",
+      "description": "Quantity field with joined decrement and increment buttons, native spinners hidden and tabular numerals. The native number input already steps with the arrow keys, so the field works with no JavaScript; combobox.ts wires the two buttons for pointer users.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "stepper",
+        "number",
+        "quantity",
+        "input",
+        "form"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-8\">\n  <div class=\"ai-form-group\" style=\"max-width: 14rem;\">\n    <label class=\"ai-form-label\" for=\"stp-seats\">Team seats</label>\n    <div class=\"ai-stepper-input\">\n      <button type=\"button\" class=\"ai-stepper-btn\" data-ai-step=\"-1\" aria-controls=\"stp-seats\" aria-label=\"Decrease seats\"></button>\n      <input id=\"stp-seats\" class=\"ai-input\" type=\"number\" inputmode=\"numeric\" value=\"12\" min=\"1\" max=\"250\" step=\"1\" />\n      <button type=\"button\" class=\"ai-stepper-btn is-increment\" data-ai-step=\"1\" aria-controls=\"stp-seats\" aria-label=\"Increase seats\"></button>\n    </div>\n    <span class=\"ai-form-hint\">Billed monthly, prorated on change.</span>\n  </div>\n\n  <div class=\"ai-form-group\" style=\"max-width: 14rem;\">\n    <label class=\"ai-form-label\" for=\"stp-qty\">Quantity</label>\n    <div class=\"ai-stepper-input\">\n      <button type=\"button\" class=\"ai-stepper-btn\" data-ai-step=\"-1\" aria-controls=\"stp-qty\" aria-label=\"Decrease quantity\" disabled></button>\n      <input id=\"stp-qty\" class=\"ai-input\" type=\"number\" inputmode=\"numeric\" value=\"1\" min=\"1\" max=\"10\" step=\"1\" />\n      <button type=\"button\" class=\"ai-stepper-btn is-increment\" data-ai-step=\"1\" aria-controls=\"stp-qty\" aria-label=\"Increase quantity\"></button>\n    </div>\n    <span class=\"ai-form-hint\">Ten per order while stock is limited.</span>\n  </div>\n</div>"
+    },
+    {
+      "id": "password-toggle",
+      "name": "Password Reveal Field",
+      "description": "Password field with a show and hide button that reports state through aria-pressed. CSS cannot change an input type, so the honest fallback is that the button stays hidden until combobox.ts marks the wrapper ready, leaving a plain, fully usable password field.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "password",
+        "input",
+        "toggle",
+        "form",
+        "auth"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-col ai-gap-4\" style=\"max-width: 24rem;\">\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label\" for=\"pw-current\">Current password</label>\n    <div class=\"ai-password\">\n      <input id=\"pw-current\" class=\"ai-input\" type=\"password\" value=\"corvid-lantern-94\" autocomplete=\"current-password\" />\n      <button type=\"button\" class=\"ai-password-toggle\" data-ai-password-toggle=\"#pw-current\" aria-pressed=\"false\" aria-label=\"Show password\"></button>\n    </div>\n  </div>\n\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label\" for=\"pw-new\">New password</label>\n    <div class=\"ai-password\">\n      <input id=\"pw-new\" class=\"ai-input\" type=\"password\" autocomplete=\"new-password\" placeholder=\"At least 12 characters\" aria-describedby=\"pw-new-hint\" />\n      <button type=\"button\" class=\"ai-password-toggle\" data-ai-password-toggle=\"#pw-new\" aria-pressed=\"false\" aria-label=\"Show password\"></button>\n    </div>\n    <span class=\"ai-form-hint\" id=\"pw-new-hint\">Use a passphrase you do not use anywhere else.</span>\n  </div>\n</div>"
+    },
+    {
+      "id": "avatar-status",
+      "name": "Avatar Status Dot",
+      "description": "Avatar with a presence dot ringed in the surface colour, in online, away, busy and offline variants across two sizes. Pure CSS with the status named in screen reader text, so no JavaScript is involved.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "avatar",
+        "status",
+        "presence",
+        "identity",
+        "css-only"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-col ai-gap-5\">\n  <div class=\"ai-flex ai-flex-wrap ai-gap-6\">\n    <div class=\"ai-flex ai-items-center ai-gap-3\">\n      <span class=\"ai-avatar\">RA<span class=\"ai-avatar-status ai-avatar-status-online\"><span class=\"ai-sr-only\">Online</span></span></span>\n      <div>\n        <div class=\"ai-text-sm ai-font-medium\">Rina Alvarez</div>\n        <div class=\"ai-text-xs ai-text-muted\">Online</div>\n      </div>\n    </div>\n    <div class=\"ai-flex ai-items-center ai-gap-3\">\n      <span class=\"ai-avatar\">MO<span class=\"ai-avatar-status ai-avatar-status-away\"><span class=\"ai-sr-only\">Away</span></span></span>\n      <div>\n        <div class=\"ai-text-sm ai-font-medium\">Miles Okafor</div>\n        <div class=\"ai-text-xs ai-text-muted\">Away since 14:20</div>\n      </div>\n    </div>\n    <div class=\"ai-flex ai-items-center ai-gap-3\">\n      <span class=\"ai-avatar\">JT<span class=\"ai-avatar-status ai-avatar-status-busy\"><span class=\"ai-sr-only\">Busy</span></span></span>\n      <div>\n        <div class=\"ai-text-sm ai-font-medium\">Junko Tan</div>\n        <div class=\"ai-text-xs ai-text-muted\">In a review</div>\n      </div>\n    </div>\n    <div class=\"ai-flex ai-items-center ai-gap-3\">\n      <span class=\"ai-avatar\">DW<span class=\"ai-avatar-status ai-avatar-status-offline\"><span class=\"ai-sr-only\">Offline</span></span></span>\n      <div>\n        <div class=\"ai-text-sm ai-font-medium\">Devon Wright</div>\n        <div class=\"ai-text-xs ai-text-muted\">Offline</div>\n      </div>\n    </div>\n  </div>\n\n  <hr class=\"ai-divider\" />\n\n  <div class=\"ai-flex ai-items-center ai-gap-4\">\n    <span class=\"ai-avatar ai-avatar-sm\">RA<span class=\"ai-avatar-status ai-avatar-status-online\"><span class=\"ai-sr-only\">Online</span></span></span>\n    <span class=\"ai-avatar ai-avatar-lg\">RA<span class=\"ai-avatar-status ai-avatar-status-online\"><span class=\"ai-sr-only\">Online</span></span></span>\n    <span class=\"ai-text-xs ai-text-muted\">The dot and its ring scale with the avatar size.</span>\n  </div>\n</div>"
+    },
+    {
+      "id": "rating-stars",
+      "name": "Rating Stars",
+      "description": "Interactive five star input built from reversed radios with a screen reader name on every star, plus a read-only display that fills fractionally by percentage. Entirely CSS, so both work with no JavaScript.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "rating",
+        "stars",
+        "review",
+        "radio",
+        "form",
+        "css-only"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-col ai-gap-6\" style=\"max-width: 26rem;\">\n  <div class=\"ai-form-group\">\n    <fieldset class=\"ai-rating\">\n      <legend class=\"ai-sr-only\">Rate the Northwind integration</legend>\n      <input class=\"ai-rating-input\" type=\"radio\" id=\"rate-5\" name=\"integration-rating\" value=\"5\" />\n      <label class=\"ai-rating-star\" for=\"rate-5\"><span class=\"ai-sr-only\">5 stars, excellent</span></label>\n      <input class=\"ai-rating-input\" type=\"radio\" id=\"rate-4\" name=\"integration-rating\" value=\"4\" checked />\n      <label class=\"ai-rating-star\" for=\"rate-4\"><span class=\"ai-sr-only\">4 stars, good</span></label>\n      <input class=\"ai-rating-input\" type=\"radio\" id=\"rate-3\" name=\"integration-rating\" value=\"3\" />\n      <label class=\"ai-rating-star\" for=\"rate-3\"><span class=\"ai-sr-only\">3 stars, fair</span></label>\n      <input class=\"ai-rating-input\" type=\"radio\" id=\"rate-2\" name=\"integration-rating\" value=\"2\" />\n      <label class=\"ai-rating-star\" for=\"rate-2\"><span class=\"ai-sr-only\">2 stars, poor</span></label>\n      <input class=\"ai-rating-input\" type=\"radio\" id=\"rate-1\" name=\"integration-rating\" value=\"1\" />\n      <label class=\"ai-rating-star\" for=\"rate-1\"><span class=\"ai-sr-only\">1 star, unusable</span></label>\n    </fieldset>\n    <span class=\"ai-form-hint\">Tab to the group, then use the arrow keys to change your rating.</span>\n  </div>\n\n  <hr class=\"ai-divider\" />\n\n  <div class=\"ai-flex ai-items-center ai-gap-3\">\n    <span class=\"ai-rating-static\" style=\"--ai-rating-fill: 86%;\" role=\"img\" aria-label=\"Rated 4.3 out of 5\">\n      <span class=\"ai-rating-track\"></span><span class=\"ai-rating-fill\"></span>\n    </span>\n    <span class=\"ai-rating-value\">4.3</span>\n    <span class=\"ai-rating-count\">1,284 reviews</span>\n  </div>\n</div>"
+    },
+    {
+      "id": "checkout-summary",
+      "name": "Checkout Summary",
+      "description": "Order summary with line items, a totals ledger in right-aligned tabular numerals, a promo code field and the place order action. Static markup on one flat surface, so it needs no JavaScript.",
+      "category": "ecommerce",
+      "tier": "free",
+      "tags": [
+        "checkout",
+        "cart",
+        "summary",
+        "totals",
+        "ecommerce",
+        "promo"
+      ],
+      "html": "<div class=\"ai-checkout\" style=\"max-width: 26rem;\">\n  <h3 class=\"ai-checkout-title\">Order summary</h3>\n\n  <ul class=\"ai-checkout-items\">\n    <li class=\"ai-checkout-item\">\n      <span class=\"ai-checkout-thumb\" aria-hidden=\"true\">AD</span>\n      <div class=\"ai-checkout-body\">\n        <div class=\"ai-checkout-name\">Atlas standing desk, walnut</div>\n        <div class=\"ai-checkout-meta\">1600 by 800 mm, qty 1</div>\n      </div>\n      <span class=\"ai-checkout-price\">$640.00</span>\n    </li>\n    <li class=\"ai-checkout-item\">\n      <span class=\"ai-checkout-thumb\" aria-hidden=\"true\">CC</span>\n      <div class=\"ai-checkout-body\">\n        <div class=\"ai-checkout-name\">Caliper task chair</div>\n        <div class=\"ai-checkout-meta\">Graphite mesh, qty 2</div>\n      </div>\n      <span class=\"ai-checkout-price\">$498.00</span>\n    </li>\n    <li class=\"ai-checkout-item\">\n      <span class=\"ai-checkout-thumb\" aria-hidden=\"true\">VM</span>\n      <div class=\"ai-checkout-body\">\n        <div class=\"ai-checkout-name\">Verge monitor arm</div>\n        <div class=\"ai-checkout-meta\">Single head, qty 1</div>\n      </div>\n      <span class=\"ai-checkout-price\">$129.00</span>\n    </li>\n  </ul>\n\n  <dl class=\"ai-checkout-totals\">\n    <div class=\"ai-checkout-row\">\n      <dt class=\"ai-checkout-label\">Subtotal</dt>\n      <dd class=\"ai-checkout-value\">$1,267.00</dd>\n    </div>\n    <div class=\"ai-checkout-row\">\n      <dt class=\"ai-checkout-label\">Shipping, two day freight</dt>\n      <dd class=\"ai-checkout-value\">$45.00</dd>\n    </div>\n    <div class=\"ai-checkout-row\">\n      <dt class=\"ai-checkout-label\">GST</dt>\n      <dd class=\"ai-checkout-value\">$126.70</dd>\n    </div>\n    <div class=\"ai-checkout-row\">\n      <dt class=\"ai-checkout-label\">Discount, FITOUT10</dt>\n      <dd class=\"ai-checkout-value is-credit\">-$95.00</dd>\n    </div>\n    <div class=\"ai-checkout-row is-total\">\n      <dt class=\"ai-checkout-label\">Total due</dt>\n      <dd class=\"ai-checkout-value\">$1,343.70</dd>\n    </div>\n  </dl>\n\n  <div class=\"ai-checkout-promo\">\n    <label class=\"ai-form-label\" for=\"co-promo\">Promo code</label>\n    <div class=\"ai-input-group\">\n      <input id=\"co-promo\" class=\"ai-input\" type=\"text\" autocomplete=\"off\" placeholder=\"FITOUT10\" />\n      <button type=\"button\" class=\"ai-btn ai-btn-outline\">Apply</button>\n    </div>\n  </div>\n\n  <div class=\"ai-checkout-actions\">\n    <button type=\"submit\" class=\"ai-btn ai-btn-primary ai-w-full\">Place order</button>\n    <p class=\"ai-checkout-note\">Delivery is booked once payment clears. Returns accepted for 30 days.</p>\n  </div>\n</div>"
+    },
+    {
+      "id": "order-status",
+      "name": "Order Status Tracker",
+      "description": "Four step fulfilment tracker with completed, current and upcoming states, a monospace tracking number and an estimated delivery date. Static markup with a calm pip on the current step, so no JavaScript and no animation.",
+      "category": "ecommerce",
+      "tier": "free",
+      "tags": [
+        "order",
+        "tracking",
+        "shipping",
+        "status",
+        "steps",
+        "ecommerce"
+      ],
+      "html": "<div class=\"ai-order\" style=\"max-width: 40rem;\">\n  <div class=\"ai-order-head\">\n    <div>\n      <h3 class=\"ai-order-title\">Order 48210 is on its way</h3>\n      <p class=\"ai-text-sm ai-text-secondary\">Three items, dispatched from the Alexandria warehouse.</p>\n    </div>\n    <div class=\"ai-order-eta\">\n      Estimated delivery\n      <strong>Thursday 17 September</strong>\n    </div>\n  </div>\n\n  <ol class=\"ai-order-track\">\n    <li class=\"ai-order-step is-completed\">\n      <span class=\"ai-order-pip\" aria-hidden=\"true\"></span>\n      <span class=\"ai-order-label\">Ordered</span>\n      <span class=\"ai-order-date\">9 Sep, 10:42</span>\n    </li>\n    <li class=\"ai-order-step is-completed\">\n      <span class=\"ai-order-pip\" aria-hidden=\"true\"></span>\n      <span class=\"ai-order-label\">Packed</span>\n      <span class=\"ai-order-date\">10 Sep, 08:15</span>\n    </li>\n    <li class=\"ai-order-step is-current\" aria-current=\"step\">\n      <span class=\"ai-order-pip\" aria-hidden=\"true\"></span>\n      <span class=\"ai-order-label\">Shipped</span>\n      <span class=\"ai-order-date\">11 Sep, 17:30</span>\n    </li>\n    <li class=\"ai-order-step is-upcoming\">\n      <span class=\"ai-order-pip\" aria-hidden=\"true\"></span>\n      <span class=\"ai-order-label\">Delivered</span>\n      <span class=\"ai-order-date\">Est. 17 Sep</span>\n    </li>\n  </ol>\n\n  <div class=\"ai-order-meta\">\n    <span>Southbound Freight tracking <span class=\"ai-order-id\">AU7734221905</span></span>\n    <a class=\"ai-btn ai-btn-outline ai-btn-sm\" href=\"#order-48210\">Track shipment</a>\n  </div>\n</div>"
+    },
+    {
+      "id": "scrollspy-nav",
+      "name": "Scrollspy Outline",
+      "description": "Sticky in-page outline whose active link tracks the section in view, marked with a hairline on the inline-start edge and aria-current=\"location\". A link cannot match :target, so without the runtime the link the author marked .is-active stays marked and every link still jumps to its section.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "scrollspy",
+        "navigation",
+        "outline",
+        "sticky",
+        "docs",
+        "anchor"
+      ],
+      "html": "<div class=\"ai-scrollspy-layout\">\n  <nav class=\"ai-scrollspy\" aria-label=\"On this page\" data-ai-scrollspy-root=\"#spy-pane\">\n    <p class=\"ai-scrollspy-title\">On this page</p>\n    <ul class=\"ai-scrollspy-list\">\n      <li><a class=\"ai-scrollspy-link is-active\" aria-current=\"location\" href=\"#spy-limits\">Rate limits</a></li>\n      <li><a class=\"ai-scrollspy-link\" href=\"#spy-retries\">Retries and backoff</a></li>\n      <li><a class=\"ai-scrollspy-link\" href=\"#spy-webhooks\">Webhook delivery</a></li>\n    </ul>\n  </nav>\n\n  <div class=\"ai-scrollspy-pane\" id=\"spy-pane\">\n    <section class=\"ai-scrollspy-section\" id=\"spy-limits\">\n      <h3 class=\"ai-scrollspy-heading\">Rate limits</h3>\n      <p class=\"ai-scrollspy-body\">Every API token is allowed 600 requests a minute, measured in a sliding window. The response carries the remaining budget in the X-Rate-Remaining header, and a rejected request returns 429 with the number of seconds until the window resets.</p>\n    </section>\n    <section class=\"ai-scrollspy-section\" id=\"spy-retries\">\n      <h3 class=\"ai-scrollspy-heading\">Retries and backoff</h3>\n      <p class=\"ai-scrollspy-body\">Retry a 429 or a 5xx response with exponential backoff, starting at one second and stopping after five attempts. Send the same idempotency key on each attempt so a write is never applied twice.</p>\n    </section>\n    <section class=\"ai-scrollspy-section\" id=\"spy-webhooks\">\n      <h3 class=\"ai-scrollspy-heading\">Webhook delivery</h3>\n      <p class=\"ai-scrollspy-body\">Webhooks are signed with your endpoint secret and delivered at least once, so treat duplicates as normal. Return a 2xx within ten seconds; anything slower is treated as a failure and queued for redelivery over the next six hours.</p>\n    </section>\n  </div>\n</div>"
     }
   ]
 }

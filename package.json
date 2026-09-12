@@ -12,14 +12,16 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && GOMAXPROCS=1 vite build && GOMAXPROCS=1 vite build --config vite.runtime.config.ts && node src/registry/build-registry.mjs && node src/registry/build-manifests.mjs",
+    "build": "tsc && GOMAXPROCS=1 vite build && GOMAXPROCS=1 vite build --config vite.runtime.config.ts && node src/registry/build-registry.mjs && node src/registry/build-manifests.mjs && node src/registry/build-docs.mjs && node src/registry/build-vscode.mjs",
     "build:manifests": "node src/registry/build-manifests.mjs",
+    "build:vscode": "node src/registry/build-vscode.mjs",
     "build:registry": "node src/registry/build-registry.mjs",
     "preview": "vite preview",
     "test": "node tests/verify.mjs",
     "test:cli": "node bin/cssai.mjs list",
     "mcp": "node bin/cssai-mcp.mjs",
-    "build:runtime": "vite build --config vite.runtime.config.ts"
+    "build:runtime": "vite build --config vite.runtime.config.ts",
+    "build:docs": "node src/registry/build-docs.mjs"
   },
   "keywords": [
     "css",
@@ -32,6 +34,27 @@
   ],
   "author": "LLMCSS",
   "license": "MIT",
+  "homepage": "https://llmcss.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maku-au/llmcss.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maku-au/llmcss/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": [
+    "./dist/llmcss.js",
+    "./src/runtime/**",
+    "./src/showcase/**",
+    "./src/css/**",
+    "**/*.css"
+  ],
   "devDependencies": {
     "typescript": "^5.7.3",
     "vite": "^6.1.1"
@@ -49,7 +72,6 @@
   },
   "files": [
     "dist/llmcss.css",
-    "bin",
     "src/registry",
     "src/css",
     "src/runtime",
@@ -59,6 +81,15 @@
     "DESIGN_HARNESS.md",
     "QUICKSTART.md",
     "LICENSE",
-    "dist/llmcss.js"
+    "dist/llmcss.js",
+    "bin/cssai.mjs",
+    "bin/cssai-mcp.mjs",
+    "public/classes.json",
+    "public/tokens.json",
+    "public/states.json",
+    "public/css-custom-data.json",
+    "public/html-custom-data.json",
+    "public/llmcss.code-snippets",
+    "CHANGELOG.md"
   ]
 }

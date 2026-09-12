@@ -20,7 +20,11 @@
     transition: all var(--ai-duration-fast) var(--ai-ease-out);
   }
 
-  /* High-Contrast Solid Inverted Badge (High-craft standard: RECOMMENDED, POPULAR, FEATURED) */
+  /* High-Contrast Solid Inverted Badge (High-craft standard: RECOMMENDED, POPULAR, FEATURED)
+     Canonical name: .ai-badge-solid.
+     Deprecated aliases, remove in 1.0: .ai-badge-primary, .ai-badge-featured,
+     .ai-badge-inverted. They are listed on this one rule rather than repeating
+     the declarations, so there is a single source of truth for the variant. */
   .ai-badge-solid,
   .ai-badge-primary,
   .ai-badge-featured,
@@ -35,9 +39,11 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
   }
 
-  /* Neutral / Default Micro-Surface */
-  .ai-badge-default,
-  .ai-badge-neutral {
+  /* Neutral / Default Micro-Surface
+     Canonical name: .ai-badge-neutral.
+     Deprecated alias, remove in 1.0: .ai-badge-default. */
+  .ai-badge-neutral,
+  .ai-badge-default {
     background-color: var(--ai-surface-1);
     color: var(--ai-text-secondary);
     border-color: var(--ai-border);

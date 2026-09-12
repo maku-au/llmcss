@@ -42,6 +42,8 @@
   .ai-quota-head strong { font-variant-numeric: tabular-nums; }
 
   .ai-spark-stat {
+    /* Rescales every .ai-kpi-value in the tile through the component token */
+    --ai-kpi-value-size: 1.75rem;
     display: grid;
     grid-template-columns: 1fr auto;
     gap: var(--ai-space-4);
@@ -51,7 +53,6 @@
     border: 1px solid var(--ai-border);
     border-radius: var(--ai-radius-md);
   }
-  .ai-spark-stat .ai-kpi-value { font-size: 1.75rem; }
   .ai-spark {
     width: 8.5rem;
     height: 2.5rem;
@@ -222,9 +223,8 @@
   /* One dominant metric (Law 8): add .is-primary to one .ai-kpi-card in a grid */
   .ai-kpi-card.is-primary {
     grid-column: 1 / -1;
-  }
-  .ai-kpi-card.is-primary .ai-kpi-value {
-    font-size: clamp(2.5rem, 4vw, 3.25rem);
+    /* The dominant metric scales up through the component token */
+    --ai-kpi-value-size: clamp(2.5rem, 4vw, 3.25rem);
   }
   /* Loading state pairs with the skeleton primitive */
   .ai-kpi-card.is-loading .ai-kpi-value,

@@ -7,6 +7,8 @@ import { AiAccordionElement } from './elements/accordion.element';
 import { AiDrawerElement } from './elements/drawer.element';
 import { AiToastElement } from './elements/toast.element';
 import { AiCommandPaletteElement } from './elements/command-palette.element';
+import { initCombobox } from './combobox';
+import { initScrollspy } from './scrollspy';
 
 export {
   AiModalElement,
@@ -48,8 +50,12 @@ export function registerElements(prefix = activeConfig.prefix) {
 export function initLLMCSS() {
   if (typeof window === 'undefined') return;
 
+  // Lets CSS know the runtime is present (e.g. show controls that need JS)
+  document.documentElement.classList.add(`${activeConfig.prefix}-js`);
   registerElements();
   initDataAttributes(activeConfig.prefix);
+  initCombobox(activeConfig.prefix);
+  initScrollspy(activeConfig.prefix);
 }
 
 // Auto-run if in browser environment

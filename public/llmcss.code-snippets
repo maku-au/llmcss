@@ -1,0 +1,2896 @@
+{
+ "LLMCSS Button Variants": {
+  "prefix": "ai-btn-variants",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-wrap ai-gap-3 ai-items-center\">",
+   "  <button class=\"ai-btn ai-btn-primary\">Primary Action</button>",
+   "  <button class=\"ai-btn ai-btn-secondary\">Secondary</button>",
+   "  <button class=\"ai-btn ai-btn-outline\">Outline</button>",
+   "  <button class=\"ai-btn ai-btn-ghost\">Ghost</button>",
+   "  <button class=\"ai-btn ai-btn-accent\">Accent Blue</button>",
+   "  <button class=\"ai-btn ai-btn-danger\">Destructive</button>",
+   "  <button class=\"ai-btn ai-btn-primary is-loading\">Loading</button>",
+   "</div>"
+  ],
+  "description": "High-craft buttons across solid primary, secondary, outline, ghost, and accent variants. (primitive, free)"
+ },
+ "LLMCSS Button Sizes & Icons": {
+  "prefix": "ai-btn-sizes",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-wrap ai-gap-3 ai-items-center\">",
+   "  <button class=\"ai-btn ai-btn-primary ai-btn-xs\">Extra Small</button>",
+   "  <button class=\"ai-btn ai-btn-primary ai-btn-sm\">Small</button>",
+   "  <button class=\"ai-btn ai-btn-primary\">Standard</button>",
+   "  <button class=\"ai-btn ai-btn-primary ai-btn-lg\">Large</button>",
+   "  <button class=\"ai-btn ai-btn-outline ai-btn-icon\" aria-label=\"Settings\">",
+   "    <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"3\"></circle><path d=\"M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z\"></path></svg>",
+   "  </button>",
+   "</div>"
+  ],
+  "description": "Modular button sizing scale from extra-small (xs) to extra-large (xl) plus icon buttons. (primitive, free)"
+ },
+ "LLMCSS Form Inputs & Groups": {
+  "prefix": "ai-input-text",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-grid ai-gap-4\" style=\"max-width: 24rem;\">",
+   "  <div class=\"ai-form-group\">",
+   "    <label class=\"ai-form-label\" for=\"user-email\">Email Address</label>",
+   "    <input type=\"email\" id=\"user-email\" class=\"ai-input\" placeholder=\"name@company.com\" />",
+   "    <span class=\"ai-form-hint\">We'll send your workspace invite here.</span>",
+   "  </div>",
+   "  <div class=\"ai-form-group\">",
+   "    <label class=\"ai-form-label\" for=\"user-bio\">Description</label>",
+   "    <textarea id=\"user-bio\" class=\"ai-textarea\" placeholder=\"Tell us about your project...\"></textarea>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Clean form fields with label hierarchy, subtle focus states, and helper messaging. (primitive, free)"
+ },
+ "LLMCSS Input Addons & Domain Prefix": {
+  "prefix": "ai-input-addon",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-form-group\" style=\"max-width: 28rem;\">",
+   "  <label class=\"ai-form-label\">Project URL</label>",
+   "  <div class=\"ai-input-group\">",
+   "    <span class=\"ai-input-addon\">https://</span>",
+   "    <input type=\"text\" class=\"ai-input\" placeholder=\"my-app\" />",
+   "    <span class=\"ai-input-addon\">.llmcss.io</span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Segmented input groups with prefix labels and integrated action buttons. (primitive, free)"
+ },
+ "LLMCSS Tactile Switch & Checkbox": {
+  "prefix": "ai-switch-toggle",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-col ai-gap-4\">",
+   "  <label class=\"ai-switch\">",
+   "    <input type=\"checkbox\" class=\"ai-switch-input\" checked />",
+   "    <span class=\"ai-switch-track\"><span class=\"ai-switch-thumb\"></span></span>",
+   "    <span class=\"ai-text-sm ai-font-medium\">Automatic Backups</span>",
+   "  </label>",
+   "  <label class=\"ai-checkbox\">",
+   "    <input type=\"checkbox\" class=\"ai-checkbox-input\" checked />",
+   "    <span>Notify me when teammates comment</span>",
+   "  </label>",
+   "</div>"
+  ],
+  "description": "Accessible toggle switches and checkboxes with physical spring transitions. (primitive, free)"
+ },
+ "LLMCSS Standard Card Container": {
+  "prefix": "ai-card-standard",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-card\" style=\"max-width: 24rem;\">",
+   "  <div class=\"ai-card-header\">",
+   "    <h3 class=\"ai-card-title\">Project Deployment</h3>",
+   "    <p class=\"ai-card-description\">Production deployment configured for edge nodes.</p>",
+   "  </div>",
+   "  <div class=\"ai-card-body\">",
+   "    <p class=\"ai-text-sm\">Last deployed 14 minutes ago via commit <code>8f42d19</code> to <strong>production-syd</strong>.</p>",
+   "  </div>",
+   "  <div class=\"ai-card-footer\">",
+   "    <span class=\"ai-badge ai-badge-success ai-badge-dot\">Online</span>",
+   "    <button class=\"ai-btn ai-btn-outline ai-btn-xs\">View Logs</button>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Structured card layout with header, body content, and action footer. (primitive, free)"
+ },
+ "LLMCSS Status & Craft Badges": {
+  "prefix": "ai-badge-status",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-wrap ai-gap-2 ai-items-center\">",
+   "  <span class=\"ai-badge ai-badge-solid\">RECOMMENDED</span>",
+   "  <span class=\"ai-badge ai-badge-neutral\">Default</span>",
+   "  <span class=\"ai-badge ai-badge-pro\">PRO ACCESS</span>",
+   "  <span class=\"ai-badge ai-badge-success ai-badge-dot\">Operational</span>",
+   "  <span class=\"ai-badge ai-badge-warning ai-badge-dot\">Degraded</span>",
+   "  <span class=\"ai-badge ai-badge-danger ai-badge-dot\">Offline</span>",
+   "  <span class=\"ai-badge ai-badge-outline\">Outline Tag</span>",
+   "  <span class=\"ai-badge ai-badge-mono\">128 tok/s</span>",
+   "</div>"
+  ],
+  "description": "Precision architectural badges, high-contrast inverted tags, and jewel hardware status pips without cartoonish pastel washes. (primitive, free)"
+ },
+ "LLMCSS Avatars & Avatar Group": {
+  "prefix": "ai-avatar-group",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-items-center ai-gap-6\">",
+   "  <div class=\"ai-avatar-group\">",
+   "    <div class=\"ai-avatar ai-avatar-sm\" style=\"background-color: var(--ai-surface-3);\">+4</div>",
+   "    <div class=\"ai-avatar ai-avatar-sm\" style=\"background-color: #3b82f6; color: white;\">JD</div>",
+   "    <div class=\"ai-avatar ai-avatar-sm\" style=\"background-color: #10b981; color: white;\">SK</div>",
+   "    <div class=\"ai-avatar ai-avatar-sm\" style=\"background-color: #f59e0b; color: white;\">AL</div>",
+   "  </div>",
+   "  <div class=\"ai-avatar\">",
+   "    <span class=\"ai-font-bold\">EA</span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "User avatar icons, initials, and overlapping team member piles. (primitive, free)"
+ },
+ "LLMCSS Modal Dialog Box": {
+  "prefix": "ai-modal-dialog",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<button class=\"ai-btn ai-btn-primary\" data-ai-toggle=\"modal\" data-ai-target=\"#demo-modal\" aria-haspopup=\"dialog\" aria-expanded=\"false\">",
+   "  Open Modal Dialog",
+   "</button>",
+   "",
+   "<div id=\"demo-modal\" class=\"ai-modal\">",
+   "  <div class=\"ai-modal-backdrop\" data-ai-dismiss=\"modal\"></div>",
+   "  <div class=\"ai-modal-box\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"demo-modal-title\">",
+   "    <div class=\"ai-modal-header\">",
+   "      <h3 class=\"ai-modal-title\" id=\"demo-modal-title\">Confirm Database Reset</h3>",
+   "      <button class=\"ai-modal-close\" data-ai-dismiss=\"modal\" aria-label=\"Close\">&times;</button>",
+   "    </div>",
+   "    <div class=\"ai-modal-body\">",
+   "      <p>Are you sure you want to reset the staging database? All mock records and schema migrations will revert to initial seed.</p>",
+   "    </div>",
+   "    <div class=\"ai-modal-footer\">",
+   "      <button class=\"ai-btn ai-btn-outline\" data-ai-dismiss=\"modal\">Cancel</button>",
+   "      <button class=\"ai-btn ai-btn-danger\" data-ai-dismiss=\"modal\">Reset Database</button>",
+   "    </div>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Accessible modal dialog with frosted backdrop, header, body, and action buttons. (primitive, free)"
+ },
+ "LLMCSS Interactive Tabs": {
+  "prefix": "ai-tabs-system",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-tabs\">",
+   "  <div class=\"ai-tabs-list\" role=\"tablist\" aria-label=\"Workspace\">",
+   "    <button class=\"ai-tab is-active\" role=\"tab\" id=\"tab-overview-tab\" aria-controls=\"tab-overview\" aria-selected=\"true\" data-ai-tab=\"#tab-overview\">Overview</button>",
+   "    <button class=\"ai-tab\" role=\"tab\" id=\"tab-analytics-tab\" aria-controls=\"tab-analytics\" aria-selected=\"false\" tabindex=\"-1\" data-ai-tab=\"#tab-analytics\">Analytics</button>",
+   "    <button class=\"ai-tab\" role=\"tab\" id=\"tab-settings-tab\" aria-controls=\"tab-settings\" aria-selected=\"false\" tabindex=\"-1\" data-ai-tab=\"#tab-settings\">Settings</button>",
+   "  </div>",
+   "  <div id=\"tab-overview\" class=\"ai-tab-panel is-active\" role=\"tabpanel\" aria-labelledby=\"tab-overview-tab\">",
+   "    <p class=\"ai-text-secondary\">Overview tab content displaying system health and recent build outputs.</p>",
+   "  </div>",
+   "  <div id=\"tab-analytics\" class=\"ai-tab-panel\" role=\"tabpanel\" aria-labelledby=\"tab-analytics-tab\">",
+   "    <p class=\"ai-text-secondary\">Analytics tab content displaying traffic and user engagement charts.</p>",
+   "  </div>",
+   "  <div id=\"tab-settings\" class=\"ai-tab-panel\" role=\"tabpanel\" aria-labelledby=\"tab-settings-tab\">",
+   "    <p class=\"ai-text-secondary\">Workspace preferences and security configurations.</p>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Underline and segmented pill tab bars with keyboard and click delegation. (primitive, free)"
+ },
+ "LLMCSS Dropdown Action Menu": {
+  "prefix": "ai-dropdown-menu",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div style=\"min-height: 14rem; padding-bottom: 11rem; display: flex; justify-content: center; align-items: flex-start; padding-top: var(--ai-space-2);\">",
+   "  <div class=\"ai-dropdown\">",
+   "    <button class=\"ai-btn ai-btn-outline ai-dropdown-trigger\" data-ai-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" aria-controls=\"demo-dropdown-menu\">",
+   "      Options",
+   "      <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"m6 9 6 6 6-6\"/></svg>",
+   "    </button>",
+   "    <ul class=\"ai-dropdown-menu\" id=\"demo-dropdown-menu\">",
+   "      <li class=\"ai-dropdown-header\">Workspace</li>",
+   "      <li><button class=\"ai-dropdown-item\">View Team</button></li>",
+   "      <li><button class=\"ai-dropdown-item\">Billing & Plans</button></li>",
+   "      <li class=\"ai-dropdown-divider\"></li>",
+   "      <li><button class=\"ai-dropdown-item is-danger\">Sign Out</button></li>",
+   "    </ul>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Contextual popup dropdown with item icons, dividers, and click-outside dismissal. (primitive, free)"
+ },
+ "LLMCSS Collapsible Accordion": {
+  "prefix": "ai-accordion-faq",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-accordion\">",
+   "  <div class=\"ai-accordion-item is-open\" open>",
+   "    <button class=\"ai-accordion-trigger\" data-ai-toggle=\"accordion\" aria-expanded=\"true\" aria-controls=\"faq-1\">",
+   "      How does LLMCSS eliminate the 'AI look'?",
+   "      <span class=\"ai-accordion-chevron\" aria-hidden=\"true\">▼</span>",
+   "    </button>",
+   "    <div class=\"ai-accordion-content\" id=\"faq-1\">",
+   "      LLMCSS uses high-craft typography pairings, subtle physical borders, calibrated surfaces, and asymmetric bento layouts rather than cookie-cutter purple gradients and over-rounded cards.",
+   "    </div>",
+   "  </div>",
+   "  <div class=\"ai-accordion-item\">",
+   "    <button class=\"ai-accordion-trigger\" data-ai-toggle=\"accordion\" aria-expanded=\"false\" aria-controls=\"faq-2\">",
+   "      Can I use this without a build tool or Vite?",
+   "      <span class=\"ai-accordion-chevron\" aria-hidden=\"true\">▼</span>",
+   "    </button>",
+   "    <div class=\"ai-accordion-content\" id=\"faq-2\">",
+   "      Yes! LLMCSS is written in 100% pure modern native CSS with CSS layers and variables. You can load it via a single &lt;link&gt; tag.",
+   "    </div>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Smooth expanding accordion items with animated chevron rotation. (primitive, free)"
+ },
+ "LLMCSS Data Table with Striping": {
+  "prefix": "ai-table-data",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-table-container\" style=\"max-height: 20rem;\">",
+   "  <table class=\"ai-table ai-table-hover ai-table-sticky\">",
+   "    <thead>",
+   "      <tr>",
+   "        <th aria-sort=\"ascending\">Repository</th>",
+   "        <th>Environment</th>",
+   "        <th>Branch</th>",
+   "        <th>Status</th>",
+   "        <th>Updated</th>",
+   "      </tr>",
+   "    </thead>",
+   "    <tbody>",
+   "      <tr>",
+   "        <td class=\"ai-font-semibold\">llmcss-core</td>",
+   "        <td>Production</td>",
+   "        <td><code>main</code></td>",
+   "        <td><span class=\"ai-badge ai-badge-success ai-badge-dot\">Active</span></td>",
+   "        <td>2m ago</td>",
+   "      </tr>",
+   "      <tr>",
+   "        <td class=\"ai-font-semibold\">llmcss-docs</td>",
+   "        <td>Staging</td>",
+   "        <td><code>preview/v1</code></td>",
+   "        <td><span class=\"ai-badge ai-badge-accent ai-badge-dot\">Building</span></td>",
+   "        <td>15m ago</td>",
+   "      </tr>",
+   "      <tr>",
+   "        <td class=\"ai-font-semibold\">llmcss-mcp</td>",
+   "        <td>Edge</td>",
+   "        <td><code>feat/tools</code></td>",
+   "        <td><span class=\"ai-badge ai-badge-warning ai-badge-dot\">Queued</span></td>",
+   "        <td>1h ago</td>",
+   "      </tr>",
+   "    </tbody>",
+   "  </table>",
+   "</div>"
+  ],
+  "description": "Clean responsive data table with sticky headers, hover highlights, and badges. (primitive, free)"
+ },
+ "LLMCSS Contextual Alert Banners": {
+  "prefix": "ai-alert-callouts",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-col ai-gap-3\">",
+   "  <div class=\"ai-alert ai-alert-info\" role=\"status\">",
+   "    <svg class=\"ai-alert-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 16v-4\"/><path d=\"M12 8h.01\"/></svg>",
+   "    <div>",
+   "      <strong class=\"ai-font-semibold\">Maintenance scheduled:</strong> Edge servers will undergo routine maintenance at 02:00 UTC.",
+   "    </div>",
+   "  </div>",
+   "  <div class=\"ai-alert ai-alert-success\" role=\"status\">",
+   "    <svg class=\"ai-alert-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"/><path d=\"M22 4 12 14.01 9 11.01\"/></svg>",
+   "    <div>",
+   "      <strong class=\"ai-font-semibold\">Success:</strong> Your new API license key has been verified and applied to your workspace.",
+   "    </div>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Informative alert cards for success, warning, danger, and informational messages. (primitive, free)"
+ },
+ "LLMCSS Responsive Navigation Header": {
+  "prefix": "ai-navbar-modern",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<header class=\"ai-navbar\">",
+   "  <div class=\"ai-container\">",
+   "    <div class=\"ai-navbar-inner\">",
+   "      <a href=\"#\" class=\"ai-brand\">",
+   "        <svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polygon points=\"12 2 2 7 12 12 22 7 12 2\"/><polyline points=\"2 17 12 22 22 17\"/><polyline points=\"2 12 12 17 22 12\"/></svg>",
+   "        <span>LLMCSS</span>",
+   "      </a>",
+   "      <nav class=\"ai-nav-links\">",
+   "        <a href=\"#components\" class=\"ai-nav-link\">Components</a>",
+   "        <a href=\"#templates\" class=\"ai-nav-link\">Templates</a>",
+   "        <a href=\"#pricing\" class=\"ai-nav-link\">Pricing</a>",
+   "        <a href=\"#docs\" class=\"ai-nav-link\">Documentation</a>",
+   "      </nav>",
+   "      <div class=\"ai-flex ai-items-center ai-gap-2\">",
+   "        <a href=\"#login\" class=\"ai-btn ai-btn-ghost ai-btn-xs ai-sm:inline-flex ai-hidden\">Log in</a>",
+   "        <a href=\"#start\" class=\"ai-btn ai-btn-primary ai-btn-xs\">Get Started</a>",
+   "        <button class=\"ai-btn ai-btn-outline ai-btn-xs ai-md:hidden\" data-ai-toggle=\"drawer\" data-ai-target=\"#mobile-nav-drawer\" aria-controls=\"mobile-nav-drawer\" aria-expanded=\"false\" aria-label=\"Open menu\">",
+   "          <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><line x1=\"3\" y1=\"12\" x2=\"21\" y2=\"12\"/><line x1=\"3\" y1=\"6\" x2=\"21\" y2=\"6\"/><line x1=\"3\" y1=\"18\" x2=\"21\" y2=\"18\"/></svg>",
+   "        </button>",
+   "      </div>",
+   "    </div>",
+   "  </div>",
+   "</header>",
+   "",
+   "<!-- Mobile Navigation Drawer -->",
+   "<div id=\"mobile-nav-drawer\" class=\"ai-drawer ai-drawer-left\">",
+   "  <div class=\"ai-drawer-backdrop\" data-ai-dismiss=\"drawer\"></div>",
+   "  <div class=\"ai-drawer-panel\" style=\"max-width: 18rem;\">",
+   "    <div class=\"ai-drawer-header\">",
+   "      <a href=\"#\" class=\"ai-brand\" style=\"font-size: 1rem;\">",
+   "        <span>LLMCSS</span>",
+   "      </a>",
+   "      <button class=\"ai-modal-close\" data-ai-dismiss=\"drawer\">&times;</button>",
+   "    </div>",
+   "    <div class=\"ai-drawer-body\">",
+   "      <nav class=\"ai-flex ai-flex-col ai-gap-2\">",
+   "        <a href=\"#components\" class=\"ai-sidebar-item\">Components</a>",
+   "        <a href=\"#templates\" class=\"ai-sidebar-item\">Templates</a>",
+   "        <a href=\"#pricing\" class=\"ai-sidebar-item\">Pricing</a>",
+   "        <a href=\"#docs\" class=\"ai-sidebar-item\">Documentation</a>",
+   "      </nav>",
+   "    </div>",
+   "    <div class=\"ai-drawer-footer\">",
+   "      <button class=\"ai-btn ai-btn-primary ai-w-full ai-btn-sm\" data-ai-dismiss=\"drawer\">Sign In</button>",
+   "    </div>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Modern glassmorphism navigation header with desktop links, CTA, and slide-out mobile drawer. (marketing, free)"
+ },
+ "LLMCSS Mobile Nav Drawer": {
+  "prefix": "ai-mobile-nav-drawer",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<header class=\"ai-navbar\">",
+   "  <div class=\"ai-container ai-navbar-inner\">",
+   "    <a href=\"#\" class=\"ai-brand\">",
+   "      <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\"><rect x=\"3\" y=\"3\" width=\"12\" height=\"12\" rx=\"2.5\" stroke=\"currentColor\" stroke-width=\"2\"/><rect x=\"9\" y=\"9\" width=\"12\" height=\"12\" rx=\"2.5\" fill=\"currentColor\"/></svg>",
+   "      <span>Northwind</span>",
+   "    </a>",
+   "    <nav class=\"ai-hidden ai-md:flex ai-items-center ai-gap-1\" aria-label=\"Primary\">",
+   "      <a href=\"#\" class=\"ai-nav-link is-active\">Product</a>",
+   "      <a href=\"#\" class=\"ai-nav-link\">Pricing</a>",
+   "      <a href=\"#\" class=\"ai-nav-link\">Docs</a>",
+   "      <a href=\"#\" class=\"ai-nav-link\">Changelog</a>",
+   "    </nav>",
+   "    <div class=\"ai-flex ai-items-center ai-gap-2\">",
+   "      <a href=\"#\" class=\"ai-btn ai-btn-primary ai-btn-xs ai-hidden ai-md:inline-flex\">Start free</a>",
+   "      <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-xs ai-btn-icon ai-md:hidden\" data-ai-toggle=\"drawer\" data-ai-target=\"#nav-drawer\" aria-controls=\"nav-drawer\" aria-expanded=\"false\" aria-label=\"Open menu\">",
+   "        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M4 7h16\"/><path d=\"M4 12h16\"/><path d=\"M4 17h16\"/></svg>",
+   "      </button>",
+   "    </div>",
+   "  </div>",
+   "</header>",
+   "",
+   "<div id=\"nav-drawer\" class=\"ai-drawer ai-drawer-sm ai-md:hidden\">",
+   "  <div class=\"ai-drawer-backdrop\" data-ai-dismiss=\"drawer\"></div>",
+   "  <div class=\"ai-drawer-panel\" role=\"dialog\" aria-modal=\"true\" aria-label=\"Menu\">",
+   "    <div class=\"ai-drawer-header\">",
+   "      <span class=\"ai-drawer-title\">Menu</span>",
+   "      <button type=\"button\" class=\"ai-btn ai-btn-ghost ai-btn-icon ai-btn-xs\" data-ai-dismiss=\"drawer\" aria-label=\"Close menu\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\"><path d=\"M6 6l12 12\"/><path d=\"M18 6L6 18\"/></svg></button>",
+   "    </div>",
+   "    <nav class=\"ai-drawer-body ai-drawer-nav\" aria-label=\"Primary\">",
+   "      <a href=\"#\" class=\"ai-sidebar-item is-active\" data-ai-dismiss=\"drawer\">Product</a>",
+   "      <a href=\"#\" class=\"ai-sidebar-item\" data-ai-dismiss=\"drawer\">Pricing</a>",
+   "      <a href=\"#\" class=\"ai-sidebar-item\" data-ai-dismiss=\"drawer\">Docs</a>",
+   "      <a href=\"#\" class=\"ai-sidebar-item\" data-ai-dismiss=\"drawer\">Changelog</a>",
+   "    </nav>",
+   "    <div class=\"ai-drawer-footer\">",
+   "      <a href=\"#\" class=\"ai-btn ai-btn-primary ai-w-full\">Start free</a>",
+   "    </div>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Header with an off-canvas menu. The panel slides in from the right on small screens; links show inline from md up. Runs on data-ai-toggle, no JS to write. (marketing, free)"
+ },
+ "LLMCSS Mobile Nav Dropdown": {
+  "prefix": "ai-mobile-nav-dropdown",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<header class=\"ai-navbar\">",
+   "  <div class=\"ai-container ai-navbar-inner\">",
+   "    <a href=\"#\" class=\"ai-brand\">",
+   "      <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\"><rect x=\"3\" y=\"3\" width=\"12\" height=\"12\" rx=\"2.5\" stroke=\"currentColor\" stroke-width=\"2\"/><rect x=\"9\" y=\"9\" width=\"12\" height=\"12\" rx=\"2.5\" fill=\"currentColor\"/></svg>",
+   "      <span>Northwind</span>",
+   "    </a>",
+   "    <nav class=\"ai-hidden ai-md:flex ai-items-center ai-gap-1\" aria-label=\"Primary\">",
+   "      <a href=\"#\" class=\"ai-nav-link is-active\">Product</a>",
+   "      <a href=\"#\" class=\"ai-nav-link\">Pricing</a>",
+   "      <a href=\"#\" class=\"ai-nav-link\">Docs</a>",
+   "      <a href=\"#\" class=\"ai-nav-link\">Changelog</a>",
+   "    </nav>",
+   "    <div class=\"ai-flex ai-items-center ai-gap-2\">",
+   "      <a href=\"#\" class=\"ai-btn ai-btn-primary ai-btn-xs ai-hidden ai-md:inline-flex\">Start free</a>",
+   "      <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-xs ai-btn-icon ai-md:hidden\" data-ai-toggle=\"drawer\" data-ai-target=\"#nav-sheet\" aria-controls=\"nav-sheet\" aria-expanded=\"false\" aria-label=\"Open menu\">",
+   "        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M4 7h16\"/><path d=\"M4 12h16\"/><path d=\"M4 17h16\"/></svg>",
+   "      </button>",
+   "    </div>",
+   "  </div>",
+   "</header>",
+   "",
+   "<div id=\"nav-sheet\" class=\"ai-drawer ai-drawer-top ai-md:hidden\" style=\"--ai-drawer-offset: 4.25rem;\">",
+   "  <div class=\"ai-drawer-backdrop\" data-ai-dismiss=\"drawer\"></div>",
+   "  <div class=\"ai-drawer-panel\" role=\"dialog\" aria-modal=\"true\" aria-label=\"Menu\">",
+   "    <nav class=\"ai-drawer-body ai-drawer-nav\" aria-label=\"Primary\">",
+   "      <a href=\"#\" class=\"ai-sidebar-item is-active\" data-ai-dismiss=\"drawer\">Product</a>",
+   "      <a href=\"#\" class=\"ai-sidebar-item\" data-ai-dismiss=\"drawer\">Pricing</a>",
+   "      <a href=\"#\" class=\"ai-sidebar-item\" data-ai-dismiss=\"drawer\">Docs</a>",
+   "      <a href=\"#\" class=\"ai-sidebar-item\" data-ai-dismiss=\"drawer\">Changelog</a>",
+   "    </nav>",
+   "    <div class=\"ai-drawer-footer ai-flex ai-gap-2\">",
+   "      <a href=\"#\" class=\"ai-btn ai-btn-outline ai-flex-1\" data-ai-dismiss=\"drawer\">Sign in</a>",
+   "      <a href=\"#\" class=\"ai-btn ai-btn-primary ai-flex-1\">Start free</a>",
+   "    </div>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Header with a menu sheet that drops down under the bar. Uses ai-drawer-top with --ai-drawer-offset set to the header height so the bar stays put. (marketing, free)"
+ },
+ "LLMCSS Split Screen Marketing Hero": {
+  "prefix": "ai-hero-split",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<section class=\"ai-hero\">",
+   "  <div class=\"ai-container\">",
+   "    <div class=\"ai-hero-split\">",
+   "      <div>",
+   "        <h1 class=\"ai-hero-title\">",
+   "          Build software that looks human, not generated.",
+   "        </h1>",
+   "        <p class=\"ai-hero-lead\">",
+   "          The open UI library built for AI agents and design engineers. Pure native CSS, tokenized skinning, and zero cookie-cutter templates.",
+   "        </p>",
+   "        <div class=\"ai-hero-actions\">",
+   "          <button class=\"ai-btn ai-btn-primary ai-btn-lg\">Browse 100+ Components</button>",
+   "          <button class=\"ai-btn ai-btn-outline ai-btn-lg\">Documentation</button>",
+   "        </div>",
+   "      </div>",
+   "      <div class=\"ai-hero-visual\">",
+   "        <div style=\"background-color: var(--ai-surface-0); padding: var(--ai-space-8); border-radius: inherit;\">",
+   "          <div class=\"ai-flex ai-justify-between ai-items-center\" style=\"margin-bottom: var(--ai-space-6);\">",
+   "            <span class=\"ai-text-xs ai-font-mono ai-text-muted\">app.analytics.ts</span>",
+   "            <span class=\"ai-badge ai-badge-success ai-badge-dot\">Live Stream</span>",
+   "          </div>",
+   "          <div class=\"ai-grid ai-grid-cols-2 ai-gap-4\">",
+   "            <div class=\"ai-kpi-card\" style=\"padding: var(--ai-space-4);\">",
+   "              <span class=\"ai-kpi-label\">Weekly Active Users</span>",
+   "              <span class=\"ai-kpi-value\" style=\"font-size: 1.5rem;\">48,290</span>",
+   "              <span class=\"ai-kpi-trend is-up\">↑ +24.8%</span>",
+   "            </div>",
+   "            <div class=\"ai-kpi-card\" style=\"padding: var(--ai-space-4);\">",
+   "              <span class=\"ai-kpi-label\">Conversion Rate</span>",
+   "              <span class=\"ai-kpi-value\" style=\"font-size: 1.5rem;\">4.12%</span>",
+   "              <span class=\"ai-kpi-trend is-up\">↑ +1.2%</span>",
+   "            </div>",
+   "          </div>",
+   "        </div>",
+   "      </div>",
+   "    </div>",
+   "  </div>",
+   "</section>"
+  ],
+  "description": "High-converting hero section with badge, strong typographic lead, CTA buttons, and UI preview. (marketing, free)"
+ },
+ "LLMCSS 3-Tier Pricing Table": {
+  "prefix": "ai-pricing-tier-cards",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<section style=\"padding: var(--ai-space-16) 0;\">",
+   "  <div class=\"ai-container\">",
+   "    <div class=\"ai-text-center\" style=\"max-width: 36rem; margin: 0 auto;\">",
+   "      <h2 style=\"font-size: 2.25rem;\">Predictable, Transparent Pricing</h2>",
+   "      <p style=\"margin-top: var(--ai-space-2);\">Start building for free. Upgrade to Pro when you need advanced marketing and SaaS templates.</p>",
+   "    </div>",
+   "    <div class=\"ai-pricing-grid\">",
+   "      <!-- Free Plan -->",
+   "      <div class=\"ai-pricing-card\">",
+   "        <div class=\"ai-pricing-header\">",
+   "          <h3 class=\"ai-pricing-plan\">Starter (Free)</h3>",
+   "          <p class=\"ai-text-sm ai-text-secondary\">For individual developers and open source projects.</p>",
+   "          <div class=\"ai-pricing-amount\">",
+   "            <span class=\"ai-pricing-price\">\\$0</span>",
+   "            <span class=\"ai-pricing-period\">/ month</span>",
+   "          </div>",
+   "        </div>",
+   "        <ul class=\"ai-pricing-features\">",
+   "          <li class=\"ai-pricing-feature-item\">✓ 40+ Core UI Primitives</li>",
+   "          <li class=\"ai-pricing-feature-item\">✓ Pure Modern CSS Token Engine</li>",
+   "          <li class=\"ai-pricing-feature-item\">✓ Light-DOM Custom Elements</li>",
+   "          <li class=\"ai-pricing-feature-item\">✓ Public llms.txt & Docs</li>",
+   "        </ul>",
+   "        <button class=\"ai-btn ai-btn-outline ai-w-full\">Get Started Free</button>",
+   "      </div>",
+   "",
+   "      <!-- Pro Plan (Featured) -->",
+   "      <div class=\"ai-pricing-card ai-pricing-featured ai-card-pro\">",
+   "        <div class=\"ai-pricing-header\">",
+   "          <div class=\"ai-flex ai-justify-between ai-items-center\">",
+   "            <h3 class=\"ai-pricing-plan\">LLMCSS Pro</h3>",
+   "            <span class=\"ai-badge ai-badge-solid\">POPULAR</span>",
+   "          </div>",
+   "          <p class=\"ai-text-sm ai-text-secondary\">For agencies, AI builders, and fast-moving teams.</p>",
+   "          <div class=\"ai-pricing-amount\">",
+   "            <span class=\"ai-pricing-price\">\\$9</span>",
+   "            <span class=\"ai-pricing-period\">/ month</span>",
+   "          </div>",
+   "        </div>",
+   "        <ul class=\"ai-pricing-features\">",
+   "          <li class=\"ai-pricing-feature-item\">✓ Everything in Starter</li>",
+   "          <li class=\"ai-pricing-feature-item\">✓ 150+ Pro Marketing & Bento Sections</li>",
+   "          <li class=\"ai-pricing-feature-item\">✓ Complete SaaS & App Layout Templates</li>",
+   "          <li class=\"ai-pricing-feature-item\">✓ Dedicated MCP Server Integration</li>",
+   "          <li class=\"ai-pricing-feature-item\">✓ Private CLI Token Access</li>",
+   "        </ul>",
+   "        <button class=\"ai-btn ai-btn-primary ai-w-full\">Upgrade to Pro</button>",
+   "      </div>",
+   "",
+   "      <!-- Enterprise Plan -->",
+   "      <div class=\"ai-pricing-card\">",
+   "        <div class=\"ai-pricing-header\">",
+   "          <h3 class=\"ai-pricing-plan\">Team / Enterprise</h3>",
+   "          <p class=\"ai-text-sm ai-text-secondary\">For high-scale organizations building agent fleets.</p>",
+   "          <div class=\"ai-pricing-amount\">",
+   "            <span class=\"ai-pricing-price\">Custom</span>",
+   "          </div>",
+   "        </div>",
+   "        <ul class=\"ai-pricing-features\">",
+   "          <li class=\"ai-pricing-feature-item\">✓ Unlimited Team Seats</li>",
+   "          <li class=\"ai-pricing-feature-item\">✓ Custom Theme Archetype Design</li>",
+   "          <li class=\"ai-pricing-feature-item\">✓ Dedicated SLA & Support</li>",
+   "          <li class=\"ai-pricing-feature-item\">✓ Figma Tokens Sync</li>",
+   "        </ul>",
+   "        <button class=\"ai-btn ai-btn-outline ai-w-full\">Contact Sales</button>",
+   "      </div>",
+   "    </div>",
+   "  </div>",
+   "</section>"
+  ],
+  "description": "Clear pricing tiers with popular plan highlight, feature lists, and monthly/annual toggles. (marketing, free)"
+ },
+ "LLMCSS Multi-Column Modern Footer": {
+  "prefix": "ai-footer-multi-col",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<footer class=\"ai-footer\">",
+   "  <div class=\"ai-container\">",
+   "    <div class=\"ai-footer-grid\">",
+   "      <div>",
+   "        <a href=\"#\" class=\"ai-brand\" style=\"margin-bottom: var(--ai-space-4);\">",
+   "          <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polygon points=\"12 2 2 7 12 12 22 7 12 2\"/><polyline points=\"2 17 12 22 22 17\"/><polyline points=\"2 12 12 17 22 12\"/></svg>",
+   "          <span>LLMCSS</span>",
+   "        </a>",
+   "        <p class=\"ai-text-sm\" style=\"max-width: 20rem;\">",
+   "          High-craft UI library engineered for human developers and autonomous AI agents.",
+   "        </p>",
+   "      </div>",
+   "      <div class=\"ai-footer-col ai-accordion-item\">",
+   "        <h4 class=\"ai-text-xs ai-font-semibold ai-text-muted\"><button type=\"button\" class=\"ai-footer-col-toggle\" data-ai-toggle=\"accordion\" aria-expanded=\"false\">Product <svg class=\"ai-accordion-chevron\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button></h4>",
+   "        <ul class=\"ai-footer-list ai-accordion-content\">",
+   "          <li><a href=\"#\" class=\"ai-text-secondary\">Components</a></li>",
+   "          <li><a href=\"#\" class=\"ai-text-secondary\">Marketing Sections</a></li>",
+   "          <li><a href=\"#\" class=\"ai-text-secondary\">SaaS Dashboard</a></li>",
+   "          <li><a href=\"#\" class=\"ai-text-secondary\">Themes</a></li>",
+   "        </ul>",
+   "      </div>",
+   "      <div class=\"ai-footer-col ai-accordion-item\">",
+   "        <h4 class=\"ai-text-xs ai-font-semibold ai-text-muted\"><button type=\"button\" class=\"ai-footer-col-toggle\" data-ai-toggle=\"accordion\" aria-expanded=\"false\">Agentic Tools <svg class=\"ai-accordion-chevron\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button></h4>",
+   "        <ul class=\"ai-footer-list ai-accordion-content\">",
+   "          <li><a href=\"#\" class=\"ai-text-secondary\">MCP Server</a></li>",
+   "          <li><a href=\"#\" class=\"ai-text-secondary\">CLI Reference</a></li>",
+   "          <li><a href=\"#\" class=\"ai-text-secondary\">llms.txt Specification</a></li>",
+   "          <li><a href=\"#\" class=\"ai-text-secondary\">Agent Rules</a></li>",
+   "        </ul>",
+   "      </div>",
+   "      <div class=\"ai-footer-col ai-accordion-item\">",
+   "        <h4 class=\"ai-text-xs ai-font-semibold ai-text-muted\"><button type=\"button\" class=\"ai-footer-col-toggle\" data-ai-toggle=\"accordion\" aria-expanded=\"false\">Company <svg class=\"ai-accordion-chevron\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button></h4>",
+   "        <ul class=\"ai-footer-list ai-accordion-content\">",
+   "          <li><a href=\"#\" class=\"ai-text-secondary\">About</a></li>",
+   "          <li><a href=\"#\" class=\"ai-text-secondary\">Pricing</a></li>",
+   "          <li><a href=\"#\" class=\"ai-text-secondary\">Privacy</a></li>",
+   "          <li><a href=\"#\" class=\"ai-text-secondary\">Terms</a></li>",
+   "        </ul>",
+   "      </div>",
+   "    </div>",
+   "    <div class=\"ai-flex ai-justify-between ai-items-center ai-border-t\" style=\"padding-top: var(--ai-space-6);\">",
+   "      <p class=\"ai-text-xs ai-text-muted\">© 2026 LLMCSS Inc. All rights reserved.</p>",
+   "      <div class=\"ai-flex ai-gap-4\">",
+   "        <a href=\"#\" class=\"ai-text-xs ai-text-muted\">GitHub</a>",
+   "        <a href=\"#\" class=\"ai-text-xs ai-text-muted\">Discord</a>",
+   "        <a href=\"#\" class=\"ai-text-xs ai-text-muted\">X (Twitter)</a>",
+   "      </div>",
+   "    </div>",
+   "  </div>",
+   "</footer>"
+  ],
+  "description": "Brand statement, navigation columns, and copyright. Columns collapse into an accordion below 768px. (marketing, free)"
+ },
+ "LLMCSS SaaS Metric & KPI Summary": {
+  "prefix": "ai-kpi-metric-cards",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-grid ai-grid-cols-1 ai-md:grid-cols-3 ai-gap-4\">",
+   "  <div class=\"ai-kpi-card is-primary\">",
+   "    <span class=\"ai-kpi-label\">Monthly Recurring Revenue</span>",
+   "    <span class=\"ai-kpi-value\">\\$124,500</span>",
+   "    <span class=\"ai-kpi-trend is-up\">↑ +14.2% from last month</span>",
+   "  </div>",
+   "  <div class=\"ai-kpi-card\">",
+   "    <span class=\"ai-kpi-label\">Active Subscriptions</span>",
+   "    <span class=\"ai-kpi-value\">1,482</span>",
+   "    <span class=\"ai-kpi-trend is-up\">↑ +8.4%</span>",
+   "  </div>",
+   "  <div class=\"ai-kpi-card\">",
+   "    <span class=\"ai-kpi-label\">Churn Rate</span>",
+   "    <span class=\"ai-kpi-value\">1.18%</span>",
+   "    <span class=\"ai-kpi-trend is-down\">↓ -0.3% improvement</span>",
+   "  </div>",
+   "  <div class=\"ai-kpi-card\">",
+   "    <span class=\"ai-kpi-label\">Agent Queries / Day</span>",
+   "    <span class=\"ai-kpi-value\">4.8M</span>",
+   "    <span class=\"ai-kpi-trend is-up\">↑ +42% spike</span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "4-card dashboard metric summary with percentage change trends and clean numbers. (application, free)"
+ },
+ "LLMCSS Authentication Login Card": {
+  "prefix": "ai-auth-login-card",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-auth-card\" style=\"margin: 0 auto;\">",
+   "  <div class=\"ai-text-center\" style=\"margin-bottom: var(--ai-space-6);\">",
+   "    <h3 class=\"ai-card-title\" style=\"font-size: 1.5rem;\">Welcome back</h3>",
+   "    <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: 0.25rem;\">Enter your credentials to access your agent workspace.</p>",
+   "  </div>",
+   "  <form class=\"ai-flex ai-flex-col ai-gap-4\">",
+   "    <div class=\"ai-form-group\" style=\"margin-bottom: 0;\">",
+   "      <label class=\"ai-form-label\" for=\"auth-email\">Email</label>",
+   "      <input type=\"email\" id=\"auth-email\" class=\"ai-input\" placeholder=\"you@domain.com\" required />",
+   "    </div>",
+   "    <div class=\"ai-form-group\" style=\"margin-bottom: 0;\">",
+   "      <div class=\"ai-flex ai-justify-between ai-items-center\">",
+   "        <label class=\"ai-form-label\" for=\"auth-pass\">Password</label>",
+   "        <a href=\"#forgot\" class=\"ai-text-xs ai-text-accent\">Forgot password?</a>",
+   "      </div>",
+   "      <input type=\"password\" id=\"auth-pass\" class=\"ai-input\" placeholder=\"••••••••\" required />",
+   "    </div>",
+   "    <button type=\"submit\" class=\"ai-btn ai-btn-primary ai-w-full\" style=\"margin-top: var(--ai-space-2);\">Sign In</button>",
+   "  </form>",
+   "  <div class=\"ai-text-center\" style=\"margin-top: var(--ai-space-6); border-top: 1px solid var(--ai-border); padding-top: var(--ai-space-4);\">",
+   "    <p class=\"ai-text-xs ai-text-secondary\">Don't have an account? <a href=\"#signup\" class=\"ai-text-accent ai-font-semibold\">Sign up</a></p>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Focused login card with email and password fields, forgot password link, and a single primary action. (application, free)"
+ },
+ "LLMCSS Modern E-Commerce Product Card": {
+  "prefix": "ai-product-card",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-product-card\" style=\"max-width: 20rem;\">",
+   "  <div class=\"ai-product-media\">",
+   "    <span class=\"ai-badge ai-badge-solid ai-product-badge-float\">NEW ARRIVAL</span>",
+   "    <img class=\"ai-product-img\" src=\"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80\" alt=\"Minimalist Studio Headphones\" />",
+   "  </div>",
+   "  <div class=\"ai-product-body\">",
+   "    <h4 class=\"ai-product-title\">Aether Precision Wireless Studio Headphones</h4>",
+   "    <span class=\"ai-product-category\">Audio & Acoustics</span>",
+   "    <div class=\"ai-product-price-row\">",
+   "      <span class=\"ai-product-price\">\\$349.00</span>",
+   "      <span class=\"ai-product-compare-price\">\\$420.00</span>",
+   "    </div>",
+   "    <button class=\"ai-btn ai-btn-primary ai-btn-sm ai-w-full\" style=\"margin-top: var(--ai-space-3);\">",
+   "      Add to Cart",
+   "    </button>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Clean product card with hover zoom, discount pill badge, title, price, and Quick Add action. (ecommerce, free)"
+ },
+ "LLMCSS Animated Spinners & Pulse Radars": {
+  "prefix": "ai-animated-loaders",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-wrap ai-gap-6 ai-items-center\" style=\"padding: var(--ai-space-4);\">",
+   "  <div class=\"ai-flex ai-items-center ai-gap-3\">",
+   "    <span class=\"ai-spinner ai-spinner-sm\"></span>",
+   "    <span class=\"ai-spinner\"></span>",
+   "    <span class=\"ai-spinner ai-spinner-lg\"></span>",
+   "  </div>",
+   "  <div class=\"ai-flex ai-items-center ai-gap-3\">",
+   "    <div class=\"ai-spinner-ring\"></div>",
+   "    <span class=\"ai-text-xs ai-text-secondary ai-font-mono\">Orbital</span>",
+   "  </div>",
+   "  <div class=\"ai-flex ai-items-center ai-gap-2\">",
+   "    <span class=\"ai-pulse-dot\"></span>",
+   "    <span class=\"ai-text-xs ai-font-medium\">Connecting</span>",
+   "  </div>",
+   "  <div class=\"ai-flex ai-items-center ai-gap-2\">",
+   "    <span class=\"ai-pulse-dot ai-pulse-dot-success\"></span>",
+   "    <span class=\"ai-text-xs ai-font-medium\" style=\"color: var(--ai-success);\">Operational</span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Pure CSS architectural circular arc spinners, dual orbital rings, and real-time live pulse radar dots. (primitive, free)"
+ },
+ "LLMCSS Animated Progress & Loading Bars": {
+  "prefix": "ai-progress-bars",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-grid ai-gap-5\" style=\"max-width: 28rem;\">",
+   "  <div>",
+   "    <div class=\"ai-flex ai-justify-between ai-text-xs ai-font-medium\" style=\"margin-bottom: 0.375rem;\">",
+   "      <span>Indeterminate (Network Stream)</span>",
+   "      <span class=\"ai-font-mono ai-text-secondary\">Syncing...</span>",
+   "    </div>",
+   "    <div class=\"ai-progress ai-progress-indeterminate\" role=\"progressbar\" aria-label=\"Loading\" aria-busy=\"true\">",
+   "      <div class=\"ai-progress-bar\"></div>",
+   "    </div>",
+   "  </div>",
+   "  <div>",
+   "    <div class=\"ai-flex ai-justify-between ai-text-xs ai-font-medium\" style=\"margin-bottom: 0.375rem;\">",
+   "      <span>Model Weights Downloaded</span>",
+   "      <span class=\"ai-font-mono\">68%</span>",
+   "    </div>",
+   "    <div class=\"ai-progress\" role=\"progressbar\" aria-label=\"Upload\" aria-valuenow=\"68\" aria-valuemin=\"0\" aria-valuemax=\"100\">",
+   "      <div class=\"ai-progress-bar\" style=\"width: 68%;\"></div>",
+   "    </div>",
+   "  </div>",
+   "  <div>",
+   "    <div class=\"ai-flex ai-justify-between ai-text-xs ai-font-medium\" style=\"margin-bottom: 0.375rem;\">",
+   "      <span>Dataset Chunk Upload</span>",
+   "      <span class=\"ai-font-mono\" style=\"color: var(--ai-success);\">Active</span>",
+   "    </div>",
+   "    <div class=\"ai-progress ai-progress-striped\" role=\"progressbar\" aria-label=\"Sync\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\">",
+   "      <div class=\"ai-progress-bar ai-progress-bar-success\" style=\"width: 85%;\"></div>",
+   "    </div>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Determinate progress meters, indeterminate sliding shimmer bars for network/AI streams, and striped upload bars. (primitive, free)"
+ },
+ "LLMCSS Tactile Range Sliders": {
+  "prefix": "ai-interactive-slider",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-grid ai-gap-4\" style=\"max-width: 24rem;\">",
+   "  <div class=\"ai-slider-wrapper\">",
+   "    <div class=\"ai-slider-header\">",
+   "      <label for=\"temp-slider\">Temperature</label>",
+   "      <span class=\"ai-slider-value\">0.72</span>",
+   "    </div>",
+   "    <input type=\"range\" id=\"temp-slider\" class=\"ai-range\" min=\"0\" max=\"1\" step=\"0.01\" value=\"0.72\" />",
+   "  </div>",
+   "  <div class=\"ai-slider-wrapper\">",
+   "    <div class=\"ai-slider-header\">",
+   "      <label for=\"token-slider\">Max Output Tokens</label>",
+   "      <span class=\"ai-slider-value\">4,096</span>",
+   "    </div>",
+   "    <input type=\"range\" id=\"token-slider\" class=\"ai-slider\" min=\"256\" max=\"8192\" step=\"256\" value=\"4096\" />",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Custom-styled range sliders with responsive track fill, hover glow thumb, and mono value readout. (primitive, free)"
+ },
+ "LLMCSS Shimmer Skeleton Loader": {
+  "prefix": "ai-skeleton-card",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-card\" style=\"max-width: 24rem; padding: var(--ai-space-5);\">",
+   "  <div class=\"ai-flex ai-items-center ai-gap-3\" style=\"margin-bottom: var(--ai-space-4);\">",
+   "    <div class=\"ai-skeleton ai-skeleton-avatar\"></div>",
+   "    <div style=\"flex: 1;\">",
+   "      <div class=\"ai-skeleton ai-skeleton-title\" style=\"width: 50%;\"></div>",
+   "      <div class=\"ai-skeleton ai-skeleton-text\" style=\"width: 75%; margin-bottom: 0;\"></div>",
+   "    </div>",
+   "  </div>",
+   "  <div class=\"ai-skeleton ai-skeleton-rect\" style=\"height: 7rem; margin-bottom: var(--ai-space-3);\"></div>",
+   "  <div class=\"ai-skeleton ai-skeleton-text\" style=\"width: 90%;\"></div>",
+   "  <div class=\"ai-skeleton ai-skeleton-text\" style=\"width: 65%;\"></div>",
+   "</div>"
+  ],
+  "description": "Hardware-accelerated content placeholder shimmer skeletons for cards, avatars, and text blocks. (primitive, free)"
+ },
+ "LLMCSS Stepper Progress Flow": {
+  "prefix": "ai-stepper-flow",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-stepper\" style=\"max-width: 32rem;\">",
+   "  <div class=\"ai-step-item is-completed\">",
+   "    <div class=\"ai-step-circle\">✓</div>",
+   "    <span class=\"ai-step-label\">Account</span>",
+   "  </div>",
+   "  <div class=\"ai-step-item is-active\">",
+   "    <div class=\"ai-step-circle\">2</div>",
+   "    <span class=\"ai-step-label\">Workspace</span>",
+   "  </div>",
+   "  <div class=\"ai-step-item\">",
+   "    <div class=\"ai-step-circle\">3</div>",
+   "    <span class=\"ai-step-label\">Billing</span>",
+   "  </div>",
+   "  <div class=\"ai-step-item\">",
+   "    <div class=\"ai-step-circle\">4</div>",
+   "    <span class=\"ai-step-label\">Complete</span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Multi-step wizard and checkout flow indicator with completed, active, and upcoming stages. (primitive, free)"
+ },
+ "LLMCSS Segmented Control Switch": {
+  "prefix": "ai-segmented-toggle",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-wrap ai-gap-4 ai-items-center\">",
+   "  <fieldset class=\"ai-segmented\" aria-label=\"Billing period\">",
+   "    <label class=\"ai-segmented-btn\"><input type=\"radio\" name=\"billing\" class=\"ai-segmented-input\" checked /> Monthly</label>",
+   "    <label class=\"ai-segmented-btn\"><input type=\"radio\" name=\"billing\" class=\"ai-segmented-input\" /> Annual (save 20%)</label>",
+   "  </fieldset>",
+   "  <fieldset class=\"ai-segmented\" aria-label=\"View\">",
+   "    <label class=\"ai-segmented-btn\"><input type=\"radio\" name=\"view\" class=\"ai-segmented-input\" checked /> Code</label>",
+   "    <label class=\"ai-segmented-btn\"><input type=\"radio\" name=\"view\" class=\"ai-segmented-input\" /> Preview</label>",
+   "    <label class=\"ai-segmented-btn\"><input type=\"radio\" name=\"view\" class=\"ai-segmented-input\" /> Docs</label>",
+   "  </fieldset>",
+   "</div>"
+  ],
+  "description": "Tactile multi-option segmented toggle bar with sliding active pill state. (primitive, free)"
+ },
+ "LLMCSS Popover Anchor Card": {
+  "prefix": "ai-popover-anchor",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div style=\"padding-top: 6.5rem; display: flex; justify-content: center;\">",
+   "  <div class=\"ai-popover-anchor ai-popover-toggle\">",
+   "    <div class=\"ai-popover\">",
+   "      <div class=\"ai-flex ai-items-center ai-gap-2\" style=\"margin-bottom: 0.375rem;\">",
+   "        <span class=\"ai-pulse-dot ai-pulse-dot-success\"></span>",
+   "        <span class=\"ai-font-semibold ai-text-xs\">Agent Worker #4 Active</span>",
+   "      </div>",
+   "      <p class=\"ai-text-xs ai-text-secondary\" style=\"margin-bottom: 0.5rem; line-height: 1.4;\">Running automated test suite across 34 components.</p>",
+   "      <div class=\"ai-flex ai-justify-between ai-items-center\">",
+   "        <a href=\"#\" class=\"ai-text-xs ai-font-medium ai-text-accent\">View Stream &rarr;</a>",
+   "        <span class=\"ai-font-mono ai-text-xs ai-text-muted\">450ms</span>",
+   "      </div>",
+   "      <div class=\"ai-popover-arrow\"></div>",
+   "    </div>",
+   "    <button class=\"ai-btn ai-btn-outline ai-btn-sm\" aria-haspopup=\"true\">Cluster status</button>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Contextual popover tooltip card with precise directional pointer arrow and action links. (primitive, free)"
+ },
+ "LLMCSS Stacked Toast with Countdown": {
+  "prefix": "ai-toast-stack",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-grid ai-gap-3\" style=\"max-width: 24rem;\">",
+   "  <div class=\"ai-toast ai-toast-success ai-toast-countdown\">",
+   "    <span class=\"ai-toast-message\">Deployment completed to edge servers.</span>",
+   "    <button class=\"ai-toast-close\">&times;</button>",
+   "    <div class=\"ai-toast-progress\"></div>",
+   "  </div>",
+   "  <div class=\"ai-toast ai-toast-info ai-toast-countdown\">",
+   "    <span class=\"ai-toast-message\">New API Key created: <code>llmcss_live_8f...</code></span>",
+   "    <button class=\"ai-toast-close\">&times;</button>",
+   "    <div class=\"ai-toast-progress\"></div>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Multi-toast notification stack featuring auto-dismiss animated countdown progress indicators. (primitive, free)"
+ },
+ "LLMCSS Logo Rail": {
+  "prefix": "ai-marquee-ticker",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-logo-rail\" aria-label=\"Teams using LLMCSS\">",
+   "  <span>Northwind</span>",
+   "  <span>Harbor Ops</span>",
+   "  <span>Lattice Labs</span>",
+   "  <span>Quill</span>",
+   "  <span>Meridian</span>",
+   "  <span>Fieldnote</span>",
+   "</div>"
+  ],
+  "description": "Static, scannable trust rail of customer names or marks. Wraps on small screens. No auto-scroll (Law 9). (marketing, free)"
+ },
+ "LLMCSS Filter Toolbar & Pill Tags": {
+  "prefix": "ai-filter-toolbar",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-filter-toolbar\">",
+   "  <div class=\"ai-filter-tags\">",
+   "    <span class=\"ai-text-xs ai-font-medium ai-text-muted\" style=\"margin-right: 0.25rem;\">Filter:</span>",
+   "    <button class=\"ai-filter-tag is-active\">All (48)</button>",
+   "    <button class=\"ai-filter-tag\">Production</button>",
+   "    <button class=\"ai-filter-tag\">Staging</button>",
+   "    <button class=\"ai-filter-tag\">Failed</button>",
+   "  </div>",
+   "  <div class=\"ai-flex ai-items-center ai-gap-2\">",
+   "    <input type=\"text\" class=\"ai-input\" placeholder=\"Filter jobs...\" style=\"height: 1.875rem; font-size: 0.75rem; width: 10rem;\" />",
+   "    <select class=\"ai-select\" style=\"height: 1.875rem; font-size: 0.75rem; padding: 0 1.5rem 0 0.5rem;\">",
+   "      <option>Latest</option>",
+   "      <option>Oldest</option>",
+   "      <option>Duration</option>",
+   "    </select>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Application filter header with quick-select pill tags, search field, and sort control. (application, free)"
+ },
+ "LLMCSS Breadcrumb Navigation": {
+  "prefix": "ai-breadcrumb-nav",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<nav aria-label=\"Breadcrumb\">",
+   "  <ol class=\"ai-breadcrumb\">",
+   "    <li class=\"ai-breadcrumb-item\"><a href=\"#\">Dashboard</a></li>",
+   "    <li class=\"ai-breadcrumb-item\"><a href=\"#\">Projects</a></li>",
+   "    <li class=\"ai-breadcrumb-item\"><a href=\"#\">Design System</a></li>",
+   "    <li class=\"ai-breadcrumb-item is-current\" aria-current=\"page\">Components</li>",
+   "  </ol>",
+   "</nav>"
+  ],
+  "description": "Accessible breadcrumb trail with slash separators, linked ancestors, and a current page indicator. (primitive, free)"
+ },
+ "LLMCSS CSS Tooltip": {
+  "prefix": "ai-tooltip-hover",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-gap-6 ai-items-center\">",
+   "  <span class=\"ai-tooltip\" data-tooltip=\"Edit this item\">",
+   "    <button class=\"ai-btn ai-btn-outline ai-btn-sm\" aria-describedby=\"tip-edit\">Hover me (top)</button>",
+   "    <span class=\"ai-sr-only\" id=\"tip-edit\" role=\"tooltip\">Edit this item</span>",
+   "  </span>",
+   "  <span class=\"ai-tooltip ai-tooltip-bottom\" data-tooltip=\"Save changes\">",
+   "    <button class=\"ai-btn ai-btn-secondary ai-btn-sm\" aria-describedby=\"tip-save\">Hover me (bottom)</button>",
+   "    <span class=\"ai-sr-only\" id=\"tip-save\" role=\"tooltip\">Save changes</span>",
+   "  </span>",
+   "  <span class=\"ai-tooltip\" data-tooltip=\"Keyboard accessible too\">",
+   "    <button class=\"ai-btn ai-btn-ghost ai-btn-sm\" aria-describedby=\"tip-focus\">Focus me</button>",
+   "    <span class=\"ai-sr-only\" id=\"tip-focus\" role=\"tooltip\">Keyboard accessible too</span>",
+   "  </span>",
+   "</div>"
+  ],
+  "description": "Pure CSS tooltip on hover and focus. No JavaScript required. Supports top and bottom placement. (primitive, free)"
+ },
+ "LLMCSS Pagination": {
+  "prefix": "ai-pagination-controls",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<nav aria-label=\"Pagination\">",
+   "  <ul class=\"ai-pagination\">",
+   "    <li class=\"ai-pagination-item\">",
+   "      <a href=\"#\" class=\"ai-pagination-link is-disabled\" aria-disabled=\"true\" tabindex=\"-1\">&larr; Prev</a>",
+   "    </li>",
+   "    <li class=\"ai-pagination-item\">",
+   "      <a href=\"#\" class=\"ai-pagination-link is-active\" aria-current=\"page\">1</a>",
+   "    </li>",
+   "    <li class=\"ai-pagination-item\">",
+   "      <a href=\"#\" class=\"ai-pagination-link\">2</a>",
+   "    </li>",
+   "    <li class=\"ai-pagination-item\">",
+   "      <a href=\"#\" class=\"ai-pagination-link\">3</a>",
+   "    </li>",
+   "    <li class=\"ai-pagination-item\">",
+   "      <span class=\"ai-pagination-ellipsis\">...</span>",
+   "    </li>",
+   "    <li class=\"ai-pagination-item\">",
+   "      <a href=\"#\" class=\"ai-pagination-link\">12</a>",
+   "    </li>",
+   "    <li class=\"ai-pagination-item\">",
+   "      <a href=\"#\" class=\"ai-pagination-link\">Next &rarr;</a>",
+   "    </li>",
+   "  </ul>",
+   "</nav>"
+  ],
+  "description": "Page navigation with previous/next arrows, active page highlight, and ellipsis for large sets. (primitive, free)"
+ },
+ "LLMCSS Divider / Separator": {
+  "prefix": "ai-divider-separator",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div style=\"max-width: 28rem;\">",
+   "  <p class=\"ai-text-sm ai-text-secondary\">Content above the divider.</p>",
+   "  <div class=\"ai-divider\"></div>",
+   "  <p class=\"ai-text-sm ai-text-secondary\">Content below the plain divider.</p>",
+   "  <div class=\"ai-divider\">or continue with</div>",
+   "  <p class=\"ai-text-sm ai-text-secondary\">Content below the labeled divider.</p>",
+   "  <div class=\"ai-flex ai-items-center ai-gap-4\" style=\"margin-top: var(--ai-space-6);\">",
+   "    <span class=\"ai-text-sm\">Item A</span>",
+   "    <span class=\"ai-divider-vertical\"></span>",
+   "    <span class=\"ai-text-sm\">Item B</span>",
+   "    <span class=\"ai-divider-vertical\"></span>",
+   "    <span class=\"ai-text-sm\">Item C</span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Horizontal and vertical dividers with optional centered label text. Useful for sectioning content. (primitive, free)"
+ },
+ "LLMCSS Textarea with Character Counter": {
+  "prefix": "ai-textarea-counter",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div style=\"max-width: 28rem;\">",
+   "  <div class=\"ai-form-group\">",
+   "    <label class=\"ai-form-label\" for=\"bio-field\">Bio</label>",
+   "    <div class=\"ai-textarea-group\">",
+   "      <textarea id=\"bio-field\" class=\"ai-textarea\" placeholder=\"Write a short bio...\" rows=\"4\" maxlength=\"280\">Design engineer building component systems for autonomous agents.</textarea>",
+   "      <div class=\"ai-textarea-footer\">",
+   "        <span class=\"ai-form-hint\">Keep it concise and direct.</span>",
+   "        <span class=\"ai-font-mono\" style=\"font-size: 0.6875rem;\">63 / 280</span>",
+   "      </div>",
+   "    </div>",
+   "  </div>",
+   "  <div class=\"ai-form-group\">",
+   "    <label class=\"ai-form-label is-required\" for=\"feedback-field\">Feedback</label>",
+   "    <textarea id=\"feedback-field\" class=\"ai-textarea is-error\" placeholder=\"Describe the issue...\" rows=\"3\" aria-invalid=\"true\">Too short</textarea>",
+   "    <span class=\"ai-form-error\">Feedback must be at least 20 characters.</span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Multi-line text input with label, helper text, and a live character count footer. (primitive, free)"
+ },
+ "LLMCSS Checkbox & Radio Controls": {
+  "prefix": "ai-checkbox-radio-group",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-gap-12\" style=\"max-width: 32rem;\">",
+   "  <div>",
+   "    <span class=\"ai-form-label\" style=\"margin-bottom: var(--ai-space-3); display: block;\">Notifications</span>",
+   "    <div style=\"display: flex; flex-direction: column; gap: var(--ai-space-3);\">",
+   "      <label class=\"ai-checkbox\">",
+   "        <input type=\"checkbox\" class=\"ai-checkbox-input\" checked />",
+   "        Email notifications",
+   "      </label>",
+   "      <label class=\"ai-checkbox\">",
+   "        <input type=\"checkbox\" class=\"ai-checkbox-input\" checked />",
+   "        Push notifications",
+   "      </label>",
+   "      <label class=\"ai-checkbox\">",
+   "        <input type=\"checkbox\" class=\"ai-checkbox-input\" />",
+   "        SMS alerts",
+   "      </label>",
+   "    </div>",
+   "  </div>",
+   "  <div>",
+   "    <span class=\"ai-form-label\" style=\"margin-bottom: var(--ai-space-3); display: block;\">Plan</span>",
+   "    <div class=\"ai-radio-group\">",
+   "      <label class=\"ai-radio\">",
+   "        <input type=\"radio\" name=\"plan\" class=\"ai-radio-input\" checked />",
+   "        Community (Free)",
+   "      </label>",
+   "      <label class=\"ai-radio\">",
+   "        <input type=\"radio\" name=\"plan\" class=\"ai-radio-input\" />",
+   "        Pro (\\$9/mo)",
+   "      </label>",
+   "      <label class=\"ai-radio\">",
+   "        <input type=\"radio\" name=\"plan\" class=\"ai-radio-input\" />",
+   "        Enterprise (Custom)",
+   "      </label>",
+   "    </div>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Styled checkbox and radio button groups with labels, keyboard focus states, and accessible markup. (primitive, free)"
+ },
+ "LLMCSS Empty State": {
+  "prefix": "ai-empty-state",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-empty-state\" style=\"border: 1px dashed var(--ai-border); border-radius: var(--ai-radius-lg);\">",
+   "  <svg class=\"ai-empty-state-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\">",
+   "    <path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"></path>",
+   "    <polyline points=\"14 2 14 8 20 8\"></polyline>",
+   "    <line x1=\"16\" y1=\"13\" x2=\"8\" y2=\"13\"></line>",
+   "    <line x1=\"16\" y1=\"17\" x2=\"8\" y2=\"17\"></line>",
+   "    <polyline points=\"10 9 9 9 8 9\"></polyline>",
+   "  </svg>",
+   "  <h3 class=\"ai-empty-state-title\">No documents yet</h3>",
+   "  <p class=\"ai-empty-state-description\">",
+   "    Create your first document to get started. Documents are automatically saved and synced across your workspace.",
+   "  </p>",
+   "  <button class=\"ai-btn ai-btn-primary ai-btn-sm\">Create Document</button>",
+   "</div>"
+  ],
+  "description": "Placeholder component for no-data views with icon, title, description, and call-to-action button. (primitive, free)"
+ },
+ "LLMCSS Sidebar Navigation": {
+  "prefix": "ai-sidebar-nav",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div style=\"width: 16rem;\">",
+   "  <nav class=\"ai-sidebar\" style=\"height: auto; border: 1px solid var(--ai-border); border-radius: var(--ai-radius-lg); overflow: hidden;\">",
+   "    <div class=\"ai-sidebar-header\">",
+   "      <span class=\"ai-font-semibold\" style=\"font-size: 0.9375rem;\">Workspace</span>",
+   "    </div>",
+   "    <ul class=\"ai-sidebar-nav\">",
+   "      <li class=\"ai-sidebar-section\">",
+   "        <span class=\"ai-sidebar-section-title\">Main</span>",
+   "        <a href=\"#\" class=\"ai-sidebar-item is-active\" aria-current=\"page\">",
+   "          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"7\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\"/></svg>",
+   "          Dashboard",
+   "          <span class=\"ai-sidebar-badge\">12</span>",
+   "        </a>",
+   "        <a href=\"#\" class=\"ai-sidebar-item\">",
+   "          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><polyline points=\"14 2 14 8 20 8\"/></svg>",
+   "          Documents",
+   "        </a>",
+   "        <a href=\"#\" class=\"ai-sidebar-item\">",
+   "          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><polyline points=\"12 6 12 12 16 14\"/></svg>",
+   "          Activity",
+   "          <span class=\"ai-sidebar-badge\">3</span>",
+   "        </a>",
+   "      </li>",
+   "      <li class=\"ai-sidebar-section\">",
+   "        <span class=\"ai-sidebar-section-title\">Account</span>",
+   "        <a href=\"#\" class=\"ai-sidebar-item\">",
+   "          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z\"/></svg>",
+   "          Settings",
+   "        </a>",
+   "      </li>",
+   "    </ul>",
+   "  </nav>",
+   "</div>"
+  ],
+  "description": "Collapsible sidebar with grouped sections, section titles, nav items with icons, count badges, and active state. (application, free)"
+ },
+ "LLMCSS Stats Dashboard Row": {
+  "prefix": "ai-stats-dashboard",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-grid ai-grid-cols-1 ai-md:grid-cols-3 ai-gap-4\">",
+   "  <div class=\"ai-kpi-card is-primary\">",
+   "    <span class=\"ai-kpi-label\">Total Revenue</span>",
+   "    <span class=\"ai-kpi-value\">\\$48,290</span>",
+   "    <span class=\"ai-kpi-trend is-up\">",
+   "      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>",
+   "      +12.3% vs last month",
+   "    </span>",
+   "  </div>",
+   "  <div class=\"ai-kpi-card\">",
+   "    <span class=\"ai-kpi-label\">Active Users</span>",
+   "    <span class=\"ai-kpi-value\">2,847</span>",
+   "    <span class=\"ai-kpi-trend is-up\">",
+   "      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>",
+   "      +8.1% vs last month",
+   "    </span>",
+   "  </div>",
+   "  <div class=\"ai-kpi-card\">",
+   "    <span class=\"ai-kpi-label\">Bounce Rate</span>",
+   "    <span class=\"ai-kpi-value\">24.6%</span>",
+   "    <span class=\"ai-kpi-trend is-down\">",
+   "      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polyline points=\"23 18 13.5 8.5 8.5 13.5 1 6\"/><polyline points=\"17 18 23 18 23 12\"/></svg>",
+   "      -3.2% vs last month",
+   "    </span>",
+   "  </div>",
+   "  <div class=\"ai-kpi-card\">",
+   "    <span class=\"ai-kpi-label\">Avg. Session</span>",
+   "    <span class=\"ai-kpi-value\">4m 32s</span>",
+   "    <span class=\"ai-kpi-trend is-up\">",
+   "      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>",
+   "      +18.7% vs last month",
+   "    </span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Horizontal row of key stat KPI cards with large metrics, trend indicators, and comparison labels. (application, free)"
+ },
+ "LLMCSS Notification List": {
+  "prefix": "ai-notification-list",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-notification-list\" style=\"max-width: 28rem;\">",
+   "  <div class=\"ai-notification-item is-unread\">",
+   "    <span class=\"ai-notification-dot\"></span>",
+   "    <div class=\"ai-notification-content\">",
+   "      <p class=\"ai-notification-title\">Deployment completed successfully</p>",
+   "      <p class=\"ai-notification-meta\">Production environment - 2 minutes ago</p>",
+   "    </div>",
+   "  </div>",
+   "  <div class=\"ai-notification-item is-unread\">",
+   "    <span class=\"ai-notification-dot\"></span>",
+   "    <div class=\"ai-notification-content\">",
+   "      <p class=\"ai-notification-title\">New team member joined the workspace</p>",
+   "      <p class=\"ai-notification-meta\">Sarah Chen accepted the invite - 15 minutes ago</p>",
+   "    </div>",
+   "  </div>",
+   "  <div class=\"ai-notification-item\">",
+   "    <span class=\"ai-notification-dot is-read\"></span>",
+   "    <div class=\"ai-notification-content\">",
+   "      <p class=\"ai-notification-title\">Weekly usage report ready</p>",
+   "      <p class=\"ai-notification-meta\">Analytics - 2 hours ago</p>",
+   "    </div>",
+   "  </div>",
+   "  <div class=\"ai-notification-item\">",
+   "    <span class=\"ai-notification-dot is-read\"></span>",
+   "    <div class=\"ai-notification-content\">",
+   "      <p class=\"ai-notification-title\">SSL certificate renewed</p>",
+   "      <p class=\"ai-notification-meta\">Infrastructure - Yesterday at 11:42 AM</p>",
+   "    </div>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Grouped notification items with unread indicators, timestamps, and hover states. (application, free)"
+ },
+ "LLMCSS Keyboard Shortcuts": {
+  "prefix": "ai-kbd-shortcuts",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-wrap ai-gap-4 ai-items-center\">",
+   "  <span class=\"ai-flex ai-items-center ai-gap-1\"><kbd class=\"ai-kbd\">⌘</kbd><kbd class=\"ai-kbd\">K</kbd><span class=\"ai-text-xs ai-text-muted\">Command palette</span></span>",
+   "  <span class=\"ai-flex ai-items-center ai-gap-1\"><kbd class=\"ai-kbd\">⌘</kbd><kbd class=\"ai-kbd\">Enter</kbd><span class=\"ai-text-xs ai-text-muted\">Submit</span></span>",
+   "  <span class=\"ai-flex ai-items-center ai-gap-1\"><kbd class=\"ai-kbd\">Esc</kbd><span class=\"ai-text-xs ai-text-muted\">Dismiss</span></span>",
+   "</div>"
+  ],
+  "description": "Inline kbd keys for command palettes, docs, and shortcut legends. (primitive, free)"
+ },
+ "LLMCSS Pull Quote": {
+  "prefix": "ai-quote-pull",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<blockquote class=\"ai-quote\">",
+   "  <p>One title face. Themes change color, not the alphabet.</p>",
+   "  <footer>LLMCSS typesetting note</footer>",
+   "</blockquote>"
+  ],
+  "description": "Editorial quote with a single left rule. Title face comes from the font switcher, not the theme. (primitive, free)"
+ },
+ "LLMCSS Code Block": {
+  "prefix": "ai-code-block",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<pre class=\"ai-code-block\"><code>npx llmcss add quote-pull",
+   "npx llmcss add kbd-shortcuts</code></pre>"
+  ],
+  "description": "Monospace snippet well for CLI, tokens, and agent output. (primitive, free)"
+ },
+ "LLMCSS File Dropzone": {
+  "prefix": "ai-file-dropzone",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<label class=\"ai-dropzone\" for=\"dropzone-file\">",
+   "  <strong style=\"color: var(--ai-text-primary);\">Drop a file</strong>",
+   "  <span class=\"ai-text-xs\">PNG, JSON, or CSV up to 8MB</span>",
+   "  <span class=\"ai-btn ai-btn-outline ai-btn-sm\" style=\"margin-top: var(--ai-space-2);\">Browse</span>",
+   "  <input id=\"dropzone-file\" type=\"file\" class=\"ai-sr-only\" multiple />",
+   "</label>"
+  ],
+  "description": "Dashed upload well for attachments and dataset drops. (primitive, free)"
+ },
+ "LLMCSS Timeline Log": {
+  "prefix": "ai-timeline-log",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<ol class=\"ai-timeline\">",
+   "  <li class=\"ai-timeline-item\">",
+   "    <div class=\"ai-timeline-title\">Registry published</div>",
+   "    <div class=\"ai-timeline-meta\">origin · 2m ago</div>",
+   "  </li>",
+   "  <li class=\"ai-timeline-item\">",
+   "    <div class=\"ai-timeline-title\">Token issued</div>",
+   "    <div class=\"ai-timeline-meta\">polar webhook · 18m ago</div>",
+   "  </li>",
+   "  <li class=\"ai-timeline-item\">",
+   "    <div class=\"ai-timeline-title\">Pro component added</div>",
+   "    <div class=\"ai-timeline-meta\">tool-trace · yesterday</div>",
+   "  </li>",
+   "</ol>"
+  ],
+  "description": "Vertical event log with pips. For deploys, agent steps, and audit trails. (application, free)"
+ },
+ "LLMCSS Split Button": {
+  "prefix": "ai-split-button",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-btn-group\">",
+   "  <button class=\"ai-btn ai-btn-primary\" type=\"button\">Deploy</button>",
+   "  <button class=\"ai-btn ai-btn-primary ai-btn-icon\" type=\"button\" aria-label=\"More deploy options\" aria-haspopup=\"true\" aria-expanded=\"false\">",
+   "    <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"m6 9 6 6 6-6\"/></svg>",
+   "  </button>",
+   "</div>"
+  ],
+  "description": "Primary action plus a menu chevron for secondary variants. (primitive, free)"
+ },
+ "LLMCSS Dashboard Page Header": {
+  "prefix": "ai-page-header",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-page-header\">",
+   "  <div>",
+   "    <h1>Overview</h1>",
+   "    <p class=\"ai-page-header-meta\">Workspace production · last deploy 14m ago</p>",
+   "  </div>",
+   "  <div class=\"ai-flex ai-gap-2\">",
+   "    <button class=\"ai-btn ai-btn-outline ai-btn-sm\" type=\"button\">Export</button>",
+   "    <button class=\"ai-btn ai-btn-primary ai-btn-sm\" type=\"button\">New report</button>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Title, short meta, and a pair of actions for app pages. (application, free)"
+ },
+ "LLMCSS App Top Bar": {
+  "prefix": "ai-app-topbar",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-topbar\">",
+   "  <input class=\"ai-input\" type=\"search\" placeholder=\"Search resources...\" aria-label=\"Search\" />",
+   "  <span class=\"ai-text-xs ai-text-muted\" style=\"white-space: nowrap;\">12 unread</span>",
+   "  <span class=\"ai-avatar ai-avatar-sm\" aria-hidden=\"true\">AC</span>",
+   "</div>"
+  ],
+  "description": "Search field, muted count, and avatar for the dashboard chrome. (application, free)"
+ },
+ "LLMCSS Quota Meter": {
+  "prefix": "ai-quota-meter",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-quota\" style=\"max-width: 24rem;\">",
+   "  <div class=\"ai-quota-head\">",
+   "    <span>Build minutes</span>",
+   "    <strong>1,240 / 2,000</strong>",
+   "  </div>",
+   "  <div class=\"ai-progress\"><div class=\"ai-progress-bar\" style=\"width: 62%;\"></div></div>",
+   "  <span class=\"ai-text-xs ai-text-muted\">Resets on the 1st</span>",
+   "</div>"
+  ],
+  "description": "Used vs limit with a determinate bar. One metric, tabular numbers. (application, free)"
+ },
+ "LLMCSS Sparkline Stat": {
+  "prefix": "ai-spark-stat",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-spark-stat\" style=\"max-width: 28rem;\">",
+   "  <div>",
+   "    <span class=\"ai-kpi-label\">Requests</span>",
+   "    <div class=\"ai-kpi-value\">128k</div>",
+   "    <span class=\"ai-kpi-trend is-up\">+9.4% vs last week</span>",
+   "  </div>",
+   "  <svg class=\"ai-spark\" viewBox=\"0 0 120 40\" fill=\"none\" aria-hidden=\"true\">",
+   "    <polyline points=\"0,28 17,24 34,26 51,18 68,20 85,12 102,14 120,8\" stroke=\"currentColor\" stroke-width=\"1.75\" />",
+   "  </svg>",
+   "</div>"
+  ],
+  "description": "One dominant KPI with a 7-day sparkline. Do not stamp four identical tiles. (application, free)"
+ },
+ "LLMCSS Donut Stat": {
+  "prefix": "ai-donut-stat",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-donut-wrap\">",
+   "  <div class=\"ai-donut\" aria-hidden=\"true\"><div class=\"ai-donut-hole\">68%</div></div>",
+   "  <div>",
+   "    <div class=\"ai-font-semibold\">Job success</div>",
+   "    <p class=\"ai-text-sm ai-text-secondary\" style=\"margin: 0.25rem 0 0;\">1,024 of 1,504 runs finished clean this week.</p>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Single completion ring using a conic gradient. Center is the number. (application, free)"
+ },
+ "LLMCSS Settings List": {
+  "prefix": "ai-settings-list",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-settings-list\" style=\"max-width: 32rem;\">",
+   "  <div class=\"ai-settings-row\">",
+   "    <div>",
+   "      <div class=\"ai-font-medium\">Deploy previews</div>",
+   "      <p class=\"ai-text-secondary\">Open a preview URL on every push to main.</p>",
+   "    </div>",
+   "    <label class=\"ai-switch\"><input type=\"checkbox\" class=\"ai-switch-input\" checked /><span class=\"ai-switch-track\"><span class=\"ai-switch-thumb\"></span></span></label>",
+   "  </div>",
+   "  <div class=\"ai-settings-row\">",
+   "    <div>",
+   "      <div class=\"ai-font-medium\">Failure mail</div>",
+   "      <p class=\"ai-text-secondary\">Email the owner when a run exits non-zero.</p>",
+   "    </div>",
+   "    <label class=\"ai-switch\"><input type=\"checkbox\" class=\"ai-switch-input\" /><span class=\"ai-switch-track\"><span class=\"ai-switch-thumb\"></span></span></label>",
+   "  </div>",
+   "  <div class=\"ai-settings-row\">",
+   "    <div>",
+   "      <div class=\"ai-font-medium\">Public registry</div>",
+   "      <p class=\"ai-text-secondary\">Allow anonymous reads of free components.</p>",
+   "    </div>",
+   "    <label class=\"ai-switch\"><input type=\"checkbox\" class=\"ai-switch-input\" checked /><span class=\"ai-switch-track\"><span class=\"ai-switch-thumb\"></span></span></label>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Stacked preference rows: title, hint, and a switch. No nested cards. (application, free)"
+ },
+ "LLMCSS Log Console": {
+  "prefix": "ai-log-console",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<pre class=\"ai-log\" style=\"max-width: 36rem;\"><code><span class=\"ai-log-line\"><span class=\"ai-log-ts\">14:02:11</span> <span class=\"ai-log-ok\">ok</span> registry built 60 components</span>",
+   "<span class=\"ai-log-line\"><span class=\"ai-log-ts\">14:02:18</span> <span class=\"ai-log-ok\">ok</span> origin sync public_html</span>",
+   "<span class=\"ai-log-line\"><span class=\"ai-log-ts\">14:03:02</span> <span class=\"ai-log-warn\">warn</span> cf cache still hot on /r/*</span>",
+   "<span class=\"ai-log-line\"><span class=\"ai-log-ts\">14:03:41</span> <span class=\"ai-log-err\">fail</span> polar webhook 403 (bot fight)</span></code></pre>"
+  ],
+  "description": "Dense monospace run log with level color and tabular timestamps. (application, free)"
+ },
+ "LLMCSS Service Health": {
+  "prefix": "ai-health-grid",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-health\" style=\"max-width: 28rem;\">",
+   "  <div class=\"ai-health-row\">",
+   "    <span class=\"ai-health-name\"><span class=\"ai-pip ai-pip-ok\"></span> Origin</span>",
+   "    <span class=\"ai-text-xs ai-text-muted\">200 · 41ms</span>",
+   "  </div>",
+   "  <div class=\"ai-health-row\">",
+   "    <span class=\"ai-health-name\"><span class=\"ai-pip ai-pip-ok\"></span> Registry</span>",
+   "    <span class=\"ai-text-xs ai-text-muted\">200 · 18ms</span>",
+   "  </div>",
+   "  <div class=\"ai-health-row\">",
+   "    <span class=\"ai-health-name\"><span class=\"ai-pip ai-pip-warn\"></span> Webhook</span>",
+   "    <span class=\"ai-text-xs ai-text-muted\">retry in 12s</span>",
+   "  </div>",
+   "  <div class=\"ai-health-row\">",
+   "    <span class=\"ai-health-name\"><span class=\"ai-pip ai-pip-err\"></span> Object store</span>",
+   "    <span class=\"ai-text-xs ai-text-muted\">timeout</span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Mixed service statuses with 6px pips. Not four identical KPI tiles. (application, free)"
+ },
+ "LLMCSS Kanban Column": {
+  "prefix": "ai-kanban-column",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-kanban\">",
+   "  <div class=\"ai-kanban-head\"><span>In review</span><span class=\"ai-text-muted\">3</span></div>",
+   "  <div class=\"ai-kanban-item\">Quota meter CSS <span class=\"ai-text-xs ai-text-muted\">#184</span></div>",
+   "  <div class=\"ai-kanban-item\">Polar zip download <span class=\"ai-text-xs ai-text-muted\">#191</span></div>",
+   "  <div class=\"ai-kanban-item\">Account dark flash <span class=\"ai-text-xs ai-text-muted\">#203</span></div>",
+   "</div>"
+  ],
+  "description": "One board column with compact work items. Items are rows, not nested cards. (application, free)"
+ },
+ "LLMCSS Inbox List": {
+  "prefix": "ai-inbox-list",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div style=\"max-width: 32rem;\">",
+   "  <div class=\"ai-inbox-item is-unread\">",
+   "    <span class=\"ai-pip ai-pip-ok\"></span>",
+   "    <div>",
+   "      <div class=\"ai-inbox-title\">Build failed on main</div>",
+   "      <div class=\"ai-text-xs ai-text-muted\">origin · php -l api/lib.php</div>",
+   "    </div>",
+   "    <span class=\"ai-text-xs ai-text-muted\">2m</span>",
+   "  </div>",
+   "  <div class=\"ai-inbox-item is-unread\">",
+   "    <span class=\"ai-pip\"></span>",
+   "    <div>",
+   "      <div class=\"ai-inbox-title\">Seat request from acme</div>",
+   "      <div class=\"ai-text-xs ai-text-muted\">billing</div>",
+   "    </div>",
+   "    <span class=\"ai-text-xs ai-text-muted\">1h</span>",
+   "  </div>",
+   "  <div class=\"ai-inbox-item\">",
+   "    <span class=\"ai-pip ai-pip-ok\"></span>",
+   "    <div>",
+   "      <div class=\"ai-inbox-title\">Certificate renewed</div>",
+   "      <div class=\"ai-text-xs ai-text-muted\">infra</div>",
+   "    </div>",
+   "    <span class=\"ai-text-xs ai-text-muted\">1d</span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Ticket or message rows with unread weight and timestamps. (application, free)"
+ },
+ "LLMCSS Distribution Bars": {
+  "prefix": "ai-bar-chart",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-bars\" style=\"max-width: 28rem;\">",
+   "  <div class=\"ai-bar-row\"><span>Free CLI</span><div class=\"ai-bar-track\"><div class=\"ai-bar-fill\" style=\"width: 62%;\"></div></div><span>62%</span></div>",
+   "  <div class=\"ai-bar-row\"><span>Gallery</span><div class=\"ai-bar-track\"><div class=\"ai-bar-fill\" style=\"width: 24%;\"></div></div><span>24%</span></div>",
+   "  <div class=\"ai-bar-row\"><span>MCP</span><div class=\"ai-bar-track\"><div class=\"ai-bar-fill\" style=\"width: 14%;\"></div></div><span>14%</span></div>",
+   "</div>"
+  ],
+  "description": "Horizontal bars for a breakdown. Labels plus tabular percents. (application, free)"
+ },
+ "LLMCSS Resource Detail": {
+  "prefix": "ai-detail-list",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<dl class=\"ai-detail\" style=\"max-width: 28rem;\">",
+   "  <dt>ID</dt><dd>prj_8f2c1a</dd>",
+   "  <dt>Region</dt><dd>syd-1</dd>",
+   "  <dt>Owner</dt><dd>ops@llmcss.io</dd>",
+   "  <dt>Updated</dt><dd>2026-09-12 14:03</dd>",
+   "</dl>"
+  ],
+  "description": "Definition list for an entity: id, region, owner, updated. (application, free)"
+ },
+ "LLMCSS Date Range Fields": {
+  "prefix": "ai-date-range",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-gap-3 ai-flex-wrap\" style=\"max-width: 28rem;\">",
+   "  <label class=\"ai-form-group\" style=\"flex: 1;\">",
+   "    <span class=\"ai-form-label\">From</span>",
+   "    <input class=\"ai-input\" type=\"date\" value=\"2026-09-01\" />",
+   "  </label>",
+   "  <label class=\"ai-form-group\" style=\"flex: 1;\">",
+   "    <span class=\"ai-form-label\">To</span>",
+   "    <input class=\"ai-input\" type=\"date\" value=\"2026-09-12\" />",
+   "  </label>",
+   "</div>"
+  ],
+  "description": "From and to inputs for dashboard filters. (application, free)"
+ },
+ "LLMCSS Collapse": {
+  "prefix": "ai-collapse-details",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<details class=\"ai-collapse\" style=\"max-width: 32rem;\">",
+   "  <summary>Advanced deployment options</summary>",
+   "  <div class=\"ai-collapse-body\">",
+   "    Region pinning, canary percentage, and rollback window. These apply to this service only and do not change organisation defaults.",
+   "  </div>",
+   "</details>"
+  ],
+  "description": "Single collapsible section on native details and summary. Opens and closes with no JavaScript; the chevron rotates on [open]. (primitive, free)"
+ },
+ "LLMCSS Carousel": {
+  "prefix": "ai-carousel-snap",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-carousel ai-carousel-peek\" tabindex=\"0\" aria-label=\"Release highlights\" style=\"--ai-carousel-item: 72%; max-width: 40rem;\">",
+   "  <article class=\"ai-card\" style=\"padding: var(--ai-space-6);\">",
+   "    <h3 class=\"ai-card-title\">Edge caching</h3>",
+   "    <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Static assets served from 34 regions. Median time to first byte dropped to 38 ms.</p>",
+   "  </article>",
+   "  <article class=\"ai-card\" style=\"padding: var(--ai-space-6);\">",
+   "    <h3 class=\"ai-card-title\">Preview environments</h3>",
+   "    <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Every pull request gets a URL. Expires seven days after merge.</p>",
+   "  </article>",
+   "  <article class=\"ai-card\" style=\"padding: var(--ai-space-6);\">",
+   "    <h3 class=\"ai-card-title\">Audit log export</h3>",
+   "    <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Stream events to your SIEM. JSON lines, hourly rotation.</p>",
+   "  </article>",
+   "</div>"
+  ],
+  "description": "Scroll-snap carousel: swipe on touch, scroll wheel or arrow keys on desktop. Set --ai-carousel-item to show a peek of the next slide. (primitive, free)"
+ },
+ "LLMCSS Floating Label Field": {
+  "prefix": "ai-floating-label",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<form class=\"ai-flex ai-flex-col ai-gap-4\" style=\"max-width: 24rem;\">",
+   "  <div class=\"ai-form-float\">",
+   "    <input id=\"fl-email\" class=\"ai-input\" type=\"email\" placeholder=\" \" autocomplete=\"email\" />",
+   "    <label for=\"fl-email\">Work email</label>",
+   "  </div>",
+   "  <div class=\"ai-form-float\">",
+   "    <input id=\"fl-org\" class=\"ai-input\" type=\"text\" placeholder=\" \" value=\"Northwind\" />",
+   "    <label for=\"fl-org\">Organisation</label>",
+   "  </div>",
+   "  <div class=\"ai-form-float\">",
+   "    <select id=\"fl-region\" class=\"ai-select\">",
+   "      <option>Sydney</option>",
+   "      <option>Singapore</option>",
+   "      <option>Frankfurt</option>",
+   "    </select>",
+   "    <label for=\"fl-region\">Region</label>",
+   "  </div>",
+   "</form>"
+  ],
+  "description": "Label sits inside the field and floats up on focus or when a value is present. Pure CSS via :placeholder-shown; the placeholder must be a single space. (primitive, free)"
+ },
+ "LLMCSS List Group": {
+  "prefix": "ai-list-group",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<ul class=\"ai-list-group\" style=\"max-width: 24rem;\">",
+   "  <li><a href=\"#\" class=\"ai-list-group-item is-active\">Overview <span class=\"ai-badge ai-badge-counter ai-ml-auto\">3</span></a></li>",
+   "  <li><a href=\"#\" class=\"ai-list-group-item\">Deployments</a></li>",
+   "  <li><a href=\"#\" class=\"ai-list-group-item\">Environment variables</a></li>",
+   "  <li><a href=\"#\" class=\"ai-list-group-item is-disabled\" aria-disabled=\"true\">Billing (owner only)</a></li>",
+   "</ul>"
+  ],
+  "description": "Bordered list of rows with hover, active, and disabled states. Rows can be links or buttons. (primitive, free)"
+ },
+ "LLMCSS Button Group": {
+  "prefix": "ai-btn-group",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-wrap ai-gap-6 ai-items-center\">",
+   "  <div class=\"ai-btn-group\" role=\"group\" aria-label=\"View\">",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Day</button>",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Week</button>",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Month</button>",
+   "  </div>",
+   "  <div class=\"ai-btn-group\" role=\"group\" aria-label=\"Deploy\">",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-primary\">Deploy</button>",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-icon\" aria-label=\"Deploy options\" aria-haspopup=\"true\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"/></svg></button>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Joined buttons that share one border and radius. Works for view switches and paired actions. (primitive, free)"
+ },
+ "LLMCSS Level": {
+  "prefix": "ai-level-bar",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-level\" style=\"padding: var(--ai-space-4) 0; border-bottom: 1px solid var(--ai-border);\">",
+   "  <div class=\"ai-level-left\">",
+   "    <strong>Invoices</strong>",
+   "    <span class=\"ai-badge ai-badge-neutral\">June 2026</span>",
+   "  </div>",
+   "  <div class=\"ai-level-right\">",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Export</button>",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-sm\">New invoice</button>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "One row with a left cluster and a right cluster, vertically centred. The workhorse for page and card headers. (primitive, free)"
+ },
+ "LLMCSS Media Object": {
+  "prefix": "ai-media-object",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-media\" style=\"max-width: 36rem;\">",
+   "  <div class=\"ai-media-figure\">",
+   "    <div class=\"ai-avatar\" style=\"background-color: var(--ai-surface-3);\">MR</div>",
+   "  </div>",
+   "  <div class=\"ai-media-body\">",
+   "    <div class=\"ai-level\">",
+   "      <div class=\"ai-level-left\"><strong>Mia Rahman</strong><span class=\"ai-text-xs ai-text-muted\">2 hours ago</span></div>",
+   "    </div>",
+   "    <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-1);\">Rolled back the pricing page to build 412. The variant with the annual toggle was posting the wrong plan id.</p>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "A figure beside a block of content: avatar and comment, icon and text, thumbnail and summary. (primitive, free)"
+ },
+ "LLMCSS Panel": {
+  "prefix": "ai-panel-list",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-panel\" style=\"max-width: 24rem;\">",
+   "  <div class=\"ai-panel-header\">",
+   "    Recent branches",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-ghost ai-btn-xs\">View all</button>",
+   "  </div>",
+   "  <ul class=\"ai-list-group\">",
+   "    <li><a href=\"#\" class=\"ai-list-group-item\"><code class=\"ai-text-xs\">fix/session-expiry</code><span class=\"ai-text-xs ai-text-muted ai-ml-auto\">3m</span></a></li>",
+   "    <li><a href=\"#\" class=\"ai-list-group-item\"><code class=\"ai-text-xs\">feat/usage-export</code><span class=\"ai-text-xs ai-text-muted ai-ml-auto\">1h</span></a></li>",
+   "    <li><a href=\"#\" class=\"ai-list-group-item\"><code class=\"ai-text-xs\">main</code><span class=\"ai-text-xs ai-text-muted ai-ml-auto\">2d</span></a></li>",
+   "  </ul>",
+   "</div>"
+  ],
+  "description": "Titled surface with a list body. Header carries an action; the list group inside loses its own border. (primitive, free)"
+ },
+ "LLMCSS Notification": {
+  "prefix": "ai-notification-block",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-col ai-gap-4\" style=\"max-width: 36rem;\">",
+   "  <div class=\"ai-notification ai-notification-info\" role=\"status\">",
+   "    <strong>Scheduled maintenance.</strong> The API will be read-only on Saturday 20 September from 02:00 to 02:30 UTC.",
+   "    <button type=\"button\" class=\"ai-close\" data-ai-dismiss=\"toast\" aria-label=\"Dismiss\"></button>",
+   "  </div>",
+   "  <div class=\"ai-notification ai-notification-success\" role=\"status\">",
+   "    Your workspace was upgraded. Seats renew on the 1st of each month.",
+   "    <button type=\"button\" class=\"ai-close\" aria-label=\"Dismiss\"></button>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Page-level closable message, larger than an inline alert. Semantic variants tint the surface, never a left stripe. (primitive, free)"
+ },
+ "LLMCSS File Input": {
+  "prefix": "ai-file-input",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-form-group\" style=\"max-width: 24rem;\">",
+   "  <label class=\"ai-form-label\" for=\"report-file\">Import CSV</label>",
+   "  <input id=\"report-file\" type=\"file\" class=\"ai-file-input\" accept=\".csv\" />",
+   "  <p class=\"ai-form-hint\">Up to 25 MB. First row is treated as the header.</p>",
+   "</div>"
+  ],
+  "description": "Native file input with a styled selector button. Nothing to script; the browser handles the picker. (primitive, free)"
+ },
+ "LLMCSS Title and Subtitle": {
+  "prefix": "ai-title-subtitle",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div style=\"max-width: 36rem;\">",
+   "  <h2 class=\"ai-title\">Usage and billing</h2>",
+   "  <p class=\"ai-subtitle\">Meter reads are final at midnight UTC. Overages are billed with the next invoice.</p>",
+   "</div>"
+  ],
+  "description": "Heading pair for pages and sections: display title with balanced wrapping and a muted subtitle. (primitive, free)"
+ },
+ "LLMCSS Removable Chips": {
+  "prefix": "ai-chip-removable",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-wrap ai-gap-2\">",
+   "  <span class=\"ai-badge ai-badge-neutral ai-badge-removable\">Region: Sydney <button type=\"button\" class=\"ai-badge-remove\" aria-label=\"Remove Region: Sydney\">&times;</button></span>",
+   "  <span class=\"ai-badge ai-badge-neutral ai-badge-removable\">Status: Active <button type=\"button\" class=\"ai-badge-remove\" aria-label=\"Remove Status: Active\">&times;</button></span>",
+   "  <span class=\"ai-badge ai-badge-accent ai-badge-removable\">Owner: me <button type=\"button\" class=\"ai-badge-remove\" aria-label=\"Remove Owner: me\">&times;</button></span>",
+   "</div>"
+  ],
+  "description": "Filter chips with a remove control. The remove button carries the accessible name; removal itself is your form or script. (primitive, free)"
+ },
+ "LLMCSS Select": {
+  "prefix": "ai-select-native",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-col ai-gap-4\" style=\"max-width: 24rem;\">",
+   "  <div class=\"ai-form-group\">",
+   "    <label class=\"ai-form-label\" for=\"sel-plan\">Plan</label>",
+   "    <select id=\"sel-plan\" class=\"ai-select\">",
+   "      <option>Starter</option>",
+   "      <option selected>Team</option>",
+   "      <option>Enterprise</option>",
+   "    </select>",
+   "  </div>",
+   "  <div class=\"ai-form-group\">",
+   "    <label class=\"ai-form-label\" for=\"sel-region\">Data region</label>",
+   "    <select id=\"sel-region\" class=\"ai-select\" aria-invalid=\"true\" aria-describedby=\"sel-region-err\">",
+   "      <option value=\"\">Choose a region</option>",
+   "      <option>Sydney</option>",
+   "      <option>Frankfurt</option>",
+   "    </select>",
+   "    <p class=\"ai-form-hint\" id=\"sel-region-err\" style=\"color: var(--ai-danger);\">A region is required before the first deploy.</p>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Styled native select with label, hint, and an error state. Multi-select uses the size attribute. (primitive, free)"
+ },
+ "LLMCSS Input With Inset Icon": {
+  "prefix": "ai-input-icon",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-col ai-gap-4\" style=\"max-width: 24rem;\">",
+   "  <div class=\"ai-input-icon-wrap\">",
+   "    <svg class=\"ai-input-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/></svg>",
+   "    <input class=\"ai-input\" type=\"search\" placeholder=\"Search deployments\" aria-label=\"Search deployments\" />",
+   "  </div>",
+   "  <div class=\"ai-input-icon-wrap is-trailing\">",
+   "    <svg class=\"ai-input-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M16 2v4\"/><path d=\"M8 2v4\"/><path d=\"M3 10h18\"/></svg>",
+   "    <input class=\"ai-input\" type=\"date\" aria-label=\"Start date\" />",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Leading or trailing icon inside the field. The icon is decorative; the label still names the control. (primitive, free)"
+ },
+ "LLMCSS Section": {
+  "prefix": "ai-section-shift",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<section class=\"ai-section\" style=\"--ai-section-padding: var(--ai-space-12);\">",
+   "  <div class=\"ai-container\">",
+   "    <h2 class=\"ai-section-title\">Built for the tools your team already runs</h2>",
+   "    <p class=\"ai-section-lead\">One stylesheet, no build step. Works the same in a Rails view, an Astro page, or a plain HTML file an agent wrote this morning.</p>",
+   "  </div>",
+   "</section>",
+   "<section class=\"ai-section ai-section-shift\" style=\"--ai-section-padding: var(--ai-space-12);\">",
+   "  <div class=\"ai-container\">",
+   "    <h2 class=\"ai-section-title\">Then ship it</h2>",
+   "    <p class=\"ai-section-lead\">Every section after the first gets a hairline. Alternate surfaces with ai-section-shift instead of boxing content.</p>",
+   "  </div>",
+   "</section>"
+  ],
+  "description": "Page section wrapper: consistent vertical rhythm, hairline between sections, optional surface shift. The Law 1 answer to cards inside cards. (marketing, free)"
+ },
+ "LLMCSS Feature Grid": {
+  "prefix": "ai-feature-grid",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-feature-grid\">",
+   "  <div class=\"ai-feature-item\">",
+   "    <span class=\"ai-feature-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 2 2 7l10 5 10-5-10-5z\"/><path d=\"m2 17 10 5 10-5\"/><path d=\"m2 12 10 5 10-5\"/></svg></span>",
+   "    <h3 class=\"ai-feature-title\">Layered CSS</h3>",
+   "    <p class=\"ai-feature-text\">Reset, tokens, base, components, utilities. Override anything without a specificity fight.</p>",
+   "  </div>",
+   "  <div class=\"ai-feature-item\">",
+   "    <span class=\"ai-feature-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M9 3v18\"/></svg></span>",
+   "    <h3 class=\"ai-feature-title\">Container queries</h3>",
+   "    <p class=\"ai-feature-text\">Widgets adapt to the panel they sit in, not the viewport.</p>",
+   "  </div>",
+   "  <div class=\"ai-feature-item\">",
+   "    <span class=\"ai-feature-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"/></svg></span>",
+   "    <h3 class=\"ai-feature-title\">Validated by the CLI</h3>",
+   "    <p class=\"ai-feature-text\">Every class you emit is checked against the real stylesheet before you ship.</p>",
+   "  </div>",
+   "  <div class=\"ai-feature-item\">",
+   "    <span class=\"ai-feature-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 3\"/></svg></span>",
+   "    <h3 class=\"ai-feature-title\">Zero runtime by default</h3>",
+   "    <p class=\"ai-feature-text\">Add the 12 KB runtime only when you need modals, drawers, or tabs.</p>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Uniform grid of icon, title, and one sentence. Auto-fits columns; no colored icon tiles, no bento spans. (marketing, free)"
+ },
+ "LLMCSS Feature List": {
+  "prefix": "ai-feature-list",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<ul class=\"ai-feature-list\" style=\"max-width: 28rem;\">",
+   "  <li><span class=\"ai-mark ai-mark-yes\" role=\"img\" aria-label=\"Included\"></span> Unlimited environments per project</li>",
+   "  <li><span class=\"ai-mark ai-mark-yes\" role=\"img\" aria-label=\"Included\"></span> Preview URL for every pull request</li>",
+   "  <li><span class=\"ai-mark ai-mark-yes\" role=\"img\" aria-label=\"Included\"></span> Audit log with 90 day retention</li>",
+   "  <li><span class=\"ai-mark ai-mark-warn\" role=\"img\" aria-label=\"Limited\"></span> SSO on Team and above</li>",
+   "  <li><span class=\"ai-mark ai-mark-no\" role=\"img\" aria-label=\"Not included\"></span> Dedicated IP addresses</li>",
+   "</ul>"
+  ],
+  "description": "Plain checklist of capabilities with a mark. Reads faster than a grid when there are more than six items. (marketing, free)"
+ },
+ "LLMCSS Stats Band": {
+  "prefix": "ai-stats-band",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-stats-band\">",
+   "  <div class=\"ai-stat is-primary\">",
+   "    <div class=\"ai-stat-value\">99.98%</div>",
+   "    <div class=\"ai-stat-label\">Uptime over the last 12 months</div>",
+   "  </div>",
+   "  <div class=\"ai-stat\">",
+   "    <div class=\"ai-stat-value\">38 ms</div>",
+   "    <div class=\"ai-stat-label\">Median time to first byte</div>",
+   "  </div>",
+   "  <div class=\"ai-stat\">",
+   "    <div class=\"ai-stat-value\">34</div>",
+   "    <div class=\"ai-stat-label\">Edge regions</div>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Public-facing numbers with one dominant figure and smaller supporting stats (Law 8). Tabular numerals throughout. (marketing, free)"
+ },
+ "LLMCSS CTA Band": {
+  "prefix": "ai-cta-band",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-cta-band\">",
+   "  <h2 class=\"ai-section-title\">Start with the free tier</h2>",
+   "  <p class=\"ai-section-lead\" style=\"margin-inline: auto;\">No card required. Upgrade when you need SSO, audit export, or more than three projects.</p>",
+   "  <div class=\"ai-cta-actions\">",
+   "    <a href=\"#\" class=\"ai-btn ai-btn-primary ai-btn-lg\">Create account</a>",
+   "    <a href=\"#\" class=\"ai-btn ai-btn-outline ai-btn-lg\">Talk to sales</a>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Pre-footer conversion block: one heading, one sentence, primary and secondary actions. (marketing, free)"
+ },
+ "LLMCSS Editorial Callout": {
+  "prefix": "ai-callout-editorial",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<aside class=\"ai-callout\" style=\"max-width: 40rem;\">",
+   "  <span class=\"ai-callout-label\">Worth knowing</span>",
+   "  Rollbacks restore the previous build and its environment variables together. Secrets rotated after that build are not reverted.",
+   "</aside>"
+  ],
+  "description": "Emphasis block for long-form content: hairlines above and below, a short label, no stripe, no icon (Law 3). (marketing, free)"
+ },
+ "LLMCSS Testimonial Grid": {
+  "prefix": "ai-testimonial-grid",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-testimonial-grid\">",
+   "  <figure class=\"ai-testimonial-card\">",
+   "    <blockquote class=\"ai-testimonial-quote\">We replaced 4,000 lines of utility soup with the registry components and our agent stopped inventing class names.</blockquote>",
+   "    <figcaption class=\"ai-testimonial-author\"><strong>Priya Natarajan</strong><span class=\"ai-text-xs ai-text-muted\">Platform lead, Lattice Labs</span></figcaption>",
+   "  </figure>",
+   "  <figure class=\"ai-testimonial-card\">",
+   "    <blockquote class=\"ai-testimonial-quote\">The anti-slop audit caught a pulsing status dot in a PR before a human ever looked at it.</blockquote>",
+   "    <figcaption class=\"ai-testimonial-author\"><strong>Tom Okafor</strong><span class=\"ai-text-xs ai-text-muted\">Design engineer, Meridian</span></figcaption>",
+   "  </figure>",
+   "  <figure class=\"ai-testimonial-card\">",
+   "    <blockquote class=\"ai-testimonial-quote\">One link tag in a Rails layout. That was the whole migration.</blockquote>",
+   "    <figcaption class=\"ai-testimonial-author\"><strong>Sofia Lindqvist</strong><span class=\"ai-text-xs ai-text-muted\">CTO, Fieldnote</span></figcaption>",
+   "  </figure>",
+   "</div>"
+  ],
+  "description": "Three quotes with name and role. Cards sit on the page surface, one hairline border each, nothing nested. (marketing, free)"
+ },
+ "LLMCSS Team Grid": {
+  "prefix": "ai-team-grid",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-team-grid\" style=\"max-width: 48rem;\">",
+   "  <div class=\"ai-team-member\">",
+   "    <div class=\"ai-team-photo\" role=\"img\" aria-label=\"Portrait placeholder\"></div>",
+   "    <div class=\"ai-team-name\">Amara Osei</div>",
+   "    <div class=\"ai-team-role\">Founder</div>",
+   "  </div>",
+   "  <div class=\"ai-team-member\">",
+   "    <div class=\"ai-team-photo\" role=\"img\" aria-label=\"Portrait placeholder\"></div>",
+   "    <div class=\"ai-team-name\">Jonas Berg</div>",
+   "    <div class=\"ai-team-role\">Engineering</div>",
+   "  </div>",
+   "  <div class=\"ai-team-member\">",
+   "    <div class=\"ai-team-photo\" role=\"img\" aria-label=\"Portrait placeholder\"></div>",
+   "    <div class=\"ai-team-name\">Hana Sato</div>",
+   "    <div class=\"ai-team-role\">Design</div>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "People grid for an about page: photo, name, role. Photos keep a square ratio at every width. (marketing, free)"
+ },
+ "LLMCSS Announcement Bar": {
+  "prefix": "ai-announcement-bar",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-announcement\" role=\"region\" aria-label=\"Announcement\">",
+   "  <span>LLMCSS 0.2 ships the runtime as one script tag.</span>",
+   "  <a href=\"#\">Read the changelog</a>",
+   "  <button type=\"button\" class=\"ai-close ai-ml-auto\" aria-label=\"Dismiss announcement\" style=\"color: inherit;\"></button>",
+   "</div>"
+  ],
+  "description": "Single-line bar above the header for a release or notice, with a link and a dismiss control. (marketing, free)"
+ },
+ "LLMCSS Consent Bar": {
+  "prefix": "ai-consent-bar",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-consent-bar\" role=\"region\" aria-label=\"Cookie preferences\" style=\"position: static; max-width: 40rem;\">",
+   "  <span>We use one analytics cookie to count visits. No advertising, no cross-site tracking.</span>",
+   "  <div class=\"ai-consent-actions\">",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-ghost ai-btn-sm\">Manage</button>",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Reject</button>",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-sm\">Accept</button>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Fixed bottom bar for cookie consent with accept, reject, and manage actions. Sits above content; not a modal. (marketing, free)"
+ },
+ "LLMCSS FAQ Section": {
+  "prefix": "ai-faq-section",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div style=\"max-width: 40rem;\">",
+   "  <h2 class=\"ai-section-title\">Questions</h2>",
+   "  <div style=\"margin-top: var(--ai-space-6);\">",
+   "    <details class=\"ai-collapse\" style=\"padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border);\">",
+   "      <summary>Do I need a build step?</summary>",
+   "      <div class=\"ai-collapse-body\">No. Link the stylesheet and start writing classes. The CLI and MCP server are optional.</div>",
+   "    </details>",
+   "    <details class=\"ai-collapse\" style=\"padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border);\">",
+   "      <summary>What happens when I cancel Pro?</summary>",
+   "      <div class=\"ai-collapse-body\">The token stops working at the end of the period. CSS and HTML you already copied stay yours.</div>",
+   "    </details>",
+   "    <details class=\"ai-collapse\" style=\"padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border); border-bottom: 1px solid var(--ai-border);\">",
+   "      <summary>Which browsers?</summary>",
+   "      <div class=\"ai-collapse-body\">Current Chrome, Edge, Firefox, and Safari. Features like :has() and container queries have been stable in all four since 2023.</div>",
+   "    </details>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Question list on native details. Zero JavaScript; each answer is real copy, not filler. (marketing, free)"
+ },
+ "LLMCSS Product Grid": {
+  "prefix": "ai-product-grid",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-product-grid\">",
+   "  <article class=\"ai-product-card\">",
+   "    <div class=\"ai-product-media\" style=\"aspect-ratio: 4 / 3; background: var(--ai-surface-1);\"></div>",
+   "    <div class=\"ai-product-body\">",
+   "      <div class=\"ai-level\"><h3 class=\"ai-product-title\">Field Notebook</h3><span class=\"ai-badge ai-badge-sale ai-badge-sm\">Sale</span></div>",
+   "      <p class=\"ai-product-price\"><span>\\$18</span> <s class=\"ai-product-compare-price\">\\$24</s></p>",
+   "      <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-sm ai-w-full\">Add to cart</button>",
+   "    </div>",
+   "  </article>",
+   "  <article class=\"ai-product-card\">",
+   "    <div class=\"ai-product-media\" style=\"aspect-ratio: 4 / 3; background: var(--ai-surface-1);\"></div>",
+   "    <div class=\"ai-product-body\">",
+   "      <h3 class=\"ai-product-title\">Brass Ruler</h3>",
+   "      <p class=\"ai-product-price\">\\$32</p>",
+   "      <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-sm ai-w-full\">Add to cart</button>",
+   "    </div>",
+   "  </article>",
+   "  <article class=\"ai-product-card is-sold-out\">",
+   "    <div class=\"ai-product-media\" style=\"aspect-ratio: 4 / 3; background: var(--ai-surface-1);\"></div>",
+   "    <div class=\"ai-product-body\">",
+   "      <h3 class=\"ai-product-title\">Desk Mat</h3>",
+   "      <p class=\"ai-product-price\">\\$48</p>",
+   "      <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm ai-w-full\" disabled>Sold out</button>",
+   "    </div>",
+   "  </article>",
+   "</div>"
+  ],
+  "description": "Listing grid of product cards with a sale badge and a sold-out state. Columns fill by available width. (ecommerce, free)"
+ },
+ "LLMCSS Data Grid": {
+  "prefix": "ai-data-grid",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-table-container\" style=\"max-height: 18rem;\">",
+   "  <table class=\"ai-table ai-table-hover ai-table-sticky ai-table-compact\">",
+   "    <thead>",
+   "      <tr>",
+   "        <th style=\"width: 2.5rem;\"><input type=\"checkbox\" class=\"ai-checkbox-input\" aria-label=\"Select all\" /></th>",
+   "        <th aria-sort=\"descending\">Service</th>",
+   "        <th aria-sort=\"none\">Region</th>",
+   "        <th class=\"ai-cell-num\" aria-sort=\"none\">p95 ms</th>",
+   "        <th>Status</th>",
+   "      </tr>",
+   "    </thead>",
+   "    <tbody>",
+   "      <tr aria-selected=\"true\">",
+   "        <td><input type=\"checkbox\" class=\"ai-checkbox-input\" checked aria-label=\"Select api-gateway\" /></td>",
+   "        <td>api-gateway</td><td>syd-1</td><td class=\"ai-cell-num\">142</td><td><span class=\"ai-badge ai-badge-success\">Healthy</span></td>",
+   "      </tr>",
+   "      <tr>",
+   "        <td><input type=\"checkbox\" class=\"ai-checkbox-input\" aria-label=\"Select auth\" /></td>",
+   "        <td>auth</td><td>syd-1</td><td class=\"ai-cell-num\">88</td><td><span class=\"ai-badge ai-badge-success\">Healthy</span></td>",
+   "      </tr>",
+   "      <tr>",
+   "        <td><input type=\"checkbox\" class=\"ai-checkbox-input\" aria-label=\"Select billing-worker\" /></td>",
+   "        <td>billing-worker</td><td>fra-2</td><td class=\"ai-cell-num\">1,204</td><td><span class=\"ai-badge ai-badge-warning\">Degraded</span></td>",
+   "      </tr>",
+   "      <tr>",
+   "        <td><input type=\"checkbox\" class=\"ai-checkbox-input\" aria-label=\"Select search\" /></td>",
+   "        <td>search</td><td>sin-1</td><td class=\"ai-cell-num\">210</td><td><span class=\"ai-badge ai-badge-success\">Healthy</span></td>",
+   "      </tr>",
+   "    </tbody>",
+   "  </table>",
+   "</div>"
+  ],
+  "description": "Table with sticky header, sortable column indicators via aria-sort, a select-all checkbox with an indeterminate state, and selected rows via aria-selected. (application, free)"
+ },
+ "LLMCSS Bulk Action Bar": {
+  "prefix": "ai-bulk-action-bar",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-bulk-bar\" style=\"position: static; max-width: 40rem;\">",
+   "  <span class=\"ai-bulk-bar-count\">3 selected</span>",
+   "  <button type=\"button\" class=\"ai-btn ai-btn-ghost ai-btn-xs\">Clear</button>",
+   "  <div class=\"ai-bulk-bar-actions\">",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Restart</button>",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Scale</button>",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-danger ai-btn-sm\">Delete</button>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Sticky bar that appears once rows are selected: count, actions, and a clear control. Uniform border, no colored stripe. (application, free)"
+ },
+ "LLMCSS Tree View": {
+  "prefix": "ai-tree-view",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<ul class=\"ai-tree\" style=\"max-width: 20rem;\">",
+   "  <li>",
+   "    <details open>",
+   "      <summary>src</summary>",
+   "      <ul>",
+   "        <li>",
+   "          <details open>",
+   "            <summary>components</summary>",
+   "            <ul>",
+   "              <li><a href=\"#\" class=\"ai-tree-leaf is-active\">navbar.html</a></li>",
+   "              <li><a href=\"#\" class=\"ai-tree-leaf\">footer.html</a></li>",
+   "            </ul>",
+   "          </details>",
+   "        </li>",
+   "        <li><a href=\"#\" class=\"ai-tree-leaf\">index.html</a></li>",
+   "      </ul>",
+   "    </details>",
+   "  </li>",
+   "  <li>",
+   "    <details>",
+   "      <summary>public</summary>",
+   "      <ul><li><a href=\"#\" class=\"ai-tree-leaf\">llmcss.css</a></li></ul>",
+   "    </details>",
+   "  </li>",
+   "  <li><a href=\"#\" class=\"ai-tree-leaf\">README.md</a></li>",
+   "</ul>"
+  ],
+  "description": "Nested, collapsible tree on native details for files, folders, or resources. Arbitrary depth, no JavaScript. (application, free)"
+ },
+ "LLMCSS Onboarding Checklist": {
+  "prefix": "ai-onboarding-checklist",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div style=\"max-width: 28rem;\">",
+   "  <div class=\"ai-level\">",
+   "    <strong>Get set up</strong>",
+   "    <span class=\"ai-text-sm ai-text-secondary\" data-tabular>2 of 4</span>",
+   "  </div>",
+   "  <div class=\"ai-progress ai-progress-sm\" role=\"progressbar\" aria-label=\"Setup progress\" aria-valuenow=\"50\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"margin-top: var(--ai-space-3);\"><div class=\"ai-progress-bar\" style=\"width: 50%;\"></div></div>",
+   "  <ul class=\"ai-checklist\" style=\"margin-top: var(--ai-space-4);\">",
+   "    <li class=\"ai-checklist-item is-completed\"><span class=\"ai-checklist-mark\">1</span><span class=\"ai-checklist-label\">Create your first project</span></li>",
+   "    <li class=\"ai-checklist-item is-completed\"><span class=\"ai-checklist-mark\">2</span><span class=\"ai-checklist-label\">Connect a repository</span></li>",
+   "    <li class=\"ai-checklist-item\"><span class=\"ai-checklist-mark\">3</span><span class=\"ai-checklist-label\">Add a custom domain</span><button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-xs\">Add</button></li>",
+   "    <li class=\"ai-checklist-item\"><span class=\"ai-checklist-mark\">4</span><span class=\"ai-checklist-label\">Invite a teammate</span><button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-xs\">Invite</button></li>",
+   "  </ul>",
+   "</div>"
+  ],
+  "description": "Setup progress: ordered tasks, a completion bar, and one action per open task. (application, free)"
+ },
+ "LLMCSS Error State": {
+  "prefix": "ai-error-state",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-empty-state is-error\" style=\"max-width: 28rem;\">",
+   "  <div class=\"ai-empty-state-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 8v4\"/><path d=\"M12 16h.01\"/></svg></div>",
+   "  <h3 class=\"ai-empty-state-title\">Could not load deployments</h3>",
+   "  <p class=\"ai-empty-state-description\">The API returned 503 twice. Nothing was changed. Try again, or send the request id to support.</p>",
+   "  <div class=\"ai-flex ai-gap-2 ai-justify-center\" style=\"margin-top: var(--ai-space-4);\">",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-sm\">Retry</button>",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Copy request id</button>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Section-level failure with retry and report actions. Same shape as the empty state, danger tone, no alarm styling. (application, free)"
+ },
+ "LLMCSS Combobox Autocomplete": {
+  "prefix": "ai-combobox-autocomplete",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-col ai-gap-5\" style=\"max-width: 24rem;\">",
+   "  <div class=\"ai-form-group\">",
+   "    <label class=\"ai-form-label\" for=\"cb-region\">Deployment region</label>",
+   "    <div class=\"ai-combobox\">",
+   "      <input id=\"cb-region\" class=\"ai-input\" type=\"text\" role=\"combobox\" aria-expanded=\"false\" aria-controls=\"cb-region-list\" aria-autocomplete=\"list\" autocomplete=\"off\" placeholder=\"Start typing a city\" />",
+   "      <ul class=\"ai-combobox-list\" id=\"cb-region-list\" role=\"listbox\" aria-label=\"Deployment region\">",
+   "        <li class=\"ai-combobox-option\" role=\"option\" aria-selected=\"false\">Sydney <span class=\"ai-combobox-hint\">ap-southeast-2</span></li>",
+   "        <li class=\"ai-combobox-option\" role=\"option\" aria-selected=\"false\">Singapore <span class=\"ai-combobox-hint\">ap-southeast-1</span></li>",
+   "        <li class=\"ai-combobox-option\" role=\"option\" aria-selected=\"false\">Frankfurt <span class=\"ai-combobox-hint\">eu-central-1</span></li>",
+   "        <li class=\"ai-combobox-option\" role=\"option\" aria-selected=\"false\">Sao Paulo <span class=\"ai-combobox-hint\">sa-east-1</span></li>",
+   "        <li class=\"ai-combobox-option\" role=\"option\" aria-selected=\"false\">Oregon <span class=\"ai-combobox-hint\">us-west-2</span></li>",
+   "        <li class=\"ai-combobox-option\" role=\"option\" aria-disabled=\"true\">Osaka <span class=\"ai-combobox-hint\">at capacity</span></li>",
+   "        <li class=\"ai-combobox-empty\" hidden>No region matches that name.</li>",
+   "      </ul>",
+   "    </div>",
+   "    <span class=\"ai-form-hint\">Arrow keys move through matches, Enter selects, Escape closes.</span>",
+   "  </div>",
+   "",
+   "  <div class=\"ai-form-group\">",
+   "    <label class=\"ai-form-label\" for=\"cb-native\">Billing currency</label>",
+   "    <input id=\"cb-native\" class=\"ai-input\" type=\"text\" list=\"cb-native-options\" autocomplete=\"off\" placeholder=\"AUD\" />",
+   "    <datalist id=\"cb-native-options\">",
+   "      <option value=\"AUD\"></option>",
+   "      <option value=\"EUR\"></option>",
+   "      <option value=\"SGD\"></option>",
+   "      <option value=\"USD\"></option>",
+   "    </datalist>",
+   "    <span class=\"ai-form-hint\">A field with a list attribute keeps the browser datalist and is never enhanced.</span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Text field with a filtered listbox, arrow key navigation, and aria-activedescendant. Without the runtime the list opens on focus and filters nothing, and a field using a native datalist is left untouched. (primitive, free)"
+ },
+ "LLMCSS Calendar Date Picker": {
+  "prefix": "ai-calendar-datepicker",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-calendar-panel\" style=\"max-width: 20rem;\">",
+   "  <div class=\"ai-calendar-header\">",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-ghost ai-btn-icon ai-btn-sm\" aria-label=\"Previous month, August 2026\">",
+   "      <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m15 18-6-6 6-6\"/></svg>",
+   "    </button>",
+   "    <span class=\"ai-calendar-title\" id=\"cal-label\" aria-live=\"polite\">September 2026</span>",
+   "    <button type=\"button\" class=\"ai-btn ai-btn-ghost ai-btn-icon ai-btn-sm\" aria-label=\"Next month, October 2026\">",
+   "      <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"/></svg>",
+   "    </button>",
+   "  </div>",
+   "  <table class=\"ai-calendar\" role=\"grid\" aria-labelledby=\"cal-label\">",
+   "    <thead>",
+   "      <tr>",
+   "        <th scope=\"col\" class=\"ai-calendar-weekday\"><abbr title=\"Monday\">Mon</abbr></th>",
+   "        <th scope=\"col\" class=\"ai-calendar-weekday\"><abbr title=\"Tuesday\">Tue</abbr></th>",
+   "        <th scope=\"col\" class=\"ai-calendar-weekday\"><abbr title=\"Wednesday\">Wed</abbr></th>",
+   "        <th scope=\"col\" class=\"ai-calendar-weekday\"><abbr title=\"Thursday\">Thu</abbr></th>",
+   "        <th scope=\"col\" class=\"ai-calendar-weekday\"><abbr title=\"Friday\">Fri</abbr></th>",
+   "        <th scope=\"col\" class=\"ai-calendar-weekday\"><abbr title=\"Saturday\">Sat</abbr></th>",
+   "        <th scope=\"col\" class=\"ai-calendar-weekday\"><abbr title=\"Sunday\">Sun</abbr></th>",
+   "      </tr>",
+   "    </thead>",
+   "    <tbody>",
+   "      <tr>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day is-muted\" tabindex=\"-1\" disabled>31</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>1</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>2</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>3</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>4</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>5</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>6</button></td>",
+   "      </tr>",
+   "      <tr>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>7</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>8</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>9</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>10</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\" disabled>11</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day is-today\" tabindex=\"-1\" aria-current=\"date\">12</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">13</button></td>",
+   "      </tr>",
+   "      <tr>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">14</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">15</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">16</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">17</button></td>",
+   "        <td role=\"gridcell\" aria-selected=\"true\"><button type=\"button\" class=\"ai-calendar-day is-selected\" tabindex=\"0\">18</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">19</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">20</button></td>",
+   "      </tr>",
+   "      <tr>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">21</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">22</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">23</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">24</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">25</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">26</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">27</button></td>",
+   "      </tr>",
+   "      <tr>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">28</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">29</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day\" tabindex=\"-1\">30</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day is-muted\" tabindex=\"-1\" disabled>1</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day is-muted\" tabindex=\"-1\" disabled>2</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day is-muted\" tabindex=\"-1\" disabled>3</button></td>",
+   "        <td role=\"gridcell\"><button type=\"button\" class=\"ai-calendar-day is-muted\" tabindex=\"-1\" disabled>4</button></td>",
+   "      </tr>",
+   "    </tbody>",
+   "  </table>",
+   "  <div class=\"ai-calendar-footer\">",
+   "    <span>Selected: Friday 18 September</span>",
+   "    <span>Earliest install date</span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Month grid on the WAI-ARIA date picker grid pattern, with today, selected, outside-month and unavailable days plus tabular numerals. Static markup, so it renders complete with no JavaScript. (primitive, free)"
+ },
+ "LLMCSS Number Stepper": {
+  "prefix": "ai-number-stepper",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-wrap ai-gap-8\">",
+   "  <div class=\"ai-form-group\" style=\"max-width: 14rem;\">",
+   "    <label class=\"ai-form-label\" for=\"stp-seats\">Team seats</label>",
+   "    <div class=\"ai-stepper-input\">",
+   "      <button type=\"button\" class=\"ai-stepper-btn\" data-ai-step=\"-1\" aria-controls=\"stp-seats\" aria-label=\"Decrease seats\"></button>",
+   "      <input id=\"stp-seats\" class=\"ai-input\" type=\"number\" inputmode=\"numeric\" value=\"12\" min=\"1\" max=\"250\" step=\"1\" />",
+   "      <button type=\"button\" class=\"ai-stepper-btn is-increment\" data-ai-step=\"1\" aria-controls=\"stp-seats\" aria-label=\"Increase seats\"></button>",
+   "    </div>",
+   "    <span class=\"ai-form-hint\">Billed monthly, prorated on change.</span>",
+   "  </div>",
+   "",
+   "  <div class=\"ai-form-group\" style=\"max-width: 14rem;\">",
+   "    <label class=\"ai-form-label\" for=\"stp-qty\">Quantity</label>",
+   "    <div class=\"ai-stepper-input\">",
+   "      <button type=\"button\" class=\"ai-stepper-btn\" data-ai-step=\"-1\" aria-controls=\"stp-qty\" aria-label=\"Decrease quantity\" disabled></button>",
+   "      <input id=\"stp-qty\" class=\"ai-input\" type=\"number\" inputmode=\"numeric\" value=\"1\" min=\"1\" max=\"10\" step=\"1\" />",
+   "      <button type=\"button\" class=\"ai-stepper-btn is-increment\" data-ai-step=\"1\" aria-controls=\"stp-qty\" aria-label=\"Increase quantity\"></button>",
+   "    </div>",
+   "    <span class=\"ai-form-hint\">Ten per order while stock is limited.</span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Quantity field with joined decrement and increment buttons, native spinners hidden and tabular numerals. The native number input already steps with the arrow keys, so the field works with no JavaScript; combobox.ts wires the two buttons for pointer users. (primitive, free)"
+ },
+ "LLMCSS Password Reveal Field": {
+  "prefix": "ai-password-toggle",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-col ai-gap-4\" style=\"max-width: 24rem;\">",
+   "  <div class=\"ai-form-group\">",
+   "    <label class=\"ai-form-label\" for=\"pw-current\">Current password</label>",
+   "    <div class=\"ai-password\">",
+   "      <input id=\"pw-current\" class=\"ai-input\" type=\"password\" value=\"corvid-lantern-94\" autocomplete=\"current-password\" />",
+   "      <button type=\"button\" class=\"ai-password-toggle\" data-ai-password-toggle=\"#pw-current\" aria-pressed=\"false\" aria-label=\"Show password\"></button>",
+   "    </div>",
+   "  </div>",
+   "",
+   "  <div class=\"ai-form-group\">",
+   "    <label class=\"ai-form-label\" for=\"pw-new\">New password</label>",
+   "    <div class=\"ai-password\">",
+   "      <input id=\"pw-new\" class=\"ai-input\" type=\"password\" autocomplete=\"new-password\" placeholder=\"At least 12 characters\" aria-describedby=\"pw-new-hint\" />",
+   "      <button type=\"button\" class=\"ai-password-toggle\" data-ai-password-toggle=\"#pw-new\" aria-pressed=\"false\" aria-label=\"Show password\"></button>",
+   "    </div>",
+   "    <span class=\"ai-form-hint\" id=\"pw-new-hint\">Use a passphrase you do not use anywhere else.</span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Password field with a show and hide button that reports state through aria-pressed. CSS cannot change an input type, so the honest fallback is that the button stays hidden until combobox.ts marks the wrapper ready, leaving a plain, fully usable password field. (primitive, free)"
+ },
+ "LLMCSS Avatar Status Dot": {
+  "prefix": "ai-avatar-status",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-col ai-gap-5\">",
+   "  <div class=\"ai-flex ai-flex-wrap ai-gap-6\">",
+   "    <div class=\"ai-flex ai-items-center ai-gap-3\">",
+   "      <span class=\"ai-avatar\">RA<span class=\"ai-avatar-status ai-avatar-status-online\"><span class=\"ai-sr-only\">Online</span></span></span>",
+   "      <div>",
+   "        <div class=\"ai-text-sm ai-font-medium\">Rina Alvarez</div>",
+   "        <div class=\"ai-text-xs ai-text-muted\">Online</div>",
+   "      </div>",
+   "    </div>",
+   "    <div class=\"ai-flex ai-items-center ai-gap-3\">",
+   "      <span class=\"ai-avatar\">MO<span class=\"ai-avatar-status ai-avatar-status-away\"><span class=\"ai-sr-only\">Away</span></span></span>",
+   "      <div>",
+   "        <div class=\"ai-text-sm ai-font-medium\">Miles Okafor</div>",
+   "        <div class=\"ai-text-xs ai-text-muted\">Away since 14:20</div>",
+   "      </div>",
+   "    </div>",
+   "    <div class=\"ai-flex ai-items-center ai-gap-3\">",
+   "      <span class=\"ai-avatar\">JT<span class=\"ai-avatar-status ai-avatar-status-busy\"><span class=\"ai-sr-only\">Busy</span></span></span>",
+   "      <div>",
+   "        <div class=\"ai-text-sm ai-font-medium\">Junko Tan</div>",
+   "        <div class=\"ai-text-xs ai-text-muted\">In a review</div>",
+   "      </div>",
+   "    </div>",
+   "    <div class=\"ai-flex ai-items-center ai-gap-3\">",
+   "      <span class=\"ai-avatar\">DW<span class=\"ai-avatar-status ai-avatar-status-offline\"><span class=\"ai-sr-only\">Offline</span></span></span>",
+   "      <div>",
+   "        <div class=\"ai-text-sm ai-font-medium\">Devon Wright</div>",
+   "        <div class=\"ai-text-xs ai-text-muted\">Offline</div>",
+   "      </div>",
+   "    </div>",
+   "  </div>",
+   "",
+   "  <hr class=\"ai-divider\" />",
+   "",
+   "  <div class=\"ai-flex ai-items-center ai-gap-4\">",
+   "    <span class=\"ai-avatar ai-avatar-sm\">RA<span class=\"ai-avatar-status ai-avatar-status-online\"><span class=\"ai-sr-only\">Online</span></span></span>",
+   "    <span class=\"ai-avatar ai-avatar-lg\">RA<span class=\"ai-avatar-status ai-avatar-status-online\"><span class=\"ai-sr-only\">Online</span></span></span>",
+   "    <span class=\"ai-text-xs ai-text-muted\">The dot and its ring scale with the avatar size.</span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Avatar with a presence dot ringed in the surface colour, in online, away, busy and offline variants across two sizes. Pure CSS with the status named in screen reader text, so no JavaScript is involved. (primitive, free)"
+ },
+ "LLMCSS Rating Stars": {
+  "prefix": "ai-rating-stars",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-flex ai-flex-col ai-gap-6\" style=\"max-width: 26rem;\">",
+   "  <div class=\"ai-form-group\">",
+   "    <fieldset class=\"ai-rating\">",
+   "      <legend class=\"ai-sr-only\">Rate the Northwind integration</legend>",
+   "      <input class=\"ai-rating-input\" type=\"radio\" id=\"rate-5\" name=\"integration-rating\" value=\"5\" />",
+   "      <label class=\"ai-rating-star\" for=\"rate-5\"><span class=\"ai-sr-only\">5 stars, excellent</span></label>",
+   "      <input class=\"ai-rating-input\" type=\"radio\" id=\"rate-4\" name=\"integration-rating\" value=\"4\" checked />",
+   "      <label class=\"ai-rating-star\" for=\"rate-4\"><span class=\"ai-sr-only\">4 stars, good</span></label>",
+   "      <input class=\"ai-rating-input\" type=\"radio\" id=\"rate-3\" name=\"integration-rating\" value=\"3\" />",
+   "      <label class=\"ai-rating-star\" for=\"rate-3\"><span class=\"ai-sr-only\">3 stars, fair</span></label>",
+   "      <input class=\"ai-rating-input\" type=\"radio\" id=\"rate-2\" name=\"integration-rating\" value=\"2\" />",
+   "      <label class=\"ai-rating-star\" for=\"rate-2\"><span class=\"ai-sr-only\">2 stars, poor</span></label>",
+   "      <input class=\"ai-rating-input\" type=\"radio\" id=\"rate-1\" name=\"integration-rating\" value=\"1\" />",
+   "      <label class=\"ai-rating-star\" for=\"rate-1\"><span class=\"ai-sr-only\">1 star, unusable</span></label>",
+   "    </fieldset>",
+   "    <span class=\"ai-form-hint\">Tab to the group, then use the arrow keys to change your rating.</span>",
+   "  </div>",
+   "",
+   "  <hr class=\"ai-divider\" />",
+   "",
+   "  <div class=\"ai-flex ai-items-center ai-gap-3\">",
+   "    <span class=\"ai-rating-static\" style=\"--ai-rating-fill: 86%;\" role=\"img\" aria-label=\"Rated 4.3 out of 5\">",
+   "      <span class=\"ai-rating-track\"></span><span class=\"ai-rating-fill\"></span>",
+   "    </span>",
+   "    <span class=\"ai-rating-value\">4.3</span>",
+   "    <span class=\"ai-rating-count\">1,284 reviews</span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Interactive five star input built from reversed radios with a screen reader name on every star, plus a read-only display that fills fractionally by percentage. Entirely CSS, so both work with no JavaScript. (primitive, free)"
+ },
+ "LLMCSS Checkout Summary": {
+  "prefix": "ai-checkout-summary",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-checkout\" style=\"max-width: 26rem;\">",
+   "  <h3 class=\"ai-checkout-title\">Order summary</h3>",
+   "",
+   "  <ul class=\"ai-checkout-items\">",
+   "    <li class=\"ai-checkout-item\">",
+   "      <span class=\"ai-checkout-thumb\" aria-hidden=\"true\">AD</span>",
+   "      <div class=\"ai-checkout-body\">",
+   "        <div class=\"ai-checkout-name\">Atlas standing desk, walnut</div>",
+   "        <div class=\"ai-checkout-meta\">1600 by 800 mm, qty 1</div>",
+   "      </div>",
+   "      <span class=\"ai-checkout-price\">\\$640.00</span>",
+   "    </li>",
+   "    <li class=\"ai-checkout-item\">",
+   "      <span class=\"ai-checkout-thumb\" aria-hidden=\"true\">CC</span>",
+   "      <div class=\"ai-checkout-body\">",
+   "        <div class=\"ai-checkout-name\">Caliper task chair</div>",
+   "        <div class=\"ai-checkout-meta\">Graphite mesh, qty 2</div>",
+   "      </div>",
+   "      <span class=\"ai-checkout-price\">\\$498.00</span>",
+   "    </li>",
+   "    <li class=\"ai-checkout-item\">",
+   "      <span class=\"ai-checkout-thumb\" aria-hidden=\"true\">VM</span>",
+   "      <div class=\"ai-checkout-body\">",
+   "        <div class=\"ai-checkout-name\">Verge monitor arm</div>",
+   "        <div class=\"ai-checkout-meta\">Single head, qty 1</div>",
+   "      </div>",
+   "      <span class=\"ai-checkout-price\">\\$129.00</span>",
+   "    </li>",
+   "  </ul>",
+   "",
+   "  <dl class=\"ai-checkout-totals\">",
+   "    <div class=\"ai-checkout-row\">",
+   "      <dt class=\"ai-checkout-label\">Subtotal</dt>",
+   "      <dd class=\"ai-checkout-value\">\\$1,267.00</dd>",
+   "    </div>",
+   "    <div class=\"ai-checkout-row\">",
+   "      <dt class=\"ai-checkout-label\">Shipping, two day freight</dt>",
+   "      <dd class=\"ai-checkout-value\">\\$45.00</dd>",
+   "    </div>",
+   "    <div class=\"ai-checkout-row\">",
+   "      <dt class=\"ai-checkout-label\">GST</dt>",
+   "      <dd class=\"ai-checkout-value\">\\$126.70</dd>",
+   "    </div>",
+   "    <div class=\"ai-checkout-row\">",
+   "      <dt class=\"ai-checkout-label\">Discount, FITOUT10</dt>",
+   "      <dd class=\"ai-checkout-value is-credit\">-\\$95.00</dd>",
+   "    </div>",
+   "    <div class=\"ai-checkout-row is-total\">",
+   "      <dt class=\"ai-checkout-label\">Total due</dt>",
+   "      <dd class=\"ai-checkout-value\">\\$1,343.70</dd>",
+   "    </div>",
+   "  </dl>",
+   "",
+   "  <div class=\"ai-checkout-promo\">",
+   "    <label class=\"ai-form-label\" for=\"co-promo\">Promo code</label>",
+   "    <div class=\"ai-input-group\">",
+   "      <input id=\"co-promo\" class=\"ai-input\" type=\"text\" autocomplete=\"off\" placeholder=\"FITOUT10\" />",
+   "      <button type=\"button\" class=\"ai-btn ai-btn-outline\">Apply</button>",
+   "    </div>",
+   "  </div>",
+   "",
+   "  <div class=\"ai-checkout-actions\">",
+   "    <button type=\"submit\" class=\"ai-btn ai-btn-primary ai-w-full\">Place order</button>",
+   "    <p class=\"ai-checkout-note\">Delivery is booked once payment clears. Returns accepted for 30 days.</p>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Order summary with line items, a totals ledger in right-aligned tabular numerals, a promo code field and the place order action. Static markup on one flat surface, so it needs no JavaScript. (ecommerce, free)"
+ },
+ "LLMCSS Order Status Tracker": {
+  "prefix": "ai-order-status",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-order\" style=\"max-width: 40rem;\">",
+   "  <div class=\"ai-order-head\">",
+   "    <div>",
+   "      <h3 class=\"ai-order-title\">Order 48210 is on its way</h3>",
+   "      <p class=\"ai-text-sm ai-text-secondary\">Three items, dispatched from the Alexandria warehouse.</p>",
+   "    </div>",
+   "    <div class=\"ai-order-eta\">",
+   "      Estimated delivery",
+   "      <strong>Thursday 17 September</strong>",
+   "    </div>",
+   "  </div>",
+   "",
+   "  <ol class=\"ai-order-track\">",
+   "    <li class=\"ai-order-step is-completed\">",
+   "      <span class=\"ai-order-pip\" aria-hidden=\"true\"></span>",
+   "      <span class=\"ai-order-label\">Ordered</span>",
+   "      <span class=\"ai-order-date\">9 Sep, 10:42</span>",
+   "    </li>",
+   "    <li class=\"ai-order-step is-completed\">",
+   "      <span class=\"ai-order-pip\" aria-hidden=\"true\"></span>",
+   "      <span class=\"ai-order-label\">Packed</span>",
+   "      <span class=\"ai-order-date\">10 Sep, 08:15</span>",
+   "    </li>",
+   "    <li class=\"ai-order-step is-current\" aria-current=\"step\">",
+   "      <span class=\"ai-order-pip\" aria-hidden=\"true\"></span>",
+   "      <span class=\"ai-order-label\">Shipped</span>",
+   "      <span class=\"ai-order-date\">11 Sep, 17:30</span>",
+   "    </li>",
+   "    <li class=\"ai-order-step is-upcoming\">",
+   "      <span class=\"ai-order-pip\" aria-hidden=\"true\"></span>",
+   "      <span class=\"ai-order-label\">Delivered</span>",
+   "      <span class=\"ai-order-date\">Est. 17 Sep</span>",
+   "    </li>",
+   "  </ol>",
+   "",
+   "  <div class=\"ai-order-meta\">",
+   "    <span>Southbound Freight tracking <span class=\"ai-order-id\">AU7734221905</span></span>",
+   "    <a class=\"ai-btn ai-btn-outline ai-btn-sm\" href=\"#order-48210\">Track shipment</a>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Four step fulfilment tracker with completed, current and upcoming states, a monospace tracking number and an estimated delivery date. Static markup with a calm pip on the current step, so no JavaScript and no animation. (ecommerce, free)"
+ },
+ "LLMCSS Scrollspy Outline": {
+  "prefix": "ai-scrollspy-nav",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"ai-scrollspy-layout\">",
+   "  <nav class=\"ai-scrollspy\" aria-label=\"On this page\" data-ai-scrollspy-root=\"#spy-pane\">",
+   "    <p class=\"ai-scrollspy-title\">On this page</p>",
+   "    <ul class=\"ai-scrollspy-list\">",
+   "      <li><a class=\"ai-scrollspy-link is-active\" aria-current=\"location\" href=\"#spy-limits\">Rate limits</a></li>",
+   "      <li><a class=\"ai-scrollspy-link\" href=\"#spy-retries\">Retries and backoff</a></li>",
+   "      <li><a class=\"ai-scrollspy-link\" href=\"#spy-webhooks\">Webhook delivery</a></li>",
+   "    </ul>",
+   "  </nav>",
+   "",
+   "  <div class=\"ai-scrollspy-pane\" id=\"spy-pane\">",
+   "    <section class=\"ai-scrollspy-section\" id=\"spy-limits\">",
+   "      <h3 class=\"ai-scrollspy-heading\">Rate limits</h3>",
+   "      <p class=\"ai-scrollspy-body\">Every API token is allowed 600 requests a minute, measured in a sliding window. The response carries the remaining budget in the X-Rate-Remaining header, and a rejected request returns 429 with the number of seconds until the window resets.</p>",
+   "    </section>",
+   "    <section class=\"ai-scrollspy-section\" id=\"spy-retries\">",
+   "      <h3 class=\"ai-scrollspy-heading\">Retries and backoff</h3>",
+   "      <p class=\"ai-scrollspy-body\">Retry a 429 or a 5xx response with exponential backoff, starting at one second and stopping after five attempts. Send the same idempotency key on each attempt so a write is never applied twice.</p>",
+   "    </section>",
+   "    <section class=\"ai-scrollspy-section\" id=\"spy-webhooks\">",
+   "      <h3 class=\"ai-scrollspy-heading\">Webhook delivery</h3>",
+   "      <p class=\"ai-scrollspy-body\">Webhooks are signed with your endpoint secret and delivered at least once, so treat duplicates as normal. Return a 2xx within ten seconds; anything slower is treated as a failure and queued for redelivery over the next six hours.</p>",
+   "    </section>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Sticky in-page outline whose active link tracks the section in view, marked with a hairline on the inline-start edge and aria-current=\"location\". A link cannot match :target, so without the runtime the link the author marked .is-active stays marked and every link still jumps to its section. (application, free)"
+ },
+ "LLMCSS accordions classes": {
+  "prefix": "ai-family-accordions",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-accordion,ai-accordion-chevron,ai-accordion-content,ai-accordion-item,ai-accordion-trigger|}"
+  ],
+  "description": "accordions classes (5)"
+ },
+ "LLMCSS alerts classes": {
+  "prefix": "ai-family-alerts",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-alert,ai-alert-danger,ai-alert-icon,ai-alert-info,ai-alert-success,ai-alert-warning|}"
+  ],
+  "description": "alerts classes (6)"
+ },
+ "LLMCSS animations classes": {
+  "prefix": "ai-family-animations",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-marquee,ai-marquee-track,ai-progress,ai-progress-bar,ai-progress-bar-success,ai-progress-bar-warning,ai-progress-indeterminate,ai-progress-lg,ai-progress-sm,ai-progress-striped,ai-pulse-dot,ai-pulse-dot-danger,ai-pulse-dot-streaming,ai-pulse-dot-success,ai-pulse-dot-warning,ai-range,ai-skeleton,ai-skeleton-avatar,ai-skeleton-rect,ai-skeleton-text,ai-skeleton-title,ai-slider,ai-slider-header,ai-slider-value,ai-slider-wrapper,ai-spinner,ai-spinner-lg,ai-spinner-ring,ai-spinner-sm,ai-status-pip,ai-status-pip-danger,ai-status-pip-success,ai-status-pip-warning|}"
+  ],
+  "description": "animations classes (33)"
+ },
+ "LLMCSS application classes": {
+  "prefix": "ai-family-application",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-app-content,ai-app-header,ai-app-main,ai-app-shell,ai-auth-card,ai-auth-wrap,ai-density-compact,ai-filter-tag,ai-filter-tags,ai-filter-toolbar,ai-health-row,ai-inbox-item,ai-kpi-card,ai-kpi-label,ai-kpi-trend,ai-segmented,ai-segmented-btn,ai-segmented-input,ai-settings-row,ai-sidebar,ai-sidebar-badge,ai-sidebar-header,ai-sidebar-icon,ai-sidebar-item,ai-sidebar-nav,ai-sidebar-section-title,ai-step-item,ai-step-label,ai-stepper|}"
+  ],
+  "description": "application classes (29)"
+ },
+ "LLMCSS badges classes": {
+  "prefix": "ai-family-badges",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-avatar,ai-avatar-group,ai-avatar-lg,ai-avatar-sm,ai-avatar-xl,ai-badge,ai-badge-accent,ai-badge-counter,ai-badge-danger,ai-badge-default,ai-badge-dot,ai-badge-featured,ai-badge-free,ai-badge-inverted,ai-badge-lg,ai-badge-neutral,ai-badge-outline,ai-badge-pip,ai-badge-primary,ai-badge-pro,ai-badge-removable,ai-badge-remove,ai-badge-sale,ai-badge-sm,ai-badge-solid,ai-badge-success,ai-badge-warning,ai-badge-xs|}"
+  ],
+  "description": "badges classes (28)"
+ },
+ "LLMCSS base classes": {
+  "prefix": "ai-family-base",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-badge-mono,ai-kpi-value,ai-link,ai-link-muted,ai-matrix-table,ai-pagination-link,ai-pricing-price,ai-product-price,ai-skip-link,ai-stat-value,ai-step-circle,ai-table|}"
+  ],
+  "description": "base classes (12)"
+ },
+ "LLMCSS borders classes": {
+  "prefix": "ai-family-borders",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-border,ai-border-0,ai-border-b,ai-border-ie,ai-border-is,ai-border-l,ai-border-r,ai-border-t,ai-ring,ai-ring-danger,ai-ring-offset,ai-ring-success,ai-rounded-2xl,ai-rounded-e-md,ai-rounded-full,ai-rounded-lg,ai-rounded-md,ai-rounded-none,ai-rounded-s-md,ai-rounded-sm,ai-rounded-xl,ai-rounded-xs|}"
+  ],
+  "description": "borders classes (22)"
+ },
+ "LLMCSS buttons classes": {
+  "prefix": "ai-family-buttons",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-btn,ai-btn-accent,ai-btn-danger,ai-btn-ghost,ai-btn-icon,ai-btn-lg,ai-btn-outline,ai-btn-primary,ai-btn-secondary,ai-btn-sm,ai-btn-xl,ai-btn-xs|}"
+  ],
+  "description": "buttons classes (12)"
+ },
+ "LLMCSS cards classes": {
+  "prefix": "ai-family-cards",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-card,ai-card-bento,ai-card-body,ai-card-description,ai-card-footer,ai-card-header,ai-card-interactive,ai-card-pro,ai-card-title,ai-popover,ai-popover-anchor,ai-popover-arrow,ai-popover-toggle|}"
+  ],
+  "description": "cards classes (13)"
+ },
+ "LLMCSS commerce-extra classes": {
+  "prefix": "ai-family-commerce-extra",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-checkout,ai-checkout-actions,ai-checkout-body,ai-checkout-item,ai-checkout-items,ai-checkout-label,ai-checkout-meta,ai-checkout-name,ai-checkout-note,ai-checkout-price,ai-checkout-promo,ai-checkout-row,ai-checkout-thumb,ai-checkout-title,ai-checkout-totals,ai-checkout-value,ai-input,ai-input-group,ai-order,ai-order-date,ai-order-eta,ai-order-head,ai-order-id,ai-order-label,ai-order-meta,ai-order-pip,ai-order-step,ai-order-title,ai-order-track|}"
+  ],
+  "description": "commerce-extra classes (29)"
+ },
+ "LLMCSS dashboard classes": {
+  "prefix": "ai-family-dashboard",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-bar-fill,ai-bar-row,ai-bar-track,ai-bars,ai-bulk-bar,ai-bulk-bar-actions,ai-bulk-bar-count,ai-checklist,ai-checklist-item,ai-checklist-label,ai-checklist-mark,ai-detail,ai-donut,ai-donut-hole,ai-donut-wrap,ai-empty-state,ai-empty-state-icon,ai-health,ai-health-name,ai-inbox-title,ai-kanban,ai-kanban-head,ai-kanban-item,ai-log,ai-log-err,ai-log-line,ai-log-ok,ai-log-ts,ai-log-warn,ai-page-header,ai-page-header-meta,ai-pip,ai-pip-err,ai-pip-ok,ai-pip-warn,ai-quota,ai-quota-head,ai-settings-list,ai-spark,ai-spark-stat,ai-topbar,ai-tree,ai-tree-leaf|}"
+  ],
+  "description": "dashboard classes (43)"
+ },
+ "LLMCSS display classes": {
+  "prefix": "ai-family-display",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-block,ai-hidden,ai-inline,ai-inline-block,ai-inline-flex,ai-inline-grid,ai-not-sr-only,ai-sr-only|}"
+  ],
+  "description": "display classes (8)"
+ },
+ "LLMCSS drawers classes": {
+  "prefix": "ai-family-drawers",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-drawer,ai-drawer-backdrop,ai-drawer-body,ai-drawer-bottom,ai-drawer-footer,ai-drawer-header,ai-drawer-left,ai-drawer-nav,ai-drawer-no-lock,ai-drawer-panel,ai-drawer-sm,ai-drawer-title,ai-drawer-top|}"
+  ],
+  "description": "drawers classes (13)"
+ },
+ "LLMCSS dropdowns classes": {
+  "prefix": "ai-family-dropdowns",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-dropdown,ai-dropdown-divider,ai-dropdown-header,ai-dropdown-item,ai-dropdown-menu,ai-dropdown-right|}"
+  ],
+  "description": "dropdowns classes (6)"
+ },
+ "LLMCSS ecommerce classes": {
+  "prefix": "ai-family-ecommerce",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-product-badge-float,ai-product-body,ai-product-card,ai-product-category,ai-product-compare-price,ai-product-grid,ai-product-img,ai-product-media,ai-product-price-row,ai-product-title|}"
+  ],
+  "description": "ecommerce classes (10)"
+ },
+ "LLMCSS effects classes": {
+  "prefix": "ai-family-effects",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-backdrop-blur,ai-backdrop-blur-lg,ai-backdrop-blur-sm,ai-backdrop-none,ai-bg-var,ai-blur,ai-blur-lg,ai-blur-none,ai-blur-sm,ai-opacity-0,ai-opacity-10,ai-opacity-100,ai-opacity-25,ai-opacity-50,ai-opacity-75,ai-opacity-90,ai-shadow-inner,ai-shadow-lg,ai-shadow-md,ai-shadow-none,ai-shadow-sm,ai-shadow-xl|}"
+  ],
+  "description": "effects classes (22)"
+ },
+ "LLMCSS extras classes": {
+  "prefix": "ai-family-extras",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-btn-group,ai-carousel,ai-carousel-controls,ai-carousel-peek,ai-close,ai-code-block,ai-collapse,ai-collapse-body,ai-dropzone,ai-file-input,ai-form-float,ai-kbd,ai-level,ai-level-left,ai-level-right,ai-list-group,ai-list-group-flush,ai-list-group-item,ai-media,ai-media-body,ai-media-figure,ai-notification,ai-notification-danger,ai-notification-info,ai-notification-success,ai-notification-warning,ai-panel,ai-panel-body,ai-panel-header,ai-quote,ai-select,ai-subtitle,ai-textarea,ai-timeline,ai-timeline-item,ai-timeline-meta,ai-timeline-title,ai-title,ai-title-lg,ai-title-sm|}"
+  ],
+  "description": "extras classes (40)"
+ },
+ "LLMCSS flex classes-1": {
+  "prefix": "ai-family-flex-1",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-contents,ai-flex,ai-flex-1,ai-flex-auto,ai-flex-col,ai-flex-col-reverse,ai-flex-initial,ai-flex-none,ai-flex-nowrap,ai-flex-row,ai-flex-row-reverse,ai-flex-wrap,ai-flex-wrap-reverse,ai-grow,ai-grow-0,ai-items-baseline,ai-items-center,ai-items-end,ai-items-start,ai-items-stretch,ai-justify-around,ai-justify-between,ai-justify-center,ai-justify-end,ai-justify-evenly,ai-justify-normal,ai-justify-start,ai-order-1,ai-order-10,ai-order-11,ai-order-12,ai-order-2,ai-order-3,ai-order-4,ai-order-5,ai-order-6,ai-order-7,ai-order-8,ai-order-9,ai-order-first,ai-order-last,ai-order-none,ai-place-content-around,ai-place-content-between,ai-place-content-center,ai-place-content-end,ai-place-content-evenly,ai-place-content-start,ai-place-content-stretch,ai-place-items-center,ai-place-items-end,ai-place-items-start,ai-place-items-stretch,ai-place-self-center,ai-place-self-end,ai-place-self-start,ai-place-self-stretch,ai-self-auto,ai-self-baseline,ai-self-center|}"
+  ],
+  "description": "flex utilities, part 1 of 2 (60 of 65 classes)"
+ },
+ "LLMCSS flex classes-2": {
+  "prefix": "ai-family-flex-2",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-self-end,ai-self-start,ai-self-stretch,ai-shrink,ai-shrink-0|}"
+  ],
+  "description": "flex utilities, part 2 of 2 (5 of 65 classes)"
+ },
+ "LLMCSS forms-extra classes": {
+  "prefix": "ai-family-forms-extra",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-avatar-status,ai-avatar-status-away,ai-avatar-status-busy,ai-avatar-status-offline,ai-avatar-status-online,ai-calendar,ai-calendar-day,ai-calendar-footer,ai-calendar-header,ai-calendar-nav,ai-calendar-panel,ai-calendar-title,ai-calendar-weekday,ai-combobox,ai-combobox-empty,ai-combobox-hint,ai-combobox-list,ai-combobox-option,ai-js,ai-password,ai-password-toggle,ai-rating,ai-rating-count,ai-rating-fill,ai-rating-input,ai-rating-star,ai-rating-static,ai-rating-track,ai-rating-value,ai-stepper-btn,ai-stepper-input|}"
+  ],
+  "description": "forms-extra classes (31)"
+ },
+ "LLMCSS grid classes-1": {
+  "prefix": "ai-family-grid-1",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-col-auto,ai-col-end-1,ai-col-end-10,ai-col-end-11,ai-col-end-12,ai-col-end-13,ai-col-end-2,ai-col-end-3,ai-col-end-4,ai-col-end-5,ai-col-end-6,ai-col-end-7,ai-col-end-8,ai-col-end-9,ai-col-end-auto,ai-col-span-1,ai-col-span-10,ai-col-span-11,ai-col-span-12,ai-col-span-2,ai-col-span-3,ai-col-span-4,ai-col-span-5,ai-col-span-6,ai-col-span-7,ai-col-span-8,ai-col-span-9,ai-col-span-full,ai-col-start-1,ai-col-start-10,ai-col-start-11,ai-col-start-12,ai-col-start-13,ai-col-start-2,ai-col-start-3,ai-col-start-4,ai-col-start-5,ai-col-start-6,ai-col-start-7,ai-col-start-8,ai-col-start-9,ai-col-start-auto,ai-columns-1,ai-columns-2,ai-columns-3,ai-columns-4,ai-columns-auto,ai-grid,ai-grid-auto-fit,ai-grid-cols-1,ai-grid-cols-10,ai-grid-cols-11,ai-grid-cols-12,ai-grid-cols-2,ai-grid-cols-3,ai-grid-cols-4,ai-grid-cols-5,ai-grid-cols-6,ai-grid-cols-7,ai-grid-cols-8|}"
+  ],
+  "description": "grid utilities, part 1 of 2 (60 of 87 classes)"
+ },
+ "LLMCSS grid classes-2": {
+  "prefix": "ai-family-grid-2",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-grid-cols-9,ai-grid-cols-none,ai-grid-cols-var,ai-grid-flow-col,ai-grid-flow-col-dense,ai-grid-flow-dense,ai-grid-flow-row,ai-grid-flow-row-dense,ai-grid-min-lg,ai-grid-min-md,ai-grid-min-sm,ai-grid-min-xs,ai-grid-rows-1,ai-grid-rows-2,ai-grid-rows-3,ai-grid-rows-4,ai-grid-rows-5,ai-grid-rows-6,ai-grid-rows-none,ai-row-auto,ai-row-span-1,ai-row-span-2,ai-row-span-3,ai-row-span-4,ai-row-span-5,ai-row-span-6,ai-row-span-full|}"
+  ],
+  "description": "grid utilities, part 2 of 2 (27 of 87 classes)"
+ },
+ "LLMCSS inputs classes": {
+  "prefix": "ai-family-inputs",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-checkbox,ai-checkbox-input,ai-form-error,ai-form-group,ai-form-hint,ai-form-label,ai-input-addon,ai-input-icon,ai-input-icon-wrap,ai-switch,ai-switch-input,ai-switch-sm,ai-switch-thumb,ai-switch-track|}"
+  ],
+  "description": "inputs classes (14)"
+ },
+ "LLMCSS interaction classes-1": {
+  "prefix": "ai-family-interaction-1",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-cursor-default,ai-cursor-grab,ai-cursor-grabbing,ai-cursor-move,ai-cursor-not-allowed,ai-cursor-pointer,ai-cursor-text,ai-cursor-wait,ai-cursor-zoom-in,ai-duration-fast,ai-duration-normal,ai-duration-slow,ai-ease-in-out,ai-ease-out,ai-ease-spring,ai-origin-bottom,ai-origin-bottom-left,ai-origin-bottom-right,ai-origin-center,ai-origin-left,ai-origin-right,ai-origin-top,ai-origin-top-left,ai-origin-top-right,ai-overflow-auto,ai-overflow-clip,ai-overflow-hidden,ai-overflow-visible,ai-overflow-x-auto,ai-overflow-x-clip,ai-overflow-x-hidden,ai-overflow-x-scroll,ai-overflow-x-visible,ai-overflow-y-auto,ai-overflow-y-clip,ai-overflow-y-hidden,ai-overflow-y-scroll,ai-overflow-y-visible,ai-pointer-events-auto,ai-pointer-events-none,ai-rotate-0,ai-rotate-1,ai-rotate-12,ai-rotate-180,ai-rotate-2,ai-rotate-3,ai-rotate-45,ai-rotate-6,ai-rotate-90,ai-scale-0,ai-scale-100,ai-scale-105,ai-scale-110,ai-scale-125,ai-scale-150,ai-scale-50,ai-scale-75,ai-scale-90,ai-scale-95,ai-scroll-auto|}"
+  ],
+  "description": "interaction utilities, part 1 of 2 (60 of 102 classes)"
+ },
+ "LLMCSS interaction classes-2": {
+  "prefix": "ai-family-interaction-2",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-scroll-mt-12,ai-scroll-mt-16,ai-scroll-mt-20,ai-scroll-mt-24,ai-scroll-mt-4,ai-scroll-mt-8,ai-scroll-smooth,ai-select-all,ai-select-auto,ai-select-none,ai-select-text,ai-snap-always,ai-snap-center,ai-snap-end,ai-snap-proximity,ai-snap-start,ai-snap-x,ai-snap-y,ai-transform-var,ai-transition,ai-transition-all,ai-transition-colors,ai-transition-none,ai-transition-opacity,ai-transition-transform,ai-translate-center,ai-translate-x-1,ai-translate-x-2,ai-translate-x-3,ai-translate-x-4,ai-translate-x-6,ai-translate-x-8,ai-translate-x-center,ai-translate-x-full,ai-translate-y-1,ai-translate-y-2,ai-translate-y-3,ai-translate-y-4,ai-translate-y-6,ai-translate-y-8,ai-translate-y-center,ai-translate-y-full|}"
+  ],
+  "description": "interaction utilities, part 2 of 2 (42 of 102 classes)"
+ },
+ "LLMCSS layout classes": {
+  "prefix": "ai-family-layout",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-aspect-auto,ai-aspect-square,ai-aspect-video,ai-container,ai-container-fluid,ai-container-inline,ai-container-lg,ai-container-md,ai-container-sm,ai-container-xl,ai-cq,ai-object-contain,ai-object-cover,ai-object-fill,ai-object-none,ai-object-scale-down|}"
+  ],
+  "description": "layout classes (16)"
+ },
+ "LLMCSS marketing classes-1": {
+  "prefix": "ai-family-marketing-1",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-announcement,ai-bento-cell,ai-bento-code-pill,ai-bento-col-2,ai-bento-grid,ai-bento-row-2,ai-bento-span-2,ai-brand,ai-callout,ai-callout-label,ai-consent-actions,ai-consent-bar,ai-cta-actions,ai-cta-band,ai-feature-grid,ai-feature-icon,ai-feature-item,ai-feature-list,ai-feature-text,ai-feature-title,ai-footer,ai-footer-col,ai-footer-col-toggle,ai-footer-compact,ai-footer-grid,ai-footer-list,ai-hero,ai-hero-actions,ai-hero-badge,ai-hero-lead,ai-hero-split,ai-hero-title,ai-hero-visual,ai-logo-rail,ai-matrix-container,ai-matrix-feature-col,ai-nav-link,ai-nav-links,ai-navbar,ai-navbar-inner,ai-navbar-search,ai-pricing-amount,ai-pricing-card,ai-pricing-feature-item,ai-pricing-featured,ai-pricing-features,ai-pricing-grid,ai-pricing-header,ai-pricing-period,ai-pricing-plan,ai-pricing-ribbon,ai-section,ai-section-banner,ai-section-lead,ai-section-shift,ai-section-title,ai-stat,ai-stat-label,ai-stats-band,ai-team-grid|}"
+  ],
+  "description": "marketing utilities, part 1 of 2 (60 of 68 classes)"
+ },
+ "LLMCSS marketing classes-2": {
+  "prefix": "ai-family-marketing-2",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-team-member,ai-team-name,ai-team-photo,ai-team-role,ai-testimonial-author,ai-testimonial-card,ai-testimonial-grid,ai-testimonial-quote|}"
+  ],
+  "description": "marketing utilities, part 2 of 2 (8 of 68 classes)"
+ },
+ "LLMCSS modals classes": {
+  "prefix": "ai-family-modals",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-modal,ai-modal-backdrop,ai-modal-body,ai-modal-box,ai-modal-box-lg,ai-modal-box-sm,ai-modal-close,ai-modal-footer,ai-modal-header,ai-modal-title,ai-modeless|}"
+  ],
+  "description": "modals classes (11)"
+ },
+ "LLMCSS navigation classes": {
+  "prefix": "ai-family-navigation",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-breadcrumb,ai-breadcrumb-item,ai-divider,ai-divider-vertical,ai-empty-state-description,ai-empty-state-title,ai-notification-content,ai-notification-dot,ai-notification-item,ai-notification-list,ai-notification-meta,ai-notification-title,ai-pagination,ai-pagination-ellipsis,ai-pagination-item,ai-radio,ai-radio-group,ai-radio-group-horizontal,ai-radio-input,ai-sidebar-section,ai-textarea-footer,ai-textarea-group,ai-tooltip,ai-tooltip-bottom|}"
+  ],
+  "description": "navigation classes (24)"
+ },
+ "LLMCSS position classes": {
+  "prefix": "ai-family-position",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-absolute,ai-bottom-0,ai-bottom-auto,ai-end-0,ai-fixed,ai-inset-0,ai-inset-auto,ai-inset-x-0,ai-inset-y-0,ai-left-0,ai-left-auto,ai-relative,ai-right-0,ai-right-auto,ai-start-0,ai-static,ai-sticky,ai-top-0,ai-top-auto,ai-z-0,ai-z-10,ai-z-20,ai-z-30,ai-z-40,ai-z-50,ai-z-auto|}"
+  ],
+  "description": "position classes (26)"
+ },
+ "LLMCSS scrollspy classes": {
+  "prefix": "ai-family-scrollspy",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-scrollspy,ai-scrollspy-body,ai-scrollspy-heading,ai-scrollspy-layout,ai-scrollspy-link,ai-scrollspy-list,ai-scrollspy-pane,ai-scrollspy-section,ai-scrollspy-title|}"
+  ],
+  "description": "scrollspy classes (9)"
+ },
+ "LLMCSS sizing classes-1": {
+  "prefix": "ai-family-sizing-1",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-h-0,ai-h-1,ai-h-10,ai-h-12,ai-h-16,ai-h-2,ai-h-20,ai-h-24,ai-h-3,ai-h-32,ai-h-4,ai-h-5,ai-h-6,ai-h-8,ai-h-auto,ai-h-full,ai-h-screen,ai-h-var,ai-max-h-full,ai-max-h-screen,ai-max-w-2xl,ai-max-w-3xl,ai-max-w-4xl,ai-max-w-5xl,ai-max-w-6xl,ai-max-w-full,ai-max-w-lg,ai-max-w-md,ai-max-w-none,ai-max-w-prose,ai-max-w-sm,ai-max-w-var,ai-max-w-xl,ai-max-w-xs,ai-min-h-0,ai-min-h-full,ai-min-h-screen,ai-min-w-0,ai-min-w-fit,ai-min-w-full,ai-min-w-max,ai-min-w-min,ai-min-w-var,ai-size-0,ai-size-1,ai-size-10,ai-size-12,ai-size-16,ai-size-2,ai-size-20,ai-size-24,ai-size-3,ai-size-32,ai-size-4,ai-size-5,ai-size-6,ai-size-8,ai-w-0,ai-w-1,ai-w-1/12|}"
+  ],
+  "description": "sizing utilities, part 1 of 2 (60 of 94 classes)"
+ },
+ "LLMCSS sizing classes-2": {
+  "prefix": "ai-family-sizing-2",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-w-1/2,ai-w-1/3,ai-w-1/4,ai-w-1/5,ai-w-1/6,ai-w-10,ai-w-11/12,ai-w-12,ai-w-16,ai-w-2,ai-w-2/3,ai-w-2/4,ai-w-2/5,ai-w-20,ai-w-24,ai-w-3,ai-w-3/4,ai-w-3/5,ai-w-32,ai-w-4,ai-w-4/5,ai-w-5,ai-w-5/12,ai-w-5/6,ai-w-6,ai-w-7/12,ai-w-8,ai-w-auto,ai-w-fit,ai-w-full,ai-w-max,ai-w-min,ai-w-screen,ai-w-var|}"
+  ],
+  "description": "sizing utilities, part 2 of 2 (34 of 94 classes)"
+ },
+ "LLMCSS spacing classes-1": {
+  "prefix": "ai-family-spacing-1",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai--m-1,ai--m-2,ai--m-3,ai--m-4,ai--mb-1,ai--mb-2,ai--mb-3,ai--mb-4,ai--me-1,ai--me-2,ai--me-3,ai--me-4,ai--ml-1,ai--ml-2,ai--ml-3,ai--ml-4,ai--mr-1,ai--mr-2,ai--mr-3,ai--mr-4,ai--ms-1,ai--ms-2,ai--ms-3,ai--ms-4,ai--mt-1,ai--mt-2,ai--mt-3,ai--mt-4,ai--mx-1,ai--mx-2,ai--mx-3,ai--mx-4,ai--my-1,ai--my-2,ai--my-3,ai--my-4,ai-gap-0,ai-gap-1,ai-gap-10,ai-gap-12,ai-gap-16,ai-gap-2,ai-gap-20,ai-gap-24,ai-gap-3,ai-gap-32,ai-gap-4,ai-gap-5,ai-gap-6,ai-gap-8,ai-gap-var,ai-gap-x-0,ai-gap-x-1,ai-gap-x-12,ai-gap-x-2,ai-gap-x-3,ai-gap-x-4,ai-gap-x-6,ai-gap-x-8,ai-gap-y-0|}"
+  ],
+  "description": "spacing utilities, part 1 of 4 (60 of 238 classes)"
+ },
+ "LLMCSS spacing classes-2": {
+  "prefix": "ai-family-spacing-2",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-gap-y-1,ai-gap-y-12,ai-gap-y-2,ai-gap-y-3,ai-gap-y-4,ai-gap-y-6,ai-gap-y-8,ai-m-0,ai-m-1,ai-m-10,ai-m-12,ai-m-2,ai-m-3,ai-m-4,ai-m-5,ai-m-6,ai-m-8,ai-m-auto,ai-m-var,ai-mb-0,ai-mb-1,ai-mb-10,ai-mb-12,ai-mb-16,ai-mb-2,ai-mb-3,ai-mb-4,ai-mb-5,ai-mb-6,ai-mb-8,ai-mb-auto,ai-me-0,ai-me-1,ai-me-2,ai-me-3,ai-me-4,ai-me-6,ai-me-8,ai-me-auto,ai-ml-0,ai-ml-1,ai-ml-2,ai-ml-3,ai-ml-4,ai-ml-6,ai-ml-8,ai-ml-auto,ai-mr-0,ai-mr-1,ai-mr-2,ai-mr-3,ai-mr-4,ai-mr-6,ai-mr-8,ai-mr-auto,ai-ms-0,ai-ms-1,ai-ms-2,ai-ms-3,ai-ms-4|}"
+  ],
+  "description": "spacing utilities, part 2 of 4 (60 of 238 classes)"
+ },
+ "LLMCSS spacing classes-3": {
+  "prefix": "ai-family-spacing-3",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-ms-6,ai-ms-8,ai-ms-auto,ai-mt-0,ai-mt-1,ai-mt-10,ai-mt-12,ai-mt-16,ai-mt-2,ai-mt-20,ai-mt-24,ai-mt-3,ai-mt-4,ai-mt-5,ai-mt-6,ai-mt-8,ai-mt-auto,ai-mx-0,ai-mx-1,ai-mx-12,ai-mx-2,ai-mx-3,ai-mx-4,ai-mx-6,ai-mx-8,ai-mx-auto,ai-my-0,ai-my-1,ai-my-12,ai-my-2,ai-my-3,ai-my-4,ai-my-6,ai-my-8,ai-my-auto,ai-p-0,ai-p-1,ai-p-10,ai-p-12,ai-p-16,ai-p-2,ai-p-20,ai-p-24,ai-p-3,ai-p-4,ai-p-5,ai-p-6,ai-p-8,ai-p-var,ai-pb-0,ai-pb-1,ai-pb-12,ai-pb-16,ai-pb-2,ai-pb-3,ai-pb-4,ai-pb-6,ai-pb-8,ai-pe-0,ai-pe-1|}"
+  ],
+  "description": "spacing utilities, part 3 of 4 (60 of 238 classes)"
+ },
+ "LLMCSS spacing classes-4": {
+  "prefix": "ai-family-spacing-4",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-pe-2,ai-pe-3,ai-pe-4,ai-pe-6,ai-pe-8,ai-pl-0,ai-pl-1,ai-pl-2,ai-pl-3,ai-pl-4,ai-pl-6,ai-pl-8,ai-pr-0,ai-pr-1,ai-pr-2,ai-pr-3,ai-pr-4,ai-pr-6,ai-pr-8,ai-ps-0,ai-ps-1,ai-ps-2,ai-ps-3,ai-ps-4,ai-ps-6,ai-ps-8,ai-pt-0,ai-pt-1,ai-pt-12,ai-pt-16,ai-pt-2,ai-pt-3,ai-pt-4,ai-pt-6,ai-pt-8,ai-px-0,ai-px-1,ai-px-10,ai-px-12,ai-px-2,ai-px-3,ai-px-4,ai-px-5,ai-px-6,ai-px-8,ai-py-0,ai-py-1,ai-py-10,ai-py-12,ai-py-16,ai-py-2,ai-py-20,ai-py-24,ai-py-3,ai-py-4,ai-py-5,ai-py-6,ai-py-8|}"
+  ],
+  "description": "spacing utilities, part 4 of 4 (58 of 238 classes)"
+ },
+ "LLMCSS tables classes": {
+  "prefix": "ai-family-tables",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-cell-num,ai-docs-matrix,ai-mark,ai-mark-no,ai-mark-warn,ai-mark-yes,ai-scroll-x,ai-table-compact,ai-table-container,ai-table-hover,ai-table-sticky,ai-table-striped|}"
+  ],
+  "description": "tables classes (12)"
+ },
+ "LLMCSS tabs classes": {
+  "prefix": "ai-family-tabs",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-tab,ai-tab-panel,ai-tabs,ai-tabs-list,ai-tabs-pills|}"
+  ],
+  "description": "tabs classes (5)"
+ },
+ "LLMCSS themes classes": {
+  "prefix": "ai-family-themes",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-dark,ai-light,ai-skin-editorial,ai-skin-enterprise,ai-skin-executive,ai-skin-fintech,ai-skin-obsidian|}"
+  ],
+  "description": "themes classes (7)"
+ },
+ "LLMCSS toasts classes": {
+  "prefix": "ai-family-toasts",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-toast,ai-toast-close,ai-toast-container,ai-toast-countdown,ai-toast-danger,ai-toast-error,ai-toast-icon,ai-toast-info,ai-toast-message,ai-toast-progress,ai-toast-success,ai-toast-warning|}"
+  ],
+  "description": "toasts classes (12)"
+ },
+ "LLMCSS typography classes": {
+  "prefix": "ai-family-typography",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai-break-inside-avoid,ai-font-bold,ai-font-display,ai-font-light,ai-font-medium,ai-font-mono,ai-font-normal,ai-font-sans,ai-font-semibold,ai-leading-loose,ai-leading-none,ai-leading-normal,ai-leading-relaxed,ai-leading-snug,ai-leading-tight,ai-line-clamp-1,ai-line-clamp-2,ai-line-clamp-3,ai-line-clamp-none,ai-text-2xl,ai-text-3xl,ai-text-4xl,ai-text-5xl,ai-text-6xl,ai-text-7xl,ai-text-accent,ai-text-balance,ai-text-base,ai-text-center,ai-text-end,ai-text-left,ai-text-lg,ai-text-muted,ai-text-pretty,ai-text-right,ai-text-secondary,ai-text-sm,ai-text-start,ai-text-var,ai-text-xl,ai-text-xs,ai-tracking-normal,ai-tracking-tight,ai-tracking-tighter,ai-tracking-wide,ai-tracking-wider,ai-truncate|}"
+  ],
+  "description": "typography classes (47)"
+ },
+ "LLMCSS utilities classes": {
+  "prefix": "ai-family-utilities",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ai--rotate-1,ai--rotate-12,ai--rotate-180,ai--rotate-2,ai--rotate-3,ai--rotate-45,ai--rotate-6,ai--rotate-90,ai--translate-x-1,ai--translate-x-2,ai--translate-x-3,ai--translate-x-4,ai--translate-x-6,ai--translate-x-8,ai--translate-x-full,ai--translate-y-1,ai--translate-y-2,ai--translate-y-3,ai--translate-y-4,ai--translate-y-6,ai--translate-y-8,ai--translate-y-full,ai-brightness-110,ai-brightness-90,ai-command-palette,ai-contrast-more,ai-grayscale,ai-grayscale-0,ai-invert,ai-overscroll-contain,ai-overscroll-none,ai-print-block,ai-print-break-after,ai-print-break-before,ai-print-hidden,ai-saturate-0,ai-saturate-150,ai-subgrid-cols,ai-subgrid-rows,ai-surface-0,ai-surface-1,ai-surface-2,ai-surface-3,ai-tabular|}"
+  ],
+  "description": "utilities classes (44)"
+ }
+}

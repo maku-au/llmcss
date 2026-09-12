@@ -1,0 +1,16 @@
+{
+  "id": "order-status",
+  "name": "Order Status Tracker",
+  "description": "Four step fulfilment tracker with completed, current and upcoming states, a monospace tracking number and an estimated delivery date. Static markup with a calm pip on the current step, so no JavaScript and no animation.",
+  "category": "ecommerce",
+  "tier": "free",
+  "tags": [
+    "order",
+    "tracking",
+    "shipping",
+    "status",
+    "steps",
+    "ecommerce"
+  ],
+  "html": "<div class=\"ai-order\" style=\"max-width: 40rem;\">\n  <div class=\"ai-order-head\">\n    <div>\n      <h3 class=\"ai-order-title\">Order 48210 is on its way</h3>\n      <p class=\"ai-text-sm ai-text-secondary\">Three items, dispatched from the Alexandria warehouse.</p>\n    </div>\n    <div class=\"ai-order-eta\">\n      Estimated delivery\n      <strong>Thursday 17 September</strong>\n    </div>\n  </div>\n\n  <ol class=\"ai-order-track\">\n    <li class=\"ai-order-step is-completed\">\n      <span class=\"ai-order-pip\" aria-hidden=\"true\"></span>\n      <span class=\"ai-order-label\">Ordered</span>\n      <span class=\"ai-order-date\">9 Sep, 10:42</span>\n    </li>\n    <li class=\"ai-order-step is-completed\">\n      <span class=\"ai-order-pip\" aria-hidden=\"true\"></span>\n      <span class=\"ai-order-label\">Packed</span>\n      <span class=\"ai-order-date\">10 Sep, 08:15</span>\n    </li>\n    <li class=\"ai-order-step is-current\" aria-current=\"step\">\n      <span class=\"ai-order-pip\" aria-hidden=\"true\"></span>\n      <span class=\"ai-order-label\">Shipped</span>\n      <span class=\"ai-order-date\">11 Sep, 17:30</span>\n    </li>\n    <li class=\"ai-order-step is-upcoming\">\n      <span class=\"ai-order-pip\" aria-hidden=\"true\"></span>\n      <span class=\"ai-order-label\">Delivered</span>\n      <span class=\"ai-order-date\">Est. 17 Sep</span>\n    </li>\n  </ol>\n\n  <div class=\"ai-order-meta\">\n    <span>Southbound Freight tracking <span class=\"ai-order-id\">AU7734221905</span></span>\n    <a class=\"ai-btn ai-btn-outline ai-btn-sm\" href=\"#order-48210\">Track shipment</a>\n  </div>\n</div>"
+}

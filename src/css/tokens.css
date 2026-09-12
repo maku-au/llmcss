@@ -1,3 +1,32 @@
+/* ==========================================================================
+   LLMCSS CONVENTIONS
+
+   1. State. Every interactive state ships as a `.is-<state>` class mirrored
+      onto the nearest native or ARIA attribute, both listed on the same rule:
+
+        .is-open        <-> [open]                     overlays, disclosure
+        .is-active      <-> [aria-selected="true"]     tabs
+        .is-active      <-> [aria-current]             nav, sidebar, pagination
+        .is-current     <-> [aria-current]             breadcrumbs
+        .is-active      <-> :checked                   radio/checkbox controls
+        .is-error       <-> [aria-invalid="true"]      form fields
+
+      Authors may set either one: static markup can use the class alone, and
+      accessible markup can use the attribute alone. The runtime keeps both in
+      sync for the components it drives. Drop the attribute to leave a state
+      rather than writing aria-current="false"; the selectors match presence.
+
+   2. Theming attributes. data-ai-theme (light|dark), data-ai-skin (archetype:
+      surfaces, radius, type), data-ai-accent (accent only), data-ai-density,
+      data-ai-focus. All of them work on <html> or on any container.
+
+   3. Component tokens. Every component reads its own tunable as
+      `var(--ai-<component>-<property>, <token default>)`, where the default is
+      a global token wherever one fits. Set the component token on the
+      component, on a container, or on :root; public/tokens.json lists them all
+      under componentTokens.
+   ========================================================================== */
+
 @layer tokens {
   :root {
     /* Color Spectrum Primitives (HSL-based for algorithmic manipulation) */

@@ -26,7 +26,13 @@ Interactive components (modal, drawer, dropdown, accordion, tabs, toasts) need t
 
 It registers `data-ai-toggle` / `data-ai-dismiss` / `data-ai-tab` handling and the `<ai-modal>` style custom elements. Everything else is CSS-only and works without it.
 
-Dark mode: `data-ai-theme="dark"` on `<html>`. Skin: `data-ai-skin="obsidian"` (also `editorial`, `executive`, `fintech`, `enterprise`, `emerald`, `violet`, `rose`).
+Dark mode: `data-ai-theme="dark"` on `<html>`. There is no `prefers-color-scheme` query in the CSS, so the OS setting alone changes nothing; set the attribute yourself. Skin: `data-ai-skin="obsidian"` (also `editorial`, `executive`, `fintech`, `enterprise`, `emerald`, `violet`, `rose`). The first five change surfaces, radius and type; `emerald`, `violet` and `rose` change only the accent.
+
+Pin a release instead of tracking latest:
+
+```html
+<link rel="stylesheet" href="https://llmcss.io/v/0.2.0/llmcss.css" />
+```
 
 Optional fonts (body, display, mono):
 
@@ -70,15 +76,20 @@ Rules of thumb: no nested cards, no pulsing dots on static status, no purple gra
 Two ways to get modal, drawer, dropdown, accordion, tabs, toast, and command palette behavior:
 
 ```html
-<button data-ai-toggle="modal" data-ai-target="#example">Open</button>
-<div id="example" class="ai-modal">…</div>
+<button class="ai-btn" data-ai-toggle="modal" data-ai-target="#example">Open</button>
+<div id="example" class="ai-modal">
+  <div class="ai-modal-backdrop" data-ai-dismiss="modal"></div>
+  <div class="ai-modal-box">…</div>
+</div>
 ```
 
 ```html
 <ai-modal id="example">…</ai-modal>
 ```
 
-Both are optional. CSS-only markup renders and themes correctly without any JavaScript; the runtime adds focus trapping, Escape-to-close, and `aria-expanded` sync on top.
+The nesting matters: modal and drawer toggles need `data-ai-target="#id"` and the target needs a backdrop plus a box or panel; a dropdown toggle sits inside `.ai-dropdown`; an accordion toggle inside `.ai-accordion-item`; tabs use `data-ai-tab="#panel"` inside `.ai-tabs`. Open state is the `open` attribute and the `.is-open` class interchangeably.
+
+Both forms are optional. CSS-only markup renders and themes correctly without any JavaScript; the runtime adds focus trapping, Escape-to-close, and `aria-expanded` sync on top. Full contract: [llmcss.io/llms-full.txt](https://llmcss.io/llms-full.txt).
 
 ## 5. Templates
 
@@ -96,7 +107,9 @@ npx llmcss template blueprint saas-landing
 npx llmcss-mcp
 ```
 
-Point your editor at that stdio server. It reads the public catalog at llmcss.io and exposes `search_components`, `get_component_markup`, `validate_markup`, `list_tokens`, `llmcss_get_harness`, `llmcss_slop_audit`, `list_wireframe_templates`, `get_wireframe_template`, `get_page_blueprint`.
+Point your editor at that stdio server. It bundles the public catalog and fetches Pro entries from llmcss.io; it exposes `search_components`, `get_component_markup`, `validate_markup`, `list_classes`, `list_tokens`, `list_states`, `llmcss_get_harness`, `llmcss_slop_audit`, `list_wireframe_templates`, `get_wireframe_template`, `get_page_blueprint`.
+
+`list_classes`, `list_tokens` and `list_states` return the same data as [llmcss.io/classes.json](https://llmcss.io/classes.json), [tokens.json](https://llmcss.io/tokens.json) and [states.json](https://llmcss.io/states.json). If a class is not in classes.json, it does not exist.
 
 ## 7. Pro (optional)
 
@@ -107,7 +120,7 @@ npx llmcss login llmcss_live_...
 npx llmcss add tool-trace
 ```
 
-Or paste the token under License on the components gallery.
+Or paste the token under License at [llmcss.io/account](https://llmcss.io/account). Without a token, `npx llmcss add` on a Pro id exits 1 with a login hint, and the Pro entry in registry.json stays `locked: true` with `html: null`. Never write Pro markup from memory.
 
 ## Commands
 

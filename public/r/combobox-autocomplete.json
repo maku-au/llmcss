@@ -1,0 +1,16 @@
+{
+  "id": "combobox-autocomplete",
+  "name": "Combobox Autocomplete",
+  "description": "Text field with a filtered listbox, arrow key navigation, and aria-activedescendant. Without the runtime the list opens on focus and filters nothing, and a field using a native datalist is left untouched.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "combobox",
+    "autocomplete",
+    "listbox",
+    "form",
+    "search",
+    "aria"
+  ],
+  "html": "<div class=\"ai-flex ai-flex-col ai-gap-5\" style=\"max-width: 24rem;\">\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label\" for=\"cb-region\">Deployment region</label>\n    <div class=\"ai-combobox\">\n      <input id=\"cb-region\" class=\"ai-input\" type=\"text\" role=\"combobox\" aria-expanded=\"false\" aria-controls=\"cb-region-list\" aria-autocomplete=\"list\" autocomplete=\"off\" placeholder=\"Start typing a city\" />\n      <ul class=\"ai-combobox-list\" id=\"cb-region-list\" role=\"listbox\" aria-label=\"Deployment region\">\n        <li class=\"ai-combobox-option\" role=\"option\" aria-selected=\"false\">Sydney <span class=\"ai-combobox-hint\">ap-southeast-2</span></li>\n        <li class=\"ai-combobox-option\" role=\"option\" aria-selected=\"false\">Singapore <span class=\"ai-combobox-hint\">ap-southeast-1</span></li>\n        <li class=\"ai-combobox-option\" role=\"option\" aria-selected=\"false\">Frankfurt <span class=\"ai-combobox-hint\">eu-central-1</span></li>\n        <li class=\"ai-combobox-option\" role=\"option\" aria-selected=\"false\">Sao Paulo <span class=\"ai-combobox-hint\">sa-east-1</span></li>\n        <li class=\"ai-combobox-option\" role=\"option\" aria-selected=\"false\">Oregon <span class=\"ai-combobox-hint\">us-west-2</span></li>\n        <li class=\"ai-combobox-option\" role=\"option\" aria-disabled=\"true\">Osaka <span class=\"ai-combobox-hint\">at capacity</span></li>\n        <li class=\"ai-combobox-empty\" hidden>No region matches that name.</li>\n      </ul>\n    </div>\n    <span class=\"ai-form-hint\">Arrow keys move through matches, Enter selects, Escape closes.</span>\n  </div>\n\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label\" for=\"cb-native\">Billing currency</label>\n    <input id=\"cb-native\" class=\"ai-input\" type=\"text\" list=\"cb-native-options\" autocomplete=\"off\" placeholder=\"AUD\" />\n    <datalist id=\"cb-native-options\">\n      <option value=\"AUD\"></option>\n      <option value=\"EUR\"></option>\n      <option value=\"SGD\"></option>\n      <option value=\"USD\"></option>\n    </datalist>\n    <span class=\"ai-form-hint\">A field with a list attribute keeps the browser datalist and is never enhanced.</span>\n  </div>\n</div>"
+}

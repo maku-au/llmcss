@@ -85,11 +85,14 @@
     border-radius: var(--ai-radius-xs);
     transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
   }
+  /* State twin: .is-active mirrors aria-current="page" on the current link. */
   .ai-nav-link:hover,
-  .ai-nav-link.is-active {
+  .ai-nav-link.is-active,
+  .ai-nav-link[aria-current] {
     color: var(--ai-text-primary);
   }
-  .ai-nav-link.is-active {
+  .ai-nav-link.is-active,
+  .ai-nav-link[aria-current] {
     background-color: var(--ai-surface-1);
   }
 
