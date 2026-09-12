@@ -58,7 +58,7 @@
     border-radius: var(--ai-radius-xs);
     font-size: 1rem;
     line-height: 1;
-    transition: all var(--ai-duration-fast) var(--ai-ease);
+    transition: all var(--ai-duration-fast) var(--ai-ease-out);
   }
   .ai-toast-close:hover {
     color: var(--ai-text-primary);

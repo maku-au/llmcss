@@ -22,28 +22,28 @@
 
   .ai-alert-info {
     background-color: var(--ai-accent-subtle);
-    border-color: rgba(37, 99, 235, 0.2);
+    border-color: color-mix(in srgb, var(--ai-accent) 25%, var(--ai-border));
     color: var(--ai-text-primary);
   }
   .ai-alert-info .ai-alert-icon { color: var(--ai-accent); }
 
   .ai-alert-success {
     background-color: var(--ai-success-subtle);
-    border-color: rgba(22, 163, 74, 0.2);
+    border-color: color-mix(in srgb, var(--ai-success) 25%, var(--ai-border));
     color: var(--ai-text-primary);
   }
   .ai-alert-success .ai-alert-icon { color: var(--ai-success); }
 
   .ai-alert-warning {
     background-color: var(--ai-warning-subtle);
-    border-color: rgba(234, 88, 12, 0.2);
+    border-color: color-mix(in srgb, var(--ai-warning) 25%, var(--ai-border));
     color: var(--ai-text-primary);
   }
   .ai-alert-warning .ai-alert-icon { color: var(--ai-warning); }
 
   .ai-alert-danger {
     background-color: var(--ai-danger-subtle);
-    border-color: rgba(220, 38, 38, 0.2);
+    border-color: color-mix(in srgb, var(--ai-danger) 25%, var(--ai-border));
     color: var(--ai-text-primary);
   }
   .ai-alert-danger .ai-alert-icon { color: var(--ai-danger); }

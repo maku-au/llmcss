@@ -738,7 +738,6 @@
     .ai-lg\:inline-flex { display: inline-flex !important; }
     .ai-lg\:hidden { display: none !important; }
     .ai-lg\:ml-auto { margin-left: auto; }
-    .ai-lg\:hidden { display: none; }
     .ai-lg\:flex-row { flex-direction: row; }
     .ai-lg\:flex-col { flex-direction: column; }
     .ai-lg\:items-center { align-items: center; }
@@ -778,7 +777,9 @@
     .ai-xl\:block { display: block !important; }
     .ai-xl\:flex { display: flex !important; }
     .ai-xl\:grid { display: grid !important; }
-    .ai-xl\:hidden { display: none; }
+    .ai-xl\:hidden { display: none !important; }
+    .ai-xl\:inline-block { display: inline-block !important; }
+    .ai-xl\:inline-flex { display: inline-flex !important; }
     .ai-xl\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .ai-xl\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
     .ai-xl\:grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }

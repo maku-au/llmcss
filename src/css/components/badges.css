@@ -17,7 +17,7 @@
     user-select: none;
     letter-spacing: 0.02em;
     box-sizing: border-box;
-    transition: all var(--ai-duration-fast) var(--ai-ease);
+    transition: all var(--ai-duration-fast) var(--ai-ease-out);
   }
 
   /* High-Contrast Solid Inverted Badge (High-craft standard: RECOMMENDED, POPULAR, FEATURED) */

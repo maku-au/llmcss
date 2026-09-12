@@ -249,8 +249,8 @@
     content: "";
     width: 0.55rem;
     height: 0.35rem;
-    border-left: 2px solid #ffffff;
-    border-bottom: 2px solid #ffffff;
+    border-left: 2px solid var(--ai-accent-text);
+    border-bottom: 2px solid var(--ai-accent-text);
     transform: rotate(-45deg) scale(0);
     transform-origin: center;
     transition: transform var(--ai-duration-fast) var(--ai-ease-out);

@@ -164,16 +164,16 @@ export const components = [
     category: 'primitive',
     tier: 'free',
     tags: ['modal', 'dialog', 'overlay', 'popup'],
-    html: `<button class="ai-btn ai-btn-primary" data-ai-toggle="modal" data-ai-target="#demo-modal">
+    html: `<button class="ai-btn ai-btn-primary" data-ai-toggle="modal" data-ai-target="#demo-modal" aria-haspopup="dialog" aria-expanded="false">
   Open Modal Dialog
 </button>
 
 <div id="demo-modal" class="ai-modal">
   <div class="ai-modal-backdrop" data-ai-dismiss="modal"></div>
-  <div class="ai-modal-box">
+  <div class="ai-modal-box" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
     <div class="ai-modal-header">
-      <h3 class="ai-modal-title">Confirm Database Reset</h3>
-      <button class="ai-modal-close" data-ai-dismiss="modal">&times;</button>
+      <h3 class="ai-modal-title" id="demo-modal-title">Confirm Database Reset</h3>
+      <button class="ai-modal-close" data-ai-dismiss="modal" aria-label="Close">&times;</button>
     </div>
     <div class="ai-modal-body">
       <p>Are you sure you want to reset the staging database? All mock records and schema migrations will revert to initial seed.</p>
@@ -186,10 +186,10 @@ export const components = [
 </div>`,
     webComponentHtml: `<ai-modal id="demo-modal">
   <div class="ai-modal-backdrop"></div>
-  <div class="ai-modal-box">
+  <div class="ai-modal-box" role="dialog" aria-modal="true" aria-labelledby="demo-modal-wc-title">
     <div class="ai-modal-header">
-      <h3 class="ai-modal-title">Web Component Dialog</h3>
-      <button class="ai-modal-close" data-ai-dismiss="modal">&times;</button>
+      <h3 class="ai-modal-title" id="demo-modal-wc-title">Web Component Dialog</h3>
+      <button class="ai-modal-close" data-ai-dismiss="modal" aria-label="Close">&times;</button>
     </div>
     <div class="ai-modal-body">
       <p>Rendered natively via &lt;ai-modal&gt; custom element with Light DOM styling.</p>
@@ -208,28 +208,28 @@ export const components = [
     tier: 'free',
     tags: ['tabs', 'navigation', 'panel'],
     html: `<div class="ai-tabs">
-  <div class="ai-tabs-list">
-    <button class="ai-tab is-active" data-ai-tab="#tab-overview">Overview</button>
-    <button class="ai-tab" data-ai-tab="#tab-analytics">Analytics</button>
-    <button class="ai-tab" data-ai-tab="#tab-settings">Settings</button>
+  <div class="ai-tabs-list" role="tablist" aria-label="Workspace">
+    <button class="ai-tab is-active" role="tab" id="tab-overview-tab" aria-controls="tab-overview" aria-selected="true" data-ai-tab="#tab-overview">Overview</button>
+    <button class="ai-tab" role="tab" id="tab-analytics-tab" aria-controls="tab-analytics" aria-selected="false" tabindex="-1" data-ai-tab="#tab-analytics">Analytics</button>
+    <button class="ai-tab" role="tab" id="tab-settings-tab" aria-controls="tab-settings" aria-selected="false" tabindex="-1" data-ai-tab="#tab-settings">Settings</button>
   </div>
-  <div id="tab-overview" class="ai-tab-panel is-active">
+  <div id="tab-overview" class="ai-tab-panel is-active" role="tabpanel" aria-labelledby="tab-overview-tab">
     <p class="ai-text-secondary">Overview tab content displaying system health and recent build outputs.</p>
   </div>
-  <div id="tab-analytics" class="ai-tab-panel">
+  <div id="tab-analytics" class="ai-tab-panel" role="tabpanel" aria-labelledby="tab-analytics-tab">
     <p class="ai-text-secondary">Analytics tab content displaying traffic and user engagement charts.</p>
   </div>
-  <div id="tab-settings" class="ai-tab-panel">
+  <div id="tab-settings" class="ai-tab-panel" role="tabpanel" aria-labelledby="tab-settings-tab">
     <p class="ai-text-secondary">Workspace preferences and security configurations.</p>
   </div>
 </div>`,
     webComponentHtml: `<ai-tabs>
-  <div class="ai-tabs-list">
-    <button class="ai-tab is-active" data-ai-tab="#tab-1">Account</button>
-    <button class="ai-tab" data-ai-tab="#tab-2">Security</button>
+  <div class="ai-tabs-list" role="tablist">
+    <button class="ai-tab is-active" role="tab" id="tab-1-tab" aria-controls="tab-1" aria-selected="true" data-ai-tab="#tab-1">Account</button>
+    <button class="ai-tab" role="tab" id="tab-2-tab" aria-controls="tab-2" aria-selected="false" tabindex="-1" data-ai-tab="#tab-2">Security</button>
   </div>
-  <div id="tab-1" class="ai-tab-panel is-active"><p>Manage your account settings.</p></div>
-  <div id="tab-2" class="ai-tab-panel"><p>Configure 2FA and sessions.</p></div>
+  <div id="tab-1" class="ai-tab-panel is-active" role="tabpanel" aria-labelledby="tab-1-tab"><p>Manage your account settings.</p></div>
+  <div id="tab-2" class="ai-tab-panel" role="tabpanel" aria-labelledby="tab-2-tab"><p>Configure 2FA and sessions.</p></div>
 </ai-tabs>`,
   },
   {
@@ -241,11 +241,11 @@ export const components = [
     tags: ['dropdown', 'menu', 'actions'],
     html: `<div style="min-height: 14rem; padding-bottom: 11rem; display: flex; justify-content: center; align-items: flex-start; padding-top: var(--ai-space-2);">
   <div class="ai-dropdown">
-    <button class="ai-btn ai-btn-outline" data-ai-toggle="dropdown">
+    <button class="ai-btn ai-btn-outline ai-dropdown-trigger" data-ai-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="demo-dropdown-menu">
       Options
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
     </button>
-    <ul class="ai-dropdown-menu">
+    <ul class="ai-dropdown-menu" id="demo-dropdown-menu">
       <li class="ai-dropdown-header">Workspace</li>
       <li><button class="ai-dropdown-item">View Team</button></li>
       <li><button class="ai-dropdown-item">Billing & Plans</button></li>
@@ -264,20 +264,20 @@ export const components = [
     tags: ['accordion', 'collapse', 'faq'],
     html: `<div class="ai-accordion">
   <div class="ai-accordion-item is-open" open>
-    <button class="ai-accordion-trigger" data-ai-toggle="accordion">
+    <button class="ai-accordion-trigger" data-ai-toggle="accordion" aria-expanded="true" aria-controls="faq-1">
       How does LLMCSS eliminate the 'AI look'?
-      <span class="ai-accordion-chevron">▼</span>
+      <span class="ai-accordion-chevron" aria-hidden="true">▼</span>
     </button>
-    <div class="ai-accordion-content">
+    <div class="ai-accordion-content" id="faq-1">
       LLMCSS uses high-craft typography pairings, subtle physical borders, calibrated surfaces, and asymmetric bento layouts rather than cookie-cutter purple gradients and over-rounded cards.
     </div>
   </div>
   <div class="ai-accordion-item">
-    <button class="ai-accordion-trigger" data-ai-toggle="accordion">
+    <button class="ai-accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-2">
       Can I use this without a build tool or Vite?
-      <span class="ai-accordion-chevron">▼</span>
+      <span class="ai-accordion-chevron" aria-hidden="true">▼</span>
     </button>
-    <div class="ai-accordion-content">
+    <div class="ai-accordion-content" id="faq-2">
       Yes! LLMCSS is written in 100% pure modern native CSS with CSS layers and variables. You can load it via a single &lt;link&gt; tag.
     </div>
   </div>
@@ -376,7 +376,7 @@ export const components = [
       <div class="ai-flex ai-items-center ai-gap-2">
         <a href="#login" class="ai-btn ai-btn-ghost ai-btn-xs ai-sm:inline-flex ai-hidden">Log in</a>
         <a href="#start" class="ai-btn ai-btn-primary ai-btn-xs">Get Started</a>
-        <button class="ai-btn ai-btn-outline ai-btn-xs ai-md:hidden" data-ai-toggle="drawer" data-ai-target="#mobile-nav-drawer" aria-label="Toggle Menu">
+        <button class="ai-btn ai-btn-outline ai-btn-xs ai-md:hidden" data-ai-toggle="drawer" data-ai-target="#mobile-nav-drawer" aria-controls="mobile-nav-drawer" aria-expanded="false" aria-label="Open menu">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
       </div>
@@ -735,7 +735,7 @@ export const components = [
   {
     id: 'auth-login-card',
     name: 'Authentication Login Card',
-    description: 'Focused login card with social provider buttons, email/password form, and forgot password link.',
+    description: 'Focused login card with email and password fields, forgot password link, and a single primary action.',
     category: 'application',
     tier: 'free',
     tags: ['auth', 'login', 'signup', 'form'],
@@ -1171,13 +1171,16 @@ export const components = [
     tags: ['tooltip', 'hover', 'popover', 'hint'],
     html: `<div class="ai-flex ai-gap-6 ai-items-center">
   <span class="ai-tooltip" data-tooltip="Edit this item">
-    <button class="ai-btn ai-btn-outline ai-btn-sm">Hover me (top)</button>
+    <button class="ai-btn ai-btn-outline ai-btn-sm" aria-describedby="tip-edit">Hover me (top)</button>
+    <span class="ai-sr-only" id="tip-edit" role="tooltip">Edit this item</span>
   </span>
   <span class="ai-tooltip ai-tooltip-bottom" data-tooltip="Save changes">
-    <button class="ai-btn ai-btn-secondary ai-btn-sm">Hover me (bottom)</button>
+    <button class="ai-btn ai-btn-secondary ai-btn-sm" aria-describedby="tip-save">Hover me (bottom)</button>
+    <span class="ai-sr-only" id="tip-save" role="tooltip">Save changes</span>
   </span>
   <span class="ai-tooltip" data-tooltip="Keyboard accessible too">
-    <button class="ai-btn ai-btn-ghost ai-btn-sm">Focus me</button>
+    <button class="ai-btn ai-btn-ghost ai-btn-sm" aria-describedby="tip-focus">Focus me</button>
+    <span class="ai-sr-only" id="tip-focus" role="tooltip">Keyboard accessible too</span>
   </span>
 </div>`,
   },
@@ -1191,7 +1194,7 @@ export const components = [
     html: `<nav aria-label="Pagination">
   <ul class="ai-pagination">
     <li class="ai-pagination-item">
-      <a href="#" class="ai-pagination-link is-disabled" aria-disabled="true">&larr; Prev</a>
+      <a href="#" class="ai-pagination-link is-disabled" aria-disabled="true" tabindex="-1">&larr; Prev</a>
     </li>
     <li class="ai-pagination-item">
       <a href="#" class="ai-pagination-link is-active" aria-current="page">1</a>

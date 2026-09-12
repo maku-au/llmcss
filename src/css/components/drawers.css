@@ -72,7 +72,7 @@
     bottom: auto;
     max-height: calc(100dvh - var(--ai-drawer-offset, 0px));
     border-bottom: 1px solid var(--ai-border);
-    animation: ai-slide-down var(--ai-duration-normal) var(--ai-ease-out);
+    animation: ai-drawer-slide-down var(--ai-duration-normal) var(--ai-ease-out);
   }
 
   /* Bottom sheet */
@@ -82,7 +82,7 @@
     max-height: 85dvh;
     border-top: 1px solid var(--ai-border);
     border-radius: var(--ai-radius-xl) var(--ai-radius-xl) 0 0;
-    animation: ai-slide-up var(--ai-duration-normal) var(--ai-ease-out);
+    animation: ai-drawer-slide-up var(--ai-duration-normal) var(--ai-ease-out);
   }
 
   /* Vertical link list inside a drawer body */
@@ -98,7 +98,7 @@
   }
 
   /* Lock page scroll while a drawer is open. Opt out with .ai-drawer-no-lock. */
-  html:has(.ai-drawer.is-open:not(.ai-drawer-no-lock), .ai-drawer[open]:not(.ai-drawer-no-lock)) {
+  html:has(.ai-drawer.is-open:not(.ai-drawer-no-lock), .ai-drawer[open]:not(.ai-drawer-no-lock), ai-drawer[open]:not(.ai-drawer-no-lock)) {
     overflow: hidden;
   }
 
@@ -138,12 +138,12 @@
     to { transform: translateX(0); }
   }
 
-  @keyframes ai-slide-down {
+  @keyframes ai-drawer-slide-down {
     from { transform: translateY(-100%); }
     to { transform: translateY(0); }
   }
 
-  @keyframes ai-slide-up {
+  @keyframes ai-drawer-slide-up {
     from { transform: translateY(100%); }
     to { transform: translateY(0); }
   }

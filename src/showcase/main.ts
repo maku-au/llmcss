@@ -681,7 +681,7 @@ function generateCustomizedHtml(comp: (typeof components)[0]): string {
     }
     if (v === 'pulse') {
       return `<div class="ai-flex ai-items-center ai-gap-3">
-  <span class="ai-pulse-dot" style="background-color: ${accentColor}; ${speedStyle}"></span>
+  <span class="ai-pulse-dot ai-status-pip is-streaming" style="background-color: ${accentColor}; ${speedStyle}"></span>
   <span class="ai-text-xs ai-font-mono ai-text-secondary">Status Pip (Breathing LED)</span>
 </div>`;
     }
@@ -832,26 +832,6 @@ function renderComponents() {
       <button type="button" class="ai-btn ai-btn-outline ai-btn-sm" id="reset-catalog-btn" style="margin-top: 1rem;">Reset</button>
     </div>`;
     document.getElementById('reset-catalog-btn')?.addEventListener('click', () => {
-      activeCategory = 'all';
-      activeTier = 'all';
-      searchQuery = '';
-      if (searchInput) searchInput.value = '';
-      document.querySelectorAll('.filter-category').forEach((b) => b.classList.toggle('is-active', b.getAttribute('data-cat') === 'all'));
-      document.querySelectorAll('.filter-tier').forEach((b) => b.classList.toggle('is-active', b.getAttribute('data-tier') === 'all'));
-      renderComponents();
-    });
-    return;
-  }
-
-  if (filtered.length === 0) {
-    streamEl.innerHTML = `
-      <div class="ai-text-center" style="padding: var(--ai-space-16) 0; border: 1px solid var(--ai-border); border-radius: var(--ai-radius-md); background: var(--ai-surface-0);">
-        <h3 style="font-size: 1.25rem;">No components found</h3>
-        <p class="ai-text-muted" style="margin-top: 0.25rem;">Try adjusting your search query or filter settings.</p>
-        <button class="ai-btn ai-btn-outline ai-btn-sm" style="margin-top: var(--ai-space-4);" id="reset-filters-btn">Reset All Filters</button>
-      </div>
-    `;
-    document.getElementById('reset-filters-btn')?.addEventListener('click', () => {
       activeCategory = 'all';
       activeTier = 'all';
       searchQuery = '';
@@ -1034,7 +1014,9 @@ function bindComponentEvents() {
   document.querySelectorAll<HTMLElement>('.copy-cli-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-id');
-      copyToClipboard(`npx llmcss add ${id}`, 'CLI command', btn);
+      const comp = components.find((c) => c.id === id);
+      const cmd = comp?.tier === 'pro' ? `npx llmcss login <token>\nnpx llmcss add ${id}` : `npx llmcss add ${id}`;
+      copyToClipboard(cmd, 'CLI command', btn);
     });
   });
 
@@ -1226,11 +1208,21 @@ document.querySelectorAll('.hero-dock .ai-segmented-btn').forEach((btn) => {
   });
 });
 
+// Validate a token once per page load, not on every render
+const tokenChecks = new Map<string, Promise<boolean>>();
+function tokenIsValid(token: string): Promise<boolean> {
+  let p = tokenChecks.get(token);
+  if (!p) {
+    p = validateToken(token).then((r) => r.valid).catch(() => false);
+    tokenChecks.set(token, p);
+  }
+  return p;
+}
+
 async function hydrateProCards() {
   const token = getBrowserToken();
   if (!token || !streamEl) return;
-  const valid = await validateToken(token);
-  if (!valid.valid) return;
+  if (!(await tokenIsValid(token))) return;
 
   for (const comp of components) {
     if (comp.tier !== 'pro') continue;
@@ -1321,10 +1313,14 @@ async function boot() {
   updateSidebarCounts();
   renderComponents();
   await hydrateProCards();
+  let searchTimer: number | undefined;
   searchInput?.addEventListener('input', () => {
-    searchQuery = searchInput?.value || '';
-    renderComponents();
-    hydrateProCards();
+    window.clearTimeout(searchTimer);
+    searchTimer = window.setTimeout(() => {
+      searchQuery = searchInput?.value || '';
+      renderComponents();
+      hydrateProCards();
+    }, 150);
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === '/' && document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'TEXTAREA') {

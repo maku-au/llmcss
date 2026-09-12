@@ -1,7 +1,7 @@
 {
   "id": "auth-login-card",
   "name": "Authentication Login Card",
-  "description": "Focused login card with social provider buttons, email/password form, and forgot password link.",
+  "description": "Focused login card with email and password fields, forgot password link, and a single primary action.",
   "category": "application",
   "tier": "free",
   "tags": [

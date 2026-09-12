@@ -19,6 +19,18 @@
     flex-shrink: 0;
   }
 
+  /* Below md the shell stacks and the sidebar becomes a full-width rail */
+  @media (max-width: 767px) {
+    .ai-app-shell {
+      flex-direction: column;
+    }
+    .ai-sidebar {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid var(--ai-border);
+    }
+  }
+
   .ai-sidebar-header {
     height: 4rem;
     display: flex;
@@ -198,7 +210,7 @@
   .ai-step-item.is-completed .ai-step-circle {
     border-color: var(--ai-success);
     background-color: var(--ai-success);
-    color: #ffffff;
+    color: var(--ai-success-text);
   }
 
   .ai-step-label {

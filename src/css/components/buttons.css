@@ -71,7 +71,7 @@
 
   .ai-btn-accent {
     background-color: var(--ai-accent);
-    color: #ffffff;
+    color: var(--ai-accent-text);
     border-color: transparent;
     box-shadow: var(--ai-shadow-sm);
   }
@@ -82,7 +82,7 @@
 
   .ai-btn-danger {
     background-color: var(--ai-danger);
-    color: #ffffff;
+    color: var(--ai-danger-text);
     border-color: transparent;
   }
   .ai-btn-danger:hover {

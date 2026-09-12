@@ -292,8 +292,8 @@ export const wireframeTemplates = [
     <div class="ai-bento-grid">
       <div class="ai-bento-cell ai-bento-span-2">
         <div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin: 0 0 0.5rem;">Native Cascade Layer Isolation</h3>
           <span class="ai-bento-code-pill">@layer reset, tokens, base, components, utilities</span>
-          <h3 style="font-size: 1.25rem; font-weight: 700; margin: 1rem 0 0.5rem;">Native Cascade Layer Isolation</h3>
           <p style="font-size: 0.875rem; color: var(--ai-text-secondary); line-height: 1.5; margin: 0;">
             Never fight specificity wars again. LLMCSS registers its styles across explicit CSS cascade layers so your application styles always override primitives cleanly without important hacks.
           </p>
@@ -305,8 +305,8 @@ export const wireframeTemplates = [
       </div>
       <div class="ai-bento-cell">
         <div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin: 0 0 0.5rem;">Semantic Token System</h3>
           <span class="ai-bento-code-pill">Tokens &bull; HSL Scales</span>
-          <h3 style="font-size: 1.25rem; font-weight: 700; margin: 1rem 0 0.5rem;">Semantic Token System</h3>
           <p style="font-size: 0.875rem; color: var(--ai-text-secondary); line-height: 1.5; margin: 0;">
             Comprehensive color scales, tactile multi-stop elevation, and harmonious typography variables.
           </p>
@@ -319,8 +319,8 @@ export const wireframeTemplates = [
       </div>
       <div class="ai-bento-cell">
         <div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin: 0 0 0.5rem;">Zero JS Hydration</h3>
           <span class="ai-bento-code-pill">0kb Runtime</span>
-          <h3 style="font-size: 1.25rem; font-weight: 700; margin: 1rem 0 0.5rem;">Zero JS Hydration</h3>
           <p style="font-size: 0.875rem; color: var(--ai-text-secondary); line-height: 1.5; margin: 0;">
             Pure CSS eliminates cumulative layout shift, client hydration delays, and bundle bloat entirely.
           </p>
@@ -332,8 +332,8 @@ export const wireframeTemplates = [
       </div>
       <div class="ai-bento-cell ai-bento-span-2">
         <div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin: 0 0 0.5rem;">Autonomous Agent Protocol Ready</h3>
           <span class="ai-bento-code-pill">MCP Protocol &bull; CLI</span>
-          <h3 style="font-size: 1.25rem; font-weight: 700; margin: 1rem 0 0.5rem;">Autonomous Agent Protocol Ready</h3>
           <p style="font-size: 0.875rem; color: var(--ai-text-secondary); line-height: 1.5; margin: 0;">
             Built from day one with structured schemas, llms.txt specifications, and MCP tools so autonomous AI models generate pixel-perfect markup on the first prompt without hallucinating classes.
           </p>
@@ -552,10 +552,10 @@ export const wireframeTemplates = [
         </div>
         <ul class="ai-pricing-features">
           <li class="ai-pricing-feature-item">&bull; Everything in Community</li>
-          <li class="ai-pricing-feature-item">&bull; 14 Full Wireframe Section Templates</li>
+          <li class="ai-pricing-feature-item">&bull; Every wireframe section template</li>
           <li class="ai-pricing-feature-item">&bull; Stdio MCP Server Protocol Tools</li>
           <li class="ai-pricing-feature-item">&bull; Commercial Production License</li>
-          <li class="ai-pricing-feature-item">&bull; All 5 Design System Themes</li>
+          <li class="ai-pricing-feature-item">&bull; Every design system skin</li>
         </ul>
         <a href="#checkout" class="ai-btn ai-btn-primary" style="width: 100%;">Get Pro Access</a>
       </div>

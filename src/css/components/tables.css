@@ -38,7 +38,7 @@
   }
 
   .ai-table-hover tbody tr:hover {
-    background-color: var(--ai-surface-1);
+    background-color: var(--ai-surface-2);
   }
 
   .ai-table-striped tbody tr:nth-child(even) {

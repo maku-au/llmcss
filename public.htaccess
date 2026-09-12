@@ -70,6 +70,13 @@ RewriteRule ^(.+?)/?$ $1.html [L]
   </IfModule>
 </FilesMatch>
 
+# Stable, un-hashed stylesheet URLs that consumers link directly: short cache
+<FilesMatch "^(llmcss|cssai)\\.css$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </IfModule>
+</FilesMatch>
+
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php84” package as the default “PHP” programming language.
 <IfModule mime_module>

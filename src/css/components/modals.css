@@ -42,6 +42,11 @@
     animation: ai-scale-up var(--ai-duration-normal) var(--ai-ease-out);
   }
 
+  /* Lock page scroll while a modal is open. Opt out with .ai-modeless. */
+  html:has(.ai-modal.is-open:not(.ai-modeless), .ai-modal[open]:not(.ai-modeless), ai-modal[open]:not(.ai-modeless)) {
+    overflow: hidden;
+  }
+
   .ai-modal-box-lg { max-width: 48rem; }
   .ai-modal-box-sm { max-width: 24rem; }
 

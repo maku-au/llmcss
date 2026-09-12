@@ -264,7 +264,7 @@
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
-    background-color: #ffffff;
+    background-color: var(--ai-accent-text);
     transform: scale(0);
     transition: transform var(--ai-duration-fast) var(--ai-ease-out);
   }

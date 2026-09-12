@@ -7,13 +7,104 @@
  * - data-ai-tab="#panel-id"
  * - data-ai-toggle="dropdown"
  * - data-ai-toggle="accordion"
+ *
+ * Overlays (modal, drawer, command palette) get dialog behaviour for free:
+ * focus moves into the panel on open and back to the trigger on close, Tab is
+ * trapped inside, Escape closes only the topmost one, the rest of the page is
+ * made inert, and every trigger pointing at the overlay keeps aria-expanded in
+ * sync. Add the class `ai-drawer-no-lock` (or `ai-modeless`) to an overlay
+ * that should stay modeless, like a settings panel the user works alongside.
  */
+
+const FOCUSABLE =
+  'a[href], area[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]), [contenteditable="true"]';
 
 export function initDataAttributes(prefix = 'ai') {
   const toggleAttr = `data-${prefix}-toggle`;
   const targetAttr = `data-${prefix}-target`;
   const dismissAttr = `data-${prefix}-dismiss`;
   const tabAttr = `data-${prefix}-tab`;
+
+  const overlaySelector = ['modal', 'drawer', 'command-palette']
+    .map((k) => `.${prefix}-${k}, ${prefix}-${k}`)
+    .join(', ');
+  const panelSelector = `.${prefix}-modal-box, .${prefix}-drawer-panel, .${prefix}-command-box`;
+  const modelessClass = [`${prefix}-drawer-no-lock`, `${prefix}-modeless`];
+
+  const isOpen = (el: Element) => el.hasAttribute('open') || el.classList.contains('is-open');
+  const isModeless = (el: Element) => modelessClass.some((c) => el.classList.contains(c));
+  const panelOf = (el: Element) => (el.querySelector(panelSelector) as HTMLElement | null) || (el as HTMLElement);
+
+  // Stack of open modal overlays, topmost last. Modeless overlays are tracked
+  // only so their aria state and trigger focus stay correct.
+  const stack: Array<{ el: Element; trigger: HTMLElement | null }> = [];
+
+  function syncExpanded(el: Element, open: boolean) {
+    if (!el.id) return;
+    const sel = `[${targetAttr}="#${CSS.escape(el.id)}"]`;
+    document.querySelectorAll(sel).forEach((t) => t.setAttribute('aria-expanded', open ? 'true' : 'false'));
+  }
+
+  function applyInert() {
+    const modal = stack.filter((s) => !isModeless(s.el)).map((s) => s.el);
+    Array.from(document.body.children).forEach((child) => {
+      if (child.tagName === 'SCRIPT' || child.tagName === 'STYLE') return;
+      const holdsOverlay = modal.some((m) => child === m || child.contains(m));
+      (child as HTMLElement).inert = modal.length > 0 && !holdsOverlay;
+    });
+  }
+
+  function openOverlay(el: Element, trigger: HTMLElement | null) {
+    if (isOpen(el)) return;
+    el.setAttribute('open', '');
+    el.classList.add('is-open');
+    stack.push({ el, trigger: trigger || (document.activeElement as HTMLElement | null) });
+    syncExpanded(el, true);
+    applyInert();
+    const panel = panelOf(el);
+    const first =
+      (el.querySelector('[autofocus]') as HTMLElement | null) ||
+      (el.querySelector(`.${prefix}-command-input`) as HTMLElement | null);
+    if (first) {
+      setTimeout(() => first.focus(), 30);
+    } else if (!isModeless(el)) {
+      if (!panel.hasAttribute('tabindex')) panel.setAttribute('tabindex', '-1');
+      panel.focus({ preventScroll: true });
+    }
+  }
+
+  function closeOverlay(el: Element) {
+    el.removeAttribute('open');
+    el.classList.remove('is-open');
+    const idx = stack.findIndex((s) => s.el === el);
+    const entry = idx >= 0 ? stack.splice(idx, 1)[0] : null;
+    syncExpanded(el, false);
+    applyInert();
+    const active = document.activeElement;
+    const focusInside = active && el.contains(active);
+    if (entry?.trigger && entry.trigger.isConnected && (focusInside || active === document.body)) {
+      entry.trigger.focus({ preventScroll: true });
+    }
+  }
+
+  function topOverlay(): Element | null {
+    for (let i = stack.length - 1; i >= 0; i--) {
+      if (!isModeless(stack[i].el)) return stack[i].el;
+    }
+    // Overlays opened by other code (custom elements, scripts) are not on the
+    // stack; fall back to the last open one in DOM order.
+    const open = Array.from(document.querySelectorAll(overlaySelector)).filter((o) => isOpen(o) && !isModeless(o));
+    return open.length ? open[open.length - 1] : null;
+  }
+
+  function closeDropdowns(except?: Element | null) {
+    document.querySelectorAll(`.${prefix}-dropdown.is-open, ${prefix}-dropdown[open]`).forEach((d) => {
+      if (d === except) return;
+      d.classList.remove('is-open');
+      d.removeAttribute('open');
+      d.querySelectorAll(`[${toggleAttr}="dropdown"]`).forEach((t) => t.setAttribute('aria-expanded', 'false'));
+    });
+  }
 
   // Global Click Delegator
   document.addEventListener('click', (event) => {
@@ -24,164 +115,160 @@ export function initDataAttributes(prefix = 'ai') {
     const dismissBtn = target.closest(`[${dismissAttr}]`);
     if (dismissBtn) {
       const dismissType = dismissBtn.getAttribute(dismissAttr);
-      if (dismissType === 'modal') {
-        const modal = dismissBtn.closest(`.${prefix}-modal, ${prefix}-modal`);
-        if (modal) {
-          modal.removeAttribute('open');
-          modal.classList.remove('is-open');
-        }
-      } else if (dismissType === 'drawer') {
-        const drawer = dismissBtn.closest(`.${prefix}-drawer, ${prefix}-drawer`);
-        if (drawer) {
-          drawer.removeAttribute('open');
-          drawer.classList.remove('is-open');
-        }
+      if (dismissType === 'modal' || dismissType === 'drawer') {
+        const overlay = dismissBtn.closest(`.${prefix}-${dismissType}, ${prefix}-${dismissType}`);
+        if (overlay) closeOverlay(overlay);
       } else if (dismissType === 'toast') {
         const toast = dismissBtn.closest(`.${prefix}-toast, ${prefix}-toast`);
-        if (toast) {
-          toast.remove();
-        }
+        if (toast) toast.remove();
       }
       return;
     }
 
     // 2. Toggle Actions
-    const toggleEl = target.closest(`[${toggleAttr}]`);
+    const toggleEl = target.closest(`[${toggleAttr}]`) as HTMLElement | null;
     if (toggleEl) {
       const action = toggleEl.getAttribute(toggleAttr);
       const targetSelector = toggleEl.getAttribute(targetAttr);
 
-      if (action === 'modal' && targetSelector) {
-        const modal = document.querySelector(targetSelector);
-        if (modal) {
-          const isOpen = modal.hasAttribute('open') || modal.classList.contains('is-open');
-          if (isOpen) {
-            modal.removeAttribute('open');
-            modal.classList.remove('is-open');
-          } else {
-            modal.setAttribute('open', '');
-            modal.classList.add('is-open');
-          }
-        }
-      } else if (action === 'drawer' && targetSelector) {
-        const drawer = document.querySelector(targetSelector);
-        if (drawer) {
-          const isOpen = drawer.hasAttribute('open') || drawer.classList.contains('is-open');
-          if (isOpen) {
-            drawer.removeAttribute('open');
-            drawer.classList.remove('is-open');
-          } else {
-            drawer.setAttribute('open', '');
-            drawer.classList.add('is-open');
-          }
-          toggleEl.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      if ((action === 'modal' || action === 'drawer') && targetSelector) {
+        const overlay = document.querySelector(targetSelector);
+        if (overlay) {
+          if (isOpen(overlay)) closeOverlay(overlay);
+          else openOverlay(overlay, toggleEl);
         }
       } else if (action === 'dropdown') {
         const dropdown = toggleEl.closest(`.${prefix}-dropdown, ${prefix}-dropdown`);
         if (dropdown) {
-          const isOpen = dropdown.classList.contains('is-open') || dropdown.hasAttribute('open');
-          // Close other open dropdowns
-          document.querySelectorAll(`.${prefix}-dropdown.is-open, ${prefix}-dropdown[open]`).forEach((d) => {
-            if (d !== dropdown) {
-              d.classList.remove('is-open');
-              d.removeAttribute('open');
-            }
-          });
-          if (isOpen) {
+          const open = dropdown.classList.contains('is-open') || dropdown.hasAttribute('open');
+          closeDropdowns(dropdown);
+          if (open) {
             dropdown.classList.remove('is-open');
             dropdown.removeAttribute('open');
           } else {
             dropdown.classList.add('is-open');
             dropdown.setAttribute('open', '');
           }
+          toggleEl.setAttribute('aria-expanded', open ? 'false' : 'true');
         }
       } else if (action === 'accordion') {
         const item = toggleEl.closest(`.${prefix}-accordion-item`);
         if (item) {
-          const isOpen = item.classList.contains('is-open') || item.hasAttribute('open');
-          if (isOpen) {
+          const open = item.classList.contains('is-open') || item.hasAttribute('open');
+          if (open) {
             item.classList.remove('is-open');
             item.removeAttribute('open');
           } else {
             item.classList.add('is-open');
             item.setAttribute('open', '');
           }
+          toggleEl.setAttribute('aria-expanded', open ? 'false' : 'true');
         }
       }
       return;
     }
 
     // 3. Tab Switching
-    const tabEl = target.closest(`[${tabAttr}]`);
+    const tabEl = target.closest(`[${tabAttr}]`) as HTMLElement | null;
     if (tabEl) {
-      const panelSelector = tabEl.getAttribute(tabAttr);
-      const tabsContainer = tabEl.closest(`.${prefix}-tabs, ${prefix}-tabs`);
-      if (tabsContainer && panelSelector) {
-        // Deactivate siblings
-        tabsContainer.querySelectorAll(`[${tabAttr}]`).forEach((t) => {
-          t.classList.remove('is-active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tabsContainer.querySelectorAll(`.${prefix}-tab-panel`).forEach((p) => {
-          p.classList.remove('is-active');
-          p.removeAttribute('data-active');
-        });
-
-        // Activate clicked
-        tabEl.classList.add('is-active');
-        tabEl.setAttribute('aria-selected', 'true');
-        const panel = tabsContainer.querySelector(panelSelector);
-        if (panel) {
-          panel.classList.add('is-active');
-          panel.setAttribute('data-active', 'true');
-        }
-      }
+      selectTab(tabEl);
       return;
     }
 
     // 4. Click-outside to close dropdowns
     if (!target.closest(`.${prefix}-dropdown, ${prefix}-dropdown`)) {
-      document.querySelectorAll(`.${prefix}-dropdown.is-open, ${prefix}-dropdown[open]`).forEach((d) => {
-        d.classList.remove('is-open');
-        d.removeAttribute('open');
-      });
+      closeDropdowns();
     }
 
     // 5. Backdrop click to close modals & drawers
-    if (target.classList.contains(`${prefix}-modal-backdrop`)) {
-      const modal = target.closest(`.${prefix}-modal, ${prefix}-modal`);
-      if (modal) {
-        modal.removeAttribute('open');
-        modal.classList.remove('is-open');
-      }
-    }
-    if (target.classList.contains(`${prefix}-drawer-backdrop`)) {
-      const drawer = target.closest(`.${prefix}-drawer, ${prefix}-drawer`);
-      if (drawer) {
-        drawer.removeAttribute('open');
-        drawer.classList.remove('is-open');
-      }
+    if (target.classList.contains(`${prefix}-modal-backdrop`) || target.classList.contains(`${prefix}-drawer-backdrop`)) {
+      const overlay = target.closest(overlaySelector);
+      if (overlay) closeOverlay(overlay);
     }
   });
 
+  function selectTab(tabEl: HTMLElement) {
+    const panelSel = tabEl.getAttribute(tabAttr);
+    const tabsContainer = tabEl.closest(`.${prefix}-tabs, ${prefix}-tabs`);
+    if (!tabsContainer || !panelSel) return;
+    tabsContainer.querySelectorAll(`[${tabAttr}]`).forEach((t) => {
+      t.classList.remove('is-active');
+      t.setAttribute('aria-selected', 'false');
+      t.setAttribute('tabindex', '-1');
+    });
+    tabsContainer.querySelectorAll(`.${prefix}-tab-panel`).forEach((p) => {
+      p.classList.remove('is-active');
+      p.removeAttribute('data-active');
+    });
+    tabEl.classList.add('is-active');
+    tabEl.setAttribute('aria-selected', 'true');
+    tabEl.setAttribute('tabindex', '0');
+    const panel = tabsContainer.querySelector(panelSel);
+    if (panel) {
+      panel.classList.add('is-active');
+      panel.setAttribute('data-active', 'true');
+    }
+  }
+
   // Global Keyboard Shortcuts
   document.addEventListener('keydown', (event) => {
+    // Escape: close the topmost overlay, otherwise any open dropdown
     if (event.key === 'Escape') {
-      // Close open modals
-      document.querySelectorAll(`.${prefix}-modal[open], .${prefix}-modal.is-open, ${prefix}-modal[open]`).forEach((m) => {
-        m.removeAttribute('open');
-        m.classList.remove('is-open');
-      });
-      // Close open drawers
-      document.querySelectorAll(`.${prefix}-drawer[open], .${prefix}-drawer.is-open, ${prefix}-drawer[open]`).forEach((d) => {
-        d.removeAttribute('open');
-        d.classList.remove('is-open');
-      });
-      // Close open command palettes
-      document.querySelectorAll(`.${prefix}-command-palette[open], .${prefix}-command-palette.is-open, ${prefix}-command-palette[open]`).forEach((cp) => {
-        cp.removeAttribute('open');
-        cp.classList.remove('is-open');
-      });
+      const top = topOverlay();
+      if (top) {
+        event.preventDefault();
+        closeOverlay(top);
+        return;
+      }
+      closeDropdowns();
+      return;
+    }
+
+    // Tab: keep focus inside the topmost modal overlay
+    if (event.key === 'Tab') {
+      const top = topOverlay();
+      if (!top) return;
+      const panel = panelOf(top);
+      const items = Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(
+        (el) => el.offsetParent !== null || el === document.activeElement
+      );
+      if (!items.length) {
+        event.preventDefault();
+        panel.focus();
+        return;
+      }
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      const inside = active && panel.contains(active);
+      if (event.shiftKey && (!inside || active === first || active === panel)) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (!inside || active === last)) {
+        event.preventDefault();
+        first.focus();
+      }
+      return;
+    }
+
+    // Arrow keys move between tabs (WAI-ARIA tabs pattern)
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft' || event.key === 'Home' || event.key === 'End') {
+      const active = document.activeElement as HTMLElement | null;
+      if (!active || !active.hasAttribute(tabAttr)) return;
+      const container = active.closest(`.${prefix}-tabs, ${prefix}-tabs`);
+      if (!container) return;
+      const tabs = Array.from(container.querySelectorAll<HTMLElement>(`[${tabAttr}]`));
+      const i = tabs.indexOf(active);
+      if (i < 0) return;
+      let next = i;
+      if (event.key === 'ArrowRight') next = (i + 1) % tabs.length;
+      if (event.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
+      if (event.key === 'Home') next = 0;
+      if (event.key === 'End') next = tabs.length - 1;
+      event.preventDefault();
+      tabs[next].focus();
+      selectTab(tabs[next]);
+      return;
     }
 
     // Cmd+K or Ctrl+K to open Command Palette
@@ -189,16 +276,8 @@ export function initDataAttributes(prefix = 'ai') {
       const palette = document.querySelector(`.${prefix}-command-palette, ${prefix}-command-palette`);
       if (palette) {
         event.preventDefault();
-        const isOpen = palette.hasAttribute('open') || palette.classList.contains('is-open');
-        if (isOpen) {
-          palette.removeAttribute('open');
-          palette.classList.remove('is-open');
-        } else {
-          palette.setAttribute('open', '');
-          palette.classList.add('is-open');
-          const input = palette.querySelector<HTMLInputElement>(`.${prefix}-command-input`);
-          if (input) setTimeout(() => input.focus(), 50);
-        }
+        if (isOpen(palette)) closeOverlay(palette);
+        else openOverlay(palette, document.activeElement as HTMLElement | null);
       }
     }
   });

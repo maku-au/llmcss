@@ -17,7 +17,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/css/index.css" />
   <script>
     (function () {
@@ -48,6 +48,8 @@
       <a href="#qs-css">Install</a> ·
       <a href="#qs-component">Component</a> ·
       <a href="#qs-layout">Layout</a> ·
+      <a href="#qs-templates">Templates</a> ·
+      <a href="#qs-agents">Agents</a> ·
       <a href="#qs-pro">Pro</a>
     </p>
     <p class="ai-text-secondary" style="margin-top: var(--ai-space-2);">CSS library. Classes are <code>ai-*</code>. Copy CSS, use the CLI, or point an agent at MCP.</p>
@@ -81,7 +83,7 @@ npx llmcss add btn-variants</code></pre>
       <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-3);">No nested cards, no pulsing static dots, no purple gradients. Agent rules: <a href="https://github.com/maku-au/llmcss/blob/main/AGENTS.md">AGENTS.md</a>.</p>
     </section>
 
-    <section class="qs-step">
+    <section class="qs-step" id="qs-templates">
       <h2>4. Templates</h2>
       <pre><code>npx llmcss templates
 npx llmcss template get wireframe-nav-minimal
@@ -89,7 +91,7 @@ npx llmcss template blueprint saas-landing</code></pre>
       <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-3);"><a href="/templates.html">Template gallery</a></p>
     </section>
 
-    <section class="qs-step">
+    <section class="qs-step" id="qs-agents">
       <h2>5. Agents</h2>
       <pre><code>npx llmcss-mcp</code></pre>
       <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-3);">Stdio MCP. It talks to llmcss.io. Nothing to host yourself.</p>
@@ -98,7 +100,7 @@ npx llmcss template blueprint saas-landing</code></pre>
     <section class="qs-step" id="qs-pro">
       <h2>6. Pro</h2>
       <p class="ai-text-secondary" style="margin-top: var(--ai-space-2);">$9/month Polar subscription. Token is shown once on <a href="/account">/account</a>.</p>
-      <pre><code>npx llmcss login llmcss_live_...
+      <pre><code>npx llmcss login &lt;token&gt;
 npx llmcss add tool-trace</code></pre>
       <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-3);"><a href="/account">Account</a> · <a href="/#pricing">Pricing</a></p>
     </section>

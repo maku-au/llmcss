@@ -4,15 +4,6 @@
    ========================================================================== */
 
 @layer components {
-  :root {
-    --ai-ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-    --ai-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
-    --ai-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-    --ai-duration-fast: 150ms;
-    --ai-duration-normal: 250ms;
-    --ai-duration-slow: 450ms;
-  }
-
   /* --------------------------------------------------------------------------
      Keyframe Definitions
      -------------------------------------------------------------------------- */
@@ -32,9 +23,9 @@
   }
 
   @keyframes ai-indeterminate {
-    0% { left: -40%; width: 35%; }
-    50% { left: 30%; width: 50%; }
-    100% { left: 100%; width: 35%; }
+    0% { transform: translateX(-120%) scaleX(0.7); }
+    50% { transform: translateX(90%) scaleX(1.4); }
+    100% { transform: translateX(300%) scaleX(0.7); }
   }
 
   @keyframes ai-pulse-radar {
@@ -193,6 +184,9 @@
     top: 0;
     bottom: 0;
     width: 35%;
+    left: 0;
+    transform-origin: center;
+    will-change: transform;
     background: linear-gradient(
       90deg,
       transparent 0%,

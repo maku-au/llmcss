@@ -35,10 +35,12 @@
 
     /* Animation Timing */
     --ai-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-    --ai-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --ai-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --ai-ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    --ai-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
     --ai-duration-fast: 150ms;
     --ai-duration-normal: 250ms;
-    --ai-duration-slow: 400ms;
+    --ai-duration-slow: 450ms;
 
     /* Light Theme (Default) */
     --ai-bg: #f4f4f5;
@@ -49,7 +51,7 @@
     
     --ai-text-primary: #18181b;
     --ai-text-secondary: #52525b;
-    --ai-text-muted: #71717a;
+    --ai-text-muted: #66666f;
     --ai-text-inverted: #fafafa;
 
     --ai-border: rgba(24, 24, 27, 0.1);
@@ -65,12 +67,15 @@
     --ai-accent-hover: #1d4ed8;
     --ai-accent-subtle: rgba(37, 99, 235, 0.08);
     --ai-accent-rgb: 37, 99, 235;
+    --ai-accent-text: #ffffff;
 
     --ai-success: #16a34a;
+    --ai-success-text: #ffffff;
     --ai-success-subtle: rgba(22, 163, 74, 0.1);
     --ai-warning: #ea580c;
     --ai-warning-subtle: rgba(234, 88, 12, 0.1);
     --ai-danger: #dc2626;
+    --ai-danger-text: #ffffff;
     --ai-danger-subtle: rgba(220, 38, 38, 0.1);
     --ai-info: #0284c7;
     --ai-info-subtle: rgba(2, 132, 199, 0.1);
@@ -108,7 +113,7 @@
 
     --ai-text-primary: #f4f4f5;
     --ai-text-secondary: #a1a1aa;
-    --ai-text-muted: #71717a;
+    --ai-text-muted: #8b8b94;
     --ai-text-inverted: #09090b;
 
     --ai-border: rgba(255, 255, 255, 0.08);
@@ -124,12 +129,15 @@
     --ai-accent-hover: #60a5fa;
     --ai-accent-subtle: rgba(59, 130, 246, 0.15);
     --ai-accent-rgb: 59, 130, 246;
+    --ai-accent-text: #ffffff;
 
     --ai-success: #22c55e;
+    --ai-success-text: #052e16;
     --ai-success-subtle: rgba(34, 197, 94, 0.15);
     --ai-warning: #f97316;
     --ai-warning-subtle: rgba(249, 115, 22, 0.15);
     --ai-danger: #ef4444;
+    --ai-danger-text: #ffffff;
     --ai-danger-subtle: rgba(239, 68, 68, 0.15);
     --ai-info: #38bdf8;
     --ai-info-subtle: rgba(56, 189, 248, 0.15);

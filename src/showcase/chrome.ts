@@ -236,6 +236,12 @@ export async function mountChrome() {
     footer.innerHTML = footerHtml();
   }
 
+  // Catalog numbers in page copy come from the registry, never typed by hand
+  document.querySelectorAll<HTMLElement>('[data-ai-stat]').forEach((el) => {
+    const key = el.getAttribute('data-ai-stat') as keyof typeof catalogStats;
+    if (key in catalogStats) el.textContent = String(catalogStats[key]);
+  });
+
   const offer = document.getElementById('pro-offer');
   if (offer) offer.innerHTML = proOfferHtml();
 

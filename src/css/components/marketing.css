@@ -123,20 +123,6 @@
     overflow: hidden;
   }
 
-  /* Bento Grid Section */
-  .ai-bento-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--ai-space-6);
-  }
-  @media (min-width: 768px) {
-    .ai-bento-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .ai-bento-col-2 { grid-column: span 2; }
-    .ai-bento-row-2 { grid-row: span 2; }
-  }
-
   /* Pricing Grid & Cards */
   .ai-pricing-grid {
     display: grid;
@@ -293,7 +279,8 @@
       grid-template-columns: repeat(3, 1fr);
       grid-auto-rows: minmax(180px, auto);
     }
-    .ai-bento-span-2 { grid-column: span 2; }
+    .ai-bento-span-2,
+    .ai-bento-col-2 { grid-column: span 2; }
     .ai-bento-row-2 { grid-row: span 2; }
   }
 

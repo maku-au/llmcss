@@ -17,6 +17,7 @@ export class AiTabsElement extends HTMLElement {
     this.querySelectorAll('.ai-tab').forEach((t) => {
       t.classList.remove('is-active');
       t.setAttribute('aria-selected', 'false');
+      t.setAttribute('tabindex', '-1');
     });
 
     // Hide all panels
@@ -28,6 +29,7 @@ export class AiTabsElement extends HTMLElement {
     // Activate selected
     tabBtn.classList.add('is-active');
     tabBtn.setAttribute('aria-selected', 'true');
+    tabBtn.setAttribute('tabindex', '0');
 
     const panel = this.querySelector(panelSelector) || document.querySelector(panelSelector);
     if (panel) {
