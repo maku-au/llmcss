@@ -52,30 +52,22 @@ RewriteRule ^(.+?)/?$ $1.html [L]
   Header always unset X-Powered-By
 </IfModule>
 
-<FilesMatch "\\.(html)$">
-  <IfModule mod_headers.c>
-    Header set Cache-Control "public, max-age=120, must-revalidate"
-  </IfModule>
-</FilesMatch>
-
-<FilesMatch "^registry\\.json$">
-  <IfModule mod_headers.c>
-    Header set Cache-Control "public, max-age=300"
-  </IfModule>
-</FilesMatch>
-
-<FilesMatch "\\.(css|js|svg|woff2)$">
-  <IfModule mod_headers.c>
-    Header set Cache-Control "public, max-age=31536000, immutable"
-  </IfModule>
-</FilesMatch>
-
-# Stable, un-hashed stylesheet URLs that consumers link directly: short cache
-<FilesMatch "^(llmcss|cssai)\\.css$">
-  <IfModule mod_headers.c>
-    Header set Cache-Control "public, max-age=3600, must-revalidate"
-  </IfModule>
-</FilesMatch>
+# Cache policy. LiteSpeed ignores Header inside <FilesMatch> in .htaccess,
+# so match on the request path with SetEnvIf and condition each Header on it.
+SetEnvIf Request_URI "\.html$" cache_html
+SetEnvIf Request_URI "^/(components|templates|account|quickstart)/?$" cache_html
+SetEnvIf Request_URI "^/$" cache_html
+SetEnvIf Request_URI "^/(registry|templates)\.json$" cache_registry
+SetEnvIf Request_URI "^/r/[A-Za-z0-9_-]+\.json$" cache_registry
+SetEnvIf Request_URI "^/assets/" cache_immutable
+SetEnvIf Request_URI "^/(llmcss|cssai)\.css$" cache_stable
+SetEnvIf Request_URI "^/(og\.png|favicon\.svg|robots\.txt|llms(-full)?\.txt)$" cache_stable
+<IfModule mod_headers.c>
+  Header set Cache-Control "public, max-age=120, must-revalidate" env=cache_html
+  Header set Cache-Control "public, max-age=300" env=cache_registry
+  Header set Cache-Control "public, max-age=31536000, immutable" env=cache_immutable
+  Header set Cache-Control "public, max-age=3600, must-revalidate" env=cache_stable
+</IfModule>
 
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php84” package as the default “PHP” programming language.
