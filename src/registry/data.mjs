@@ -409,6 +409,97 @@ export const components = [
 </div>`,
   },
   {
+    id: 'mobile-nav-drawer',
+    name: 'Mobile Nav Drawer',
+    description: 'Header with an off-canvas menu. The panel slides in from the right on small screens; links show inline from md up. Runs on data-ai-toggle, no JS to write.',
+    category: 'marketing',
+    tier: 'free',
+    tags: ['navbar', 'mobile', 'menu', 'drawer', 'off-canvas', 'navigation', 'responsive'],
+    html: `<header class="ai-navbar">
+  <div class="ai-container ai-navbar-inner">
+    <a href="#" class="ai-brand">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="2"/><rect x="9" y="9" width="12" height="12" rx="2.5" fill="currentColor"/></svg>
+      <span>Northwind</span>
+    </a>
+    <nav class="ai-hidden ai-md:flex ai-items-center ai-gap-1" aria-label="Primary">
+      <a href="#" class="ai-nav-link is-active">Product</a>
+      <a href="#" class="ai-nav-link">Pricing</a>
+      <a href="#" class="ai-nav-link">Docs</a>
+      <a href="#" class="ai-nav-link">Changelog</a>
+    </nav>
+    <div class="ai-flex ai-items-center ai-gap-2">
+      <a href="#" class="ai-btn ai-btn-primary ai-btn-xs ai-hidden ai-md:inline-flex">Start free</a>
+      <button type="button" class="ai-btn ai-btn-outline ai-btn-xs ai-btn-icon ai-md:hidden" data-ai-toggle="drawer" data-ai-target="#nav-drawer" aria-controls="nav-drawer" aria-expanded="false" aria-label="Open menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="nav-drawer" class="ai-drawer ai-drawer-sm ai-md:hidden">
+  <div class="ai-drawer-backdrop" data-ai-dismiss="drawer"></div>
+  <div class="ai-drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="ai-drawer-header">
+      <span class="ai-drawer-title">Menu</span>
+      <button type="button" class="ai-btn ai-btn-ghost ai-btn-icon ai-btn-xs" data-ai-dismiss="drawer" aria-label="Close menu"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button>
+    </div>
+    <nav class="ai-drawer-body ai-drawer-nav" aria-label="Primary">
+      <a href="#" class="ai-sidebar-item is-active" data-ai-dismiss="drawer">Product</a>
+      <a href="#" class="ai-sidebar-item" data-ai-dismiss="drawer">Pricing</a>
+      <a href="#" class="ai-sidebar-item" data-ai-dismiss="drawer">Docs</a>
+      <a href="#" class="ai-sidebar-item" data-ai-dismiss="drawer">Changelog</a>
+    </nav>
+    <div class="ai-drawer-footer">
+      <a href="#" class="ai-btn ai-btn-primary ai-w-full">Start free</a>
+    </div>
+  </div>
+</div>`,
+  },
+  {
+    id: 'mobile-nav-dropdown',
+    name: 'Mobile Nav Dropdown',
+    description: 'Header with a menu sheet that drops down under the bar. Uses ai-drawer-top with --ai-drawer-offset set to the header height so the bar stays put.',
+    category: 'marketing',
+    tier: 'free',
+    tags: ['navbar', 'mobile', 'menu', 'dropdown', 'sheet', 'navigation', 'responsive'],
+    html: `<header class="ai-navbar">
+  <div class="ai-container ai-navbar-inner">
+    <a href="#" class="ai-brand">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="2"/><rect x="9" y="9" width="12" height="12" rx="2.5" fill="currentColor"/></svg>
+      <span>Northwind</span>
+    </a>
+    <nav class="ai-hidden ai-md:flex ai-items-center ai-gap-1" aria-label="Primary">
+      <a href="#" class="ai-nav-link is-active">Product</a>
+      <a href="#" class="ai-nav-link">Pricing</a>
+      <a href="#" class="ai-nav-link">Docs</a>
+      <a href="#" class="ai-nav-link">Changelog</a>
+    </nav>
+    <div class="ai-flex ai-items-center ai-gap-2">
+      <a href="#" class="ai-btn ai-btn-primary ai-btn-xs ai-hidden ai-md:inline-flex">Start free</a>
+      <button type="button" class="ai-btn ai-btn-outline ai-btn-xs ai-btn-icon ai-md:hidden" data-ai-toggle="drawer" data-ai-target="#nav-sheet" aria-controls="nav-sheet" aria-expanded="false" aria-label="Open menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="nav-sheet" class="ai-drawer ai-drawer-top ai-md:hidden" style="--ai-drawer-offset: 4.25rem;">
+  <div class="ai-drawer-backdrop" data-ai-dismiss="drawer"></div>
+  <div class="ai-drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
+    <nav class="ai-drawer-body ai-drawer-nav" aria-label="Primary">
+      <a href="#" class="ai-sidebar-item is-active" data-ai-dismiss="drawer">Product</a>
+      <a href="#" class="ai-sidebar-item" data-ai-dismiss="drawer">Pricing</a>
+      <a href="#" class="ai-sidebar-item" data-ai-dismiss="drawer">Docs</a>
+      <a href="#" class="ai-sidebar-item" data-ai-dismiss="drawer">Changelog</a>
+    </nav>
+    <div class="ai-drawer-footer ai-flex ai-gap-2">
+      <a href="#" class="ai-btn ai-btn-outline ai-flex-1" data-ai-dismiss="drawer">Sign in</a>
+      <a href="#" class="ai-btn ai-btn-primary ai-flex-1">Start free</a>
+    </div>
+  </div>
+</div>`,
+  },
+  {
     id: 'hero-split',
     name: 'Split Screen Marketing Hero',
     description: 'High-converting hero section with badge, strong typographic lead, CTA buttons, and UI preview.',

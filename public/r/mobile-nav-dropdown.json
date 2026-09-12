@@ -1,0 +1,17 @@
+{
+  "id": "mobile-nav-dropdown",
+  "name": "Mobile Nav Dropdown",
+  "description": "Header with a menu sheet that drops down under the bar. Uses ai-drawer-top with --ai-drawer-offset set to the header height so the bar stays put.",
+  "category": "marketing",
+  "tier": "free",
+  "tags": [
+    "navbar",
+    "mobile",
+    "menu",
+    "dropdown",
+    "sheet",
+    "navigation",
+    "responsive"
+  ],
+  "html": "<header class=\"ai-navbar\">\n  <div class=\"ai-container ai-navbar-inner\">\n    <a href=\"#\" class=\"ai-brand\">\n      <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\"><rect x=\"3\" y=\"3\" width=\"12\" height=\"12\" rx=\"2.5\" stroke=\"currentColor\" stroke-width=\"2\"/><rect x=\"9\" y=\"9\" width=\"12\" height=\"12\" rx=\"2.5\" fill=\"currentColor\"/></svg>\n      <span>Northwind</span>\n    </a>\n    <nav class=\"ai-hidden ai-md:flex ai-items-center ai-gap-1\" aria-label=\"Primary\">\n      <a href=\"#\" class=\"ai-nav-link is-active\">Product</a>\n      <a href=\"#\" class=\"ai-nav-link\">Pricing</a>\n      <a href=\"#\" class=\"ai-nav-link\">Docs</a>\n      <a href=\"#\" class=\"ai-nav-link\">Changelog</a>\n    </nav>\n    <div class=\"ai-flex ai-items-center ai-gap-2\">\n      <a href=\"#\" class=\"ai-btn ai-btn-primary ai-btn-xs ai-hidden ai-md:inline-flex\">Start free</a>\n      <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-xs ai-btn-icon ai-md:hidden\" data-ai-toggle=\"drawer\" data-ai-target=\"#nav-sheet\" aria-controls=\"nav-sheet\" aria-expanded=\"false\" aria-label=\"Open menu\">\n        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M4 7h16\"/><path d=\"M4 12h16\"/><path d=\"M4 17h16\"/></svg>\n      </button>\n    </div>\n  </div>\n</header>\n\n<div id=\"nav-sheet\" class=\"ai-drawer ai-drawer-top ai-md:hidden\" style=\"--ai-drawer-offset: 4.25rem;\">\n  <div class=\"ai-drawer-backdrop\" data-ai-dismiss=\"drawer\"></div>\n  <div class=\"ai-drawer-panel\" role=\"dialog\" aria-modal=\"true\" aria-label=\"Menu\">\n    <nav class=\"ai-drawer-body ai-drawer-nav\" aria-label=\"Primary\">\n      <a href=\"#\" class=\"ai-sidebar-item is-active\" data-ai-dismiss=\"drawer\">Product</a>\n      <a href=\"#\" class=\"ai-sidebar-item\" data-ai-dismiss=\"drawer\">Pricing</a>\n      <a href=\"#\" class=\"ai-sidebar-item\" data-ai-dismiss=\"drawer\">Docs</a>\n      <a href=\"#\" class=\"ai-sidebar-item\" data-ai-dismiss=\"drawer\">Changelog</a>\n    </nav>\n    <div class=\"ai-drawer-footer ai-flex ai-gap-2\">\n      <a href=\"#\" class=\"ai-btn ai-btn-outline ai-flex-1\" data-ai-dismiss=\"drawer\">Sign in</a>\n      <a href=\"#\" class=\"ai-btn ai-btn-primary ai-flex-1\">Start free</a>\n    </div>\n  </div>\n</div>"
+}

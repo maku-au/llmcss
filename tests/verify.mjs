@@ -36,6 +36,8 @@ const expectedNew = [
   'toast-stack',
   'marquee-ticker',
   'filter-toolbar',
+  'mobile-nav-drawer',
+  'mobile-nav-dropdown',
   'bento-editorial-pro',
   'pricing-matrix-pro',
   'ai-chat-thread',

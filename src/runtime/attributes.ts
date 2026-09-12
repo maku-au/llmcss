@@ -74,6 +74,7 @@ export function initDataAttributes(prefix = 'ai') {
             drawer.setAttribute('open', '');
             drawer.classList.add('is-open');
           }
+          toggleEl.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
         }
       } else if (action === 'dropdown') {
         const dropdown = toggleEl.closest(`.${prefix}-dropdown, ${prefix}-dropdown`);

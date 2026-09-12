@@ -6,9 +6,9 @@
   /* Navigation Bar */
   .ai-navbar {
     width: 100%;
-    height: 4.25rem;
+    min-height: 4.25rem;
     border-bottom: 1px solid var(--ai-border);
-    background-color: rgba(var(--ai-surface-0), 0.8);
+    background-color: color-mix(in srgb, var(--ai-surface-0) 88%, transparent);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     display: flex;
@@ -20,9 +20,12 @@
 
   .ai-navbar-inner {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    gap: 0 var(--ai-space-3);
     width: 100%;
+    min-height: 4.25rem;
   }
 
   .ai-brand {
@@ -50,10 +53,17 @@
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--ai-text-secondary);
-    transition: color var(--ai-duration-fast);
+    text-decoration: none;
+    padding: var(--ai-space-1) var(--ai-space-2);
+    border-radius: var(--ai-radius-xs);
+    transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
   }
-  .ai-nav-link:hover {
+  .ai-nav-link:hover,
+  .ai-nav-link.is-active {
     color: var(--ai-text-primary);
+  }
+  .ai-nav-link.is-active {
+    background-color: var(--ai-surface-1);
   }
 
   /* Hero Section */

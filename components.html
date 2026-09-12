@@ -26,73 +26,6 @@
     })();
   </script>
   <style>
-    /* --------------------------------------------------------------------------
-       Site Header & Precision Elements
-       -------------------------------------------------------------------------- */
-    .site-nav-link {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--ai-text-secondary);
-      text-decoration: none;
-      transition: color var(--ai-duration-fast);
-      padding: 0.25rem 0.5rem;
-      border-radius: var(--ai-radius-xs);
-    }
-    .site-nav-link:hover,
-    .site-nav-link.is-active {
-      color: var(--ai-text-primary);
-      background-color: var(--ai-surface-1);
-    }
-    /* Refined Precision Search Bar */
-    .search-bar-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-    .search-bar-wrap .search-icon {
-      position: absolute;
-      left: 0.75rem;
-      color: var(--ai-text-muted);
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-    }
-    .search-bar-wrap .search-input {
-      width: 100%;
-      height: 2rem;
-      padding: 0 0.75rem 0 2.25rem;
-      font-family: var(--ai-font-sans);
-      font-size: 0.8125rem;
-      background-color: var(--ai-surface-1);
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-xs);
-      color: var(--ai-text-primary);
-      transition: all var(--ai-duration-fast);
-    }
-    .search-bar-wrap .search-input::placeholder {
-      color: var(--ai-text-muted);
-      font-size: 0.8125rem;
-    }
-    .search-bar-wrap .search-input:focus {
-      background-color: var(--ai-surface-0);
-      border-color: var(--ai-border-strong);
-      outline: none;
-      box-shadow: 0 0 0 1px var(--ai-border-strong);
-    }
-    .search-bar-wrap .search-kbd {
-      position: absolute;
-      right: 0.5rem;
-      padding: 0.1rem 0.35rem;
-      font-family: var(--ai-font-mono);
-      font-size: 0.625rem;
-      color: var(--ai-text-muted);
-      background: var(--ai-surface-2);
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-xs);
-      pointer-events: none;
-      line-height: 1.2;
-    }
-
     /* Micro Badges */
     .nav-count {
       font-family: var(--ai-font-sans);
@@ -467,6 +400,12 @@
       transition: width 0.3s ease;
       margin: 0 auto;
     }
+    /* Sticky demo headers stay inside their card */
+    .component-preview-canvas .ai-navbar {
+      position: relative;
+      top: auto;
+      z-index: 1;
+    }
     .component-preview-canvas.preview-has-dropdown,
     .component-preview-canvas:has(.ai-dropdown) {
       min-height: 16rem;
@@ -789,58 +728,6 @@
        ========================================================================== -->
   </main>
   <footer id="site-footer" class="site-footer"></footer>
-  <footer hidden>
-    <div class="ai-container" style="max-width: 1440px;">
-      <div class="ai-footer-grid">
-        <div>
-          <a href="#top" class="ai-brand" style="font-size: 1.25rem; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0;">
-              <rect x="3" y="3" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <rect x="9" y="9" width="12" height="12" rx="2.5" fill="currentColor"/>
-            </svg>
-            <span style="font-family: var(--ai-font-display); font-weight: 800; letter-spacing: -0.03em;">LLMCSS</span>
-          </a>
-          <p class="ai-text-secondary ai-text-xs" style="margin-top: var(--ai-space-3); max-width: 20rem; line-height: 1.6;">
-            The non-AI looking UI framework built for agentic coders and human craftsmen.
-          </p>
-          <div class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-4);">
-            &copy; 2026 LLMCSS Project (<a href="https://llmcss.io" target="_blank" style="color: inherit; text-decoration: underline;">llmcss.io</a>). Open-source core under MIT.
-          </div>
-        </div>
-
-        <div>
-          <span class="ai-font-semibold ai-text-xs ai-font-sans ai-text-muted" style="text-transform: uppercase; letter-spacing: 0.05em;">Catalog</span>
-          <ul class="ai-footer-list" style="margin-top: var(--ai-space-3);">
-            <li><a href="#collection" class="site-nav-link" style="padding: 0;">Primitives (29)</a></li>
-            <li><a href="#collection" class="site-nav-link" style="padding: 0;">Marketing (8)</a></li>
-            <li><a href="#collection" class="site-nav-link" style="padding: 0;">Application UI (8)</a></li>
-            <li><a href="#collection" class="site-nav-link" style="padding: 0;">E-Commerce (2)</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <span class="ai-font-semibold ai-text-xs ai-font-sans ai-text-muted" style="text-transform: uppercase; letter-spacing: 0.05em;">Agent Docs</span>
-          <ul class="ai-footer-list" style="margin-top: var(--ai-space-3);">
-            <li><a href="/llms.txt" target="_blank" class="site-nav-link" style="padding: 0;">llms.txt</a></li>
-            <li><a href="/llms-full.txt" target="_blank" class="site-nav-link" style="padding: 0;">llms-full.txt</a></li>
-            <li><a href="/registry.json" target="_blank" class="site-nav-link" style="padding: 0;">registry.json</a></li>
-            <li><a href="#comparison" class="site-nav-link" style="padding: 0;">Architecture Matrix</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <span class="ai-font-semibold ai-text-xs ai-font-sans ai-text-muted" style="text-transform: uppercase; letter-spacing: 0.05em;">CLI &amp; Tooling</span>
-          <ul class="ai-footer-list" style="margin-top: var(--ai-space-3);">
-            <li><code class="ai-text-xs">npx llmcss list</code></li>
-            <li><code class="ai-text-xs">npx llmcss add &lt;id&gt;</code></li>
-            <li><code class="ai-text-xs">npx llmcss validate</code></li>
-            <li><code class="ai-text-xs">npx llmcss-mcp</code></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
-
   <!-- PRO SUBSCRIPTION PAYWALL MODAL -->
   <div id="license-modal" class="ai-modal">
     <div class="ai-modal-backdrop" data-ai-dismiss="modal"></div>
@@ -901,7 +788,7 @@
   <!-- ==========================================================================
        GLOBAL CORE DESIGN SYSTEM STYLER DRAWER
        ========================================================================== -->
-  <div class="ai-drawer" id="core-styler-drawer">
+  <div class="ai-drawer ai-drawer-no-lock" id="core-styler-drawer">
     <div class="ai-drawer-backdrop" data-ai-dismiss="drawer"></div>
     <div class="ai-drawer-panel">
       <div class="ai-drawer-header" style="padding: 1.125rem 1.5rem; border-bottom: 1px solid var(--ai-border);">

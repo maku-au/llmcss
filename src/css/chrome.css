@@ -1,4 +1,7 @@
 @layer utilities {
+  /* Site-only glue. Everything visible in the header, menu, and footer is
+     library markup (ai-navbar, ai-drawer, ai-footer); this file just adds
+     the skip link and site-specific sizing. */
   .skip-link {
     position: absolute;
     left: 0.75rem;
@@ -14,174 +17,49 @@
     top: 0.75rem;
   }
 
-  /* Header: one row on desktop; on small screens the catalog search drops to a second row */
-  .site-header {
-    border-bottom: 1px solid var(--ai-border);
-    background: var(--ai-surface-0);
-    position: sticky;
-    top: 0;
-    z-index: 45;
-  }
-  .site-header-inner {
+  .site-header .ai-navbar-inner {
     max-width: 1440px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0 0.75rem;
   }
-  .site-brand,
-  .site-nav,
-  .site-header-actions {
-    min-height: 3.75rem;
+  /* Keep the first row full height when search wraps underneath */
+  .site-header .ai-navbar-inner > :not(.site-search) {
+    min-height: 4.25rem;
     display: flex;
     align-items: center;
   }
-  .site-brand {
+  .site-header .ai-brand {
     font-size: 1.125rem;
-    gap: 0.5rem;
-    text-decoration: none;
-  }
-  .site-brand span {
-    font-family: var(--ai-font-display);
     font-weight: 800;
     letter-spacing: -0.03em;
   }
-  .site-nav {
-    display: none;
-    gap: 0.15rem;
+  .site-search {
+    padding-bottom: var(--ai-space-3);
   }
-  .site-header-search {
-    order: 10;
-    flex-basis: 100%;
-    padding-bottom: 0.625rem;
-  }
-  .site-header-search:empty {
-    display: none;
-  }
-  .site-header-search .search-bar-wrap {
+  .site-search .ai-input-group {
     width: 100%;
   }
-  .site-header-actions {
-    margin-left: auto;
-    gap: 0.5rem;
-  }
-  .site-header-actions > .site-desktop-only {
-    display: none !important;
-  }
-  .site-menu-btn {
-    width: 2rem;
+  .site-search .ai-input {
     height: 2rem;
-    padding: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 0.8125rem;
   }
-  @media (min-width: 720px) {
-    .site-header-search {
-      order: 0;
-      flex: 1 1 auto;
-      display: flex;
-      justify-content: flex-end;
+  @media (min-width: 768px) {
+    .site-search {
       padding-bottom: 0;
     }
-    .site-header-search .search-bar-wrap {
+    .site-search .ai-input-group {
       width: 15rem;
     }
-    .site-header-actions {
-      margin-left: 0;
-    }
-  }
-  @media (min-width: 900px) {
-    .site-nav {
-      display: flex;
-    }
-    .site-header-search {
-      margin-left: auto;
-    }
-    .site-header-actions > .site-desktop-only {
-      display: inline-flex !important;
-    }
-    .site-menu-btn {
-      display: none !important;
-    }
   }
 
-  /* Mobile sheet */
-  .site-menu {
-    display: none;
-    position: fixed;
-    inset: 3.75rem 0 0 0;
-    z-index: 44;
-    background: var(--ai-surface-0);
-    padding: 0.5rem 1.25rem 2rem;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .site-menu.is-open {
-    display: block;
-  }
-  @media (min-width: 900px) {
-    .site-menu.is-open {
-      display: none;
-    }
-  }
-  html.site-menu-open {
-    overflow: hidden;
-  }
-  .site-menu-links {
-    display: flex;
-    flex-direction: column;
-  }
-  .site-menu-links .site-nav-link {
-    display: block;
-    padding: 0.9rem 0.25rem;
-    border-bottom: 1px solid var(--ai-border-subtle);
-    border-radius: 0;
-    font-size: 1rem;
-    color: var(--ai-text-primary);
-  }
-  .site-menu-links .site-nav-link.is-active {
-    background: none;
-    font-weight: 600;
-  }
-  .site-menu-actions {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1.25rem;
-  }
-  .site-menu-actions .ai-btn {
-    flex: 1 1 0;
-  }
-
-  .site-nav-link {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--ai-text-secondary);
-    text-decoration: none;
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--ai-radius-xs);
-  }
-  .site-nav-link:hover,
-  .site-nav-link.is-active {
-    color: var(--ai-text-primary);
-    background-color: var(--ai-surface-1);
-  }
-
-  .site-footer {
-    border-top: 1px solid var(--ai-border);
+  .site-footer.ai-footer {
     padding: var(--ai-space-12) 0;
-    background: var(--ai-surface-0);
   }
   .site-footer .ai-footer-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--ai-space-8);
+    max-width: 1440px;
+    margin-bottom: 0;
   }
-  @media (min-width: 800px) {
+  @media (min-width: 769px) {
     .site-footer .ai-footer-grid {
       grid-template-columns: 1.4fr 1fr 1fr 1fr;
     }
   }
-  .site-footer ul { list-style: none; margin: 0.75rem 0 0; padding: 0; }
-  .site-footer li { margin: 0.35rem 0; }
 }

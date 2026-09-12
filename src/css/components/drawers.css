@@ -47,6 +47,61 @@
     animation: ai-slide-right var(--ai-duration-normal) var(--ai-ease-out);
   }
 
+  /* Narrow panel for navigation menus */
+  .ai-drawer-sm .ai-drawer-panel {
+    max-width: 20rem;
+  }
+
+  /* Dropdown sheet: hangs from the top edge. Set --ai-drawer-offset to the
+     sticky header height so the header stays visible above the sheet. */
+  .ai-drawer-top .ai-drawer-panel,
+  .ai-drawer-bottom .ai-drawer-panel {
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: none;
+    border-left: none;
+  }
+
+  .ai-drawer-top .ai-drawer-backdrop {
+    top: var(--ai-drawer-offset, 0px);
+  }
+
+  .ai-drawer-top .ai-drawer-panel {
+    top: var(--ai-drawer-offset, 0px);
+    bottom: auto;
+    max-height: calc(100dvh - var(--ai-drawer-offset, 0px));
+    border-bottom: 1px solid var(--ai-border);
+    animation: ai-slide-down var(--ai-duration-normal) var(--ai-ease-out);
+  }
+
+  /* Bottom sheet */
+  .ai-drawer-bottom .ai-drawer-panel {
+    top: auto;
+    bottom: 0;
+    max-height: 85dvh;
+    border-top: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-xl) var(--ai-radius-xl) 0 0;
+    animation: ai-slide-up var(--ai-duration-normal) var(--ai-ease-out);
+  }
+
+  /* Vertical link list inside a drawer body */
+  .ai-drawer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ai-space-1);
+  }
+
+  .ai-drawer-nav .ai-sidebar-item {
+    padding: var(--ai-space-3);
+    font-size: 1rem;
+  }
+
+  /* Lock page scroll while a drawer is open. Opt out with .ai-drawer-no-lock. */
+  html:has(.ai-drawer.is-open:not(.ai-drawer-no-lock), .ai-drawer[open]:not(.ai-drawer-no-lock)) {
+    overflow: hidden;
+  }
+
   .ai-drawer-header {
     padding: var(--ai-space-5) var(--ai-space-6);
     border-bottom: 1px solid var(--ai-border-subtle);
@@ -81,5 +136,15 @@
   @keyframes ai-slide-right {
     from { transform: translateX(-100%); }
     to { transform: translateX(0); }
+  }
+
+  @keyframes ai-slide-down {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+  }
+
+  @keyframes ai-slide-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
   }
 }
