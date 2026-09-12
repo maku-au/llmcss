@@ -23,6 +23,8 @@
     (function () {
       var t = localStorage.getItem('cssai-theme');
       if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-ai-theme', t);
+      var f = localStorage.getItem('cssai-focus');
+      if (f && f !== 'accent') document.documentElement.setAttribute('data-ai-focus', f);
     })();
   </script>
 </head>
@@ -429,6 +431,21 @@
             <button class="ai-styler-segmented-item ai-styler-density-btn" data-density="spacious">Spacious</button>
           </div>
         </div>
+
+        <!-- Focus ring -->
+        <div class="ai-styler-section">
+          <div class="ai-styler-section-header">
+            <span class="ai-styler-section-title">Focus ring</span>
+            <span class="ai-styler-section-val" id="styler-focus-label">Accent</span>
+          </div>
+          <div class="ai-styler-segmented-track">
+            <button class="ai-styler-segmented-item ai-styler-focus-btn is-active" data-focus="accent">Accent</button>
+            <button class="ai-styler-segmented-item ai-styler-focus-btn" data-focus="neutral">Neutral</button>
+            <button class="ai-styler-segmented-item ai-styler-focus-btn" data-focus="thin">Thin</button>
+            <button class="ai-styler-segmented-item ai-styler-focus-btn" data-focus="none">Off</button>
+          </div>
+        </div>
+
 
         <!-- 4. Accent Color -->
         <div class="ai-styler-section">

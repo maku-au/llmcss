@@ -14,6 +14,7 @@
 - **Hardware-Accelerated Motion**: Pure CSS spinners, indeterminate progress bars, tactile sliders, shimmer skeletons, with strict `prefers-reduced-motion` compliance.
 - **Dual-Mode**: Standard semantic HTML with `data-ai-*` attributes or Light-DOM custom elements (`<ai-modal>`, `<ai-tabs>`, `<ai-dropdown>`, etc.).
 - **Curated Archetypes**: Theme skins via `[data-ai-skin="executive|fintech|obsidian|editorial|enterprise|emerald|violet|rose"]`.
+- **Focus ring**: tokens `--ai-focus-color`, `--ai-focus-width`, `--ai-focus-offset`, `--ai-tap-highlight`. Presets on `<html>`: `data-ai-focus="neutral|thin|none"`. Rings only appear for `:focus-visible` (keyboard), never on tap.
 - **Monetization**: Free open-source primitives and starter sections (MIT); Pro catalog for advanced bento, SaaS dashboards, and e-commerce flows.
 
 ## The 4 Design Direction Archetypes

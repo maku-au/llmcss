@@ -214,6 +214,29 @@ export function proOfferHtml(): string {
   </p>`;
 }
 
+// Focus ring preference: data-ai-focus="accent|neutral|thin|none" on <html>,
+// persisted so it survives navigation. The head script applies it before paint.
+const FOCUS_LABELS: Record<string, string> = { accent: 'Accent', neutral: 'Neutral', thin: 'Thin', none: 'Off' };
+
+export function applyFocusPreference(value: string) {
+  const v = FOCUS_LABELS[value] ? value : 'accent';
+  if (v === 'accent') document.documentElement.removeAttribute('data-ai-focus');
+  else document.documentElement.setAttribute('data-ai-focus', v);
+  localStorage.setItem('cssai-focus', v);
+  document.querySelectorAll('.ai-styler-focus-btn').forEach((btn) => {
+    btn.classList.toggle('is-active', btn.getAttribute('data-focus') === v);
+  });
+  const label = document.getElementById('styler-focus-label');
+  if (label) label.textContent = FOCUS_LABELS[v];
+}
+
+function bindFocusPreference() {
+  applyFocusPreference(localStorage.getItem('cssai-focus') || 'accent');
+  document.querySelectorAll('.ai-styler-focus-btn').forEach((btn) => {
+    btn.addEventListener('click', () => applyFocusPreference(btn.getAttribute('data-focus') || 'accent'));
+  });
+}
+
 export async function mountChrome() {
   const licensed = !!getBrowserToken() && (await validateToken(getBrowserToken())).valid;
 
@@ -237,6 +260,8 @@ export async function mountChrome() {
     footer.classList.add('ai-footer');
     footer.innerHTML = footerHtml();
   }
+
+  bindFocusPreference();
 
   // Catalog numbers in page copy come from the registry, never typed by hand
   document.querySelectorAll<HTMLElement>('[data-ai-stat]').forEach((el) => {

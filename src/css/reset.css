@@ -5,6 +5,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: var(--ai-tap-highlight, transparent);
   }
 
   html {

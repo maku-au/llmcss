@@ -105,6 +105,8 @@ When generating new views, assign a clear archetype rather than defaulting to ge
 
 ---
 
+- **Focus ring**: `--ai-focus-color` (default: accent at 65%), `--ai-focus-width` (2px), `--ai-focus-offset` (2px) compose `--ai-focus-ring`. Presets on `<html>`: `data-ai-focus="neutral"` (text-colored ring), `"thin"` (1.5px, no offset), `"none"` (no ring; keyboard users lose the indicator, so prefer neutral or thin). Rings render only on `:focus-visible`, never on tap or click. `--ai-tap-highlight` (default transparent) controls the tint mobile browsers flash on tap.
+
 ## 4. Modern Responsive & Layout Patterns
 
 - Container Queries (Self-Responsive Elements):
