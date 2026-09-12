@@ -1,0 +1,220 @@
+/**
+ * Machine-readable manifests for agents, generated from the CSS itself so they
+ * cannot drift from the stylesheet:
+ *   public/classes.json  every ai-* class, its family, and which prefixes exist
+ *   public/tokens.json   every --ai-* token with base, dark, and per-skin values
+ *   public/states.json   every is-* state class and data-ai-* attribute
+ */
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const cssDir = path.resolve(__dirname, '../css');
+const publicDir = path.resolve(__dirname, '../../public');
+
+function cssFiles(dir) {
+  const out = [];
+  for (const f of fs.readdirSync(dir)) {
+    const p = path.join(dir, f);
+    if (fs.statSync(p).isDirectory()) out.push(...cssFiles(p));
+    else if (p.endsWith('.css') && !p.endsWith('showcase.css')) out.push(p);
+  }
+  return out;
+}
+
+// Split a stylesheet into { selector, body } pairs, descending into @layer/@media/@supports.
+function rules(css, ctx = '') {
+  const out = [];
+  let i = 0;
+  css = css.replace(/\/\*[\s\S]*?\*\//g, '');
+  while (i < css.length) {
+    const open = css.indexOf('{', i);
+    if (open < 0) break;
+    const head = css.slice(i, open).trim();
+    let depth = 1;
+    let j = open + 1;
+    while (j < css.length && depth > 0) {
+      if (css[j] === '{') depth++;
+      else if (css[j] === '}') depth--;
+      j++;
+    }
+    const body = css.slice(open + 1, j - 1);
+    if (head.startsWith('@layer') || head.startsWith('@supports') || head.startsWith('@container')) {
+      out.push(...rules(body, ctx));
+    } else if (head.startsWith('@media')) {
+      out.push(...rules(body, head.replace(/^@media\s*/, '')));
+    } else if (!head.startsWith('@')) {
+      out.push({ selector: head, body, media: ctx });
+    }
+    i = j;
+  }
+  return out;
+}
+
+const FAMILY_BY_PREFIX = [
+  ["ai-(p|px|py|pt|pr|pb|pl|ps|pe|m|mx|my|mt|mr|mb|ml|ms|me)-", "spacing"],
+  ["ai--(m|mx|my|mt|mr|mb|ml|ms|me)-", "spacing"],
+  ['ai-(gap|gap-x|gap-y)-', 'spacing'],
+  ['ai-(w|h|min-w|max-w|min-h|max-h|size)-', 'sizing'],
+  ['ai-(text|font|leading|tracking|truncate|line-clamp|uppercase|lowercase|capitalize|italic|underline|whitespace|break)', 'typography'],
+  ['ai-(flex|items|justify|self|content|place|order|grow|shrink|basis)', 'flex'],
+  ['ai-(grid|col|row|auto-cols|auto-rows)', 'grid'],
+  ['ai-(block|inline|hidden|table|contents|sr-only|not-sr-only)', 'display'],
+  ['ai-(static|fixed|absolute|relative|sticky|inset|top|right|bottom|left|start|end|z)-?', 'position'],
+  ['ai-(border|rounded|ring|outline|divide)', 'borders'],
+  ['ai-(bg|shadow|opacity|backdrop|blur|filter|mix)', 'effects'],
+  ['ai-(overflow|scroll|snap|touch|select|pointer|cursor|resize|will-change|transition|duration|ease|delay|animate|transform|rotate|scale|translate|skew|origin)', 'interaction'],
+  ['ai-(container|cq|section|aspect|columns|object)', 'layout'],
+];
+
+function familyFor(cls, file) {
+  const base = path.basename(file, '.css');
+  if (base !== 'utilities') return base === 'animations' ? 'animations' : base;
+  const bare = cls.replace(/^ai-(sm|md|lg|xl|cq)\\?:/, 'ai-');
+  for (const [re, fam] of FAMILY_BY_PREFIX) if (new RegExp('^' + re).test(bare)) return fam;
+  return 'utilities';
+}
+
+function buildClasses(files) {
+  const classes = new Map();
+  const states = new Map();
+  for (const file of files) {
+    const css = fs.readFileSync(file, 'utf8');
+    for (const r of rules(css)) {
+      const sel = r.selector;
+      for (const m of sel.matchAll(/\.((?:ai-)?(?:sm|md|lg|xl|cq)\\:[\w-]+(?:\\\/[\w-]+)?|ai--?[\w-]+(?:\\\/[\w-]+)?|is-[\w-]+)/g)) {
+        const raw = m[1].replace('\\:', ':').replace('\\/', '/');
+        if (raw.startsWith('is-')) {
+          const entry = states.get(raw) || { class: raw, components: new Set() };
+          for (const c of sel.matchAll(/\.(ai-[a-z][\w-]*)/g)) entry.components.add(c[1]);
+          states.set(raw, entry);
+          continue;
+        }
+        const pm = raw.match(/^ai-(sm|md|lg|xl|cq):(.+)$/);
+        if (pm) {
+          const key = 'ai-' + pm[2];
+          const entry = classes.get(key) || { class: key, family: familyFor(key, file), file: path.relative(cssDir, file), variants: new Set() };
+          entry.variants.add(pm[1]);
+          classes.set(key, entry);
+          continue;
+        }
+        const entry = classes.get(raw) || { class: raw, family: familyFor(raw, file), file: path.relative(cssDir, file), variants: new Set() };
+        if (!entry.file) entry.file = path.relative(cssDir, file);
+        classes.set(raw, entry);
+      }
+    }
+  }
+  const list = [...classes.values()]
+    .map((c) => ({ class: c.class, family: c.family, file: c.file, variants: [...c.variants].sort() }))
+    .sort((a, b) => a.class.localeCompare(b.class));
+  const stateList = [...states.values()]
+    .map((s) => ({ class: s.class, usedBy: [...s.components].sort() }))
+    .sort((a, b) => a.class.localeCompare(b.class));
+  return { list, stateList };
+}
+
+function parseTokens(file, into, labelFor) {
+  const css = fs.readFileSync(file, 'utf8');
+  for (const r of rules(css)) {
+    const label = labelFor(r.selector);
+    if (!label) continue;
+    for (const m of r.body.matchAll(/(--ai-[\w-]+)\s*:\s*([^;]+);/g)) {
+      const name = m[1];
+      const entry = into.get(name) || { token: name, values: {} };
+      if (!(label in entry.values)) entry.values[label] = m[2].trim();
+      into.set(name, entry);
+    }
+  }
+}
+
+function buildTokens() {
+  const tokens = new Map();
+  const skinOf = (sel) => (sel.match(/data-ai-skin="([\w-]+)"/) || [])[1];
+  const dark = (sel) => /(?<!:not\()\[data-ai-theme="dark"\]/.test(sel);
+  parseTokens(path.join(cssDir, 'tokens.css'), tokens, (sel) => {
+    if (/^:root\s*$/.test(sel) || sel === ':root, .ai-light' || /^:root(,|$)/.test(sel)) return dark(sel) ? 'dark' : 'light';
+    if (dark(sel)) return 'dark';
+    if (/data-ai-focus="([\w-]+)"/.test(sel)) return 'focus:' + sel.match(/data-ai-focus="([\w-]+)"/)[1];
+    return null;
+  });
+  parseTokens(path.join(cssDir, 'themes.css'), tokens, (sel) => {
+    const skin = skinOf(sel);
+    if (!skin) return null;
+    return dark(sel) ? `${skin}:dark` : skin;
+  });
+  return [...tokens.values()].sort((a, b) => a.token.localeCompare(b.token));
+}
+
+function buildManifests() {
+  const files = cssFiles(cssDir);
+  const { list, stateList } = buildClasses(files);
+  const now = new Date().toISOString();
+  const families = {};
+  for (const c of list) families[c.family] = (families[c.family] || 0) + 1;
+
+  fs.writeFileSync(
+    path.join(publicDir, 'classes.json'),
+    JSON.stringify(
+      {
+        version: '0.1.0',
+        generatedAt: now,
+        note: 'Every ai-* class in llmcss.css. variants lists the responsive (sm 640px, md 768px, lg 1024px, xl 1280px) and container-query (cq) prefixes that exist for the class, written as ai-md:name. Nothing outside this list exists; do not invent classes.',
+        stats: { total: list.length, families },
+        classes: list,
+      },
+      null,
+      1
+    ) + '\n'
+  );
+
+  const tokens = buildTokens();
+  fs.writeFileSync(
+    path.join(publicDir, 'tokens.json'),
+    JSON.stringify(
+      {
+        version: '0.1.0',
+        generatedAt: now,
+        note: 'Every --ai-* custom property with its value per context: light (default), dark (data-ai-theme="dark"), <skin> and <skin>:dark (data-ai-skin), focus:<preset> (data-ai-focus). Override any of them on :root or a container.',
+        stats: { total: tokens.length },
+        tokens,
+      },
+      null,
+      1
+    ) + '\n'
+  );
+
+  const attributes = [
+    { attribute: 'data-ai-theme', values: ['light', 'dark'], on: 'html or any container', appliedBy: 'author', purpose: 'Color mode. Dark is never applied from the OS setting; set it yourself.' },
+    { attribute: 'data-ai-skin', values: ['obsidian', 'editorial', 'executive', 'fintech', 'enterprise', 'emerald', 'violet', 'rose'], on: 'html or any container', appliedBy: 'author', purpose: 'Archetype. The first five change surfaces, radius and type; emerald, violet and rose change only the accent.' },
+    { attribute: 'data-ai-density', values: ['compact', 'spacious'], on: 'html or any container', appliedBy: 'author', purpose: 'Scales the spacing steps components use for padding. Absent means standard.' },
+    { attribute: 'data-ai-focus', values: ['neutral', 'thin', 'none'], on: 'html', appliedBy: 'author', purpose: 'Focus ring preset. Absent means the accent ring.' },
+    { attribute: 'data-ai-toggle', values: ['modal', 'drawer', 'dropdown', 'accordion'], on: 'button', appliedBy: 'author', purpose: 'Runtime toggle. modal and drawer need data-ai-target="#id"; dropdown needs a .ai-dropdown ancestor; accordion needs a .ai-accordion-item ancestor.' },
+    { attribute: 'data-ai-target', values: ['#id'], on: 'the toggle button', appliedBy: 'author', purpose: 'Selector of the modal or drawer to open.' },
+    { attribute: 'data-ai-dismiss', values: ['modal', 'drawer', 'toast'], on: 'button or backdrop inside the overlay', appliedBy: 'author', purpose: 'Closes the nearest overlay of that kind.' },
+    { attribute: 'data-ai-tab', values: ['#panel-id'], on: 'button.ai-tab inside .ai-tabs', appliedBy: 'author', purpose: 'Activates the panel; the runtime syncs aria-selected and tabindex.' },
+    { attribute: 'data-ai-toast-position', values: ['top-right', 'top-center', 'top-left', 'bottom-left', 'bottom-center'], on: '.ai-toast-container', appliedBy: 'author', purpose: 'Where the toast stack sits. Absent means bottom-right.' },
+    { attribute: 'open', values: [''], on: '.ai-modal, .ai-drawer, .ai-accordion-item, .ai-dropdown', appliedBy: 'runtime or author', purpose: 'Open state. Interchangeable with the is-open class; the runtime sets both.' },
+    { attribute: 'aria-expanded', values: ['true', 'false'], on: 'toggle buttons', appliedBy: 'runtime', purpose: 'Kept in sync for every trigger that points at an overlay, dropdown, or accordion item.' },
+    { attribute: 'aria-sort', values: ['ascending', 'descending'], on: 'th inside .ai-table', appliedBy: 'author', purpose: 'Shows the sort indicator.' },
+    { attribute: 'aria-selected', values: ['true'], on: 'tr inside .ai-table', appliedBy: 'author', purpose: 'Highlights the selected row.' },
+  ];
+  fs.writeFileSync(
+    path.join(publicDir, 'states.json'),
+    JSON.stringify(
+      {
+        version: '0.1.0',
+        generatedAt: now,
+        note: 'State classes are set by the author for static markup or by the runtime for interactive components. usedBy lists the classes that appear in the same selector.',
+        states: stateList,
+        attributes,
+      },
+      null,
+      1
+    ) + '\n'
+  );
+
+  console.log(`[build-manifests] classes.json: ${list.length} classes, tokens.json: ${tokens.length} tokens, states.json: ${stateList.length} states`);
+}
+
+buildManifests();

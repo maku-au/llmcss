@@ -7,6 +7,12 @@ Native CSS component library for humans and AI coding agents. No build step, no 
 <button class="ai-btn ai-btn-primary">Save</button>
 ```
 
+Add the runtime only if you use modal, drawer, dropdown, accordion, tabs, or toasts:
+
+```html
+<script src="https://llmcss.io/llmcss.js" defer></script>
+```
+
 That is the whole install. Everything else in this repo is optional: a CLI, an MCP server, and a JSON registry for agents that would rather fetch markup than guess it.
 
 - Site: [llmcss.io](https://llmcss.io)
@@ -74,6 +80,16 @@ Ids only. Full metadata: `npx llmcss info <id>` or `https://llmcss.io/r/{id}.jso
 
 **Ecommerce (2):** product-card, cart-drawer-pro*
 
+## Machine-readable manifests
+
+Generated from the stylesheet at build time, so they cannot drift:
+
+- `/classes.json`: every `ai-*` class, its family, and which `ai-sm:`, `ai-md:`, `ai-lg:`, `ai-xl:`, `ai-cq:` prefixes exist for it
+- `/tokens.json`: every `--ai-*` token with its value per theme, skin, and focus preset
+- `/states.json`: every `is-*` state class and `data-ai-*` attribute, with allowed values
+
+The MCP server exposes them as `list_classes`, `list_tokens`, and `list_states`.
+
 ## Customizing
 
 Set attributes on `<html>`:
@@ -91,7 +107,7 @@ Everything is a CSS variable under `@layer tokens` in `src/css/tokens.css`, load
 
 ## Accessibility
 
-The runtime (loaded automatically once you include the JS, not required for CSS-only use) guarantees, for every modal, drawer, and command palette:
+The runtime (`https://llmcss.io/llmcss.js`, not required for CSS-only use) guarantees, for every modal, drawer, and command palette:
 
 - Focus moves into the panel on open and back to the trigger on close.
 - Tab is trapped inside the topmost overlay; Escape closes only that overlay.

@@ -1,0 +1,14 @@
+{
+  "id": "select-native",
+  "name": "Select",
+  "description": "Styled native select with label, hint, and an error state. Multi-select uses the size attribute.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "select",
+    "form",
+    "dropdown",
+    "input"
+  ],
+  "html": "<div class=\"ai-flex ai-flex-col ai-gap-4\" style=\"max-width: 24rem;\">\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label\" for=\"sel-plan\">Plan</label>\n    <select id=\"sel-plan\" class=\"ai-select\">\n      <option>Starter</option>\n      <option selected>Team</option>\n      <option>Enterprise</option>\n    </select>\n  </div>\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label\" for=\"sel-region\">Data region</label>\n    <select id=\"sel-region\" class=\"ai-select\" aria-invalid=\"true\" aria-describedby=\"sel-region-err\">\n      <option value=\"\">Choose a region</option>\n      <option>Sydney</option>\n      <option>Frankfurt</option>\n    </select>\n    <p class=\"ai-form-hint\" id=\"sel-region-err\" style=\"color: var(--ai-danger);\">A region is required before the first deploy.</p>\n  </div>\n</div>"
+}

@@ -130,3 +130,47 @@
     }
   }
 }
+
+@layer components {
+  /* Density, sticky header, selection, and sort affordances */
+  .ai-table-compact th,
+  .ai-table-compact td {
+    padding: var(--ai-space-2) var(--ai-space-3);
+  }
+  .ai-table-sticky thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  .ai-table tbody tr[aria-selected="true"] {
+    background-color: var(--ai-accent-subtle);
+  }
+  .ai-table th[aria-sort] {
+    cursor: pointer;
+    user-select: none;
+  }
+  .ai-table th[aria-sort]::after {
+    content: "";
+    display: inline-block;
+    width: 0.5em;
+    height: 0.5em;
+    margin-inline-start: 0.4em;
+    vertical-align: middle;
+    background-color: currentColor;
+    opacity: 0.35;
+    -webkit-mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 4l7 8H5z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 4l7 8H5z'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+  .ai-table th[aria-sort="ascending"]::after {
+    opacity: 1;
+  }
+  .ai-table th[aria-sort="descending"]::after {
+    opacity: 1;
+    transform: rotate(180deg);
+  }
+  .ai-table td.ai-cell-num,
+  .ai-table th.ai-cell-num {
+    text-align: end;
+    font-variant-numeric: tabular-nums;
+  }
+}

@@ -7,7 +7,7 @@ LLMCSS is an open, pure-CSS UI framework engineered to eliminate generic AI desi
 
 ## 1. The 11 Non-Negotiable Anti-Slop Laws
 
-Every AI coding agent generating interfaces with LLMCSS must strictly comply with these ten laws:
+Every AI coding agent generating interfaces with LLMCSS must strictly comply with these eleven laws:
 
 ### Law 1: Never Nest Containers (Eliminate "Cardocalypse")
 Do not place a bordered card inside another bordered card (`.ai-card` inside `.ai-card`). Nested boxes create visual clutter and waste screen real estate.
@@ -107,6 +107,10 @@ When generating new views, assign a clear archetype rather than defaulting to ge
 
 - **Focus ring**: `--ai-focus-color` (default: accent at 65%), `--ai-focus-width` (2px), `--ai-focus-offset` (2px) compose `--ai-focus-ring`. Presets on `<html>`: `data-ai-focus="neutral"` (text-colored ring), `"thin"` (1.5px, no offset), `"none"` (no ring; keyboard users lose the indicator, so prefer neutral or thin). Rings render only on `:focus-visible`, never on tap or click. `--ai-tap-highlight` (default transparent) controls the tint mobile browsers flash on tap.
 
+## 3b. Runtime contract
+
+Load `<script src="https://llmcss.io/llmcss.js" defer></script>` once per page when you use any of: `data-ai-toggle="modal|drawer|dropdown|accordion"`, `data-ai-dismiss="modal|drawer|toast"`, `data-ai-tab="#panel"`, or the custom elements `<ai-modal> <ai-drawer> <ai-dropdown> <ai-accordion> <ai-tabs> <ai-toast> <ai-command-palette>`. Required DOM shape: modal and drawer toggles carry `data-ai-target="#id"` and the target has a `.ai-modal-backdrop` or `.ai-drawer-backdrop` child plus a `.ai-modal-box` or `.ai-drawer-panel`; a dropdown toggle sits inside `.ai-dropdown` next to `.ai-dropdown-menu`; an accordion toggle sits inside `.ai-accordion-item` above `.ai-accordion-content`; tabs are `button.ai-tab[data-ai-tab="#panel-id"]` inside `.ai-tabs-list` inside `.ai-tabs`, panels are `.ai-tab-panel`. State is written as both the `open` attribute and the `is-open` class (tabs: `is-active` and `aria-selected`); author either one for static markup. Guarantees: focus trap and focus return for modal and drawer, `inert` on the rest of the page, Escape closes only the topmost overlay, `aria-expanded` kept in sync on every trigger, arrow keys on tabs. Without the script every component still renders; only toggling needs JavaScript (or a native `<details class="ai-collapse">`).
+
 ## 4. Modern Responsive & Layout Patterns
 
 - Container Queries (Self-Responsive Elements):
@@ -130,7 +134,7 @@ When generating new views, assign a clear archetype rather than defaulting to ge
   - States: `is-loading` (displays spinner without layout shift)
 - Card: `<div class="ai-card"><div class="ai-card-header">...</div><div class="ai-card-body">...</div><div class="ai-card-footer">...</div></div>`
 - Status Pip: `<span class="ai-status-pip ai-status-pip-success"></span>` (Steady jewel; add `.is-streaming` for active data streams)
-- Form Control: `<div class="ai-form-group"><label class="ai-label is-required">Email</label><input type="email" class="ai-input" aria-invalid="false" /></div>`
+- Form Control: `<div class="ai-form-group"><label class="ai-form-label is-required">Email</label><input type="email" class="ai-input" aria-invalid="false" /></div>`
 - Badge: `<span class="ai-badge ai-badge-success ai-badge-dot">Online</span>`
 - Modal: `<div class="ai-modal" id="my-modal"><div class="ai-modal-backdrop" data-ai-dismiss="modal"></div><div class="ai-modal-box">...</div></div>`
 - Web Component Modal: `<ai-modal id="my-modal">...</ai-modal>`
@@ -159,7 +163,7 @@ When generating new views, assign a clear archetype rather than defaulting to ge
 
 ## 7. Wireframe Section Templates & Page Blueprints
 
-LLMCSS provides 14 canonical wireframe section templates with explicit layout guidance, plus 4 full-page composition recipes.
+LLMCSS provides 18 canonical wireframe section templates with explicit layout guidance, plus 4 full-page composition recipes.
 
 ### Section Templates Catalog
 

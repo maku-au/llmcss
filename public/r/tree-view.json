@@ -1,0 +1,16 @@
+{
+  "id": "tree-view",
+  "name": "Tree View",
+  "description": "Nested, collapsible tree on native details for files, folders, or resources. Arbitrary depth, no JavaScript.",
+  "category": "application",
+  "tier": "free",
+  "tags": [
+    "tree",
+    "files",
+    "folders",
+    "nested",
+    "details",
+    "css-only"
+  ],
+  "html": "<ul class=\"ai-tree\" style=\"max-width: 20rem;\">\n  <li>\n    <details open>\n      <summary>src</summary>\n      <ul>\n        <li>\n          <details open>\n            <summary>components</summary>\n            <ul>\n              <li><a href=\"#\" class=\"ai-tree-leaf is-active\">navbar.html</a></li>\n              <li><a href=\"#\" class=\"ai-tree-leaf\">footer.html</a></li>\n            </ul>\n          </details>\n        </li>\n        <li><a href=\"#\" class=\"ai-tree-leaf\">index.html</a></li>\n      </ul>\n    </details>\n  </li>\n  <li>\n    <details>\n      <summary>public</summary>\n      <ul><li><a href=\"#\" class=\"ai-tree-leaf\">llmcss.css</a></li></ul>\n    </details>\n  </li>\n  <li><a href=\"#\" class=\"ai-tree-leaf\">README.md</a></li>\n</ul>"
+}

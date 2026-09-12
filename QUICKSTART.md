@@ -18,6 +18,14 @@ This page also lives at [llmcss.io/quickstart](https://llmcss.io/quickstart). Ga
 </html>
 ```
 
+Interactive components (modal, drawer, dropdown, accordion, tabs, toasts) need the runtime. One tag, no build:
+
+```html
+<script src="https://llmcss.io/llmcss.js" defer></script>
+```
+
+It registers `data-ai-toggle` / `data-ai-dismiss` / `data-ai-tab` handling and the `<ai-modal>` style custom elements. Everything else is CSS-only and works without it.
+
 Dark mode: `data-ai-theme="dark"` on `<html>`. Skin: `data-ai-skin="obsidian"` (also `editorial`, `executive`, `fintech`, `enterprise`, `emerald`, `violet`, `rose`).
 
 Optional fonts (body, display, mono):

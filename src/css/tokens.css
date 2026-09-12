@@ -177,3 +177,30 @@
     --ai-focus-width: 0px;
   }
 }
+
+@layer tokens {
+  /* Density: scales the spacing steps components use for padding */
+  [data-ai-density="compact"] {
+    --ai-space-2: 0.375rem;
+    --ai-space-3: 0.5rem;
+    --ai-space-4: 0.75rem;
+    --ai-space-5: 1rem;
+    --ai-space-6: 1.125rem;
+    --ai-space-8: 1.5rem;
+  }
+  [data-ai-density="spacious"] {
+    --ai-space-2: 0.625rem;
+    --ai-space-3: 0.875rem;
+    --ai-space-4: 1.25rem;
+    --ai-space-5: 1.5rem;
+    --ai-space-6: 1.75rem;
+    --ai-space-8: 2.25rem;
+  }
+  /* Stronger hairlines when the OS asks for more contrast */
+  @media (prefers-contrast: more) {
+    :root {
+      --ai-border: var(--ai-border-strong);
+      --ai-border-subtle: var(--ai-border);
+    }
+  }
+}

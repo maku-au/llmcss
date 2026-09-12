@@ -101,3 +101,325 @@
     color: var(--ai-text-muted);
   }
 }
+
+@layer components {
+  /* ------------------------------------------------------------------------
+     Parity primitives: collapse, carousel, floating label, list group,
+     button group, close, level, media, panel, notification, file input,
+     title and subtitle
+     ------------------------------------------------------------------------ */
+
+  /* Collapse on native details: no JavaScript, animates height via grid rows */
+  .ai-collapse {
+    border: 0;
+  }
+  .ai-collapse > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ai-space-2);
+    font-weight: 500;
+    color: var(--ai-text-primary);
+  }
+  .ai-collapse > summary::-webkit-details-marker {
+    display: none;
+  }
+  .ai-collapse > summary::after {
+    content: "";
+    width: 0.5em;
+    height: 0.5em;
+    border-inline-end: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform var(--ai-duration-normal) var(--ai-ease-out);
+    color: var(--ai-text-muted);
+  }
+  .ai-collapse[open] > summary::after {
+    transform: rotate(-135deg);
+  }
+  .ai-collapse-body {
+    padding-top: var(--ai-space-3);
+    color: var(--ai-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Carousel: scroll snap, swipe on touch, arrow keys when focused. Add
+     .ai-carousel-controls buttons that call scrollBy, or leave it swipe-only. */
+  .ai-carousel {
+    display: flex;
+    gap: var(--ai-space-4);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: var(--ai-space-2);
+  }
+  .ai-carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .ai-carousel > * {
+    flex: 0 0 var(--ai-carousel-item, 100%);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .ai-carousel-peek > * {
+    flex-basis: var(--ai-carousel-item, 85%);
+  }
+  .ai-carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: var(--ai-space-2);
+    margin-top: var(--ai-space-3);
+  }
+
+  /* Floating label: <div class="ai-form-float"><input class="ai-input" placeholder=" "><label>Email</label></div> */
+  .ai-form-float {
+    position: relative;
+  }
+  .ai-form-float > .ai-input,
+  .ai-form-float > .ai-textarea,
+  .ai-form-float > .ai-select {
+    padding-top: 1.25rem;
+    padding-bottom: 0.375rem;
+    min-height: 3.25rem;
+  }
+  .ai-form-float > label {
+    position: absolute;
+    inset-inline-start: var(--ai-space-3);
+    top: 50%;
+    translate: 0 -50%;
+    font-size: 0.9375rem;
+    color: var(--ai-text-muted);
+    pointer-events: none;
+    transform-origin: left center;
+    transition: translate var(--ai-duration-fast) var(--ai-ease-out), scale var(--ai-duration-fast) var(--ai-ease-out), color var(--ai-duration-fast);
+  }
+  .ai-form-float > :focus + label,
+  .ai-form-float > :not(:placeholder-shown) + label,
+  .ai-form-float > .ai-select + label {
+    translate: 0 calc(-50% - 0.7rem);
+    scale: 0.78;
+    color: var(--ai-text-secondary);
+  }
+  .ai-form-float > .ai-textarea + label {
+    top: 1.25rem;
+  }
+
+  /* List group */
+  .ai-list-group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-lg);
+    background-color: var(--ai-surface-0);
+    overflow: hidden;
+  }
+  .ai-list-group-item {
+    display: flex;
+    align-items: center;
+    gap: var(--ai-space-3);
+    padding: var(--ai-space-3) var(--ai-space-4);
+    font-size: 0.9375rem;
+    color: var(--ai-text-primary);
+    text-decoration: none;
+  }
+  .ai-list-group-item + .ai-list-group-item {
+    border-top: 1px solid var(--ai-border-subtle);
+  }
+  a.ai-list-group-item:hover,
+  button.ai-list-group-item:hover {
+    background-color: var(--ai-surface-1);
+  }
+  .ai-list-group-item.is-active {
+    background-color: var(--ai-accent-subtle);
+    color: var(--ai-text-primary);
+  }
+  .ai-list-group-item.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .ai-list-group-flush {
+    border-inline: 0;
+    border-radius: 0;
+  }
+
+  /* Button group: joined borders, one radius */
+  .ai-btn-group {
+    display: inline-flex;
+  }
+  .ai-btn-group > .ai-btn {
+    border-radius: 0;
+  }
+  .ai-btn-group > .ai-btn:first-child {
+    border-start-start-radius: var(--ai-radius-base);
+    border-end-start-radius: var(--ai-radius-base);
+  }
+  .ai-btn-group > .ai-btn:last-child {
+    border-start-end-radius: var(--ai-radius-base);
+    border-end-end-radius: var(--ai-radius-base);
+  }
+  .ai-btn-group > .ai-btn + .ai-btn {
+    margin-inline-start: -1px;
+  }
+  .ai-btn-group > .ai-btn:hover,
+  .ai-btn-group > .ai-btn:focus-visible {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Close button, shared by modal, drawer, toast, alert, chip */
+  .ai-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: none;
+    border-radius: var(--ai-radius-sm);
+    background: transparent;
+    color: var(--ai-text-muted);
+    cursor: pointer;
+    transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
+  }
+  .ai-close::before {
+    content: "";
+    width: 0.875rem;
+    height: 0.875rem;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M18 6 6 18'/%3E%3Cpath d='m6 6 12 12'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M18 6 6 18'/%3E%3Cpath d='m6 6 12 12'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+  .ai-close:hover {
+    color: var(--ai-text-primary);
+    background-color: var(--ai-surface-1);
+  }
+
+  /* Level: left and right clusters on one line */
+  .ai-level {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ai-space-4);
+    flex-wrap: wrap;
+  }
+  .ai-level-left,
+  .ai-level-right {
+    display: flex;
+    align-items: center;
+    gap: var(--ai-space-3);
+  }
+
+  /* Media object: figure beside content */
+  .ai-media {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--ai-space-4);
+  }
+  .ai-media-figure {
+    flex: 0 0 auto;
+  }
+  .ai-media-body {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  /* Panel: titled surface with a list body */
+  .ai-panel {
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-lg);
+    background-color: var(--ai-surface-0);
+    overflow: hidden;
+  }
+  .ai-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ai-space-3);
+    padding: var(--ai-space-3) var(--ai-space-4);
+    border-bottom: 1px solid var(--ai-border);
+    background-color: var(--ai-surface-1);
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+  .ai-panel-body {
+    padding: var(--ai-space-4);
+  }
+  .ai-panel > .ai-list-group {
+    border: 0;
+    border-radius: 0;
+  }
+
+  /* Notification: page-level closable block (bigger than an alert) */
+  .ai-notification {
+    position: relative;
+    padding: var(--ai-space-5) var(--ai-space-6);
+    padding-inline-end: 3.5rem;
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-lg);
+    background-color: var(--ai-surface-1);
+    color: var(--ai-text-primary);
+    line-height: 1.6;
+  }
+  .ai-notification > .ai-close {
+    position: absolute;
+    top: var(--ai-space-3);
+    inset-inline-end: var(--ai-space-3);
+  }
+  .ai-notification-info { background-color: var(--ai-accent-subtle); border-color: color-mix(in srgb, var(--ai-accent) 25%, var(--ai-border)); }
+  .ai-notification-success { background-color: var(--ai-success-subtle); border-color: color-mix(in srgb, var(--ai-success) 25%, var(--ai-border)); }
+  .ai-notification-warning { background-color: var(--ai-warning-subtle); border-color: color-mix(in srgb, var(--ai-warning) 25%, var(--ai-border)); }
+  .ai-notification-danger { background-color: var(--ai-danger-subtle); border-color: color-mix(in srgb, var(--ai-danger) 25%, var(--ai-border)); }
+
+  /* Styled native file input */
+  .ai-file-input {
+    display: block;
+    width: 100%;
+    font-size: 0.875rem;
+    color: var(--ai-text-secondary);
+  }
+  .ai-file-input::file-selector-button {
+    margin-inline-end: var(--ai-space-3);
+    padding: 0.4rem 0.875rem;
+    border: 1px solid var(--ai-border-strong);
+    border-radius: var(--ai-radius-base);
+    background-color: var(--ai-surface-0);
+    color: var(--ai-text-primary);
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color var(--ai-duration-fast);
+  }
+  .ai-file-input::file-selector-button:hover {
+    background-color: var(--ai-surface-1);
+  }
+  .ai-file-input:focus-visible {
+    outline: none;
+    box-shadow: var(--ai-focus-ring);
+    border-radius: var(--ai-radius-base);
+  }
+
+  /* Title and subtitle for non-heading elements */
+  .ai-title {
+    font-family: var(--ai-font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--ai-text-primary);
+    text-wrap: balance;
+  }
+  .ai-subtitle {
+    margin-top: var(--ai-space-2);
+    font-size: 1.0625rem;
+    color: var(--ai-text-secondary);
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+  .ai-title-sm { font-size: 1.25rem; }
+  .ai-title-lg { font-size: 2.25rem; }
+}

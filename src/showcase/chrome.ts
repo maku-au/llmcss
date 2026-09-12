@@ -101,7 +101,7 @@ function headerHtml(licensed: boolean): string {
   const search = searchHtml();
   return `<div class="ai-container ai-container-lg ai-navbar-inner">
     ${BRAND}
-    <nav class="ai-nav-links" id="desktop-nav" aria-label="Primary">
+    <nav class="ai-nav-links ai-hidden ai-lg:flex" id="desktop-nav" aria-label="Primary">
       ${NAV.map(([href, id, label]) => navLink(href, id, label)).join('\n      ')}
     </nav>
     ${search ? `<div class="ai-navbar-search ai-w-full ai-order-last ai-md:w-auto ai-md:order-none ai-md:ml-auto">${search}</div>` : ''}
@@ -281,7 +281,8 @@ export async function mountChrome() {
   // The drawer runtime handles open, close, backdrop, and Escape. Opening the
   // Styler from inside the menu should close the menu first.
   document.getElementById('site-menu-styler-btn')?.addEventListener('click', () => {
-    menu?.classList.remove('is-open');
-    menu?.removeAttribute('open');
+    const api = (window as any).LLMCSS;
+    if (api?.close && menu) api.close(menu);
+    else { menu?.classList.remove('is-open'); menu?.removeAttribute('open'); }
   });
 }

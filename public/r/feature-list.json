@@ -1,0 +1,14 @@
+{
+  "id": "feature-list",
+  "name": "Feature List",
+  "description": "Plain checklist of capabilities with a mark. Reads faster than a grid when there are more than six items.",
+  "category": "marketing",
+  "tier": "free",
+  "tags": [
+    "features",
+    "list",
+    "checklist",
+    "pricing"
+  ],
+  "html": "<ul class=\"ai-feature-list\" style=\"max-width: 28rem;\">\n  <li><span class=\"ai-mark ai-mark-yes\" role=\"img\" aria-label=\"Included\"></span> Unlimited environments per project</li>\n  <li><span class=\"ai-mark ai-mark-yes\" role=\"img\" aria-label=\"Included\"></span> Preview URL for every pull request</li>\n  <li><span class=\"ai-mark ai-mark-yes\" role=\"img\" aria-label=\"Included\"></span> Audit log with 90 day retention</li>\n  <li><span class=\"ai-mark ai-mark-warn\" role=\"img\" aria-label=\"Limited\"></span> SSO on Team and above</li>\n  <li><span class=\"ai-mark ai-mark-no\" role=\"img\" aria-label=\"Not included\"></span> Dedicated IP addresses</li>\n</ul>"
+}

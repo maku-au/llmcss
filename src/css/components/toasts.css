@@ -111,3 +111,24 @@
     to { width: 0%; }
   }
 }
+
+@layer components {
+  /* Placement: data-ai-toast-position="top-right|top-center|top-left|bottom-left|bottom-center" */
+  .ai-toast-container[data-ai-toast-position^="top"] { top: var(--ai-space-6); bottom: auto; }
+  .ai-toast-container[data-ai-toast-position$="left"] { left: var(--ai-space-6); right: auto; }
+  .ai-toast-container[data-ai-toast-position$="center"] { left: 50%; right: auto; transform: translateX(-50%); }
+  /* Timing adjustable: the countdown pauses while the pointer or focus is on it */
+  .ai-toast-countdown:hover .ai-toast-progress,
+  .ai-toast-countdown:focus-within .ai-toast-progress {
+    animation-play-state: paused;
+  }
+}
+
+@layer components {
+  .ai-toast-info {
+    border-color: color-mix(in srgb, var(--ai-accent) 35%, var(--ai-border));
+  }
+  .ai-toast-info .ai-toast-icon {
+    color: var(--ai-accent);
+  }
+}

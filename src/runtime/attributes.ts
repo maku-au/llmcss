@@ -45,7 +45,14 @@ export function initDataAttributes(prefix = 'ai') {
     document.querySelectorAll(sel).forEach((t) => t.setAttribute('aria-expanded', open ? 'true' : 'false'));
   }
 
+  function prune() {
+    for (let i = stack.length - 1; i >= 0; i--) {
+      if (!stack[i].el.isConnected || !isOpen(stack[i].el)) stack.splice(i, 1);
+    }
+  }
+
   function applyInert() {
+    prune();
     const modal = stack.filter((s) => !isModeless(s.el)).map((s) => s.el);
     Array.from(document.body.children).forEach((child) => {
       if (child.tagName === 'SCRIPT' || child.tagName === 'STYLE') return;
@@ -88,6 +95,7 @@ export function initDataAttributes(prefix = 'ai') {
   }
 
   function topOverlay(): Element | null {
+    prune();
     for (let i = stack.length - 1; i >= 0; i--) {
       if (!isModeless(stack[i].el)) return stack[i].el;
     }
@@ -105,6 +113,12 @@ export function initDataAttributes(prefix = 'ai') {
       d.querySelectorAll(`[${toggleAttr}="dropdown"]`).forEach((t) => t.setAttribute('aria-expanded', 'false'));
     });
   }
+
+  // Public API for scripts that open or close overlays themselves
+  (window as any).LLMCSS = Object.assign((window as any).LLMCSS || {}, {
+    open: (el: Element | string) => { const t = typeof el === 'string' ? document.querySelector(el) : el; if (t) openOverlay(t, null); },
+    close: (el: Element | string) => { const t = typeof el === 'string' ? document.querySelector(el) : el; if (t) closeOverlay(t); },
+  });
 
   // Global Click Delegator
   document.addEventListener('click', (event) => {

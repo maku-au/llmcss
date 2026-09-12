@@ -315,7 +315,7 @@
   }
 
   .ai-sidebar-badge {
-    margin-left: auto;
+    margin-inline-start: auto;
     font-size: 0.625rem;
     font-weight: 600;
     padding: 0.125rem 0.375rem;
@@ -359,7 +359,7 @@
   }
 
   .ai-notification-item.is-unread {
-    background-color: rgba(var(--ai-accent-rgb, 59, 130, 246), 0.04);
+    background-color: color-mix(in srgb, var(--ai-accent) 5%, transparent);
   }
 
   .ai-notification-dot {
@@ -369,6 +369,9 @@
     background-color: var(--ai-accent);
     flex-shrink: 0;
     margin-top: 0.375rem;
+  }
+  .ai-notification-dot.is-read {
+    background-color: transparent;
   }
 
   .ai-notification-content {

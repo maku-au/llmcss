@@ -10,8 +10,30 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import { execFileSync } from 'child_process';
+import { fileURLToPath } from 'url';
 import { components } from '../src/registry/data.mjs';
 import { wireframeTemplates, pageBlueprints, assembleBlueprintHtml } from '../src/registry/templates-data.mjs';
+import { validateMarkup, structuralAudit, LEGACY_MAP as SHARED_LEGACY_MAP } from '../src/registry/validate.mjs';
+
+// Manifests generated at build time from the CSS (public/*.json). When running
+// from a checkout they are read from disk; otherwise fetched from the origin.
+function readManifest(name) {
+  try {
+    const here = path.dirname(fileURLToPath(import.meta.url));
+    const local = path.resolve(here, '../public', name);
+    if (fs.existsSync(local)) return JSON.parse(fs.readFileSync(local, 'utf8'));
+  } catch { /* fall through */ }
+  try {
+    const origin = (process.env.LLMCSS_ORIGIN || 'https://llmcss.io').replace(/\/$/, '');
+    const out = execFileSync('curl', ['-sS', '-L', '--max-time', '15', origin + '/' + name], { encoding: 'utf8' });
+    return JSON.parse(out);
+  } catch {
+    return null;
+  }
+}
+function manifestMissing(name) {
+  return { isError: true, content: [{ type: 'text', text: 'Manifest ' + name + ' is not available locally or at the origin.' }] };
+}
 
 function mcpToken() {
   if (process.env.LLMCSS_TOKEN) return process.env.LLMCSS_TOKEN;
@@ -74,17 +96,34 @@ const TOOLS = [
   },
   {
     name: 'list_tokens',
-    description: 'List LLMCSS design tokens including color variables, surface levels, radii scales, and spacing.',
+    description: 'List every --ai-* design token with its value per context (light, dark, each skin, focus presets). Generated from tokens.css at build time. Filter by group: color, space, radius, shadow, typography, motion, focus, all.',
     inputSchema: {
       type: 'object',
       properties: {
-        category: { type: 'string', enum: ['radii', 'surfaces', 'typography', 'motion', 'all'], description: 'Token group' },
+        group: { type: 'string', enum: ['color', 'space', 'radius', 'shadow', 'typography', 'motion', 'focus', 'all'], description: 'Token group (default all)' },
+        context: { type: 'string', description: 'Return only this context value, e.g. light, dark, obsidian, executive:dark (default: all contexts)' },
       },
     },
   },
   {
+    name: 'list_classes',
+    description: 'List every ai-* class that exists in llmcss.css, with its family (spacing, sizing, typography, flex, grid, buttons, cards, ...) and which responsive (sm/md/lg/xl) and container-query (cq) prefixes exist for it. Use this instead of guessing class names.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        family: { type: 'string', description: 'Filter by family, e.g. spacing, sizing, typography, flex, grid, display, position, borders, effects, interaction, layout, buttons, inputs, cards, badges, tables, marketing, dashboard' },
+        prefix: { type: 'string', description: 'Filter classes starting with this text, e.g. ai-btn or ai-text-' },
+      },
+    },
+  },
+  {
+    name: 'list_states',
+    description: 'List every is-* state class (and which components use it) plus every data-ai-* attribute the library and runtime understand, with allowed values and what they do.',
+    inputSchema: { type: 'object', properties: {} },
+  },
+  {
     name: 'llmcss_get_harness',
-    description: 'Retrieve the LLMCSS Design Direction Harness, 10 Anti-Slop laws, and specific archetype tokens for agents.',
+    description: 'Retrieve the LLMCSS Design Direction Harness, 11 Anti-Slop laws, and specific archetype tokens for agents.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -321,17 +360,8 @@ function handleToolCall(name, args = {}) {
 
     case 'validate_markup': {
       const html = args.html || '';
-      const issues = [];
-      for (const [legacy, modern] of Object.entries(LEGACY_MAP)) {
-        const regex = new RegExp(`\\bclass(Name)?=["'][^"']*\\b${legacy}\\b[^"']*["']`);
-        if (regex.test(html)) {
-          issues.push({
-            legacyClass: legacy,
-            suggestedClass: modern,
-            message: `Replace legacy/unprefixed class "${legacy}" with "${modern}".`,
-          });
-        }
-      }
+      // Token-exact checks: unknown ai-* classes, unknown is-* states, unprefixed legacy names
+      const issues = validateMarkup(html).issues.map((i) => ({ ...i, legacyClass: i.type === 'legacy-class' ? i.class : undefined, suggestedClass: i.suggestion }));
       if (/<(?:span|div)[^>]*\bclass=["'][^"']*\b(?:ai-badge|ai-hero-badge)\b[^"']*["'][^>]*>[\s\S]{0,250}<h[1-4]\b/i.test(html) && !html.includes('ai-product-badge-float')) {
         issues.push({
           rule: 'Anti-Eyebrow Law',
@@ -359,29 +389,36 @@ function handleToolCall(name, args = {}) {
     }
 
     case 'list_tokens': {
-      const tokens = {
-        radii: {
-          '--ai-radius-xs': '2px',
-          '--ai-radius-sm': '4px',
-          '--ai-radius-md': '6px',
-          '--ai-radius-lg': '8px',
-          '--ai-radius-xl': '10px',
-        },
-        surfaces: {
-          '--ai-surface-0': 'Base background',
-          '--ai-surface-1': 'Recessed / Header surface',
-          '--ai-surface-2': 'Subtle border / chip surface',
-        },
-        motion: {
-          '--ai-ease-smooth': 'cubic-bezier(0.16, 1, 0.3, 1)',
-          '--ai-ease-spring': 'cubic-bezier(0.16, 1, 0.3, 1)',
-          '--ai-duration-fast': '150ms',
-          '--ai-duration-normal': '250ms',
-        },
+      const data = readManifest('tokens.json');
+      if (!data) return manifestMissing('tokens.json');
+      const group = (args.group || 'all').toLowerCase();
+      const groupOf = (t) => {
+        if (/^--ai-(space|touch)/.test(t)) return 'space';
+        if (/^--ai-radius/.test(t)) return 'radius';
+        if (/^--ai-shadow/.test(t)) return 'shadow';
+        if (/^--ai-(font|text-(xs|sm|base|lg|xl))/.test(t)) return 'typography';
+        if (/^--ai-(ease|duration)/.test(t)) return 'motion';
+        if (/^--ai-(focus|tap)/.test(t)) return 'focus';
+        return 'color';
       };
-      return {
-        content: [{ type: 'text', text: JSON.stringify(tokens, null, 2) }],
-      };
+      let tokens = data.tokens.filter((t) => group === 'all' || groupOf(t.token) === group);
+      if (args.context) tokens = tokens.map((t) => ({ token: t.token, value: t.values[args.context] })).filter((t) => t.value !== undefined);
+      return { content: [{ type: 'text', text: JSON.stringify({ generatedAt: data.generatedAt, note: data.note, count: tokens.length, tokens }, null, 2) }] };
+    }
+
+    case 'list_classes': {
+      const data = readManifest('classes.json');
+      if (!data) return manifestMissing('classes.json');
+      let list = data.classes;
+      if (args.family) list = list.filter((c) => c.family === String(args.family).toLowerCase());
+      if (args.prefix) list = list.filter((c) => c.class.startsWith(String(args.prefix)));
+      return { content: [{ type: 'text', text: JSON.stringify({ generatedAt: data.generatedAt, note: data.note, families: data.stats.families, count: list.length, classes: list }, null, 2) }] };
+    }
+
+    case 'list_states': {
+      const data = readManifest('states.json');
+      if (!data) return manifestMissing('states.json');
+      return { content: [{ type: 'text', text: JSON.stringify(data, null, 2) }] };
     }
 
     case 'llmcss_get_harness':
@@ -470,23 +507,12 @@ function handleToolCall(name, args = {}) {
 
     case 'llmcss_slop_audit':
     case 'cssai_slop_audit': {
-      const code = args.code || '';
+      const code = args.code || args.html || '';
       const lines = code.split('\n');
-      const issues = [];
+      const issues = structuralAudit(code).map((i) => ({ line: 0, category: i.category, tell: i.message, fix: i.category === 'Cardocalypse' ? 'Flatten hierarchy: use whitespace (--ai-space-6) or hairline rules instead of nesting cards.' : 'Use calm, steady status pips (.ai-status-pip). Reserve motion for .is-streaming.' }));
 
       lines.forEach((line, idx) => {
         const lineNum = idx + 1;
-        if (/class=["'][^"']*\bai-card\b[^"']*["']/.test(line)) {
-          const nextLines = lines.slice(idx + 1, idx + 15).join(' ');
-          if (/class=["'][^"']*\bai-card\b[^"']*["']/.test(nextLines)) {
-            issues.push({
-              line: lineNum,
-              category: 'Cardocalypse',
-              tell: 'Nested card containers detected',
-              fix: 'Flatten hierarchy: use whitespace (--ai-space-6) or hairline rules instead of nesting cards.',
-            });
-          }
-        }
         if (/ai-pulse-dot\b/.test(line) && !/is-streaming|ai-pulse-dot-streaming/.test(line)) {
           issues.push({
             line: lineNum,
@@ -654,6 +680,7 @@ rl.on('line', (line) => {
   try {
     const message = JSON.parse(line);
     const { id, method, params } = message;
+    if (id === undefined || id === null) return; // JSON-RPC notification: never respond
 
     if (method === 'initialize') {
       sendResponse(id, {

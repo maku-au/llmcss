@@ -29,7 +29,7 @@
     bottom: 0;
     right: 0;
     width: 100%;
-    max-width: 26rem;
+    max-width: var(--ai-drawer-width, 26rem);
     background-color: var(--ai-surface-0);
     border-left: 1px solid var(--ai-border);
     box-shadow: var(--ai-shadow-xl);

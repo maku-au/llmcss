@@ -1,0 +1,14 @@
+{
+  "id": "notification-block",
+  "name": "Notification",
+  "description": "Page-level closable message, larger than an inline alert. Semantic variants tint the surface, never a left stripe.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "notification",
+    "message",
+    "banner",
+    "dismiss"
+  ],
+  "html": "<div class=\"ai-flex ai-flex-col ai-gap-4\" style=\"max-width: 36rem;\">\n  <div class=\"ai-notification ai-notification-info\" role=\"status\">\n    <strong>Scheduled maintenance.</strong> The API will be read-only on Saturday 20 September from 02:00 to 02:30 UTC.\n    <button type=\"button\" class=\"ai-close\" data-ai-dismiss=\"toast\" aria-label=\"Dismiss\"></button>\n  </div>\n  <div class=\"ai-notification ai-notification-success\" role=\"status\">\n    Your workspace was upgraded. Seats renew on the 1st of each month.\n    <button type=\"button\" class=\"ai-close\" aria-label=\"Dismiss\"></button>\n  </div>\n</div>"
+}

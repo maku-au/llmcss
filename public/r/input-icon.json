@@ -1,0 +1,14 @@
+{
+  "id": "input-icon",
+  "name": "Input With Inset Icon",
+  "description": "Leading or trailing icon inside the field. The icon is decorative; the label still names the control.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "input",
+    "icon",
+    "search",
+    "form"
+  ],
+  "html": "<div class=\"ai-flex ai-flex-col ai-gap-4\" style=\"max-width: 24rem;\">\n  <div class=\"ai-input-icon-wrap\">\n    <svg class=\"ai-input-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/></svg>\n    <input class=\"ai-input\" type=\"search\" placeholder=\"Search deployments\" aria-label=\"Search deployments\" />\n  </div>\n  <div class=\"ai-input-icon-wrap is-trailing\">\n    <svg class=\"ai-input-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M16 2v4\"/><path d=\"M8 2v4\"/><path d=\"M3 10h18\"/></svg>\n    <input class=\"ai-input\" type=\"date\" aria-label=\"Start date\" />\n  </div>\n</div>"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "file-input",
+  "name": "File Input",
+  "description": "Native file input with a styled selector button. Nothing to script; the browser handles the picker.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "file",
+    "upload",
+    "input",
+    "form",
+    "css-only"
+  ],
+  "html": "<div class=\"ai-form-group\" style=\"max-width: 24rem;\">\n  <label class=\"ai-form-label\" for=\"report-file\">Import CSV</label>\n  <input id=\"report-file\" type=\"file\" class=\"ai-file-input\" accept=\".csv\" />\n  <p class=\"ai-form-hint\">Up to 25 MB. First row is treated as the header.</p>\n</div>"
+}

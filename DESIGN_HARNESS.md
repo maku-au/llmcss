@@ -7,7 +7,7 @@ The LLMCSS Design Direction Harness eliminates the generic "AI look" (puffy grad
 
 ## 1. The 11 Non-Negotiable Anti-Slop Laws
 
-Every AI coding agent generating interfaces with LLMCSS must strictly comply with these ten laws:
+Every AI coding agent generating interfaces with LLMCSS must strictly comply with these eleven laws:
 
 ### Law 1: Never Nest Containers (Eliminate "Cardocalypse")
 Do not put a bordered card inside another bordered card. Nested boxes waste screen real estate and create dizzying visual layers.

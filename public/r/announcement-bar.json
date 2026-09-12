@@ -1,0 +1,14 @@
+{
+  "id": "announcement-bar",
+  "name": "Announcement Bar",
+  "description": "Single-line bar above the header for a release or notice, with a link and a dismiss control.",
+  "category": "marketing",
+  "tier": "free",
+  "tags": [
+    "announcement",
+    "banner",
+    "top-bar",
+    "notice"
+  ],
+  "html": "<div class=\"ai-announcement\" role=\"region\" aria-label=\"Announcement\">\n  <span>LLMCSS 0.2 ships the runtime as one script tag.</span>\n  <a href=\"#\">Read the changelog</a>\n  <button type=\"button\" class=\"ai-close ai-ml-auto\" aria-label=\"Dismiss announcement\" style=\"color: inherit;\"></button>\n</div>"
+}

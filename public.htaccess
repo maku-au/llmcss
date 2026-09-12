@@ -60,7 +60,9 @@ SetEnvIf Request_URI "^/$" cache_html
 SetEnvIf Request_URI "^/(registry|templates)\.json$" cache_registry
 SetEnvIf Request_URI "^/r/[A-Za-z0-9_-]+\.json$" cache_registry
 SetEnvIf Request_URI "^/assets/" cache_immutable
+SetEnvIf Request_URI "^/v/[0-9]" cache_immutable
 SetEnvIf Request_URI "^/(llmcss|cssai)\.css$" cache_stable
+SetEnvIf Request_URI "^/llmcss\.js$" cache_stable
 SetEnvIf Request_URI "^/(og\.png|favicon\.svg|robots\.txt|llms(-full)?\.txt)$" cache_stable
 <IfModule mod_headers.c>
   Header set Cache-Control "public, max-age=120, must-revalidate" env=cache_html

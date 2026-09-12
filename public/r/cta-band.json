@@ -1,0 +1,14 @@
+{
+  "id": "cta-band",
+  "name": "CTA Band",
+  "description": "Pre-footer conversion block: one heading, one sentence, primary and secondary actions.",
+  "category": "marketing",
+  "tier": "free",
+  "tags": [
+    "cta",
+    "conversion",
+    "band",
+    "signup"
+  ],
+  "html": "<div class=\"ai-cta-band\">\n  <h2 class=\"ai-section-title\">Start with the free tier</h2>\n  <p class=\"ai-section-lead\" style=\"margin-inline: auto;\">No card required. Upgrade when you need SSO, audit export, or more than three projects.</p>\n  <div class=\"ai-cta-actions\">\n    <a href=\"#\" class=\"ai-btn ai-btn-primary ai-btn-lg\">Create account</a>\n    <a href=\"#\" class=\"ai-btn ai-btn-outline ai-btn-lg\">Talk to sales</a>\n  </div>\n</div>"
+}

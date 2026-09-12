@@ -1,0 +1,15 @@
+{
+  "id": "collapse-details",
+  "name": "Collapse",
+  "description": "Single collapsible section on native details and summary. Opens and closes with no JavaScript; the chevron rotates on [open].",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "collapse",
+    "details",
+    "disclosure",
+    "toggle",
+    "css-only"
+  ],
+  "html": "<details class=\"ai-collapse\" style=\"max-width: 32rem;\">\n  <summary>Advanced deployment options</summary>\n  <div class=\"ai-collapse-body\">\n    Region pinning, canary percentage, and rollback window. These apply to this service only and do not change organisation defaults.\n  </div>\n</details>"
+}

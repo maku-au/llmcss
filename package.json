@@ -1,9 +1,8 @@
 {
   "name": "llmcss",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Native CSS for agents and humans. MIT core; Pro is a paid catalog.",
   "type": "module",
-  "main": "dist/index.js",
   "style": "dist/llmcss.css",
   "bin": {
     "llmcss": "./bin/cssai.mjs",
@@ -13,12 +12,14 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && GOMAXPROCS=1 vite build && node src/registry/build-registry.mjs",
+    "build": "tsc && GOMAXPROCS=1 vite build && GOMAXPROCS=1 vite build --config vite.runtime.config.ts && node src/registry/build-registry.mjs && node src/registry/build-manifests.mjs",
+    "build:manifests": "node src/registry/build-manifests.mjs",
     "build:registry": "node src/registry/build-registry.mjs",
     "preview": "vite preview",
     "test": "node tests/verify.mjs",
     "test:cli": "node bin/cssai.mjs list",
-    "mcp": "node bin/cssai-mcp.mjs"
+    "mcp": "node bin/cssai-mcp.mjs",
+    "build:runtime": "vite build --config vite.runtime.config.ts"
   },
   "keywords": [
     "css",
@@ -34,5 +35,30 @@
   "devDependencies": {
     "typescript": "^5.7.3",
     "vite": "^6.1.1"
-  }
+  },
+  "exports": {
+    ".": {
+      "style": "./dist/llmcss.css",
+      "default": "./dist/llmcss.css"
+    },
+    "./llmcss.css": "./dist/llmcss.css",
+    "./registry": "./src/registry/data.mjs",
+    "./templates": "./src/registry/templates-data.mjs",
+    "./package.json": "./package.json",
+    "./llmcss.js": "./dist/llmcss.js"
+  },
+  "files": [
+    "dist/llmcss.css",
+    "bin",
+    "src/registry",
+    "src/css",
+    "src/runtime",
+    "public/llms.txt",
+    "public/llms-full.txt",
+    "AGENTS.md",
+    "DESIGN_HARNESS.md",
+    "QUICKSTART.md",
+    "LICENSE",
+    "dist/llmcss.js"
+  ]
 }

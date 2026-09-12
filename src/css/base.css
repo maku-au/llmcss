@@ -46,7 +46,7 @@
   }
 
   /* Optical Tabular Numerals for Precision Data */
-  table, .ai-table, .ai-matrix-table, .ai-kpi-value, .ai-badge-mono, [data-tabular] {
+  table, .ai-table, .ai-matrix-table, .ai-kpi-value, .ai-badge-mono, .ai-pagination-link, .ai-step-circle, .ai-pricing-price, .ai-product-price, .ai-stat-value, [data-tabular] {
     font-variant-numeric: tabular-nums;
   }
 
@@ -125,5 +125,35 @@
   }
   .ai-skip-link:focus {
     top: 0.75rem;
+  }
+}
+
+@layer base {
+  /* Calmer rag on headings and paragraphs where the browser supports it */
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer base {
+  /* Inline text link */
+  .ai-link {
+    color: var(--ai-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+    transition: color var(--ai-duration-fast);
+  }
+  .ai-link:hover {
+    color: var(--ai-accent-hover);
+  }
+  .ai-link-muted {
+    color: var(--ai-text-secondary);
+  }
+  .ai-link-muted:hover {
+    color: var(--ai-text-primary);
   }
 }

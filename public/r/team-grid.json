@@ -1,0 +1,14 @@
+{
+  "id": "team-grid",
+  "name": "Team Grid",
+  "description": "People grid for an about page: photo, name, role. Photos keep a square ratio at every width.",
+  "category": "marketing",
+  "tier": "free",
+  "tags": [
+    "team",
+    "people",
+    "about",
+    "grid"
+  ],
+  "html": "<div class=\"ai-team-grid\" style=\"max-width: 48rem;\">\n  <div class=\"ai-team-member\">\n    <div class=\"ai-team-photo\" role=\"img\" aria-label=\"Portrait placeholder\"></div>\n    <div class=\"ai-team-name\">Amara Osei</div>\n    <div class=\"ai-team-role\">Founder</div>\n  </div>\n  <div class=\"ai-team-member\">\n    <div class=\"ai-team-photo\" role=\"img\" aria-label=\"Portrait placeholder\"></div>\n    <div class=\"ai-team-name\">Jonas Berg</div>\n    <div class=\"ai-team-role\">Engineering</div>\n  </div>\n  <div class=\"ai-team-member\">\n    <div class=\"ai-team-photo\" role=\"img\" aria-label=\"Portrait placeholder\"></div>\n    <div class=\"ai-team-name\">Hana Sato</div>\n    <div class=\"ai-team-role\">Design</div>\n  </div>\n</div>"
+}

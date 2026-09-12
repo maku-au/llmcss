@@ -1,0 +1,15 @@
+{
+  "id": "product-grid",
+  "name": "Product Grid",
+  "description": "Listing grid of product cards with a sale badge and a sold-out state. Columns fill by available width.",
+  "category": "ecommerce",
+  "tier": "free",
+  "tags": [
+    "product",
+    "grid",
+    "listing",
+    "shop",
+    "ecommerce"
+  ],
+  "html": "<div class=\"ai-product-grid\">\n  <article class=\"ai-product-card\">\n    <div class=\"ai-product-media\" style=\"aspect-ratio: 4 / 3; background: var(--ai-surface-1);\"></div>\n    <div class=\"ai-product-body\">\n      <div class=\"ai-level\"><h3 class=\"ai-product-title\">Field Notebook</h3><span class=\"ai-badge ai-badge-sale ai-badge-sm\">Sale</span></div>\n      <p class=\"ai-product-price\"><span>$18</span> <s class=\"ai-product-compare-price\">$24</s></p>\n      <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-sm ai-w-full\">Add to cart</button>\n    </div>\n  </article>\n  <article class=\"ai-product-card\">\n    <div class=\"ai-product-media\" style=\"aspect-ratio: 4 / 3; background: var(--ai-surface-1);\"></div>\n    <div class=\"ai-product-body\">\n      <h3 class=\"ai-product-title\">Brass Ruler</h3>\n      <p class=\"ai-product-price\">$32</p>\n      <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-sm ai-w-full\">Add to cart</button>\n    </div>\n  </article>\n  <article class=\"ai-product-card is-sold-out\">\n    <div class=\"ai-product-media\" style=\"aspect-ratio: 4 / 3; background: var(--ai-surface-1);\"></div>\n    <div class=\"ai-product-body\">\n      <h3 class=\"ai-product-title\">Desk Mat</h3>\n      <p class=\"ai-product-price\">$48</p>\n      <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm ai-w-full\" disabled>Sold out</button>\n    </div>\n  </article>\n</div>"
+}

@@ -43,7 +43,7 @@
   }
 
   .ai-card-body {
-    padding: var(--ai-space-6);
+    padding: var(--ai-card-padding, var(--ai-space-6));
     flex: 1 1 auto;
   }
 
@@ -136,5 +136,19 @@
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-top: 5px solid var(--ai-surface-0);
+  }
+}
+
+@layer components {
+  /* Toggled popover: add .ai-popover-toggle to the anchor. Opens on hover,
+     focus-within, or .is-open; hidden otherwise. */
+  .ai-popover-toggle > .ai-popover {
+    display: none;
+  }
+  .ai-popover-toggle:hover > .ai-popover,
+  .ai-popover-toggle:focus-within > .ai-popover,
+  .ai-popover-toggle.is-open > .ai-popover,
+  .ai-popover-toggle[open] > .ai-popover {
+    display: block;
   }
 }

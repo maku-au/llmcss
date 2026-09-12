@@ -1,0 +1,14 @@
+{
+  "id": "consent-bar",
+  "name": "Consent Bar",
+  "description": "Fixed bottom bar for cookie consent with accept, reject, and manage actions. Sits above content; not a modal.",
+  "category": "marketing",
+  "tier": "free",
+  "tags": [
+    "cookie",
+    "consent",
+    "privacy",
+    "bar"
+  ],
+  "html": "<div class=\"ai-consent-bar\" role=\"region\" aria-label=\"Cookie preferences\" style=\"position: static; max-width: 40rem;\">\n  <span>We use one analytics cookie to count visits. No advertising, no cross-site tracking.</span>\n  <div class=\"ai-consent-actions\">\n    <button type=\"button\" class=\"ai-btn ai-btn-ghost ai-btn-sm\">Manage</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Reject</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-sm\">Accept</button>\n  </div>\n</div>"
+}

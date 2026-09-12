@@ -1,0 +1,15 @@
+{
+  "id": "floating-label",
+  "name": "Floating Label Field",
+  "description": "Label sits inside the field and floats up on focus or when a value is present. Pure CSS via :placeholder-shown; the placeholder must be a single space.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "form",
+    "input",
+    "label",
+    "floating",
+    "css-only"
+  ],
+  "html": "<form class=\"ai-flex ai-flex-col ai-gap-4\" style=\"max-width: 24rem;\">\n  <div class=\"ai-form-float\">\n    <input id=\"fl-email\" class=\"ai-input\" type=\"email\" placeholder=\" \" autocomplete=\"email\" />\n    <label for=\"fl-email\">Work email</label>\n  </div>\n  <div class=\"ai-form-float\">\n    <input id=\"fl-org\" class=\"ai-input\" type=\"text\" placeholder=\" \" value=\"Northwind\" />\n    <label for=\"fl-org\">Organisation</label>\n  </div>\n  <div class=\"ai-form-float\">\n    <select id=\"fl-region\" class=\"ai-select\">\n      <option>Sydney</option>\n      <option>Singapore</option>\n      <option>Frankfurt</option>\n    </select>\n    <label for=\"fl-region\">Region</label>\n  </div>\n</form>"
+}

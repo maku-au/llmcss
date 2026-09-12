@@ -33,7 +33,7 @@
     border-radius: var(--ai-radius-xl);
     box-shadow: var(--ai-shadow-xl);
     width: 100%;
-    max-width: 32rem;
+    max-width: var(--ai-modal-width, 32rem);
     max-height: calc(100vh - 4rem);
     overflow-y: auto;
     z-index: 51;
@@ -97,19 +97,4 @@
     color: var(--ai-text-primary);
   }
 
-  @keyframes ai-fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes ai-scale-up {
-    from {
-      opacity: 0;
-      transform: scale(0.96) translateY(8px);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-  }
 }

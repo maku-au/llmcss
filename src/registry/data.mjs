@@ -1,7 +1,6 @@
 function lockedPreview(name) {
   return `<div class="ai-card ai-card-pro" style="padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;">
-  <span class="tag-pro-pill">PRO</span>
-  <h3 class="ai-card-title" style="margin-top: var(--ai-space-3);">${name}</h3>
+  <h3 class="ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2">${name} <span class="ai-badge ai-badge-solid ai-badge-sm">Pro</span></h3>
   <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-2);">Source is not in the public catalog. Subscribe to copy this component.</p>
   <a class="ai-btn ai-btn-primary ai-btn-sm" style="margin-top: var(--ai-space-4);" href="/api/checkout.php">Unlock Pro ($9/mo)</a>
 </div>`;
@@ -290,11 +289,11 @@ export const components = [
     category: 'primitive',
     tier: 'free',
     tags: ['table', 'data', 'grid', 'list'],
-    html: `<div class="ai-table-container">
-  <table class="ai-table ai-table-hover">
+    html: `<div class="ai-table-container" style="max-height: 20rem;">
+  <table class="ai-table ai-table-hover ai-table-sticky">
     <thead>
       <tr>
-        <th>Repository</th>
+        <th aria-sort="ascending">Repository</th>
         <th>Environment</th>
         <th>Branch</th>
         <th>Status</th>
@@ -335,13 +334,13 @@ export const components = [
     tier: 'free',
     tags: ['alert', 'notice', 'banner'],
     html: `<div class="ai-flex ai-flex-col ai-gap-3">
-  <div class="ai-alert ai-alert-info">
+  <div class="ai-alert ai-alert-info" role="status">
     <svg class="ai-alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
     <div>
       <strong class="ai-font-semibold">Maintenance scheduled:</strong> Edge servers will undergo routine maintenance at 02:00 UTC.
     </div>
   </div>
-  <div class="ai-alert ai-alert-success">
+  <div class="ai-alert ai-alert-success" role="status">
     <svg class="ai-alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="22 4 12 14.01 9 11.01"/></svg>
     <div>
       <strong class="ai-font-semibold">Success:</strong> Your new API license key has been verified and applied to your workspace.
@@ -634,7 +633,7 @@ export const components = [
   {
     id: 'footer-multi-col',
     name: 'Multi-Column Modern Footer',
-    description: 'Comprehensive footer with brand statement, navigation columns, and copyright.',
+    description: 'Brand statement, navigation columns, and copyright. Columns collapse into an accordion below 768px.',
     category: 'marketing',
     tier: 'free',
     tags: ['footer', 'navigation', 'legal'],
@@ -650,27 +649,27 @@ export const components = [
           High-craft UI library engineered for human developers and autonomous AI agents.
         </p>
       </div>
-      <div>
-        <h4 class="ai-text-xs ai-font-sans ai-font-semibold ai-text-muted" style="text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--ai-space-4);">Product</h4>
-        <ul class="ai-footer-list">
+      <div class="ai-footer-col ai-accordion-item">
+        <h4 class="ai-text-xs ai-font-semibold ai-text-muted"><button type="button" class="ai-footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Product <svg class="ai-accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <ul class="ai-footer-list ai-accordion-content">
           <li><a href="#" class="ai-text-secondary">Components</a></li>
           <li><a href="#" class="ai-text-secondary">Marketing Sections</a></li>
           <li><a href="#" class="ai-text-secondary">SaaS Dashboard</a></li>
           <li><a href="#" class="ai-text-secondary">Themes</a></li>
         </ul>
       </div>
-      <div>
-        <h4 class="ai-text-xs ai-font-sans ai-font-semibold ai-text-muted" style="text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--ai-space-4);">Agentic Tools</h4>
-        <ul class="ai-footer-list">
+      <div class="ai-footer-col ai-accordion-item">
+        <h4 class="ai-text-xs ai-font-semibold ai-text-muted"><button type="button" class="ai-footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Agentic Tools <svg class="ai-accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <ul class="ai-footer-list ai-accordion-content">
           <li><a href="#" class="ai-text-secondary">MCP Server</a></li>
           <li><a href="#" class="ai-text-secondary">CLI Reference</a></li>
           <li><a href="#" class="ai-text-secondary">llms.txt Specification</a></li>
           <li><a href="#" class="ai-text-secondary">Agent Rules</a></li>
         </ul>
       </div>
-      <div>
-        <h4 class="ai-text-xs ai-font-sans ai-font-semibold ai-text-muted" style="text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--ai-space-4);">Company</h4>
-        <ul class="ai-footer-list">
+      <div class="ai-footer-col ai-accordion-item">
+        <h4 class="ai-text-xs ai-font-semibold ai-text-muted"><button type="button" class="ai-footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Company <svg class="ai-accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <ul class="ai-footer-list ai-accordion-content">
           <li><a href="#" class="ai-text-secondary">About</a></li>
           <li><a href="#" class="ai-text-secondary">Pricing</a></li>
           <li><a href="#" class="ai-text-secondary">Privacy</a></li>
@@ -701,7 +700,7 @@ export const components = [
     tier: 'free',
     tags: ['dashboard', 'kpi', 'metrics', 'stats'],
     html: `<div class="ai-grid ai-grid-cols-1 ai-md:grid-cols-2 ai-lg:grid-cols-4 ai-gap-4">
-  <div class="ai-kpi-card">
+  <div class="ai-kpi-card is-primary">
     <span class="ai-kpi-label">Monthly Recurring Revenue</span>
     <span class="ai-kpi-value">$124,500</span>
     <span class="ai-kpi-trend is-up">↑ +14.2% from last month</span>
@@ -844,7 +843,7 @@ export const components = [
       <span>Indeterminate (Network Stream)</span>
       <span class="ai-font-mono ai-text-secondary">Syncing...</span>
     </div>
-    <div class="ai-progress ai-progress-indeterminate">
+    <div class="ai-progress ai-progress-indeterminate" role="progressbar" aria-label="Loading" aria-busy="true">
       <div class="ai-progress-bar"></div>
     </div>
   </div>
@@ -853,7 +852,7 @@ export const components = [
       <span>Model Weights Downloaded</span>
       <span class="ai-font-mono">68%</span>
     </div>
-    <div class="ai-progress">
+    <div class="ai-progress" role="progressbar" aria-label="Upload" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100">
       <div class="ai-progress-bar" style="width: 68%;"></div>
     </div>
   </div>
@@ -862,7 +861,7 @@ export const components = [
       <span>Dataset Chunk Upload</span>
       <span class="ai-font-mono" style="color: var(--ai-success);">Active</span>
     </div>
-    <div class="ai-progress ai-progress-striped">
+    <div class="ai-progress ai-progress-striped" role="progressbar" aria-label="Sync" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
       <div class="ai-progress-bar ai-progress-bar-success" style="width: 85%;"></div>
     </div>
   </div>
@@ -946,15 +945,15 @@ export const components = [
     tier: 'free',
     tags: ['segmented', 'toggle', 'switch', 'tab', 'control'],
     html: `<div class="ai-flex ai-flex-wrap ai-gap-4 ai-items-center">
-  <div class="ai-segmented" role="tablist">
-    <button class="ai-segmented-btn is-active" role="tab" aria-selected="true">Monthly</button>
-    <button class="ai-segmented-btn" role="tab" aria-selected="false">Annual (Save 20%)</button>
-  </div>
-  <div class="ai-segmented" role="tablist">
-    <button class="ai-segmented-btn is-active" role="tab" aria-selected="true">Code</button>
-    <button class="ai-segmented-btn" role="tab" aria-selected="false">Preview</button>
-    <button class="ai-segmented-btn" role="tab" aria-selected="false">Docs</button>
-  </div>
+  <fieldset class="ai-segmented" aria-label="Billing period">
+    <label class="ai-segmented-btn"><input type="radio" name="billing" class="ai-segmented-input" checked /> Monthly</label>
+    <label class="ai-segmented-btn"><input type="radio" name="billing" class="ai-segmented-input" /> Annual (save 20%)</label>
+  </fieldset>
+  <fieldset class="ai-segmented" aria-label="View">
+    <label class="ai-segmented-btn"><input type="radio" name="view" class="ai-segmented-input" checked /> Code</label>
+    <label class="ai-segmented-btn"><input type="radio" name="view" class="ai-segmented-input" /> Preview</label>
+    <label class="ai-segmented-btn"><input type="radio" name="view" class="ai-segmented-input" /> Docs</label>
+  </fieldset>
 </div>`,
   },
   {
@@ -965,7 +964,7 @@ export const components = [
     tier: 'free',
     tags: ['popover', 'tooltip', 'anchor', 'floating', 'overlay'],
     html: `<div style="padding-top: 6.5rem; display: flex; justify-content: center;">
-  <div class="ai-popover-anchor">
+  <div class="ai-popover-anchor ai-popover-toggle">
     <div class="ai-popover">
       <div class="ai-flex ai-items-center ai-gap-2" style="margin-bottom: 0.375rem;">
         <span class="ai-pulse-dot ai-pulse-dot-success"></span>
@@ -978,7 +977,7 @@ export const components = [
       </div>
       <div class="ai-popover-arrow"></div>
     </div>
-    <button class="ai-btn ai-btn-outline ai-btn-sm">Cluster Status [Live]</button>
+    <button class="ai-btn ai-btn-outline ai-btn-sm" aria-haspopup="true">Cluster status</button>
   </div>
 </div>`,
   },
@@ -1004,28 +1003,18 @@ export const components = [
   },
   {
     id: 'marquee-ticker',
-    name: 'Infinite Marquee Logo Ticker',
-    description: 'Pure native CSS smooth infinite horizontal logo & trust badge ticker with pause-on-hover.',
+    name: 'Logo Rail',
+    description: 'Static, scannable trust rail of customer names or marks. Wraps on small screens. No auto-scroll (Law 9).',
     category: 'marketing',
     tier: 'free',
-    tags: ['marquee', 'ticker', 'logo', 'carousel', 'marketing', 'animation'],
-    html: `<div class="ai-marquee" style="background: var(--ai-surface-1); border: 1px solid var(--ai-border); border-radius: var(--ai-radius-lg); padding: var(--ai-space-4) 0;">
-  <div class="ai-marquee-track">
-    <span class="ai-font-mono ai-text-xs ai-text-muted" style="letter-spacing: 0.1em; font-weight: 600;">ALPHA NET</span>
-    <span class="ai-font-mono ai-text-xs ai-text-muted" style="letter-spacing: 0.1em; font-weight: 600;">VECTOR SYS</span>
-    <span class="ai-font-mono ai-text-xs ai-text-muted" style="letter-spacing: 0.1em; font-weight: 600;">QUANTUM LABS</span>
-    <span class="ai-font-mono ai-text-xs ai-text-muted" style="letter-spacing: 0.1em; font-weight: 600;">NEXUS DATA</span>
-    <span class="ai-font-mono ai-text-xs ai-text-muted" style="letter-spacing: 0.1em; font-weight: 600;">KINETIC CORE</span>
-    <span class="ai-font-mono ai-text-xs ai-text-muted" style="letter-spacing: 0.1em; font-weight: 600;">SYNAPSE AI</span>
-  </div>
-  <div class="ai-marquee-track" aria-hidden="true">
-    <span class="ai-font-mono ai-text-xs ai-text-muted" style="letter-spacing: 0.1em; font-weight: 600;">ALPHA NET</span>
-    <span class="ai-font-mono ai-text-xs ai-text-muted" style="letter-spacing: 0.1em; font-weight: 600;">VECTOR SYS</span>
-    <span class="ai-font-mono ai-text-xs ai-text-muted" style="letter-spacing: 0.1em; font-weight: 600;">QUANTUM LABS</span>
-    <span class="ai-font-mono ai-text-xs ai-text-muted" style="letter-spacing: 0.1em; font-weight: 600;">NEXUS DATA</span>
-    <span class="ai-font-mono ai-text-xs ai-text-muted" style="letter-spacing: 0.1em; font-weight: 600;">KINETIC CORE</span>
-    <span class="ai-font-mono ai-text-xs ai-text-muted" style="letter-spacing: 0.1em; font-weight: 600;">SYNAPSE AI</span>
-  </div>
+    tags: ['logo', 'trust', 'social-proof', 'marketing', 'rail', 'marquee'],
+    html: `<div class="ai-logo-rail" aria-label="Teams using LLMCSS">
+  <span>Northwind</span>
+  <span>Harbor Ops</span>
+  <span>Lattice Labs</span>
+  <span>Quill</span>
+  <span>Meridian</span>
+  <span>Fieldnote</span>
 </div>`,
   },
   {
@@ -1348,7 +1337,7 @@ export const components = [
     <ul class="ai-sidebar-nav">
       <li class="ai-sidebar-section">
         <span class="ai-sidebar-section-title">Main</span>
-        <a href="#" class="ai-sidebar-item is-active">
+        <a href="#" class="ai-sidebar-item is-active" aria-current="page">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           Dashboard
           <span class="ai-sidebar-badge">12</span>
@@ -1382,7 +1371,7 @@ export const components = [
     tier: 'free',
     tags: ['stats', 'dashboard', 'kpi', 'metrics', 'analytics'],
     html: `<div class="ai-grid ai-grid-cols-1 ai-md:grid-cols-4 ai-gap-4">
-  <div class="ai-kpi-card">
+  <div class="ai-kpi-card is-primary">
     <span class="ai-kpi-label">Total Revenue</span>
     <span class="ai-kpi-value">$48,290</span>
     <span class="ai-kpi-trend is-up">
@@ -1439,14 +1428,14 @@ export const components = [
     </div>
   </div>
   <div class="ai-notification-item">
-    <span class="ai-notification-dot" style="background-color: transparent;"></span>
+    <span class="ai-notification-dot is-read"></span>
     <div class="ai-notification-content">
       <p class="ai-notification-title">Weekly usage report ready</p>
       <p class="ai-notification-meta">Analytics - 2 hours ago</p>
     </div>
   </div>
   <div class="ai-notification-item">
-    <span class="ai-notification-dot" style="background-color: transparent;"></span>
+    <span class="ai-notification-dot is-read"></span>
     <div class="ai-notification-content">
       <p class="ai-notification-title">SSL certificate renewed</p>
       <p class="ai-notification-meta">Infrastructure - Yesterday at 11:42 AM</p>
@@ -1496,11 +1485,12 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'primitive',
     tier: 'free',
     tags: ['upload', 'file', 'dropzone', 'form'],
-    html: `<div class="ai-dropzone" role="button" tabindex="0">
+    html: `<label class="ai-dropzone" for="dropzone-file">
   <strong style="color: var(--ai-text-primary);">Drop a file</strong>
   <span class="ai-text-xs">PNG, JSON, or CSV up to 8MB</span>
-  <button class="ai-btn ai-btn-outline ai-btn-sm" type="button" style="margin-top: var(--ai-space-2);">Browse</button>
-</div>`,
+  <span class="ai-btn ai-btn-outline ai-btn-sm" style="margin-top: var(--ai-space-2);">Browse</span>
+  <input id="dropzone-file" type="file" class="ai-sr-only" multiple />
+</label>`,
   },
   {
     id: 'timeline-log',
@@ -1531,9 +1521,9 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'primitive',
     tier: 'free',
     tags: ['button', 'split', 'menu', 'action'],
-    html: `<div class="ai-flex">
-  <button class="ai-btn ai-btn-primary" type="button" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">Deploy</button>
-  <button class="ai-btn ai-btn-primary" type="button" aria-label="More deploy options" style="border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 0.55rem; padding-right: 0.55rem;">
+    html: `<div class="ai-btn-group">
+  <button class="ai-btn ai-btn-primary" type="button">Deploy</button>
+  <button class="ai-btn ai-btn-primary ai-btn-icon" type="button" aria-label="More deploy options" aria-haspopup="true" aria-expanded="false">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
   </button>
 </div>`,
@@ -1778,6 +1768,636 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     <span class="ai-form-label">To</span>
     <input class="ai-input" type="date" value="2026-09-12" />
   </label>
+</div>`,
+  },
+  {
+    id: 'collapse-details',
+    name: 'Collapse',
+    description: 'Single collapsible section on native details and summary. Opens and closes with no JavaScript; the chevron rotates on [open].',
+    category: 'primitive',
+    tier: 'free',
+    tags: ['collapse', 'details', 'disclosure', 'toggle', 'css-only'],
+    html: `<details class="ai-collapse" style="max-width: 32rem;">
+  <summary>Advanced deployment options</summary>
+  <div class="ai-collapse-body">
+    Region pinning, canary percentage, and rollback window. These apply to this service only and do not change organisation defaults.
+  </div>
+</details>`,
+  },
+  {
+    id: 'carousel-snap',
+    name: 'Carousel',
+    description: 'Scroll-snap carousel: swipe on touch, scroll wheel or arrow keys on desktop. Set --ai-carousel-item to show a peek of the next slide.',
+    category: 'primitive',
+    tier: 'free',
+    tags: ['carousel', 'slider', 'scroll-snap', 'gallery', 'css-only'],
+    html: `<div class="ai-carousel ai-carousel-peek" tabindex="0" aria-label="Release highlights" style="--ai-carousel-item: 72%; max-width: 40rem;">
+  <article class="ai-card" style="padding: var(--ai-space-6);">
+    <h3 class="ai-card-title">Edge caching</h3>
+    <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-2);">Static assets served from 34 regions. Median time to first byte dropped to 38 ms.</p>
+  </article>
+  <article class="ai-card" style="padding: var(--ai-space-6);">
+    <h3 class="ai-card-title">Preview environments</h3>
+    <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-2);">Every pull request gets a URL. Expires seven days after merge.</p>
+  </article>
+  <article class="ai-card" style="padding: var(--ai-space-6);">
+    <h3 class="ai-card-title">Audit log export</h3>
+    <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-2);">Stream events to your SIEM. JSON lines, hourly rotation.</p>
+  </article>
+</div>`,
+  },
+  {
+    id: 'floating-label',
+    name: 'Floating Label Field',
+    description: 'Label sits inside the field and floats up on focus or when a value is present. Pure CSS via :placeholder-shown; the placeholder must be a single space.',
+    category: 'primitive',
+    tier: 'free',
+    tags: ['form', 'input', 'label', 'floating', 'css-only'],
+    html: `<form class="ai-flex ai-flex-col ai-gap-4" style="max-width: 24rem;">
+  <div class="ai-form-float">
+    <input id="fl-email" class="ai-input" type="email" placeholder=" " autocomplete="email" />
+    <label for="fl-email">Work email</label>
+  </div>
+  <div class="ai-form-float">
+    <input id="fl-org" class="ai-input" type="text" placeholder=" " value="Northwind" />
+    <label for="fl-org">Organisation</label>
+  </div>
+  <div class="ai-form-float">
+    <select id="fl-region" class="ai-select">
+      <option>Sydney</option>
+      <option>Singapore</option>
+      <option>Frankfurt</option>
+    </select>
+    <label for="fl-region">Region</label>
+  </div>
+</form>`,
+  },
+  {
+    id: 'list-group',
+    name: 'List Group',
+    description: 'Bordered list of rows with hover, active, and disabled states. Rows can be links or buttons.',
+    category: 'primitive',
+    tier: 'free',
+    tags: ['list', 'group', 'rows', 'navigation'],
+    html: `<ul class="ai-list-group" style="max-width: 24rem;">
+  <li><a href="#" class="ai-list-group-item is-active">Overview <span class="ai-badge ai-badge-counter ai-ml-auto">3</span></a></li>
+  <li><a href="#" class="ai-list-group-item">Deployments</a></li>
+  <li><a href="#" class="ai-list-group-item">Environment variables</a></li>
+  <li><a href="#" class="ai-list-group-item is-disabled" aria-disabled="true">Billing (owner only)</a></li>
+</ul>`,
+  },
+  {
+    id: 'btn-group',
+    name: 'Button Group',
+    description: 'Joined buttons that share one border and radius. Works for view switches and paired actions.',
+    category: 'primitive',
+    tier: 'free',
+    tags: ['button', 'group', 'toolbar', 'segmented'],
+    html: `<div class="ai-flex ai-flex-wrap ai-gap-6 ai-items-center">
+  <div class="ai-btn-group" role="group" aria-label="View">
+    <button type="button" class="ai-btn ai-btn-outline ai-btn-sm">Day</button>
+    <button type="button" class="ai-btn ai-btn-outline ai-btn-sm">Week</button>
+    <button type="button" class="ai-btn ai-btn-outline ai-btn-sm">Month</button>
+  </div>
+  <div class="ai-btn-group" role="group" aria-label="Deploy">
+    <button type="button" class="ai-btn ai-btn-primary">Deploy</button>
+    <button type="button" class="ai-btn ai-btn-primary ai-btn-icon" aria-label="Deploy options" aria-haspopup="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+  </div>
+</div>`,
+  },
+  {
+    id: 'level-bar',
+    name: 'Level',
+    description: 'One row with a left cluster and a right cluster, vertically centred. The workhorse for page and card headers.',
+    category: 'primitive',
+    tier: 'free',
+    tags: ['level', 'layout', 'header', 'row', 'flex'],
+    html: `<div class="ai-level" style="padding: var(--ai-space-4) 0; border-bottom: 1px solid var(--ai-border);">
+  <div class="ai-level-left">
+    <strong>Invoices</strong>
+    <span class="ai-badge ai-badge-neutral">June 2026</span>
+  </div>
+  <div class="ai-level-right">
+    <button type="button" class="ai-btn ai-btn-outline ai-btn-sm">Export</button>
+    <button type="button" class="ai-btn ai-btn-primary ai-btn-sm">New invoice</button>
+  </div>
+</div>`,
+  },
+  {
+    id: 'media-object',
+    name: 'Media Object',
+    description: 'A figure beside a block of content: avatar and comment, icon and text, thumbnail and summary.',
+    category: 'primitive',
+    tier: 'free',
+    tags: ['media', 'comment', 'avatar', 'layout'],
+    html: `<div class="ai-media" style="max-width: 36rem;">
+  <div class="ai-media-figure">
+    <div class="ai-avatar" style="background-color: var(--ai-surface-3);">MR</div>
+  </div>
+  <div class="ai-media-body">
+    <div class="ai-level">
+      <div class="ai-level-left"><strong>Mia Rahman</strong><span class="ai-text-xs ai-text-muted">2 hours ago</span></div>
+    </div>
+    <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-1);">Rolled back the pricing page to build 412. The variant with the annual toggle was posting the wrong plan id.</p>
+  </div>
+</div>`,
+  },
+  {
+    id: 'panel-list',
+    name: 'Panel',
+    description: 'Titled surface with a list body. Header carries an action; the list group inside loses its own border.',
+    category: 'primitive',
+    tier: 'free',
+    tags: ['panel', 'card', 'list', 'container'],
+    html: `<div class="ai-panel" style="max-width: 24rem;">
+  <div class="ai-panel-header">
+    Recent branches
+    <button type="button" class="ai-btn ai-btn-ghost ai-btn-xs">View all</button>
+  </div>
+  <ul class="ai-list-group">
+    <li><a href="#" class="ai-list-group-item"><code class="ai-text-xs">fix/session-expiry</code><span class="ai-text-xs ai-text-muted ai-ml-auto">3m</span></a></li>
+    <li><a href="#" class="ai-list-group-item"><code class="ai-text-xs">feat/usage-export</code><span class="ai-text-xs ai-text-muted ai-ml-auto">1h</span></a></li>
+    <li><a href="#" class="ai-list-group-item"><code class="ai-text-xs">main</code><span class="ai-text-xs ai-text-muted ai-ml-auto">2d</span></a></li>
+  </ul>
+</div>`,
+  },
+  {
+    id: 'notification-block',
+    name: 'Notification',
+    description: 'Page-level closable message, larger than an inline alert. Semantic variants tint the surface, never a left stripe.',
+    category: 'primitive',
+    tier: 'free',
+    tags: ['notification', 'message', 'banner', 'dismiss'],
+    html: `<div class="ai-flex ai-flex-col ai-gap-4" style="max-width: 36rem;">
+  <div class="ai-notification ai-notification-info" role="status">
+    <strong>Scheduled maintenance.</strong> The API will be read-only on Saturday 20 September from 02:00 to 02:30 UTC.
+    <button type="button" class="ai-close" data-ai-dismiss="toast" aria-label="Dismiss"></button>
+  </div>
+  <div class="ai-notification ai-notification-success" role="status">
+    Your workspace was upgraded. Seats renew on the 1st of each month.
+    <button type="button" class="ai-close" aria-label="Dismiss"></button>
+  </div>
+</div>`,
+  },
+  {
+    id: 'file-input',
+    name: 'File Input',
+    description: 'Native file input with a styled selector button. Nothing to script; the browser handles the picker.',
+    category: 'primitive',
+    tier: 'free',
+    tags: ['file', 'upload', 'input', 'form', 'css-only'],
+    html: `<div class="ai-form-group" style="max-width: 24rem;">
+  <label class="ai-form-label" for="report-file">Import CSV</label>
+  <input id="report-file" type="file" class="ai-file-input" accept=".csv" />
+  <p class="ai-form-hint">Up to 25 MB. First row is treated as the header.</p>
+</div>`,
+  },
+  {
+    id: 'title-subtitle',
+    name: 'Title and Subtitle',
+    description: 'Heading pair for pages and sections: display title with balanced wrapping and a muted subtitle.',
+    category: 'primitive',
+    tier: 'free',
+    tags: ['title', 'heading', 'typography', 'subtitle'],
+    html: `<div style="max-width: 36rem;">
+  <h2 class="ai-title">Usage and billing</h2>
+  <p class="ai-subtitle">Meter reads are final at midnight UTC. Overages are billed with the next invoice.</p>
+</div>`,
+  },
+  {
+    id: 'chip-removable',
+    name: 'Removable Chips',
+    description: 'Filter chips with a remove control. The remove button carries the accessible name; removal itself is your form or script.',
+    category: 'primitive',
+    tier: 'free',
+    tags: ['chip', 'tag', 'badge', 'filter', 'remove'],
+    html: `<div class="ai-flex ai-flex-wrap ai-gap-2">
+  <span class="ai-badge ai-badge-neutral ai-badge-removable">Region: Sydney <button type="button" class="ai-badge-remove" aria-label="Remove Region: Sydney">&times;</button></span>
+  <span class="ai-badge ai-badge-neutral ai-badge-removable">Status: Active <button type="button" class="ai-badge-remove" aria-label="Remove Status: Active">&times;</button></span>
+  <span class="ai-badge ai-badge-accent ai-badge-removable">Owner: me <button type="button" class="ai-badge-remove" aria-label="Remove Owner: me">&times;</button></span>
+</div>`,
+  },
+  {
+    id: 'select-native',
+    name: 'Select',
+    description: 'Styled native select with label, hint, and an error state. Multi-select uses the size attribute.',
+    category: 'primitive',
+    tier: 'free',
+    tags: ['select', 'form', 'dropdown', 'input'],
+    html: `<div class="ai-flex ai-flex-col ai-gap-4" style="max-width: 24rem;">
+  <div class="ai-form-group">
+    <label class="ai-form-label" for="sel-plan">Plan</label>
+    <select id="sel-plan" class="ai-select">
+      <option>Starter</option>
+      <option selected>Team</option>
+      <option>Enterprise</option>
+    </select>
+  </div>
+  <div class="ai-form-group">
+    <label class="ai-form-label" for="sel-region">Data region</label>
+    <select id="sel-region" class="ai-select" aria-invalid="true" aria-describedby="sel-region-err">
+      <option value="">Choose a region</option>
+      <option>Sydney</option>
+      <option>Frankfurt</option>
+    </select>
+    <p class="ai-form-hint" id="sel-region-err" style="color: var(--ai-danger);">A region is required before the first deploy.</p>
+  </div>
+</div>`,
+  },
+  {
+    id: 'input-icon',
+    name: 'Input With Inset Icon',
+    description: 'Leading or trailing icon inside the field. The icon is decorative; the label still names the control.',
+    category: 'primitive',
+    tier: 'free',
+    tags: ['input', 'icon', 'search', 'form'],
+    html: `<div class="ai-flex ai-flex-col ai-gap-4" style="max-width: 24rem;">
+  <div class="ai-input-icon-wrap">
+    <svg class="ai-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input class="ai-input" type="search" placeholder="Search deployments" aria-label="Search deployments" />
+  </div>
+  <div class="ai-input-icon-wrap is-trailing">
+    <svg class="ai-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+    <input class="ai-input" type="date" aria-label="Start date" />
+  </div>
+</div>`,
+  },
+  {
+    id: 'section-shift',
+    name: 'Section',
+    description: 'Page section wrapper: consistent vertical rhythm, hairline between sections, optional surface shift. The Law 1 answer to cards inside cards.',
+    category: 'marketing',
+    tier: 'free',
+    tags: ['section', 'layout', 'wrapper', 'spacing'],
+    html: `<section class="ai-section" style="--ai-section-padding: var(--ai-space-12);">
+  <div class="ai-container">
+    <h2 class="ai-section-title">Built for the tools your team already runs</h2>
+    <p class="ai-section-lead">One stylesheet, no build step. Works the same in a Rails view, an Astro page, or a plain HTML file an agent wrote this morning.</p>
+  </div>
+</section>
+<section class="ai-section ai-section-shift" style="--ai-section-padding: var(--ai-space-12);">
+  <div class="ai-container">
+    <h2 class="ai-section-title">Then ship it</h2>
+    <p class="ai-section-lead">Every section after the first gets a hairline. Alternate surfaces with ai-section-shift instead of boxing content.</p>
+  </div>
+</section>`,
+  },
+  {
+    id: 'feature-grid',
+    name: 'Feature Grid',
+    description: 'Uniform grid of icon, title, and one sentence. Auto-fits columns; no colored icon tiles, no bento spans.',
+    category: 'marketing',
+    tier: 'free',
+    tags: ['features', 'grid', 'icons', 'marketing'],
+    html: `<div class="ai-feature-grid">
+  <div class="ai-feature-item">
+    <span class="ai-feature-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span>
+    <h3 class="ai-feature-title">Layered CSS</h3>
+    <p class="ai-feature-text">Reset, tokens, base, components, utilities. Override anything without a specificity fight.</p>
+  </div>
+  <div class="ai-feature-item">
+    <span class="ai-feature-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg></span>
+    <h3 class="ai-feature-title">Container queries</h3>
+    <p class="ai-feature-text">Widgets adapt to the panel they sit in, not the viewport.</p>
+  </div>
+  <div class="ai-feature-item">
+    <span class="ai-feature-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+    <h3 class="ai-feature-title">Validated by the CLI</h3>
+    <p class="ai-feature-text">Every class you emit is checked against the real stylesheet before you ship.</p>
+  </div>
+  <div class="ai-feature-item">
+    <span class="ai-feature-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+    <h3 class="ai-feature-title">Zero runtime by default</h3>
+    <p class="ai-feature-text">Add the 12 KB runtime only when you need modals, drawers, or tabs.</p>
+  </div>
+</div>`,
+  },
+  {
+    id: 'feature-list',
+    name: 'Feature List',
+    description: 'Plain checklist of capabilities with a mark. Reads faster than a grid when there are more than six items.',
+    category: 'marketing',
+    tier: 'free',
+    tags: ['features', 'list', 'checklist', 'pricing'],
+    html: `<ul class="ai-feature-list" style="max-width: 28rem;">
+  <li><span class="ai-mark ai-mark-yes" role="img" aria-label="Included"></span> Unlimited environments per project</li>
+  <li><span class="ai-mark ai-mark-yes" role="img" aria-label="Included"></span> Preview URL for every pull request</li>
+  <li><span class="ai-mark ai-mark-yes" role="img" aria-label="Included"></span> Audit log with 90 day retention</li>
+  <li><span class="ai-mark ai-mark-warn" role="img" aria-label="Limited"></span> SSO on Team and above</li>
+  <li><span class="ai-mark ai-mark-no" role="img" aria-label="Not included"></span> Dedicated IP addresses</li>
+</ul>`,
+  },
+  {
+    id: 'stats-band',
+    name: 'Stats Band',
+    description: 'Public-facing numbers with one dominant figure and smaller supporting stats (Law 8). Tabular numerals throughout.',
+    category: 'marketing',
+    tier: 'free',
+    tags: ['stats', 'numbers', 'social-proof', 'metrics', 'band'],
+    html: `<div class="ai-stats-band">
+  <div class="ai-stat is-primary">
+    <div class="ai-stat-value">99.98%</div>
+    <div class="ai-stat-label">Uptime over the last 12 months</div>
+  </div>
+  <div class="ai-stat">
+    <div class="ai-stat-value">38 ms</div>
+    <div class="ai-stat-label">Median time to first byte</div>
+  </div>
+  <div class="ai-stat">
+    <div class="ai-stat-value">34</div>
+    <div class="ai-stat-label">Edge regions</div>
+  </div>
+</div>`,
+  },
+  {
+    id: 'cta-band',
+    name: 'CTA Band',
+    description: 'Pre-footer conversion block: one heading, one sentence, primary and secondary actions.',
+    category: 'marketing',
+    tier: 'free',
+    tags: ['cta', 'conversion', 'band', 'signup'],
+    html: `<div class="ai-cta-band">
+  <h2 class="ai-section-title">Start with the free tier</h2>
+  <p class="ai-section-lead" style="margin-inline: auto;">No card required. Upgrade when you need SSO, audit export, or more than three projects.</p>
+  <div class="ai-cta-actions">
+    <a href="#" class="ai-btn ai-btn-primary ai-btn-lg">Create account</a>
+    <a href="#" class="ai-btn ai-btn-outline ai-btn-lg">Talk to sales</a>
+  </div>
+</div>`,
+  },
+  {
+    id: 'callout-editorial',
+    name: 'Editorial Callout',
+    description: 'Emphasis block for long-form content: hairlines above and below, a short label, no stripe, no icon (Law 3).',
+    category: 'marketing',
+    tier: 'free',
+    tags: ['callout', 'note', 'editorial', 'aside'],
+    html: `<aside class="ai-callout" style="max-width: 40rem;">
+  <span class="ai-callout-label">Worth knowing</span>
+  Rollbacks restore the previous build and its environment variables together. Secrets rotated after that build are not reverted.
+</aside>`,
+  },
+  {
+    id: 'testimonial-grid',
+    name: 'Testimonial Grid',
+    description: 'Three quotes with name and role. Cards sit on the page surface, one hairline border each, nothing nested.',
+    category: 'marketing',
+    tier: 'free',
+    tags: ['testimonial', 'quote', 'social-proof', 'customers'],
+    html: `<div class="ai-testimonial-grid">
+  <figure class="ai-testimonial-card">
+    <blockquote class="ai-testimonial-quote">We replaced 4,000 lines of utility soup with the registry components and our agent stopped inventing class names.</blockquote>
+    <figcaption class="ai-testimonial-author"><strong>Priya Natarajan</strong><span class="ai-text-xs ai-text-muted">Platform lead, Lattice Labs</span></figcaption>
+  </figure>
+  <figure class="ai-testimonial-card">
+    <blockquote class="ai-testimonial-quote">The anti-slop audit caught a pulsing status dot in a PR before a human ever looked at it.</blockquote>
+    <figcaption class="ai-testimonial-author"><strong>Tom Okafor</strong><span class="ai-text-xs ai-text-muted">Design engineer, Meridian</span></figcaption>
+  </figure>
+  <figure class="ai-testimonial-card">
+    <blockquote class="ai-testimonial-quote">One link tag in a Rails layout. That was the whole migration.</blockquote>
+    <figcaption class="ai-testimonial-author"><strong>Sofia Lindqvist</strong><span class="ai-text-xs ai-text-muted">CTO, Fieldnote</span></figcaption>
+  </figure>
+</div>`,
+  },
+  {
+    id: 'team-grid',
+    name: 'Team Grid',
+    description: 'People grid for an about page: photo, name, role. Photos keep a square ratio at every width.',
+    category: 'marketing',
+    tier: 'free',
+    tags: ['team', 'people', 'about', 'grid'],
+    html: `<div class="ai-team-grid" style="max-width: 48rem;">
+  <div class="ai-team-member">
+    <div class="ai-team-photo" role="img" aria-label="Portrait placeholder"></div>
+    <div class="ai-team-name">Amara Osei</div>
+    <div class="ai-team-role">Founder</div>
+  </div>
+  <div class="ai-team-member">
+    <div class="ai-team-photo" role="img" aria-label="Portrait placeholder"></div>
+    <div class="ai-team-name">Jonas Berg</div>
+    <div class="ai-team-role">Engineering</div>
+  </div>
+  <div class="ai-team-member">
+    <div class="ai-team-photo" role="img" aria-label="Portrait placeholder"></div>
+    <div class="ai-team-name">Hana Sato</div>
+    <div class="ai-team-role">Design</div>
+  </div>
+</div>`,
+  },
+  {
+    id: 'announcement-bar',
+    name: 'Announcement Bar',
+    description: 'Single-line bar above the header for a release or notice, with a link and a dismiss control.',
+    category: 'marketing',
+    tier: 'free',
+    tags: ['announcement', 'banner', 'top-bar', 'notice'],
+    html: `<div class="ai-announcement" role="region" aria-label="Announcement">
+  <span>LLMCSS 0.2 ships the runtime as one script tag.</span>
+  <a href="#">Read the changelog</a>
+  <button type="button" class="ai-close ai-ml-auto" aria-label="Dismiss announcement" style="color: inherit;"></button>
+</div>`,
+  },
+  {
+    id: 'consent-bar',
+    name: 'Consent Bar',
+    description: 'Fixed bottom bar for cookie consent with accept, reject, and manage actions. Sits above content; not a modal.',
+    category: 'marketing',
+    tier: 'free',
+    tags: ['cookie', 'consent', 'privacy', 'bar'],
+    html: `<div class="ai-consent-bar" role="region" aria-label="Cookie preferences" style="position: static; max-width: 40rem;">
+  <span>We use one analytics cookie to count visits. No advertising, no cross-site tracking.</span>
+  <div class="ai-consent-actions">
+    <button type="button" class="ai-btn ai-btn-ghost ai-btn-sm">Manage</button>
+    <button type="button" class="ai-btn ai-btn-outline ai-btn-sm">Reject</button>
+    <button type="button" class="ai-btn ai-btn-primary ai-btn-sm">Accept</button>
+  </div>
+</div>`,
+  },
+  {
+    id: 'faq-section',
+    name: 'FAQ Section',
+    description: 'Question list on native details. Zero JavaScript; each answer is real copy, not filler.',
+    category: 'marketing',
+    tier: 'free',
+    tags: ['faq', 'questions', 'collapse', 'details', 'css-only'],
+    html: `<div style="max-width: 40rem;">
+  <h2 class="ai-section-title">Questions</h2>
+  <div style="margin-top: var(--ai-space-6);">
+    <details class="ai-collapse" style="padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border);">
+      <summary>Do I need a build step?</summary>
+      <div class="ai-collapse-body">No. Link the stylesheet and start writing classes. The CLI and MCP server are optional.</div>
+    </details>
+    <details class="ai-collapse" style="padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border);">
+      <summary>What happens when I cancel Pro?</summary>
+      <div class="ai-collapse-body">The token stops working at the end of the period. CSS and HTML you already copied stay yours.</div>
+    </details>
+    <details class="ai-collapse" style="padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border); border-bottom: 1px solid var(--ai-border);">
+      <summary>Which browsers?</summary>
+      <div class="ai-collapse-body">Current Chrome, Edge, Firefox, and Safari. Features like :has() and container queries have been stable in all four since 2023.</div>
+    </details>
+  </div>
+</div>`,
+  },
+  {
+    id: 'product-grid',
+    name: 'Product Grid',
+    description: 'Listing grid of product cards with a sale badge and a sold-out state. Columns fill by available width.',
+    category: 'ecommerce',
+    tier: 'free',
+    tags: ['product', 'grid', 'listing', 'shop', 'ecommerce'],
+    html: `<div class="ai-product-grid">
+  <article class="ai-product-card">
+    <div class="ai-product-media" style="aspect-ratio: 4 / 3; background: var(--ai-surface-1);"></div>
+    <div class="ai-product-body">
+      <div class="ai-level"><h3 class="ai-product-title">Field Notebook</h3><span class="ai-badge ai-badge-sale ai-badge-sm">Sale</span></div>
+      <p class="ai-product-price"><span>$18</span> <s class="ai-product-compare-price">$24</s></p>
+      <button type="button" class="ai-btn ai-btn-primary ai-btn-sm ai-w-full">Add to cart</button>
+    </div>
+  </article>
+  <article class="ai-product-card">
+    <div class="ai-product-media" style="aspect-ratio: 4 / 3; background: var(--ai-surface-1);"></div>
+    <div class="ai-product-body">
+      <h3 class="ai-product-title">Brass Ruler</h3>
+      <p class="ai-product-price">$32</p>
+      <button type="button" class="ai-btn ai-btn-primary ai-btn-sm ai-w-full">Add to cart</button>
+    </div>
+  </article>
+  <article class="ai-product-card is-sold-out">
+    <div class="ai-product-media" style="aspect-ratio: 4 / 3; background: var(--ai-surface-1);"></div>
+    <div class="ai-product-body">
+      <h3 class="ai-product-title">Desk Mat</h3>
+      <p class="ai-product-price">$48</p>
+      <button type="button" class="ai-btn ai-btn-outline ai-btn-sm ai-w-full" disabled>Sold out</button>
+    </div>
+  </article>
+</div>`,
+  },
+  {
+    id: 'data-grid',
+    name: 'Data Grid',
+    description: 'Table with sticky header, sortable column indicators via aria-sort, a select-all checkbox with an indeterminate state, and selected rows via aria-selected.',
+    category: 'application',
+    tier: 'free',
+    tags: ['table', 'grid', 'sort', 'select', 'sticky', 'data'],
+    html: `<div class="ai-table-container" style="max-height: 18rem;">
+  <table class="ai-table ai-table-hover ai-table-sticky ai-table-compact">
+    <thead>
+      <tr>
+        <th style="width: 2.5rem;"><input type="checkbox" class="ai-checkbox-input" aria-label="Select all" /></th>
+        <th aria-sort="descending">Service</th>
+        <th aria-sort="none">Region</th>
+        <th class="ai-cell-num" aria-sort="none">p95 ms</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr aria-selected="true">
+        <td><input type="checkbox" class="ai-checkbox-input" checked aria-label="Select api-gateway" /></td>
+        <td>api-gateway</td><td>syd-1</td><td class="ai-cell-num">142</td><td><span class="ai-badge ai-badge-success">Healthy</span></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="ai-checkbox-input" aria-label="Select auth" /></td>
+        <td>auth</td><td>syd-1</td><td class="ai-cell-num">88</td><td><span class="ai-badge ai-badge-success">Healthy</span></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="ai-checkbox-input" aria-label="Select billing-worker" /></td>
+        <td>billing-worker</td><td>fra-2</td><td class="ai-cell-num">1,204</td><td><span class="ai-badge ai-badge-warning">Degraded</span></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="ai-checkbox-input" aria-label="Select search" /></td>
+        <td>search</td><td>sin-1</td><td class="ai-cell-num">210</td><td><span class="ai-badge ai-badge-success">Healthy</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>`,
+  },
+  {
+    id: 'bulk-action-bar',
+    name: 'Bulk Action Bar',
+    description: 'Sticky bar that appears once rows are selected: count, actions, and a clear control. Uniform border, no colored stripe.',
+    category: 'application',
+    tier: 'free',
+    tags: ['bulk', 'selection', 'actions', 'toolbar', 'table'],
+    html: `<div class="ai-bulk-bar" style="position: static; max-width: 40rem;">
+  <span class="ai-bulk-bar-count">3 selected</span>
+  <button type="button" class="ai-btn ai-btn-ghost ai-btn-xs">Clear</button>
+  <div class="ai-bulk-bar-actions">
+    <button type="button" class="ai-btn ai-btn-outline ai-btn-sm">Restart</button>
+    <button type="button" class="ai-btn ai-btn-outline ai-btn-sm">Scale</button>
+    <button type="button" class="ai-btn ai-btn-danger ai-btn-sm">Delete</button>
+  </div>
+</div>`,
+  },
+  {
+    id: 'tree-view',
+    name: 'Tree View',
+    description: 'Nested, collapsible tree on native details for files, folders, or resources. Arbitrary depth, no JavaScript.',
+    category: 'application',
+    tier: 'free',
+    tags: ['tree', 'files', 'folders', 'nested', 'details', 'css-only'],
+    html: `<ul class="ai-tree" style="max-width: 20rem;">
+  <li>
+    <details open>
+      <summary>src</summary>
+      <ul>
+        <li>
+          <details open>
+            <summary>components</summary>
+            <ul>
+              <li><a href="#" class="ai-tree-leaf is-active">navbar.html</a></li>
+              <li><a href="#" class="ai-tree-leaf">footer.html</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="#" class="ai-tree-leaf">index.html</a></li>
+      </ul>
+    </details>
+  </li>
+  <li>
+    <details>
+      <summary>public</summary>
+      <ul><li><a href="#" class="ai-tree-leaf">llmcss.css</a></li></ul>
+    </details>
+  </li>
+  <li><a href="#" class="ai-tree-leaf">README.md</a></li>
+</ul>`,
+  },
+  {
+    id: 'onboarding-checklist',
+    name: 'Onboarding Checklist',
+    description: 'Setup progress: ordered tasks, a completion bar, and one action per open task.',
+    category: 'application',
+    tier: 'free',
+    tags: ['onboarding', 'checklist', 'setup', 'progress', 'tasks'],
+    html: `<div style="max-width: 28rem;">
+  <div class="ai-level">
+    <strong>Get set up</strong>
+    <span class="ai-text-sm ai-text-secondary" data-tabular>2 of 4</span>
+  </div>
+  <div class="ai-progress ai-progress-sm" role="progressbar" aria-label="Setup progress" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="margin-top: var(--ai-space-3);"><div class="ai-progress-bar" style="width: 50%;"></div></div>
+  <ul class="ai-checklist" style="margin-top: var(--ai-space-4);">
+    <li class="ai-checklist-item is-completed"><span class="ai-checklist-mark">1</span><span class="ai-checklist-label">Create your first project</span></li>
+    <li class="ai-checklist-item is-completed"><span class="ai-checklist-mark">2</span><span class="ai-checklist-label">Connect a repository</span></li>
+    <li class="ai-checklist-item"><span class="ai-checklist-mark">3</span><span class="ai-checklist-label">Add a custom domain</span><button type="button" class="ai-btn ai-btn-outline ai-btn-xs">Add</button></li>
+    <li class="ai-checklist-item"><span class="ai-checklist-mark">4</span><span class="ai-checklist-label">Invite a teammate</span><button type="button" class="ai-btn ai-btn-outline ai-btn-xs">Invite</button></li>
+  </ul>
+</div>`,
+  },
+  {
+    id: 'error-state',
+    name: 'Error State',
+    description: 'Section-level failure with retry and report actions. Same shape as the empty state, danger tone, no alarm styling.',
+    category: 'application',
+    tier: 'free',
+    tags: ['error', 'failure', 'retry', 'empty-state'],
+    html: `<div class="ai-empty-state is-error" style="max-width: 28rem;">
+  <div class="ai-empty-state-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></div>
+  <h3 class="ai-empty-state-title">Could not load deployments</h3>
+  <p class="ai-empty-state-description">The API returned 503 twice. Nothing was changed. Try again, or send the request id to support.</p>
+  <div class="ai-flex ai-gap-2 ai-justify-center" style="margin-top: var(--ai-space-4);">
+    <button type="button" class="ai-btn ai-btn-primary ai-btn-sm">Retry</button>
+    <button type="button" class="ai-btn ai-btn-outline ai-btn-sm">Copy request id</button>
+  </div>
 </div>`,
   },
 ];

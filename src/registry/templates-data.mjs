@@ -35,11 +35,30 @@ export const wireframeTemplates = [
       <a href="#faq" class="ai-nav-link">FAQ</a>
     </nav>
     <div class="ai-flex ai-items-center ai-gap-3">
-      <a href="#login" class="ai-btn ai-btn-ghost ai-btn-sm">Sign In</a>
+      <a href="#login" class="ai-btn ai-btn-ghost ai-btn-sm ai-hidden ai-md:inline-flex">Sign In</a>
       <a href="#get-started" class="ai-btn ai-btn-primary ai-btn-sm">Get Started</a>
+      <button type="button" class="ai-btn ai-btn-outline ai-btn-sm ai-btn-icon ai-md:hidden" data-ai-toggle="drawer" data-ai-target="#nav-minimal-menu" aria-controls="nav-minimal-menu" aria-expanded="false" aria-label="Open menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></button>
     </div>
   </div>
-</header>`
+</header>
+<div id="nav-minimal-menu" class="ai-drawer ai-drawer-sm ai-md:hidden">
+  <div class="ai-drawer-backdrop" data-ai-dismiss="drawer"></div>
+  <div class="ai-drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="ai-drawer-header">
+      <span class="ai-drawer-title">Menu</span>
+      <button type="button" class="ai-btn ai-btn-ghost ai-btn-icon ai-btn-xs" data-ai-dismiss="drawer" aria-label="Close menu"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button>
+    </div>
+    <nav class="ai-drawer-body ai-drawer-nav" aria-label="Primary">
+      <a href="#features" class="ai-sidebar-item" data-ai-dismiss="drawer">Features</a>
+      <a href="#blueprints" class="ai-sidebar-item" data-ai-dismiss="drawer">Blueprints</a>
+      <a href="#pricing" class="ai-sidebar-item" data-ai-dismiss="drawer">Pricing</a>
+      <a href="#faq" class="ai-sidebar-item" data-ai-dismiss="drawer">FAQ</a>
+    </nav>
+    <div class="ai-drawer-footer">
+      <a href="#login" class="ai-btn ai-btn-outline ai-w-full">Sign In</a>
+    </div>
+  </div>
+</div>`
   },
   {
     id: 'wireframe-nav-banner',
@@ -190,10 +209,7 @@ export const wireframeTemplates = [
     html: `<section class="ai-hero" aria-labelledby="hero-editorial-heading">
   <div class="ai-container">
     <div style="border-bottom: 1px solid var(--ai-border); padding-bottom: 3.5rem;">
-      <div style="font-family: var(--ai-font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ai-text-muted); margin-bottom: 1.5rem;">
-        Vol. 01 / Architectural Manifesto
-      </div>
-      <h1 id="hero-editorial-heading" style="font-family: var(--ai-font-display); font-size: clamp(2.75rem, 6vw, 4.75rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.04em; max-width: 56rem; margin-bottom: 2rem;">
+      <h1 id="hero-editorial-heading" style="font-family: var(--ai-font-display); font-size: clamp(2.75rem, 6vw, 4.75rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.035em; max-width: 56rem; margin-bottom: 2rem;">
         Pure Structure. Zero Bloat. The Anti-Framework.
       </h1>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; align-items: start;">
@@ -364,7 +380,7 @@ export const wireframeTemplates = [
     html: `<section class="ai-section" style="padding: 5rem 0; border-top: 1px solid var(--ai-border);" aria-labelledby="features-alt-heading">
   <div class="ai-container">
     <div style="text-align: center; max-width: 36rem; margin: 0 auto 4rem;">
-      <h2 id="features-alt-heading" style="font-family: var(--ai-font-display); font-size: 2.25rem; font-weight: 700;">
+      <h2 id="features-alt-heading" class="ai-section-title">
         Deep-Dive Engineering
       </h2>
       <p style="color: var(--ai-text-secondary); font-size: 1rem; margin-top: 0.5rem;">
@@ -398,7 +414,7 @@ export const wireframeTemplates = [
         </div>
       </div>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; align-items: center;">
-        <div style="order: 2; @media (min-width: 768px) { order: 1; }">
+        <div class="ai-order-2 ai-md:order-1">
           <div style="background: var(--ai-surface-0); border: 1px solid var(--ai-border); border-radius: var(--ai-radius-lg); padding: 2rem; box-shadow: var(--ai-shadow-md);">
             <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
               <span class="ai-badge ai-badge-sm">Obsidian</span>
@@ -413,7 +429,7 @@ export const wireframeTemplates = [
             </div>
           </div>
         </div>
-        <div style="order: 1; @media (min-width: 768px) { order: 2; }">
+        <div class="ai-order-1 ai-md:order-2">
           <h3 style="font-family: var(--ai-font-display); font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem;">
             Instant Multi-Theme Switching
           </h3>
@@ -443,7 +459,7 @@ export const wireframeTemplates = [
     html: `<section id="comparison" class="ai-section" style="padding: 5rem 0; background: var(--ai-surface-0); border-top: 1px solid var(--ai-border);" aria-labelledby="comparison-heading">
   <div class="ai-container">
     <div style="text-align: center; max-width: 36rem; margin: 0 auto 3rem;">
-      <h2 id="comparison-heading" style="font-family: var(--ai-font-display); font-size: 2.25rem; font-weight: 700;">
+      <h2 id="comparison-heading" class="ai-section-title">
         How LLMCSS Compares
       </h2>
       <p style="color: var(--ai-text-secondary); font-size: 1rem; margin-top: 0.5rem;">
@@ -513,7 +529,7 @@ export const wireframeTemplates = [
     html: `<section id="pricing" class="ai-section" style="padding: 5rem 0;" aria-labelledby="pricing-heading">
   <div class="ai-container">
     <div style="text-align: center; max-width: 36rem; margin: 0 auto 3.5rem;">
-      <h2 id="pricing-heading" style="font-family: var(--ai-font-display); font-size: 2.25rem; font-weight: 700;">
+      <h2 id="pricing-heading" class="ai-section-title">
         Simple, Predictable Plans
       </h2>
       <p style="color: var(--ai-text-secondary); font-size: 1rem; margin-top: 0.5rem;">
@@ -539,7 +555,7 @@ export const wireframeTemplates = [
         <a href="#download" class="ai-btn ai-btn-outline" style="width: 100%;">Install Free</a>
       </div>
       <div class="ai-pricing-card ai-pricing-featured">
-        <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--ai-primary); color: var(--ai-text-inverse); font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.25rem 0.75rem; border-radius: var(--ai-radius-full);">
+        <div class="ai-pricing-ribbon">
           Recommended
         </div>
         <div class="ai-pricing-header">
@@ -606,8 +622,8 @@ export const wireframeTemplates = [
         <a href="mailto:support@llmcss.io" class="ai-btn ai-btn-outline ai-btn-sm">Contact Architecture Team</a>
       </div>
       <div style="display: flex; flex-direction: column; gap: 1rem;">
-        <details class="ai-card" style="padding: 1.25rem; cursor: pointer;">
-          <summary style="font-weight: 600; font-size: 1rem; color: var(--ai-text-primary); list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <details class="ai-collapse" style="padding: 1rem 0; border-bottom: 1px solid var(--ai-border);">
+          <summary>
             <span>Why pure CSS instead of a JavaScript UI component library?</span>
             <span style="font-size: 1.25rem; color: var(--ai-text-muted);">&plus;</span>
           </summary>
@@ -615,8 +631,8 @@ export const wireframeTemplates = [
             Pure CSS eliminates the JavaScript runtime bundle entirely. It means 0 ms hydration lag, perfect SEO crawlability, and total framework freedom: use it with React, Vue, Svelte, Rails, Django, or plain static HTML.
           </p>
         </details>
-        <details class="ai-card" style="padding: 1.25rem; cursor: pointer;">
-          <summary style="font-weight: 600; font-size: 1rem; color: var(--ai-text-primary); list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <details class="ai-collapse" style="padding: 1rem 0; border-bottom: 1px solid var(--ai-border);">
+          <summary>
             <span>How does LLMCSS prevent AI models from hallucinating classes?</span>
             <span style="font-size: 1.25rem; color: var(--ai-text-muted);">&plus;</span>
           </summary>
@@ -624,8 +640,8 @@ export const wireframeTemplates = [
             By providing clean llms.txt specifications, standard semantic naming conventions, and an official Stdio MCP server. LLMs look up exact component contracts rather than guessing utility permutations.
           </p>
         </details>
-        <details class="ai-card" style="padding: 1.25rem; cursor: pointer;">
-          <summary style="font-weight: 600; font-size: 1rem; color: var(--ai-text-primary); list-style: none; display: flex; justify-content: space-between; align-items: center;">
+        <details class="ai-collapse" style="padding: 1rem 0; border-bottom: 1px solid var(--ai-border);">
+          <summary>
             <span>Can I customize the design tokens and typography?</span>
             <span style="font-size: 1.25rem; color: var(--ai-text-muted);">&plus;</span>
           </summary>
@@ -661,7 +677,7 @@ export const wireframeTemplates = [
         <p style="font-size: 1.0625rem; color: var(--ai-text-secondary); line-height: 1.6; margin-bottom: 2rem;">
           No complex build configurations. No runtime JavaScript. Pure semantic CSS layout primitives ready for humans and AI agents.
         </p>
-        <form class="ai-flex ai-gap-3 ai-justify-center" style="max-width: 28rem; margin: 0 auto;" onsubmit="return false;">
+        <form class="ai-flex ai-gap-3 ai-justify-center" style="max-width: 28rem; margin: 0 auto;" action="#" method="post">
           <input type="email" class="ai-input" placeholder="Enter your email" aria-label="Work Email" required style="background: var(--ai-surface-0);">
           <button type="submit" class="ai-btn ai-btn-primary" style="white-space: nowrap;">Get Instant Access</button>
         </form>
@@ -773,7 +789,7 @@ export const wireframeTemplates = [
       <li><a href="#settings" class="ai-sidebar-item">Settings</a></li>
     </ul>
   </aside>
-  <main class="ai-main" style="flex: 1; display: flex; flex-direction: column; background: var(--ai-surface-0);" role="main">
+  <main class="ai-app-main" style="flex: 1; display: flex; flex-direction: column; background: var(--ai-surface-0);" role="main">
     <header class="ai-topbar" style="height: 4rem; border-bottom: 1px solid var(--ai-border); padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between;">
       <div style="font-weight: 600; font-size: 0.9375rem;">Workspace Console</div>
       <div class="ai-flex ai-items-center ai-gap-3">
@@ -781,7 +797,7 @@ export const wireframeTemplates = [
         <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--ai-surface-2); border: 1px solid var(--ai-border); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">JD</div>
       </div>
     </header>
-    <div class="ai-content" style="padding: 1.5rem; flex: 1;">
+    <div class="ai-app-content" style="padding: 1.5rem; flex: 1;">
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
         <div class="ai-card" style="padding: 1rem;">
           <div style="font-size: 0.75rem; color: var(--ai-text-muted);">Active Requests</div>

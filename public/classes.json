@@ -1,0 +1,7332 @@
+{
+ "version": "0.1.0",
+ "generatedAt": "2026-09-12T04:24:10.741Z",
+ "note": "Every ai-* class in llmcss.css. variants lists the responsive (sm 640px, md 768px, lg 1024px, xl 1280px) and container-query (cq) prefixes that exist for the class, written as ai-md:name. Nothing outside this list exists; do not invent classes.",
+ "stats": {
+  "total": 1176,
+  "families": {
+   "spacing": 238,
+   "utilities": 44,
+   "position": 26,
+   "accordions": 5,
+   "alerts": 6,
+   "marketing": 68,
+   "application": 29,
+   "layout": 16,
+   "badges": 28,
+   "effects": 22,
+   "base": 12,
+   "dashboard": 44,
+   "display": 8,
+   "borders": 22,
+   "navigation": 24,
+   "typography": 47,
+   "buttons": 12,
+   "extras": 40,
+   "cards": 13,
+   "tables": 12,
+   "inputs": 15,
+   "grid": 87,
+   "flex": 65,
+   "interaction": 102,
+   "themes": 7,
+   "drawers": 13,
+   "dropdowns": 6,
+   "sizing": 94,
+   "animations": 33,
+   "modals": 11,
+   "ecommerce": 10,
+   "tabs": 5,
+   "toasts": 12
+  }
+ },
+ "classes": [
+  {
+   "class": "ai--m-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--m-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--m-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--m-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--mb-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--mb-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--mb-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--mb-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--me-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--me-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--me-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--me-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--ml-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--ml-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--ml-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--ml-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--mr-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--mr-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--mr-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--mr-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--ms-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--ms-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--ms-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--ms-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--mt-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--mt-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--mt-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--mt-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--mx-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--mx-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--mx-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--mx-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--my-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--my-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--my-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--my-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--rotate-1",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--rotate-12",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--rotate-180",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--rotate-2",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--rotate-3",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--rotate-45",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--rotate-6",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--rotate-90",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--translate-x-1",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--translate-x-2",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--translate-x-3",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--translate-x-4",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--translate-x-6",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--translate-x-8",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--translate-x-full",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--translate-y-1",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--translate-y-2",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--translate-y-3",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--translate-y-4",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--translate-y-6",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--translate-y-8",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai--translate-y-full",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-absolute",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-accordion",
+   "family": "accordions",
+   "file": "components/accordions.css",
+   "variants": []
+  },
+  {
+   "class": "ai-accordion-chevron",
+   "family": "accordions",
+   "file": "components/accordions.css",
+   "variants": []
+  },
+  {
+   "class": "ai-accordion-content",
+   "family": "accordions",
+   "file": "components/accordions.css",
+   "variants": []
+  },
+  {
+   "class": "ai-accordion-item",
+   "family": "accordions",
+   "file": "components/accordions.css",
+   "variants": []
+  },
+  {
+   "class": "ai-accordion-trigger",
+   "family": "accordions",
+   "file": "components/accordions.css",
+   "variants": []
+  },
+  {
+   "class": "ai-alert",
+   "family": "alerts",
+   "file": "components/alerts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-alert-danger",
+   "family": "alerts",
+   "file": "components/alerts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-alert-icon",
+   "family": "alerts",
+   "file": "components/alerts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-alert-info",
+   "family": "alerts",
+   "file": "components/alerts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-alert-success",
+   "family": "alerts",
+   "file": "components/alerts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-alert-warning",
+   "family": "alerts",
+   "file": "components/alerts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-announcement",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-app-content",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-app-header",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-app-main",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-app-shell",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-aspect-auto",
+   "family": "layout",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-aspect-square",
+   "family": "layout",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-aspect-video",
+   "family": "layout",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-auth-card",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-auth-wrap",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-avatar",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-avatar-group",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-avatar-lg",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-avatar-sm",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-avatar-xl",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-backdrop-blur",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-backdrop-blur-lg",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-backdrop-blur-sm",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-backdrop-none",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-accent",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-counter",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-danger",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-default",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-dot",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-featured",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-free",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-inverted",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-lg",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-mono",
+   "family": "base",
+   "file": "base.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-neutral",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-outline",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-pip",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-primary",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-pro",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-removable",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-remove",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-sale",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-sm",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-solid",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-success",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-warning",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-badge-xs",
+   "family": "badges",
+   "file": "components/badges.css",
+   "variants": []
+  },
+  {
+   "class": "ai-bar-fill",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-bar-row",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-bar-track",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-bars",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-bento-cell",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-bento-code-pill",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-bento-col-2",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-bento-grid",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-bento-row-2",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-bento-span-2",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-bg-var",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-block",
+   "family": "display",
+   "file": "utilities.css",
+   "variants": [
+    "cq",
+    "lg",
+    "md",
+    "sm",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-blur",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-blur-lg",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-blur-none",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-blur-sm",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-border",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-border-0",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-border-b",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-border-ie",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-border-is",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-border-l",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-border-r",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-border-t",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-bottom-0",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-bottom-auto",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-brand",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-breadcrumb",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-breadcrumb-item",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-break-inside-avoid",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-brightness-110",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-brightness-90",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-btn",
+   "family": "buttons",
+   "file": "components/buttons.css",
+   "variants": []
+  },
+  {
+   "class": "ai-btn-accent",
+   "family": "buttons",
+   "file": "components/buttons.css",
+   "variants": []
+  },
+  {
+   "class": "ai-btn-danger",
+   "family": "buttons",
+   "file": "components/buttons.css",
+   "variants": []
+  },
+  {
+   "class": "ai-btn-ghost",
+   "family": "buttons",
+   "file": "components/buttons.css",
+   "variants": []
+  },
+  {
+   "class": "ai-btn-group",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-btn-icon",
+   "family": "buttons",
+   "file": "components/buttons.css",
+   "variants": []
+  },
+  {
+   "class": "ai-btn-lg",
+   "family": "buttons",
+   "file": "components/buttons.css",
+   "variants": []
+  },
+  {
+   "class": "ai-btn-outline",
+   "family": "buttons",
+   "file": "components/buttons.css",
+   "variants": []
+  },
+  {
+   "class": "ai-btn-primary",
+   "family": "buttons",
+   "file": "components/buttons.css",
+   "variants": []
+  },
+  {
+   "class": "ai-btn-secondary",
+   "family": "buttons",
+   "file": "components/buttons.css",
+   "variants": []
+  },
+  {
+   "class": "ai-btn-sm",
+   "family": "buttons",
+   "file": "components/buttons.css",
+   "variants": []
+  },
+  {
+   "class": "ai-btn-xl",
+   "family": "buttons",
+   "file": "components/buttons.css",
+   "variants": []
+  },
+  {
+   "class": "ai-btn-xs",
+   "family": "buttons",
+   "file": "components/buttons.css",
+   "variants": []
+  },
+  {
+   "class": "ai-bulk-bar",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-bulk-bar-actions",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-bulk-bar-count",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-callout",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-callout-label",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-card",
+   "family": "cards",
+   "file": "components/cards.css",
+   "variants": []
+  },
+  {
+   "class": "ai-card-bento",
+   "family": "cards",
+   "file": "components/cards.css",
+   "variants": []
+  },
+  {
+   "class": "ai-card-body",
+   "family": "cards",
+   "file": "components/cards.css",
+   "variants": []
+  },
+  {
+   "class": "ai-card-description",
+   "family": "cards",
+   "file": "components/cards.css",
+   "variants": []
+  },
+  {
+   "class": "ai-card-footer",
+   "family": "cards",
+   "file": "components/cards.css",
+   "variants": []
+  },
+  {
+   "class": "ai-card-header",
+   "family": "cards",
+   "file": "components/cards.css",
+   "variants": []
+  },
+  {
+   "class": "ai-card-interactive",
+   "family": "cards",
+   "file": "components/cards.css",
+   "variants": []
+  },
+  {
+   "class": "ai-card-pro",
+   "family": "cards",
+   "file": "components/cards.css",
+   "variants": []
+  },
+  {
+   "class": "ai-card-title",
+   "family": "cards",
+   "file": "components/cards.css",
+   "variants": []
+  },
+  {
+   "class": "ai-carousel",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-carousel-controls",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-carousel-peek",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cell-num",
+   "family": "tables",
+   "file": "components/tables.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkbox",
+   "family": "inputs",
+   "file": "components/inputs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checkbox-input",
+   "family": "inputs",
+   "file": "components/inputs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checklist",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checklist-item",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checklist-label",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-checklist-mark",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-close",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-code-block",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-auto",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-end-1",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-end-10",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-end-11",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-end-12",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-end-13",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-end-2",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-end-3",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-end-4",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-end-5",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-end-6",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-end-7",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-end-8",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-end-9",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-end-auto",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-span-1",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "cq",
+    "lg",
+    "md",
+    "sm",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-col-span-10",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md"
+   ]
+  },
+  {
+   "class": "ai-col-span-11",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md"
+   ]
+  },
+  {
+   "class": "ai-col-span-12",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md",
+    "sm",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-col-span-2",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "cq",
+    "lg",
+    "md",
+    "sm",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-col-span-3",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "cq",
+    "lg",
+    "md",
+    "sm",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-col-span-4",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md",
+    "sm",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-col-span-5",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md"
+   ]
+  },
+  {
+   "class": "ai-col-span-6",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md",
+    "sm",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-col-span-7",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md"
+   ]
+  },
+  {
+   "class": "ai-col-span-8",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md"
+   ]
+  },
+  {
+   "class": "ai-col-span-9",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md"
+   ]
+  },
+  {
+   "class": "ai-col-span-full",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md",
+    "sm",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-col-start-1",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-start-10",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-start-11",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-start-12",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-start-13",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-start-2",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-start-3",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-start-4",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-start-5",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-start-6",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-start-7",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-start-8",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-start-9",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-col-start-auto",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-collapse",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-collapse-body",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-columns-1",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-columns-2",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-columns-3",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-columns-4",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-columns-auto",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-command-palette",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-consent-actions",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-consent-bar",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-container",
+   "family": "layout",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-container-fluid",
+   "family": "layout",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-container-inline",
+   "family": "layout",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-container-lg",
+   "family": "layout",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-container-md",
+   "family": "layout",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-container-sm",
+   "family": "layout",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-container-xl",
+   "family": "layout",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-contents",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-contrast-more",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cq",
+   "family": "layout",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cta-actions",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cta-band",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cursor-default",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cursor-grab",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cursor-grabbing",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cursor-move",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cursor-not-allowed",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cursor-pointer",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cursor-text",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cursor-wait",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cursor-zoom-in",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-dark",
+   "family": "themes",
+   "file": "themes.css",
+   "variants": []
+  },
+  {
+   "class": "ai-density-compact",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-detail",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-divider",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-divider-vertical",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-docs-matrix",
+   "family": "tables",
+   "file": "components/tables.css",
+   "variants": []
+  },
+  {
+   "class": "ai-donut",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-donut-hole",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-donut-wrap",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-drawer",
+   "family": "drawers",
+   "file": "components/drawers.css",
+   "variants": []
+  },
+  {
+   "class": "ai-drawer-backdrop",
+   "family": "drawers",
+   "file": "components/drawers.css",
+   "variants": []
+  },
+  {
+   "class": "ai-drawer-body",
+   "family": "drawers",
+   "file": "components/drawers.css",
+   "variants": []
+  },
+  {
+   "class": "ai-drawer-bottom",
+   "family": "drawers",
+   "file": "components/drawers.css",
+   "variants": []
+  },
+  {
+   "class": "ai-drawer-footer",
+   "family": "drawers",
+   "file": "components/drawers.css",
+   "variants": []
+  },
+  {
+   "class": "ai-drawer-header",
+   "family": "drawers",
+   "file": "components/drawers.css",
+   "variants": []
+  },
+  {
+   "class": "ai-drawer-left",
+   "family": "drawers",
+   "file": "components/drawers.css",
+   "variants": []
+  },
+  {
+   "class": "ai-drawer-nav",
+   "family": "drawers",
+   "file": "components/drawers.css",
+   "variants": []
+  },
+  {
+   "class": "ai-drawer-no-lock",
+   "family": "drawers",
+   "file": "components/drawers.css",
+   "variants": []
+  },
+  {
+   "class": "ai-drawer-panel",
+   "family": "drawers",
+   "file": "components/drawers.css",
+   "variants": []
+  },
+  {
+   "class": "ai-drawer-sm",
+   "family": "drawers",
+   "file": "components/drawers.css",
+   "variants": []
+  },
+  {
+   "class": "ai-drawer-title",
+   "family": "drawers",
+   "file": "components/drawers.css",
+   "variants": []
+  },
+  {
+   "class": "ai-drawer-top",
+   "family": "drawers",
+   "file": "components/drawers.css",
+   "variants": []
+  },
+  {
+   "class": "ai-dropdown",
+   "family": "dropdowns",
+   "file": "components/dropdowns.css",
+   "variants": []
+  },
+  {
+   "class": "ai-dropdown-divider",
+   "family": "dropdowns",
+   "file": "components/dropdowns.css",
+   "variants": []
+  },
+  {
+   "class": "ai-dropdown-header",
+   "family": "dropdowns",
+   "file": "components/dropdowns.css",
+   "variants": []
+  },
+  {
+   "class": "ai-dropdown-item",
+   "family": "dropdowns",
+   "file": "components/dropdowns.css",
+   "variants": []
+  },
+  {
+   "class": "ai-dropdown-menu",
+   "family": "dropdowns",
+   "file": "components/dropdowns.css",
+   "variants": []
+  },
+  {
+   "class": "ai-dropdown-right",
+   "family": "dropdowns",
+   "file": "components/dropdowns.css",
+   "variants": []
+  },
+  {
+   "class": "ai-dropzone",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-duration-fast",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-duration-normal",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-duration-slow",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ease-in-out",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ease-out",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ease-spring",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-empty-state",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-empty-state-description",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-empty-state-icon",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-empty-state-title",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-end-0",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-feature-grid",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-feature-icon",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-feature-item",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-feature-list",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-feature-text",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-feature-title",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-file-input",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-filter-tag",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-filter-tags",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-filter-toolbar",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-fixed",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-flex",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": [
+    "cq",
+    "lg",
+    "md",
+    "sm",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-flex-1",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-flex-auto",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-flex-col",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-flex-col-reverse",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-flex-initial",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-flex-none",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-flex-nowrap",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-flex-row",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": [
+    "cq",
+    "lg",
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-flex-row-reverse",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-flex-wrap",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-flex-wrap-reverse",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-font-bold",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-font-display",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-font-light",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-font-medium",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-font-mono",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-font-normal",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-font-sans",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-font-semibold",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-footer",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-footer-col",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-footer-col-toggle",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-footer-compact",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-footer-grid",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-footer-list",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-form-error",
+   "family": "inputs",
+   "file": "components/inputs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-form-float",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-form-group",
+   "family": "inputs",
+   "file": "components/inputs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-form-hint",
+   "family": "inputs",
+   "file": "components/inputs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-form-label",
+   "family": "inputs",
+   "file": "components/inputs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-10",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md"
+   ]
+  },
+  {
+   "class": "ai-gap-12",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-gap-16",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-gap-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-gap-20",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-24",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-32",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "cq",
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-gap-5",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "cq",
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-gap-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-gap-var",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-x-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-x-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-x-12",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-x-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-x-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-x-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-x-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-x-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-y-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-y-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-y-12",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-y-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-y-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-y-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-y-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-gap-y-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grayscale",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grayscale-0",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "cq",
+    "lg",
+    "md",
+    "sm",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-grid-auto-fit",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-cols-1",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-grid-cols-10",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-cols-11",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-cols-12",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md",
+    "sm",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-grid-cols-2",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "cq",
+    "lg",
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-grid-cols-3",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "cq",
+    "lg",
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-grid-cols-4",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "cq",
+    "lg",
+    "md",
+    "sm",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-grid-cols-5",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-grid-cols-6",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-grid-cols-7",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-cols-8",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-cols-9",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-cols-none",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-cols-var",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-flow-col",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-flow-col-dense",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-flow-dense",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-flow-row",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-flow-row-dense",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-min-lg",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-min-md",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-min-sm",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-min-xs",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-rows-1",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-rows-2",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-rows-3",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-rows-4",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-rows-5",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-rows-6",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grid-rows-none",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grow",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-grow-0",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-0",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-1",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-10",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-12",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-16",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-2",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-20",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-24",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-3",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-32",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-4",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-5",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-6",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-8",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-auto",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-full",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-screen",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-h-var",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-health",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-health-name",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-health-row",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-hero",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-hero-actions",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-hero-badge",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-hero-lead",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-hero-split",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-hero-title",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-hero-visual",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-hidden",
+   "family": "display",
+   "file": "utilities.css",
+   "variants": [
+    "cq",
+    "lg",
+    "md",
+    "sm",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-inbox-item",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-inbox-title",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-inline",
+   "family": "display",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-inline-block",
+   "family": "display",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md",
+    "sm",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-inline-flex",
+   "family": "display",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md",
+    "sm",
+    "xl"
+   ]
+  },
+  {
+   "class": "ai-inline-grid",
+   "family": "display",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-input",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-input-addon",
+   "family": "inputs",
+   "file": "components/inputs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-input-group",
+   "family": "inputs",
+   "file": "components/inputs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-input-icon",
+   "family": "inputs",
+   "file": "components/inputs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-input-icon-wrap",
+   "family": "inputs",
+   "file": "components/inputs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-inset-0",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-inset-auto",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-inset-x-0",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-inset-y-0",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-invert",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-items-baseline",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-items-center",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": [
+    "cq",
+    "lg",
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-items-end",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": [
+    "md"
+   ]
+  },
+  {
+   "class": "ai-items-start",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-items-stretch",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-justify-around",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-justify-between",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-justify-center",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": [
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-justify-end",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-justify-evenly",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-justify-normal",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-justify-start",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": [
+    "md"
+   ]
+  },
+  {
+   "class": "ai-kanban",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-kanban-head",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-kanban-item",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-kbd",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-kpi-card",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-kpi-label",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-kpi-trend",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-kpi-value",
+   "family": "base",
+   "file": "base.css",
+   "variants": []
+  },
+  {
+   "class": "ai-leading-loose",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-leading-none",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-leading-normal",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-leading-relaxed",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-leading-snug",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-leading-tight",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-left-0",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-left-auto",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-level",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-level-left",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-level-right",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-light",
+   "family": "themes",
+   "file": "themes.css",
+   "variants": []
+  },
+  {
+   "class": "ai-line-clamp-1",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-line-clamp-2",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-line-clamp-3",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-line-clamp-none",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-link",
+   "family": "base",
+   "file": "base.css",
+   "variants": []
+  },
+  {
+   "class": "ai-link-muted",
+   "family": "base",
+   "file": "base.css",
+   "variants": []
+  },
+  {
+   "class": "ai-list-group",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-list-group-flush",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-list-group-item",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-log",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-log-err",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-log-line",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-log-ok",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-log-ts",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-log-warn",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-logo-rail",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-m-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-m-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-m-10",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-m-12",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-m-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-m-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-m-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-m-5",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-m-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-m-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-m-auto",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-m-var",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mark",
+   "family": "tables",
+   "file": "components/tables.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mark-no",
+   "family": "tables",
+   "file": "components/tables.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mark-warn",
+   "family": "tables",
+   "file": "components/tables.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mark-yes",
+   "family": "tables",
+   "file": "components/tables.css",
+   "variants": []
+  },
+  {
+   "class": "ai-marquee",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-marquee-track",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-matrix-container",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-matrix-feature-col",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-matrix-table",
+   "family": "base",
+   "file": "base.css",
+   "variants": []
+  },
+  {
+   "class": "ai-max-h-full",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-max-h-screen",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-max-w-2xl",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-max-w-3xl",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-max-w-4xl",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-max-w-5xl",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-max-w-6xl",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-max-w-full",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-max-w-lg",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-max-w-md",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-max-w-none",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-max-w-prose",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-max-w-sm",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-max-w-var",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-max-w-xl",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-max-w-xs",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mb-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mb-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mb-10",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mb-12",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mb-16",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mb-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mb-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mb-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mb-5",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mb-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mb-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mb-auto",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-me-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-me-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-me-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-me-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-me-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-me-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-me-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-me-auto",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-media",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-media-body",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-media-figure",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-min-h-0",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-min-h-full",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-min-h-screen",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-min-w-0",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-min-w-fit",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-min-w-full",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-min-w-max",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-min-w-min",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-min-w-var",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ml-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "md"
+   ]
+  },
+  {
+   "class": "ai-ml-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ml-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ml-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ml-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ml-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ml-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ml-auto",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md"
+   ]
+  },
+  {
+   "class": "ai-modal",
+   "family": "modals",
+   "file": "components/modals.css",
+   "variants": []
+  },
+  {
+   "class": "ai-modal-backdrop",
+   "family": "modals",
+   "file": "components/modals.css",
+   "variants": []
+  },
+  {
+   "class": "ai-modal-body",
+   "family": "modals",
+   "file": "components/modals.css",
+   "variants": []
+  },
+  {
+   "class": "ai-modal-box",
+   "family": "modals",
+   "file": "components/modals.css",
+   "variants": []
+  },
+  {
+   "class": "ai-modal-box-lg",
+   "family": "modals",
+   "file": "components/modals.css",
+   "variants": []
+  },
+  {
+   "class": "ai-modal-box-sm",
+   "family": "modals",
+   "file": "components/modals.css",
+   "variants": []
+  },
+  {
+   "class": "ai-modal-close",
+   "family": "modals",
+   "file": "components/modals.css",
+   "variants": []
+  },
+  {
+   "class": "ai-modal-footer",
+   "family": "modals",
+   "file": "components/modals.css",
+   "variants": []
+  },
+  {
+   "class": "ai-modal-header",
+   "family": "modals",
+   "file": "components/modals.css",
+   "variants": []
+  },
+  {
+   "class": "ai-modal-title",
+   "family": "modals",
+   "file": "components/modals.css",
+   "variants": []
+  },
+  {
+   "class": "ai-modeless",
+   "family": "modals",
+   "file": "components/modals.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mr-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mr-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mr-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mr-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mr-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mr-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mr-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mr-auto",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ms-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ms-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ms-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ms-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ms-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ms-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ms-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ms-auto",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mt-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mt-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mt-10",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mt-12",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mt-16",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mt-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mt-20",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mt-24",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mt-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mt-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mt-5",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mt-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mt-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mt-auto",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mx-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mx-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mx-12",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mx-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mx-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mx-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mx-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mx-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-mx-auto",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-my-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-my-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-my-12",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-my-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-my-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-my-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-my-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-my-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-my-auto",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-nav-link",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-nav-links",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-navbar",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-navbar-inner",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-navbar-search",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-not-sr-only",
+   "family": "display",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-notification",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-notification-content",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-notification-danger",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-notification-dot",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-notification-info",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-notification-item",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-notification-list",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-notification-meta",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-notification-success",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-notification-title",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-notification-warning",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-object-contain",
+   "family": "layout",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-object-cover",
+   "family": "layout",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-object-fill",
+   "family": "layout",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-object-none",
+   "family": "layout",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-object-scale-down",
+   "family": "layout",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-opacity-0",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-opacity-10",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-opacity-100",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-opacity-25",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-opacity-50",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-opacity-75",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-opacity-90",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-order-1",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md"
+   ]
+  },
+  {
+   "class": "ai-order-10",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-order-11",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-order-12",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-order-2",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md"
+   ]
+  },
+  {
+   "class": "ai-order-3",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": [
+    "md"
+   ]
+  },
+  {
+   "class": "ai-order-4",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-order-5",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-order-6",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-order-7",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-order-8",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-order-9",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-order-first",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md"
+   ]
+  },
+  {
+   "class": "ai-order-last",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md"
+   ]
+  },
+  {
+   "class": "ai-order-none",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": [
+    "md"
+   ]
+  },
+  {
+   "class": "ai-origin-bottom",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-origin-bottom-left",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-origin-bottom-right",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-origin-center",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-origin-left",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-origin-right",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-origin-top",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-origin-top-left",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-origin-top-right",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-overflow-auto",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-overflow-clip",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-overflow-hidden",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-overflow-visible",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-overflow-x-auto",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-overflow-x-clip",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-overflow-x-hidden",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-overflow-x-scroll",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-overflow-x-visible",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-overflow-y-auto",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-overflow-y-clip",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-overflow-y-hidden",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-overflow-y-scroll",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-overflow-y-visible",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-overscroll-contain",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-overscroll-none",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-p-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-p-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-p-10",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-p-12",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "lg"
+   ]
+  },
+  {
+   "class": "ai-p-16",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-p-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-p-20",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-p-24",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-p-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-p-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-p-5",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-p-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-p-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "lg",
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-p-var",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-page-header",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-page-header-meta",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pagination",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pagination-ellipsis",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pagination-item",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pagination-link",
+   "family": "base",
+   "file": "base.css",
+   "variants": []
+  },
+  {
+   "class": "ai-panel",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-panel-body",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-panel-header",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pb-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "md"
+   ]
+  },
+  {
+   "class": "ai-pb-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pb-12",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pb-16",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pb-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pb-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pb-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pb-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pb-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pe-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pe-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pe-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pe-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pe-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pe-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pe-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pip",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pip-err",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pip-ok",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pip-warn",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pl-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pl-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pl-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pl-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pl-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pl-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pl-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-place-content-around",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-place-content-between",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-place-content-center",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-place-content-end",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-place-content-evenly",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-place-content-start",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-place-content-stretch",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-place-items-center",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-place-items-end",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-place-items-start",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-place-items-stretch",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-place-self-center",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-place-self-end",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-place-self-start",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-place-self-stretch",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pointer-events-auto",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pointer-events-none",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-popover",
+   "family": "cards",
+   "file": "components/cards.css",
+   "variants": []
+  },
+  {
+   "class": "ai-popover-anchor",
+   "family": "cards",
+   "file": "components/cards.css",
+   "variants": []
+  },
+  {
+   "class": "ai-popover-arrow",
+   "family": "cards",
+   "file": "components/cards.css",
+   "variants": []
+  },
+  {
+   "class": "ai-popover-toggle",
+   "family": "cards",
+   "file": "components/cards.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pr-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pr-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pr-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pr-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pr-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pr-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pr-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pricing-amount",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pricing-card",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pricing-feature-item",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pricing-featured",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pricing-features",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pricing-grid",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pricing-header",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pricing-period",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pricing-plan",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pricing-price",
+   "family": "base",
+   "file": "base.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pricing-ribbon",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-print-block",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-print-break-after",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-print-break-before",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-print-hidden",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-product-badge-float",
+   "family": "ecommerce",
+   "file": "components/ecommerce.css",
+   "variants": []
+  },
+  {
+   "class": "ai-product-body",
+   "family": "ecommerce",
+   "file": "components/ecommerce.css",
+   "variants": []
+  },
+  {
+   "class": "ai-product-card",
+   "family": "ecommerce",
+   "file": "components/ecommerce.css",
+   "variants": []
+  },
+  {
+   "class": "ai-product-category",
+   "family": "ecommerce",
+   "file": "components/ecommerce.css",
+   "variants": []
+  },
+  {
+   "class": "ai-product-compare-price",
+   "family": "ecommerce",
+   "file": "components/ecommerce.css",
+   "variants": []
+  },
+  {
+   "class": "ai-product-grid",
+   "family": "ecommerce",
+   "file": "components/ecommerce.css",
+   "variants": []
+  },
+  {
+   "class": "ai-product-img",
+   "family": "ecommerce",
+   "file": "components/ecommerce.css",
+   "variants": []
+  },
+  {
+   "class": "ai-product-media",
+   "family": "ecommerce",
+   "file": "components/ecommerce.css",
+   "variants": []
+  },
+  {
+   "class": "ai-product-price",
+   "family": "base",
+   "file": "base.css",
+   "variants": []
+  },
+  {
+   "class": "ai-product-price-row",
+   "family": "ecommerce",
+   "file": "components/ecommerce.css",
+   "variants": []
+  },
+  {
+   "class": "ai-product-title",
+   "family": "ecommerce",
+   "file": "components/ecommerce.css",
+   "variants": []
+  },
+  {
+   "class": "ai-progress",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-progress-bar",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-progress-bar-success",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-progress-bar-warning",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-progress-indeterminate",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-progress-lg",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-progress-sm",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-progress-striped",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ps-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ps-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ps-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ps-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ps-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ps-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ps-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pt-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pt-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pt-12",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pt-16",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pt-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pt-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pt-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pt-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pt-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pulse-dot",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pulse-dot-danger",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pulse-dot-streaming",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pulse-dot-success",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pulse-dot-warning",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-px-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-px-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-px-10",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-px-12",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "lg"
+   ]
+  },
+  {
+   "class": "ai-px-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-px-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-px-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-px-5",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-px-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-px-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "md"
+   ]
+  },
+  {
+   "class": "ai-py-0",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-py-1",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-py-10",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-py-12",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "md"
+   ]
+  },
+  {
+   "class": "ai-py-16",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "lg"
+   ]
+  },
+  {
+   "class": "ai-py-2",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-py-20",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-py-24",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-py-3",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-py-4",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-py-5",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-py-6",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-py-8",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": [
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-quota",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-quota-head",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-quote",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-radio",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-radio-group",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-radio-group-horizontal",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-radio-input",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-range",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-relative",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-right-0",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-right-auto",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ring",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ring-danger",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ring-offset",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-ring-success",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rotate-0",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rotate-1",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rotate-12",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rotate-180",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rotate-2",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rotate-3",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rotate-45",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rotate-6",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rotate-90",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rounded-2xl",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rounded-e-md",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rounded-full",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rounded-lg",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rounded-md",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rounded-none",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rounded-s-md",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rounded-sm",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rounded-xl",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-rounded-xs",
+   "family": "borders",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-row-auto",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-row-span-1",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-row-span-2",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-row-span-3",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-row-span-4",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-row-span-5",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-row-span-6",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-row-span-full",
+   "family": "grid",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-saturate-0",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-saturate-150",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scale-0",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scale-100",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scale-105",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scale-110",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scale-125",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scale-150",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scale-50",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scale-75",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scale-90",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scale-95",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scroll-auto",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scroll-mt-12",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scroll-mt-16",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scroll-mt-20",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scroll-mt-24",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scroll-mt-4",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scroll-mt-8",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scroll-smooth",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-scroll-x",
+   "family": "tables",
+   "file": "components/tables.css",
+   "variants": []
+  },
+  {
+   "class": "ai-section",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-section-banner",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-section-lead",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-section-shift",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-section-title",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-segmented",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-segmented-btn",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-segmented-input",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-select",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-select-all",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-select-auto",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-select-none",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-select-text",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-self-auto",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-self-baseline",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-self-center",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-self-end",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-self-start",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-self-stretch",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-settings-list",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-settings-row",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-shadow-inner",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-shadow-lg",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-shadow-md",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-shadow-none",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-shadow-sm",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-shadow-xl",
+   "family": "effects",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-shrink",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-shrink-0",
+   "family": "flex",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-sidebar",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-sidebar-badge",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-sidebar-header",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-sidebar-icon",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-sidebar-item",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-sidebar-nav",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-sidebar-section",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-sidebar-section-title",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-size-0",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-size-1",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-size-10",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-size-12",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-size-16",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-size-2",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-size-20",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-size-24",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-size-3",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-size-32",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-size-4",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-size-5",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-size-6",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-size-8",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-skeleton",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-skeleton-avatar",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-skeleton-rect",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-skeleton-text",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-skeleton-title",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-skin-editorial",
+   "family": "themes",
+   "file": "themes.css",
+   "variants": []
+  },
+  {
+   "class": "ai-skin-enterprise",
+   "family": "themes",
+   "file": "themes.css",
+   "variants": []
+  },
+  {
+   "class": "ai-skin-executive",
+   "family": "themes",
+   "file": "themes.css",
+   "variants": []
+  },
+  {
+   "class": "ai-skin-fintech",
+   "family": "themes",
+   "file": "themes.css",
+   "variants": []
+  },
+  {
+   "class": "ai-skin-obsidian",
+   "family": "themes",
+   "file": "themes.css",
+   "variants": []
+  },
+  {
+   "class": "ai-skip-link",
+   "family": "base",
+   "file": "base.css",
+   "variants": []
+  },
+  {
+   "class": "ai-slider",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-slider-header",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-slider-value",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-slider-wrapper",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-snap-always",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-snap-center",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-snap-end",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-snap-proximity",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-snap-start",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-snap-x",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-snap-y",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-spark",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-spark-stat",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-spinner",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-spinner-lg",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-spinner-ring",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-spinner-sm",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-sr-only",
+   "family": "display",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-start-0",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-stat",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-stat-label",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-stat-value",
+   "family": "base",
+   "file": "base.css",
+   "variants": []
+  },
+  {
+   "class": "ai-static",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-stats-band",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-status-pip",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-status-pip-danger",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-status-pip-success",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-status-pip-warning",
+   "family": "animations",
+   "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-step-circle",
+   "family": "base",
+   "file": "base.css",
+   "variants": []
+  },
+  {
+   "class": "ai-step-item",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-step-label",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-stepper",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-sticky",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-subgrid-cols",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-subgrid-rows",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-subtitle",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-surface-0",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-surface-1",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-surface-2",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-surface-3",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-switch",
+   "family": "inputs",
+   "file": "components/inputs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-switch-input",
+   "family": "inputs",
+   "file": "components/inputs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-switch-sm",
+   "family": "inputs",
+   "file": "components/inputs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-switch-thumb",
+   "family": "inputs",
+   "file": "components/inputs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-switch-track",
+   "family": "inputs",
+   "file": "components/inputs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-tab",
+   "family": "tabs",
+   "file": "components/tabs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-tab-panel",
+   "family": "tabs",
+   "file": "components/tabs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-table",
+   "family": "base",
+   "file": "base.css",
+   "variants": []
+  },
+  {
+   "class": "ai-table-compact",
+   "family": "tables",
+   "file": "components/tables.css",
+   "variants": []
+  },
+  {
+   "class": "ai-table-container",
+   "family": "tables",
+   "file": "components/tables.css",
+   "variants": []
+  },
+  {
+   "class": "ai-table-hover",
+   "family": "tables",
+   "file": "components/tables.css",
+   "variants": []
+  },
+  {
+   "class": "ai-table-sticky",
+   "family": "tables",
+   "file": "components/tables.css",
+   "variants": []
+  },
+  {
+   "class": "ai-table-striped",
+   "family": "tables",
+   "file": "components/tables.css",
+   "variants": []
+  },
+  {
+   "class": "ai-tabs",
+   "family": "tabs",
+   "file": "components/tabs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-tabs-list",
+   "family": "tabs",
+   "file": "components/tabs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-tabs-pills",
+   "family": "tabs",
+   "file": "components/tabs.css",
+   "variants": []
+  },
+  {
+   "class": "ai-tabular",
+   "family": "utilities",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-team-grid",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-team-member",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-team-name",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-team-photo",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-team-role",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-testimonial-author",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-testimonial-card",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-testimonial-grid",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-testimonial-quote",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-2xl",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-3xl",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-4xl",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-5xl",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-6xl",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-7xl",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-accent",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-balance",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-base",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-center",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": [
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-text-end",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-left",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": [
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-text-lg",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-muted",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-pretty",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-right",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": [
+    "md",
+    "sm"
+   ]
+  },
+  {
+   "class": "ai-text-secondary",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-sm",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-start",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-var",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-xl",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-text-xs",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-textarea",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-textarea-footer",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-textarea-group",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-timeline",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-timeline-item",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-timeline-meta",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-timeline-title",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-title",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-title-lg",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-title-sm",
+   "family": "extras",
+   "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "ai-toast",
+   "family": "toasts",
+   "file": "components/toasts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-toast-close",
+   "family": "toasts",
+   "file": "components/toasts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-toast-container",
+   "family": "toasts",
+   "file": "components/toasts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-toast-countdown",
+   "family": "toasts",
+   "file": "components/toasts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-toast-danger",
+   "family": "toasts",
+   "file": "components/toasts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-toast-error",
+   "family": "toasts",
+   "file": "components/toasts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-toast-icon",
+   "family": "toasts",
+   "file": "components/toasts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-toast-info",
+   "family": "toasts",
+   "file": "components/toasts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-toast-message",
+   "family": "toasts",
+   "file": "components/toasts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-toast-progress",
+   "family": "toasts",
+   "file": "components/toasts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-toast-success",
+   "family": "toasts",
+   "file": "components/toasts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-toast-warning",
+   "family": "toasts",
+   "file": "components/toasts.css",
+   "variants": []
+  },
+  {
+   "class": "ai-tooltip",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-tooltip-bottom",
+   "family": "navigation",
+   "file": "components/navigation.css",
+   "variants": []
+  },
+  {
+   "class": "ai-top-0",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-top-auto",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-topbar",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-tracking-normal",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-tracking-tight",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-tracking-tighter",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-tracking-wide",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-tracking-wider",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-transform-var",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-transition",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-transition-all",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-transition-colors",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-transition-none",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-transition-opacity",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-transition-transform",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-center",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-x-1",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-x-2",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-x-3",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-x-4",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-x-6",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-x-8",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-x-center",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-x-full",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-y-1",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-y-2",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-y-3",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-y-4",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-y-6",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-y-8",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-y-center",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-translate-y-full",
+   "family": "interaction",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-tree",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-tree-leaf",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-truncate",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-0",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-1",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-1/12",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-1/2",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-1/3",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-1/4",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-1/5",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-1/6",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-10",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-11/12",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-12",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-16",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-2",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-2/3",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-2/4",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-2/5",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-20",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-24",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-3",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-3/4",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-3/5",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-32",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-4",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-4/5",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-5",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-5/12",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-5/6",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-6",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-7/12",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-8",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-auto",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": [
+    "md"
+   ]
+  },
+  {
+   "class": "ai-w-fit",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-full",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-max",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-min",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-screen",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-w-var",
+   "family": "sizing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-z-0",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-z-10",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-z-20",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-z-30",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-z-40",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-z-50",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-z-auto",
+   "family": "position",
+   "file": "utilities.css",
+   "variants": []
+  }
+ ]
+}

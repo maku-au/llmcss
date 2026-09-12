@@ -294,3 +294,53 @@
     }
   }
 }
+
+@layer components {
+  /* Mixed state for "select all" checkboxes */
+  .ai-checkbox-input:indeterminate {
+    background-color: var(--ai-accent);
+    border-color: var(--ai-accent);
+  }
+  .ai-checkbox-input:indeterminate::before {
+    content: "";
+    display: block;
+    width: 0.55rem;
+    height: 2px;
+    margin: auto;
+    background-color: var(--ai-accent-text);
+    border: none;
+    transform: none;
+  }
+
+  /* Inset icon inside a field: <div class="ai-input-icon-wrap"><svg class="ai-input-icon">..</svg><input class="ai-input"></div> */
+  .ai-input-icon-wrap {
+    position: relative;
+  }
+  .ai-input-icon-wrap > .ai-input-icon {
+    position: absolute;
+    inset-inline-start: var(--ai-space-3);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    color: var(--ai-text-muted);
+    pointer-events: none;
+  }
+  .ai-input-icon-wrap > .ai-input {
+    padding-inline-start: 2.25rem;
+  }
+  .ai-input-icon-wrap.is-trailing > .ai-input-icon {
+    inset-inline-start: auto;
+    inset-inline-end: var(--ai-space-3);
+  }
+  .ai-input-icon-wrap.is-trailing > .ai-input {
+    padding-inline-start: var(--ai-space-3);
+    padding-inline-end: 2.25rem;
+  }
+
+  /* Switch sizes */
+  .ai-switch-sm .ai-switch-track { width: 2.25rem; height: 1.25rem; }
+  .ai-switch-sm .ai-switch-thumb { width: 1rem; height: 1rem; }
+  .ai-switch-sm .ai-switch-input:checked + .ai-switch-track .ai-switch-thumb,
+  .ai-switch-input:checked + .ai-switch-sm .ai-switch-thumb { transform: translateX(1rem); }
+}

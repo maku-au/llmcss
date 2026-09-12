@@ -1,0 +1,14 @@
+{
+  "id": "section-shift",
+  "name": "Section",
+  "description": "Page section wrapper: consistent vertical rhythm, hairline between sections, optional surface shift. The Law 1 answer to cards inside cards.",
+  "category": "marketing",
+  "tier": "free",
+  "tags": [
+    "section",
+    "layout",
+    "wrapper",
+    "spacing"
+  ],
+  "html": "<section class=\"ai-section\" style=\"--ai-section-padding: var(--ai-space-12);\">\n  <div class=\"ai-container\">\n    <h2 class=\"ai-section-title\">Built for the tools your team already runs</h2>\n    <p class=\"ai-section-lead\">One stylesheet, no build step. Works the same in a Rails view, an Astro page, or a plain HTML file an agent wrote this morning.</p>\n  </div>\n</section>\n<section class=\"ai-section ai-section-shift\" style=\"--ai-section-padding: var(--ai-space-12);\">\n  <div class=\"ai-container\">\n    <h2 class=\"ai-section-title\">Then ship it</h2>\n    <p class=\"ai-section-lead\">Every section after the first gets a hairline. Alternate surfaces with ai-section-shift instead of boxing content.</p>\n  </div>\n</section>"
+}

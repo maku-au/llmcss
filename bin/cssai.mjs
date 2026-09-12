@@ -19,6 +19,7 @@ import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { components } from '../src/registry/data.mjs';
 import { wireframeTemplates, pageBlueprints, assembleBlueprintHtml } from '../src/registry/templates-data.mjs';
+import { validateMarkup, structuralAudit } from '../src/registry/validate.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -150,18 +151,22 @@ switch (command) {
       process.exit(1);
     }
     const aliasTargets = ALIAS_MAP[query] || [];
-    const matches = components.filter(
-      (c) =>
-        aliasTargets.includes(c.id) ||
-        c.id.includes(query) ||
-        c.name.toLowerCase().includes(query) ||
-        c.tags.some((t) => t.toLowerCase().includes(query)) ||
-        c.description.toLowerCase().includes(query)
-    );
-    console.log(`\nFound ${matches.length} matches for "${query}":\n`);
+    const hit = (c) =>
+      aliasTargets.includes(c.id) ||
+      c.id.includes(query) ||
+      c.name.toLowerCase().includes(query) ||
+      (c.tags || []).some((t) => t.toLowerCase().includes(query)) ||
+      (typeof c.description === 'string' ? c.description : JSON.stringify(c.guidance || '')).toLowerCase().includes(query) ||
+      (c.section || '').includes(query.replace(/\s+/g, '-'));
+    const matches = components.filter(hit);
+    const tplMatches = wireframeTemplates.filter(hit);
+    console.log(`\nFound ${matches.length + tplMatches.length} matches for "${query}":\n`);
     for (const comp of matches) {
       const tierBadge = comp.tier === 'pro' ? '\x1b[33m[PRO]\x1b[0m' : '\x1b[32m[FREE]\x1b[0m';
       console.log(`  ${tierBadge} \x1b[36m${comp.id.padEnd(22)}\x1b[0m ${comp.name}`);
+    }
+    for (const t of tplMatches) {
+      console.log(`  \x1b[35m[TPL]\x1b[0m  \x1b[36m${t.id.padEnd(22)}\x1b[0m ${t.name}  (npx llmcss template get ${t.id})`);
     }
     console.log('');
     break;
@@ -263,6 +268,11 @@ switch (command) {
       console.error(`Component "${compId}" not found.`);
       process.exit(1);
     }
+    if (comp.tier === 'pro') {
+      const { html, ...rest } = comp;
+      console.log(JSON.stringify({ ...rest, html: null, locked: true, message: 'Pro source is not in the public catalog. Run `npx llmcss login <token>` then `npx llmcss add ' + comp.id + '`.' }, null, 2));
+      break;
+    }
     console.log(JSON.stringify(comp, null, 2));
     break;
   }
@@ -300,15 +310,11 @@ switch (command) {
     let issues = 0;
     console.log(`\n✦ Validating ${file} for LLMCSS standards...\n`);
     lines.forEach((line, idx) => {
-      const classAttrMatches = Array.from(line.matchAll(/\bclass(?:Name)?=["']([^"']+)["']/g));
-      for (const m of classAttrMatches) {
-        const tokens = m[1].split(/\s+/).filter(Boolean);
-        for (const [legacy, modern] of Object.entries(LEGACY_MAP)) {
-          if (tokens.includes(legacy)) {
-            console.log(`  \x1b[33mLine ${idx + 1}:\x1b[0m Hallucinated/Legacy class "\x1b[31m${legacy}\x1b[0m". Suggested: "\x1b[32m${modern}\x1b[0m"`);
-            issues++;
-          }
-        }
+      for (const issue of validateMarkup(line).issues) {
+        const label = issue.type === 'unknown-class' ? 'Unknown class' : issue.type === 'unknown-state' ? 'Unknown state' : 'Legacy class';
+        const hint = issue.suggestion ? ` Suggested: "\x1b[32m${issue.suggestion}\x1b[0m"` : ' See https://llmcss.io/classes.json';
+        console.log(`  \x1b[33mLine ${idx + 1}:\x1b[0m ${label} "\x1b[31m${issue.class}\x1b[0m".${hint}`);
+        issues++;
       }
     });
     if (issues === 0) {
@@ -351,15 +357,16 @@ switch (command) {
     };
     let content = fs.readFileSync(file, 'utf-8');
     let replacedCount = 0;
-    for (const [legacy, modern] of Object.entries(LEGACY_MAP)) {
-      const classAttrRegex = new RegExp(`(class(?:Name)?=["'][^"']*?)\\b${legacy}\\b([^"']*?["'])`, 'g');
-      if (classAttrRegex.test(content)) {
-        content = content.replace(classAttrRegex, (match, prefix, suffix) => {
-          replacedCount++;
-          return `${prefix}${modern}${suffix}`;
-        });
-      }
-    }
+    // Token-exact: only whole, unprefixed class names are rewritten, so a
+    // correct ai-btn is never touched and the command is idempotent.
+    content = content.replace(/\b(class(?:Name)?\s*=\s*)(["'])([^"']*)\2/g, (match, attr, quote, value) => {
+      const tokens = value.split(/(\s+)/).map((t) => {
+        if (/^\s*$/.test(t)) return t;
+        if (Object.prototype.hasOwnProperty.call(LEGACY_MAP, t)) { replacedCount++; return LEGACY_MAP[t]; }
+        return t;
+      });
+      return `${attr}${quote}${tokens.join('')}${quote}`;
+    });
     if (isFix) {
       fs.writeFileSync(file, content, 'utf-8');
       console.log(`\x1b[32m✓ Fixed ${replacedCount} legacy/hallucinated classes in ${file}\x1b[0m\n`);
@@ -504,6 +511,9 @@ switch (command) {
     const content = fs.readFileSync(file, 'utf-8');
     const lines = content.split('\n');
     const slopFindings = [];
+    for (const issue of structuralAudit(content)) {
+      slopFindings.push({ line: 0, category: issue.category, tell: issue.message, fix: issue.category === 'Cardocalypse' ? 'Flatten hierarchy: use whitespace or hairline rules instead of nesting cards.' : 'Reserve motion for .is-streaming only.' });
+    }
 
     lines.forEach((line, idx) => {
       const lineNum = idx + 1;

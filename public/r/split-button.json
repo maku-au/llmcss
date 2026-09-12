@@ -10,5 +10,5 @@
     "menu",
     "action"
   ],
-  "html": "<div class=\"ai-flex\">\n  <button class=\"ai-btn ai-btn-primary\" type=\"button\" style=\"border-top-right-radius: 0; border-bottom-right-radius: 0;\">Deploy</button>\n  <button class=\"ai-btn ai-btn-primary\" type=\"button\" aria-label=\"More deploy options\" style=\"border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 0.55rem; padding-right: 0.55rem;\">\n    <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"m6 9 6 6 6-6\"/></svg>\n  </button>\n</div>"
+  "html": "<div class=\"ai-btn-group\">\n  <button class=\"ai-btn ai-btn-primary\" type=\"button\">Deploy</button>\n  <button class=\"ai-btn ai-btn-primary ai-btn-icon\" type=\"button\" aria-label=\"More deploy options\" aria-haspopup=\"true\" aria-expanded=\"false\">\n    <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"m6 9 6 6 6-6\"/></svg>\n  </button>\n</div>"
 }

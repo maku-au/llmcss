@@ -1,15 +1,15 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-09-12T03:10:42.396Z",
+  "generatedAt": "2026-09-12T04:24:10.622Z",
   "stats": {
-    "total": 75,
-    "free": 62,
+    "total": 106,
+    "free": 93,
     "pro": 13,
     "categories": {
-      "primitive": 34,
-      "marketing": 10,
-      "application": 29,
-      "ecommerce": 2
+      "primitive": 48,
+      "marketing": 21,
+      "application": 34,
+      "ecommerce": 3
     }
   },
   "components": [
@@ -186,7 +186,7 @@
         "grid",
         "list"
       ],
-      "html": "<div class=\"ai-table-container\">\n  <table class=\"ai-table ai-table-hover\">\n    <thead>\n      <tr>\n        <th>Repository</th>\n        <th>Environment</th>\n        <th>Branch</th>\n        <th>Status</th>\n        <th>Updated</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"ai-font-semibold\">llmcss-core</td>\n        <td>Production</td>\n        <td><code>main</code></td>\n        <td><span class=\"ai-badge ai-badge-success ai-badge-dot\">Active</span></td>\n        <td>2m ago</td>\n      </tr>\n      <tr>\n        <td class=\"ai-font-semibold\">llmcss-docs</td>\n        <td>Staging</td>\n        <td><code>preview/v1</code></td>\n        <td><span class=\"ai-badge ai-badge-accent ai-badge-dot\">Building</span></td>\n        <td>15m ago</td>\n      </tr>\n      <tr>\n        <td class=\"ai-font-semibold\">llmcss-mcp</td>\n        <td>Edge</td>\n        <td><code>feat/tools</code></td>\n        <td><span class=\"ai-badge ai-badge-warning ai-badge-dot\">Queued</span></td>\n        <td>1h ago</td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+      "html": "<div class=\"ai-table-container\" style=\"max-height: 20rem;\">\n  <table class=\"ai-table ai-table-hover ai-table-sticky\">\n    <thead>\n      <tr>\n        <th aria-sort=\"ascending\">Repository</th>\n        <th>Environment</th>\n        <th>Branch</th>\n        <th>Status</th>\n        <th>Updated</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"ai-font-semibold\">llmcss-core</td>\n        <td>Production</td>\n        <td><code>main</code></td>\n        <td><span class=\"ai-badge ai-badge-success ai-badge-dot\">Active</span></td>\n        <td>2m ago</td>\n      </tr>\n      <tr>\n        <td class=\"ai-font-semibold\">llmcss-docs</td>\n        <td>Staging</td>\n        <td><code>preview/v1</code></td>\n        <td><span class=\"ai-badge ai-badge-accent ai-badge-dot\">Building</span></td>\n        <td>15m ago</td>\n      </tr>\n      <tr>\n        <td class=\"ai-font-semibold\">llmcss-mcp</td>\n        <td>Edge</td>\n        <td><code>feat/tools</code></td>\n        <td><span class=\"ai-badge ai-badge-warning ai-badge-dot\">Queued</span></td>\n        <td>1h ago</td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
     },
     {
       "id": "alert-callouts",
@@ -199,7 +199,7 @@
         "notice",
         "banner"
       ],
-      "html": "<div class=\"ai-flex ai-flex-col ai-gap-3\">\n  <div class=\"ai-alert ai-alert-info\">\n    <svg class=\"ai-alert-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 16v-4\"/><path d=\"M12 8h.01\"/></svg>\n    <div>\n      <strong class=\"ai-font-semibold\">Maintenance scheduled:</strong> Edge servers will undergo routine maintenance at 02:00 UTC.\n    </div>\n  </div>\n  <div class=\"ai-alert ai-alert-success\">\n    <svg class=\"ai-alert-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"/><path d=\"22 4 12 14.01 9 11.01\"/></svg>\n    <div>\n      <strong class=\"ai-font-semibold\">Success:</strong> Your new API license key has been verified and applied to your workspace.\n    </div>\n  </div>\n</div>"
+      "html": "<div class=\"ai-flex ai-flex-col ai-gap-3\">\n  <div class=\"ai-alert ai-alert-info\" role=\"status\">\n    <svg class=\"ai-alert-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 16v-4\"/><path d=\"M12 8h.01\"/></svg>\n    <div>\n      <strong class=\"ai-font-semibold\">Maintenance scheduled:</strong> Edge servers will undergo routine maintenance at 02:00 UTC.\n    </div>\n  </div>\n  <div class=\"ai-alert ai-alert-success\" role=\"status\">\n    <svg class=\"ai-alert-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"/><path d=\"22 4 12 14.01 9 11.01\"/></svg>\n    <div>\n      <strong class=\"ai-font-semibold\">Success:</strong> Your new API license key has been verified and applied to your workspace.\n    </div>\n  </div>\n</div>"
     },
     {
       "id": "navbar-modern",
@@ -276,7 +276,8 @@
         "luxury"
       ],
       "locked": true,
-      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Asymmetric Bento Hero</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Asymmetric Bento Hero <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "pricing-tier-cards",
@@ -294,7 +295,7 @@
     {
       "id": "footer-multi-col",
       "name": "Multi-Column Modern Footer",
-      "description": "Comprehensive footer with brand statement, navigation columns, and copyright.",
+      "description": "Brand statement, navigation columns, and copyright. Columns collapse into an accordion below 768px.",
       "category": "marketing",
       "tier": "free",
       "tags": [
@@ -302,7 +303,7 @@
         "navigation",
         "legal"
       ],
-      "html": "<footer class=\"ai-footer\">\n  <div class=\"ai-container\">\n    <div class=\"ai-footer-grid\">\n      <div>\n        <a href=\"#\" class=\"ai-brand\" style=\"margin-bottom: var(--ai-space-4);\">\n          <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polygon points=\"12 2 2 7 12 12 22 7 12 2\"/><polyline points=\"2 17 12 22 22 17\"/><polyline points=\"2 12 12 17 22 12\"/></svg>\n          <span>LLMCSS</span>\n        </a>\n        <p class=\"ai-text-sm\" style=\"max-width: 20rem;\">\n          High-craft UI library engineered for human developers and autonomous AI agents.\n        </p>\n      </div>\n      <div>\n        <h4 class=\"ai-text-xs ai-font-sans ai-font-semibold ai-text-muted\" style=\"text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--ai-space-4);\">Product</h4>\n        <ul class=\"ai-footer-list\">\n          <li><a href=\"#\" class=\"ai-text-secondary\">Components</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Marketing Sections</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">SaaS Dashboard</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Themes</a></li>\n        </ul>\n      </div>\n      <div>\n        <h4 class=\"ai-text-xs ai-font-sans ai-font-semibold ai-text-muted\" style=\"text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--ai-space-4);\">Agentic Tools</h4>\n        <ul class=\"ai-footer-list\">\n          <li><a href=\"#\" class=\"ai-text-secondary\">MCP Server</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">CLI Reference</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">llms.txt Specification</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Agent Rules</a></li>\n        </ul>\n      </div>\n      <div>\n        <h4 class=\"ai-text-xs ai-font-sans ai-font-semibold ai-text-muted\" style=\"text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--ai-space-4);\">Company</h4>\n        <ul class=\"ai-footer-list\">\n          <li><a href=\"#\" class=\"ai-text-secondary\">About</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Pricing</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Privacy</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Terms</a></li>\n        </ul>\n      </div>\n    </div>\n    <div class=\"ai-flex ai-justify-between ai-items-center ai-border-t\" style=\"padding-top: var(--ai-space-6);\">\n      <p class=\"ai-text-xs ai-text-muted\">© 2026 LLMCSS Inc. All rights reserved.</p>\n      <div class=\"ai-flex ai-gap-4\">\n        <a href=\"#\" class=\"ai-text-xs ai-text-muted\">GitHub</a>\n        <a href=\"#\" class=\"ai-text-xs ai-text-muted\">Discord</a>\n        <a href=\"#\" class=\"ai-text-xs ai-text-muted\">X (Twitter)</a>\n      </div>\n    </div>\n  </div>\n</footer>"
+      "html": "<footer class=\"ai-footer\">\n  <div class=\"ai-container\">\n    <div class=\"ai-footer-grid\">\n      <div>\n        <a href=\"#\" class=\"ai-brand\" style=\"margin-bottom: var(--ai-space-4);\">\n          <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polygon points=\"12 2 2 7 12 12 22 7 12 2\"/><polyline points=\"2 17 12 22 22 17\"/><polyline points=\"2 12 12 17 22 12\"/></svg>\n          <span>LLMCSS</span>\n        </a>\n        <p class=\"ai-text-sm\" style=\"max-width: 20rem;\">\n          High-craft UI library engineered for human developers and autonomous AI agents.\n        </p>\n      </div>\n      <div class=\"ai-footer-col ai-accordion-item\">\n        <h4 class=\"ai-text-xs ai-font-semibold ai-text-muted\"><button type=\"button\" class=\"ai-footer-col-toggle\" data-ai-toggle=\"accordion\" aria-expanded=\"false\">Product <svg class=\"ai-accordion-chevron\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button></h4>\n        <ul class=\"ai-footer-list ai-accordion-content\">\n          <li><a href=\"#\" class=\"ai-text-secondary\">Components</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Marketing Sections</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">SaaS Dashboard</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Themes</a></li>\n        </ul>\n      </div>\n      <div class=\"ai-footer-col ai-accordion-item\">\n        <h4 class=\"ai-text-xs ai-font-semibold ai-text-muted\"><button type=\"button\" class=\"ai-footer-col-toggle\" data-ai-toggle=\"accordion\" aria-expanded=\"false\">Agentic Tools <svg class=\"ai-accordion-chevron\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button></h4>\n        <ul class=\"ai-footer-list ai-accordion-content\">\n          <li><a href=\"#\" class=\"ai-text-secondary\">MCP Server</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">CLI Reference</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">llms.txt Specification</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Agent Rules</a></li>\n        </ul>\n      </div>\n      <div class=\"ai-footer-col ai-accordion-item\">\n        <h4 class=\"ai-text-xs ai-font-semibold ai-text-muted\"><button type=\"button\" class=\"ai-footer-col-toggle\" data-ai-toggle=\"accordion\" aria-expanded=\"false\">Company <svg class=\"ai-accordion-chevron\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button></h4>\n        <ul class=\"ai-footer-list ai-accordion-content\">\n          <li><a href=\"#\" class=\"ai-text-secondary\">About</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Pricing</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Privacy</a></li>\n          <li><a href=\"#\" class=\"ai-text-secondary\">Terms</a></li>\n        </ul>\n      </div>\n    </div>\n    <div class=\"ai-flex ai-justify-between ai-items-center ai-border-t\" style=\"padding-top: var(--ai-space-6);\">\n      <p class=\"ai-text-xs ai-text-muted\">© 2026 LLMCSS Inc. All rights reserved.</p>\n      <div class=\"ai-flex ai-gap-4\">\n        <a href=\"#\" class=\"ai-text-xs ai-text-muted\">GitHub</a>\n        <a href=\"#\" class=\"ai-text-xs ai-text-muted\">Discord</a>\n        <a href=\"#\" class=\"ai-text-xs ai-text-muted\">X (Twitter)</a>\n      </div>\n    </div>\n  </div>\n</footer>"
     },
     {
       "id": "kpi-metric-cards",
@@ -316,7 +317,7 @@
         "metrics",
         "stats"
       ],
-      "html": "<div class=\"ai-grid ai-grid-cols-1 ai-md:grid-cols-2 ai-lg:grid-cols-4 ai-gap-4\">\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Monthly Recurring Revenue</span>\n    <span class=\"ai-kpi-value\">$124,500</span>\n    <span class=\"ai-kpi-trend is-up\">↑ +14.2% from last month</span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Active Subscriptions</span>\n    <span class=\"ai-kpi-value\">1,482</span>\n    <span class=\"ai-kpi-trend is-up\">↑ +8.4%</span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Churn Rate</span>\n    <span class=\"ai-kpi-value\">1.18%</span>\n    <span class=\"ai-kpi-trend is-down\">↓ -0.3% improvement</span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Agent Queries / Day</span>\n    <span class=\"ai-kpi-value\">4.8M</span>\n    <span class=\"ai-kpi-trend is-up\">↑ +42% spike</span>\n  </div>\n</div>"
+      "html": "<div class=\"ai-grid ai-grid-cols-1 ai-md:grid-cols-2 ai-lg:grid-cols-4 ai-gap-4\">\n  <div class=\"ai-kpi-card is-primary\">\n    <span class=\"ai-kpi-label\">Monthly Recurring Revenue</span>\n    <span class=\"ai-kpi-value\">$124,500</span>\n    <span class=\"ai-kpi-trend is-up\">↑ +14.2% from last month</span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Active Subscriptions</span>\n    <span class=\"ai-kpi-value\">1,482</span>\n    <span class=\"ai-kpi-trend is-up\">↑ +8.4%</span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Churn Rate</span>\n    <span class=\"ai-kpi-value\">1.18%</span>\n    <span class=\"ai-kpi-trend is-down\">↓ -0.3% improvement</span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Agent Queries / Day</span>\n    <span class=\"ai-kpi-value\">4.8M</span>\n    <span class=\"ai-kpi-trend is-up\">↑ +42% spike</span>\n  </div>\n</div>"
     },
     {
       "id": "command-palette-pro",
@@ -332,7 +333,8 @@
         "keyboard"
       ],
       "locked": true,
-      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Command Palette ⌘K</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Command Palette ⌘K <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "auth-login-card",
@@ -376,7 +378,8 @@
         "ecommerce"
       ],
       "locked": true,
-      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Slide-Out Cart Drawer</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Slide-Out Cart Drawer <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "animated-loaders",
@@ -406,7 +409,7 @@
         "meter",
         "bar"
       ],
-      "html": "<div class=\"ai-grid ai-gap-5\" style=\"max-width: 28rem;\">\n  <div>\n    <div class=\"ai-flex ai-justify-between ai-text-xs ai-font-medium\" style=\"margin-bottom: 0.375rem;\">\n      <span>Indeterminate (Network Stream)</span>\n      <span class=\"ai-font-mono ai-text-secondary\">Syncing...</span>\n    </div>\n    <div class=\"ai-progress ai-progress-indeterminate\">\n      <div class=\"ai-progress-bar\"></div>\n    </div>\n  </div>\n  <div>\n    <div class=\"ai-flex ai-justify-between ai-text-xs ai-font-medium\" style=\"margin-bottom: 0.375rem;\">\n      <span>Model Weights Downloaded</span>\n      <span class=\"ai-font-mono\">68%</span>\n    </div>\n    <div class=\"ai-progress\">\n      <div class=\"ai-progress-bar\" style=\"width: 68%;\"></div>\n    </div>\n  </div>\n  <div>\n    <div class=\"ai-flex ai-justify-between ai-text-xs ai-font-medium\" style=\"margin-bottom: 0.375rem;\">\n      <span>Dataset Chunk Upload</span>\n      <span class=\"ai-font-mono\" style=\"color: var(--ai-success);\">Active</span>\n    </div>\n    <div class=\"ai-progress ai-progress-striped\">\n      <div class=\"ai-progress-bar ai-progress-bar-success\" style=\"width: 85%;\"></div>\n    </div>\n  </div>\n</div>"
+      "html": "<div class=\"ai-grid ai-gap-5\" style=\"max-width: 28rem;\">\n  <div>\n    <div class=\"ai-flex ai-justify-between ai-text-xs ai-font-medium\" style=\"margin-bottom: 0.375rem;\">\n      <span>Indeterminate (Network Stream)</span>\n      <span class=\"ai-font-mono ai-text-secondary\">Syncing...</span>\n    </div>\n    <div class=\"ai-progress ai-progress-indeterminate\" role=\"progressbar\" aria-label=\"Loading\" aria-busy=\"true\">\n      <div class=\"ai-progress-bar\"></div>\n    </div>\n  </div>\n  <div>\n    <div class=\"ai-flex ai-justify-between ai-text-xs ai-font-medium\" style=\"margin-bottom: 0.375rem;\">\n      <span>Model Weights Downloaded</span>\n      <span class=\"ai-font-mono\">68%</span>\n    </div>\n    <div class=\"ai-progress\" role=\"progressbar\" aria-label=\"Upload\" aria-valuenow=\"68\" aria-valuemin=\"0\" aria-valuemax=\"100\">\n      <div class=\"ai-progress-bar\" style=\"width: 68%;\"></div>\n    </div>\n  </div>\n  <div>\n    <div class=\"ai-flex ai-justify-between ai-text-xs ai-font-medium\" style=\"margin-bottom: 0.375rem;\">\n      <span>Dataset Chunk Upload</span>\n      <span class=\"ai-font-mono\" style=\"color: var(--ai-success);\">Active</span>\n    </div>\n    <div class=\"ai-progress ai-progress-striped\" role=\"progressbar\" aria-label=\"Sync\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\">\n      <div class=\"ai-progress-bar ai-progress-bar-success\" style=\"width: 85%;\"></div>\n    </div>\n  </div>\n</div>"
     },
     {
       "id": "interactive-slider",
@@ -466,7 +469,7 @@
         "tab",
         "control"
       ],
-      "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-4 ai-items-center\">\n  <div class=\"ai-segmented\" role=\"tablist\">\n    <button class=\"ai-segmented-btn is-active\" role=\"tab\" aria-selected=\"true\">Monthly</button>\n    <button class=\"ai-segmented-btn\" role=\"tab\" aria-selected=\"false\">Annual (Save 20%)</button>\n  </div>\n  <div class=\"ai-segmented\" role=\"tablist\">\n    <button class=\"ai-segmented-btn is-active\" role=\"tab\" aria-selected=\"true\">Code</button>\n    <button class=\"ai-segmented-btn\" role=\"tab\" aria-selected=\"false\">Preview</button>\n    <button class=\"ai-segmented-btn\" role=\"tab\" aria-selected=\"false\">Docs</button>\n  </div>\n</div>"
+      "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-4 ai-items-center\">\n  <fieldset class=\"ai-segmented\" aria-label=\"Billing period\">\n    <label class=\"ai-segmented-btn\"><input type=\"radio\" name=\"billing\" class=\"ai-segmented-input\" checked /> Monthly</label>\n    <label class=\"ai-segmented-btn\"><input type=\"radio\" name=\"billing\" class=\"ai-segmented-input\" /> Annual (save 20%)</label>\n  </fieldset>\n  <fieldset class=\"ai-segmented\" aria-label=\"View\">\n    <label class=\"ai-segmented-btn\"><input type=\"radio\" name=\"view\" class=\"ai-segmented-input\" checked /> Code</label>\n    <label class=\"ai-segmented-btn\"><input type=\"radio\" name=\"view\" class=\"ai-segmented-input\" /> Preview</label>\n    <label class=\"ai-segmented-btn\"><input type=\"radio\" name=\"view\" class=\"ai-segmented-input\" /> Docs</label>\n  </fieldset>\n</div>"
     },
     {
       "id": "popover-anchor",
@@ -481,7 +484,7 @@
         "floating",
         "overlay"
       ],
-      "html": "<div style=\"padding-top: 6.5rem; display: flex; justify-content: center;\">\n  <div class=\"ai-popover-anchor\">\n    <div class=\"ai-popover\">\n      <div class=\"ai-flex ai-items-center ai-gap-2\" style=\"margin-bottom: 0.375rem;\">\n        <span class=\"ai-pulse-dot ai-pulse-dot-success\"></span>\n        <span class=\"ai-font-semibold ai-text-xs\">Agent Worker #4 Active</span>\n      </div>\n      <p class=\"ai-text-xs ai-text-secondary\" style=\"margin-bottom: 0.5rem; line-height: 1.4;\">Running automated test suite across 34 components.</p>\n      <div class=\"ai-flex ai-justify-between ai-items-center\">\n        <a href=\"#\" class=\"ai-text-xs ai-font-medium ai-text-accent\">View Stream &rarr;</a>\n        <span class=\"ai-font-mono ai-text-xs ai-text-muted\">450ms</span>\n      </div>\n      <div class=\"ai-popover-arrow\"></div>\n    </div>\n    <button class=\"ai-btn ai-btn-outline ai-btn-sm\">Cluster Status [Live]</button>\n  </div>\n</div>"
+      "html": "<div style=\"padding-top: 6.5rem; display: flex; justify-content: center;\">\n  <div class=\"ai-popover-anchor ai-popover-toggle\">\n    <div class=\"ai-popover\">\n      <div class=\"ai-flex ai-items-center ai-gap-2\" style=\"margin-bottom: 0.375rem;\">\n        <span class=\"ai-pulse-dot ai-pulse-dot-success\"></span>\n        <span class=\"ai-font-semibold ai-text-xs\">Agent Worker #4 Active</span>\n      </div>\n      <p class=\"ai-text-xs ai-text-secondary\" style=\"margin-bottom: 0.5rem; line-height: 1.4;\">Running automated test suite across 34 components.</p>\n      <div class=\"ai-flex ai-justify-between ai-items-center\">\n        <a href=\"#\" class=\"ai-text-xs ai-font-medium ai-text-accent\">View Stream &rarr;</a>\n        <span class=\"ai-font-mono ai-text-xs ai-text-muted\">450ms</span>\n      </div>\n      <div class=\"ai-popover-arrow\"></div>\n    </div>\n    <button class=\"ai-btn ai-btn-outline ai-btn-sm\" aria-haspopup=\"true\">Cluster status</button>\n  </div>\n</div>"
     },
     {
       "id": "toast-stack",
@@ -500,19 +503,19 @@
     },
     {
       "id": "marquee-ticker",
-      "name": "Infinite Marquee Logo Ticker",
-      "description": "Pure native CSS smooth infinite horizontal logo & trust badge ticker with pause-on-hover.",
+      "name": "Logo Rail",
+      "description": "Static, scannable trust rail of customer names or marks. Wraps on small screens. No auto-scroll (Law 9).",
       "category": "marketing",
       "tier": "free",
       "tags": [
-        "marquee",
-        "ticker",
         "logo",
-        "carousel",
+        "trust",
+        "social-proof",
         "marketing",
-        "animation"
+        "rail",
+        "marquee"
       ],
-      "html": "<div class=\"ai-marquee\" style=\"background: var(--ai-surface-1); border: 1px solid var(--ai-border); border-radius: var(--ai-radius-lg); padding: var(--ai-space-4) 0;\">\n  <div class=\"ai-marquee-track\">\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">ALPHA NET</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">VECTOR SYS</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">QUANTUM LABS</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">NEXUS DATA</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">KINETIC CORE</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">SYNAPSE AI</span>\n  </div>\n  <div class=\"ai-marquee-track\" aria-hidden=\"true\">\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">ALPHA NET</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">VECTOR SYS</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">QUANTUM LABS</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">NEXUS DATA</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">KINETIC CORE</span>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\" style=\"letter-spacing: 0.1em; font-weight: 600;\">SYNAPSE AI</span>\n  </div>\n</div>"
+      "html": "<div class=\"ai-logo-rail\" aria-label=\"Teams using LLMCSS\">\n  <span>Northwind</span>\n  <span>Harbor Ops</span>\n  <span>Lattice Labs</span>\n  <span>Quill</span>\n  <span>Meridian</span>\n  <span>Fieldnote</span>\n</div>"
     },
     {
       "id": "filter-toolbar",
@@ -544,7 +547,8 @@
         "pro"
       ],
       "locked": true,
-      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Asymmetric Editorial Bento</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Asymmetric Editorial Bento <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "pricing-matrix-pro",
@@ -561,7 +565,8 @@
         "pro"
       ],
       "locked": true,
-      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Enterprise Pricing Matrix</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Enterprise Pricing Matrix <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "ai-chat-thread",
@@ -578,7 +583,8 @@
         "pro"
       ],
       "locked": true,
-      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">AI Conversational Thread</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">AI Conversational Thread <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "tool-trace",
@@ -594,7 +600,8 @@
         "pro"
       ],
       "locked": true,
-      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Tool Trace</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Tool Trace <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "approval-bar",
@@ -609,7 +616,8 @@
         "pro"
       ],
       "locked": true,
-      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Approval Bar</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Approval Bar <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "thought-chain",
@@ -624,7 +632,8 @@
         "pro"
       ],
       "locked": true,
-      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Thought Chain</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Thought Chain <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "agent-workspace",
@@ -639,7 +648,8 @@
         "pro"
       ],
       "locked": true,
-      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Agent Workspace</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Agent Workspace <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "mcp-widget-shell",
@@ -654,7 +664,8 @@
         "pro"
       ],
       "locked": true,
-      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">MCP Widget Shell</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">MCP Widget Shell <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "streaming-status",
@@ -669,7 +680,8 @@
         "pro"
       ],
       "locked": true,
-      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Streaming Status</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Streaming Status <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "citation-list",
@@ -684,7 +696,8 @@
         "pro"
       ],
       "locked": true,
-      "html": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <span class=\"tag-pro-pill\">PRO</span>\n  <h3 class=\"ai-card-title\" style=\"margin-top: var(--ai-space-3);\">Citation List</h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "html": null,
+      "previewHtml": "<div class=\"ai-card ai-card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2\">Citation List <span class=\"ai-badge ai-badge-solid ai-badge-sm\">Pro</span></h3>\n  <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Source is not in the public catalog. Subscribe to copy this component.</p>\n  <a class=\"ai-btn ai-btn-primary ai-btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "breadcrumb-nav",
@@ -802,7 +815,7 @@
         "drawer",
         "app"
       ],
-      "html": "<div style=\"width: 16rem;\">\n  <nav class=\"ai-sidebar\" style=\"height: auto; border: 1px solid var(--ai-border); border-radius: var(--ai-radius-lg); overflow: hidden;\">\n    <div class=\"ai-sidebar-header\">\n      <span class=\"ai-font-semibold\" style=\"font-size: 0.9375rem;\">Workspace</span>\n    </div>\n    <ul class=\"ai-sidebar-nav\">\n      <li class=\"ai-sidebar-section\">\n        <span class=\"ai-sidebar-section-title\">Main</span>\n        <a href=\"#\" class=\"ai-sidebar-item is-active\">\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"7\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\"/></svg>\n          Dashboard\n          <span class=\"ai-sidebar-badge\">12</span>\n        </a>\n        <a href=\"#\" class=\"ai-sidebar-item\">\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><polyline points=\"14 2 14 8 20 8\"/></svg>\n          Documents\n        </a>\n        <a href=\"#\" class=\"ai-sidebar-item\">\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><polyline points=\"12 6 12 12 16 14\"/></svg>\n          Activity\n          <span class=\"ai-sidebar-badge\">3</span>\n        </a>\n      </li>\n      <li class=\"ai-sidebar-section\">\n        <span class=\"ai-sidebar-section-title\">Account</span>\n        <a href=\"#\" class=\"ai-sidebar-item\">\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z\"/></svg>\n          Settings\n        </a>\n      </li>\n    </ul>\n  </nav>\n</div>"
+      "html": "<div style=\"width: 16rem;\">\n  <nav class=\"ai-sidebar\" style=\"height: auto; border: 1px solid var(--ai-border); border-radius: var(--ai-radius-lg); overflow: hidden;\">\n    <div class=\"ai-sidebar-header\">\n      <span class=\"ai-font-semibold\" style=\"font-size: 0.9375rem;\">Workspace</span>\n    </div>\n    <ul class=\"ai-sidebar-nav\">\n      <li class=\"ai-sidebar-section\">\n        <span class=\"ai-sidebar-section-title\">Main</span>\n        <a href=\"#\" class=\"ai-sidebar-item is-active\" aria-current=\"page\">\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"7\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\"/></svg>\n          Dashboard\n          <span class=\"ai-sidebar-badge\">12</span>\n        </a>\n        <a href=\"#\" class=\"ai-sidebar-item\">\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><polyline points=\"14 2 14 8 20 8\"/></svg>\n          Documents\n        </a>\n        <a href=\"#\" class=\"ai-sidebar-item\">\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><polyline points=\"12 6 12 12 16 14\"/></svg>\n          Activity\n          <span class=\"ai-sidebar-badge\">3</span>\n        </a>\n      </li>\n      <li class=\"ai-sidebar-section\">\n        <span class=\"ai-sidebar-section-title\">Account</span>\n        <a href=\"#\" class=\"ai-sidebar-item\">\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z\"/></svg>\n          Settings\n        </a>\n      </li>\n    </ul>\n  </nav>\n</div>"
     },
     {
       "id": "stats-dashboard",
@@ -817,7 +830,7 @@
         "metrics",
         "analytics"
       ],
-      "html": "<div class=\"ai-grid ai-grid-cols-1 ai-md:grid-cols-4 ai-gap-4\">\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Total Revenue</span>\n    <span class=\"ai-kpi-value\">$48,290</span>\n    <span class=\"ai-kpi-trend is-up\">\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>\n      +12.3% vs last month\n    </span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Active Users</span>\n    <span class=\"ai-kpi-value\">2,847</span>\n    <span class=\"ai-kpi-trend is-up\">\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>\n      +8.1% vs last month\n    </span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Bounce Rate</span>\n    <span class=\"ai-kpi-value\">24.6%</span>\n    <span class=\"ai-kpi-trend is-down\">\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polyline points=\"23 18 13.5 8.5 8.5 13.5 1 6\"/><polyline points=\"17 18 23 18 23 12\"/></svg>\n      -3.2% vs last month\n    </span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Avg. Session</span>\n    <span class=\"ai-kpi-value\">4m 32s</span>\n    <span class=\"ai-kpi-trend is-up\">\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>\n      +18.7% vs last month\n    </span>\n  </div>\n</div>"
+      "html": "<div class=\"ai-grid ai-grid-cols-1 ai-md:grid-cols-4 ai-gap-4\">\n  <div class=\"ai-kpi-card is-primary\">\n    <span class=\"ai-kpi-label\">Total Revenue</span>\n    <span class=\"ai-kpi-value\">$48,290</span>\n    <span class=\"ai-kpi-trend is-up\">\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>\n      +12.3% vs last month\n    </span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Active Users</span>\n    <span class=\"ai-kpi-value\">2,847</span>\n    <span class=\"ai-kpi-trend is-up\">\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>\n      +8.1% vs last month\n    </span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Bounce Rate</span>\n    <span class=\"ai-kpi-value\">24.6%</span>\n    <span class=\"ai-kpi-trend is-down\">\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polyline points=\"23 18 13.5 8.5 8.5 13.5 1 6\"/><polyline points=\"17 18 23 18 23 12\"/></svg>\n      -3.2% vs last month\n    </span>\n  </div>\n  <div class=\"ai-kpi-card\">\n    <span class=\"ai-kpi-label\">Avg. Session</span>\n    <span class=\"ai-kpi-value\">4m 32s</span>\n    <span class=\"ai-kpi-trend is-up\">\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>\n      +18.7% vs last month\n    </span>\n  </div>\n</div>"
     },
     {
       "id": "notification-list",
@@ -832,7 +845,7 @@
         "message",
         "feed"
       ],
-      "html": "<div class=\"ai-notification-list\" style=\"max-width: 28rem;\">\n  <div class=\"ai-notification-item is-unread\">\n    <span class=\"ai-notification-dot\"></span>\n    <div class=\"ai-notification-content\">\n      <p class=\"ai-notification-title\">Deployment completed successfully</p>\n      <p class=\"ai-notification-meta\">Production environment - 2 minutes ago</p>\n    </div>\n  </div>\n  <div class=\"ai-notification-item is-unread\">\n    <span class=\"ai-notification-dot\"></span>\n    <div class=\"ai-notification-content\">\n      <p class=\"ai-notification-title\">New team member joined the workspace</p>\n      <p class=\"ai-notification-meta\">Sarah Chen accepted the invite - 15 minutes ago</p>\n    </div>\n  </div>\n  <div class=\"ai-notification-item\">\n    <span class=\"ai-notification-dot\" style=\"background-color: transparent;\"></span>\n    <div class=\"ai-notification-content\">\n      <p class=\"ai-notification-title\">Weekly usage report ready</p>\n      <p class=\"ai-notification-meta\">Analytics - 2 hours ago</p>\n    </div>\n  </div>\n  <div class=\"ai-notification-item\">\n    <span class=\"ai-notification-dot\" style=\"background-color: transparent;\"></span>\n    <div class=\"ai-notification-content\">\n      <p class=\"ai-notification-title\">SSL certificate renewed</p>\n      <p class=\"ai-notification-meta\">Infrastructure - Yesterday at 11:42 AM</p>\n    </div>\n  </div>\n</div>"
+      "html": "<div class=\"ai-notification-list\" style=\"max-width: 28rem;\">\n  <div class=\"ai-notification-item is-unread\">\n    <span class=\"ai-notification-dot\"></span>\n    <div class=\"ai-notification-content\">\n      <p class=\"ai-notification-title\">Deployment completed successfully</p>\n      <p class=\"ai-notification-meta\">Production environment - 2 minutes ago</p>\n    </div>\n  </div>\n  <div class=\"ai-notification-item is-unread\">\n    <span class=\"ai-notification-dot\"></span>\n    <div class=\"ai-notification-content\">\n      <p class=\"ai-notification-title\">New team member joined the workspace</p>\n      <p class=\"ai-notification-meta\">Sarah Chen accepted the invite - 15 minutes ago</p>\n    </div>\n  </div>\n  <div class=\"ai-notification-item\">\n    <span class=\"ai-notification-dot is-read\"></span>\n    <div class=\"ai-notification-content\">\n      <p class=\"ai-notification-title\">Weekly usage report ready</p>\n      <p class=\"ai-notification-meta\">Analytics - 2 hours ago</p>\n    </div>\n  </div>\n  <div class=\"ai-notification-item\">\n    <span class=\"ai-notification-dot is-read\"></span>\n    <div class=\"ai-notification-content\">\n      <p class=\"ai-notification-title\">SSL certificate renewed</p>\n      <p class=\"ai-notification-meta\">Infrastructure - Yesterday at 11:42 AM</p>\n    </div>\n  </div>\n</div>"
     },
     {
       "id": "kbd-shortcuts",
@@ -888,7 +901,7 @@
         "dropzone",
         "form"
       ],
-      "html": "<div class=\"ai-dropzone\" role=\"button\" tabindex=\"0\">\n  <strong style=\"color: var(--ai-text-primary);\">Drop a file</strong>\n  <span class=\"ai-text-xs\">PNG, JSON, or CSV up to 8MB</span>\n  <button class=\"ai-btn ai-btn-outline ai-btn-sm\" type=\"button\" style=\"margin-top: var(--ai-space-2);\">Browse</button>\n</div>"
+      "html": "<label class=\"ai-dropzone\" for=\"dropzone-file\">\n  <strong style=\"color: var(--ai-text-primary);\">Drop a file</strong>\n  <span class=\"ai-text-xs\">PNG, JSON, or CSV up to 8MB</span>\n  <span class=\"ai-btn ai-btn-outline ai-btn-sm\" style=\"margin-top: var(--ai-space-2);\">Browse</span>\n  <input id=\"dropzone-file\" type=\"file\" class=\"ai-sr-only\" multiple />\n</label>"
     },
     {
       "id": "timeline-log",
@@ -916,7 +929,7 @@
         "menu",
         "action"
       ],
-      "html": "<div class=\"ai-flex\">\n  <button class=\"ai-btn ai-btn-primary\" type=\"button\" style=\"border-top-right-radius: 0; border-bottom-right-radius: 0;\">Deploy</button>\n  <button class=\"ai-btn ai-btn-primary\" type=\"button\" aria-label=\"More deploy options\" style=\"border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 0.55rem; padding-right: 0.55rem;\">\n    <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"m6 9 6 6 6-6\"/></svg>\n  </button>\n</div>"
+      "html": "<div class=\"ai-btn-group\">\n  <button class=\"ai-btn ai-btn-primary\" type=\"button\">Deploy</button>\n  <button class=\"ai-btn ai-btn-primary ai-btn-icon\" type=\"button\" aria-label=\"More deploy options\" aria-haspopup=\"true\" aria-expanded=\"false\">\n    <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"m6 9 6 6 6-6\"/></svg>\n  </button>\n</div>"
     },
     {
       "id": "page-header",
@@ -1110,6 +1123,455 @@
         "range"
       ],
       "html": "<div class=\"ai-flex ai-gap-3 ai-flex-wrap\" style=\"max-width: 28rem;\">\n  <label class=\"ai-form-group\" style=\"flex: 1;\">\n    <span class=\"ai-form-label\">From</span>\n    <input class=\"ai-input\" type=\"date\" value=\"2026-09-01\" />\n  </label>\n  <label class=\"ai-form-group\" style=\"flex: 1;\">\n    <span class=\"ai-form-label\">To</span>\n    <input class=\"ai-input\" type=\"date\" value=\"2026-09-12\" />\n  </label>\n</div>"
+    },
+    {
+      "id": "collapse-details",
+      "name": "Collapse",
+      "description": "Single collapsible section on native details and summary. Opens and closes with no JavaScript; the chevron rotates on [open].",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "collapse",
+        "details",
+        "disclosure",
+        "toggle",
+        "css-only"
+      ],
+      "html": "<details class=\"ai-collapse\" style=\"max-width: 32rem;\">\n  <summary>Advanced deployment options</summary>\n  <div class=\"ai-collapse-body\">\n    Region pinning, canary percentage, and rollback window. These apply to this service only and do not change organisation defaults.\n  </div>\n</details>"
+    },
+    {
+      "id": "carousel-snap",
+      "name": "Carousel",
+      "description": "Scroll-snap carousel: swipe on touch, scroll wheel or arrow keys on desktop. Set --ai-carousel-item to show a peek of the next slide.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "carousel",
+        "slider",
+        "scroll-snap",
+        "gallery",
+        "css-only"
+      ],
+      "html": "<div class=\"ai-carousel ai-carousel-peek\" tabindex=\"0\" aria-label=\"Release highlights\" style=\"--ai-carousel-item: 72%; max-width: 40rem;\">\n  <article class=\"ai-card\" style=\"padding: var(--ai-space-6);\">\n    <h3 class=\"ai-card-title\">Edge caching</h3>\n    <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Static assets served from 34 regions. Median time to first byte dropped to 38 ms.</p>\n  </article>\n  <article class=\"ai-card\" style=\"padding: var(--ai-space-6);\">\n    <h3 class=\"ai-card-title\">Preview environments</h3>\n    <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Every pull request gets a URL. Expires seven days after merge.</p>\n  </article>\n  <article class=\"ai-card\" style=\"padding: var(--ai-space-6);\">\n    <h3 class=\"ai-card-title\">Audit log export</h3>\n    <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Stream events to your SIEM. JSON lines, hourly rotation.</p>\n  </article>\n</div>"
+    },
+    {
+      "id": "floating-label",
+      "name": "Floating Label Field",
+      "description": "Label sits inside the field and floats up on focus or when a value is present. Pure CSS via :placeholder-shown; the placeholder must be a single space.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "form",
+        "input",
+        "label",
+        "floating",
+        "css-only"
+      ],
+      "html": "<form class=\"ai-flex ai-flex-col ai-gap-4\" style=\"max-width: 24rem;\">\n  <div class=\"ai-form-float\">\n    <input id=\"fl-email\" class=\"ai-input\" type=\"email\" placeholder=\" \" autocomplete=\"email\" />\n    <label for=\"fl-email\">Work email</label>\n  </div>\n  <div class=\"ai-form-float\">\n    <input id=\"fl-org\" class=\"ai-input\" type=\"text\" placeholder=\" \" value=\"Northwind\" />\n    <label for=\"fl-org\">Organisation</label>\n  </div>\n  <div class=\"ai-form-float\">\n    <select id=\"fl-region\" class=\"ai-select\">\n      <option>Sydney</option>\n      <option>Singapore</option>\n      <option>Frankfurt</option>\n    </select>\n    <label for=\"fl-region\">Region</label>\n  </div>\n</form>"
+    },
+    {
+      "id": "list-group",
+      "name": "List Group",
+      "description": "Bordered list of rows with hover, active, and disabled states. Rows can be links or buttons.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "list",
+        "group",
+        "rows",
+        "navigation"
+      ],
+      "html": "<ul class=\"ai-list-group\" style=\"max-width: 24rem;\">\n  <li><a href=\"#\" class=\"ai-list-group-item is-active\">Overview <span class=\"ai-badge ai-badge-counter ai-ml-auto\">3</span></a></li>\n  <li><a href=\"#\" class=\"ai-list-group-item\">Deployments</a></li>\n  <li><a href=\"#\" class=\"ai-list-group-item\">Environment variables</a></li>\n  <li><a href=\"#\" class=\"ai-list-group-item is-disabled\" aria-disabled=\"true\">Billing (owner only)</a></li>\n</ul>"
+    },
+    {
+      "id": "btn-group",
+      "name": "Button Group",
+      "description": "Joined buttons that share one border and radius. Works for view switches and paired actions.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "button",
+        "group",
+        "toolbar",
+        "segmented"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-6 ai-items-center\">\n  <div class=\"ai-btn-group\" role=\"group\" aria-label=\"View\">\n    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Day</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Week</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Month</button>\n  </div>\n  <div class=\"ai-btn-group\" role=\"group\" aria-label=\"Deploy\">\n    <button type=\"button\" class=\"ai-btn ai-btn-primary\">Deploy</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-icon\" aria-label=\"Deploy options\" aria-haspopup=\"true\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"/></svg></button>\n  </div>\n</div>"
+    },
+    {
+      "id": "level-bar",
+      "name": "Level",
+      "description": "One row with a left cluster and a right cluster, vertically centred. The workhorse for page and card headers.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "level",
+        "layout",
+        "header",
+        "row",
+        "flex"
+      ],
+      "html": "<div class=\"ai-level\" style=\"padding: var(--ai-space-4) 0; border-bottom: 1px solid var(--ai-border);\">\n  <div class=\"ai-level-left\">\n    <strong>Invoices</strong>\n    <span class=\"ai-badge ai-badge-neutral\">June 2026</span>\n  </div>\n  <div class=\"ai-level-right\">\n    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Export</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-sm\">New invoice</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "media-object",
+      "name": "Media Object",
+      "description": "A figure beside a block of content: avatar and comment, icon and text, thumbnail and summary.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "media",
+        "comment",
+        "avatar",
+        "layout"
+      ],
+      "html": "<div class=\"ai-media\" style=\"max-width: 36rem;\">\n  <div class=\"ai-media-figure\">\n    <div class=\"ai-avatar\" style=\"background-color: var(--ai-surface-3);\">MR</div>\n  </div>\n  <div class=\"ai-media-body\">\n    <div class=\"ai-level\">\n      <div class=\"ai-level-left\"><strong>Mia Rahman</strong><span class=\"ai-text-xs ai-text-muted\">2 hours ago</span></div>\n    </div>\n    <p class=\"ai-text-sm ai-text-secondary\" style=\"margin-top: var(--ai-space-1);\">Rolled back the pricing page to build 412. The variant with the annual toggle was posting the wrong plan id.</p>\n  </div>\n</div>"
+    },
+    {
+      "id": "panel-list",
+      "name": "Panel",
+      "description": "Titled surface with a list body. Header carries an action; the list group inside loses its own border.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "panel",
+        "card",
+        "list",
+        "container"
+      ],
+      "html": "<div class=\"ai-panel\" style=\"max-width: 24rem;\">\n  <div class=\"ai-panel-header\">\n    Recent branches\n    <button type=\"button\" class=\"ai-btn ai-btn-ghost ai-btn-xs\">View all</button>\n  </div>\n  <ul class=\"ai-list-group\">\n    <li><a href=\"#\" class=\"ai-list-group-item\"><code class=\"ai-text-xs\">fix/session-expiry</code><span class=\"ai-text-xs ai-text-muted ai-ml-auto\">3m</span></a></li>\n    <li><a href=\"#\" class=\"ai-list-group-item\"><code class=\"ai-text-xs\">feat/usage-export</code><span class=\"ai-text-xs ai-text-muted ai-ml-auto\">1h</span></a></li>\n    <li><a href=\"#\" class=\"ai-list-group-item\"><code class=\"ai-text-xs\">main</code><span class=\"ai-text-xs ai-text-muted ai-ml-auto\">2d</span></a></li>\n  </ul>\n</div>"
+    },
+    {
+      "id": "notification-block",
+      "name": "Notification",
+      "description": "Page-level closable message, larger than an inline alert. Semantic variants tint the surface, never a left stripe.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "notification",
+        "message",
+        "banner",
+        "dismiss"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-col ai-gap-4\" style=\"max-width: 36rem;\">\n  <div class=\"ai-notification ai-notification-info\" role=\"status\">\n    <strong>Scheduled maintenance.</strong> The API will be read-only on Saturday 20 September from 02:00 to 02:30 UTC.\n    <button type=\"button\" class=\"ai-close\" data-ai-dismiss=\"toast\" aria-label=\"Dismiss\"></button>\n  </div>\n  <div class=\"ai-notification ai-notification-success\" role=\"status\">\n    Your workspace was upgraded. Seats renew on the 1st of each month.\n    <button type=\"button\" class=\"ai-close\" aria-label=\"Dismiss\"></button>\n  </div>\n</div>"
+    },
+    {
+      "id": "file-input",
+      "name": "File Input",
+      "description": "Native file input with a styled selector button. Nothing to script; the browser handles the picker.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "file",
+        "upload",
+        "input",
+        "form",
+        "css-only"
+      ],
+      "html": "<div class=\"ai-form-group\" style=\"max-width: 24rem;\">\n  <label class=\"ai-form-label\" for=\"report-file\">Import CSV</label>\n  <input id=\"report-file\" type=\"file\" class=\"ai-file-input\" accept=\".csv\" />\n  <p class=\"ai-form-hint\">Up to 25 MB. First row is treated as the header.</p>\n</div>"
+    },
+    {
+      "id": "title-subtitle",
+      "name": "Title and Subtitle",
+      "description": "Heading pair for pages and sections: display title with balanced wrapping and a muted subtitle.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "title",
+        "heading",
+        "typography",
+        "subtitle"
+      ],
+      "html": "<div style=\"max-width: 36rem;\">\n  <h2 class=\"ai-title\">Usage and billing</h2>\n  <p class=\"ai-subtitle\">Meter reads are final at midnight UTC. Overages are billed with the next invoice.</p>\n</div>"
+    },
+    {
+      "id": "chip-removable",
+      "name": "Removable Chips",
+      "description": "Filter chips with a remove control. The remove button carries the accessible name; removal itself is your form or script.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "chip",
+        "tag",
+        "badge",
+        "filter",
+        "remove"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-2\">\n  <span class=\"ai-badge ai-badge-neutral ai-badge-removable\">Region: Sydney <button type=\"button\" class=\"ai-badge-remove\" aria-label=\"Remove Region: Sydney\">&times;</button></span>\n  <span class=\"ai-badge ai-badge-neutral ai-badge-removable\">Status: Active <button type=\"button\" class=\"ai-badge-remove\" aria-label=\"Remove Status: Active\">&times;</button></span>\n  <span class=\"ai-badge ai-badge-accent ai-badge-removable\">Owner: me <button type=\"button\" class=\"ai-badge-remove\" aria-label=\"Remove Owner: me\">&times;</button></span>\n</div>"
+    },
+    {
+      "id": "select-native",
+      "name": "Select",
+      "description": "Styled native select with label, hint, and an error state. Multi-select uses the size attribute.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "select",
+        "form",
+        "dropdown",
+        "input"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-col ai-gap-4\" style=\"max-width: 24rem;\">\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label\" for=\"sel-plan\">Plan</label>\n    <select id=\"sel-plan\" class=\"ai-select\">\n      <option>Starter</option>\n      <option selected>Team</option>\n      <option>Enterprise</option>\n    </select>\n  </div>\n  <div class=\"ai-form-group\">\n    <label class=\"ai-form-label\" for=\"sel-region\">Data region</label>\n    <select id=\"sel-region\" class=\"ai-select\" aria-invalid=\"true\" aria-describedby=\"sel-region-err\">\n      <option value=\"\">Choose a region</option>\n      <option>Sydney</option>\n      <option>Frankfurt</option>\n    </select>\n    <p class=\"ai-form-hint\" id=\"sel-region-err\" style=\"color: var(--ai-danger);\">A region is required before the first deploy.</p>\n  </div>\n</div>"
+    },
+    {
+      "id": "input-icon",
+      "name": "Input With Inset Icon",
+      "description": "Leading or trailing icon inside the field. The icon is decorative; the label still names the control.",
+      "category": "primitive",
+      "tier": "free",
+      "tags": [
+        "input",
+        "icon",
+        "search",
+        "form"
+      ],
+      "html": "<div class=\"ai-flex ai-flex-col ai-gap-4\" style=\"max-width: 24rem;\">\n  <div class=\"ai-input-icon-wrap\">\n    <svg class=\"ai-input-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/></svg>\n    <input class=\"ai-input\" type=\"search\" placeholder=\"Search deployments\" aria-label=\"Search deployments\" />\n  </div>\n  <div class=\"ai-input-icon-wrap is-trailing\">\n    <svg class=\"ai-input-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M16 2v4\"/><path d=\"M8 2v4\"/><path d=\"M3 10h18\"/></svg>\n    <input class=\"ai-input\" type=\"date\" aria-label=\"Start date\" />\n  </div>\n</div>"
+    },
+    {
+      "id": "section-shift",
+      "name": "Section",
+      "description": "Page section wrapper: consistent vertical rhythm, hairline between sections, optional surface shift. The Law 1 answer to cards inside cards.",
+      "category": "marketing",
+      "tier": "free",
+      "tags": [
+        "section",
+        "layout",
+        "wrapper",
+        "spacing"
+      ],
+      "html": "<section class=\"ai-section\" style=\"--ai-section-padding: var(--ai-space-12);\">\n  <div class=\"ai-container\">\n    <h2 class=\"ai-section-title\">Built for the tools your team already runs</h2>\n    <p class=\"ai-section-lead\">One stylesheet, no build step. Works the same in a Rails view, an Astro page, or a plain HTML file an agent wrote this morning.</p>\n  </div>\n</section>\n<section class=\"ai-section ai-section-shift\" style=\"--ai-section-padding: var(--ai-space-12);\">\n  <div class=\"ai-container\">\n    <h2 class=\"ai-section-title\">Then ship it</h2>\n    <p class=\"ai-section-lead\">Every section after the first gets a hairline. Alternate surfaces with ai-section-shift instead of boxing content.</p>\n  </div>\n</section>"
+    },
+    {
+      "id": "feature-grid",
+      "name": "Feature Grid",
+      "description": "Uniform grid of icon, title, and one sentence. Auto-fits columns; no colored icon tiles, no bento spans.",
+      "category": "marketing",
+      "tier": "free",
+      "tags": [
+        "features",
+        "grid",
+        "icons",
+        "marketing"
+      ],
+      "html": "<div class=\"ai-feature-grid\">\n  <div class=\"ai-feature-item\">\n    <span class=\"ai-feature-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 2 2 7l10 5 10-5-10-5z\"/><path d=\"m2 17 10 5 10-5\"/><path d=\"m2 12 10 5 10-5\"/></svg></span>\n    <h3 class=\"ai-feature-title\">Layered CSS</h3>\n    <p class=\"ai-feature-text\">Reset, tokens, base, components, utilities. Override anything without a specificity fight.</p>\n  </div>\n  <div class=\"ai-feature-item\">\n    <span class=\"ai-feature-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M9 3v18\"/></svg></span>\n    <h3 class=\"ai-feature-title\">Container queries</h3>\n    <p class=\"ai-feature-text\">Widgets adapt to the panel they sit in, not the viewport.</p>\n  </div>\n  <div class=\"ai-feature-item\">\n    <span class=\"ai-feature-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"/></svg></span>\n    <h3 class=\"ai-feature-title\">Validated by the CLI</h3>\n    <p class=\"ai-feature-text\">Every class you emit is checked against the real stylesheet before you ship.</p>\n  </div>\n  <div class=\"ai-feature-item\">\n    <span class=\"ai-feature-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 3\"/></svg></span>\n    <h3 class=\"ai-feature-title\">Zero runtime by default</h3>\n    <p class=\"ai-feature-text\">Add the 12 KB runtime only when you need modals, drawers, or tabs.</p>\n  </div>\n</div>"
+    },
+    {
+      "id": "feature-list",
+      "name": "Feature List",
+      "description": "Plain checklist of capabilities with a mark. Reads faster than a grid when there are more than six items.",
+      "category": "marketing",
+      "tier": "free",
+      "tags": [
+        "features",
+        "list",
+        "checklist",
+        "pricing"
+      ],
+      "html": "<ul class=\"ai-feature-list\" style=\"max-width: 28rem;\">\n  <li><span class=\"ai-mark ai-mark-yes\" role=\"img\" aria-label=\"Included\"></span> Unlimited environments per project</li>\n  <li><span class=\"ai-mark ai-mark-yes\" role=\"img\" aria-label=\"Included\"></span> Preview URL for every pull request</li>\n  <li><span class=\"ai-mark ai-mark-yes\" role=\"img\" aria-label=\"Included\"></span> Audit log with 90 day retention</li>\n  <li><span class=\"ai-mark ai-mark-warn\" role=\"img\" aria-label=\"Limited\"></span> SSO on Team and above</li>\n  <li><span class=\"ai-mark ai-mark-no\" role=\"img\" aria-label=\"Not included\"></span> Dedicated IP addresses</li>\n</ul>"
+    },
+    {
+      "id": "stats-band",
+      "name": "Stats Band",
+      "description": "Public-facing numbers with one dominant figure and smaller supporting stats (Law 8). Tabular numerals throughout.",
+      "category": "marketing",
+      "tier": "free",
+      "tags": [
+        "stats",
+        "numbers",
+        "social-proof",
+        "metrics",
+        "band"
+      ],
+      "html": "<div class=\"ai-stats-band\">\n  <div class=\"ai-stat is-primary\">\n    <div class=\"ai-stat-value\">99.98%</div>\n    <div class=\"ai-stat-label\">Uptime over the last 12 months</div>\n  </div>\n  <div class=\"ai-stat\">\n    <div class=\"ai-stat-value\">38 ms</div>\n    <div class=\"ai-stat-label\">Median time to first byte</div>\n  </div>\n  <div class=\"ai-stat\">\n    <div class=\"ai-stat-value\">34</div>\n    <div class=\"ai-stat-label\">Edge regions</div>\n  </div>\n</div>"
+    },
+    {
+      "id": "cta-band",
+      "name": "CTA Band",
+      "description": "Pre-footer conversion block: one heading, one sentence, primary and secondary actions.",
+      "category": "marketing",
+      "tier": "free",
+      "tags": [
+        "cta",
+        "conversion",
+        "band",
+        "signup"
+      ],
+      "html": "<div class=\"ai-cta-band\">\n  <h2 class=\"ai-section-title\">Start with the free tier</h2>\n  <p class=\"ai-section-lead\" style=\"margin-inline: auto;\">No card required. Upgrade when you need SSO, audit export, or more than three projects.</p>\n  <div class=\"ai-cta-actions\">\n    <a href=\"#\" class=\"ai-btn ai-btn-primary ai-btn-lg\">Create account</a>\n    <a href=\"#\" class=\"ai-btn ai-btn-outline ai-btn-lg\">Talk to sales</a>\n  </div>\n</div>"
+    },
+    {
+      "id": "callout-editorial",
+      "name": "Editorial Callout",
+      "description": "Emphasis block for long-form content: hairlines above and below, a short label, no stripe, no icon (Law 3).",
+      "category": "marketing",
+      "tier": "free",
+      "tags": [
+        "callout",
+        "note",
+        "editorial",
+        "aside"
+      ],
+      "html": "<aside class=\"ai-callout\" style=\"max-width: 40rem;\">\n  <span class=\"ai-callout-label\">Worth knowing</span>\n  Rollbacks restore the previous build and its environment variables together. Secrets rotated after that build are not reverted.\n</aside>"
+    },
+    {
+      "id": "testimonial-grid",
+      "name": "Testimonial Grid",
+      "description": "Three quotes with name and role. Cards sit on the page surface, one hairline border each, nothing nested.",
+      "category": "marketing",
+      "tier": "free",
+      "tags": [
+        "testimonial",
+        "quote",
+        "social-proof",
+        "customers"
+      ],
+      "html": "<div class=\"ai-testimonial-grid\">\n  <figure class=\"ai-testimonial-card\">\n    <blockquote class=\"ai-testimonial-quote\">We replaced 4,000 lines of utility soup with the registry components and our agent stopped inventing class names.</blockquote>\n    <figcaption class=\"ai-testimonial-author\"><strong>Priya Natarajan</strong><span class=\"ai-text-xs ai-text-muted\">Platform lead, Lattice Labs</span></figcaption>\n  </figure>\n  <figure class=\"ai-testimonial-card\">\n    <blockquote class=\"ai-testimonial-quote\">The anti-slop audit caught a pulsing status dot in a PR before a human ever looked at it.</blockquote>\n    <figcaption class=\"ai-testimonial-author\"><strong>Tom Okafor</strong><span class=\"ai-text-xs ai-text-muted\">Design engineer, Meridian</span></figcaption>\n  </figure>\n  <figure class=\"ai-testimonial-card\">\n    <blockquote class=\"ai-testimonial-quote\">One link tag in a Rails layout. That was the whole migration.</blockquote>\n    <figcaption class=\"ai-testimonial-author\"><strong>Sofia Lindqvist</strong><span class=\"ai-text-xs ai-text-muted\">CTO, Fieldnote</span></figcaption>\n  </figure>\n</div>"
+    },
+    {
+      "id": "team-grid",
+      "name": "Team Grid",
+      "description": "People grid for an about page: photo, name, role. Photos keep a square ratio at every width.",
+      "category": "marketing",
+      "tier": "free",
+      "tags": [
+        "team",
+        "people",
+        "about",
+        "grid"
+      ],
+      "html": "<div class=\"ai-team-grid\" style=\"max-width: 48rem;\">\n  <div class=\"ai-team-member\">\n    <div class=\"ai-team-photo\" role=\"img\" aria-label=\"Portrait placeholder\"></div>\n    <div class=\"ai-team-name\">Amara Osei</div>\n    <div class=\"ai-team-role\">Founder</div>\n  </div>\n  <div class=\"ai-team-member\">\n    <div class=\"ai-team-photo\" role=\"img\" aria-label=\"Portrait placeholder\"></div>\n    <div class=\"ai-team-name\">Jonas Berg</div>\n    <div class=\"ai-team-role\">Engineering</div>\n  </div>\n  <div class=\"ai-team-member\">\n    <div class=\"ai-team-photo\" role=\"img\" aria-label=\"Portrait placeholder\"></div>\n    <div class=\"ai-team-name\">Hana Sato</div>\n    <div class=\"ai-team-role\">Design</div>\n  </div>\n</div>"
+    },
+    {
+      "id": "announcement-bar",
+      "name": "Announcement Bar",
+      "description": "Single-line bar above the header for a release or notice, with a link and a dismiss control.",
+      "category": "marketing",
+      "tier": "free",
+      "tags": [
+        "announcement",
+        "banner",
+        "top-bar",
+        "notice"
+      ],
+      "html": "<div class=\"ai-announcement\" role=\"region\" aria-label=\"Announcement\">\n  <span>LLMCSS 0.2 ships the runtime as one script tag.</span>\n  <a href=\"#\">Read the changelog</a>\n  <button type=\"button\" class=\"ai-close ai-ml-auto\" aria-label=\"Dismiss announcement\" style=\"color: inherit;\"></button>\n</div>"
+    },
+    {
+      "id": "consent-bar",
+      "name": "Consent Bar",
+      "description": "Fixed bottom bar for cookie consent with accept, reject, and manage actions. Sits above content; not a modal.",
+      "category": "marketing",
+      "tier": "free",
+      "tags": [
+        "cookie",
+        "consent",
+        "privacy",
+        "bar"
+      ],
+      "html": "<div class=\"ai-consent-bar\" role=\"region\" aria-label=\"Cookie preferences\" style=\"position: static; max-width: 40rem;\">\n  <span>We use one analytics cookie to count visits. No advertising, no cross-site tracking.</span>\n  <div class=\"ai-consent-actions\">\n    <button type=\"button\" class=\"ai-btn ai-btn-ghost ai-btn-sm\">Manage</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Reject</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-sm\">Accept</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "faq-section",
+      "name": "FAQ Section",
+      "description": "Question list on native details. Zero JavaScript; each answer is real copy, not filler.",
+      "category": "marketing",
+      "tier": "free",
+      "tags": [
+        "faq",
+        "questions",
+        "collapse",
+        "details",
+        "css-only"
+      ],
+      "html": "<div style=\"max-width: 40rem;\">\n  <h2 class=\"ai-section-title\">Questions</h2>\n  <div style=\"margin-top: var(--ai-space-6);\">\n    <details class=\"ai-collapse\" style=\"padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border);\">\n      <summary>Do I need a build step?</summary>\n      <div class=\"ai-collapse-body\">No. Link the stylesheet and start writing classes. The CLI and MCP server are optional.</div>\n    </details>\n    <details class=\"ai-collapse\" style=\"padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border);\">\n      <summary>What happens when I cancel Pro?</summary>\n      <div class=\"ai-collapse-body\">The token stops working at the end of the period. CSS and HTML you already copied stay yours.</div>\n    </details>\n    <details class=\"ai-collapse\" style=\"padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border); border-bottom: 1px solid var(--ai-border);\">\n      <summary>Which browsers?</summary>\n      <div class=\"ai-collapse-body\">Current Chrome, Edge, Firefox, and Safari. Features like :has() and container queries have been stable in all four since 2023.</div>\n    </details>\n  </div>\n</div>"
+    },
+    {
+      "id": "product-grid",
+      "name": "Product Grid",
+      "description": "Listing grid of product cards with a sale badge and a sold-out state. Columns fill by available width.",
+      "category": "ecommerce",
+      "tier": "free",
+      "tags": [
+        "product",
+        "grid",
+        "listing",
+        "shop",
+        "ecommerce"
+      ],
+      "html": "<div class=\"ai-product-grid\">\n  <article class=\"ai-product-card\">\n    <div class=\"ai-product-media\" style=\"aspect-ratio: 4 / 3; background: var(--ai-surface-1);\"></div>\n    <div class=\"ai-product-body\">\n      <div class=\"ai-level\"><h3 class=\"ai-product-title\">Field Notebook</h3><span class=\"ai-badge ai-badge-sale ai-badge-sm\">Sale</span></div>\n      <p class=\"ai-product-price\"><span>$18</span> <s class=\"ai-product-compare-price\">$24</s></p>\n      <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-sm ai-w-full\">Add to cart</button>\n    </div>\n  </article>\n  <article class=\"ai-product-card\">\n    <div class=\"ai-product-media\" style=\"aspect-ratio: 4 / 3; background: var(--ai-surface-1);\"></div>\n    <div class=\"ai-product-body\">\n      <h3 class=\"ai-product-title\">Brass Ruler</h3>\n      <p class=\"ai-product-price\">$32</p>\n      <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-sm ai-w-full\">Add to cart</button>\n    </div>\n  </article>\n  <article class=\"ai-product-card is-sold-out\">\n    <div class=\"ai-product-media\" style=\"aspect-ratio: 4 / 3; background: var(--ai-surface-1);\"></div>\n    <div class=\"ai-product-body\">\n      <h3 class=\"ai-product-title\">Desk Mat</h3>\n      <p class=\"ai-product-price\">$48</p>\n      <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm ai-w-full\" disabled>Sold out</button>\n    </div>\n  </article>\n</div>"
+    },
+    {
+      "id": "data-grid",
+      "name": "Data Grid",
+      "description": "Table with sticky header, sortable column indicators via aria-sort, a select-all checkbox with an indeterminate state, and selected rows via aria-selected.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "table",
+        "grid",
+        "sort",
+        "select",
+        "sticky",
+        "data"
+      ],
+      "html": "<div class=\"ai-table-container\" style=\"max-height: 18rem;\">\n  <table class=\"ai-table ai-table-hover ai-table-sticky ai-table-compact\">\n    <thead>\n      <tr>\n        <th style=\"width: 2.5rem;\"><input type=\"checkbox\" class=\"ai-checkbox-input\" aria-label=\"Select all\" /></th>\n        <th aria-sort=\"descending\">Service</th>\n        <th aria-sort=\"none\">Region</th>\n        <th class=\"ai-cell-num\" aria-sort=\"none\">p95 ms</th>\n        <th>Status</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr aria-selected=\"true\">\n        <td><input type=\"checkbox\" class=\"ai-checkbox-input\" checked aria-label=\"Select api-gateway\" /></td>\n        <td>api-gateway</td><td>syd-1</td><td class=\"ai-cell-num\">142</td><td><span class=\"ai-badge ai-badge-success\">Healthy</span></td>\n      </tr>\n      <tr>\n        <td><input type=\"checkbox\" class=\"ai-checkbox-input\" aria-label=\"Select auth\" /></td>\n        <td>auth</td><td>syd-1</td><td class=\"ai-cell-num\">88</td><td><span class=\"ai-badge ai-badge-success\">Healthy</span></td>\n      </tr>\n      <tr>\n        <td><input type=\"checkbox\" class=\"ai-checkbox-input\" aria-label=\"Select billing-worker\" /></td>\n        <td>billing-worker</td><td>fra-2</td><td class=\"ai-cell-num\">1,204</td><td><span class=\"ai-badge ai-badge-warning\">Degraded</span></td>\n      </tr>\n      <tr>\n        <td><input type=\"checkbox\" class=\"ai-checkbox-input\" aria-label=\"Select search\" /></td>\n        <td>search</td><td>sin-1</td><td class=\"ai-cell-num\">210</td><td><span class=\"ai-badge ai-badge-success\">Healthy</span></td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+    },
+    {
+      "id": "bulk-action-bar",
+      "name": "Bulk Action Bar",
+      "description": "Sticky bar that appears once rows are selected: count, actions, and a clear control. Uniform border, no colored stripe.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "bulk",
+        "selection",
+        "actions",
+        "toolbar",
+        "table"
+      ],
+      "html": "<div class=\"ai-bulk-bar\" style=\"position: static; max-width: 40rem;\">\n  <span class=\"ai-bulk-bar-count\">3 selected</span>\n  <button type=\"button\" class=\"ai-btn ai-btn-ghost ai-btn-xs\">Clear</button>\n  <div class=\"ai-bulk-bar-actions\">\n    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Restart</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Scale</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-danger ai-btn-sm\">Delete</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "tree-view",
+      "name": "Tree View",
+      "description": "Nested, collapsible tree on native details for files, folders, or resources. Arbitrary depth, no JavaScript.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "tree",
+        "files",
+        "folders",
+        "nested",
+        "details",
+        "css-only"
+      ],
+      "html": "<ul class=\"ai-tree\" style=\"max-width: 20rem;\">\n  <li>\n    <details open>\n      <summary>src</summary>\n      <ul>\n        <li>\n          <details open>\n            <summary>components</summary>\n            <ul>\n              <li><a href=\"#\" class=\"ai-tree-leaf is-active\">navbar.html</a></li>\n              <li><a href=\"#\" class=\"ai-tree-leaf\">footer.html</a></li>\n            </ul>\n          </details>\n        </li>\n        <li><a href=\"#\" class=\"ai-tree-leaf\">index.html</a></li>\n      </ul>\n    </details>\n  </li>\n  <li>\n    <details>\n      <summary>public</summary>\n      <ul><li><a href=\"#\" class=\"ai-tree-leaf\">llmcss.css</a></li></ul>\n    </details>\n  </li>\n  <li><a href=\"#\" class=\"ai-tree-leaf\">README.md</a></li>\n</ul>"
+    },
+    {
+      "id": "onboarding-checklist",
+      "name": "Onboarding Checklist",
+      "description": "Setup progress: ordered tasks, a completion bar, and one action per open task.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "onboarding",
+        "checklist",
+        "setup",
+        "progress",
+        "tasks"
+      ],
+      "html": "<div style=\"max-width: 28rem;\">\n  <div class=\"ai-level\">\n    <strong>Get set up</strong>\n    <span class=\"ai-text-sm ai-text-secondary\" data-tabular>2 of 4</span>\n  </div>\n  <div class=\"ai-progress ai-progress-sm\" role=\"progressbar\" aria-label=\"Setup progress\" aria-valuenow=\"50\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"margin-top: var(--ai-space-3);\"><div class=\"ai-progress-bar\" style=\"width: 50%;\"></div></div>\n  <ul class=\"ai-checklist\" style=\"margin-top: var(--ai-space-4);\">\n    <li class=\"ai-checklist-item is-completed\"><span class=\"ai-checklist-mark\">1</span><span class=\"ai-checklist-label\">Create your first project</span></li>\n    <li class=\"ai-checklist-item is-completed\"><span class=\"ai-checklist-mark\">2</span><span class=\"ai-checklist-label\">Connect a repository</span></li>\n    <li class=\"ai-checklist-item\"><span class=\"ai-checklist-mark\">3</span><span class=\"ai-checklist-label\">Add a custom domain</span><button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-xs\">Add</button></li>\n    <li class=\"ai-checklist-item\"><span class=\"ai-checklist-mark\">4</span><span class=\"ai-checklist-label\">Invite a teammate</span><button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-xs\">Invite</button></li>\n  </ul>\n</div>"
+    },
+    {
+      "id": "error-state",
+      "name": "Error State",
+      "description": "Section-level failure with retry and report actions. Same shape as the empty state, danger tone, no alarm styling.",
+      "category": "application",
+      "tier": "free",
+      "tags": [
+        "error",
+        "failure",
+        "retry",
+        "empty-state"
+      ],
+      "html": "<div class=\"ai-empty-state is-error\" style=\"max-width: 28rem;\">\n  <div class=\"ai-empty-state-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 8v4\"/><path d=\"M12 16h.01\"/></svg></div>\n  <h3 class=\"ai-empty-state-title\">Could not load deployments</h3>\n  <p class=\"ai-empty-state-description\">The API returned 503 twice. Nothing was changed. Try again, or send the request id to support.</p>\n  <div class=\"ai-flex ai-gap-2 ai-justify-center\" style=\"margin-top: var(--ai-space-4);\">\n    <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-sm\">Retry</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Copy request id</button>\n  </div>\n</div>"
     }
   ]
 }

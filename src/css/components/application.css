@@ -6,14 +6,14 @@
   /* App Shell & Sidebar */
   .ai-app-shell {
     display: flex;
-    min-height: 100vh;
+    min-height: 100dvh;
     background-color: var(--ai-bg);
   }
 
   .ai-sidebar {
-    width: 16rem;
+    width: var(--ai-sidebar-width, 16rem);
     background-color: var(--ai-surface-0);
-    border-right: 1px solid var(--ai-border);
+    border-inline-end: 1px solid var(--ai-border);
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -135,7 +135,7 @@
 
   /* Auth Screens */
   .ai-auth-wrap {
-    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -204,7 +204,7 @@
     border-color: var(--ai-accent);
     background-color: var(--ai-surface-0);
     color: var(--ai-accent);
-    box-shadow: 0 0 0 4px rgba(var(--ai-accent-rgb, 59, 130, 246), 0.15);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--ai-accent) 15%, transparent);
   }
 
   .ai-step-item.is-completed .ai-step-circle {
@@ -302,5 +302,52 @@
     background-color: var(--ai-surface-0);
     border-color: var(--ai-border-hover);
     color: var(--ai-text-primary);
+  }
+}
+
+@layer components {
+  /* Collapsed rail: icons only. Toggle .is-collapsed on .ai-sidebar. */
+  .ai-sidebar.is-collapsed {
+    --ai-sidebar-width: 4.25rem;
+  }
+  .ai-sidebar.is-collapsed .ai-sidebar-item {
+    justify-content: center;
+    padding-inline: 0;
+  }
+  .ai-sidebar.is-collapsed .ai-sidebar-item > :not(svg):not(.ai-sidebar-icon),
+  .ai-sidebar.is-collapsed .ai-sidebar-section-title,
+  .ai-sidebar.is-collapsed .ai-sidebar-badge {
+    display: none;
+  }
+
+  /* Segmented control as a radio group: works with no JavaScript.
+     <label class="ai-segmented-btn"><input type="radio" name="view" class="ai-segmented-input" checked> Day</label> */
+  .ai-segmented-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .ai-segmented-btn:has(.ai-segmented-input:checked) {
+    background-color: var(--ai-surface-0);
+    color: var(--ai-text-primary);
+    box-shadow: var(--ai-shadow-sm);
+    font-weight: 600;
+  }
+  .ai-segmented-btn:has(.ai-segmented-input:focus-visible) {
+    box-shadow: var(--ai-focus-ring);
+  }
+
+  /* Density scope for dashboard rows */
+  .ai-density-compact .ai-health-row,
+  .ai-density-compact .ai-settings-row,
+  .ai-density-compact .ai-inbox-item,
+  .ai-density-compact .ai-sidebar-item {
+    padding-block: var(--ai-space-2);
+  }
+  .ai-density-compact .ai-table th,
+  .ai-density-compact .ai-table td {
+    padding: var(--ai-space-2) var(--ai-space-3);
   }
 }

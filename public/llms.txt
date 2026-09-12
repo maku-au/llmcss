@@ -1,6 +1,16 @@
 # LLMCSS: The Human-Craft UI Framework for Agents & Humans
 > An open, modern UI system engineered specifically for AI agents and human developers to build clean, tactile, non-cookie-cutter interfaces with zero AI slop.
 
+## Machine-readable manifests (generated from the CSS, never hand-edited)
+
+- https://llmcss.io/classes.json : every ai-* class with its family and which responsive (ai-sm:/md:/lg:/xl:) and container-query (ai-cq:) prefixes exist. If a class is not in this file it does not exist.
+- https://llmcss.io/tokens.json : every --ai-* token with its value in light, dark, each skin, and each focus preset.
+- https://llmcss.io/states.json : every is-* state class, plus every data-ai-* attribute with allowed values and what applies it (author or runtime).
+- https://llmcss.io/registry.json and https://llmcss.io/r/{id}.json : component catalog and per-component HTML (free ids only). Pro ids are served from https://llmcss.io/r/pro/{id}.json with `Authorization: Bearer <token>`; without a token the registry entry has `locked: true` and `html: null`.
+- https://llmcss.io/templates.json : wireframe section templates and page blueprints.
+- MCP tools list_classes, list_tokens, list_states return the same data.
+- Runtime for interactive components: `<script src="https://llmcss.io/llmcss.js" defer></script>`. Required for data-ai-toggle (modal, drawer, dropdown, accordion), data-ai-tab, data-ai-dismiss, and the <ai-*> custom elements. Nesting rules: a dropdown toggle sits inside .ai-dropdown; an accordion toggle inside .ai-accordion-item; tabs inside .ai-tabs with data-ai-tab="#panel-id"; modal and drawer toggles use data-ai-target="#id". Pure CSS components never need it.
+
 ## Quickstart
 - Humans: https://llmcss.io/quickstart
 - Repo: https://github.com/maku-au/llmcss/blob/main/QUICKSTART.md
@@ -34,6 +44,7 @@
 8. **Never Create Identical KPI Grids**: Anchor a dominant metric with supporting secondary metrics.
 9. **Never Auto-Scroll Marquees**: Clean, static, scannable badge rails and grids.
 10. **Always Theme Browser Surfaces**: Caret color, custom scrollbars, selection, and tabular numerals.
+11. **Never Use Square Grid Backgrounds**: No graph-paper or dot-grid backgrounds. Use solid surfaces (`--ai-surface-0/1`) and 1px hairline borders.
 
 ## Wireframe Section Templates & Page Blueprints
 - **18 Composable Section Templates**: Header (`wireframe-nav-minimal`, `wireframe-nav-banner`, `wireframe-docs-header`), Hero (`wireframe-hero-split`, `wireframe-hero-centered`, `wireframe-hero-editorial`), Social Proof (`wireframe-social-proof-bar`, `wireframe-quote-band`), Features (`wireframe-features-bento`, `wireframe-features-alternating`, `wireframe-changelog`), Comparison (`wireframe-comparison-matrix`), Pricing (`wireframe-pricing-tiers`), FAQ (`wireframe-faq-accordion`), CTA (`wireframe-cta-card`), Footer (`wireframe-footer-columns`), App Shell (`wireframe-app-shell`, `wireframe-dash-header`).

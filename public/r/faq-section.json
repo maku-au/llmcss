@@ -1,0 +1,15 @@
+{
+  "id": "faq-section",
+  "name": "FAQ Section",
+  "description": "Question list on native details. Zero JavaScript; each answer is real copy, not filler.",
+  "category": "marketing",
+  "tier": "free",
+  "tags": [
+    "faq",
+    "questions",
+    "collapse",
+    "details",
+    "css-only"
+  ],
+  "html": "<div style=\"max-width: 40rem;\">\n  <h2 class=\"ai-section-title\">Questions</h2>\n  <div style=\"margin-top: var(--ai-space-6);\">\n    <details class=\"ai-collapse\" style=\"padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border);\">\n      <summary>Do I need a build step?</summary>\n      <div class=\"ai-collapse-body\">No. Link the stylesheet and start writing classes. The CLI and MCP server are optional.</div>\n    </details>\n    <details class=\"ai-collapse\" style=\"padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border);\">\n      <summary>What happens when I cancel Pro?</summary>\n      <div class=\"ai-collapse-body\">The token stops working at the end of the period. CSS and HTML you already copied stay yours.</div>\n    </details>\n    <details class=\"ai-collapse\" style=\"padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border); border-bottom: 1px solid var(--ai-border);\">\n      <summary>Which browsers?</summary>\n      <div class=\"ai-collapse-body\">Current Chrome, Edge, Firefox, and Safari. Features like :has() and container queries have been stable in all four since 2023.</div>\n    </details>\n  </div>\n</div>"
+}

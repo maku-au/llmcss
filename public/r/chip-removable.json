@@ -1,0 +1,15 @@
+{
+  "id": "chip-removable",
+  "name": "Removable Chips",
+  "description": "Filter chips with a remove control. The remove button carries the accessible name; removal itself is your form or script.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "chip",
+    "tag",
+    "badge",
+    "filter",
+    "remove"
+  ],
+  "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-2\">\n  <span class=\"ai-badge ai-badge-neutral ai-badge-removable\">Region: Sydney <button type=\"button\" class=\"ai-badge-remove\" aria-label=\"Remove Region: Sydney\">&times;</button></span>\n  <span class=\"ai-badge ai-badge-neutral ai-badge-removable\">Status: Active <button type=\"button\" class=\"ai-badge-remove\" aria-label=\"Remove Status: Active\">&times;</button></span>\n  <span class=\"ai-badge ai-badge-accent ai-badge-removable\">Owner: me <button type=\"button\" class=\"ai-badge-remove\" aria-label=\"Remove Owner: me\">&times;</button></span>\n</div>"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "title-subtitle",
+  "name": "Title and Subtitle",
+  "description": "Heading pair for pages and sections: display title with balanced wrapping and a muted subtitle.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "title",
+    "heading",
+    "typography",
+    "subtitle"
+  ],
+  "html": "<div style=\"max-width: 36rem;\">\n  <h2 class=\"ai-title\">Usage and billing</h2>\n  <p class=\"ai-subtitle\">Meter reads are final at midnight UTC. Overages are billed with the next invoice.</p>\n</div>"
+}

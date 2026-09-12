@@ -1,0 +1,15 @@
+{
+  "id": "level-bar",
+  "name": "Level",
+  "description": "One row with a left cluster and a right cluster, vertically centred. The workhorse for page and card headers.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "level",
+    "layout",
+    "header",
+    "row",
+    "flex"
+  ],
+  "html": "<div class=\"ai-level\" style=\"padding: var(--ai-space-4) 0; border-bottom: 1px solid var(--ai-border);\">\n  <div class=\"ai-level-left\">\n    <strong>Invoices</strong>\n    <span class=\"ai-badge ai-badge-neutral\">June 2026</span>\n  </div>\n  <div class=\"ai-level-right\">\n    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Export</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-sm\">New invoice</button>\n  </div>\n</div>"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "panel-list",
+  "name": "Panel",
+  "description": "Titled surface with a list body. Header carries an action; the list group inside loses its own border.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "panel",
+    "card",
+    "list",
+    "container"
+  ],
+  "html": "<div class=\"ai-panel\" style=\"max-width: 24rem;\">\n  <div class=\"ai-panel-header\">\n    Recent branches\n    <button type=\"button\" class=\"ai-btn ai-btn-ghost ai-btn-xs\">View all</button>\n  </div>\n  <ul class=\"ai-list-group\">\n    <li><a href=\"#\" class=\"ai-list-group-item\"><code class=\"ai-text-xs\">fix/session-expiry</code><span class=\"ai-text-xs ai-text-muted ai-ml-auto\">3m</span></a></li>\n    <li><a href=\"#\" class=\"ai-list-group-item\"><code class=\"ai-text-xs\">feat/usage-export</code><span class=\"ai-text-xs ai-text-muted ai-ml-auto\">1h</span></a></li>\n    <li><a href=\"#\" class=\"ai-list-group-item\"><code class=\"ai-text-xs\">main</code><span class=\"ai-text-xs ai-text-muted ai-ml-auto\">2d</span></a></li>\n  </ul>\n</div>"
+}

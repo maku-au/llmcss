@@ -1,0 +1,14 @@
+{
+  "id": "callout-editorial",
+  "name": "Editorial Callout",
+  "description": "Emphasis block for long-form content: hairlines above and below, a short label, no stripe, no icon (Law 3).",
+  "category": "marketing",
+  "tier": "free",
+  "tags": [
+    "callout",
+    "note",
+    "editorial",
+    "aside"
+  ],
+  "html": "<aside class=\"ai-callout\" style=\"max-width: 40rem;\">\n  <span class=\"ai-callout-label\">Worth knowing</span>\n  Rollbacks restore the previous build and its environment variables together. Secrets rotated after that build are not reverted.\n</aside>"
+}

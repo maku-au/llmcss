@@ -278,7 +278,7 @@
   .ai-range::-webkit-slider-thumb:hover,
   .ai-slider::-webkit-slider-thumb:hover {
     transform: scale(1.15);
-    box-shadow: 0 0 0 4px rgba(var(--ai-accent-rgb, 59, 130, 246), 0.15);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--ai-accent) 15%, transparent);
   }
 
   .ai-range::-webkit-slider-thumb:active,
@@ -371,7 +371,6 @@
     align-items: center;
     gap: var(--ai-space-8);
     min-width: 100%;
-    animation: ai-marquee 25s linear infinite;
   }
 
   .ai-marquee:hover .ai-marquee-track {
@@ -390,5 +389,31 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+}
+
+@layer components {
+  /* Shared enter animations (used by modal, dropdown, tabs, accordion) */
+  @keyframes ai-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes ai-scale-up {
+    from { opacity: 0; transform: scale(0.96) translateY(8px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+}
+
+@layer components {
+  /* Auto-scroll is opt-in (Law 9): add .is-auto to .ai-marquee. Static by default. */
+  .ai-marquee.is-auto .ai-marquee-track {
+    animation: ai-marquee 25s linear infinite;
+  }
+  .ai-marquee:not(.is-auto) {
+    overflow: visible;
+  }
+  .ai-marquee:not(.is-auto) .ai-marquee-track {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

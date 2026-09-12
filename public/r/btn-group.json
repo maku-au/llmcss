@@ -1,0 +1,14 @@
+{
+  "id": "btn-group",
+  "name": "Button Group",
+  "description": "Joined buttons that share one border and radius. Works for view switches and paired actions.",
+  "category": "primitive",
+  "tier": "free",
+  "tags": [
+    "button",
+    "group",
+    "toolbar",
+    "segmented"
+  ],
+  "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-6 ai-items-center\">\n  <div class=\"ai-btn-group\" role=\"group\" aria-label=\"View\">\n    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Day</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Week</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Month</button>\n  </div>\n  <div class=\"ai-btn-group\" role=\"group\" aria-label=\"Deploy\">\n    <button type=\"button\" class=\"ai-btn ai-btn-primary\">Deploy</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-icon\" aria-label=\"Deploy options\" aria-haspopup=\"true\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"/></svg></button>\n  </div>\n</div>"
+}
