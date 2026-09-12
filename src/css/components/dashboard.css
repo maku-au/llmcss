@@ -221,15 +221,10 @@
 @layer components {
   /* One dominant metric (Law 8): add .is-primary to one .ai-kpi-card in a grid */
   .ai-kpi-card.is-primary {
-    grid-column: span 2;
+    grid-column: 1 / -1;
   }
   .ai-kpi-card.is-primary .ai-kpi-value {
     font-size: clamp(2.5rem, 4vw, 3.25rem);
-  }
-  @media (max-width: 767px) {
-    .ai-kpi-card.is-primary {
-      grid-column: 1 / -1;
-    }
   }
   /* Loading state pairs with the skeleton primitive */
   .ai-kpi-card.is-loading .ai-kpi-value,

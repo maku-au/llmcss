@@ -2,7 +2,7 @@
 
 LLMCSS is a CSS library. Class prefix is `ai-*`. Copy CSS, use the CLI, or point an agent at the MCP server.
 
-This page also lives at [llmcss.io/quickstart](https://llmcss.io/quickstart). Gallery: [llmcss.io/components.html](https://llmcss.io/components.html).
+This page also lives at [llmcss.io/quickstart](https://llmcss.io/quickstart). Gallery: [llmcss.io/components](https://llmcss.io/components).
 
 ## 1. Link the stylesheet
 
@@ -88,7 +88,7 @@ npx llmcss template get wireframe-nav-minimal
 npx llmcss template blueprint saas-landing
 ```
 
-18 section templates, 4 full-page blueprints. Gallery: [llmcss.io/templates.html](https://llmcss.io/templates.html).
+18 section templates, 4 full-page blueprints. Gallery: [llmcss.io/templates](https://llmcss.io/templates).
 
 ## 6. Agents (MCP)
 

@@ -190,7 +190,7 @@ export function proOfferHtml(): string {
         <li>Free registry and local MCP</li>
         <li><code class="ai-text-xs">npx llmcss add btn-variants</code></li>
       </ul>
-      <a href="/components.html" class="ai-btn ai-btn-outline ai-w-full" style="margin-top: var(--ai-space-6);">Browse free components</a>
+      <a href="/components" class="ai-btn ai-btn-outline ai-w-full" style="margin-top: var(--ai-space-6);">Browse free components</a>
     </div>
     <div class="ai-card ai-card-pro" style="padding: var(--ai-space-8); border: 1px solid var(--ai-border-strong); box-shadow: var(--ai-shadow-md);">
       <div class="ai-flex ai-justify-between ai-items-center">

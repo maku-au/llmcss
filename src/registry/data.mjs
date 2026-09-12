@@ -699,7 +699,7 @@ export const components = [
     category: 'application',
     tier: 'free',
     tags: ['dashboard', 'kpi', 'metrics', 'stats'],
-    html: `<div class="ai-grid ai-grid-cols-1 ai-md:grid-cols-2 ai-lg:grid-cols-4 ai-gap-4">
+    html: `<div class="ai-grid ai-grid-cols-1 ai-md:grid-cols-3 ai-gap-4">
   <div class="ai-kpi-card is-primary">
     <span class="ai-kpi-label">Monthly Recurring Revenue</span>
     <span class="ai-kpi-value">$124,500</span>
@@ -1370,7 +1370,7 @@ export const components = [
     category: 'application',
     tier: 'free',
     tags: ['stats', 'dashboard', 'kpi', 'metrics', 'analytics'],
-    html: `<div class="ai-grid ai-grid-cols-1 ai-md:grid-cols-4 ai-gap-4">
+    html: `<div class="ai-grid ai-grid-cols-1 ai-md:grid-cols-3 ai-gap-4">
   <div class="ai-kpi-card is-primary">
     <span class="ai-kpi-label">Total Revenue</span>
     <span class="ai-kpi-value">$48,290</span>

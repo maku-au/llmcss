@@ -58,7 +58,7 @@ function renderFreshToken(token: string) {
      <div class="ai-flex ai-gap-2" style="margin-top: var(--ai-space-3); flex-wrap: wrap;">
        <button class="ai-btn ai-btn-outline ai-btn-sm" type="button" id="copy-token">Copy token</button>
        <button class="ai-btn ai-btn-primary ai-btn-sm" type="button" id="download-zip-btn">Download zip</button>
-       <a href="/components.html" class="ai-btn ai-btn-ghost ai-btn-sm">Open gallery</a>
+       <a href="/components" class="ai-btn ai-btn-ghost ai-btn-sm">Open gallery</a>
      </div>
      <p id="zip-status" class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-3);"></p>`
   );

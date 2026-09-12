@@ -16,8 +16,8 @@ Add the runtime only if you use modal, drawer, dropdown, accordion, tabs, or toa
 That is the whole install. Everything else in this repo is optional: a CLI, an MCP server, and a JSON registry for agents that would rather fetch markup than guess it.
 
 - Site: [llmcss.io](https://llmcss.io)
-- Components gallery: [llmcss.io/components.html](https://llmcss.io/components.html)
-- Templates gallery: [llmcss.io/templates.html](https://llmcss.io/templates.html)
+- Components gallery: [llmcss.io/components](https://llmcss.io/components)
+- Templates gallery: [llmcss.io/templates](https://llmcss.io/templates)
 - Quickstart: [QUICKSTART.md](QUICKSTART.md) or [llmcss.io/quickstart](https://llmcss.io/quickstart)
 - Agent rules: [AGENTS.md](AGENTS.md), [docs/AGENT_RULES.md](docs/AGENT_RULES.md)
 - Design rules for agents: [DESIGN_HARNESS.md](DESIGN_HARNESS.md)
