@@ -40,6 +40,7 @@ let searchInput = document.getElementById('catalog-search') as HTMLInputElement 
 const skinSwitcher = document.getElementById('skin-switcher') as HTMLSelectElement | null;
 let themeToggle = document.getElementById('theme-mode-toggle');
 const proHtmlCache = new Map<string, string>();
+const proCssCache = new Map<string, string>();
 const toastContainer = document.getElementById('toast-container');
 
 // ============================================================================
@@ -1010,6 +1011,10 @@ function bindComponentEvents() {
         showToast('Pro source is not public. Subscribe to unlock.', 'error');
         return;
       }
+      if (comp.css) {
+        copyToClipboard(`<style>\n${comp.css}</style>\n${comp.html}`, `${comp.name} HTML + CSS`, btn);
+        return;
+      }
       copyToClipboard(comp.html, `${comp.name} HTML`, btn);
     });
   });
@@ -1242,8 +1247,18 @@ async function hydrateProCards() {
       if (!data.html) continue;
       html = data.html as string;
       proHtmlCache.set(comp.id, html);
+      if (data.css) proCssCache.set(comp.id, data.css as string);
     }
     comp.html = html;
+    const css = proCssCache.get(comp.id) || '';
+    comp.css = css || undefined;
+    // Pro CSS is not in the public stylesheet; inject it once per component
+    if (css && !document.getElementById(`pro-css-${comp.id}`)) {
+      const style = document.createElement('style');
+      style.id = `pro-css-${comp.id}`;
+      style.textContent = css;
+      document.head.appendChild(style);
+    }
     const canvas = card.querySelector('.component-preview-canvas > div');
     if (canvas) canvas.innerHTML = html;
     const panel = card.querySelector(`#code-${comp.id}`);
@@ -1251,7 +1266,14 @@ async function hydrateProCards() {
       panel.innerHTML = `<div class="ai-flex ai-justify-between ai-items-center" style="margin-bottom: var(--ai-space-2);">
             <span class="ai-text-xs ai-font-mono ai-text-muted">HTML</span>
           </div>
-          <pre><code>${escapeHtml(html)}</code></pre>`;
+          <pre><code>${escapeHtml(html)}</code></pre>${
+            css
+              ? `<div class="ai-flex ai-justify-between ai-items-center" style="margin: var(--ai-space-3) 0 var(--ai-space-2);">
+            <span class="ai-text-xs ai-font-mono ai-text-muted">CSS</span>
+          </div>
+          <pre><code>${escapeHtml(css)}</code></pre>`
+              : ''
+          }`;
     }
     const unlock = card.querySelector('.unlock-pro-btn') as HTMLElement | null;
     if (unlock) {

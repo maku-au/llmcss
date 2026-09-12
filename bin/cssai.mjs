@@ -208,12 +208,17 @@ switch (command) {
 
     const htmlFile = path.join(targetDir, `${comp.id}.html`);
     fs.writeFileSync(htmlFile, html, 'utf-8');
+    let cssFile = '';
     if (extraCss) {
-      fs.writeFileSync(path.join(targetDir, `${comp.id}.css`), extraCss, 'utf-8');
+      cssFile = path.join(targetDir, `${comp.id}.css`);
+      fs.writeFileSync(cssFile, extraCss, 'utf-8');
     }
 
     console.log(`\x1b[32m✓ Installed ${comp.name}\x1b[0m`);
     console.log(`  File: ${path.relative(process.cwd(), htmlFile)}`);
+    if (cssFile) {
+      console.log(`  CSS:  ${path.relative(process.cwd(), cssFile)} (link it after llmcss.css)`);
+    }
     break;
   }
 
