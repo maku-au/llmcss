@@ -524,7 +524,7 @@ console.log('\n19. Testing Layout Utilities, Helpers & Ecosystem Rail...');
   assert(utilitiesCss.includes('.ai-cq\\:col-span-2'), 'Missing .ai-cq:col-span-2 in utilities.css');
 
   // 8. Ecosystem rail in index.html is unboxed
-  assert(indexHtml.includes('class="ecosystem-item"'), 'Missing .ecosystem-item in index.html');
+  assert(indexHtml.includes('class="ai-docs-ecosystem-item"'), 'Missing .ai-docs-ecosystem-item in index.html');
   assert(!indexHtml.includes('Compatible Ecosystem</span>\n        <div class="ai-flex ai-flex-wrap ai-items-center ai-gap-2">\n          <span class="ai-badge'), 'Ecosystem rail still contains boxed badges');
 
   console.log('✓ Verified 100+ layout utilities (grid spans, spacing, flex, sizing, insets, clamps) and unboxed ecosystem rail.');

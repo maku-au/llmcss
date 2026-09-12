@@ -107,7 +107,7 @@ function renderBlueprintBar() {
   if (!blueprintBar) return;
 
   blueprintBar.innerHTML = `
-    <button class="blueprint-tab-btn ${activeBlueprintId === null ? 'is-active' : ''}" data-bp="all">
+    <button class="ai-blueprint-tab-btn ${activeBlueprintId === null ? 'is-active' : ''}" data-bp="all">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
         <rect width="7" height="7" x="3" y="3" rx="1"/>
         <rect width="7" height="7" x="14" y="3" rx="1"/>
@@ -117,7 +117,7 @@ function renderBlueprintBar() {
       <span>All sections</span>
     </button>
     ${pageBlueprints.map((bp) => `
-      <button class="blueprint-tab-btn ${activeBlueprintId === bp.id ? 'is-active' : ''}" data-bp="${bp.id}">
+      <button class="ai-blueprint-tab-btn ${activeBlueprintId === bp.id ? 'is-active' : ''}" data-bp="${bp.id}">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
           <path d="M6 6h10"/>
@@ -133,7 +133,7 @@ function renderBlueprintBar() {
     `).join('')}
   `;
 
-  blueprintBar.querySelectorAll('.blueprint-tab-btn').forEach((btn) => {
+  blueprintBar.querySelectorAll('.ai-blueprint-tab-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       const bpId = btn.getAttribute('data-bp');
       if (bpId === 'all') {
@@ -162,7 +162,7 @@ function renderBlueprintBanner() {
 
   blueprintBanner.style.display = 'block';
   blueprintBanner.innerHTML = `
-    <div class="blueprint-banner-card">
+    <div class="ai-blueprint-banner-card">
       <div class="ai-flex ai-justify-between ai-items-start ai-gap-4" style="flex-wrap: wrap;">
         <div style="max-width: 48rem;">
           <h2 class="ai-font-display" style="font-size: 1.125rem; font-weight: 700; margin-bottom: 0.35rem;">
@@ -171,11 +171,11 @@ function renderBlueprintBanner() {
           <p class="ai-text-sm ai-text-secondary" style="margin-bottom: 0.75rem;">
             ${bp.description} ${bp.sections.length} section${bp.sections.length === 1 ? '' : 's'}.
           </p>
-          <div class="blueprint-flow-pills">
+          <div class="ai-blueprint-flow-pills">
             ${bp.sections.map((secId, idx) => {
               const sec = wireframeTemplates.find((t) => t.id === secId);
               return `
-                <button type="button" class="blueprint-flow-pill jump-to-pair" data-jump="${secId}">
+                <button type="button" class="ai-blueprint-flow-pill jump-to-pair" data-jump="${secId}">
                   <span class="flow-num">${idx + 1}</span>
                   <span>${sec ? sec.name : secId}</span>
                 </button>
@@ -226,7 +226,7 @@ function openFullPreview(bp: PageBlueprint) {
   const fullHtml = assembleBlueprintHtml(bp.id);
 
   fullPreviewContent.innerHTML = `
-    <div class="full-assembled-wrapper ${previewMode === 'wireframe' ? 'is-wireframe-mode' : ''}">
+    <div class="ai-template-assembled ${previewMode === 'wireframe' ? 'is-wireframe-mode' : ''}">
       ${fullHtml}
     </div>
   `;
@@ -311,60 +311,60 @@ function renderTemplates() {
 
   const recipeTotal = items.filter((i) => i.recipeIndex).length;
   templatesStream.innerHTML = items.map(({ template, recipeIndex }) => `
-    <article class="template-item-card" id="card-${template.id}">
-      <div class="template-card-header">
+    <article class="ai-template-card" id="card-${template.id}">
+      <div class="ai-template-header">
         <div class="ai-flex ai-items-center ai-gap-2">
           ${recipeIndex ? `<span class="ai-text-xs ai-text-muted">${recipeIndex} of ${recipeTotal}</span>` : ''}
-          <h3 class="template-title">${template.name}</h3>
+          <h3 class="ai-template-title">${template.name}</h3>
         </div>
         <div class="ai-flex ai-items-center ai-gap-2">
-          <button class="ai-btn ai-btn-ghost ai-btn-xs toggle-guidance-btn" data-target="guidance-${template.id}" aria-expanded="false">
+          <button class="ai-btn ai-btn-ghost ai-btn-xs ai-template-guidance-toggle" data-target="guidance-${template.id}" aria-expanded="false">
             <span>Guidance</span>
           </button>
           <button class="ai-btn ai-btn-outline ai-btn-xs copy-html-btn" data-id="${template.id}">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             <span>Copy HTML</span>
           </button>
-          <button class="ai-btn ai-btn-ghost ai-btn-xs toggle-code-btn" data-target="code-${template.id}">
+          <button class="ai-btn ai-btn-ghost ai-btn-xs ai-template-code-toggle" data-target="code-${template.id}">
             <span>&lt;/&gt;</span>
           </button>
         </div>
       </div>
 
       <!-- Architectural Placement & Usage Guidance Box -->
-      <div class="template-guidance-drawer" id="guidance-${template.id}">
-        <div class="guidance-grid">
-          <div class="guidance-col">
-            <div class="guidance-label">
+      <div class="ai-template-guidance" id="guidance-${template.id}">
+        <div class="ai-guidance-grid">
+          <div class="ai-guidance-col">
+            <div class="ai-guidance-label">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
               <span>Placement</span>
             </div>
-            <div class="guidance-text">${template.placement ? template.placement + '. ' : ''}${template.guidance.placement}</div>
+            <div class="ai-guidance-text">${template.placement ? template.placement + '. ' : ''}${template.guidance.placement}</div>
           </div>
-          <div class="guidance-col">
-            <div class="guidance-label">
+          <div class="ai-guidance-col">
+            <div class="ai-guidance-label">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
               <span>Use for</span>
             </div>
-            <div class="guidance-text">${template.guidance.bestUsedFor}</div>
+            <div class="ai-guidance-text">${template.guidance.bestUsedFor}</div>
           </div>
-          <div class="guidance-col">
-            <div class="guidance-label">
+          <div class="ai-guidance-col">
+            <div class="ai-guidance-label">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
               <span>Avoid</span>
             </div>
-            <div class="guidance-text">${template.guidance.avoidWhen}</div>
+            <div class="ai-guidance-text">${template.guidance.avoidWhen}</div>
           </div>
           ${template.guidance.pairsWith.length > 0 ? `
-            <div class="guidance-col">
-              <div class="guidance-label">
+            <div class="ai-guidance-col">
+              <div class="ai-guidance-label">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
                 <span>Pairs with</span>
               </div>
-              <div class="guidance-pairs">
+              <div class="ai-guidance-pairs">
                 ${template.guidance.pairsWith.map((pairId) => {
                   const pair = wireframeTemplates.find((t) => t.id === pairId);
-                  return `<button class="guidance-pair-tag jump-to-pair" data-jump="${pairId}">${pair ? pair.name : pairId}</button>`;
+                  return `<button class="ai-guidance-pair-tag jump-to-pair" data-jump="${pairId}">${pair ? pair.name : pairId}</button>`;
                 }).join('')}
               </div>
             </div>
@@ -373,14 +373,14 @@ function renderTemplates() {
       </div>
 
       <!-- Live Preview Canvas -->
-      <div class="template-canvas-container" style="width: ${currentViewport}; max-width: 100%;">
-        <div class="template-preview-frame ${previewMode === 'wireframe' ? 'is-wireframe-mode' : ''}">
+      <div class="ai-template-canvas" style="width: ${currentViewport}; max-width: 100%;">
+        <div class="ai-template-frame ${previewMode === 'wireframe' ? 'is-wireframe-mode' : ''}">
           ${template.html}
         </div>
       </div>
 
       <!-- Expandable Code Panel -->
-      <div class="template-code-panel" id="code-${template.id}">
+      <div class="ai-template-code" id="code-${template.id}">
         <div class="ai-flex ai-justify-between ai-items-center ai-mb-2">
           <span style="font-family: var(--ai-font-mono); font-size: 0.75rem; color: var(--ai-text-muted);">
             npx llmcss template get ${template.id}
@@ -398,7 +398,7 @@ function renderTemplates() {
 
 function attachTemplateCardHandlers() {
   // Guidance toggles
-  document.querySelectorAll('.toggle-guidance-btn').forEach((btn) => {
+  document.querySelectorAll('.ai-template-guidance-toggle').forEach((btn) => {
     btn.addEventListener('click', () => {
       const targetId = btn.getAttribute('data-target');
       if (targetId) {
@@ -410,7 +410,7 @@ function attachTemplateCardHandlers() {
   });
 
   // Code toggles
-  document.querySelectorAll('.toggle-code-btn').forEach((btn) => {
+  document.querySelectorAll('.ai-template-code-toggle').forEach((btn) => {
     btn.addEventListener('click', () => {
       const targetId = btn.getAttribute('data-target');
       if (targetId) {
@@ -484,7 +484,7 @@ function attachTemplateCardHandlers() {
 }
 
 function updateCategoryButtons() {
-  categoryNav?.querySelectorAll('.category-filter-btn').forEach((btn) => {
+  categoryNav?.querySelectorAll('.ai-docs-filter-btn').forEach((btn) => {
     const cat = btn.getAttribute('data-category');
     const count = cat === 'all' ? wireframeTemplates.length : wireframeTemplates.filter((t) => t.section === cat).length;
     const label = (btn.getAttribute('data-label') || btn.textContent || '').replace(/\s*\d+$/, '').trim();
@@ -520,7 +520,7 @@ async function init() {
   renderTemplates();
 
   // 3. Category Nav Handlers
-  categoryNav?.querySelectorAll('.category-filter-btn').forEach((btn) => {
+  categoryNav?.querySelectorAll('.ai-docs-filter-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       const cat = btn.getAttribute('data-category');
       if (cat) {
@@ -550,7 +550,7 @@ async function init() {
         previewMode = mode;
         modeButtons.forEach((b) => b.classList.remove('is-active'));
         btn.classList.add('is-active');
-        document.querySelectorAll('.template-preview-frame').forEach((frame) => {
+        document.querySelectorAll('.ai-template-frame').forEach((frame) => {
           if (previewMode === 'wireframe') {
             frame.classList.add('is-wireframe-mode');
           } else {
@@ -569,7 +569,7 @@ async function init() {
       currentViewport = width;
       viewportButtons.forEach((b) => b.classList.remove('is-active'));
       btn.classList.add('is-active');
-      document.querySelectorAll('.template-canvas-container').forEach((c) => {
+      document.querySelectorAll('.ai-template-canvas').forEach((c) => {
         (c as HTMLElement).style.width = width;
       });
     });

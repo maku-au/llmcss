@@ -32,7 +32,7 @@
 @import "./components/application.css";
 @import "./components/dashboard.css";
 @import "./components/navigation.css";
+@import "./components/showcase.css";
 
 /* Utilities */
 @import "./utilities.css";
-@import "./chrome.css";

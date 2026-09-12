@@ -42,11 +42,38 @@
   .ai-nav-links {
     display: none;
     align-items: center;
-    gap: var(--ai-space-6);
+    gap: var(--ai-space-1);
     list-style: none;
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .ai-nav-links { display: flex; }
+  }
+
+  /* First row stays full height when a search row wraps underneath */
+  .ai-navbar-inner > :not(.ai-navbar-search) {
+    min-height: 4.25rem;
+  }
+  .ai-navbar-search {
+    padding-bottom: var(--ai-space-3);
+  }
+  .ai-navbar-search .ai-input-group {
+    width: 100%;
+  }
+  .ai-navbar-search .ai-input {
+    height: 2rem;
+    font-size: 0.8125rem;
+  }
+  @media (min-width: 768px) {
+    .ai-navbar-search {
+      padding-bottom: 0;
+    }
+    .ai-navbar-search .ai-input-group {
+      width: 15rem;
+    }
+  }
+  /* Reserve height for chrome that a script fills in after load */
+  .ai-navbar:empty {
+    min-height: 4.25rem;
   }
 
   .ai-nav-link {
@@ -263,6 +290,69 @@
     flex-direction: column;
     gap: var(--ai-space-2);
     font-size: 0.875rem;
+  }
+
+  .ai-footer-compact {
+    padding: var(--ai-space-12) 0;
+  }
+  .ai-footer-compact .ai-footer-grid {
+    margin-bottom: 0;
+  }
+  @media (min-width: 768px) {
+    .ai-footer-compact .ai-footer-grid {
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    }
+  }
+  .ai-footer:empty {
+    min-height: 18rem;
+  }
+
+  /* Footer columns collapse into an accordion below md. Markup: each column is
+     .ai-footer-col.ai-accordion-item with a .ai-footer-col-toggle button
+     (data-ai-toggle="accordion") and a .ai-footer-list.ai-accordion-content. */
+  .ai-footer-col-toggle {
+    all: unset;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ai-space-2);
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+  }
+  .ai-footer-col-toggle:focus-visible {
+    outline: 2px solid var(--ai-accent);
+    outline-offset: 2px;
+    border-radius: var(--ai-radius-xs);
+  }
+  .ai-footer-col.ai-accordion-item {
+    border-bottom: 1px solid var(--ai-border-subtle);
+    padding: var(--ai-space-3) 0;
+  }
+  .ai-footer-col .ai-accordion-content {
+    padding: var(--ai-space-3) 0 var(--ai-space-1);
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+  }
+  @media (min-width: 768px) {
+    .ai-footer-col.ai-accordion-item {
+      border-bottom: none;
+      padding: 0;
+    }
+    .ai-footer-col .ai-accordion-content {
+      display: block;
+      padding-top: 0;
+    }
+    .ai-footer-col-toggle {
+      pointer-events: none;
+      cursor: default;
+      margin-bottom: var(--ai-space-3);
+    }
+    .ai-footer-col .ai-accordion-chevron {
+      display: none;
+    }
   }
 
   /* --------------------------------------------------------------------------

@@ -109,3 +109,21 @@
     box-shadow: var(--ai-focus-ring);
   }
 }
+
+@layer base {
+  /* Skip link: hidden until focused */
+  .ai-skip-link {
+    position: absolute;
+    left: 0.75rem;
+    top: -3rem;
+    z-index: 100;
+    padding: 0.4rem 0.75rem;
+    background: var(--ai-primary);
+    color: var(--ai-primary-text);
+    border-radius: var(--ai-radius-xs);
+    font-size: 0.8125rem;
+  }
+  .ai-skip-link:focus {
+    top: 0.75rem;
+  }
+}

@@ -25,462 +25,17 @@
       if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-ai-theme', t);
     })();
   </script>
-  <style>
-    /* Micro Badges */
-    .nav-count {
-      font-family: var(--ai-font-sans);
-      font-variant-numeric: tabular-nums;
-      font-size: 0.6875rem;
-      font-weight: 500;
-      color: var(--ai-text-muted);
-      margin-left: auto;
-    }
-    .tag-pro-pill {
-      font-family: var(--ai-font-sans);
-      font-size: 0.5625rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--ai-text-primary);
-      background: var(--ai-surface-2);
-      border: 1px solid var(--ai-border-strong);
-      padding: 0.1rem 0.35rem;
-      border-radius: var(--ai-radius-xs);
-      margin-left: auto;
-    }
-
-    /* --------------------------------------------------------------------------
-       Homepage Layout & Hero Preview Dock
-       -------------------------------------------------------------------------- */
-    .hero-section {
-      padding: var(--ai-space-24) 0 var(--ai-space-24);
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid var(--ai-border);
-      background-color: var(--ai-bg);
-    }
-    
-    /* --------------------------------------------------------------------------
-       STUDIO STYLER (UNBLURRED LIVE INSPECTOR)
-       -------------------------------------------------------------------------- */
-    #core-styler-drawer .ai-drawer-backdrop {
-      background-color: transparent !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-    }
-    #core-styler-drawer .ai-drawer-panel {
-      width: 100%;
-      max-width: 25rem;
-      border-left: 1px solid var(--ai-border-strong);
-      box-shadow: -16px 0 48px -12px rgba(0, 0, 0, 0.25), -1px 0 0 var(--ai-border);
-      background-color: var(--ai-surface-0);
-    }
-    .styler-section {
-      display: flex;
-      flex-direction: column;
-      gap: 0.625rem;
-    }
-    .styler-section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .styler-section-title {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--ai-text-secondary);
-      letter-spacing: 0.02em;
-      font-family: var(--ai-font-sans);
-    }
-    .styler-section-val {
-      font-size: 0.6875rem;
-      font-weight: 500;
-      color: var(--ai-text-muted);
-      font-family: var(--ai-font-mono);
-    }
-    .styler-theme-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.375rem;
-    }
-    .styler-theme-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.45rem 0.625rem;
-      background: var(--ai-surface-0);
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-sm);
-      cursor: pointer;
-      transition: all var(--ai-duration-fast);
-      text-align: left;
-    }
-    .styler-theme-btn:hover {
-      border-color: var(--ai-border-strong);
-      background: var(--ai-surface-1);
-    }
-    .styler-theme-btn.is-active {
-      border-color: var(--ai-text-primary);
-      background: var(--ai-surface-1);
-    }
-    .styler-swatch-pip {
-      width: 0.625rem;
-      height: 0.625rem;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .styler-theme-name {
-      font-size: 0.8125rem;
-      font-weight: 500;
-      color: var(--ai-text-secondary);
-      line-height: 1.2;
-    }
-    .styler-theme-btn.is-active .styler-theme-name {
-      font-weight: 600;
-      color: var(--ai-text-primary);
-    }
-    .styler-segmented-track {
-      display: flex;
-      background: var(--ai-surface-1);
-      padding: 2px;
-      border-radius: var(--ai-radius-xs);
-      border: 1px solid var(--ai-border-subtle);
-      gap: 1px;
-    }
-    .styler-segmented-item {
-      flex: 1;
-      padding: 0.3rem 0.4rem;
-      font-size: 0.75rem;
-      font-family: var(--ai-font-sans);
-      font-weight: 450;
-      color: var(--ai-text-muted);
-      background: transparent;
-      border: none;
-      border-radius: calc(var(--ai-radius-xs) - 1px);
-      cursor: pointer;
-      transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
-      text-align: center;
-    }
-    .styler-segmented-item:hover {
-      color: var(--ai-text-primary);
-    }
-    .styler-segmented-item.is-active {
-      background: var(--ai-surface-0);
-      color: var(--ai-text-primary);
-      font-weight: 600;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    }
-    .styler-swatch-row {
-      display: flex;
-      align-items: center;
-      gap: 0.625rem;
-    }
-    .styler-accent-swatch {
-      width: 1.5rem;
-      height: 1.5rem;
-      border-radius: 50%;
-      border: 2px solid var(--ai-surface-0);
-      box-shadow: 0 0 0 1px var(--ai-border);
-      cursor: pointer;
-      transition: transform var(--ai-duration-fast), box-shadow var(--ai-duration-fast);
-    }
-    .styler-accent-swatch:hover {
-      transform: scale(1.15);
-    }
-    .styler-accent-swatch.is-active {
-      box-shadow: 0 0 0 2px var(--ai-surface-0), 0 0 0 4px var(--ai-text-primary);
-    }
-    .styler-code-disclosure summary::-webkit-details-marker {
-      display: none;
-    }
-
-    /* Per-Component Customizer Bar */
-    .component-customizer-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: var(--ai-space-4);
-      background: var(--ai-surface-1);
-      border-bottom: 1px solid var(--ai-border);
-      padding: var(--ai-space-3) var(--ai-space-5);
-      font-size: 0.75rem;
-    }
-    .customizer-group {
-      display: flex;
-      align-items: center;
-      gap: var(--ai-space-2);
-    }
-    .customizer-label {
-      font-family: var(--ai-font-sans);
-      font-size: 0.6875rem;
-      font-weight: 600;
-      color: var(--ai-text-muted);
-      letter-spacing: 0.02em;
-    }
-    .customizer-pills {
-      display: flex;
-      gap: 0.25rem;
-      background: var(--ai-surface-0);
-      padding: 2px;
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-xs);
-    }
-    .customizer-pill-btn {
-      padding: 0.15rem 0.5rem;
-      font-size: 0.6875rem;
-      font-family: var(--ai-font-sans);
-      font-weight: 500;
-      color: var(--ai-text-secondary);
-      background: transparent;
-      border: none;
-      border-radius: calc(var(--ai-radius-xs) - 1px);
-      cursor: pointer;
-      transition: all var(--ai-duration-fast);
-    }
-    .customizer-pill-btn:hover {
-      color: var(--ai-text-primary);
-    }
-    .customizer-pill-btn.is-active {
-      background: var(--ai-surface-2);
-      color: var(--ai-text-primary);
-      font-weight: 600;
-    }
-    .hero-dock {
-      margin-top: var(--ai-space-12);
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: var(--ai-space-4);
-      background: var(--ai-surface-1);
-      padding: var(--ai-space-4);
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-xl);
-      box-shadow: var(--ai-shadow-lg);
-    }
-    @media (min-width: 900px) {
-      .hero-dock {
-        grid-template-columns: 1fr 1.1fr 1fr;
-      }
-    }
-    .hero-dock-card {
-      background: var(--ai-surface-0);
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-md);
-      padding: var(--ai-space-5);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: var(--ai-space-4);
-    }
-
-    /* --------------------------------------------------------------------------
-       Component Collection Explorer Layout
-       -------------------------------------------------------------------------- */
-    .collection-section {
-      padding: var(--ai-space-24) 0;
-      scroll-margin-top: 4rem;
-    }
-    .showcase-layout {
-      display: grid;
-      grid-template-columns: 240px 1fr;
-      gap: var(--ai-space-8);
-      align-items: start;
-    }
-    @media (max-width: 960px) {
-      .showcase-layout {
-        grid-template-columns: 1fr;
-      }
-      .showcase-sidebar {
-        position: static !important;
-        height: auto !important;
-      }
-    }
-    .showcase-sidebar {
-      position: sticky;
-      top: 5.5rem;
-      background: transparent;
-      border: none;
-      padding: 0;
-      box-shadow: none;
-    }
-    .showcase-nav-btn {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      padding: 0.375rem 0.5rem;
-      border-radius: var(--ai-radius-sm);
-      border: none;
-      background: transparent;
-      font-size: 0.8125rem;
-      font-weight: 450;
-      color: var(--ai-text-secondary);
-      cursor: pointer;
-      transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
-      text-align: left;
-    }
-    .showcase-nav-btn:hover {
-      color: var(--ai-text-primary);
-      background-color: var(--ai-surface-1);
-    }
-    .showcase-nav-btn.is-active {
-      color: var(--ai-text-primary);
-      background-color: var(--ai-surface-1);
-      font-weight: 600;
-    }
-    .showcase-count {
-      font-family: var(--ai-font-sans);
-      font-size: 0.75rem;
-      font-weight: 500;
-      font-variant-numeric: tabular-nums;
-      color: var(--ai-text-muted);
-      background: transparent;
-      border: none;
-      padding: 0;
-      line-height: 1;
-    }
-    .showcase-nav-btn.is-active .showcase-count {
-      color: var(--ai-text-secondary);
-      font-weight: 600;
-    }
-    .assistant-doc-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.35rem 0.5rem;
-      border-radius: var(--ai-radius-sm);
-      border: none;
-      background: transparent;
-      color: var(--ai-text-muted);
-      font-family: var(--ai-font-sans);
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
-    }
-    .assistant-doc-link:hover {
-      color: var(--ai-text-primary);
-      background-color: var(--ai-surface-1);
-    }
-    .assistant-doc-link svg {
-      opacity: 0.4;
-      transition: opacity var(--ai-duration-fast);
-    }
-    .assistant-doc-link:hover svg {
-      opacity: 0.9;
-    }
-    .component-box {
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-md);
-      background-color: var(--ai-surface-0);
-      margin-bottom: var(--ai-space-6);
-      overflow: hidden;
-      transition: border-color var(--ai-duration-fast);
-    }
-    .component-box:hover {
-      border-color: var(--ai-border-strong);
-    }
-    .component-box-header {
-      padding: var(--ai-space-3) var(--ai-space-5);
-      border-bottom: 1px solid var(--ai-border-subtle);
-      background-color: var(--ai-surface-1);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: var(--ai-space-3);
-    }
-    .component-preview-canvas {
-      padding: var(--ai-space-8) var(--ai-space-6);
-      background-color: var(--ai-bg);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 10rem;
-      overflow-x: auto;
-      transition: width 0.3s ease;
-      margin: 0 auto;
-    }
-    /* Sticky demo headers stay inside their card */
-    .component-preview-canvas .ai-navbar {
-      position: relative;
-      top: auto;
-      z-index: 1;
-    }
-    .component-preview-canvas.preview-has-dropdown,
-    .component-preview-canvas:has(.ai-dropdown) {
-      min-height: 16rem;
-      align-items: flex-start;
-      padding-top: var(--ai-space-6);
-      padding-bottom: var(--ai-space-6);
-    }
-    .component-code-panel {
-      border-top: 1px solid var(--ai-border);
-      background-color: var(--ai-surface-0);
-      padding: var(--ai-space-4) var(--ai-space-6);
-      display: none;
-    }
-    .component-code-panel.is-expanded {
-      display: block;
-    }
-    .component-code-panel pre {
-      margin: 0;
-      font-size: 0.8125rem;
-      max-height: 20rem;
-      overflow-y: auto;
-      border-radius: var(--ai-radius-xs);
-    }
-
-    /* Philosophy / Value Cards */
-    .philosophy-grid {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: var(--ai-space-6);
-      margin-top: var(--ai-space-8);
-    }
-    @media (min-width: 640px) {
-      .philosophy-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (min-width: 1024px) {
-      .philosophy-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-    .philosophy-card {
-      background: var(--ai-surface-0);
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-md);
-      padding: var(--ai-space-6);
-      display: flex;
-      flex-direction: column;
-      gap: var(--ai-space-3);
-      transition: all var(--ai-duration-fast);
-    }
-    .philosophy-card:hover {
-      border-color: var(--ai-border-hover);
-      transform: translateY(-2px);
-    }
-
-    /* Comparison Table Container */
-    .matrix-wrapper {
-      overflow-x: auto;
-      background: var(--ai-surface-0);
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-md);
-    }
-  </style>
 </head>
 <body id="top">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header id="site-header" class="site-header"></header>
+  <a class="ai-skip-link" href="#main">Skip to content</a>
+  <header id="site-header" class="ai-navbar"></header>
   <main id="main">
   
 
   <!-- ==========================================================================
        INTERACTIVE COMPONENT COLLECTION EXPLORER (#collection)
        ========================================================================== -->
-  <section class="collection-section" id="collection">
+  <section class="ai-docs-section" id="collection">
     <div class="ai-container" style="max-width: 1440px;">
       <!-- Collection Header & Viewport Simulator Controls -->
       <div class="ai-flex ai-justify-between ai-items-end ai-flex-wrap ai-gap-6" style="margin-bottom: var(--ai-space-8); padding-bottom: var(--ai-space-6); border-bottom: 1px solid var(--ai-border);">
@@ -494,7 +49,7 @@
         </div>
 
         <!-- Viewport Simulator -->
-        <div style="background-color: var(--ai-surface-1); border: 1px solid var(--ai-border); border-radius: var(--ai-radius-md); padding: var(--ai-space-2) var(--ai-space-3); display: flex; align-items: center; gap: var(--ai-space-3);">
+        <div class="ai-flex ai-flex-wrap ai-items-center ai-gap-3" style="background-color: var(--ai-surface-1); border: 1px solid var(--ai-border); border-radius: var(--ai-radius-md); padding: var(--ai-space-2) var(--ai-space-3); display: flex; align-items: center; gap: var(--ai-space-3);">
           <span class="ai-text-xs ai-font-medium ai-text-muted">Viewport:</span>
           <div class="ai-flex ai-gap-1">
             <button class="ai-btn ai-btn-outline ai-btn-xs viewport-btn is-active" data-width="100%">Desktop (100%)</button>
@@ -505,32 +60,32 @@
       </div>
 
       <!-- Main Showcase Layout: Sidebar Filter + Stream -->
-      <div class="showcase-layout">
+      <div class="ai-docs-layout">
         <!-- Sidebar Navigation Filter -->
-        <aside class="showcase-sidebar">
+        <aside class="ai-docs-sidebar">
           <div class="ai-flex ai-flex-col ai-gap-4">
             <div>
               <span class="ai-text-xs ai-font-sans ai-font-semibold ai-text-muted" style="text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.6875rem; display: block; margin-bottom: 0.35rem; padding: 0 0.5rem;">Components</span>
               <div class="ai-flex ai-flex-col" style="gap: 1px;">
-                <button class="showcase-nav-btn is-active filter-category" data-cat="all">
+                <button class="ai-docs-nav-btn is-active filter-category" data-cat="all">
                   <span>All</span>
-                  <span class="showcase-count" id="count-all"></span>
+                  <span class="ai-docs-count" id="count-all"></span>
                 </button>
-                <button class="showcase-nav-btn filter-category" data-cat="primitive">
+                <button class="ai-docs-nav-btn filter-category" data-cat="primitive">
                   <span>Primitives</span>
-                  <span class="showcase-count" id="count-primitive"></span>
+                  <span class="ai-docs-count" id="count-primitive"></span>
                 </button>
-                <button class="showcase-nav-btn filter-category" data-cat="marketing">
+                <button class="ai-docs-nav-btn filter-category" data-cat="marketing">
                   <span>Marketing</span>
-                  <span class="showcase-count" id="count-marketing"></span>
+                  <span class="ai-docs-count" id="count-marketing"></span>
                 </button>
-                <button class="showcase-nav-btn filter-category" data-cat="application">
+                <button class="ai-docs-nav-btn filter-category" data-cat="application">
                   <span>Application</span>
-                  <span class="showcase-count" id="count-application"></span>
+                  <span class="ai-docs-count" id="count-application"></span>
                 </button>
-                <button class="showcase-nav-btn filter-category" data-cat="ecommerce">
+                <button class="ai-docs-nav-btn filter-category" data-cat="ecommerce">
                   <span>E-Commerce</span>
-                  <span class="showcase-count" id="count-ecommerce"></span>
+                  <span class="ai-docs-count" id="count-ecommerce"></span>
                 </button>
               </div>
             </div>
@@ -538,17 +93,17 @@
             <div style="border-top: 1px solid var(--ai-border-subtle); padding-top: var(--ai-space-3);">
               <span class="ai-text-xs ai-font-sans ai-font-semibold ai-text-muted" style="text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.6875rem; display: block; margin-bottom: 0.35rem; padding: 0 0.5rem;">Tiers</span>
               <div class="ai-flex ai-flex-col" style="gap: 1px;">
-                <button class="showcase-nav-btn filter-tier is-active" data-tier="all">
+                <button class="ai-docs-nav-btn filter-tier is-active" data-tier="all">
                   <span>All Tiers</span>
-                  <span class="showcase-count" id="count-tier-all"></span>
+                  <span class="ai-docs-count" id="count-tier-all"></span>
                 </button>
-                <button class="showcase-nav-btn filter-tier" data-tier="free">
+                <button class="ai-docs-nav-btn filter-tier" data-tier="free">
                   <span>Free (MIT)</span>
-                  <span class="showcase-count" id="count-tier-free"></span>
+                  <span class="ai-docs-count" id="count-tier-free"></span>
                 </button>
-                <button class="showcase-nav-btn filter-tier" data-tier="pro">
+                <button class="ai-docs-nav-btn filter-tier" data-tier="pro">
                   <span>Pro</span>
-                  <span class="showcase-count" id="count-tier-pro">13</span>
+                  <span class="ai-docs-count" id="count-tier-pro">13</span>
                   <span style="font-family: var(--ai-font-sans); font-size: 0.625rem; font-weight: 700; color: var(--ai-text-muted); border: 1px solid var(--ai-border); border-radius: 3px; padding: 0 4px; line-height: 1.4;">PRO</span>
                 </button>
               </div>
@@ -557,15 +112,15 @@
             <div style="border-top: 1px solid var(--ai-border-subtle); padding-top: var(--ai-space-3);">
               <span class="ai-text-xs ai-font-sans ai-font-semibold ai-text-muted" style="text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.6875rem; display: block; margin-bottom: 0.35rem; padding: 0 0.5rem;">Endpoints</span>
               <div class="ai-flex ai-flex-col" style="gap: 1px;">
-                <a href="/llms.txt" target="_blank" class="assistant-doc-link" title="Open llms.txt">
+                <a href="/llms.txt" target="_blank" class="ai-docs-link" title="Open llms.txt">
                   <span>llms.txt</span>
                   <span style="font-size: 0.6875rem; color: var(--ai-text-muted); font-family: var(--ai-font-sans);">Index</span>
                 </a>
-                <a href="/llms-full.txt" target="_blank" class="assistant-doc-link" title="Open llms-full.txt">
+                <a href="/llms-full.txt" target="_blank" class="ai-docs-link" title="Open llms-full.txt">
                   <span>llms-full.txt</span>
                   <span style="font-size: 0.6875rem; color: var(--ai-text-muted); font-family: var(--ai-font-sans);">Full</span>
                 </a>
-                <a href="/registry.json" target="_blank" class="assistant-doc-link" title="Open registry.json">
+                <a href="/registry.json" target="_blank" class="ai-docs-link" title="Open registry.json">
                   <span>registry.json</span>
                   <span style="font-size: 0.6875rem; color: var(--ai-text-muted); font-family: var(--ai-font-sans);">JSON</span>
                 </a>
@@ -727,7 +282,7 @@
        FOOTER
        ========================================================================== -->
   </main>
-  <footer id="site-footer" class="site-footer"></footer>
+  <footer id="site-footer" class="ai-footer ai-footer-compact"></footer>
   <!-- PRO SUBSCRIPTION PAYWALL MODAL -->
   <div id="license-modal" class="ai-modal">
     <div class="ai-modal-backdrop" data-ai-dismiss="modal"></div>
@@ -807,97 +362,97 @@
 
       <div class="ai-drawer-body" style="overflow-y: auto; padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1.25rem;">
         <!-- 1. Theme Palette -->
-        <div class="styler-section">
-          <div class="styler-section-header">
-            <span class="styler-section-title">Theme Palette</span>
-            <span class="styler-section-val" id="styler-active-theme-label">Minimal</span>
+        <div class="ai-styler-section">
+          <div class="ai-styler-section-header">
+            <span class="ai-styler-section-title">Theme Palette</span>
+            <span class="ai-styler-section-val" id="styler-active-theme-label">Minimal</span>
           </div>
-          <div class="styler-theme-grid" id="styler-theme-grid">
-            <button class="styler-theme-btn is-active" data-skin="modern">
-              <span class="styler-swatch-pip" style="background: #2563eb;"></span>
-              <span class="styler-theme-name">Minimal</span>
+          <div class="ai-styler-theme-grid" id="ai-styler-theme-grid">
+            <button class="ai-styler-theme-btn is-active" data-skin="modern">
+              <span class="ai-styler-swatch-pip" style="background: #2563eb;"></span>
+              <span class="ai-styler-theme-name">Minimal</span>
             </button>
-            <button class="styler-theme-btn" data-skin="executive">
-              <span class="styler-swatch-pip" style="background: #0f172a;"></span>
-              <span class="styler-theme-name">Slate</span>
+            <button class="ai-styler-theme-btn" data-skin="executive">
+              <span class="ai-styler-swatch-pip" style="background: #0f172a;"></span>
+              <span class="ai-styler-theme-name">Slate</span>
             </button>
-            <button class="styler-theme-btn" data-skin="fintech">
-              <span class="styler-swatch-pip" style="background: #0f766e;"></span>
-              <span class="styler-theme-name">Titanium</span>
+            <button class="ai-styler-theme-btn" data-skin="fintech">
+              <span class="ai-styler-swatch-pip" style="background: #0f766e;"></span>
+              <span class="ai-styler-theme-name">Titanium</span>
             </button>
-            <button class="styler-theme-btn" data-skin="obsidian">
-              <span class="styler-swatch-pip" style="background: #09090b; box-shadow: 0 0 0 1px rgba(255,255,255,0.3);"></span>
-              <span class="styler-theme-name">Obsidian</span>
+            <button class="ai-styler-theme-btn" data-skin="obsidian">
+              <span class="ai-styler-swatch-pip" style="background: #09090b; box-shadow: 0 0 0 1px rgba(255,255,255,0.3);"></span>
+              <span class="ai-styler-theme-name">Obsidian</span>
             </button>
-            <button class="styler-theme-btn" data-skin="editorial">
-              <span class="styler-swatch-pip" style="background: #8c4a27;"></span>
-              <span class="styler-theme-name">Editorial</span>
+            <button class="ai-styler-theme-btn" data-skin="editorial">
+              <span class="ai-styler-swatch-pip" style="background: #8c4a27;"></span>
+              <span class="ai-styler-theme-name">Editorial</span>
             </button>
-            <button class="styler-theme-btn" data-skin="enterprise">
-              <span class="styler-swatch-pip" style="background: #0284c7;"></span>
-              <span class="styler-theme-name">Enterprise</span>
+            <button class="ai-styler-theme-btn" data-skin="enterprise">
+              <span class="ai-styler-swatch-pip" style="background: #0284c7;"></span>
+              <span class="ai-styler-theme-name">Enterprise</span>
             </button>
           </div>
         </div>
 
-        <div class="styler-section">
-          <div class="styler-section-header">
-            <span class="styler-section-title">Title font</span>
-            <span class="styler-section-val">One face for headings</span>
+        <div class="ai-styler-section">
+          <div class="ai-styler-section-header">
+            <span class="ai-styler-section-title">Title font</span>
+            <span class="ai-styler-section-val">One face for headings</span>
           </div>
           <select id="styler-font-switcher" class="ai-select" style="width: 100%; height: 2rem; font-size: 0.8125rem;" aria-label="Title font"></select>
         </div>
 
         <!-- 2. Corner Geometry -->
-        <div class="styler-section">
-          <div class="styler-section-header">
-            <span class="styler-section-title">Corner Geometry</span>
-            <span class="styler-section-val" id="styler-radius-label">Balanced (4-8px)</span>
+        <div class="ai-styler-section">
+          <div class="ai-styler-section-header">
+            <span class="ai-styler-section-title">Corner Geometry</span>
+            <span class="ai-styler-section-val" id="styler-radius-label">Balanced (4-8px)</span>
           </div>
-          <div class="styler-segmented-track">
-            <button class="styler-segmented-item styler-radius-btn" data-radius="sharp">Sharp</button>
-            <button class="styler-segmented-item styler-radius-btn" data-radius="precision">Precision</button>
-            <button class="styler-segmented-item styler-radius-btn is-active" data-radius="balanced">Balanced</button>
-            <button class="styler-segmented-item styler-radius-btn" data-radius="smooth">Smooth</button>
+          <div class="ai-styler-segmented-track">
+            <button class="ai-styler-segmented-item ai-styler-radius-btn" data-radius="sharp">Sharp</button>
+            <button class="ai-styler-segmented-item ai-styler-radius-btn" data-radius="precision">Precision</button>
+            <button class="ai-styler-segmented-item ai-styler-radius-btn is-active" data-radius="balanced">Balanced</button>
+            <button class="ai-styler-segmented-item ai-styler-radius-btn" data-radius="smooth">Smooth</button>
           </div>
         </div>
 
         <!-- 3. Spacing & Density -->
-        <div class="styler-section">
-          <div class="styler-section-header">
-            <span class="styler-section-title">Interface Density</span>
-            <span class="styler-section-val" id="styler-density-label">Standard (1.0x)</span>
+        <div class="ai-styler-section">
+          <div class="ai-styler-section-header">
+            <span class="ai-styler-section-title">Interface Density</span>
+            <span class="ai-styler-section-val" id="styler-density-label">Standard (1.0x)</span>
           </div>
-          <div class="styler-segmented-track">
-            <button class="styler-segmented-item styler-density-btn" data-density="compact">Compact</button>
-            <button class="styler-segmented-item styler-density-btn is-active" data-density="standard">Standard</button>
-            <button class="styler-segmented-item styler-density-btn" data-density="spacious">Spacious</button>
+          <div class="ai-styler-segmented-track">
+            <button class="ai-styler-segmented-item ai-styler-density-btn" data-density="compact">Compact</button>
+            <button class="ai-styler-segmented-item ai-styler-density-btn is-active" data-density="standard">Standard</button>
+            <button class="ai-styler-segmented-item ai-styler-density-btn" data-density="spacious">Spacious</button>
           </div>
         </div>
 
         <!-- 4. Accent Color -->
-        <div class="styler-section">
-          <div class="styler-section-header">
-            <span class="styler-section-title">Primary Accent</span>
+        <div class="ai-styler-section">
+          <div class="ai-styler-section-header">
+            <span class="ai-styler-section-title">Primary Accent</span>
           </div>
-          <div class="styler-swatch-row">
-            <button class="styler-accent-swatch is-active" data-accent="default" style="background: #2563eb;" title="Default Blue"></button>
-            <button class="styler-accent-swatch" data-accent="steel" style="background: #475569;" title="Slate Steel"></button>
-            <button class="styler-accent-swatch" data-accent="teal" style="background: #0f766e;" title="Fintech Teal"></button>
-            <button class="styler-accent-swatch" data-accent="emerald" style="background: #059669;" title="Emerald"></button>
-            <button class="styler-accent-swatch" data-accent="violet" style="background: #7c3aed;" title="Violet"></button>
-            <button class="styler-accent-swatch" data-accent="rose" style="background: #e11d48;" title="Rose"></button>
-            <button class="styler-accent-swatch" data-accent="amber" style="background: #d97706;" title="Amber"></button>
+          <div class="ai-styler-swatch-row">
+            <button class="ai-styler-accent-swatch is-active" data-accent="default" style="background: #2563eb;" title="Default Blue"></button>
+            <button class="ai-styler-accent-swatch" data-accent="steel" style="background: #475569;" title="Slate Steel"></button>
+            <button class="ai-styler-accent-swatch" data-accent="teal" style="background: #0f766e;" title="Fintech Teal"></button>
+            <button class="ai-styler-accent-swatch" data-accent="emerald" style="background: #059669;" title="Emerald"></button>
+            <button class="ai-styler-accent-swatch" data-accent="violet" style="background: #7c3aed;" title="Violet"></button>
+            <button class="ai-styler-accent-swatch" data-accent="rose" style="background: #e11d48;" title="Rose"></button>
+            <button class="ai-styler-accent-swatch" data-accent="amber" style="background: #d97706;" title="Amber"></button>
           </div>
         </div>
 
         <!-- 5. Token Export Blueprint -->
-        <div class="styler-section" style="border-top: 1px solid var(--ai-border-subtle); padding-top: var(--ai-space-4);">
+        <div class="ai-styler-section" style="border-top: 1px solid var(--ai-border-subtle); padding-top: var(--ai-space-4);">
           <div class="ai-flex ai-justify-between ai-items-center">
-            <span class="styler-section-title">CSS Blueprint</span>
+            <span class="ai-styler-section-title">CSS Blueprint</span>
             <button class="ai-btn ai-btn-outline ai-btn-xs" id="copy-styler-css-btn">Copy CSS</button>
           </div>
-          <details class="styler-code-disclosure" style="margin-top: 0.25rem;">
+          <details class="ai-styler-code-disclosure" style="margin-top: 0.25rem;">
             <summary class="ai-text-xs ai-text-muted" style="cursor: pointer; user-select: none; display: flex; align-items: center; gap: 0.25rem;">
               <span>View generated :root tokens</span>
               <span style="font-size: 0.75rem;">▾</span>

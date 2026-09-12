@@ -221,7 +221,7 @@ function applyGlobalTokens() {
 
 function updateCoreStylerUI() {
   // Theme Grid
-  document.querySelectorAll('#styler-theme-grid .styler-theme-btn').forEach((btn) => {
+  document.querySelectorAll('#styler-theme-grid .ai-styler-theme-btn').forEach((btn) => {
     const skin = btn.getAttribute('data-skin');
     btn.classList.toggle('is-active', skin === activeSkin);
   });
@@ -243,7 +243,7 @@ function updateCoreStylerUI() {
   }
 
   // Radius Pills
-  document.querySelectorAll('.styler-radius-btn').forEach((btn) => {
+  document.querySelectorAll('.ai-styler-radius-btn').forEach((btn) => {
     const rad = btn.getAttribute('data-radius');
     btn.classList.toggle('is-active', rad === activeRadius);
   });
@@ -260,7 +260,7 @@ function updateCoreStylerUI() {
   }
 
   // Density Pills
-  document.querySelectorAll('.styler-density-btn').forEach((btn) => {
+  document.querySelectorAll('.ai-styler-density-btn').forEach((btn) => {
     const den = btn.getAttribute('data-density');
     btn.classList.toggle('is-active', den === activeDensity);
   });
@@ -275,7 +275,7 @@ function updateCoreStylerUI() {
   }
 
   // Accent Swatches
-  document.querySelectorAll('.styler-accent-swatch').forEach((btn) => {
+  document.querySelectorAll('.ai-styler-accent-swatch').forEach((btn) => {
     const acc = btn.getAttribute('data-accent');
     btn.classList.toggle('is-active', acc === activeAccent);
   });
@@ -551,7 +551,7 @@ function renderCustomizerBar(comp: (typeof components)[0]): string {
   const current = componentCustomizations[comp.id] || {};
 
   return `
-    <div class="component-customizer-bar" id="customize-${comp.id}" style="display: none;">
+    <div class="ai-demo-toolbar" id="customize-${comp.id}" style="display: none;">
       <div class="ai-flex ai-items-center ai-gap-2" style="margin-right: var(--ai-space-2);">
         <span class="ai-badge ai-badge-neutral ai-font-mono" style="font-size: 0.625rem;">Customizer</span>
       </div>
@@ -559,13 +559,13 @@ function renderCustomizerBar(comp: (typeof components)[0]): string {
         .map((g) => {
           const activeVal = current[g.prop] || g.options[0].value;
           return `
-          <div class="customizer-group">
-            <span class="customizer-label">${g.name}:</span>
-            <div class="customizer-pills">
+          <div class="ai-demo-toolbar-group">
+            <span class="ai-demo-toolbar-label">${g.name}:</span>
+            <div class="ai-demo-pills">
               ${g.options
                 .map(
                   (opt) => `
-                <button class="customizer-pill-btn ${opt.value === activeVal ? 'is-active' : ''}" 
+                <button class="ai-demo-pill ${opt.value === activeVal ? 'is-active' : ''}" 
                         data-id="${comp.id}" 
                         data-prop="${g.prop}" 
                         data-val="${opt.value}">
@@ -743,7 +743,7 @@ function applyComponentCustomization(id: string) {
   const customizedHtml = generateCustomizedHtml(comp);
 
   // Update Preview DOM
-  const previewContainer = document.querySelector(`#comp-${id} .component-preview-canvas > div`);
+  const previewContainer = document.querySelector(`#comp-${id} .ai-demo-canvas > div`);
   if (previewContainer) {
     previewContainer.innerHTML = customizedHtml;
   }
@@ -755,7 +755,7 @@ function applyComponentCustomization(id: string) {
 }
 
 function rebindPreviewControls(id: string) {
-  const preview = document.querySelector(`#comp-${id} .component-preview-canvas`);
+  const preview = document.querySelector(`#comp-${id} .ai-demo-canvas`);
   if (!preview) return;
 
   preview.querySelectorAll<HTMLInputElement>('input[type="range"]').forEach((slider) => {
@@ -846,12 +846,12 @@ function renderComponents() {
   streamEl.innerHTML = filtered
     .map((comp) => {
       const isPro = comp.tier === 'pro';
-      const tierBadge = isPro ? `<span class="tag-pro-pill">PRO</span>` : ``;
+      const tierBadge = isPro ? `<span class="ai-docs-pro-tag">PRO</span>` : ``;
       const currentHtml = generateCustomizedHtml(comp);
 
       return `
-      <article class="component-box" id="comp-${comp.id}">
-        <div class="component-box-header">
+      <article class="ai-demo-card" id="comp-${comp.id}">
+        <div class="ai-demo-header">
           <div class="ai-flex ai-items-center ai-gap-3">
             <div>
               <div class="ai-flex ai-items-center ai-gap-2">
@@ -866,7 +866,7 @@ function renderComponents() {
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
               <span>Customize</span>
             </button>
-            <button class="ai-btn ai-btn-outline ai-btn-xs toggle-code-btn" data-id="${comp.id}">
+            <button class="ai-btn ai-btn-outline ai-btn-xs ai-template-code-toggle" data-id="${comp.id}">
               Code
             </button>
             <button class="ai-btn ai-btn-outline ai-btn-xs copy-cli-btn" data-id="${comp.id}">
@@ -884,12 +884,12 @@ function renderComponents() {
           </div>
         </div>
         ${isPro ? '' : renderCustomizerBar(comp)}
-        <div class="component-preview-canvas ${comp.id === 'dropdown-menu' ? 'preview-has-dropdown' : ''}" style="width: ${currentViewport};">
+        <div class="ai-demo-canvas ${comp.id === 'dropdown-menu' ? 'preview-has-dropdown' : ''}" style="width: ${currentViewport};">
           <div style="width: 100%; max-width: 100%;">
             ${currentHtml}
           </div>
         </div>
-        <div class="component-code-panel" id="code-${comp.id}">
+        <div class="ai-demo-code" id="code-${comp.id}">
           ${
             isPro
               ? `<div class="ai-flex ai-justify-between ai-items-center" style="margin-bottom: var(--ai-space-2);">
@@ -927,7 +927,7 @@ function bindComponentEvents() {
   });
 
   // Customizer Pill Options
-  document.querySelectorAll('.customizer-pill-btn').forEach((btn) => {
+  document.querySelectorAll('.ai-demo-pill').forEach((btn) => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-id')!;
       const prop = btn.getAttribute('data-prop') as keyof ComponentCustomization;
@@ -939,9 +939,9 @@ function bindComponentEvents() {
       componentCustomizations[id][prop] = val;
 
       // Update active state among siblings
-      const parentGroup = btn.closest('.customizer-pills');
+      const parentGroup = btn.closest('.ai-demo-pills');
       if (parentGroup) {
-        parentGroup.querySelectorAll('.customizer-pill-btn').forEach((b) => b.classList.remove('is-active'));
+        parentGroup.querySelectorAll('.ai-demo-pill').forEach((b) => b.classList.remove('is-active'));
         btn.classList.add('is-active');
       }
 
@@ -959,9 +959,9 @@ function bindComponentEvents() {
 
       const bar = document.getElementById(`customize-${id}`);
       if (bar) {
-        bar.querySelectorAll('.customizer-group').forEach((g) => {
-          const firstPill = g.querySelector('.customizer-pill-btn');
-          g.querySelectorAll('.customizer-pill-btn').forEach((b) => b.classList.remove('is-active'));
+        bar.querySelectorAll('.ai-demo-toolbar-group').forEach((g) => {
+          const firstPill = g.querySelector('.ai-demo-pill');
+          g.querySelectorAll('.ai-demo-pill').forEach((b) => b.classList.remove('is-active'));
           firstPill?.classList.add('is-active');
         });
       }
@@ -970,7 +970,7 @@ function bindComponentEvents() {
   });
 
   // Toggle code visibility
-  document.querySelectorAll('.toggle-code-btn').forEach((btn) => {
+  document.querySelectorAll('.ai-template-code-toggle').forEach((btn) => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-id');
       const panel = document.getElementById(`code-${id}`);
@@ -1021,7 +1021,7 @@ function bindComponentEvents() {
   });
 
   // Range sliders inside previews
-  document.querySelectorAll<HTMLInputElement>('.component-preview-canvas input[type="range"]').forEach((slider) => {
+  document.querySelectorAll<HTMLInputElement>('.ai-demo-canvas input[type="range"]').forEach((slider) => {
     slider.addEventListener('input', () => {
       const wrapper = slider.closest('.ai-slider-wrapper');
       if (wrapper) {
@@ -1130,14 +1130,14 @@ document.querySelectorAll('.viewport-btn').forEach((btn) => {
     document.querySelectorAll('.viewport-btn').forEach((b) => b.classList.remove('is-active'));
     btn.classList.add('is-active');
     currentViewport = btn.getAttribute('data-width') || '100%';
-    document.querySelectorAll<HTMLElement>('.component-preview-canvas').forEach((canvas) => {
+    document.querySelectorAll<HTMLElement>('.ai-demo-canvas').forEach((canvas) => {
       canvas.style.width = currentViewport;
     });
   });
 });
 
 // Core Styler Drawer Event Handlers
-document.querySelectorAll('#styler-theme-grid .styler-theme-btn').forEach((btn) => {
+document.querySelectorAll('#styler-theme-grid .ai-styler-theme-btn').forEach((btn) => {
   btn.addEventListener('click', () => {
     activeSkin = btn.getAttribute('data-skin') || 'modern';
     applyGlobalTokens();
@@ -1145,7 +1145,7 @@ document.querySelectorAll('#styler-theme-grid .styler-theme-btn').forEach((btn) 
   });
 });
 
-document.querySelectorAll('.styler-radius-btn').forEach((btn) => {
+document.querySelectorAll('.ai-styler-radius-btn').forEach((btn) => {
   btn.addEventListener('click', () => {
     activeRadius = btn.getAttribute('data-radius') || 'balanced';
     applyGlobalTokens();
@@ -1153,7 +1153,7 @@ document.querySelectorAll('.styler-radius-btn').forEach((btn) => {
   });
 });
 
-document.querySelectorAll('.styler-density-btn').forEach((btn) => {
+document.querySelectorAll('.ai-styler-density-btn').forEach((btn) => {
   btn.addEventListener('click', () => {
     activeDensity = btn.getAttribute('data-density') || 'standard';
     applyGlobalTokens();
@@ -1161,7 +1161,7 @@ document.querySelectorAll('.styler-density-btn').forEach((btn) => {
   });
 });
 
-document.querySelectorAll('.styler-accent-swatch').forEach((btn) => {
+document.querySelectorAll('.ai-styler-accent-swatch').forEach((btn) => {
   btn.addEventListener('click', () => {
     activeAccent = btn.getAttribute('data-accent') || 'default';
     applyGlobalTokens();
@@ -1192,18 +1192,18 @@ document.getElementById('hero-copy-pill')?.addEventListener('click', () => {
 });
 
 // Hero Interactive Slider
-const heroSlider = document.querySelector<HTMLInputElement>('.hero-dock input[type="range"]');
+const heroSlider = document.querySelector<HTMLInputElement>('.ai-docs-hero-dock input[type="range"]');
 if (heroSlider) {
   heroSlider.addEventListener('input', () => {
-    const valEl = document.querySelector('.hero-dock .ai-slider-value');
+    const valEl = document.querySelector('.ai-docs-hero-dock .ai-slider-value');
     if (valEl) valEl.textContent = heroSlider.value;
   });
 }
 
 // Hero Segmented Switcher
-document.querySelectorAll('.hero-dock .ai-segmented-btn').forEach((btn) => {
+document.querySelectorAll('.ai-docs-hero-dock .ai-segmented-btn').forEach((btn) => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.hero-dock .ai-segmented-btn').forEach((b) => b.classList.remove('is-active'));
+    document.querySelectorAll('.ai-docs-hero-dock .ai-segmented-btn').forEach((b) => b.classList.remove('is-active'));
     btn.classList.add('is-active');
   });
 });
@@ -1251,7 +1251,7 @@ async function hydrateProCards() {
       style.textContent = css;
       document.head.appendChild(style);
     }
-    const canvas = card.querySelector('.component-preview-canvas > div');
+    const canvas = card.querySelector('.ai-demo-canvas > div');
     if (canvas) canvas.innerHTML = html;
     const panel = card.querySelector(`#code-${comp.id}`);
     if (panel) {

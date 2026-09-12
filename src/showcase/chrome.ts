@@ -99,12 +99,12 @@ const BRAND = `<a href="/" class="ai-brand">
 // own row under md.
 function headerHtml(licensed: boolean): string {
   const search = searchHtml();
-  return `<div class="ai-container ai-navbar-inner">
+  return `<div class="ai-container ai-container-lg ai-navbar-inner">
     ${BRAND}
-    <nav class="ai-hidden ai-lg:flex ai-items-center ai-gap-1" id="desktop-nav" aria-label="Primary">
+    <nav class="ai-nav-links" id="desktop-nav" aria-label="Primary">
       ${NAV.map(([href, id, label]) => navLink(href, id, label)).join('\n      ')}
     </nav>
-    ${search ? `<div class="site-search ai-w-full ai-order-last ai-md:w-auto ai-md:order-none ai-md:ml-auto">${search}</div>` : ''}
+    ${search ? `<div class="ai-navbar-search ai-w-full ai-order-last ai-md:w-auto ai-md:order-none ai-md:ml-auto">${search}</div>` : ''}
     <div class="ai-flex ai-items-center ai-gap-2 ${search ? 'ai-ml-auto ai-md:ml-0' : 'ai-ml-auto'}">
       ${stylerBtn('open-styler-btn', 'ai-hidden ai-lg:inline-flex')}
       <button type="button" id="theme-mode-toggle" class="ai-btn ai-btn-outline ai-btn-xs ai-btn-icon">${currentTheme() === 'dark' ? SUN : MOON}</button>
@@ -140,14 +140,16 @@ function menuHtml(licensed: boolean): string {
 
 export function footerHtml(): string {
   const s = catalogStats;
-  const col = (title: string, items: string[]) => `<div>
-        <h4 class="ai-text-xs ai-font-semibold ai-text-muted" style="margin-bottom: var(--ai-space-3);">${title}</h4>
-        <ul class="ai-footer-list">
+  // Columns collapse into an accordion on small screens (library ai-footer-col pattern)
+  const chevron = `<svg class="ai-accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`;
+  const col = (title: string, items: string[]) => `<div class="ai-footer-col ai-accordion-item">
+        <h4 class="ai-text-xs ai-font-semibold ai-text-muted"><button type="button" class="ai-footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">${title} ${chevron}</button></h4>
+        <ul class="ai-footer-list ai-accordion-content">
           ${items.map((i) => `<li>${i}</li>`).join('\n          ')}
         </ul>
       </div>`;
   const link = (href: string, label: string) => `<a href="${href}" class="ai-text-secondary">${label}</a>`;
-  return `<div class="ai-container ai-footer-grid">
+  return `<div class="ai-container ai-container-lg ai-footer-grid">
       <div>
         ${BRAND}
         <p class="ai-text-secondary ai-text-xs" style="margin-top: var(--ai-space-3); max-width: 20rem; line-height: 1.6;">Native CSS for agents and humans. MIT core. Pro catalog $9/mo.</p>

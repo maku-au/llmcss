@@ -25,485 +25,16 @@
       if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-ai-theme', t);
     })();
   </script>
-  <style>
-    /* Micro Badges */
-    .nav-count {
-      font-family: var(--ai-font-sans);
-      font-variant-numeric: tabular-nums;
-      font-size: 0.6875rem;
-      font-weight: 500;
-      color: var(--ai-text-muted);
-      margin-left: auto;
-    }
-    .tag-pro-pill {
-      font-family: var(--ai-font-sans);
-      font-size: 0.5625rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--ai-text-primary);
-      background: var(--ai-surface-2);
-      border: 1px solid var(--ai-border-strong);
-      padding: 0.1rem 0.35rem;
-      border-radius: var(--ai-radius-xs);
-      margin-left: auto;
-    }
-
-    /* --------------------------------------------------------------------------
-       Homepage Layout & Hero Preview Dock
-       -------------------------------------------------------------------------- */
-    .hero-section {
-      padding: var(--ai-space-24) 0 var(--ai-space-24);
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid var(--ai-border);
-      background-color: var(--ai-bg);
-    }
-    
-    /* --------------------------------------------------------------------------
-       STUDIO STYLER (UNBLURRED LIVE INSPECTOR)
-       -------------------------------------------------------------------------- */
-    #core-styler-drawer .ai-drawer-backdrop {
-      background-color: transparent !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-    }
-    #core-styler-drawer .ai-drawer-panel {
-      width: 100%;
-      max-width: 25rem;
-      border-left: 1px solid var(--ai-border-strong);
-      box-shadow: -16px 0 48px -12px rgba(0, 0, 0, 0.25), -1px 0 0 var(--ai-border);
-      background-color: var(--ai-surface-0);
-    }
-    .styler-section {
-      display: flex;
-      flex-direction: column;
-      gap: 0.625rem;
-    }
-    .styler-section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .styler-section-title {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--ai-text-secondary);
-      letter-spacing: 0.02em;
-      font-family: var(--ai-font-sans);
-    }
-    .styler-section-val {
-      font-size: 0.6875rem;
-      font-weight: 500;
-      color: var(--ai-text-muted);
-      font-family: var(--ai-font-mono);
-    }
-    .styler-theme-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.375rem;
-    }
-    .styler-theme-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.45rem 0.625rem;
-      background: var(--ai-surface-0);
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-sm);
-      cursor: pointer;
-      transition: all var(--ai-duration-fast);
-      text-align: left;
-    }
-    .styler-theme-btn:hover {
-      border-color: var(--ai-border-strong);
-      background: var(--ai-surface-1);
-    }
-    .styler-theme-btn.is-active {
-      border-color: var(--ai-text-primary);
-      background: var(--ai-surface-1);
-    }
-    .styler-swatch-pip {
-      width: 0.625rem;
-      height: 0.625rem;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .styler-theme-name {
-      font-size: 0.8125rem;
-      font-weight: 500;
-      color: var(--ai-text-secondary);
-      line-height: 1.2;
-    }
-    .styler-theme-btn.is-active .styler-theme-name {
-      font-weight: 600;
-      color: var(--ai-text-primary);
-    }
-    .styler-segmented-track {
-      display: flex;
-      background: var(--ai-surface-1);
-      padding: 2px;
-      border-radius: var(--ai-radius-xs);
-      border: 1px solid var(--ai-border-subtle);
-      gap: 1px;
-    }
-    .styler-segmented-item {
-      flex: 1;
-      padding: 0.3rem 0.4rem;
-      font-size: 0.75rem;
-      font-family: var(--ai-font-sans);
-      font-weight: 450;
-      color: var(--ai-text-muted);
-      background: transparent;
-      border: none;
-      border-radius: calc(var(--ai-radius-xs) - 1px);
-      cursor: pointer;
-      transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
-      text-align: center;
-    }
-    .styler-segmented-item:hover {
-      color: var(--ai-text-primary);
-    }
-    .styler-segmented-item.is-active {
-      background: var(--ai-surface-0);
-      color: var(--ai-text-primary);
-      font-weight: 600;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    }
-    .styler-swatch-row {
-      display: flex;
-      align-items: center;
-      gap: 0.625rem;
-    }
-    .styler-accent-swatch {
-      width: 1.5rem;
-      height: 1.5rem;
-      border-radius: 50%;
-      border: 2px solid var(--ai-surface-0);
-      box-shadow: 0 0 0 1px var(--ai-border);
-      cursor: pointer;
-      transition: transform var(--ai-duration-fast), box-shadow var(--ai-duration-fast);
-    }
-    .styler-accent-swatch:hover {
-      transform: scale(1.15);
-    }
-    .styler-accent-swatch.is-active {
-      box-shadow: 0 0 0 2px var(--ai-surface-0), 0 0 0 4px var(--ai-text-primary);
-    }
-    .styler-code-disclosure summary::-webkit-details-marker {
-      display: none;
-    }
-
-    /* Per-Component Customizer Bar */
-    .component-customizer-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: var(--ai-space-4);
-      background: var(--ai-surface-1);
-      border-bottom: 1px solid var(--ai-border);
-      padding: var(--ai-space-3) var(--ai-space-5);
-      font-size: 0.75rem;
-    }
-    .customizer-group {
-      display: flex;
-      align-items: center;
-      gap: var(--ai-space-2);
-    }
-    .customizer-label {
-      font-family: var(--ai-font-sans);
-      font-size: 0.6875rem;
-      font-weight: 600;
-      color: var(--ai-text-muted);
-      letter-spacing: 0.02em;
-    }
-    .customizer-pills {
-      display: flex;
-      gap: 0.25rem;
-      background: var(--ai-surface-0);
-      padding: 2px;
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-xs);
-    }
-    .customizer-pill-btn {
-      padding: 0.15rem 0.5rem;
-      font-size: 0.6875rem;
-      font-family: var(--ai-font-sans);
-      font-weight: 500;
-      color: var(--ai-text-secondary);
-      background: transparent;
-      border: none;
-      border-radius: calc(var(--ai-radius-xs) - 1px);
-      cursor: pointer;
-      transition: all var(--ai-duration-fast);
-    }
-    .customizer-pill-btn:hover {
-      color: var(--ai-text-primary);
-    }
-    .customizer-pill-btn.is-active {
-      background: var(--ai-surface-2);
-      color: var(--ai-text-primary);
-      font-weight: 600;
-    }
-    .hero-dock {
-      margin-top: var(--ai-space-12);
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: var(--ai-space-4);
-      background: var(--ai-surface-1);
-      padding: var(--ai-space-4);
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-xl);
-      box-shadow: var(--ai-shadow-lg);
-    }
-    @media (min-width: 900px) {
-      .hero-dock {
-        grid-template-columns: 1fr 1.1fr 1fr;
-      }
-    }
-    .hero-dock-card {
-      background: var(--ai-surface-0);
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-md);
-      padding: var(--ai-space-5);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: var(--ai-space-4);
-    }
-    .hero-dock-title {
-      font-family: var(--ai-font-sans);
-      font-size: 0.8125rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      color: var(--ai-text-primary);
-    }
-
-    /* --------------------------------------------------------------------------
-       Component Collection Explorer Layout
-       -------------------------------------------------------------------------- */
-    .collection-section {
-      padding: var(--ai-space-24) 0;
-      scroll-margin-top: 4rem;
-    }
-    .showcase-layout {
-      display: grid;
-      grid-template-columns: 240px 1fr;
-      gap: var(--ai-space-8);
-      align-items: start;
-    }
-    @media (max-width: 960px) {
-      .showcase-layout {
-        grid-template-columns: 1fr;
-      }
-      .showcase-sidebar {
-        position: static !important;
-        height: auto !important;
-      }
-    }
-    .showcase-sidebar {
-      position: sticky;
-      top: 5.5rem;
-      background: transparent;
-      border: none;
-      padding: 0;
-      box-shadow: none;
-    }
-    .showcase-nav-btn {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      padding: 0.375rem 0.5rem;
-      border-radius: var(--ai-radius-sm);
-      border: none;
-      background: transparent;
-      font-size: 0.8125rem;
-      font-weight: 450;
-      color: var(--ai-text-secondary);
-      cursor: pointer;
-      transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
-      text-align: left;
-    }
-    .showcase-nav-btn:hover {
-      color: var(--ai-text-primary);
-      background-color: var(--ai-surface-1);
-    }
-    .showcase-nav-btn.is-active {
-      color: var(--ai-text-primary);
-      background-color: var(--ai-surface-1);
-      font-weight: 600;
-    }
-    .showcase-count {
-      font-family: var(--ai-font-sans);
-      font-size: 0.75rem;
-      font-weight: 500;
-      font-variant-numeric: tabular-nums;
-      color: var(--ai-text-muted);
-      background: transparent;
-      border: none;
-      padding: 0;
-      line-height: 1;
-    }
-    .showcase-nav-btn.is-active .showcase-count {
-      color: var(--ai-text-secondary);
-      font-weight: 600;
-    }
-    .assistant-doc-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.35rem 0.5rem;
-      border-radius: var(--ai-radius-sm);
-      border: none;
-      background: transparent;
-      color: var(--ai-text-muted);
-      font-family: var(--ai-font-sans);
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
-    }
-    .assistant-doc-link:hover {
-      color: var(--ai-text-primary);
-      background-color: var(--ai-surface-1);
-    }
-    .assistant-doc-link svg {
-      opacity: 0.4;
-      transition: opacity var(--ai-duration-fast);
-    }
-    .assistant-doc-link:hover svg {
-      opacity: 0.9;
-    }
-    .component-box {
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-md);
-      background-color: var(--ai-surface-0);
-      margin-bottom: var(--ai-space-6);
-      overflow: hidden;
-      transition: border-color var(--ai-duration-fast);
-    }
-    .component-box:hover {
-      border-color: var(--ai-border-strong);
-    }
-    .component-box-header {
-      padding: var(--ai-space-3) var(--ai-space-5);
-      border-bottom: 1px solid var(--ai-border-subtle);
-      background-color: var(--ai-surface-1);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: var(--ai-space-3);
-    }
-    .component-preview-canvas {
-      padding: var(--ai-space-8) var(--ai-space-6);
-      background-color: var(--ai-bg);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 10rem;
-      overflow-x: auto;
-      transition: width 0.3s ease;
-      margin: 0 auto;
-    }
-    .component-preview-canvas.preview-has-dropdown,
-    .component-preview-canvas:has(.ai-dropdown) {
-      min-height: 16rem;
-      align-items: flex-start;
-      padding-top: var(--ai-space-6);
-      padding-bottom: var(--ai-space-6);
-    }
-    .component-code-panel {
-      border-top: 1px solid var(--ai-border);
-      background-color: var(--ai-surface-0);
-      padding: var(--ai-space-4) var(--ai-space-6);
-      display: none;
-    }
-    .component-code-panel.is-expanded {
-      display: block;
-    }
-    .component-code-panel pre {
-      margin: 0;
-      font-size: 0.8125rem;
-      max-height: 20rem;
-      overflow-y: auto;
-      border-radius: var(--ai-radius-xs);
-    }
-
-    /* Philosophy / Value Cards */
-    .philosophy-grid {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: var(--ai-space-6);
-      margin-top: var(--ai-space-8);
-    }
-    @media (min-width: 640px) {
-      .philosophy-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (min-width: 1024px) {
-      .philosophy-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-    .philosophy-card {
-      background: var(--ai-surface-0);
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-md);
-      padding: var(--ai-space-6);
-      display: flex;
-      flex-direction: column;
-      gap: var(--ai-space-3);
-      transition: all var(--ai-duration-fast);
-    }
-    .philosophy-card:hover {
-      border-color: var(--ai-border-hover);
-      transform: translateY(-2px);
-    }
-
-    /* Comparison Table Container */
-    .matrix-wrapper {
-      overflow-x: auto;
-      background: var(--ai-surface-0);
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-md);
-    }
-
-    /* Framework Compatibility Rail (Unboxed, High-Craft) */
-    .ecosystem-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      color: var(--ai-text-secondary);
-      font-size: 0.8125rem;
-      font-weight: 500;
-      transition: color var(--ai-duration-fast);
-      cursor: default;
-    }
-    .ecosystem-item:hover {
-      color: var(--ai-text-primary);
-    }
-    .ecosystem-item svg {
-      opacity: 0.6;
-      transition: opacity var(--ai-duration-fast), stroke var(--ai-duration-fast);
-      flex-shrink: 0;
-    }
-    .ecosystem-item:hover svg {
-      opacity: 1;
-    }
-  </style>
 </head>
 <body id="top">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header id="site-header" class="site-header"></header>
+  <a class="ai-skip-link" href="#main">Skip to content</a>
+  <header id="site-header" class="ai-navbar"></header>
   <main id="main">
 
   <!-- ==========================================================================
        HERO SECTION
        ========================================================================== -->
-  <section class="hero-section">
+  <section class="ai-docs-hero">
     <div class="ai-container" style="max-width: 1200px; position: relative; z-index: 1;">
       <div class="ai-text-center" style="max-width: 52rem; margin: 0 auto;">
         <h1 class="ai-font-display" style="font-size: clamp(2.25rem, 5vw, 3.75rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.04em; color: var(--ai-text-primary);">
@@ -521,9 +52,9 @@
         </div>
       </div>
 
-      <div class="hero-dock" style="max-width: 36rem; margin: var(--ai-space-10) auto 0;">
-        <div class="hero-dock-card" style="grid-column: 1 / -1;">
-          <span class="hero-dock-title">Install</span>
+      <div class="ai-docs-hero-dock" style="max-width: 36rem; margin: var(--ai-space-10) auto 0;">
+        <div class="ai-docs-hero-dock-card" style="grid-column: 1 / -1;">
+          <span class="ai-docs-hero-dock-title">Install</span>
           <pre style="margin: var(--ai-space-3) 0 0; font-size: 0.8125rem; overflow-x: auto;"><code>&lt;link rel="stylesheet" href="https://llmcss.io/llmcss.css" /&gt;
 npx llmcss add btn-variants</code></pre>
           <p class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-3);">CSS-only by default. Optional runtime for <code>data-ai-toggle</code> and <code>&lt;ai-modal&gt;</code> is in Quickstart.</p>
@@ -540,35 +71,35 @@ npx llmcss add btn-variants</code></pre>
       <div class="ai-flex ai-justify-between ai-items-center ai-flex-wrap ai-gap-4">
         <span class="ai-text-xs ai-font-semibold ai-text-muted" style="letter-spacing: 0.04em; text-transform: uppercase;">Compatible Ecosystem</span>
         <div class="ai-flex ai-flex-wrap ai-items-center ai-gap-6">
-          <span class="ecosystem-item">
+          <span class="ai-docs-ecosystem-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 9h16"/><path d="M9 4v16"/></svg>
             Vanilla HTML5
           </span>
-          <span class="ecosystem-item">
+          <span class="ai-docs-ecosystem-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="m4.93 7.5 14.14 9"/><path d="m4.93 16.5 14.14-9"/></svg>
             Astro SSR
           </span>
-          <span class="ecosystem-item">
+          <span class="ai-docs-ecosystem-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
             Next.js
           </span>
-          <span class="ecosystem-item">
+          <span class="ai-docs-ecosystem-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-2 20"/><path d="M4 7h16"/><path d="M4 17h16"/></svg>
             SvelteKit
           </span>
-          <span class="ecosystem-item">
+          <span class="ai-docs-ecosystem-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
             Vue / Nuxt
           </span>
-          <span class="ecosystem-item">
+          <span class="ai-docs-ecosystem-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 4-4-4-4"/><path d="m8 8-4 4 4 4"/><path d="m14 4-4 16"/></svg>
             Web Components
           </span>
-          <span class="ecosystem-item">
+          <span class="ai-docs-ecosystem-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 8 6 4-6 4Z"/></svg>
             Stdio MCP
           </span>
-          <span class="ecosystem-item">
+          <span class="ai-docs-ecosystem-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/></svg>
             Zero-Build CDN
           </span>
@@ -591,29 +122,29 @@ npx llmcss add btn-variants</code></pre>
         </p>
       </div>
 
-      <div class="philosophy-grid">
-        <div class="philosophy-card">
+      <div class="ai-docs-philosophy-grid">
+        <div class="ai-docs-philosophy-card">
           <h3 class="ai-font-semibold" style="font-size: 1.125rem;">Zero-Token Cascading Theme Variables</h3>
           <p class="ai-text-secondary ai-text-sm" style="line-height: 1.5;">
             Cascading CSS variables on root automatically handle dark mode and skins. Cuts LLM output token bloat by ~68% compared to Tailwind's repetitious <code>dark:</code> utilities.
           </p>
         </div>
 
-        <div class="philosophy-card">
+        <div class="ai-docs-philosophy-card">
           <h3 class="ai-font-semibold" style="font-size: 1.125rem;">Native Container Queries &amp; Auto-Fit</h3>
           <p class="ai-text-secondary ai-text-sm" style="line-height: 1.5;">
             Components adapt intrinsically to their container size (sidebar vs dashboard) via <code>.ai-cq</code> and <code>.ai-grid-auto-fit</code>, eliminating rigid viewport media queries.
           </p>
         </div>
 
-        <div class="philosophy-card">
+        <div class="ai-docs-philosophy-card">
           <h3 class="ai-font-semibold" style="font-size: 1.125rem;">Sub-2.5KB Dual-Mode Micro-Runtime</h3>
           <p class="ai-text-secondary ai-text-sm" style="line-height: 1.5;">
             Zero React/Emotion lock-in. Full Light-DOM Web Components (<code>&lt;ai-modal&gt;</code>) and data-attribute delegation without any external dependencies.
           </p>
         </div>
 
-        <div class="philosophy-card">
+        <div class="ai-docs-philosophy-card">
           <h3 class="ai-font-semibold" style="font-size: 1.125rem;">Crisp Architectural Radii &amp; Physics</h3>
           <p class="ai-text-secondary ai-text-sm" style="line-height: 1.5;">
             No bubbly round corners or blurry glows. Calibrated 2px-10px architectural radii, physical 1px borders, subtle noise surfaces, and 9 curated theme archetypes.
@@ -634,7 +165,7 @@ npx llmcss add btn-variants</code></pre>
         </h2>
       </div>
 
-      <div class="matrix-wrapper">
+      <div class="ai-docs-matrix">
         <table class="ai-matrix-table">
           <thead>
             <tr>
@@ -648,45 +179,45 @@ npx llmcss add btn-variants</code></pre>
           <tbody>
             <tr>
               <td class="ai-matrix-feature-col">Token Cost for AI Agents</td>
-              <td>❌ 20-50+ classes per component; high token cost</td>
-              <td>⚠️ Moderate; frequent v4 vs v5 hallucination</td>
-              <td>❌ Verbose JSX props bloat context window</td>
-              <td style="background-color: var(--ai-surface-1); font-weight: 600;">✓ ~68% Token Savings via semantic composition</td>
+              <td><span class="ai-mark ai-mark-no" role="img" aria-label="No"></span>20-50+ classes per component; high token cost</td>
+              <td><span class="ai-mark ai-mark-warn" role="img" aria-label="Partial"></span>Moderate; frequent v4 vs v5 hallucination</td>
+              <td><span class="ai-mark ai-mark-no" role="img" aria-label="No"></span>Verbose JSX props bloat context window</td>
+              <td style="background-color: var(--ai-surface-1); font-weight: 600;"><span class="ai-mark ai-mark-yes" role="img" aria-label="Yes"></span>~68% Token Savings via semantic composition</td>
             </tr>
             <tr>
               <td class="ai-matrix-feature-col">Dark Mode Architecture</td>
-              <td>⚠️ Repetitive <code>dark:</code> prefix on every styled attribute</td>
-              <td>⚠️ Global CSS swap or JS toggle</td>
-              <td>⚠️ Runtime JS context (Emotion / styled-components)</td>
-              <td style="background-color: var(--ai-surface-1); font-weight: 600;">✓ 0-Token Cascading CSS Variables</td>
+              <td><span class="ai-mark ai-mark-warn" role="img" aria-label="Partial"></span>Repetitive <code>dark:</code> prefix on every styled attribute</td>
+              <td><span class="ai-mark ai-mark-warn" role="img" aria-label="Partial"></span>Global CSS swap or JS toggle</td>
+              <td><span class="ai-mark ai-mark-warn" role="img" aria-label="Partial"></span>Runtime JS context (Emotion / styled-components)</td>
+              <td style="background-color: var(--ai-surface-1); font-weight: 600;"><span class="ai-mark ai-mark-yes" role="img" aria-label="Yes"></span>0-Token Cascading CSS Variables</td>
             </tr>
             <tr>
               <td class="ai-matrix-feature-col">Responsive Strategy</td>
-              <td>⚠️ Viewport <code>@media</code> defaults (opt-in container plugin)</td>
-              <td>❌ Rigid 12-column float/flex grid</td>
-              <td>⚠️ Style props with responsive arrays</td>
-              <td style="background-color: var(--ai-surface-1); font-weight: 600;">✓ Native Container Queries (<code>.ai-cq</code>)</td>
+              <td><span class="ai-mark ai-mark-warn" role="img" aria-label="Partial"></span>Viewport <code>@media</code> defaults (opt-in container plugin)</td>
+              <td><span class="ai-mark ai-mark-no" role="img" aria-label="No"></span>Rigid 12-column float/flex grid</td>
+              <td><span class="ai-mark ai-mark-warn" role="img" aria-label="Partial"></span>Style props with responsive arrays</td>
+              <td style="background-color: var(--ai-surface-1); font-weight: 600;"><span class="ai-mark ai-mark-yes" role="img" aria-label="Yes"></span>Native Container Queries (<code>.ai-cq</code>)</td>
             </tr>
             <tr>
               <td class="ai-matrix-feature-col">Motion &amp; Animations</td>
-              <td>⚠️ 4 basic utility keyframes (spin, ping, pulse, bounce)</td>
-              <td>❌ Minimal fade/collapse transitions</td>
-              <td>⚠️ Framer Motion dependency (&gt;40KB JS)</td>
-              <td style="background-color: var(--ai-surface-1); font-weight: 600;">✓ Pure Native CSS Motion Engine (&lt;1.5KB gzipped)</td>
+              <td><span class="ai-mark ai-mark-warn" role="img" aria-label="Partial"></span>4 basic utility keyframes (spin, ping, pulse, bounce)</td>
+              <td><span class="ai-mark ai-mark-no" role="img" aria-label="No"></span>Minimal fade/collapse transitions</td>
+              <td><span class="ai-mark ai-mark-warn" role="img" aria-label="Partial"></span>Framer Motion dependency (&gt;40KB JS)</td>
+              <td style="background-color: var(--ai-surface-1); font-weight: 600;"><span class="ai-mark ai-mark-yes" role="img" aria-label="Yes"></span>Pure Native CSS Motion Engine (&lt;1.5KB gzipped)</td>
             </tr>
             <tr>
               <td class="ai-matrix-feature-col">JavaScript Runtime</td>
-              <td>✅ 0KB runtime</td>
-              <td>⚠️ Bootstrap: ~60KB bundle with Popper.js / Bulma: 0KB but no interactivity</td>
-              <td>❌ 150-300KB+ (React + CSS-in-JS + animation libs)</td>
-              <td style="background-color: var(--ai-surface-1); font-weight: 600;">✓ &lt;2.5KB gzipped Micro-Runtime (Dual-Mode)</td>
+              <td><span class="ai-mark ai-mark-yes" role="img" aria-label="Yes"></span>0KB runtime</td>
+              <td><span class="ai-mark ai-mark-warn" role="img" aria-label="Partial"></span>Bootstrap: ~60KB bundle with Popper.js / Bulma: 0KB but no interactivity</td>
+              <td><span class="ai-mark ai-mark-no" role="img" aria-label="No"></span>150-300KB+ (React + CSS-in-JS + animation libs)</td>
+              <td style="background-color: var(--ai-surface-1); font-weight: 600;"><span class="ai-mark ai-mark-yes" role="img" aria-label="Yes"></span>&lt;2.5KB gzipped Micro-Runtime (Dual-Mode)</td>
             </tr>
             <tr>
               <td class="ai-matrix-feature-col">Agent Tooling (MCP / Linter)</td>
-              <td>❌ None built-in</td>
-              <td>❌ None</td>
-              <td>❌ None</td>
-              <td style="background-color: var(--ai-surface-1); font-weight: 600;">✓ Stdio MCP Server + CLI Linter</td>
+              <td><span class="ai-mark ai-mark-no" role="img" aria-label="No"></span>None built-in</td>
+              <td><span class="ai-mark ai-mark-no" role="img" aria-label="No"></span>None</td>
+              <td><span class="ai-mark ai-mark-no" role="img" aria-label="No"></span>None</td>
+              <td style="background-color: var(--ai-surface-1); font-weight: 600;"><span class="ai-mark ai-mark-yes" role="img" aria-label="Yes"></span>Stdio MCP Server + CLI Linter</td>
             </tr>
           </tbody>
         </table>
@@ -697,7 +228,7 @@ npx llmcss add btn-variants</code></pre>
   <!-- ==========================================================================
        COMPONENT SYSTEM SPOTLIGHT (#collection)
        ========================================================================== -->
-  <section class="collection-section" id="collection" style="padding: var(--ai-space-24) 0; border-bottom: 1px solid var(--ai-border); background: var(--ai-surface-0);">
+  <section class="ai-docs-section" id="collection" style="padding: var(--ai-space-24) 0; border-bottom: 1px solid var(--ai-border); background: var(--ai-surface-0);">
     <div class="ai-container" style="max-width: 1440px;">
       <div class="ai-flex ai-justify-between ai-items-end ai-flex-wrap ai-gap-6" style="margin-bottom: var(--ai-space-10);">
         <div>
@@ -799,7 +330,7 @@ npx llmcss add btn-variants</code></pre>
        FOOTER
        ========================================================================== -->
   </main>
-  <footer id="site-footer" class="site-footer"></footer>
+  <footer id="site-footer" class="ai-footer ai-footer-compact"></footer>
 
   <!-- PRO SUBSCRIPTION PAYWALL MODAL -->
   <div id="pro-pricing-modal" class="ai-modal">
@@ -861,109 +392,109 @@ npx llmcss add btn-variants</code></pre>
 
       <div class="ai-drawer-body" style="overflow-y: auto; padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1.25rem;">
         <!-- 1. Theme Palette -->
-        <div class="styler-section">
-          <div class="styler-section-header">
-            <span class="styler-section-title">Theme Palette</span>
-            <span class="styler-section-val" id="styler-active-theme-label">Minimal</span>
+        <div class="ai-styler-section">
+          <div class="ai-styler-section-header">
+            <span class="ai-styler-section-title">Theme Palette</span>
+            <span class="ai-styler-section-val" id="styler-active-theme-label">Minimal</span>
           </div>
-          <div class="styler-theme-grid" id="styler-theme-grid">
-            <button class="styler-theme-btn is-active" data-skin="modern">
-              <span class="styler-swatch-pip" style="background: #2563eb;"></span>
-              <span class="styler-theme-name">Minimal</span>
+          <div class="ai-styler-theme-grid" id="ai-styler-theme-grid">
+            <button class="ai-styler-theme-btn is-active" data-skin="modern">
+              <span class="ai-styler-swatch-pip" style="background: #2563eb;"></span>
+              <span class="ai-styler-theme-name">Minimal</span>
             </button>
-            <button class="styler-theme-btn" data-skin="executive">
-              <span class="styler-swatch-pip" style="background: #0f172a;"></span>
-              <span class="styler-theme-name">Slate</span>
+            <button class="ai-styler-theme-btn" data-skin="executive">
+              <span class="ai-styler-swatch-pip" style="background: #0f172a;"></span>
+              <span class="ai-styler-theme-name">Slate</span>
             </button>
-            <button class="styler-theme-btn" data-skin="fintech">
-              <span class="styler-swatch-pip" style="background: #0f766e;"></span>
-              <span class="styler-theme-name">Titanium</span>
+            <button class="ai-styler-theme-btn" data-skin="fintech">
+              <span class="ai-styler-swatch-pip" style="background: #0f766e;"></span>
+              <span class="ai-styler-theme-name">Titanium</span>
             </button>
-            <button class="styler-theme-btn" data-skin="obsidian">
-              <span class="styler-swatch-pip" style="background: #09090b; box-shadow: 0 0 0 1px rgba(255,255,255,0.3);"></span>
-              <span class="styler-theme-name">Obsidian</span>
+            <button class="ai-styler-theme-btn" data-skin="obsidian">
+              <span class="ai-styler-swatch-pip" style="background: #09090b; box-shadow: 0 0 0 1px rgba(255,255,255,0.3);"></span>
+              <span class="ai-styler-theme-name">Obsidian</span>
             </button>
-            <button class="styler-theme-btn" data-skin="editorial">
-              <span class="styler-swatch-pip" style="background: #8c4a27;"></span>
-              <span class="styler-theme-name">Editorial</span>
+            <button class="ai-styler-theme-btn" data-skin="editorial">
+              <span class="ai-styler-swatch-pip" style="background: #8c4a27;"></span>
+              <span class="ai-styler-theme-name">Editorial</span>
             </button>
-            <button class="styler-theme-btn" data-skin="enterprise">
-              <span class="styler-swatch-pip" style="background: #0284c7;"></span>
-              <span class="styler-theme-name">Enterprise</span>
+            <button class="ai-styler-theme-btn" data-skin="enterprise">
+              <span class="ai-styler-swatch-pip" style="background: #0284c7;"></span>
+              <span class="ai-styler-theme-name">Enterprise</span>
             </button>
-            <button class="styler-theme-btn" data-skin="emerald">
-              <span class="styler-swatch-pip" style="background: #059669;"></span>
-              <span class="styler-theme-name">Emerald</span>
+            <button class="ai-styler-theme-btn" data-skin="emerald">
+              <span class="ai-styler-swatch-pip" style="background: #059669;"></span>
+              <span class="ai-styler-theme-name">Emerald</span>
             </button>
-            <button class="styler-theme-btn" data-skin="violet">
-              <span class="styler-swatch-pip" style="background: #7c3aed;"></span>
-              <span class="styler-theme-name">Violet</span>
+            <button class="ai-styler-theme-btn" data-skin="violet">
+              <span class="ai-styler-swatch-pip" style="background: #7c3aed;"></span>
+              <span class="ai-styler-theme-name">Violet</span>
             </button>
-            <button class="styler-theme-btn" data-skin="rose">
-              <span class="styler-swatch-pip" style="background: #e11d48;"></span>
-              <span class="styler-theme-name">Rose</span>
+            <button class="ai-styler-theme-btn" data-skin="rose">
+              <span class="ai-styler-swatch-pip" style="background: #e11d48;"></span>
+              <span class="ai-styler-theme-name">Rose</span>
             </button>
           </div>
         </div>
 
         <!-- 2. Corner Geometry -->
-        <div class="styler-section">
-          <div class="styler-section-header">
-            <span class="styler-section-title">Title font</span>
-            <span class="styler-section-val">One face for headings</span>
+        <div class="ai-styler-section">
+          <div class="ai-styler-section-header">
+            <span class="ai-styler-section-title">Title font</span>
+            <span class="ai-styler-section-val">One face for headings</span>
           </div>
           <select id="styler-font-switcher" class="ai-select" style="width: 100%; height: 2rem; font-size: 0.8125rem;" aria-label="Title font"></select>
         </div>
 
-        <div class="styler-section">
-          <div class="styler-section-header">
-            <span class="styler-section-title">Corner Geometry</span>
-            <span class="styler-section-val" id="styler-radius-label">Balanced (4-8px)</span>
+        <div class="ai-styler-section">
+          <div class="ai-styler-section-header">
+            <span class="ai-styler-section-title">Corner Geometry</span>
+            <span class="ai-styler-section-val" id="styler-radius-label">Balanced (4-8px)</span>
           </div>
-          <div class="styler-segmented-track">
-            <button class="styler-segmented-item styler-radius-btn" data-radius="sharp">Sharp</button>
-            <button class="styler-segmented-item styler-radius-btn" data-radius="precision">Precision</button>
-            <button class="styler-segmented-item styler-radius-btn is-active" data-radius="balanced">Balanced</button>
-            <button class="styler-segmented-item styler-radius-btn" data-radius="smooth">Smooth</button>
+          <div class="ai-styler-segmented-track">
+            <button class="ai-styler-segmented-item ai-styler-radius-btn" data-radius="sharp">Sharp</button>
+            <button class="ai-styler-segmented-item ai-styler-radius-btn" data-radius="precision">Precision</button>
+            <button class="ai-styler-segmented-item ai-styler-radius-btn is-active" data-radius="balanced">Balanced</button>
+            <button class="ai-styler-segmented-item ai-styler-radius-btn" data-radius="smooth">Smooth</button>
           </div>
         </div>
 
         <!-- 3. Spacing & Density -->
-        <div class="styler-section">
-          <div class="styler-section-header">
-            <span class="styler-section-title">Interface Density</span>
-            <span class="styler-section-val" id="styler-density-label">Standard (1.0x)</span>
+        <div class="ai-styler-section">
+          <div class="ai-styler-section-header">
+            <span class="ai-styler-section-title">Interface Density</span>
+            <span class="ai-styler-section-val" id="styler-density-label">Standard (1.0x)</span>
           </div>
-          <div class="styler-segmented-track">
-            <button class="styler-segmented-item styler-density-btn" data-density="compact">Compact</button>
-            <button class="styler-segmented-item styler-density-btn is-active" data-density="standard">Standard</button>
-            <button class="styler-segmented-item styler-density-btn" data-density="spacious">Spacious</button>
+          <div class="ai-styler-segmented-track">
+            <button class="ai-styler-segmented-item ai-styler-density-btn" data-density="compact">Compact</button>
+            <button class="ai-styler-segmented-item ai-styler-density-btn is-active" data-density="standard">Standard</button>
+            <button class="ai-styler-segmented-item ai-styler-density-btn" data-density="spacious">Spacious</button>
           </div>
         </div>
 
         <!-- 4. Accent Color -->
-        <div class="styler-section">
-          <div class="styler-section-header">
-            <span class="styler-section-title">Primary Accent</span>
+        <div class="ai-styler-section">
+          <div class="ai-styler-section-header">
+            <span class="ai-styler-section-title">Primary Accent</span>
           </div>
-          <div class="styler-swatch-row">
-            <button class="styler-accent-swatch is-active" data-accent="default" style="background: #2563eb;" title="Default Blue"></button>
-            <button class="styler-accent-swatch" data-accent="steel" style="background: #475569;" title="Slate Steel"></button>
-            <button class="styler-accent-swatch" data-accent="teal" style="background: #0f766e;" title="Fintech Teal"></button>
-            <button class="styler-accent-swatch" data-accent="emerald" style="background: #059669;" title="Emerald"></button>
-            <button class="styler-accent-swatch" data-accent="violet" style="background: #7c3aed;" title="Violet"></button>
-            <button class="styler-accent-swatch" data-accent="rose" style="background: #e11d48;" title="Rose"></button>
-            <button class="styler-accent-swatch" data-accent="amber" style="background: #d97706;" title="Amber"></button>
+          <div class="ai-styler-swatch-row">
+            <button class="ai-styler-accent-swatch is-active" data-accent="default" style="background: #2563eb;" title="Default Blue"></button>
+            <button class="ai-styler-accent-swatch" data-accent="steel" style="background: #475569;" title="Slate Steel"></button>
+            <button class="ai-styler-accent-swatch" data-accent="teal" style="background: #0f766e;" title="Fintech Teal"></button>
+            <button class="ai-styler-accent-swatch" data-accent="emerald" style="background: #059669;" title="Emerald"></button>
+            <button class="ai-styler-accent-swatch" data-accent="violet" style="background: #7c3aed;" title="Violet"></button>
+            <button class="ai-styler-accent-swatch" data-accent="rose" style="background: #e11d48;" title="Rose"></button>
+            <button class="ai-styler-accent-swatch" data-accent="amber" style="background: #d97706;" title="Amber"></button>
           </div>
         </div>
 
         <!-- 5. Token Export Blueprint -->
-        <div class="styler-section" style="border-top: 1px solid var(--ai-border-subtle); padding-top: var(--ai-space-4);">
+        <div class="ai-styler-section" style="border-top: 1px solid var(--ai-border-subtle); padding-top: var(--ai-space-4);">
           <div class="ai-flex ai-justify-between ai-items-center">
-            <span class="styler-section-title">CSS Blueprint</span>
+            <span class="ai-styler-section-title">CSS Blueprint</span>
             <button class="ai-btn ai-btn-outline ai-btn-xs" id="copy-styler-css-btn">Copy CSS</button>
           </div>
-          <details class="styler-code-disclosure" style="margin-top: 0.25rem;">
+          <details class="ai-styler-code-disclosure" style="margin-top: 0.25rem;">
             <summary class="ai-text-xs ai-text-muted" style="cursor: pointer; user-select: none; display: flex; align-items: center; gap: 0.25rem;">
               <span>View generated :root tokens</span>
               <span style="font-size: 0.75rem;">▾</span>

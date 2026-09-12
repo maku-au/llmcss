@@ -21,7 +21,7 @@
     content: "/";
     color: var(--ai-text-muted);
     font-size: 0.75rem;
-    margin-right: var(--ai-space-1);
+    margin-inline-end: var(--ai-space-1);
   }
 
   .ai-breadcrumb-item a {

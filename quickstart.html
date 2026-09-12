@@ -25,23 +25,10 @@
       if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-ai-theme', t);
     })();
   </script>
-  <style>
-    .qs-step { margin-top: var(--ai-space-12); }
-    .qs-step pre {
-      margin-top: var(--ai-space-3);
-      padding: var(--ai-space-4);
-      background: var(--ai-surface-1);
-      border: 1px solid var(--ai-border);
-      border-radius: var(--ai-radius-md);
-      overflow-x: auto;
-      font-size: 0.8125rem;
-    }
-    .qs-step code { font-family: var(--ai-font-mono); }
-  </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header id="site-header" class="site-header"></header>
+  <a class="ai-skip-link" href="#main">Skip to content</a>
+  <header id="site-header" class="ai-navbar"></header>
   <main id="main" class="ai-container" style="max-width: 44rem; padding: var(--ai-space-16) var(--ai-space-4) var(--ai-space-24);">
     <h1>Quickstart</h1>
     <p class="ai-text-sm" style="margin-top: var(--ai-space-3);">
@@ -54,7 +41,7 @@
     </p>
     <p class="ai-text-secondary" style="margin-top: var(--ai-space-2);">CSS library. Classes are <code>ai-*</code>. Copy CSS, use the CLI, or point an agent at MCP.</p>
 
-    <section class="qs-step" id="qs-css">
+    <section class="ai-docs-step" id="qs-css">
       <h2>1. Link the stylesheet</h2>
       <pre><code>&lt;link rel="stylesheet" href="https://llmcss.io/llmcss.css" /&gt;
 &lt;button class="ai-btn ai-btn-primary"&gt;Save&lt;/button&gt;</code></pre>
@@ -62,7 +49,7 @@
       <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-3);">That file is CSS only. Buttons and layout work. Modals, tabs, and <code>data-ai-toggle</code> need the optional runtime from this repo (<code>src/runtime</code>) after you clone it. Skip that for a static page.</p>
     </section>
 
-    <section class="qs-step" id="qs-component">
+    <section class="ai-docs-step" id="qs-component">
       <h2>2. Copy a free component</h2>
       <p class="ai-text-secondary" style="margin-top: var(--ai-space-2);">Open the <a href="/components.html">gallery</a> and copy HTML, or:</p>
       <pre><code>npx llmcss list
@@ -70,7 +57,7 @@ npx llmcss add btn-variants</code></pre>
       <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-3);">Writes <code>components/primitive/btn-variants.html</code>. Agents can fetch <code>https://llmcss.io/r/btn-variants.json</code>.</p>
     </section>
 
-    <section class="qs-step" id="qs-layout">
+    <section class="ai-docs-step" id="qs-layout">
       <h2>3. A first layout</h2>
       <pre><code>&lt;div class="ai-container" style="max-width: 40rem; padding: var(--ai-space-8);"&gt;
   &lt;h1&gt;Hello&lt;/h1&gt;
@@ -83,7 +70,7 @@ npx llmcss add btn-variants</code></pre>
       <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-3);">No nested cards, no pulsing static dots, no purple gradients. Agent rules: <a href="https://github.com/maku-au/llmcss/blob/main/AGENTS.md">AGENTS.md</a>.</p>
     </section>
 
-    <section class="qs-step" id="qs-templates">
+    <section class="ai-docs-step" id="qs-templates">
       <h2>4. Templates</h2>
       <pre><code>npx llmcss templates
 npx llmcss template get wireframe-nav-minimal
@@ -91,13 +78,13 @@ npx llmcss template blueprint saas-landing</code></pre>
       <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-3);"><a href="/templates.html">Template gallery</a></p>
     </section>
 
-    <section class="qs-step" id="qs-agents">
+    <section class="ai-docs-step" id="qs-agents">
       <h2>5. Agents</h2>
       <pre><code>npx llmcss-mcp</code></pre>
       <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-3);">Stdio MCP. It talks to llmcss.io. Nothing to host yourself.</p>
     </section>
 
-    <section class="qs-step" id="qs-pro">
+    <section class="ai-docs-step" id="qs-pro">
       <h2>6. Pro</h2>
       <p class="ai-text-secondary" style="margin-top: var(--ai-space-2);">$9/month Polar subscription. Token is shown once on <a href="/account">/account</a>.</p>
       <pre><code>npx llmcss login &lt;token&gt;
@@ -105,7 +92,7 @@ npx llmcss add tool-trace</code></pre>
       <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-3);"><a href="/account">Account</a> · <a href="/#pricing">Pricing</a></p>
     </section>
   </main>
-  <footer id="site-footer" class="site-footer"></footer>
+  <footer id="site-footer" class="ai-footer ai-footer-compact"></footer>
   <script type="module" src="/src/showcase/docs.ts"></script>
 </body>
 </html>

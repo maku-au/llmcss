@@ -45,3 +45,88 @@
     background-color: var(--ai-surface-1);
   }
 }
+
+@layer components {
+  /* Horizontal scroll with edge shadows so a clipped table reads as scrollable.
+     The cover gradients scroll with the content (attachment: local) and reveal
+     the shadow gradients at whichever edge still has more to show. */
+  .ai-scroll-x,
+  .ai-table-container,
+  .ai-matrix-container,
+  .ai-docs-matrix {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background-color: var(--ai-surface-0);
+    background-image:
+      linear-gradient(to right, var(--ai-surface-0) 40%, transparent),
+      linear-gradient(to left, var(--ai-surface-0) 40%, transparent),
+      linear-gradient(to right, color-mix(in srgb, var(--ai-text-primary) 16%, transparent), transparent),
+      linear-gradient(to left, color-mix(in srgb, var(--ai-text-primary) 16%, transparent), transparent);
+    background-position: left center, right center, left center, right center;
+    background-repeat: no-repeat;
+    background-size: 3rem 100%, 3rem 100%, 1.25rem 100%, 1.25rem 100%;
+    background-attachment: local, local, scroll, scroll;
+  }
+  .ai-scroll-x > table,
+  .ai-table-container > table,
+  .ai-matrix-container > table,
+  .ai-docs-matrix > table {
+    background: transparent;
+  }
+
+  /* Cell marks: yes / warn / no, drawn from currentColor so they theme. */
+  .ai-mark {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    margin-inline-end: 0.35em;
+    background-color: currentColor;
+    -webkit-mask: var(--ai-mark-icon) center / contain no-repeat;
+    mask: var(--ai-mark-icon) center / contain no-repeat;
+  }
+  .ai-mark-yes {
+    color: var(--ai-success);
+    --ai-mark-icon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+  }
+  .ai-mark-warn {
+    color: var(--ai-warning);
+    --ai-mark-icon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m10.3 3.9-8.4 14A2 2 0 0 0 3.6 21h16.8a2 2 0 0 0 1.7-3.1l-8.4-14a2 2 0 0 0-3.4 0Z'/%3E%3Cpath d='M12 9v4'/%3E%3Cpath d='M12 17h.01'/%3E%3C/svg%3E");
+  }
+  .ai-mark-no {
+    color: var(--ai-danger);
+    --ai-mark-icon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18'/%3E%3Cpath d='m6 6 12 12'/%3E%3C/svg%3E");
+  }
+}
+
+/* Edge fade for scrollable tables. The mask is fixed to the box, so it reads
+   as "more to the right" and thins out as you scroll. It only engages when the
+   container actually overflows (an inactive scroll timeline leaves the initial
+   0 fade in place), so a table that fits shows no fade at all. */
+@property --ai-scroll-fade-l {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+@property --ai-scroll-fade-r {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+@layer components {
+  @supports (animation-timeline: scroll()) {
+    .ai-scroll-x,
+    .ai-table-container,
+    .ai-matrix-container,
+    .ai-docs-matrix {
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--ai-scroll-fade-l), #000 calc(100% - var(--ai-scroll-fade-r)), transparent);
+      mask-image: linear-gradient(to right, transparent, #000 var(--ai-scroll-fade-l), #000 calc(100% - var(--ai-scroll-fade-r)), transparent);
+      animation: ai-scroll-fade linear both;
+      animation-timeline: scroll(self x);
+    }
+    @keyframes ai-scroll-fade {
+      from { --ai-scroll-fade-l: 0px; --ai-scroll-fade-r: 4rem; }
+      to { --ai-scroll-fade-l: 4rem; --ai-scroll-fade-r: 0px; }
+    }
+  }
+}
