@@ -1,3 +1,5 @@
+import { openOverlay, closeOverlay } from '../attributes';
+
 export class AiCommandPaletteElement extends HTMLElement {
   get isOpen(): boolean {
     return this.classList.contains('is-open') || this.hasAttribute('open');
@@ -15,13 +17,18 @@ export class AiCommandPaletteElement extends HTMLElement {
     }
   }
 
-  open() {
-    this.isOpen = true;
+  /**
+   * Opens through the shared overlay stack, which also moves focus to the
+   * command input, makes the page behind inert and lets Escape close this
+   * palette before anything underneath it.
+   */
+  open(trigger?: HTMLElement | null) {
+    openOverlay(this, trigger);
     this.dispatchEvent(new CustomEvent('ai:command:open', { bubbles: true }));
   }
 
   close() {
-    this.isOpen = false;
+    closeOverlay(this);
     this.dispatchEvent(new CustomEvent('ai:command:close', { bubbles: true }));
   }
 

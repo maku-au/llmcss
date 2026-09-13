@@ -1,5 +1,5 @@
 import { activeConfig } from '../config/prefix';
-import { initDataAttributes } from './attributes';
+import { initDataAttributes, openOverlay, closeOverlay } from './attributes';
 import { AiModalElement } from './elements/modal.element';
 import { AiTabsElement } from './elements/tabs.element';
 import { AiDropdownElement } from './elements/dropdown.element';
@@ -20,7 +20,28 @@ export {
   AiToastElement,
   AiCommandPaletteElement,
   initDataAttributes,
+  openOverlay,
+  closeOverlay,
 };
+
+/**
+ * The public surface the runtime publishes on window. Both entries drive the
+ * same overlay stack the data attributes and the custom elements use, so an
+ * overlay opened this way still gets its focus trap, inert background and
+ * Escape handling.
+ */
+export interface LLMCSSWindowApi {
+  /** Open a modal, drawer or command palette by element or CSS selector. */
+  open(el: Element | string): void;
+  /** Close a modal, drawer or command palette by element or CSS selector. */
+  close(el: Element | string): void;
+}
+
+declare global {
+  interface Window {
+    LLMCSS?: LLMCSSWindowApi;
+  }
+}
 
 /**
  * Register all Custom Elements in the browser CustomElementRegistry

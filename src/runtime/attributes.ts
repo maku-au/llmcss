@@ -7,6 +7,7 @@
  * - data-ai-tab="#panel-id"
  * - data-ai-toggle="dropdown"
  * - data-ai-toggle="accordion"
+ * - data-ai-toggle="segmented"
  *
  * Overlays (modal, drawer, command palette) get dialog behaviour for free:
  * focus moves into the panel on open and back to the trigger on close, Tab is
@@ -14,6 +15,11 @@
  * made inert, and every trigger pointing at the overlay keeps aria-expanded in
  * sync. Add the class `drawer-no-lock` (or `modeless`) to an overlay
  * that should stay modeless, like a settings panel the user works alongside.
+ *
+ * openOverlay and closeOverlay are exported so the custom elements
+ * (ai-modal, ai-drawer, ai-command-palette) share this one stack: an overlay
+ * opened by element.open() gets the same focus trap, inert background and
+ * Escape handling as one opened by a data-attribute trigger.
  */
 
 import { CLASS_PREFIX as c } from '../config/prefix';
@@ -21,93 +27,117 @@ import { CLASS_PREFIX as c } from '../config/prefix';
 const FOCUSABLE =
   'a[href], area[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]), [contenteditable="true"]';
 
+const panelSelector = `.${c}modal-box, .${c}drawer-panel, .${c}command-box`;
+const modelessClass = [`${c}drawer-no-lock`, `${c}modeless`];
+
+// Prefix-derived selectors. Set at module load so the exported overlay
+// primitives work before (and without) initDataAttributes, and re-derived when
+// initDataAttributes is called with a custom prefix.
+let toggleAttr: string;
+let targetAttr: string;
+let dismissAttr: string;
+let tabAttr: string;
+let overlaySelector: string;
+
+function setPrefix(p: string) {
+  toggleAttr = `data-${p}-toggle`;
+  targetAttr = `data-${p}-target`;
+  dismissAttr = `data-${p}-dismiss`;
+  tabAttr = `data-${p}-tab`;
+  overlaySelector = ['modal', 'drawer', 'command-palette'].map((k) => `.${c}${k}, ${p}-${k}`).join(', ');
+}
+setPrefix('ai');
+
+const isOpen = (el: Element) => el.hasAttribute('open') || el.classList.contains('is-open');
+const isModeless = (el: Element) => modelessClass.some((m) => el.classList.contains(m));
+const panelOf = (el: Element) => (el.querySelector(panelSelector) as HTMLElement | null) || (el as HTMLElement);
+
+// Stack of open modal overlays, topmost last. Modeless overlays are tracked
+// only so their aria state and trigger focus stay correct.
+const stack: Array<{ el: Element; trigger: HTMLElement | null }> = [];
+
+function syncExpanded(el: Element, open: boolean) {
+  if (!el.id) return;
+  const sel = `[${targetAttr}="#${CSS.escape(el.id)}"]`;
+  document.querySelectorAll(sel).forEach((t) => t.setAttribute('aria-expanded', open ? 'true' : 'false'));
+}
+
+function prune() {
+  for (let i = stack.length - 1; i >= 0; i--) {
+    if (!stack[i].el.isConnected || !isOpen(stack[i].el)) stack.splice(i, 1);
+  }
+}
+
+function applyInert() {
+  prune();
+  const modal = stack.filter((s) => !isModeless(s.el)).map((s) => s.el);
+  Array.from(document.body.children).forEach((child) => {
+    if (child.tagName === 'SCRIPT' || child.tagName === 'STYLE') return;
+    const holdsOverlay = modal.some((m) => child === m || child.contains(m));
+    (child as HTMLElement).inert = modal.length > 0 && !holdsOverlay;
+  });
+}
+
+/**
+ * Open an overlay and push it onto the shared stack: focus moves in, the
+ * background goes inert, Escape and Tab start applying to it, and every trigger
+ * pointing at it gets aria-expanded="true". Pass the invoking element as
+ * `trigger` so focus returns to it on close; when omitted, whatever had focus
+ * at open time is remembered instead.
+ */
+export function openOverlay(el: Element, trigger?: HTMLElement | null) {
+  if (isOpen(el)) return;
+  el.setAttribute('open', '');
+  el.classList.add('is-open');
+  stack.push({ el, trigger: trigger || (document.activeElement as HTMLElement | null) });
+  syncExpanded(el, true);
+  applyInert();
+  const panel = panelOf(el);
+  const first =
+    (el.querySelector('[autofocus]') as HTMLElement | null) ||
+    (el.querySelector(`.${c}command-input`) as HTMLElement | null);
+  if (first) {
+    setTimeout(() => first.focus(), 30);
+  } else if (!isModeless(el)) {
+    if (!panel.hasAttribute('tabindex')) panel.setAttribute('tabindex', '-1');
+    panel.focus({ preventScroll: true });
+  }
+}
+
+/**
+ * Close an overlay, drop it from the shared stack, lift inert from the page and
+ * return focus to whatever opened it. Safe to call on an overlay that is
+ * already closed or was never on the stack.
+ */
+export function closeOverlay(el: Element) {
+  el.removeAttribute('open');
+  el.classList.remove('is-open');
+  const idx = stack.findIndex((s) => s.el === el);
+  const entry = idx >= 0 ? stack.splice(idx, 1)[0] : null;
+  syncExpanded(el, false);
+  applyInert();
+  const active = document.activeElement;
+  const focusInside = active && el.contains(active);
+  if (entry?.trigger && entry.trigger.isConnected && (focusInside || active === document.body)) {
+    entry.trigger.focus({ preventScroll: true });
+  }
+}
+
+// Topmost modal overlay; with includeModeless, the most recent open overlay
+// of any kind (Escape should still dismiss a modeless panel).
+function topOverlay(includeModeless = false): Element | null {
+  prune();
+  for (let i = stack.length - 1; i >= 0; i--) {
+    if (includeModeless || !isModeless(stack[i].el)) return stack[i].el;
+  }
+  // Overlays opened by other code (custom elements, scripts) are not on the
+  // stack; fall back to the last open one in DOM order.
+  const open = Array.from(document.querySelectorAll(overlaySelector)).filter((o) => isOpen(o) && (includeModeless || !isModeless(o)));
+  return open.length ? open[open.length - 1] : null;
+}
+
 export function initDataAttributes(prefix = 'ai') {
-  const toggleAttr = `data-${prefix}-toggle`;
-  const targetAttr = `data-${prefix}-target`;
-  const dismissAttr = `data-${prefix}-dismiss`;
-  const tabAttr = `data-${prefix}-tab`;
-
-  const overlaySelector = ['modal', 'drawer', 'command-palette']
-    .map((k) => `.${c}${k}, ${prefix}-${k}`)
-    .join(', ');
-  const panelSelector = `.${c}modal-box, .${c}drawer-panel, .${c}command-box`;
-  const modelessClass = [`${c}drawer-no-lock`, `${c}modeless`];
-
-  const isOpen = (el: Element) => el.hasAttribute('open') || el.classList.contains('is-open');
-  const isModeless = (el: Element) => modelessClass.some((c) => el.classList.contains(c));
-  const panelOf = (el: Element) => (el.querySelector(panelSelector) as HTMLElement | null) || (el as HTMLElement);
-
-  // Stack of open modal overlays, topmost last. Modeless overlays are tracked
-  // only so their aria state and trigger focus stay correct.
-  const stack: Array<{ el: Element; trigger: HTMLElement | null }> = [];
-
-  function syncExpanded(el: Element, open: boolean) {
-    if (!el.id) return;
-    const sel = `[${targetAttr}="#${CSS.escape(el.id)}"]`;
-    document.querySelectorAll(sel).forEach((t) => t.setAttribute('aria-expanded', open ? 'true' : 'false'));
-  }
-
-  function prune() {
-    for (let i = stack.length - 1; i >= 0; i--) {
-      if (!stack[i].el.isConnected || !isOpen(stack[i].el)) stack.splice(i, 1);
-    }
-  }
-
-  function applyInert() {
-    prune();
-    const modal = stack.filter((s) => !isModeless(s.el)).map((s) => s.el);
-    Array.from(document.body.children).forEach((child) => {
-      if (child.tagName === 'SCRIPT' || child.tagName === 'STYLE') return;
-      const holdsOverlay = modal.some((m) => child === m || child.contains(m));
-      (child as HTMLElement).inert = modal.length > 0 && !holdsOverlay;
-    });
-  }
-
-  function openOverlay(el: Element, trigger: HTMLElement | null) {
-    if (isOpen(el)) return;
-    el.setAttribute('open', '');
-    el.classList.add('is-open');
-    stack.push({ el, trigger: trigger || (document.activeElement as HTMLElement | null) });
-    syncExpanded(el, true);
-    applyInert();
-    const panel = panelOf(el);
-    const first =
-      (el.querySelector('[autofocus]') as HTMLElement | null) ||
-      (el.querySelector(`.${c}command-input`) as HTMLElement | null);
-    if (first) {
-      setTimeout(() => first.focus(), 30);
-    } else if (!isModeless(el)) {
-      if (!panel.hasAttribute('tabindex')) panel.setAttribute('tabindex', '-1');
-      panel.focus({ preventScroll: true });
-    }
-  }
-
-  function closeOverlay(el: Element) {
-    el.removeAttribute('open');
-    el.classList.remove('is-open');
-    const idx = stack.findIndex((s) => s.el === el);
-    const entry = idx >= 0 ? stack.splice(idx, 1)[0] : null;
-    syncExpanded(el, false);
-    applyInert();
-    const active = document.activeElement;
-    const focusInside = active && el.contains(active);
-    if (entry?.trigger && entry.trigger.isConnected && (focusInside || active === document.body)) {
-      entry.trigger.focus({ preventScroll: true });
-    }
-  }
-
-  // Topmost modal overlay; with includeModeless, the most recent open overlay
-  // of any kind (Escape should still dismiss a modeless panel).
-  function topOverlay(includeModeless = false): Element | null {
-    prune();
-    for (let i = stack.length - 1; i >= 0; i--) {
-      if (includeModeless || !isModeless(stack[i].el)) return stack[i].el;
-    }
-    // Overlays opened by other code (custom elements, scripts) are not on the
-    // stack; fall back to the last open one in DOM order.
-    const open = Array.from(document.querySelectorAll(overlaySelector)).filter((o) => isOpen(o) && (includeModeless || !isModeless(o)));
-    return open.length ? open[open.length - 1] : null;
-  }
+  setPrefix(prefix);
 
   function closeDropdowns(except?: Element | null) {
     document.querySelectorAll(`.${c}dropdown.is-open, ${prefix}-dropdown[open]`).forEach((d) => {
@@ -119,7 +149,7 @@ export function initDataAttributes(prefix = 'ai') {
   }
 
   // Public API for scripts that open or close overlays themselves
-  (window as any).LLMCSS = Object.assign((window as any).LLMCSS || {}, {
+  window.LLMCSS = Object.assign(window.LLMCSS || {}, {
     open: (el: Element | string) => { const t = typeof el === 'string' ? document.querySelector(el) : el; if (t) openOverlay(t, null); },
     close: (el: Element | string) => { const t = typeof el === 'string' ? document.querySelector(el) : el; if (t) closeOverlay(t); },
   });
@@ -181,6 +211,23 @@ export function initDataAttributes(prefix = 'ai') {
             item.setAttribute('open', '');
           }
           toggleEl.setAttribute('aria-expanded', open ? 'false' : 'true');
+        }
+      } else if (action === 'segmented') {
+        // One button in a segmented control wins; the rest report aria-pressed="false".
+        const group = (toggleEl.closest('[role="group"]') || toggleEl.parentElement) as HTMLElement | null;
+        if (group) {
+          group.querySelectorAll('button').forEach((b) => {
+            b.classList.remove('is-active');
+            b.setAttribute('aria-pressed', 'false');
+          });
+          toggleEl.classList.add('is-active');
+          toggleEl.setAttribute('aria-pressed', 'true');
+          toggleEl.dispatchEvent(
+            new CustomEvent('ai-segmented-change', {
+              bubbles: true,
+              detail: { value: toggleEl.getAttribute('data-value') || (toggleEl.textContent || '').trim() },
+            })
+          );
         }
       }
       return;

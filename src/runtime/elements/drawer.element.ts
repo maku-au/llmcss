@@ -1,3 +1,5 @@
+import { openOverlay, closeOverlay } from '../attributes';
+
 export class AiDrawerElement extends HTMLElement {
   get isOpen(): boolean {
     return this.classList.contains('is-open') || this.hasAttribute('open');
@@ -13,13 +15,19 @@ export class AiDrawerElement extends HTMLElement {
     }
   }
 
-  open() {
-    this.isOpen = true;
+  /**
+   * Opens through the shared overlay stack: focus trap, inert background,
+   * focus restore and Escape all apply. Pass the invoking element to control
+   * where focus returns; a drawer carrying `drawer-no-lock` or `modeless`
+   * stays modeless as usual.
+   */
+  open(trigger?: HTMLElement | null) {
+    openOverlay(this, trigger);
     this.dispatchEvent(new CustomEvent('ai:drawer:open', { bubbles: true }));
   }
 
   close() {
-    this.isOpen = false;
+    closeOverlay(this);
     this.dispatchEvent(new CustomEvent('ai:drawer:close', { bubbles: true }));
   }
 

@@ -1,3 +1,5 @@
+import { openOverlay, closeOverlay } from '../attributes';
+
 export class AiModalElement extends HTMLElement {
   static get observedAttributes() {
     return ['open'];
@@ -27,13 +29,19 @@ export class AiModalElement extends HTMLElement {
     });
   }
 
-  open() {
-    this.isOpen = true;
+  /**
+   * Opens through the shared overlay stack, so focus moves into the panel, the
+   * rest of the page goes inert and Escape closes this modal first. Pass the
+   * button that opened it to get focus back there on close; otherwise whatever
+   * had focus at open time is used.
+   */
+  open(trigger?: HTMLElement | null) {
+    openOverlay(this, trigger);
     this.dispatchEvent(new CustomEvent('ai:modal:open', { bubbles: true }));
   }
 
   close() {
-    this.isOpen = false;
+    closeOverlay(this);
     this.dispatchEvent(new CustomEvent('ai:modal:close', { bubbles: true }));
   }
 
