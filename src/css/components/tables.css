@@ -40,8 +40,9 @@
     border-bottom: none;
   }
 
+  /* A tint, not a fill: surface-2 reads as a selection on warm skins. */
   .ai-table-hover tbody tr:hover {
-    background-color: var(--ai-surface-2);
+    background-color: var(--ai-border-subtle);
   }
 
   .ai-table-striped tbody tr:nth-child(even) {

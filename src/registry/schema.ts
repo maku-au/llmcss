@@ -50,11 +50,15 @@ export type TemplateSectionCategory =
   | 'footer'
   | 'app-shell';
 
+export type TemplateKind = 'wireframe' | 'themed';
+
 export interface WireframeTemplate {
   id: string;
   name: string;
   section: TemplateSectionCategory;
   tier: ComponentTier;
+  kind?: TemplateKind;
+  skin?: string;
   tags: string[];
   placement: string;
   guidance: TemplateGuidance;
@@ -67,4 +71,7 @@ export interface PageBlueprint {
   description: string;
   recommendedFor: string;
   sections: string[];
+  tier?: ComponentTier;
+  kind?: TemplateKind;
+  skin?: string;
 }

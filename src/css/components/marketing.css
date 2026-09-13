@@ -38,6 +38,9 @@
     color: var(--ai-text-primary);
     text-decoration: none;
   }
+  .ai-brand > svg {
+    flex-shrink: 0;
+  }
 
   .ai-nav-links {
     display: none;
@@ -49,8 +52,9 @@
     .ai-nav-links { display: flex; }
   }
 
-  /* First row stays full height when a search row wraps underneath */
-  .ai-navbar-inner > :not(.ai-navbar-search) {
+  /* First row stays full height when a search row wraps underneath.
+     Inline items such as a version badge keep their own height. */
+  .ai-navbar-inner > :not(.ai-navbar-search):not(.ai-badge) {
     min-height: 4.25rem;
   }
   .ai-navbar-search {
@@ -262,10 +266,17 @@
     font-style: italic;
   }
 
+  /* Name over role: two short lines read faster than one long one. */
   .ai-testimonial-author {
     display: flex;
-    align-items: center;
-    gap: var(--ai-space-3);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.125rem;
+  }
+  .ai-testimonial-author strong {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ai-text-primary);
   }
 
   /* Footers */
@@ -275,16 +286,32 @@
     padding: var(--ai-space-24) 0 var(--ai-space-12);
   }
 
+  /* Mobile first: one column and the accordion, two columns at md, brand
+     column double width at lg. */
   .ai-footer-grid {
     display: grid;
-    grid-template-columns: 2fr repeat(3, 1fr);
-    gap: var(--ai-space-8);
+    grid-template-columns: 1fr;
+    row-gap: var(--ai-space-4);
+    column-gap: var(--ai-space-8);
     margin-bottom: var(--ai-space-12);
   }
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     .ai-footer-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: var(--ai-space-10);
+      column-gap: var(--ai-space-10);
     }
+  }
+  @media (min-width: 1024px) {
+    .ai-footer-grid {
+      grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .ai-footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .ai-footer-list {
@@ -293,6 +320,15 @@
     flex-direction: column;
     gap: var(--ai-space-2);
     font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  .ai-footer-list a {
+    color: var(--ai-text-secondary);
+    text-decoration: none;
+    transition: color var(--ai-duration-fast) var(--ai-ease-out);
+  }
+  .ai-footer-list a:hover {
+    color: var(--ai-text-primary);
   }
 
   .ai-footer-compact {
@@ -300,11 +336,6 @@
   }
   .ai-footer-compact .ai-footer-grid {
     margin-bottom: 0;
-  }
-  @media (min-width: 768px) {
-    .ai-footer-compact .ai-footer-grid {
-      grid-template-columns: 1.4fr 1fr 1fr 1fr;
-    }
   }
   .ai-footer:empty {
     min-height: 18rem;
@@ -333,20 +364,23 @@
     border-bottom: 1px solid var(--ai-border-subtle);
     padding: var(--ai-space-3) 0;
   }
+  /* The generic accordion body carries its own 0.9375rem type; restate the
+     footer list type here so it wins deterministically, not by source order. */
   .ai-footer-col .ai-accordion-content {
     padding: var(--ai-space-3) 0 var(--ai-space-1);
-    font-size: inherit;
-    color: inherit;
-    line-height: inherit;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--ai-text-secondary);
   }
   @media (min-width: 768px) {
     .ai-footer-col.ai-accordion-item {
       border-bottom: none;
       padding: 0;
+      grid-template-rows: auto 1fr;
     }
     .ai-footer-col .ai-accordion-content {
-      display: block;
       padding-top: 0;
+      opacity: 1;
     }
     .ai-footer-col-toggle {
       pointer-events: none;
@@ -358,8 +392,78 @@
     }
   }
 
+  /* Footer type scale: 11px caps headings, 14px links, 13px blurb, 12px
+     bottom bar. Keeps the footer quiet next to page copy. */
+  .ai-footer-heading {
+    margin: 0;
+    font-family: var(--ai-font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ai-text-muted);
+  }
+
+  .ai-footer-blurb {
+    margin-top: var(--ai-space-3);
+    max-width: 22rem;
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    color: var(--ai-text-secondary);
+  }
+
+  /* A count or caption that sits under a footer link. Not a link itself. */
+  .ai-footer-stat {
+    display: block;
+    margin-top: var(--ai-space-1);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: var(--ai-text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* A CLI line. Mono, but never the boxed inline-code chip. */
+  .ai-footer-cmd {
+    display: block;
+    font-family: var(--ai-font-mono);
+    font-size: 0.75rem;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  .ai-footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ai-space-3) var(--ai-space-6);
+    margin-top: var(--ai-space-10);
+    padding-top: var(--ai-space-6);
+    border-top: 1px solid var(--ai-border);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--ai-text-muted);
+  }
+  /* p and a carry base-layer colours of their own, so restate rather than inherit. */
+  .ai-footer-bottom p {
+    margin: 0;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+  .ai-footer-bottom a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--ai-duration-fast) var(--ai-ease-out);
+  }
+  .ai-footer-bottom a:hover {
+    color: var(--ai-text-primary);
+  }
+
   /* --------------------------------------------------------------------------
-     Asymmetric Editorial Bento Grid (Pro)
+     Asymmetric Editorial Bento Grid
      -------------------------------------------------------------------------- */
   .ai-bento-grid {
     display: grid;
@@ -408,7 +512,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     Enterprise Pricing Comparison Matrix (Pro)
+     Enterprise Pricing Comparison Matrix
      -------------------------------------------------------------------------- */
   .ai-matrix-container {
     width: 100%;
@@ -587,24 +691,36 @@
   .ai-stats-band {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-    gap: var(--ai-space-8);
-    align-items: end;
+    gap: var(--ai-space-6) var(--ai-space-8);
+    align-items: stretch;
+  }
+  /* Each stat hangs from a shared hairline; the figure sits on a shared
+     baseline at the bottom so mixed sizes still read as one row. */
+  .ai-stat {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--ai-border);
+    padding-top: var(--ai-space-4);
+  }
+  .ai-stat-value {
+    margin-top: auto;
   }
   .ai-stat-value {
     font-family: var(--ai-font-display);
-    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1;
     font-variant-numeric: tabular-nums;
   }
   .ai-stat.is-primary .ai-stat-value {
-    font-size: clamp(3rem, 7vw, 5rem);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
   }
   .ai-stat-label {
     margin-top: var(--ai-space-2);
     color: var(--ai-text-secondary);
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
+    line-height: 1.4;
   }
 
   /* CTA band */
@@ -649,7 +765,7 @@
   .ai-team-member {
     display: flex;
     flex-direction: column;
-    gap: var(--ai-space-3);
+    gap: 0;
   }
   .ai-team-photo {
     width: 100%;
@@ -659,11 +775,15 @@
     background-color: var(--ai-surface-1);
   }
   .ai-team-name {
+    margin-top: var(--ai-space-3);
     font-weight: 600;
+    line-height: 1.3;
   }
   .ai-team-role {
+    margin-top: 0.125rem;
     color: var(--ai-text-secondary);
     font-size: 0.875rem;
+    line-height: 1.4;
   }
 
   /* Announcement bar and cookie bar */
@@ -690,23 +810,52 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--ai-space-3) var(--ai-space-5);
-    padding: var(--ai-space-4) var(--ai-space-5);
+    gap: var(--ai-space-3) var(--ai-space-6);
+    padding: var(--ai-space-3) var(--ai-space-4) var(--ai-space-3) var(--ai-space-5);
     background-color: var(--ai-surface-0);
-    border: 1px solid var(--ai-border-strong);
+    border: 1px solid var(--ai-border);
     border-radius: var(--ai-radius-lg);
-    box-shadow: var(--ai-shadow-lg);
+    box-shadow: var(--ai-shadow-md);
     font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--ai-text-secondary);
+  }
+  /* Copy and actions share one row until the copy has less than 18rem */
+  .ai-consent-bar > :first-child {
+    flex: 1 1 18rem;
+    min-width: 0;
   }
   .ai-consent-bar .ai-consent-actions {
     display: flex;
+    flex: 0 0 auto;
     gap: var(--ai-space-2);
     margin-inline-start: auto;
+  }
+  @media (max-width: 479px) {
+    .ai-consent-bar .ai-consent-actions {
+      width: 100%;
+    }
+    .ai-consent-bar .ai-consent-actions > .ai-btn {
+      flex: 1 1 0;
+    }
   }
   @media (min-width: 768px) {
     .ai-consent-bar {
       inset-inline: auto var(--ai-space-6);
       max-width: 36rem;
     }
+  }
+
+
+  /* Pricing matrix category header */
+  .ai-matrix-category-header {
+    background-color: var(--ai-surface-1);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: var(--ai-text-secondary);
+    text-align: left;
+    padding-left: var(--ai-space-4);
   }
 }

@@ -1,5 +1,6 @@
 @layer components {
   .ai-btn {
+    --ai-btn-fg: var(--ai-text-primary);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -26,6 +27,7 @@
 
   /* Variants */
   .ai-btn-primary {
+    --ai-btn-fg: var(--ai-primary-text);
     background-color: var(--ai-primary);
     color: var(--ai-primary-text);
     border-color: transparent;
@@ -70,6 +72,7 @@
   }
 
   .ai-btn-accent {
+    --ai-btn-fg: var(--ai-accent-text);
     background-color: var(--ai-accent);
     color: var(--ai-accent-text);
     border-color: transparent;
@@ -81,6 +84,7 @@
   }
 
   .ai-btn-danger {
+    --ai-btn-fg: var(--ai-danger-text);
     background-color: var(--ai-danger);
     color: var(--ai-danger-text);
     border-color: transparent;
@@ -101,13 +105,18 @@
     height: 2.5rem;
     padding: 0;
   }
+  .ai-btn-icon.ai-btn-xs { width: 1.75rem; height: 1.75rem; }
   .ai-btn-icon.ai-btn-sm { width: 2rem; height: 2rem; }
   .ai-btn-icon.ai-btn-lg { width: 3rem; height: 3rem; }
+  .ai-btn-icon.ai-btn-xl { width: 3.5rem; height: 3.5rem; }
 
-  /* Loading State */
+  /* Loading State
+     Label stays in the DOM and in the accessibility tree, painted transparent,
+     so the button keeps its exact width and a bare text label is hidden too. */
   .ai-btn.is-loading {
     pointer-events: none;
     position: relative;
+    color: transparent;
   }
   .ai-btn.is-loading > * {
     visibility: hidden;
@@ -115,15 +124,24 @@
   .ai-btn.is-loading::after {
     content: '';
     position: absolute;
-    width: 1.125rem;
-    height: 1.125rem;
-    top: calc(50% - 0.5625rem);
-    left: calc(50% - 0.5625rem);
-    border: 2px solid currentColor;
+    width: 1.125em;
+    height: 1.125em;
+    top: 50%;
+    left: 50%;
+    margin-top: -0.5625em;
+    margin-left: -0.5625em;
+    border: 2px solid var(--ai-btn-fg);
     border-right-color: transparent;
     border-radius: 50%;
     animation: ai-spin 0.6s linear infinite;
-    visibility: visible;
+  }
+
+  /* Reduced motion: the global kill switch in animations.css freezes the ring,
+     so close the gap and let it read as a deliberate static busy indicator. */
+  @media (prefers-reduced-motion: reduce) {
+    .ai-btn.is-loading::after {
+      border-right-color: color-mix(in srgb, var(--ai-btn-fg) 30%, transparent);
+    }
   }
 
   /* Touch Device Ergonomics (WCAG 2.5.5 / Apple HIG 44x44px minimum) */

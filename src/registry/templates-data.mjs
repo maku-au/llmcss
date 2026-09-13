@@ -1,7 +1,10 @@
 /**
  * LLMCSS Wireframe Templates & Page Blueprints Registry
  * Pure Semantic HTML layouts with structured design guidance for developers & AI agents.
+ * Themed Pro sections are concatenated from templates-themed.mjs.
  */
+
+import { themedSectionTemplates, themedPageKits } from './templates-themed.mjs';
 
 export const wireframeTemplates = [
   {
@@ -622,30 +625,27 @@ export const wireframeTemplates = [
         <a href="mailto:support@llmcss.io" class="ai-btn ai-btn-outline ai-btn-sm">Contact Architecture Team</a>
       </div>
       <div style="display: flex; flex-direction: column; gap: 1rem;">
-        <details class="ai-collapse" style="padding: 1rem 0; border-bottom: 1px solid var(--ai-border);">
+        <details class="ai-collapse ai-py-4 ai-border-b">
           <summary>
             <span>Why pure CSS instead of a JavaScript UI component library?</span>
-            <span style="font-size: 1.25rem; color: var(--ai-text-muted);">&plus;</span>
           </summary>
-          <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--ai-text-secondary); line-height: 1.6;">
+          <p class="ai-collapse-body ai-text-sm">
             Pure CSS eliminates the JavaScript runtime bundle entirely. It means 0 ms hydration lag, perfect SEO crawlability, and total framework freedom: use it with React, Vue, Svelte, Rails, Django, or plain static HTML.
           </p>
         </details>
-        <details class="ai-collapse" style="padding: 1rem 0; border-bottom: 1px solid var(--ai-border);">
+        <details class="ai-collapse ai-py-4 ai-border-b">
           <summary>
             <span>How does LLMCSS prevent AI models from hallucinating classes?</span>
-            <span style="font-size: 1.25rem; color: var(--ai-text-muted);">&plus;</span>
           </summary>
-          <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--ai-text-secondary); line-height: 1.6;">
+          <p class="ai-collapse-body ai-text-sm">
             By providing clean llms.txt specifications, standard semantic naming conventions, and an official Stdio MCP server. LLMs look up exact component contracts rather than guessing utility permutations.
           </p>
         </details>
-        <details class="ai-collapse" style="padding: 1rem 0; border-bottom: 1px solid var(--ai-border);">
+        <details class="ai-collapse ai-py-4 ai-border-b">
           <summary>
             <span>Can I customize the design tokens and typography?</span>
-            <span style="font-size: 1.25rem; color: var(--ai-text-muted);">&plus;</span>
           </summary>
-          <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--ai-text-secondary); line-height: 1.6;">
+          <p class="ai-collapse-body ai-text-sm">
             Yes. Every color, border radius, spacing increment, and font stack is exposed through standard CSS custom properties in tokens.css and themes.css. Override them globally or per-container.
           </p>
         </details>
@@ -705,8 +705,8 @@ export const wireframeTemplates = [
     html: `<footer class="ai-footer" role="contentinfo">
   <div class="ai-container">
     <div class="ai-footer-grid">
-      <div>
-        <a href="#" class="ai-brand" aria-label="LLMCSS Home" style="margin-bottom: 1rem;">
+      <div class="ai-footer-brand">
+        <a href="#" class="ai-brand" aria-label="LLMCSS Home">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect width="18" height="18" x="3" y="3" rx="2"/>
             <path d="M9 3v18"/>
@@ -714,45 +714,42 @@ export const wireframeTemplates = [
           </svg>
           <span>LLMCSS</span>
         </a>
-        <p style="font-size: 0.875rem; color: var(--ai-text-secondary); line-height: 1.6; max-width: 18rem;">
+        <p class="ai-footer-blurb">
           The native CSS layout and design system engineered for humans and autonomous AI coding agents.
         </p>
-        <div class="ai-flex ai-items-center ai-gap-2 ai-mt-4" style="font-size: 0.75rem; color: var(--ai-text-muted);">
-          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--ai-success);"></span>
-          <span>All Systems Operational</span>
-        </div>
+        <span class="ai-footer-stat ai-mt-4"><span class="ai-status-pip ai-status-pip-success" aria-hidden="true"></span> All systems operational</span>
       </div>
-      <div>
-        <h4 style="font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;">Product</h4>
-        <ul class="ai-footer-list">
-          <li><a href="#components" class="ai-link">Components</a></li>
-          <li><a href="#templates" class="ai-link">Templates</a></li>
-          <li><a href="#themes" class="ai-link">Themes</a></li>
-          <li><a href="#cli" class="ai-link">CLI Tooling</a></li>
+      <div class="ai-footer-col ai-accordion-item">
+        <h4 class="ai-footer-heading"><button type="button" class="ai-footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Product <svg class="ai-accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <ul class="ai-footer-list ai-accordion-content">
+          <li><a href="#components">Components</a></li>
+          <li><a href="#templates">Templates</a></li>
+          <li><a href="#themes">Themes</a></li>
+          <li><a href="#cli">CLI Tooling</a></li>
         </ul>
       </div>
-      <div>
-        <h4 style="font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;">Resources</h4>
-        <ul class="ai-footer-list">
-          <li><a href="#docs" class="ai-link">Documentation</a></li>
-          <li><a href="#llms-txt" class="ai-link">llms.txt Specification</a></li>
-          <li><a href="#mcp" class="ai-link">MCP Server Protocol</a></li>
-          <li><a href="#validation" class="ai-link">Linter & Validator</a></li>
+      <div class="ai-footer-col ai-accordion-item">
+        <h4 class="ai-footer-heading"><button type="button" class="ai-footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Resources <svg class="ai-accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <ul class="ai-footer-list ai-accordion-content">
+          <li><a href="#docs">Documentation</a></li>
+          <li><a href="#llms-txt">llms.txt Specification</a></li>
+          <li><a href="#mcp">MCP Server Protocol</a></li>
+          <li><a href="#validation">Linter & Validator</a></li>
         </ul>
       </div>
-      <div>
-        <h4 style="font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;">Company</h4>
-        <ul class="ai-footer-list">
-          <li><a href="#about" class="ai-link">About LLMCSS</a></li>
-          <li><a href="#changelog" class="ai-link">Changelog</a></li>
-          <li><a href="#privacy" class="ai-link">Privacy Policy</a></li>
-          <li><a href="#terms" class="ai-link">Terms of Service</a></li>
+      <div class="ai-footer-col ai-accordion-item">
+        <h4 class="ai-footer-heading"><button type="button" class="ai-footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Company <svg class="ai-accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <ul class="ai-footer-list ai-accordion-content">
+          <li><a href="#about">About LLMCSS</a></li>
+          <li><a href="#changelog">Changelog</a></li>
+          <li><a href="#privacy">Privacy Policy</a></li>
+          <li><a href="#terms">Terms of Service</a></li>
         </ul>
       </div>
     </div>
-    <div style="border-top: 1px solid var(--ai-border); padding-top: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; font-size: 0.8125rem; color: var(--ai-text-muted);">
-      <div>&copy; 2026 LLMCSS (llmcss.io). All rights reserved.</div>
-      <div style="font-family: var(--ai-font-mono); font-size: 0.75rem;">Pure Native CSS &bull; Zero JavaScript Runtime</div>
+    <div class="ai-footer-bottom">
+      <p>&copy; 2026 LLMCSS (llmcss.io). All rights reserved.</p>
+      <span class="ai-footer-cmd">Pure Native CSS &bull; Zero JavaScript Runtime</span>
     </div>
   </div>
 </footer>`
@@ -873,12 +870,12 @@ export const wireframeTemplates = [
         <div class="ai-timeline-meta">16 faces &middot; themes no longer swap type</div>
       </li>
       <li class="ai-timeline-item">
-        <div class="ai-timeline-title">Pro catalog gated</div>
-        <div class="ai-timeline-meta">Bearer token on /r/pro</div>
+        <div class="ai-timeline-title">Former Pro components are MIT</div>
+        <div class="ai-timeline-meta">Command palette, cart, agent chrome</div>
       </li>
       <li class="ai-timeline-item">
-        <div class="ai-timeline-title">$9/mo Polar checkout</div>
-        <div class="ai-timeline-meta">Token shown once on /account</div>
+        <div class="ai-timeline-title">Pro is themed kits</div>
+        <div class="ai-timeline-meta">$9/mo Polar · token shown once</div>
       </li>
     </ol>
   </div>
@@ -996,6 +993,9 @@ export const pageBlueprints = [
     ]
   }
 ];
+
+wireframeTemplates.push(...themedSectionTemplates);
+pageBlueprints.push(...themedPageKits);
 
 export function assembleBlueprintHtml(blueprintId) {
   const bp = pageBlueprints.find((b) => b.id === blueprintId);

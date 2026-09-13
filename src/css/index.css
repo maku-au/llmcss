@@ -35,6 +35,10 @@
 @import "./components/forms-extra.css";
 @import "./components/commerce-extra.css";
 @import "./components/scrollspy.css";
+@import "./components/command.css";
+@import "./components/chat.css";
+@import "./components/cart.css";
+@import "./components/agent-extra.css";
 @import "./components/showcase.css";
 
 /* Utilities */

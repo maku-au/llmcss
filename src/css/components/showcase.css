@@ -53,6 +53,25 @@
   box-shadow: -16px 0 48px -12px rgba(0, 0, 0, 0.25), -1px 0 0 var(--ai-border);
   background-color: var(--ai-surface-0);
 }
+/* The styler body stacks its sections; the base drawer body only scrolls. */
+#core-styler-drawer .ai-drawer-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-space-5);
+}
+#core-styler-drawer .ai-drawer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ai-styler-title {
+  font-family: var(--ai-font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ai-text-primary);
+  margin: 0;
+}
 .ai-styler-section {
   display: flex;
   flex-direction: column;
@@ -107,6 +126,22 @@
   border-radius: 50%;
   flex-shrink: 0;
 }
+/* Skin pips read their fill from the archetype's own token in themes.css, so
+   the button markup carries nothing but data-skin. modern is the default
+   accent in tokens.css; executive and obsidian show --ai-primary, which is
+   what separates them on screen, the rest show --ai-accent (light mode). */
+.ai-styler-theme-btn[data-skin="modern"] .ai-styler-swatch-pip { background: #2563eb; }
+.ai-styler-theme-btn[data-skin="executive"] .ai-styler-swatch-pip { background: #0f172a; }
+.ai-styler-theme-btn[data-skin="fintech"] .ai-styler-swatch-pip { background: #0f766e; }
+.ai-styler-theme-btn[data-skin="obsidian"] .ai-styler-swatch-pip {
+  background: #09090b;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+.ai-styler-theme-btn[data-skin="editorial"] .ai-styler-swatch-pip { background: #8c4a27; }
+.ai-styler-theme-btn[data-skin="enterprise"] .ai-styler-swatch-pip { background: #0284c7; }
+.ai-styler-theme-btn[data-skin="emerald"] .ai-styler-swatch-pip { background: #059669; }
+.ai-styler-theme-btn[data-skin="violet"] .ai-styler-swatch-pip { background: #7c3aed; }
+.ai-styler-theme-btn[data-skin="rose"] .ai-styler-swatch-pip { background: #e11d48; }
 .ai-styler-theme-name {
   font-size: 0.8125rem;
   font-weight: 500;
@@ -168,8 +203,42 @@
 .ai-styler-accent-swatch.is-active {
   box-shadow: 0 0 0 2px var(--ai-surface-0), 0 0 0 4px var(--ai-text-primary);
 }
+/* Accent chips mirror the --ai-accent of each [data-ai-accent] block in
+   themes.css; default is the base accent in tokens.css. */
+.ai-styler-accent-swatch[data-accent="default"] { background: #2563eb; }
+.ai-styler-accent-swatch[data-accent="steel"] { background: #475569; }
+.ai-styler-accent-swatch[data-accent="teal"] { background: #0f766e; }
+.ai-styler-accent-swatch[data-accent="emerald"] { background: #059669; }
+.ai-styler-accent-swatch[data-accent="violet"] { background: #7c3aed; }
+.ai-styler-accent-swatch[data-accent="rose"] { background: #e11d48; }
+.ai-styler-accent-swatch[data-accent="amber"] { background: #d97706; }
+
+/* Section that opens a new block below a rule */
+.ai-styler-section-divided {
+  border-top: 1px solid var(--ai-border-subtle);
+  padding-top: var(--ai-space-4);
+}
+.ai-styler-code-disclosure summary {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  user-select: none;
+}
 .ai-styler-code-disclosure summary::-webkit-details-marker {
   display: none;
+}
+.ai-styler-code-caret {
+  font-size: 0.75rem;
+}
+.ai-styler-code-output {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  border-radius: var(--ai-radius-xs);
+  font-size: 0.7rem;
+  color: var(--ai-text-primary);
+  max-height: 8rem;
+  overflow-y: auto;
 }
 
 /* Per-Component Customizer Bar */
@@ -273,6 +342,23 @@
   padding: var(--ai-space-24) 0;
   scroll-margin-top: 4rem;
 }
+/* Result figure in a docs page header meta line. Collapses when empty so the
+   sentence still reads before the catalog renders. */
+.ai-docs-meta-figure {
+  font-family: var(--ai-font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ai-text-primary);
+}
+.ai-docs-meta-figure:empty {
+  display: none;
+}
+.ai-docs-meta-figure:not(:empty)::after {
+  content: " · ";
+  font-weight: 400;
+  color: var(--ai-text-muted);
+}
 .ai-docs-layout {
   display: grid;
   grid-template-columns: 240px 1fr;
@@ -296,10 +382,43 @@
   padding: 0;
   box-shadow: none;
 }
+.ai-docs-nav-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  padding: 0 0.5rem;
+  font-family: var(--ai-font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ai-text-muted);
+}
+/* Plain-language note under a nav group whose row labels are not
+   self-explanatory. Aligns with the rows, never reads as a paragraph. */
+.ai-docs-nav-note {
+  margin: 0.4rem 0 0;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--ai-text-muted);
+}
+/* One rule-separated block of sidebar nav (Tiers, Endpoints) */
+.ai-docs-nav-group {
+  border-top: 1px solid var(--ai-border-subtle);
+  padding-top: var(--ai-space-3);
+}
+/* Nav rows sit almost flush: a hairline gap keeps the active pill from
+   touching its neighbour without reading as a list. */
+.ai-docs-nav-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
 .ai-docs-nav-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--ai-space-2);
   width: 100%;
   padding: 0.375rem 0.5rem;
   border-radius: var(--ai-radius-sm);
@@ -320,6 +439,17 @@
   color: var(--ai-text-primary);
   background-color: var(--ai-surface-1);
   font-weight: 600;
+}
+.ai-docs-nav-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.ai-docs-nav-btn:disabled:not(.is-active):hover {
+  background-color: transparent;
+  color: var(--ai-text-secondary);
+}
+.ai-docs-nav-btn[hidden] {
+  display: none;
 }
 .ai-docs-count {
   font-family: var(--ai-font-sans);
@@ -354,6 +484,12 @@
 .ai-docs-link:hover {
   color: var(--ai-text-primary);
   background-color: var(--ai-surface-1);
+}
+/* Trailing format hint on an endpoint row: llms.txt -> Index */
+.ai-docs-link-tag {
+  font-family: var(--ai-font-sans);
+  font-size: 0.6875rem;
+  color: var(--ai-text-muted);
 }
 .ai-docs-link svg {
   opacity: 0.4;
@@ -461,6 +597,28 @@
   border: 1px solid var(--ai-border);
   border-radius: var(--ai-radius-md);
 }
+/* Fixed column rhythm: the feature column is widest, the LLMCSS column is
+   slightly wider than the three rival columns, which share what is left. */
+.ai-docs-matrix .ai-matrix-table {
+  table-layout: fixed;
+}
+.ai-docs-matrix .ai-matrix-table th:first-child,
+.ai-docs-matrix .ai-matrix-table td:first-child {
+  width: 25%;
+}
+.ai-docs-matrix .ai-matrix-table th:last-child,
+.ai-docs-matrix .ai-matrix-table td:last-child {
+  width: 21%;
+}
+/* The LLMCSS column in a comparison matrix */
+.ai-docs-matrix-win {
+  background-color: var(--ai-surface-1);
+  font-weight: 600;
+}
+th.ai-docs-matrix-win {
+  color: var(--ai-accent);
+  font-weight: 700;
+}
 
 /* Framework Compatibility Rail (Unboxed, High-Craft) */
 .ai-docs-ecosystem-item {
@@ -495,127 +653,101 @@
   background-color: var(--ai-surface-0);
 }
 
-.ai-blueprint-bar-track {
-  display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-  padding: 0.25rem 0;
-  margin-top: 0;
-  scrollbar-width: thin;
-}
-
-.ai-blueprint-tab-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.875rem;
-  border-radius: var(--ai-radius-sm);
-  border: 1px solid var(--ai-border);
-  background: var(--ai-surface-0);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--ai-text-secondary);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all var(--ai-duration-fast);
-}
-.ai-blueprint-tab-btn:hover {
-  background: var(--ai-surface-1);
-  color: var(--ai-text-primary);
-  border-color: var(--ai-border-hover);
-}
-.ai-blueprint-tab-btn.is-active {
-  background: var(--ai-surface-2);
-  color: var(--ai-text-primary);
-  border-color: var(--ai-border-strong);
-  font-weight: 600;
-  box-shadow: var(--ai-shadow-sm);
-}
-.ai-blueprint-badge-count {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  background: var(--ai-surface-3);
-  padding: 0.1rem 0.4rem;
-  border-radius: var(--ai-radius-full);
-  color: var(--ai-text-secondary);
-}
-
 /* --------------------------------------------------------------------------
-   Active Blueprint Recipe Banner
+   Active blueprint strip: one line of identity, one line of purpose, a
+   wrapping breadcrumb of sections, and the three actions as a group.
    -------------------------------------------------------------------------- */
-.ai-blueprint-banner-card {
-  margin: var(--ai-space-4) 0 0;
-  padding: var(--ai-space-4);
-  background: var(--ai-surface-1);
-  border: 1px solid var(--ai-border);
-  border-radius: var(--ai-radius-md);
+.ai-blueprint-strip {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ai-space-6);
+  padding: var(--ai-space-4) 0;
+  border-bottom: 1px solid var(--ai-border-subtle);
+}
+.ai-blueprint-strip-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.ai-blueprint-strip-title {
+  margin: 0;
+  font-family: var(--ai-font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ai-text-primary);
+}
+.ai-blueprint-strip-desc {
+  max-width: 62ch;
+  margin: 0.2rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ai-text-secondary);
+}
+.ai-blueprint-strip-actions {
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
 }
 
-.ai-blueprint-flow-pills {
+.ai-blueprint-flow {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.375rem;
+  column-gap: 0.25rem;
+  row-gap: 0.15rem;
+  margin: 0.45rem 0 0;
+  padding: 0;
+  list-style: none;
 }
-.ai-blueprint-flow-pill {
+.ai-blueprint-flow > li {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
-  padding: 0.25rem 0.625rem;
-  background: var(--ai-surface-1);
-  border: 1px solid var(--ai-border);
-  border-radius: var(--ai-radius-xs);
+  gap: 0.25rem;
+  flex: 0 0 auto;
+}
+.ai-blueprint-flow > li + li::before {
+  content: "/";
   font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--ai-text-primary);
-}
-.ai-blueprint-flow-pill .flow-num {
-  font-family: var(--ai-font-mono);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  color: var(--ai-primary);
-}
-.ai-blueprint-flow-pills .flow-arrow {
   color: var(--ai-text-muted);
-  font-size: 0.75rem;
 }
-
-/* --------------------------------------------------------------------------
-   Layout Toolbar & Filters
-   -------------------------------------------------------------------------- */
-.ai-docs-toolbar {
-  position: sticky;
-  top: 3.75rem;
-  z-index: 35;
-  background: var(--ai-surface-0);
-  border-bottom: 1px solid var(--ai-border);
-  padding: 0.5rem 0;
-}
-
-.ai-docs-filter-btn {
-  padding: 0.35rem 0.65rem;
+.ai-blueprint-flow-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.35rem;
+  border: 0;
+  border-radius: var(--ai-radius-xs);
+  background: transparent;
+  font-family: var(--ai-font-sans);
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--ai-text-secondary);
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: var(--ai-radius-xs);
-  cursor: pointer;
+  color: var(--ai-text-muted);
   white-space: nowrap;
-  transition: all var(--ai-duration-fast);
+  cursor: pointer;
+  transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
 }
-.ai-docs-filter-btn:hover {
-  background: var(--ai-surface-1);
+.ai-blueprint-flow-step:hover {
   color: var(--ai-text-primary);
-}
-.ai-docs-filter-btn.is-active {
   background: var(--ai-surface-2);
-  color: var(--ai-text-primary);
-  border-color: var(--ai-border);
-  font-weight: 600;
+}
+.ai-blueprint-flow-num {
+  font-family: var(--ai-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.6875rem;
+  color: var(--ai-text-muted);
+}
+
+@media (max-width: 719px) {
+  .ai-blueprint-strip {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--ai-space-3);
+  }
+  .ai-blueprint-strip-actions {
+    width: 100%;
+  }
+  .ai-blueprint-strip-actions > .ai-btn {
+    flex: 1 1 0;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -623,6 +755,7 @@
    -------------------------------------------------------------------------- */
 .ai-template-card {
   margin-bottom: var(--ai-space-12);
+  scroll-margin-top: 7.5rem;
   background: var(--ai-surface-0);
   border: 1px solid var(--ai-border);
   border-radius: var(--ai-radius-lg);
@@ -724,11 +857,15 @@
 
 /* Canvas Frame & Wireframe Mode */
 .ai-template-canvas {
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   transition: width 0.3s ease;
   background: var(--ai-bg);
   overflow-x: auto;
 }
+.ai-template-canvas[data-vw="768"] { width: 768px; }
+.ai-template-canvas[data-vw="375"] { width: 375px; }
 
 .ai-template-frame {
   min-height: 160px;
@@ -818,6 +955,12 @@
   justify-content: space-between;
   align-items: center;
 }
+.ai-blueprint-modal-title {
+  font-family: var(--ai-font-display);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  margin: 0;
+}
 .ai-blueprint-modal-body {
   flex: 1;
   overflow-y: auto;
@@ -835,17 +978,6 @@
 .ai-template-assembled.is-wireframe-mode .ai-card,
 .ai-template-assembled.is-wireframe-mode .ai-app-shell {
   border: 1px solid var(--ai-border) !important;
-}
-
-/* --------------------------------------------------------------------------
-   STUDIO STYLER (UNBLURRED LIVE INSPECTOR)
-   -------------------------------------------------------------------------- */
-.ai-styler-theme-swatch {
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 50%;
-  flex-shrink: 0;
-  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
   /* Docs steps */

@@ -1,20 +1,42 @@
 @layer components {
-  /* Accordions */
+  /* Accordions
+     Default is flush: hairline rules between items, no outer box.
+     Add .ai-accordion-boxed for the bordered card.
+     One custom property drives the side padding of the trigger and of the
+     body so answer copy always lines up with the question. */
   .ai-accordion,
   ai-accordion {
+    --ai-accordion-px: 0px;
     display: block;
     width: 100%;
+    background-color: transparent;
+  }
+
+  .ai-accordion-boxed,
+  ai-accordion[boxed] {
+    --ai-accordion-px: var(--ai-space-5);
     border: 1px solid var(--ai-border);
     border-radius: var(--ai-radius-lg);
     background-color: var(--ai-surface-0);
-    overflow: hidden;
   }
 
-  .ai-accordion-item {
-    border-bottom: 1px solid var(--ai-border);
+  .ai-accordion > .ai-accordion-item + .ai-accordion-item,
+  ai-accordion > .ai-accordion-item + .ai-accordion-item {
+    border-top: 1px solid var(--ai-border);
   }
-  .ai-accordion-item:last-child {
-    border-bottom: none;
+
+  /* Animated expand with no height math in JavaScript: the item is a two row
+     grid and the body row runs 0fr to 1fr. Chrome 107+, Safari 16+,
+     Firefox 127+. Older engines resolve 0fr and 1fr correctly and simply
+     snap open, which is the current behaviour. */
+  .ai-accordion-item {
+    display: grid;
+    grid-template-rows: auto 0fr;
+    transition: grid-template-rows var(--ai-duration-normal) var(--ai-ease-out);
+  }
+  .ai-accordion-item[open],
+  .ai-accordion-item.is-open {
+    grid-template-rows: auto 1fr;
   }
 
   .ai-accordion-trigger {
@@ -22,43 +44,84 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--ai-space-4) var(--ai-space-6);
+    gap: var(--ai-space-4);
+    padding: var(--ai-space-4) var(--ai-accordion-px);
     background: transparent;
     border: none;
+    border-radius: var(--ai-radius-base);
     font-family: var(--ai-font-sans);
     font-size: 1rem;
     font-weight: 500;
-    color: var(--ai-text-primary);
+    line-height: 1.4;
+    color: var(--ai-text-secondary);
     text-align: left;
     cursor: pointer;
-    transition: background-color var(--ai-duration-fast);
+    transition: color var(--ai-duration-fast) var(--ai-ease-out),
+                background-color var(--ai-duration-fast) var(--ai-ease-out);
   }
 
   .ai-accordion-trigger:hover {
-    background-color: var(--ai-surface-1);
+    color: var(--ai-text-primary);
+  }
+  /* The only surface change left, and only where padding contains it. */
+  .ai-accordion-boxed .ai-accordion-trigger:hover {
+    background-color: var(--ai-border-subtle);
   }
 
+  .ai-accordion-item[open] > .ai-accordion-trigger,
+  .ai-accordion-item.is-open > .ai-accordion-trigger {
+    color: var(--ai-text-primary);
+  }
+
+  /* One chevron for the library: the m6 9 6 6 6-6 path, sized in em so it
+     tracks the type it sits beside. 2 units on a 24 unit viewBox at 1.125em
+     renders a 1.5px stroke next to 16px text. */
   .ai-accordion-chevron {
-    transition: transform var(--ai-duration-normal) var(--ai-ease-out);
+    flex: none;
+    width: 1.125em;
+    height: 1.125em;
     color: var(--ai-text-muted);
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform var(--ai-duration-normal) var(--ai-ease-out),
+                color var(--ai-duration-fast) var(--ai-ease-out);
+  }
+  /* Tolerates the span wrapped form still used in some markup. */
+  span.ai-accordion-chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ai-accordion-chevron > svg {
+    width: 100%;
+    height: 100%;
   }
 
+  .ai-accordion-trigger:hover .ai-accordion-chevron,
+  .ai-accordion-item[open] > .ai-accordion-trigger .ai-accordion-chevron,
+  .ai-accordion-item.is-open > .ai-accordion-trigger .ai-accordion-chevron {
+    color: var(--ai-text-primary);
+  }
   .ai-accordion-item[open] > .ai-accordion-trigger .ai-accordion-chevron,
   .ai-accordion-item.is-open > .ai-accordion-trigger .ai-accordion-chevron {
     transform: rotate(180deg);
   }
 
   .ai-accordion-content {
-    display: none;
-    padding: 0 var(--ai-space-6) var(--ai-space-5);
+    overflow: hidden;
+    min-height: 0;
+    padding: 0 var(--ai-accordion-px) var(--ai-space-5);
     color: var(--ai-text-secondary);
     font-size: 0.9375rem;
     line-height: 1.6;
+    opacity: 0;
+    transition: opacity var(--ai-duration-fast) var(--ai-ease-out);
   }
-
   .ai-accordion-item[open] > .ai-accordion-content,
   .ai-accordion-item.is-open > .ai-accordion-content {
-    display: block;
-    animation: ai-fade-in var(--ai-duration-fast) var(--ai-ease-out);
+    opacity: 1;
   }
 }

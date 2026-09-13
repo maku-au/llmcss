@@ -1,12 +1,6 @@
-function lockedPreview(name) {
-  return `<div class="ai-card ai-card-pro" style="padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;">
-  <h3 class="ai-card-title ai-flex ai-items-center ai-justify-center ai-gap-2">${name} <span class="ai-badge ai-badge-solid ai-badge-sm">Pro</span></h3>
-  <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-2);">Source is not in the public catalog. Subscribe to copy this component.</p>
-  <a class="ai-btn ai-btn-primary ai-btn-sm" style="margin-top: var(--ai-space-4);" href="/api/checkout.php">Unlock Pro ($9/mo)</a>
-</div>`;
-}
-
 import { extraComponents } from './data-extra.mjs';
+import { ungatedById } from './data-ungated.mjs';
+import { themedComponents } from './themed-data.mjs';
 
 const baseComponents = [
   /* ==========================================================================
@@ -26,7 +20,7 @@ const baseComponents = [
   <button class="ai-btn ai-btn-ghost">Ghost</button>
   <button class="ai-btn ai-btn-accent">Accent Blue</button>
   <button class="ai-btn ai-btn-danger">Destructive</button>
-  <button class="ai-btn ai-btn-primary is-loading">Loading</button>
+  <button class="ai-btn ai-btn-primary is-loading" aria-busy="true">Loading</button>
 </div>`,
   },
   {
@@ -259,24 +253,24 @@ const baseComponents = [
   {
     id: 'accordion-faq',
     name: 'Collapsible Accordion',
-    description: 'Smooth expanding accordion items with animated chevron rotation.',
+    description: 'Disclosure list with hairline rules, a rotating hairline chevron, and an animated expand.',
     category: 'primitive',
     tier: 'free',
     tags: ['accordion', 'collapse', 'faq'],
     html: `<div class="ai-accordion">
   <div class="ai-accordion-item is-open" open>
-    <button class="ai-accordion-trigger" data-ai-toggle="accordion" aria-expanded="true" aria-controls="faq-1">
-      How does LLMCSS eliminate the 'AI look'?
-      <span class="ai-accordion-chevron" aria-hidden="true">▼</span>
+    <button type="button" class="ai-accordion-trigger" data-ai-toggle="accordion" aria-expanded="true" aria-controls="faq-1">
+      <span>How does LLMCSS eliminate the 'AI look'?</span>
+      <svg class="ai-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
     </button>
     <div class="ai-accordion-content" id="faq-1">
       LLMCSS uses high-craft typography pairings, subtle physical borders, calibrated surfaces, and asymmetric bento layouts rather than cookie-cutter purple gradients and over-rounded cards.
     </div>
   </div>
   <div class="ai-accordion-item">
-    <button class="ai-accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-2">
-      Can I use this without a build tool or Vite?
-      <span class="ai-accordion-chevron" aria-hidden="true">▼</span>
+    <button type="button" class="ai-accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-2">
+      <span>Can I use this without a build tool or Vite?</span>
+      <svg class="ai-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
     </button>
     <div class="ai-accordion-content" id="faq-2">
       Yes! LLMCSS is written in 100% pure modern native CSS with CSS layers and variables. You can load it via a single &lt;link&gt; tag.
@@ -546,15 +540,7 @@ const baseComponents = [
   </div>
 </section>`,
   },
-  {
-    id: 'hero-bento-pro',
-    name: 'Asymmetric Bento Hero (PRO)',
-    description: 'Flagship bento grid hero with tactile borders, live interactive code previews, and luxury surface physics.',
-    category: 'marketing',
-    tier: 'pro',
-    tags: ['hero', 'bento', 'pro', 'luxury'],
-    html: lockedPreview('Asymmetric Bento Hero'),
-  },
+  ungatedById['hero-bento-pro'],
   {
     id: 'pricing-tier-cards',
     name: '3-Tier Pricing Table',
@@ -603,8 +589,8 @@ const baseComponents = [
         </div>
         <ul class="ai-pricing-features">
           <li class="ai-pricing-feature-item">✓ Everything in Starter</li>
-          <li class="ai-pricing-feature-item">✓ 150+ Pro Marketing & Bento Sections</li>
-          <li class="ai-pricing-feature-item">✓ Complete SaaS & App Layout Templates</li>
+          <li class="ai-pricing-feature-item">✓ Themed section templates and page kits</li>
+          <li class="ai-pricing-feature-item">✓ Skin-specific composed blocks</li>
           <li class="ai-pricing-feature-item">✓ Dedicated MCP Server Integration</li>
           <li class="ai-pricing-feature-item">✓ Private CLI Token Access</li>
         </ul>
@@ -642,49 +628,49 @@ const baseComponents = [
     html: `<footer class="ai-footer">
   <div class="ai-container">
     <div class="ai-footer-grid">
-      <div>
-        <a href="#" class="ai-brand" style="margin-bottom: var(--ai-space-4);">
+      <div class="ai-footer-brand">
+        <a href="#" class="ai-brand">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
           <span>LLMCSS</span>
         </a>
-        <p class="ai-text-sm" style="max-width: 20rem;">
+        <p class="ai-footer-blurb">
           High-craft UI library engineered for human developers and autonomous AI agents.
         </p>
       </div>
       <div class="ai-footer-col ai-accordion-item">
-        <h4 class="ai-text-xs ai-font-semibold ai-text-muted"><button type="button" class="ai-footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Product <svg class="ai-accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <h4 class="ai-footer-heading"><button type="button" class="ai-footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Product <svg class="ai-accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
         <ul class="ai-footer-list ai-accordion-content">
-          <li><a href="#" class="ai-text-secondary">Components</a></li>
-          <li><a href="#" class="ai-text-secondary">Marketing Sections</a></li>
-          <li><a href="#" class="ai-text-secondary">SaaS Dashboard</a></li>
-          <li><a href="#" class="ai-text-secondary">Themes</a></li>
+          <li><a href="#">Components</a></li>
+          <li><a href="#">Marketing Sections</a></li>
+          <li><a href="#">SaaS Dashboard</a></li>
+          <li><a href="#">Themes</a></li>
         </ul>
       </div>
       <div class="ai-footer-col ai-accordion-item">
-        <h4 class="ai-text-xs ai-font-semibold ai-text-muted"><button type="button" class="ai-footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Agentic Tools <svg class="ai-accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <h4 class="ai-footer-heading"><button type="button" class="ai-footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Agentic Tools <svg class="ai-accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
         <ul class="ai-footer-list ai-accordion-content">
-          <li><a href="#" class="ai-text-secondary">MCP Server</a></li>
-          <li><a href="#" class="ai-text-secondary">CLI Reference</a></li>
-          <li><a href="#" class="ai-text-secondary">llms.txt Specification</a></li>
-          <li><a href="#" class="ai-text-secondary">Agent Rules</a></li>
+          <li><a href="#">MCP Server</a></li>
+          <li><a href="#">CLI Reference</a></li>
+          <li><a href="#">llms.txt Specification</a></li>
+          <li><a href="#">Agent Rules</a></li>
         </ul>
       </div>
       <div class="ai-footer-col ai-accordion-item">
-        <h4 class="ai-text-xs ai-font-semibold ai-text-muted"><button type="button" class="ai-footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Company <svg class="ai-accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <h4 class="ai-footer-heading"><button type="button" class="ai-footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Company <svg class="ai-accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
         <ul class="ai-footer-list ai-accordion-content">
-          <li><a href="#" class="ai-text-secondary">About</a></li>
-          <li><a href="#" class="ai-text-secondary">Pricing</a></li>
-          <li><a href="#" class="ai-text-secondary">Privacy</a></li>
-          <li><a href="#" class="ai-text-secondary">Terms</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
         </ul>
       </div>
     </div>
-    <div class="ai-flex ai-justify-between ai-items-center ai-border-t" style="padding-top: var(--ai-space-6);">
-      <p class="ai-text-xs ai-text-muted">© 2026 LLMCSS Inc. All rights reserved.</p>
+    <div class="ai-footer-bottom">
+      <p>© 2026 LLMCSS Inc. All rights reserved.</p>
       <div class="ai-flex ai-gap-4">
-        <a href="#" class="ai-text-xs ai-text-muted">GitHub</a>
-        <a href="#" class="ai-text-xs ai-text-muted">Discord</a>
-        <a href="#" class="ai-text-xs ai-text-muted">X (Twitter)</a>
+        <a href="#">GitHub</a>
+        <a href="#">Discord</a>
+        <a href="#">X (Twitter)</a>
       </div>
     </div>
   </div>
@@ -724,15 +710,7 @@ const baseComponents = [
   </div>
 </div>`,
   },
-  {
-    id: 'command-palette-pro',
-    name: 'Command Palette ⌘K (PRO)',
-    description: 'Keyboard-driven search & quick command dialog with group headers, shortcut badges, and live filter.',
-    category: 'application',
-    tier: 'pro',
-    tags: ['command', 'search', 'palette', 'pro', 'keyboard'],
-    html: lockedPreview('Command Palette'),
-  },
+  ungatedById['command-palette-pro'],
   {
     id: 'auth-login-card',
     name: 'Authentication Login Card',
@@ -793,15 +771,7 @@ const baseComponents = [
   </div>
 </div>`,
   },
-  {
-    id: 'cart-drawer-pro',
-    name: 'Slide-Out Cart Drawer (PRO)',
-    description: 'Full slide-out shopping bag drawer with line items, quantity steppers, subtotal, and checkout CTA.',
-    category: 'ecommerce',
-    tier: 'pro',
-    tags: ['cart', 'drawer', 'checkout', 'pro', 'ecommerce'],
-    html: lockedPreview('Slide-Out Cart Drawer'),
-  },
+  ungatedById['cart-drawer-pro'],
   /* ==========================================================================
      ANIMATED MOTION & INTERACTIVE PRIMITIVES
      ========================================================================== */
@@ -1044,96 +1014,16 @@ const baseComponents = [
   </div>
 </div>`,
   },
-  {
-    id: 'bento-editorial-pro',
-    name: 'Asymmetric Editorial Bento (Pro)',
-    description: 'High-craft 3-column asymmetric bento layout with live terminal code pill, telemetry stats, and architectural surface accents.',
-    category: 'marketing',
-    tier: 'pro',
-    tags: ['bento', 'grid', 'editorial', 'hero', 'marketing', 'pro'],
-    html: lockedPreview('Asymmetric Editorial Bento'),
-  },
-  {
-    id: 'pricing-matrix-pro',
-    name: 'Enterprise Pricing Matrix (Pro)',
-    description: 'Full enterprise feature comparison matrix with sticky left column, tier breakdowns, and tiered action buttons.',
-    category: 'marketing',
-    tier: 'pro',
-    tags: ['pricing', 'matrix', 'comparison', 'table', 'marketing', 'pro'],
-    html: lockedPreview('Enterprise Pricing Matrix'),
-  },
-  {
-    id: 'ai-chat-thread',
-    name: 'AI Conversational Thread (Pro)',
-    description: 'Full interactive conversational AI chat thread with streaming status, code snippet preview, and prompt input dock.',
-    category: 'application',
-    tier: 'pro',
-    tags: ['chat', 'conversation', 'ai', 'thread', 'assistant', 'pro'],
-    html: lockedPreview('AI Conversational Thread'),
-  },
-  {
-    id: 'tool-trace',
-    name: 'Tool Trace (Pro)',
-    description: 'Step list for tool calls: name, status pip, duration, and expandable I/O.',
-    category: 'application',
-    tier: 'pro',
-    tags: ['agent', 'trace', 'tools', 'mcp', 'pro'],
-    html: lockedPreview('Tool Trace'),
-  },
-  {
-    id: 'approval-bar',
-    name: 'Approval Bar (Pro)',
-    description: 'Sticky action bar for allow / deny / edit on a pending agent action.',
-    category: 'application',
-    tier: 'pro',
-    tags: ['agent', 'approval', 'bar', 'pro'],
-    html: lockedPreview('Approval Bar'),
-  },
-  {
-    id: 'thought-chain',
-    name: 'Thought Chain (Pro)',
-    description: 'Collapsible reasoning steps with a live streaming state.',
-    category: 'application',
-    tier: 'pro',
-    tags: ['agent', 'reasoning', 'chain', 'pro'],
-    html: lockedPreview('Thought Chain'),
-  },
-  {
-    id: 'agent-workspace',
-    name: 'Agent Workspace (Pro)',
-    description: 'Three-pane workspace: thread, canvas, and context rail.',
-    category: 'application',
-    tier: 'pro',
-    tags: ['agent', 'workspace', 'layout', 'pro'],
-    html: lockedPreview('Agent Workspace'),
-  },
-  {
-    id: 'mcp-widget-shell',
-    name: 'MCP Widget Shell (Pro)',
-    description: 'Card shell for an MCP tool result with schema badge and copy.',
-    category: 'application',
-    tier: 'pro',
-    tags: ['mcp', 'widget', 'agent', 'pro'],
-    html: lockedPreview('MCP Widget Shell'),
-  },
-  {
-    id: 'streaming-status',
-    name: 'Streaming Status (Pro)',
-    description: 'Indeterminate progress plus token/sec readout for live generation.',
-    category: 'application',
-    tier: 'pro',
-    tags: ['streaming', 'status', 'agent', 'pro'],
-    html: lockedPreview('Streaming Status'),
-  },
-  {
-    id: 'citation-list',
-    name: 'Citation List (Pro)',
-    description: 'Numbered source list with domain, snippet, and open action.',
-    category: 'application',
-    tier: 'pro',
-    tags: ['citations', 'sources', 'rag', 'pro'],
-    html: lockedPreview('Citation List'),
-  },
+  ungatedById['bento-editorial-pro'],
+  ungatedById['pricing-matrix-pro'],
+  ungatedById['ai-chat-thread'],
+  ungatedById['tool-trace'],
+  ungatedById['approval-bar'],
+  ungatedById['thought-chain'],
+  ungatedById['agent-workspace'],
+  ungatedById['mcp-widget-shell'],
+  ungatedById['streaming-status'],
+  ungatedById['citation-list'],
   /* ==========================================================================
      NEW PRIMITIVES - BREADCRUMBS, TOOLTIPS, PAGINATION, DIVIDERS, ETC.
      ========================================================================== */
@@ -2168,19 +2058,19 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'marketing',
     tier: 'free',
     tags: ['team', 'people', 'about', 'grid'],
-    html: `<div class="ai-team-grid" style="max-width: 48rem;">
+    html: `<div class="ai-team-grid ai-max-w-3xl">
   <div class="ai-team-member">
-    <div class="ai-team-photo" role="img" aria-label="Portrait placeholder"></div>
+    <img class="ai-team-photo" src="https://images.unsplash.com/photo-1770396529113-ba031cbf0cfa?w=480&h=480&auto=format&fit=crop&q=80" alt="Amara Osei" />
     <div class="ai-team-name">Amara Osei</div>
     <div class="ai-team-role">Founder</div>
   </div>
   <div class="ai-team-member">
-    <div class="ai-team-photo" role="img" aria-label="Portrait placeholder"></div>
+    <img class="ai-team-photo" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=480&h=480&auto=format&fit=crop&q=80" alt="Jonas Berg" />
     <div class="ai-team-name">Jonas Berg</div>
     <div class="ai-team-role">Engineering</div>
   </div>
   <div class="ai-team-member">
-    <div class="ai-team-photo" role="img" aria-label="Portrait placeholder"></div>
+    <img class="ai-team-photo" src="https://images.unsplash.com/photo-1582639849680-e2e89674e57b?w=480&h=480&auto=format&fit=crop&q=80" alt="Hana Sato" />
     <div class="ai-team-name">Hana Sato</div>
     <div class="ai-team-role">Design</div>
   </div>
@@ -2206,7 +2096,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'marketing',
     tier: 'free',
     tags: ['cookie', 'consent', 'privacy', 'bar'],
-    html: `<div class="ai-consent-bar" role="region" aria-label="Cookie preferences" style="position: static; max-width: 40rem;">
+    html: `<div class="ai-consent-bar ai-static ai-max-w-2xl" role="region" aria-label="Cookie preferences">
   <span>We use one analytics cookie to count visits. No advertising, no cross-site tracking.</span>
   <div class="ai-consent-actions">
     <button type="button" class="ai-btn ai-btn-ghost ai-btn-sm">Manage</button>
@@ -2249,7 +2139,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     tags: ['product', 'grid', 'listing', 'shop', 'ecommerce'],
     html: `<div class="ai-product-grid">
   <article class="ai-product-card">
-    <div class="ai-product-media" style="aspect-ratio: 4 / 3; background: var(--ai-surface-1);"></div>
+    <div class="ai-product-media"><img class="ai-product-img" src="https://images.unsplash.com/photo-1565999741380-5f78494ebf64?w=600&auto=format&fit=crop&q=80" alt="Field Notebook" /></div>
     <div class="ai-product-body">
       <div class="ai-level"><h3 class="ai-product-title">Field Notebook</h3><span class="ai-badge ai-badge-sale ai-badge-sm">Sale</span></div>
       <p class="ai-product-price"><span>$18</span> <s class="ai-product-compare-price">$24</s></p>
@@ -2257,15 +2147,15 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     </div>
   </article>
   <article class="ai-product-card">
-    <div class="ai-product-media" style="aspect-ratio: 4 / 3; background: var(--ai-surface-1);"></div>
+    <div class="ai-product-media"><img class="ai-product-img" src="https://images.unsplash.com/photo-1502043150060-b01aa3030556?w=600&auto=format&fit=crop&q=80" alt="Wooden Ruler" /></div>
     <div class="ai-product-body">
-      <h3 class="ai-product-title">Brass Ruler</h3>
+      <h3 class="ai-product-title">Wooden Ruler</h3>
       <p class="ai-product-price">$32</p>
       <button type="button" class="ai-btn ai-btn-primary ai-btn-sm ai-w-full">Add to cart</button>
     </div>
   </article>
   <article class="ai-product-card is-sold-out">
-    <div class="ai-product-media" style="aspect-ratio: 4 / 3; background: var(--ai-surface-1);"></div>
+    <div class="ai-product-media"><img class="ai-product-img" src="https://images.unsplash.com/photo-1629317297639-9201108cca3c?w=600&auto=format&fit=crop&q=80" alt="Desk Mat" /></div>
     <div class="ai-product-body">
       <h3 class="ai-product-title">Desk Mat</h3>
       <p class="ai-product-price">$48</p>
@@ -2402,69 +2292,13 @@ npx llmcss add kbd-shortcuts</code></pre>`,
   </div>
 </div>`,
   },
-  {
-    id: 'permission-dialog',
-    name: 'Permission Dialog',
-    description: 'Modal that asks the user to allow or deny a scoped agent action, with a per capability risk read and a remember for this session option.',
-    category: 'application',
-    tier: 'pro',
-    tags: ['agent', 'permission', 'modal', 'approval', 'security', 'pro'],
-    html: lockedPreview('Permission Dialog'),
-  },
-  {
-    id: 'diff-view',
-    name: 'Diff View',
-    description: 'Line level before and after diff with paired gutters, tinted added and removed rows, and a collapsed run of unchanged lines.',
-    category: 'application',
-    tier: 'pro',
-    tags: ['diff', 'code', 'review', 'agent', 'pro'],
-    html: lockedPreview('Diff View'),
-  },
-  {
-    id: 'split-pane',
-    name: 'Split Pane',
-    description: 'Two resizable panes joined by a keyboard adjustable separator, horizontal by default and stacked on the vertical variant.',
-    category: 'application',
-    tier: 'pro',
-    tags: ['layout', 'split', 'resize', 'panes', 'workspace', 'pro'],
-    html: lockedPreview('Split Pane'),
-  },
-  {
-    id: 'prompt-composer',
-    name: 'Prompt Composer',
-    description: 'Auto growing prompt textarea with a model chip, attachment chips, a token counter with a quota hint, and a send action.',
-    category: 'application',
-    tier: 'pro',
-    tags: ['prompt', 'composer', 'input', 'chat', 'agent', 'pro'],
-    html: lockedPreview('Prompt Composer'),
-  },
-  {
-    id: 'cost-meter',
-    name: 'Cost Meter',
-    description: 'Spend and token meter with warn and hard stop notches on the bar, a period label, and a projection at the current rate.',
-    category: 'application',
-    tier: 'pro',
-    tags: ['cost', 'budget', 'meter', 'usage', 'billing', 'pro'],
-    html: lockedPreview('Cost Meter'),
-  },
-  {
-    id: 'model-picker',
-    name: 'Model Picker',
-    description: 'Single choice model list showing provider, context window and price per million tokens, with the selected state driven entirely by CSS.',
-    category: 'application',
-    tier: 'pro',
-    tags: ['model', 'picker', 'radio', 'settings', 'agent', 'pro'],
-    html: lockedPreview('Model Picker'),
-  },
-  {
-    id: 'run-status-header',
-    name: 'Run Status Header',
-    description: 'Page header for a live agent run: title, run id, status pip, elapsed timer, step count and the run controls, plus a finished variant.',
-    category: 'application',
-    tier: 'pro',
-    tags: ['agent', 'run', 'status', 'header', 'telemetry', 'pro'],
-    html: lockedPreview('Run Status Header'),
-  },
+  ungatedById['permission-dialog'],
+  ungatedById['diff-view'],
+  ungatedById['split-pane'],
+  ungatedById['prompt-composer'],
+  ungatedById['cost-meter'],
+  ungatedById['model-picker'],
+  ungatedById['run-status-header'],
 ];
 
-export const components = [...baseComponents, ...extraComponents];
+export const components = [...baseComponents, ...extraComponents, ...themedComponents];

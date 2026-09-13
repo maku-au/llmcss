@@ -162,6 +162,8 @@
      Stepper Progress Indicator
      -------------------------------------------------------------------------- */
   .ai-stepper {
+    --ai-step-size: 2rem;
+    --ai-step-rail: 2px;
     display: flex;
     align-items: center;
     width: 100%;
@@ -172,17 +174,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1;
+    flex: 1 1 0;
+    min-width: 0;
     position: relative;
   }
 
   .ai-step-item:not(:last-child)::after {
     content: '';
     position: absolute;
-    top: 1rem;
+    top: calc((var(--ai-step-size) - var(--ai-step-rail)) / 2);
     left: 50%;
     width: 100%;
-    height: 2px;
+    height: var(--ai-step-rail);
     background-color: var(--ai-border);
     z-index: 1;
   }
@@ -192,8 +195,9 @@
   }
 
   .ai-step-circle {
-    width: 2rem;
-    height: 2rem;
+    width: var(--ai-step-size);
+    height: var(--ai-step-size);
+    flex: 0 0 auto;
     border-radius: 50%;
     background-color: var(--ai-surface-1);
     border: 2px solid var(--ai-border);
@@ -224,6 +228,7 @@
     font-weight: 500;
     color: var(--ai-text-secondary);
     margin-top: var(--ai-space-2);
+    text-align: center;
   }
 
   .ai-step-item.is-active .ai-step-label {
