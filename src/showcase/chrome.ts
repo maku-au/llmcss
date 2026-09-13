@@ -37,9 +37,9 @@ function navLink(href: string, id: string, label: string, cls = 'ai-nav-link', e
 
 function proCtaHtml(licensed: boolean): string {
   if (licensed) {
-    return `<a href="/account" class="ai-btn ai-btn-outline ai-btn-xs" id="pro-cta" style="height: 2rem;">Licensed</a>`;
+    return `<a href="/account" class="ai-btn ai-btn-outline ai-btn-sm" id="pro-cta">Licensed</a>`;
   }
-  return `<a href="/api/checkout.php" class="ai-btn ai-btn-primary ai-btn-xs" id="pro-cta" style="height: 2rem;">Get Pro · $9/mo</a>`;
+  return `<a href="/api/checkout.php" class="ai-btn ai-btn-primary ai-btn-sm" id="pro-cta">Get Pro · $9/mo</a>`;
 }
 
 export function applyTheme(theme: 'light' | 'dark') {
@@ -78,7 +78,7 @@ function hasStyler(): boolean {
 
 function stylerBtn(id: string, extraClass = ''): string {
   if (!hasStyler()) return '';
-  return `<button type="button" id="${id}" class="ai-btn ai-btn-outline ai-btn-xs ${extraClass}" data-ai-toggle="drawer" data-ai-target="#core-styler-drawer">Styler</button>`;
+  return `<button type="button" id="${id}" class="ai-btn ai-btn-outline ai-btn-sm ${extraClass}" data-ai-toggle="drawer" data-ai-target="#core-styler-drawer">Styler</button>`;
 }
 
 const NAV: Array<[string, string, string]> = [
@@ -91,12 +91,17 @@ const NAV: Array<[string, string, string]> = [
 
 const VERSION = typeof __LLMCSS_VERSION__ === 'string' ? __LLMCSS_VERSION__ : '';
 const CHANGELOG = 'https://github.com/maku-au/llmcss/blob/main/CHANGELOG.md';
+// Version sits between two vertical dividers as plain mono text, not a badge.
 const VERSION_BADGE = VERSION
-  ? `<a href="${CHANGELOG}" class="ai-badge ai-badge-mono ai-badge-sm ai-hidden ai-md:inline-flex" title="Changelog">v${VERSION}</a>`
+  ? `<span class="ai-hidden ai-md:inline-flex ai-items-center">
+      <span class="ai-divider-vertical"></span>
+      <a href="${CHANGELOG}" class="ai-font-mono ai-text-xs ai-text-muted ai-tabular" title="Changelog">v${VERSION}</a>
+      <span class="ai-divider-vertical"></span>
+    </span>`
   : '';
 
 const BRAND = `<a href="/" class="ai-brand">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0;"><rect x="3" y="3" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="9" y="9" width="12" height="12" rx="2.5" fill="currentColor"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="9" y="9" width="12" height="12" rx="2.5" fill="currentColor"/></svg>
       <span>LLMCSS</span>
     </a>`;
 
@@ -114,9 +119,9 @@ function headerHtml(licensed: boolean): string {
     ${search ? `<div class="ai-navbar-search ai-w-full ai-order-last ai-md:w-auto ai-md:order-none ai-md:ml-auto">${search}</div>` : ''}
     <div class="ai-flex ai-items-center ai-gap-2 ${search ? 'ai-ml-auto ai-md:ml-0' : 'ai-ml-auto'}">
       ${stylerBtn('open-styler-btn', 'ai-hidden ai-lg:inline-flex')}
-      <button type="button" id="theme-mode-toggle" class="ai-btn ai-btn-outline ai-btn-xs ai-btn-icon">${currentTheme() === 'dark' ? SUN : MOON}</button>
+      <button type="button" id="theme-mode-toggle" class="ai-btn ai-btn-outline ai-btn-sm ai-btn-icon">${currentTheme() === 'dark' ? SUN : MOON}</button>
       <span class="ai-hidden ai-lg:inline-flex">${proCtaHtml(licensed)}</span>
-      <button type="button" class="ai-btn ai-btn-outline ai-btn-xs ai-btn-icon ai-lg:hidden" id="site-menu-btn" data-ai-toggle="drawer" data-ai-target="#site-menu" aria-controls="site-menu" aria-expanded="false" aria-label="Open menu">${BURGER}</button>
+      <button type="button" class="ai-btn ai-btn-outline ai-btn-sm ai-btn-icon ai-lg:hidden" id="site-menu-btn" data-ai-toggle="drawer" data-ai-target="#site-menu" aria-controls="site-menu" aria-expanded="false" aria-label="Open menu">${BURGER}</button>
     </div>
   </div>`;
 }
@@ -133,7 +138,7 @@ function menuHtml(licensed: boolean): string {
     <div class="ai-drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
       <div class="ai-drawer-header">
         ${BRAND}
-        <button type="button" class="ai-btn ai-btn-ghost ai-btn-icon ai-btn-xs" data-ai-dismiss="drawer" aria-label="Close menu">${CLOSE}</button>
+        <button type="button" class="ai-btn ai-btn-ghost ai-btn-icon ai-btn-sm" data-ai-dismiss="drawer" aria-label="Close menu">${CLOSE}</button>
       </div>
       <nav class="ai-drawer-body ai-drawer-nav" aria-label="Primary">
         ${NAV.map(([href, id, label]) => navLink(href, id, label, 'ai-sidebar-item', ' data-ai-dismiss="drawer"')).join('\n        ')}
@@ -147,76 +152,84 @@ function menuHtml(licensed: boolean): string {
 
 export function footerHtml(): string {
   const s = catalogStats;
-  // Columns collapse into an accordion on small screens (library ai-footer-col pattern)
-  const chevron = `<svg class="ai-accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`;
+  // Columns collapse into an accordion below 768px (library ai-footer-col pattern).
+  const chevron = `<svg class="ai-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`;
   const col = (title: string, items: string[]) => `<div class="ai-footer-col ai-accordion-item">
-        <h4 class="ai-text-xs ai-font-semibold ai-text-muted"><button type="button" class="ai-footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">${title} ${chevron}</button></h4>
-        <ul class="ai-footer-list ai-accordion-content">
-          ${items.map((i) => `<li>${i}</li>`).join('\n          ')}
-        </ul>
-      </div>`;
-  const link = (href: string, label: string) => `<a href="${href}" class="ai-text-secondary">${label}</a>`;
-  return `<div class="ai-container ai-container-lg ai-footer-grid">
-      <div>
-        ${BRAND}
-        <p class="ai-text-secondary ai-text-xs" style="margin-top: var(--ai-space-3); max-width: 20rem; line-height: 1.6;">Native CSS for agents and humans. MIT core. Pro catalog $9/mo.</p>
-        <div class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-4);">&copy; 2026 LLMCSS. MIT core.${VERSION ? ` <a href="${CHANGELOG}" class="ai-link-muted">Version ${VERSION}</a>` : ''}</div>
+          <h4 class="ai-footer-heading"><button type="button" class="ai-footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">${title} ${chevron}</button></h4>
+          <ul class="ai-footer-list ai-accordion-content">
+            ${items.map((i) => `<li>${i}</li>`).join('\n            ')}
+          </ul>
+        </div>`;
+  // No colour utility on these links: utilities outrank the components layer,
+  // so ai-text-secondary would freeze the hover state. .ai-footer-list a owns both.
+  const link = (href: string, label: string) => `<a href="${href}">${label}</a>`;
+  const cmd = (href: string, label: string) => `<a href="${href}" class="ai-footer-cmd">${label}</a>`;
+  return `<div class="ai-container ai-container-lg">
+      <div class="ai-footer-grid">
+        <div class="ai-footer-brand">
+          ${BRAND}
+          <p class="ai-footer-blurb">Native CSS for agents and humans. Pro themed kits are $9 a month.</p>
+        </div>
+        ${col('Catalog', [
+          `${link('/components.html', `Components (<span data-ai-stat="total">${s.total}</span>)`)}<span class="ai-footer-stat">Free <span data-ai-stat="free">${s.free}</span> &middot; Pro <span data-ai-stat="pro">${s.pro}</span></span>`,
+          link('/templates.html', 'Templates'),
+          link('/#pricing', 'Pricing'),
+        ])}
+        ${col('Docs', [
+          link('/quickstart', 'Quickstart'),
+          link('/account', 'Account'),
+          link('/llms.txt', 'llms.txt'),
+          link('https://github.com/maku-au/llmcss', 'GitHub'),
+        ])}
+        ${col('CLI', [
+          cmd('/quickstart', 'npx llmcss add &lt;id&gt;'),
+          cmd('/quickstart', 'npx llmcss-mcp'),
+          `<span class="ai-footer-stat">Add any component, or run the MCP server.</span>`,
+        ])}
       </div>
-      ${col('Catalog', [
-        link('/components.html', `Components (${s.total})`),
-        link('/components.html', `Free ${s.free} · Pro ${s.pro}`),
-        link('/templates.html', 'Templates'),
-        link('/#pricing', 'Pricing'),
-      ])}
-      ${col('Docs', [
-        link('/quickstart', 'Quickstart'),
-        link('/account', 'Account'),
-        link('/llms.txt', 'llms.txt'),
-        link('https://github.com/maku-au/llmcss', 'GitHub'),
-      ])}
-      ${col('CLI', [
-        link('/quickstart', '<code class="ai-text-xs">npx llmcss add btn-variants</code>'),
-        link('/quickstart', '<code class="ai-text-xs">npx llmcss-mcp</code>'),
-      ])}
+      <div class="ai-footer-bottom">
+        <p>&copy; 2026 LLMCSS. Core released under the MIT License.</p>
+        ${VERSION ? `<a href="${CHANGELOG}" class="ai-font-mono ai-tabular" title="Changelog">v${VERSION}</a>` : ''}
+      </div>
   </div>`;
 }
 
 export function proOfferHtml(): string {
   return `<div class="ai-grid ai-grid-cols-1 ai-md:grid-cols-2 ai-gap-6">
-    <div class="ai-card" style="padding: var(--ai-space-8);">
+    <div class="ai-card ai-p-8">
       <div class="ai-flex ai-justify-between ai-items-center">
         <h3 class="ai-card-title">Community</h3>
         <span class="ai-badge ai-badge-neutral">MIT</span>
       </div>
-      <div class="ai-pricing-amount" style="margin: var(--ai-space-4) 0;">
-        <span class="ai-pricing-price" style="font-size: 2.5rem; font-weight: 700;">$0</span>
+      <div class="ai-pricing-amount">
+        <span class="ai-pricing-price">$0</span>
         <span class="ai-pricing-period">/ forever</span>
       </div>
-      <ul class="ai-pricing-features" style="list-style: none; display: flex; flex-direction: column; gap: var(--ai-space-3); font-size: 0.875rem;">
-        <li>Token layer, primitives, docs, gallery</li>
+      <ul class="ai-pricing-features">
+        <li>Full component catalog, wireframes, skins</li>
         <li>Free registry and local MCP</li>
         <li><code class="ai-text-xs">npx llmcss add btn-variants</code></li>
       </ul>
-      <a href="/components" class="ai-btn ai-btn-outline ai-w-full" style="margin-top: var(--ai-space-6);">Browse free components</a>
+      <a href="/components" class="ai-btn ai-btn-outline ai-w-full ai-mt-6">Browse free components</a>
     </div>
-    <div class="ai-card ai-card-pro" style="padding: var(--ai-space-8); border: 1px solid var(--ai-border-strong); box-shadow: var(--ai-shadow-md);">
+    <div class="ai-card ai-card-pro ai-p-8 ai-shadow-md">
       <div class="ai-flex ai-justify-between ai-items-center">
         <h3 class="ai-card-title">Pro</h3>
         <span class="ai-badge ai-badge-solid">$9/mo</span>
       </div>
-      <div class="ai-pricing-amount" style="margin: var(--ai-space-4) 0;">
-        <span class="ai-pricing-price" style="font-size: 2.5rem; font-weight: 700;">$9</span>
+      <div class="ai-pricing-amount">
+        <span class="ai-pricing-price">$9</span>
         <span class="ai-pricing-period">/ month</span>
       </div>
-      <ul class="ai-pricing-features" style="list-style: none; display: flex; flex-direction: column; gap: var(--ai-space-3); font-size: 0.875rem;">
-        <li>Token-gated Pro registry</li>
-        <li>Zip backup of the Pro catalog</li>
-        <li>Monthly Polar subscription. Token is revoked at period end.</li>
+      <ul class="ai-pricing-features">
+        <li>Themed section templates and page kits</li>
+        <li>Themed composed blocks (editorial, fintech, obsidian)</li>
+        <li>Token-gated registry, MCP, and zip backup</li>
       </ul>
-      <a href="/api/checkout.php" class="ai-btn ai-btn-primary ai-w-full" style="margin-top: var(--ai-space-6);">Get Pro · $9/mo</a>
+      <a href="/api/checkout.php" class="ai-btn ai-btn-primary ai-w-full ai-mt-6">Get Pro · $9/mo</a>
     </div>
   </div>
-  <p class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-8); text-align: center; max-width: 36rem; margin-left: auto; margin-right: auto;">
+  <p class="ai-text-xs ai-text-muted ai-mt-8 ai-text-center ai-max-w-xl ai-mx-auto">
     Digital goods. Refunds follow Polar policy. MIT core stays free. Checkout via Polar.
   </p>`;
 }

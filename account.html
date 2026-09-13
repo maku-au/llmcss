@@ -31,29 +31,29 @@
 <body>
   <a class="ai-skip-link" href="#main">Skip to content</a>
   <header id="site-header" class="ai-navbar"></header>
-  <main id="main" class="ai-container" style="max-width: 40rem; padding: var(--ai-space-16) var(--ai-space-4) var(--ai-space-24);">
-    <h1>Your license</h1>
-    <p class="ai-text-secondary" style="margin-top: var(--ai-space-2);">
-      Pro is a <strong>$9/month</strong> Polar subscription. The key is shown once after payment. Refunds follow
+  <main id="main" class="ai-container ai-max-w-2xl ai-pt-16 ai-px-4 ai-pb-24">
+    <h1 class="ai-text-2xl ai-leading-tight ai-tracking-tight">Your license</h1>
+    <p class="ai-text-secondary ai-mt-2">
+      Pro is a <strong>$9/month</strong> Polar subscription for themed templates and kits. The key is shown once after payment. Refunds follow
       <a href="https://polar.sh">Polar</a> policy. Questions: webmaster@llmcss.io
     </p>
 
-    <div id="status-box" class="ai-card" style="padding: var(--ai-space-6); margin-top: var(--ai-space-8); display: none;"></div>
-    <div id="reveal-box" class="ai-card" style="padding: var(--ai-space-6); margin-top: var(--ai-space-6); display: none;"></div>
+    <div id="status-box" class="ai-card ai-p-6 ai-mt-8" hidden></div>
+    <div id="reveal-box" class="ai-card ai-p-6 ai-mt-6" hidden></div>
 
-    <div class="ai-card" style="padding: var(--ai-space-6); margin-top: var(--ai-space-6);">
+    <div class="ai-card ai-p-6 ai-mt-6">
       <h2 class="ai-card-title">Paste a token</h2>
-      <form id="validate-form" class="ai-flex ai-flex-col ai-gap-3" style="margin-top: var(--ai-space-4);">
+      <form id="validate-form" class="ai-flex ai-flex-col ai-gap-3 ai-mt-4">
         <input id="token-input" class="ai-input" type="text" autocomplete="off" placeholder="llmcss_live_..." />
         <button class="ai-btn ai-btn-primary" type="submit" id="validate-btn">Validate</button>
       </form>
-      <p id="validate-out" class="ai-text-sm" style="margin-top: var(--ai-space-3);"></p>
+      <p id="validate-out" class="ai-text-sm ai-mt-3"></p>
     </div>
 
-    <div class="ai-card" style="padding: var(--ai-space-6); margin-top: var(--ai-space-6);">
+    <div class="ai-card ai-p-6 ai-mt-6">
       <h2 class="ai-card-title">Use it</h2>
-      <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-2);">Unlock Pro in the <a href="/components">gallery</a>, or in the CLI:</p>
-      <pre style="margin-top: var(--ai-space-3); font-size: 0.8125rem; overflow-x: auto;"><code>npx llmcss login &lt;token&gt;
+      <p class="ai-text-sm ai-text-secondary ai-mt-2">Unlock themed templates in the <a href="/templates">gallery</a>, or in the CLI:</p>
+      <pre class="ai-mt-3"><code>npx llmcss login &lt;token&gt;
 npx llmcss add tool-trace</code></pre>
     </div>
   </main>

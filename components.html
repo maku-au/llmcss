@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Components | LLMCSS UI Framework</title>
-  <meta name="description" content="Free and Pro UI components in native CSS. Copy HTML, use the CLI, or point an agent at the registry." />
+  <meta name="description" content="Free MIT UI components in native CSS, plus a few themed Pro blocks. Copy HTML, use the CLI, or point an agent at the registry." />
   <meta property="og:title" content="Components | LLMCSS" />
-  <meta property="og:description" content="Free and Pro UI components in native CSS. Copy HTML, use the CLI, or point an agent at the registry." />
+  <meta property="og:description" content="Free MIT UI components in native CSS, plus a few themed Pro blocks. Copy HTML, use the CLI, or point an agent at the registry." />
   <meta property="og:url" content="https://llmcss.io/components" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://llmcss.io/og.png" />
@@ -35,40 +35,39 @@
   
 
   <!-- ==========================================================================
-       INTERACTIVE COMPONENT COLLECTION EXPLORER (#collection)
+       PAGE HEADER (matches templates.html)
        ========================================================================== -->
-  <section class="ai-docs-section" id="collection">
-    <div class="ai-container" style="max-width: 1440px;">
-      <!-- Collection Header & Viewport Simulator Controls -->
-      <div class="ai-flex ai-justify-between ai-items-end ai-flex-wrap ai-gap-6" style="margin-bottom: var(--ai-space-8); padding-bottom: var(--ai-space-6); border-bottom: 1px solid var(--ai-border);">
-        <div>
-          <h2 class="ai-font-display" style="font-size: clamp(1.75rem, 3.5vw, 2.25rem); font-weight: 700; letter-spacing: -0.03em;">
-            Browse the LLMCSS Component Library
-          </h2>
-          <p class="ai-text-secondary ai-text-sm" style="margin-top: 0.25rem;">
-            Copy HTML from the catalog. <span id="catalog-result-count"></span>
+  <section class="ai-docs-hero-compact">
+    <div class="ai-container ai-container-lg">
+      <div class="ai-flex ai-justify-between ai-items-end ai-flex-wrap ai-gap-4">
+        <div class="ai-min-w-0">
+          <h1 class="ai-text-2xl ai-leading-tight ai-tracking-tight">Component library</h1>
+          <p class="ai-text-sm ai-text-muted ai-mt-1">
+            <span class="ai-docs-meta-figure" id="catalog-result-count"></span>Copy the HTML, or add it with the CLI.
           </p>
         </div>
-
-        <!-- Viewport Simulator -->
-        <div class="ai-flex ai-flex-wrap ai-items-center ai-gap-3" style="background-color: var(--ai-surface-1); border: 1px solid var(--ai-border); border-radius: var(--ai-radius-md); padding: var(--ai-space-2) var(--ai-space-3); display: flex; align-items: center; gap: var(--ai-space-3);">
-          <span class="ai-text-xs ai-font-medium ai-text-muted">Viewport:</span>
-          <div class="ai-flex ai-gap-1">
-            <button class="ai-btn ai-btn-outline ai-btn-xs viewport-btn is-active" data-width="100%">Desktop (100%)</button>
-            <button class="ai-btn ai-btn-outline ai-btn-xs viewport-btn" data-width="768px">Tablet (768px)</button>
-            <button class="ai-btn ai-btn-outline ai-btn-xs viewport-btn" data-width="375px">Mobile (375px)</button>
-          </div>
+        <div class="ai-segmented" role="group" aria-label="Preview width">
+          <button type="button" class="ai-segmented-btn viewport-btn is-active" data-width="100%">Full</button>
+          <button type="button" class="ai-segmented-btn viewport-btn" data-width="768px">768</button>
+          <button type="button" class="ai-segmented-btn viewport-btn" data-width="375px">375</button>
         </div>
       </div>
+    </div>
+  </section>
 
+  <!-- ==========================================================================
+       COMPONENT CATALOG (#collection)
+       ========================================================================== -->
+  <section class="ai-docs-section ai-pt-8" id="collection">
+    <div class="ai-container ai-container-lg">
       <!-- Main Showcase Layout: Sidebar Filter + Stream -->
       <div class="ai-docs-layout">
         <!-- Sidebar Navigation Filter -->
         <aside class="ai-docs-sidebar">
           <div class="ai-flex ai-flex-col ai-gap-4">
             <div>
-              <span class="ai-text-xs ai-font-sans ai-font-semibold ai-text-muted" style="text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.6875rem; display: block; margin-bottom: 0.35rem; padding: 0 0.5rem;">Components</span>
-              <div class="ai-flex ai-flex-col" style="gap: 1px;">
+              <span class="ai-docs-nav-label">Components</span>
+              <div class="ai-docs-nav-stack">
                 <button class="ai-docs-nav-btn is-active filter-category" data-cat="all">
                   <span>All</span>
                   <span class="ai-docs-count" id="count-all"></span>
@@ -92,9 +91,9 @@
               </div>
             </div>
 
-            <div style="border-top: 1px solid var(--ai-border-subtle); padding-top: var(--ai-space-3);">
-              <span class="ai-text-xs ai-font-sans ai-font-semibold ai-text-muted" style="text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.6875rem; display: block; margin-bottom: 0.35rem; padding: 0 0.5rem;">Tiers</span>
-              <div class="ai-flex ai-flex-col" style="gap: 1px;">
+            <div class="ai-docs-nav-group">
+              <span class="ai-docs-nav-label">Tiers</span>
+              <div class="ai-docs-nav-stack">
                 <button class="ai-docs-nav-btn filter-tier is-active" data-tier="all">
                   <span>All Tiers</span>
                   <span class="ai-docs-count" id="count-tier-all"></span>
@@ -105,26 +104,26 @@
                 </button>
                 <button class="ai-docs-nav-btn filter-tier" data-tier="pro">
                   <span>Pro</span>
-                  <span class="ai-docs-count" id="count-tier-pro">13</span>
-                  <span style="font-family: var(--ai-font-sans); font-size: 0.625rem; font-weight: 700; color: var(--ai-text-muted); border: 1px solid var(--ai-border); border-radius: 3px; padding: 0 4px; line-height: 1.4;">PRO</span>
+                  <span class="ai-docs-count" id="count-tier-pro">3</span>
+                  <span class="ai-docs-pro-tag">PRO</span>
                 </button>
               </div>
             </div>
 
-            <div style="border-top: 1px solid var(--ai-border-subtle); padding-top: var(--ai-space-3);">
-              <span class="ai-text-xs ai-font-sans ai-font-semibold ai-text-muted" style="text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.6875rem; display: block; margin-bottom: 0.35rem; padding: 0 0.5rem;">Endpoints</span>
-              <div class="ai-flex ai-flex-col" style="gap: 1px;">
+            <div class="ai-docs-nav-group">
+              <span class="ai-docs-nav-label">Endpoints</span>
+              <div class="ai-docs-nav-stack">
                 <a href="/llms.txt" target="_blank" class="ai-docs-link" title="Open llms.txt">
                   <span>llms.txt</span>
-                  <span style="font-size: 0.6875rem; color: var(--ai-text-muted); font-family: var(--ai-font-sans);">Index</span>
+                  <span class="ai-docs-link-tag">Index</span>
                 </a>
                 <a href="/llms-full.txt" target="_blank" class="ai-docs-link" title="Open llms-full.txt">
                   <span>llms-full.txt</span>
-                  <span style="font-size: 0.6875rem; color: var(--ai-text-muted); font-family: var(--ai-font-sans);">Full</span>
+                  <span class="ai-docs-link-tag">Full</span>
                 </a>
                 <a href="/registry.json" target="_blank" class="ai-docs-link" title="Open registry.json">
                   <span>registry.json</span>
-                  <span style="font-size: 0.6875rem; color: var(--ai-text-muted); font-family: var(--ai-font-sans);">JSON</span>
+                  <span class="ai-docs-link-tag">JSON</span>
                 </a>
               </div>
             </div>
@@ -132,11 +131,11 @@
         </aside>
 
         <!-- Components Stream -->
-        <main style="min-width: 0;">
+        <div class="ai-min-w-0">
           <div id="components-stream">
             <!-- Rendered dynamically by main.ts -->
           </div>
-        </main>
+        </div>
       </div>
     </div>
   </section>
@@ -144,13 +143,13 @@
   <!-- ==========================================================================
        PRICING & FREEMIUM TIERS (#pricing)
        ========================================================================== -->
-  <section id="pricing" style="padding: var(--ai-space-24) 0; border-top: 1px solid var(--ai-border); background: var(--ai-surface-1);">
-    <div class="ai-container" style="max-width: 1080px;">
-      <div class="ai-text-center" style="max-width: 44rem; margin: 0 auto var(--ai-space-12);">
-        <h2 class="ai-font-display" style="font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 700; letter-spacing: -0.03em;">
+  <section id="pricing" class="ai-section ai-section-shift ai-border-t">
+    <div class="ai-container ai-container-md">
+      <div class="ai-text-center ai-max-w-2xl ai-mx-auto ai-mb-12">
+        <h2 class="ai-font-display ai-font-bold">
           Free MIT core. Pro is $9/month.
         </h2>
-        <p class="ai-text-secondary" style="margin-top: var(--ai-space-2);">
+        <p class="ai-text-secondary ai-mt-2">
           You keep the CSS you copy. Pro is a subscription catalog, not a lock-in runtime.
         </p>
       </div>
@@ -158,17 +157,17 @@
       <div hidden>
       <div class="ai-grid ai-grid-cols-1 ai-md:grid-cols-2 ai-gap-6">
         <!-- Free Tier Card -->
-        <div class="ai-card" style="padding: var(--ai-space-8); border: 1px solid var(--ai-border); background: var(--ai-surface-0);">
+        <div class="ai-card ai-p-8">
           <div class="ai-flex ai-justify-between ai-items-center">
             <h3 class="ai-card-title">Community (Free)</h3>
             <span class="ai-badge ai-badge-neutral">MIT License</span>
           </div>
-          <div class="ai-pricing-amount" style="margin: var(--ai-space-4) 0;">
-            <span class="ai-pricing-price" style="font-size: 2.5rem; font-weight: 700;">$0</span>
-            <span class="ai-pricing-period" style="color: var(--ai-text-secondary);">/ forever</span>
+          <div class="ai-pricing-amount">
+            <span class="ai-pricing-price ai-text-4xl ai-font-bold">$0</span>
+            <span class="ai-pricing-period ai-text-secondary">/ forever</span>
           </div>
           <p class="ai-text-sm ai-text-secondary">Everything needed to build production web applications.</p>
-          <ul class="ai-pricing-features" style="margin: var(--ai-space-6) 0; list-style: none; display: flex; flex-direction: column; gap: var(--ai-space-3); font-size: 0.875rem;">
+          <ul class="ai-pricing-features ai-my-6">
             <li>✓ Full Modern CSS Engine (`@layer`)</li>
             <li>✓ 31 Essential Free Primitives &amp; Sections</li>
             <li>✓ Complete Animation &amp; Motion Primitives</li>
@@ -180,30 +179,29 @@
         </div>
 
         <!-- Pro Tier Card -->
-        <div class="ai-card ai-card-pro" style="padding: var(--ai-space-8); border: 1px solid var(--ai-border-strong); background: var(--ai-surface-0); position: relative; box-shadow: var(--ai-shadow-md);">
+        <div class="ai-card ai-card-pro ai-p-8 ai-shadow-md">
           <div class="ai-flex ai-justify-between ai-items-center">
             <h3 class="ai-card-title">LLMCSS Pro</h3>
             <span class="ai-badge ai-badge-solid">RECOMMENDED</span>
           </div>
-          <div class="ai-pricing-amount" style="margin: var(--ai-space-4) 0;">
-            <span class="ai-pricing-price" style="font-size: 2.5rem; font-weight: 700;">$9</span>
-            <span class="ai-pricing-period" style="color: var(--ai-text-secondary);">/ month</span>
+          <div class="ai-pricing-amount">
+            <span class="ai-pricing-price ai-text-4xl ai-font-bold">$9</span>
+            <span class="ai-pricing-period ai-text-secondary">/ month</span>
           </div>
           <p class="ai-text-sm ai-text-secondary">For professional engineers, agencies, and autonomous agent workflows.</p>
-          <ul class="ai-pricing-features" style="margin: var(--ai-space-6) 0; list-style: none; display: flex; flex-direction: column; gap: var(--ai-space-3); font-size: 0.875rem;">
+          <ul class="ai-pricing-features ai-my-6">
             <li>✓ Everything in Community</li>
-            <li>✓ Pro bento, command palette, cart, chat thread, and upcoming agent shells</li>
-            <li>✓ Enterprise Comparison Matrices &amp; AI Chat Threads</li>
-            <li>✓ Private CLI Token Authentication (`llmcss login`)</li>
-            <li>✓ Full SaaS Dashboard Templates &amp; E-Commerce Flows</li>
-            <li>✓ Priority MCP Server Endpoints &amp; Support</li>
+            <li>✓ Themed section templates and page kits</li>
+            <li>✓ Skin-specific composed blocks</li>
+            <li>✓ Private CLI token (`llmcss login`)</li>
+            <li>✓ Token-gated registry, MCP, and zip backup</li>
           </ul>
           <a href="/api/checkout.php" class="ai-btn ai-btn-primary ai-w-full">
             Subscribe ($9/mo USD)
           </a>
         </div>
       </div>
-      <p class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-8); text-align: center; max-width: 36rem; margin-left: auto; margin-right: auto;">
+      <p class="ai-text-xs ai-text-muted ai-text-center ai-mt-8 ai-max-w-xl ai-mx-auto">
         Digital goods: Pro is a downloadable catalog. Refunds follow Polar’s policy. The MIT core stays free either way.
       </p>
     </div>
@@ -212,66 +210,58 @@
   <!-- ==========================================================================
        FAQ SECTION
        ========================================================================== -->
-  <section style="padding: var(--ai-space-24) 0; border-top: 1px solid var(--ai-border); background: var(--ai-surface-0);">
-    <div class="ai-container" style="max-width: 860px;">
-      <div class="ai-text-center" style="margin-bottom: var(--ai-space-10);">
-        <h2 class="ai-font-display" style="font-size: 2rem; font-weight: 700; letter-spacing: -0.03em;">
+  <section class="ai-section ai-surface-0 ai-border-t">
+    <div class="ai-container ai-max-w-4xl">
+      <div class="ai-text-center ai-mb-10">
+        <h2 class="ai-font-display ai-font-bold ai-tracking-tight">
           Frequently Asked Questions
         </h2>
       </div>
 
-      <div class="ai-accordion" style="max-width: 860px; margin: 0 auto;">
+      <div class="ai-accordion ai-mx-auto">
         <div class="ai-accordion-item">
-          <button class="ai-accordion-trigger" data-ai-toggle="accordion" data-ai-target="#faq-1">
+          <button type="button" class="ai-accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-1">
             <span>How does LLMCSS avoid the generic "AI-generated" look?</span>
-            <span class="ai-accordion-chevron">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-            </span>
+            <svg class="ai-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div class="ai-accordion-content" id="faq-1">
-            <p class="ai-text-sm ai-text-secondary" style="padding: var(--ai-space-4) 0; line-height: 1.6;">
+            <p>
               Most AI models default to electric blue/purple gradients, huge rounded pill buttons, and arbitrary utility classes. LLMCSS enforces human craftsmanship through crisp architectural radii (2px-10px), subtle physical borders, real elevation physics, and expressive display typography.
             </p>
           </div>
         </div>
 
         <div class="ai-accordion-item">
-          <button class="ai-accordion-trigger" data-ai-toggle="accordion" data-ai-target="#faq-2">
+          <button type="button" class="ai-accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-2">
             <span>Why is pure CSS with variables better for LLMs than Tailwind?</span>
-            <span class="ai-accordion-chevron">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-            </span>
+            <svg class="ai-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div class="ai-accordion-content" id="faq-2">
-            <p class="ai-text-sm ai-text-secondary" style="padding: var(--ai-space-4) 0; line-height: 1.6;">
+            <p>
               Tailwind requires LLMs to output 40 to 80 class names per card, consuming huge context budgets and causing frequent class name hallucinations. LLMCSS uses semantic class composition (e.g. <code>ai-kpi-card</code>) with CSS variables, reducing prompt token generation by approximately 68%.
             </p>
           </div>
         </div>
 
         <div class="ai-accordion-item">
-          <button class="ai-accordion-trigger" data-ai-toggle="accordion" data-ai-target="#faq-3">
+          <button type="button" class="ai-accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-3">
             <span>Do I need a build step or Node.js to use LLMCSS?</span>
-            <span class="ai-accordion-chevron">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-            </span>
+            <svg class="ai-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div class="ai-accordion-content" id="faq-3">
-            <p class="ai-text-sm ai-text-secondary" style="padding: var(--ai-space-4) 0; line-height: 1.6;">
+            <p>
               No. LLMCSS is written in standard modern CSS using <code>@layer</code> and CSS variables. You can import it directly via static stylesheet link, CDN, or install it via the CLI.
             </p>
           </div>
         </div>
 
         <div class="ai-accordion-item">
-          <button class="ai-accordion-trigger" data-ai-toggle="accordion" data-ai-target="#faq-4">
+          <button type="button" class="ai-accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-4">
             <span>How do autonomous agents connect via MCP?</span>
-            <span class="ai-accordion-chevron">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-            </span>
+            <svg class="ai-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div class="ai-accordion-content" id="faq-4">
-            <p class="ai-text-sm ai-text-secondary" style="padding: var(--ai-space-4) 0; line-height: 1.6;">
+            <p>
               Configure <code>npx llmcss-mcp</code> in your editor or agent environment. The stdio MCP server gives coding agents direct tools to search components, inspect semantic markup, and validate CSS against design tokens.
             </p>
           </div>
@@ -290,14 +280,14 @@
     <div class="ai-modal-backdrop" data-ai-dismiss="modal"></div>
     <div class="ai-modal-box">
       <div class="ai-modal-header">
-        <h3 style="font-size: 1rem; font-weight: 700; margin: 0;">Activate Pro license</h3>
+        <h3 class="ai-modal-title">Activate Pro license</h3>
         <button class="ai-modal-close" data-ai-dismiss="modal" type="button">&times;</button>
       </div>
       <div class="ai-modal-body">
         <p class="ai-text-sm ai-text-secondary">Paste your <code>llmcss_live_</code> token to unlock Pro markup in this gallery.</p>
-        <input id="license-token-input" class="ai-input" type="text" autocomplete="off" placeholder="llmcss_live_..." style="margin-top: var(--ai-space-4);" />
-        <p id="license-status" class="ai-text-sm" style="margin-top: var(--ai-space-3);"></p>
-        <div class="ai-flex ai-gap-2" style="margin-top: var(--ai-space-4);">
+        <input id="license-token-input" class="ai-input ai-mt-4" type="text" autocomplete="off" placeholder="llmcss_live_..." />
+        <p id="license-status" class="ai-text-sm ai-mt-3"></p>
+        <div class="ai-flex ai-gap-2 ai-mt-4">
           <button type="button" class="ai-btn ai-btn-primary" id="license-activate-btn">Activate</button>
           <a href="/api/checkout.php" class="ai-btn ai-btn-outline">Get Pro</a>
         </div>
@@ -309,34 +299,34 @@
     <div class="ai-modal-backdrop" data-ai-dismiss="modal"></div>
     <div class="ai-modal-box ai-modal-box-lg">
       <div class="ai-modal-header">
-        <h3 style="font-size: 1rem; font-weight: 700; margin: 0; color: var(--ai-text-primary);">LLMCSS Pro</h3>
+        <h3 class="ai-modal-title">LLMCSS Pro</h3>
         <button class="ai-modal-close" data-ai-dismiss="modal">&times;</button>
       </div>
       <div class="ai-modal-body">
-        <div class="ai-text-center" style="margin-bottom: var(--ai-space-6);">
-          <h2 style="font-size: 1.75rem;">Unlock the Pro catalog</h2>
-          <p class="ai-text-secondary" style="margin-top: 0.25rem;">
+        <div class="ai-text-center ai-mb-6">
+          <h2 class="ai-text-2xl">Unlock the Pro catalog</h2>
+          <p class="ai-text-secondary ai-mt-1">
             License token + zip after Polar checkout. Cancel anytime. Digital goods: see the refund note on this page.
           </p>
         </div>
 
-        <div class="ai-card ai-card-pro" style="padding: var(--ai-space-6); border: 1px solid var(--ai-border-strong); max-width: 28rem; margin: 0 auto;">
+        <div class="ai-card ai-card-pro ai-p-6 ai-max-w-md ai-mx-auto">
           <div class="ai-flex ai-justify-between ai-items-center">
             <h3 class="ai-card-title">Pro</h3>
             <span class="ai-badge ai-badge-solid">$9 / month</span>
           </div>
-          <div class="ai-pricing-amount" style="margin: var(--ai-space-3) 0;">
-            <span class="ai-pricing-price" style="font-size: 2.25rem;">$9</span>
+          <div class="ai-pricing-amount ai-my-3">
+            <span class="ai-pricing-price ai-text-4xl">$9</span>
             <span class="ai-pricing-period">/ month</span>
           </div>
           <p class="ai-text-sm ai-text-secondary">Billed monthly via Polar. Token is shown once on the success page.</p>
-          <ul class="ai-pricing-features" style="margin: var(--ai-space-4) 0; list-style: none; display: flex; flex-direction: column; gap: var(--ai-space-2); font-size: 0.8125rem;">
-            <li>✓ All Pro sections and templates</li>
+          <ul class="ai-pricing-features ai-my-4 ai-gap-2">
+            <li>✓ Themed section templates and page kits</li>
             <li>✓ Token-gated registry + MCP</li>
             <li>✓ Zip backup of the Pro catalog</li>
           </ul>
           <a href="/api/checkout.php" class="ai-btn ai-btn-primary ai-w-full">Subscribe with Polar ($9/mo)</a>
-          <p class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-3);">You will return to <a href="/account">/account</a> with a one-time token.</p>
+          <p class="ai-text-xs ai-text-muted ai-mt-3">You will return to <a href="/account">/account</a> with a one-time token.</p>
         </div>
       </div>
     </div>
@@ -348,21 +338,21 @@
   <div class="ai-drawer ai-drawer-no-lock" id="core-styler-drawer">
     <div class="ai-drawer-backdrop" data-ai-dismiss="drawer"></div>
     <div class="ai-drawer-panel">
-      <div class="ai-drawer-header" style="padding: 1.125rem 1.5rem; border-bottom: 1px solid var(--ai-border);">
+      <div class="ai-drawer-header">
         <div class="ai-flex ai-items-center ai-gap-2">
-          <span style="font-size: 0.9375rem; font-weight: 600; color: var(--ai-text-primary); letter-spacing: -0.01em;">Theme &amp; Token Canvas</span>
+          <span class="ai-styler-title">Theme &amp; Token Canvas</span>
         </div>
         <div class="ai-flex ai-items-center ai-gap-2">
           <button id="styler-theme-toggle" class="ai-btn ai-btn-ghost ai-btn-icon ai-btn-xs" title="Toggle Light/Dark Mode">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
           </button>
-          <button class="ai-btn ai-btn-ghost ai-btn-icon ai-btn-xs" data-ai-dismiss="drawer" aria-label="Close Styler" style="color: var(--ai-text-muted);">
+          <button class="ai-btn ai-btn-ghost ai-btn-icon ai-btn-xs ai-text-muted" data-ai-dismiss="drawer" aria-label="Close Styler">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
           </button>
         </div>
       </div>
 
-      <div class="ai-drawer-body" style="overflow-y: auto; padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1.25rem;">
+      <div class="ai-drawer-body">
         <!-- 1. Theme Palette -->
         <div class="ai-styler-section">
           <div class="ai-styler-section-header">
@@ -371,27 +361,27 @@
           </div>
           <div class="ai-styler-theme-grid" id="styler-theme-grid">
             <button class="ai-styler-theme-btn is-active" data-skin="modern">
-              <span class="ai-styler-swatch-pip" style="background: #2563eb;"></span>
+              <span class="ai-styler-swatch-pip"></span>
               <span class="ai-styler-theme-name">Minimal</span>
             </button>
             <button class="ai-styler-theme-btn" data-skin="executive">
-              <span class="ai-styler-swatch-pip" style="background: #0f172a;"></span>
+              <span class="ai-styler-swatch-pip"></span>
               <span class="ai-styler-theme-name">Slate</span>
             </button>
             <button class="ai-styler-theme-btn" data-skin="fintech">
-              <span class="ai-styler-swatch-pip" style="background: #0f766e;"></span>
+              <span class="ai-styler-swatch-pip"></span>
               <span class="ai-styler-theme-name">Titanium</span>
             </button>
             <button class="ai-styler-theme-btn" data-skin="obsidian">
-              <span class="ai-styler-swatch-pip" style="background: #09090b; box-shadow: 0 0 0 1px rgba(255,255,255,0.3);"></span>
+              <span class="ai-styler-swatch-pip"></span>
               <span class="ai-styler-theme-name">Obsidian</span>
             </button>
             <button class="ai-styler-theme-btn" data-skin="editorial">
-              <span class="ai-styler-swatch-pip" style="background: #8c4a27;"></span>
+              <span class="ai-styler-swatch-pip"></span>
               <span class="ai-styler-theme-name">Editorial</span>
             </button>
             <button class="ai-styler-theme-btn" data-skin="enterprise">
-              <span class="ai-styler-swatch-pip" style="background: #0284c7;"></span>
+              <span class="ai-styler-swatch-pip"></span>
               <span class="ai-styler-theme-name">Enterprise</span>
             </button>
           </div>
@@ -453,36 +443,36 @@
             <span class="ai-styler-section-title">Primary Accent</span>
           </div>
           <div class="ai-styler-swatch-row">
-            <button class="ai-styler-accent-swatch is-active" data-accent="default" style="background: #2563eb;" title="Default Blue"></button>
-            <button class="ai-styler-accent-swatch" data-accent="steel" style="background: #475569;" title="Slate Steel"></button>
-            <button class="ai-styler-accent-swatch" data-accent="teal" style="background: #0f766e;" title="Fintech Teal"></button>
-            <button class="ai-styler-accent-swatch" data-accent="emerald" style="background: #059669;" title="Emerald"></button>
-            <button class="ai-styler-accent-swatch" data-accent="violet" style="background: #7c3aed;" title="Violet"></button>
-            <button class="ai-styler-accent-swatch" data-accent="rose" style="background: #e11d48;" title="Rose"></button>
-            <button class="ai-styler-accent-swatch" data-accent="amber" style="background: #d97706;" title="Amber"></button>
+            <button class="ai-styler-accent-swatch is-active" data-accent="default" title="Default Blue"></button>
+            <button class="ai-styler-accent-swatch" data-accent="steel" title="Slate Steel"></button>
+            <button class="ai-styler-accent-swatch" data-accent="teal" title="Fintech Teal"></button>
+            <button class="ai-styler-accent-swatch" data-accent="emerald" title="Emerald"></button>
+            <button class="ai-styler-accent-swatch" data-accent="violet" title="Violet"></button>
+            <button class="ai-styler-accent-swatch" data-accent="rose" title="Rose"></button>
+            <button class="ai-styler-accent-swatch" data-accent="amber" title="Amber"></button>
           </div>
         </div>
 
         <!-- 5. Token Export Blueprint -->
-        <div class="ai-styler-section" style="border-top: 1px solid var(--ai-border-subtle); padding-top: var(--ai-space-4);">
+        <div class="ai-styler-section ai-styler-section-divided">
           <div class="ai-flex ai-justify-between ai-items-center">
             <span class="ai-styler-section-title">CSS Blueprint</span>
             <button class="ai-btn ai-btn-outline ai-btn-xs" id="copy-styler-css-btn">Copy CSS</button>
           </div>
-          <details class="ai-styler-code-disclosure" style="margin-top: 0.25rem;">
-            <summary class="ai-text-xs ai-text-muted" style="cursor: pointer; user-select: none; display: flex; align-items: center; gap: 0.25rem;">
+          <details class="ai-styler-code-disclosure ai-mt-1">
+            <summary class="ai-text-xs ai-text-muted">
               <span>View generated :root tokens</span>
-              <span style="font-size: 0.75rem;">▾</span>
+              <span class="ai-styler-code-caret">▾</span>
             </summary>
-            <pre style="margin-top: 0.5rem; background: var(--ai-surface-1); border: 1px solid var(--ai-border); border-radius: var(--ai-radius-xs); padding: 0.75rem; font-size: 0.7rem; font-family: var(--ai-font-mono); color: var(--ai-text-primary); max-height: 8rem; overflow-y: auto;"><code id="styler-css-output">:root {
+            <pre class="ai-styler-code-output"><code id="styler-css-output">:root {
   /* Default LLMCSS tokens active */
 }</code></pre>
           </details>
         </div>
       </div>
 
-      <div class="ai-drawer-footer" style="padding: var(--ai-space-4) var(--ai-space-6); border-top: 1px solid var(--ai-border-subtle); display: flex; justify-content: space-between; align-items: center; background: var(--ai-surface-1);">
-        <button class="ai-btn ai-btn-ghost ai-btn-xs" id="reset-styler-btn" style="color: var(--ai-text-muted);">Reset Defaults</button>
+      <div class="ai-drawer-footer">
+        <button class="ai-btn ai-btn-ghost ai-btn-xs ai-text-muted" id="reset-styler-btn">Reset Defaults</button>
         <button class="ai-btn ai-btn-primary ai-btn-xs" data-ai-dismiss="drawer">Done</button>
       </div>
     </div>

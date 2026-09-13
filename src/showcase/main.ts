@@ -592,7 +592,7 @@ function generateCustomizedHtml(comp: (typeof components)[0]): string {
     const disabledAttr = custom.state === 'disabled' ? 'disabled' : '';
 
     return `<div class="ai-flex ai-flex-wrap ai-gap-3 ai-items-center">
-  <button class="ai-btn ${variantClass} ${sizeClass} ${stateClass}" ${disabledAttr}>
+  <button class="ai-btn ${variantClass} ${sizeClass} ${stateClass}" ${disabledAttr} ${custom.state === 'loading' ? 'aria-busy="true"' : ''}>
     ${custom.variant ? custom.variant.toUpperCase() : 'CUSTOMIZED'} BUTTON
   </button>
   <button class="ai-btn ai-btn-outline ${sizeClass}">Secondary Action</button>
