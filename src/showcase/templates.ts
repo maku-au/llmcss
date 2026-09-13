@@ -221,7 +221,7 @@ function showToast(message: string, type: 'success' | 'info' | 'error' = 'succes
   if (type === 'error') toast.setAttribute('role', 'alert');
   toast.innerHTML = `
     <span class="toast-message">${message}</span>
-    <button type="button" class="toast-close" aria-label="Dismiss">&times;</button>
+    <button type="button" class="toast-close" aria-label="Dismiss"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button>
   `;
   toast.querySelector('.toast-close')?.addEventListener('click', () => toast.remove());
   toastContainer.appendChild(toast);

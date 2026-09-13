@@ -5,6 +5,7 @@ import { applicationVariants } from './variants-application.mjs';
 import { ecommerceVariants } from './variants-ecommerce.mjs';
 import { agentVariants } from './variants-agent.mjs';
 import { motionComponents } from './data-motion.mjs';
+import { logoRailItems } from './logo-marks.mjs';
 
 const baseComponents = [
   /* ==========================================================================
@@ -967,12 +968,12 @@ const baseComponents = [
     html: `<div class="grid gap-3" role="status" aria-live="polite" style="max-width: 24rem;">
   <div class="toast toast-success toast-countdown">
     <span class="toast-message">Deployment completed to edge servers.</span>
-    <button type="button" class="toast-close" aria-label="Dismiss deployment notification">&times;</button>
+    <button type="button" class="toast-close" aria-label="Dismiss deployment notification"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button>
     <div class="toast-progress"></div>
   </div>
   <div class="toast toast-info toast-countdown">
     <span class="toast-message">New API Key created: <code>llmcss_live_8f...</code></span>
-    <button type="button" class="toast-close" aria-label="Dismiss API key notification">&times;</button>
+    <button type="button" class="toast-close" aria-label="Dismiss API key notification"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button>
     <div class="toast-progress"></div>
   </div>
 </div>`,
@@ -985,12 +986,7 @@ const baseComponents = [
     tier: 'free',
     tags: ['logo', 'trust', 'social-proof', 'marketing', 'rail', 'marquee'],
     html: `<div class="logo-rail" aria-label="Teams using LLMCSS">
-  <span>Northwind</span>
-  <span>Harbor Ops</span>
-  <span>Lattice Labs</span>
-  <span>Quill</span>
-  <span>Meridian</span>
-  <span>Fieldnote</span>
+${logoRailItems('span')}
 </div>`,
   },
   {

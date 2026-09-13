@@ -3,8 +3,9 @@
  *
  * Six additional `section: 'hero'` entries for the wireframe catalog, kept in
  * their own file so one builder owns one file. `templates-data.mjs` imports
- * `heroTemplates` and concatenates it into `wireframeTemplates`; nothing here
- * imports anything, so the module stays safe to read from the CLI, the MCP
+ * `heroTemplates` and concatenates it into `wireframeTemplates`. The only
+ * import is the shared logo rail wordmark set in logo-marks.mjs, a data module
+ * with no side effects, so this file stays safe to read from the CLI, the MCP
  * server and the docs builder alike.
  *
  * Entry shape matches the existing wireframe entries exactly:
@@ -23,6 +24,8 @@
  * outside any media query, so a reversed split hero is two columns even on a
  * phone. None of these templates use it; they reverse with `lg:order-*` instead.
  */
+
+import { logoRailItems } from './logo-marks.mjs';
 
 export const heroTemplates = [
   {
@@ -182,7 +185,7 @@ export const heroTemplates = [
   {
     id: 'wireframe-hero-logo-rail',
     name: 'Logo Rail Hero',
-    description: 'Centered hero over a static wordmark rail: six customer names set as muted text under a hairline, with no images and no scrolling.',
+    description: 'Centered hero over a static wordmark rail: six customer wordmarks, each an inline mark plus the company name, set muted under a hairline with no photography and no scrolling.',
     section: 'hero',
     tier: 'free',
     tags: ['hero', 'logo-rail', 'social-proof', 'centered', 'customers', 'wordmarks'],
@@ -210,12 +213,7 @@ export const heroTemplates = [
     <div class="mt-16 pt-10 border-t">
       <p class="text-sm text-muted mb-6">Building on the token layer today</p>
       <ul class="logo-rail list-none">
-        <li>Northwind Labs</li>
-        <li>Halden Systems</li>
-        <li>Meridian Health</li>
-        <li>Caldera Logistics</li>
-        <li>Portside Analytics</li>
-        <li>Ardent Foundry</li>
+${logoRailItems('li', '        ')}
       </ul>
     </div>
   </div>

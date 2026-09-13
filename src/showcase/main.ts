@@ -681,16 +681,28 @@ function generateCustomizedHtml(comp: (typeof components)[0]): string {
     attrs.push(`data-ai-density="${custom.density}"`);
   }
 
-  const classes = ['w-full', 'max-w-full'];
-  if (custom.elevation === 'elevated') classes.push('shadow-lg');
-  if (custom.elevation === 'specular') classes.push('shadow-xl');
+  // Elevation belongs to the demo's own root (the card), never to the
+  // full-width wrapper: a shadow on the wrapper paints a band across the
+  // whole canvas beside a narrow card.
+  const shadow = custom.elevation === 'elevated' ? 'shadow-lg' : custom.elevation === 'specular' ? 'shadow-xl' : '';
+  if (shadow) html = addRootClass(html, shadow);
 
-  if (attrs.length === 0 && classes.length === 2) return html;
+  if (attrs.length === 0) return html;
 
-  const openTag = ['<div', ...attrs, `class="${classes.join(' ')}">`].join(' ');
+  const openTag = ['<div', ...attrs, 'class="w-full max-w-full">'].join(' ');
   return `${openTag}
   ${html}
 </div>`;
+}
+
+// Add a class to the first element in a markup string. Leading comments and
+// whitespace are skipped; an element without a class attribute gets one.
+function addRootClass(html: string, cls: string): string {
+  const openTag = /^(\s*(?:<!--[\s\S]*?-->\s*)*<[a-zA-Z][\w-]*)([^>]*)>/;
+  return html.replace(openTag, (_m, start: string, attrs: string) => {
+    if (/\sclass="/.test(attrs)) return `${start}${attrs.replace(/\sclass="/, ` class="${cls} `)}>`;
+    return `${start} class="${cls}"${attrs}>`;
+  });
 }
 
 function applyComponentCustomization(id: string) {

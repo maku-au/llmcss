@@ -661,12 +661,22 @@
     gap: var(--ai-space-6) var(--ai-space-10);
   }
   .logo-rail > * {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ai-space-2);
     color: var(--ai-text-muted);
-    font-weight: 600;
+    font-family: var(--ai-font-display);
+    font-weight: 700;
     font-size: 0.9375rem;
     letter-spacing: -0.01em;
     opacity: 0.85;
     transition: color var(--ai-duration-fast), opacity var(--ai-duration-fast);
+  }
+  /* Marks inherit the rail colour: currentColor only, sized in one place */
+  .logo-rail svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    flex: none;
   }
   .logo-rail > :hover {
     color: var(--ai-text-primary);

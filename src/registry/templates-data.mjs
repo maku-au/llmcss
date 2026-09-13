@@ -9,6 +9,7 @@ import { headerTemplates } from './templates-headers.mjs';
 import { heroTemplates } from './templates-heroes.mjs';
 import { faqCtaTemplates } from './templates-faq-cta.mjs';
 import { footerTemplates } from './templates-footers.mjs';
+import { logoRailItems } from './logo-marks.mjs';
 
 export const wireframeTemplates = [
   {
@@ -260,11 +261,7 @@ export const wireframeTemplates = [
       </p>
     </div>
     <div class="logo-rail mb-10">
-      <span class="font-mono tracking-wider">SYNAPSE</span>
-      <span class="font-mono tracking-wider">HEXA.CORP</span>
-      <span class="font-mono tracking-wider">KINETIC.UI</span>
-      <span class="font-mono tracking-wider">POLARIS</span>
-      <span class="font-mono tracking-wider">VECTOR.AI</span>
+${logoRailItems('span', '      ')}
     </div>
     <div class="stats-band pt-6">
       <div class="stat is-primary">

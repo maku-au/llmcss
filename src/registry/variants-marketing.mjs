@@ -12,7 +12,12 @@
  * style attribute, so both themes and all five skins work by construction.
  *
  * Keys are parent component ids. Addressed flat as parent:variant.
+ *
+ * The six logo rail wordmarks come from logo-marks.mjs so the marquee-ticker
+ * demo, its variants and the templates all show the same set of companies.
  */
+
+import { LOGO_MARKS, logoRailItem, logoRailItems } from './logo-marks.mjs';
 
 export const marketingVariants = {
   'hero-split': [
@@ -1337,19 +1342,19 @@ npx llmcss audit index.html</code></pre>
       <figure class="testimonial-card">
         <blockquote class="testimonial-quote">We replaced 4,000 lines of utility soup with the registry components and our agent stopped inventing class names.</blockquote>
         <figcaption class="testimonial-author mt-4">
-          <span class="logo-rail justify-start"><span>Lattice Labs</span></span>
+          <span class="logo-rail justify-start">${logoRailItem('lattice')}</span>
         </figcaption>
       </figure>
       <figure class="testimonial-card">
         <blockquote class="testimonial-quote">The anti-slop audit caught a pulsing status dot in a PR before a human ever looked at it.</blockquote>
         <figcaption class="testimonial-author mt-4">
-          <span class="logo-rail justify-start"><span>Meridian</span></span>
+          <span class="logo-rail justify-start">${logoRailItem('meridian')}</span>
         </figcaption>
       </figure>
       <figure class="testimonial-card">
         <blockquote class="testimonial-quote">One link tag in a Rails layout. That was the whole migration.</blockquote>
         <figcaption class="testimonial-author mt-4">
-          <span class="logo-rail justify-start"><span>Fieldnote</span></span>
+          <span class="logo-rail justify-start">${logoRailItem('fieldnote')}</span>
         </figcaption>
       </figure>
     </div>
@@ -1572,16 +1577,11 @@ npx llmcss audit index.html</code></pre>
       id: 'grid-rail',
       name: 'Grid rail',
       description:
-        'The wrapping rail becomes a fixed grid, two up on a phone and six up from md, with every name on the same baseline.',
+        'The wrapping rail becomes a fixed grid, two up on a phone, three up from md and six up from lg, with every mark on the same baseline.',
       guidance:
         'Sits directly under the hero as the trust line. Best when the number of names divides evenly into the column count, which is what makes a grid look deliberate rather than ragged. Avoid it with a number that leaves one orphan on the last row; use the wrapping rail instead. Pairs with hero-split:media-top above, and it never scrolls on its own, which is law 9.',
-      html: `<ul class="logo-rail list-none grid grid-cols-2 md:grid-cols-6 place-items-center gap-6" aria-label="Teams using LLMCSS">
-  <li>Northwind</li>
-  <li>Harbor Ops</li>
-  <li>Lattice Labs</li>
-  <li>Quill</li>
-  <li>Meridian</li>
-  <li>Fieldnote</li>
+      html: `<ul class="logo-rail list-none grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 place-items-center gap-6" aria-label="Teams using LLMCSS">
+${logoRailItems('li')}
 </ul>`,
     },
     {
@@ -1593,28 +1593,28 @@ npx llmcss audit index.html</code></pre>
         'Sits under the hero on a page aimed at a buyer who will not recognise the names. Best when the customers are known in their own sector but not generally, which is most of them. Avoid it when the logos are household names, because captioning them is condescending. Pairs with testimonial-grid:logo-attributed lower down, which reuses the same names with a quote attached.',
       html: `<ul class="logo-rail list-none" aria-label="Teams using LLMCSS">
   <li class="flex flex-col items-center gap-1">
-    <span>Northwind</span>
-    <span class="text-xs text-muted font-normal">Freight and logistics</span>
+    <span class="inline-flex items-center gap-2">${LOGO_MARKS.northwind}Northwind</span>
+    <span class="text-xs text-muted font-sans font-normal">Freight and logistics</span>
   </li>
   <li class="flex flex-col items-center gap-1">
-    <span>Harbor Ops</span>
-    <span class="text-xs text-muted font-normal">Fleet telemetry</span>
+    <span class="inline-flex items-center gap-2">${LOGO_MARKS.harbor}Harbor Ops</span>
+    <span class="text-xs text-muted font-sans font-normal">Fleet telemetry</span>
   </li>
   <li class="flex flex-col items-center gap-1">
-    <span>Lattice Labs</span>
-    <span class="text-xs text-muted font-normal">Machine learning platform</span>
+    <span class="inline-flex items-center gap-2">${LOGO_MARKS.lattice}Lattice Labs</span>
+    <span class="text-xs text-muted font-sans font-normal">Machine learning platform</span>
   </li>
   <li class="flex flex-col items-center gap-1">
-    <span>Quill</span>
-    <span class="text-xs text-muted font-normal">Editorial publishing</span>
+    <span class="inline-flex items-center gap-2">${LOGO_MARKS.quill}Quill</span>
+    <span class="text-xs text-muted font-sans font-normal">Editorial publishing</span>
   </li>
   <li class="flex flex-col items-center gap-1">
-    <span>Meridian</span>
-    <span class="text-xs text-muted font-normal">Deploy and rollback</span>
+    <span class="inline-flex items-center gap-2">${LOGO_MARKS.meridian}Meridian</span>
+    <span class="text-xs text-muted font-sans font-normal">Deploy and rollback</span>
   </li>
   <li class="flex flex-col items-center gap-1">
-    <span>Fieldnote</span>
-    <span class="text-xs text-muted font-normal">Field service scheduling</span>
+    <span class="inline-flex items-center gap-2">${LOGO_MARKS.fieldnote}Fieldnote</span>
+    <span class="text-xs text-muted font-sans font-normal">Field service scheduling</span>
   </li>
 </ul>`,
     },
