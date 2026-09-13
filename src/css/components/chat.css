@@ -56,7 +56,7 @@
     background-color: var(--ai-surface-2);
     color: var(--ai-text-secondary);
     font-family: var(--ai-font-mono);
-    font-size: 0.625rem;
+    font-size: 0.75rem;
     font-weight: 600;
     line-height: 1;
     user-select: none;
@@ -81,9 +81,11 @@
     color: var(--ai-text-primary);
   }
 
+  /* The timestamp separates from the role by colour, not by a smaller size:
+     0.75rem is the floor for visible text. */
   .chat-time {
     font-family: var(--ai-font-mono);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     color: var(--ai-text-muted);
   }
 
@@ -99,6 +101,18 @@
 
   .chat-body > p {
     margin: 0;
+  }
+
+  /* Inline code inside a turn wraps with the prose around it. Only a pre block
+     scrolls, and it scrolls inside its own frame so a long sample can never
+     push the turn wider than the thread. */
+  .chat-body code:not(pre code) {
+    overflow-wrap: anywhere;
+  }
+
+  .chat-body pre {
+    max-width: 100%;
+    overflow-x: auto;
   }
 
   /* User turns carry a quiet palette fill. Assistant turns stay flush, so the
@@ -129,6 +143,13 @@
     font-family: var(--ai-font-mono);
     font-size: 0.75rem;
     color: var(--ai-text-secondary);
+  }
+
+  /* The tool name is a mono path and has no spaces to break on, so it wraps on
+     any character rather than pushing the badge out of the row. */
+  .chat-tool > :first-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   /* Motion is reserved for a turn that is still generating. */

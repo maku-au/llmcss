@@ -1,6 +1,6 @@
 {
   "version": "0.4.0",
-  "generatedAt": "2026-09-13T06:47:26.919Z",
+  "generatedAt": "2026-09-13T07:47:25.875Z",
   "stats": {
     "total": 122,
     "free": 122,
@@ -1219,7 +1219,7 @@
         "popover",
         "hint"
       ],
-      "html": "<div class=\"flex gap-6 items-center\">\n  <span class=\"tooltip\" data-tooltip=\"Edit this item\">\n    <button class=\"btn btn-outline btn-sm\" aria-describedby=\"tip-edit\">Hover me (top)</button>\n    <span class=\"sr-only\" id=\"tip-edit\" role=\"tooltip\">Edit this item</span>\n  </span>\n  <span class=\"tooltip tooltip-bottom\" data-tooltip=\"Save changes\">\n    <button class=\"btn btn-secondary btn-sm\" aria-describedby=\"tip-save\">Hover me (bottom)</button>\n    <span class=\"sr-only\" id=\"tip-save\" role=\"tooltip\">Save changes</span>\n  </span>\n  <span class=\"tooltip\" data-tooltip=\"Keyboard accessible too\">\n    <button class=\"btn btn-ghost btn-sm\" aria-describedby=\"tip-focus\">Focus me</button>\n    <span class=\"sr-only\" id=\"tip-focus\" role=\"tooltip\">Keyboard accessible too</span>\n  </span>\n</div>"
+      "html": "<div class=\"flex flex-wrap gap-6 items-center\">\n  <span class=\"tooltip\" data-tooltip=\"Edit this item\">\n    <button class=\"btn btn-outline btn-sm\" aria-describedby=\"tip-edit\">Hover me (top)</button>\n    <span class=\"sr-only\" id=\"tip-edit\" role=\"tooltip\">Edit this item</span>\n  </span>\n  <span class=\"tooltip tooltip-bottom\" data-tooltip=\"Save changes\">\n    <button class=\"btn btn-secondary btn-sm\" aria-describedby=\"tip-save\">Hover me (bottom)</button>\n    <span class=\"sr-only\" id=\"tip-save\" role=\"tooltip\">Save changes</span>\n  </span>\n  <span class=\"tooltip\" data-tooltip=\"Keyboard accessible too\">\n    <button class=\"btn btn-ghost btn-sm\" aria-describedby=\"tip-focus\">Focus me</button>\n    <span class=\"sr-only\" id=\"tip-focus\" role=\"tooltip\">Keyboard accessible too</span>\n  </span>\n</div>"
     },
     {
       "id": "pagination-controls",
@@ -1263,7 +1263,7 @@
         "counter",
         "multiline"
       ],
-      "html": "<div style=\"max-width: 28rem;\">\n  <div class=\"form-group\">\n    <label class=\"form-label\" for=\"bio-field\">Bio</label>\n    <div class=\"textarea-group\">\n      <textarea id=\"bio-field\" class=\"textarea\" placeholder=\"Write a short bio...\" rows=\"4\" maxlength=\"280\">Design engineer building component systems for autonomous agents.</textarea>\n      <div class=\"textarea-footer\">\n        <span class=\"form-hint\">Keep it concise and direct.</span>\n        <span class=\"font-mono\" style=\"font-size: 0.6875rem;\">63 / 280</span>\n      </div>\n    </div>\n  </div>\n  <div class=\"form-group\">\n    <label class=\"form-label is-required\" for=\"feedback-field\">Feedback</label>\n    <textarea id=\"feedback-field\" class=\"textarea is-error\" placeholder=\"Describe the issue...\" rows=\"3\" aria-invalid=\"true\">Too short</textarea>\n    <span class=\"form-error\">Feedback must be at least 20 characters.</span>\n  </div>\n</div>"
+      "html": "<div style=\"max-width: 28rem;\">\n  <div class=\"form-group\">\n    <label class=\"form-label\" for=\"bio-field\">Bio</label>\n    <div class=\"textarea-group\">\n      <textarea id=\"bio-field\" class=\"textarea\" placeholder=\"Write a short bio...\" rows=\"4\" maxlength=\"280\">Design engineer building component systems for autonomous agents.</textarea>\n      <div class=\"textarea-footer\">\n        <span class=\"form-hint\">Keep it concise and direct.</span>\n        <span class=\"font-mono text-xs\">63 / 280</span>\n      </div>\n    </div>\n  </div>\n  <div class=\"form-group\">\n    <label class=\"form-label is-required\" for=\"feedback-field\">Feedback</label>\n    <textarea id=\"feedback-field\" class=\"textarea is-error\" placeholder=\"Describe the issue...\" rows=\"3\" aria-invalid=\"true\">Too short</textarea>\n    <span class=\"form-error\">Feedback must be at least 20 characters.</span>\n  </div>\n</div>"
     },
     {
       "id": "checkbox-radio-group",

@@ -104,6 +104,22 @@
     overflow: hidden;
   }
 
+  /* Below the tablet breakpoint the panel fills the viewport, so the opt out
+     stops making sense: there is nothing left to preview behind it and the page
+     scrolling under a full screen sheet only loses the reader their place. The
+     lock applies to every open drawer at phone width, opt out or not. */
+  @media (max-width: 719px) {
+    html:has(.drawer.is-open, .drawer[open], ai-drawer[open]) {
+      overflow: hidden;
+    }
+    /* The locked page cannot take the gesture, so the panel body has to: it
+       already scrolls, and it keeps the scroll to itself. */
+    .drawer-panel > .drawer-body {
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+  }
+
   .drawer-header {
     padding: var(--ai-space-5) var(--ai-space-6);
     border-bottom: 1px solid var(--ai-border-subtle);

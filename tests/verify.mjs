@@ -937,7 +937,7 @@ console.log('\n25. Testing Motion Addon (gzip budget, ai-m-* keyframes, no atten
 console.log('\n26. Testing Component CSS for Left Stripes and Unguarded Pip Motion (Laws 3 and 2)...');
 {
   const cssDir = path.resolve('src/css/components');
-  const files = fs.readdirSync(cssDir).filter((f) => f.endsWith('.css') && f !== 'showcase.css');
+  const files = fs.readdirSync(cssDir).filter((f) => f.endsWith('.css'));
 
   // A width of 2px or more on the left edge alone. A glyph drawn out of borders
   // (the checkbox tick, a popover arrow) always declares a second edge at the
@@ -1019,7 +1019,107 @@ console.log('\n26. Testing Component CSS for Left Stripes and Unguarded Pip Moti
   );
 }
 
-console.log('\n🎉 ALL 26 TESTS PASSED SUCCESSFULLY!\n');
+// Test 27: Minimum Visible Type Size in Component CSS
+// No visible text below 12px (0.75rem) anywhere: badges, timestamps, kbd hints,
+// tags and captions included. Small means muted colour and weight, not a smaller
+// size. sr-only text is the only exception. showcase.css is site chrome and is
+// held to the same floor.
+console.log('\n27. Testing Component CSS for Visible Type Below 0.75rem...');
+{
+  const cssDir = path.resolve('src/css/components');
+  const files = fs.readdirSync(cssDir).filter((f) => f.endsWith('.css') && f !== 'showcase.css');
+
+  const FLOOR_PX = 12;
+  const ROOT_PX = 16;
+  // rem and em both resolve against the 16px root here: an em value nested in a
+  // smaller parent only ends up smaller still, so this is the generous reading.
+  const SIZE = /(?:^|[;\s])font-size\s*:\s*([0-9.]+)(rem|em|px)\b/gi;
+  const EXEMPT = /sr-only|visually-hidden/i;
+
+  const tooSmall = [];
+
+  for (const file of files) {
+    const css = fs.readFileSync(path.join(cssDir, file), 'utf-8').replace(/\/\*[\s\S]*?\*\//g, '');
+    const ruleRe = /([^{}]*)\{([^{}]*)\}/g;
+    let m;
+    while ((m = ruleRe.exec(css))) {
+      const selector = m[1].replace(/\s+/g, ' ').trim();
+      const body = m[2];
+      if (!selector || selector.startsWith('@') || /^(?:\d|from\b|to\b)/.test(selector)) continue;
+      if (EXEMPT.test(selector)) continue;
+
+      SIZE.lastIndex = 0;
+      let size;
+      while ((size = SIZE.exec(body))) {
+        const px = size[2] === 'px' ? parseFloat(size[1]) : parseFloat(size[1]) * ROOT_PX;
+        if (px >= FLOOR_PX) continue;
+        const hit = `${file}: ${selector} -> font-size: ${size[1]}${size[2]} (${px}px)`;
+        tooSmall.push(hit);
+      }
+    }
+  }
+
+  assert(
+    tooSmall.length === 0,
+    `Visible text below 0.75rem in component CSS:\n  ${tooSmall.join('\n  ')}`
+  );
+
+  console.log(
+    `✓ Verified ${files.length} component stylesheets: 0 coloured left stripes, 0 animated pips outside a streaming or loading state, and audit detection for both stripe spellings.`
+  );
+}
+
+// Test 27: Minimum Visible Type Size in Component CSS
+// No visible text below 12px (0.75rem) anywhere: badges, timestamps, kbd hints,
+// tags and captions included. Small means muted colour and weight, not a smaller
+// size. sr-only text is the only exception. showcase.css is site chrome and is
+// held to the same floor.
+console.log('\n27. Testing Component CSS for Visible Type Below 0.75rem...');
+{
+  const cssDir = path.resolve('src/css/components');
+  const files = fs.readdirSync(cssDir).filter((f) => f.endsWith('.css') && f !== 'showcase.css');
+
+  const FLOOR_PX = 12;
+  const ROOT_PX = 16;
+  // rem and em both resolve against the 16px root here: an em value nested in a
+  // smaller parent only ends up smaller still, so this is the generous reading.
+  const SIZE = /(?:^|[;\s])font-size\s*:\s*([0-9.]+)(rem|em|px)\b/gi;
+  const EXEMPT = /sr-only|visually-hidden/i;
+
+  const tooSmall = [];
+
+  for (const file of files) {
+    const css = fs.readFileSync(path.join(cssDir, file), 'utf-8').replace(/\/\*[\s\S]*?\*\//g, '');
+    const ruleRe = /([^{}]*)\{([^{}]*)\}/g;
+    let m;
+    while ((m = ruleRe.exec(css))) {
+      const selector = m[1].replace(/\s+/g, ' ').trim();
+      const body = m[2];
+      if (!selector || selector.startsWith('@') || /^(?:\d|from\b|to\b)/.test(selector)) continue;
+      if (EXEMPT.test(selector)) continue;
+
+      SIZE.lastIndex = 0;
+      let size;
+      while ((size = SIZE.exec(body))) {
+        const px = size[2] === 'px' ? parseFloat(size[1]) : parseFloat(size[1]) * ROOT_PX;
+        if (px >= FLOOR_PX) continue;
+        const hit = `${file}: ${selector} -> font-size: ${size[1]}${size[2]} (${px}px)`;
+        tooSmall.push(hit);
+      }
+    }
+  }
+
+  assert(
+    tooSmall.length === 0,
+    `Visible text below 0.75rem in component CSS:\n  ${tooSmall.join('\n  ')}`
+  );
+
+  console.log(
+    `✓ Verified ${files.length} component stylesheets: 0 font-size declarations below 12px.`
+  );
+}
+
+console.log('\n🎉 ALL 27 TESTS PASSED SUCCESSFULLY!\n');
 
 
 

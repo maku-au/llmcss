@@ -147,7 +147,7 @@
 
   .calendar-weekday {
     padding-block: var(--ai-space-1) var(--ai-space-2);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--ai-text-muted);
   }

@@ -278,7 +278,9 @@
   .tree-leaf.is-active { background-color: var(--ai-accent-subtle); }
   .tree-leaf::before { content: ""; width: 0.55rem; }
 
-  /* Bulk action bar: appears above a selection */
+  /* Bulk action bar: appears above a selection. On a phone the row of actions
+     is wider than the card, so the bar scrolls sideways inside its own frame
+     rather than squeezing the labels to one word per line. */
   .bulk-bar {
     position: sticky;
     bottom: var(--ai-space-4);
@@ -291,6 +293,10 @@
     background-color: var(--ai-surface-0);
     box-shadow: var(--ai-shadow-lg);
     font-size: 0.875rem;
+    overflow-x: auto;
+  }
+  .bulk-bar > * {
+    flex: none;
   }
   .bulk-bar-count {
     font-weight: 600;
@@ -299,6 +305,7 @@
   .bulk-bar-actions {
     display: flex;
     gap: var(--ai-space-2);
+    min-width: max-content;
     margin-inline-start: auto;
   }
 
@@ -326,7 +333,7 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: var(--ai-text-muted);
     font-variant-numeric: tabular-nums;
   }

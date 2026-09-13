@@ -81,9 +81,11 @@
     color: var(--ai-text-muted);
   }
 
+  /* Mono runs a step under its context but never below the 12px floor, so
+     inline code inside 13px captions and log lines stays legible. */
   code, kbd, samp, pre {
     font-family: var(--ai-font-mono);
-    font-size: 0.875em;
+    font-size: max(0.875em, 0.75rem);
   }
 
   code:not(pre code) {

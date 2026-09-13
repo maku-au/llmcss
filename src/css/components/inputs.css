@@ -306,6 +306,12 @@
     .select {
       min-height: var(--ai-touch-min, 44px);
     }
+    /* The track stays 36 by 20; the label box grows so the tap target is 44px
+       on both axes even when the switch has no visible text. */
+    .switch {
+      min-height: var(--ai-touch-min, 44px);
+      min-width: var(--ai-touch-min, 44px);
+    }
   }
 }
 
@@ -353,8 +359,7 @@
   }
 
   /* Switch sizes */
-  .switch-sm .switch-track { width: 2.25rem; height: 1.25rem; }
-  .switch-sm .switch-thumb { width: 1rem; height: 1rem; }
-  .switch-sm .switch-input:checked + .switch-track .switch-thumb,
-  .switch-input:checked + .switch-sm .switch-thumb { transform: translateX(1rem); }
+  .switch-sm .switch-track { width: 2rem; height: 1.125rem; }
+  .switch-sm .switch-thumb { width: calc(1.125rem - 6px); height: calc(1.125rem - 6px); }
+  .switch-sm .switch-input:checked + .switch-track .switch-thumb { transform: translateX(0.875rem); }
 }

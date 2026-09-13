@@ -1054,7 +1054,7 @@ const baseComponents = [
     category: 'primitive',
     tier: 'free',
     tags: ['tooltip', 'hover', 'popover', 'hint'],
-    html: `<div class="flex gap-6 items-center">
+    html: `<div class="flex flex-wrap gap-6 items-center">
   <span class="tooltip" data-tooltip="Edit this item">
     <button class="btn btn-outline btn-sm" aria-describedby="tip-edit">Hover me (top)</button>
     <span class="sr-only" id="tip-edit" role="tooltip">Edit this item</span>
@@ -1138,7 +1138,7 @@ const baseComponents = [
       <textarea id="bio-field" class="textarea" placeholder="Write a short bio..." rows="4" maxlength="280">Design engineer building component systems for autonomous agents.</textarea>
       <div class="textarea-footer">
         <span class="form-hint">Keep it concise and direct.</span>
-        <span class="font-mono" style="font-size: 0.6875rem;">63 / 280</span>
+        <span class="font-mono text-xs">63 / 280</span>
       </div>
     </div>
   </div>

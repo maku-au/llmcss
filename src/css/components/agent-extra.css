@@ -300,9 +300,15 @@
     font-weight: 600;
   }
 
+  /* The body is the only scroller in the diff, and its single column is as wide
+     as the longest line (never narrower than the body itself). Every row then
+     stretches to that one width, so a tinted row and its gutters travel with
+     the code instead of stopping at the card edge. */
   .diff-body {
     overflow-x: auto;
     padding: var(--ai-space-2) 0;
+    display: grid;
+    grid-template-columns: minmax(100%, max-content);
   }
 
   .diff-row {
@@ -315,7 +321,7 @@
 
   .diff-gutter {
     font-family: var(--ai-font-mono);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-variant-numeric: tabular-nums;
     text-align: right;
     color: var(--ai-text-muted);
@@ -336,6 +342,8 @@
     line-height: 1.75;
     color: var(--ai-text-primary);
     background: none;
+    border: 0;
+    border-radius: 0;
     padding: 0;
     white-space: pre;
     text-decoration: none;
@@ -480,7 +488,7 @@
   }
 
   .model-tag {
-    font-size: 0.625rem;
+    font-size: 0.75rem;
   }
 
   .model-provider {
@@ -496,10 +504,12 @@
     text-align: right;
   }
 
+  /* Context window and price are captions: muted colour carries the hierarchy,
+     the size stays at the 0.75rem floor for visible text. */
   .model-context,
   .model-price {
     font-family: var(--ai-font-mono);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
   }
@@ -715,7 +725,7 @@
   .permission-scope th {
     padding: var(--ai-space-2) var(--ai-space-3);
     background-color: transparent;
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
   }
 
   .permission-scope td {
@@ -846,7 +856,7 @@
     border: 1px solid var(--ai-border);
     border-radius: var(--ai-radius-full);
     background-color: var(--ai-surface-1);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
   }
 
   .composer-file-name {
@@ -907,7 +917,7 @@
   }
 
   .composer-quota {
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     color: var(--ai-text-secondary);
     font-variant-numeric: tabular-nums;
   }
@@ -1059,9 +1069,11 @@
     border-bottom: 1px solid var(--ai-border-subtle);
   }
 
-  /* One caps label serves the pane headings and the file kind column. */
+  /* One caps label serves the pane headings and the file kind column. It holds
+     the 0.75rem floor and reads as secondary through muted colour and caps. */
   .workspace-label {
-    font-size: 0.6875rem;
+    min-width: 0;
+    font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -1069,8 +1081,9 @@
   }
 
   .workspace-count {
+    flex: none;
     font-family: var(--ai-font-mono);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-variant-numeric: tabular-nums;
     color: var(--ai-text-muted);
   }
@@ -1093,7 +1106,7 @@
   }
 
   .workspace-turn-role {
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--ai-text-secondary);
   }
@@ -1157,10 +1170,19 @@
     overflow-wrap: anywhere;
   }
 
+  /* Narrow board. An element can never answer its own container query, so the
+     switch is carried by the panes, which are descendants of .workspace and do
+     resolve against it: each pane spans the whole track set, which stacks the
+     board in one column however the columns are declared. The .workspace rule
+     still applies when a host wraps the board in its own container. */
   @container (max-width: 48rem) {
     .workspace {
       grid-template-columns: minmax(0, 1fr);
       min-height: 0;
+    }
+
+    .workspace-pane {
+      grid-column: 1 / -1;
     }
 
     .workspace-pane + .workspace-pane {

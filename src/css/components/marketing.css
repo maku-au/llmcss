@@ -376,6 +376,15 @@
     outline-offset: 2px;
     border-radius: var(--ai-radius-xs);
   }
+  /* Under a thumb the whole heading row is the target, not the 11px caps line.
+     Only while the accordion is live: from 768px up the toggle is inert, so the
+     desktop rhythm keeps its own margin and nothing grows. */
+  @media (pointer: coarse) and (max-width: 767px) {
+    .footer-col-toggle {
+      min-height: 44px;
+      padding-block: var(--ai-space-2);
+    }
+  }
   .footer-col.accordion-item {
     border-bottom: 1px solid var(--ai-border-subtle);
     padding: var(--ai-space-3) 0;
@@ -413,7 +422,7 @@
   .footer-heading {
     margin: 0;
     font-family: var(--ai-font-sans);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: 0.08em;
@@ -538,8 +547,11 @@
     background: var(--ai-surface-0);
   }
 
+  /* The floor keeps a 4 or 5 column matrix scrolling inside .matrix-container
+     on a phone instead of squeezing every cell to one word per line. */
   .matrix-table {
     width: 100%;
+    min-width: 36rem;
     border-collapse: collapse;
     font-size: 0.875rem;
     text-align: center;
@@ -632,7 +644,7 @@
     transform: translateX(-50%);
     background-color: var(--ai-primary);
     color: var(--ai-primary-text);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.04em;
     padding: 0.25rem 0.75rem;

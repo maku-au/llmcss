@@ -53,7 +53,7 @@
     border: 1px solid var(--ai-border-subtle);
     border-radius: var(--ai-radius-md);
     font-family: var(--ai-font-mono);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.02em;
     color: var(--ai-text-secondary);
@@ -288,7 +288,7 @@
   .orderline-date {
     display: block;
     margin-block-start: 0.15rem;
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     color: var(--ai-text-muted);
     font-variant-numeric: tabular-nums;
   }

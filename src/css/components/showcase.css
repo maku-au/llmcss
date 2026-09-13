@@ -8,14 +8,14 @@
 .docs-nav-count {
   font-family: var(--ai-font-sans);
   font-variant-numeric: tabular-nums;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: var(--ai-text-muted);
   margin-left: auto;
 }
 .docs-pro-tag {
   font-family: var(--ai-font-sans);
-  font-size: 0.5625rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -90,7 +90,7 @@
   font-family: var(--ai-font-sans);
 }
 .styler-section-val {
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: var(--ai-text-muted);
   font-family: var(--ai-font-mono);
@@ -157,7 +157,7 @@
 .styler-theme-value {
   margin-left: auto;
   font-family: var(--ai-font-mono);
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   color: var(--ai-text-muted);
   line-height: 1.2;
 }
@@ -252,7 +252,7 @@
   margin-top: 0.5rem;
   padding: 0.75rem;
   border-radius: var(--ai-radius-xs);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: var(--ai-text-primary);
   max-height: 8rem;
   overflow-y: auto;
@@ -276,7 +276,7 @@
 }
 .demo-toolbar-label {
   font-family: var(--ai-font-sans);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--ai-text-muted);
   letter-spacing: 0.02em;
@@ -291,7 +291,7 @@
 }
 .demo-pill {
   padding: 0.15rem 0.5rem;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-family: var(--ai-font-sans);
   font-weight: 500;
   color: var(--ai-text-secondary);
@@ -430,7 +430,7 @@
   margin-bottom: 0.35rem;
   padding: 0 0.5rem;
   font-family: var(--ai-font-sans);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -531,7 +531,7 @@
 /* Trailing format hint on an endpoint row: llms.txt -> Index */
 .docs-link-tag {
   font-family: var(--ai-font-sans);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   color: var(--ai-text-muted);
 }
 .docs-link svg {
@@ -644,6 +644,22 @@
    slightly wider than the three rival columns, which share what is left. */
 .docs-matrix .matrix-table {
   table-layout: fixed;
+  /* A fixed table with no floor lets the browser squeeze five columns into a
+     phone, one word per line and rows four hundred pixels tall. The floor makes
+     the overflow-x wrapper scroll instead. Squeezed is worse than scrolled. */
+  min-width: 44rem;
+}
+/* The feature column is sticky (see .matrix-feature-col), so the container edge
+   fade in tables.css would eat it the moment the table scrolls. This matrix
+   keeps the right edge cue only and leaves the left column at full contrast. */
+@supports (animation-timeline: scroll()) {
+  .docs-matrix {
+    animation-name: docs-matrix-scroll-fade;
+  }
+}
+@keyframes docs-matrix-scroll-fade {
+  from { --ai-scroll-fade-l: 0px; --ai-scroll-fade-r: 4rem; }
+  to { --ai-scroll-fade-l: 0px; --ai-scroll-fade-r: 0px; }
 }
 .docs-matrix .matrix-table th:first-child,
 .docs-matrix .matrix-table td:first-child {
@@ -781,7 +797,7 @@ a.docs-ecosystem-item {
 .blueprint-flow-num {
   font-family: var(--ai-font-mono);
   font-variant-numeric: tabular-nums;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   color: var(--ai-text-muted);
 }
 
@@ -932,7 +948,7 @@ a.docs-ecosystem-item {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -953,7 +969,7 @@ a.docs-ecosystem-item {
 }
 .guidance-pair-tag {
   font-family: var(--ai-font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   background: var(--ai-surface-1);
   border: 1px solid var(--ai-border);
   padding: 0.15rem 0.45rem;
@@ -1349,3 +1365,63 @@ a.docs-ecosystem-item {
     color: var(--ai-text-secondary);
   }
 }
+
+/* ==========================================================================
+   Touch targets and backdrops for the controls the showcase renders itself.
+   Desktop keeps the compact xs rhythm: only a coarse pointer floors an edge.
+   ========================================================================== */
+@layer components {
+  @media (pointer: coarse) {
+    /* Layout chips in a demo card header: the 22px compact height is a thumb
+       miss, so both edges are floored without changing the size variant. */
+    .demo-header .docs-variant-group .segmented-btn {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    /* Icon-only header actions (the permalink and the CLI copy) are 28px each
+       way at xs. The text buttons beside them are already wider than 44px. */
+    .demo-header .btn {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+}
+
+/* Copy buttons for code blocks, added by src/showcase/copy.ts. The button is
+   laid over the block, so it carries its own surface and a hairline: nothing
+   floats over text without a backdrop. The pre reserves a lane on the right so
+   a short first line is never covered. */
+@layer components {
+  .btn.copy-pre-btn {
+    background-color: var(--ai-surface-0);
+    border: 1px solid var(--ai-border);
+    border-radius: var(--ai-radius-sm);
+    box-shadow: var(--ai-shadow-sm);
+    color: var(--ai-text-secondary);
+  }
+  .btn.copy-pre-btn:hover {
+    background-color: var(--ai-surface-1);
+    border-color: var(--ai-border-strong);
+    color: var(--ai-text-primary);
+  }
+  pre.docs-pre-copy {
+    padding-right: 5rem;
+  }
+  @media (pointer: coarse) {
+    .btn.copy-pre-btn {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    pre.docs-pre-copy {
+      padding-right: 5.5rem;
+    }
+  }
+  /* On a phone the code is wider than the block, so a right lane cannot keep
+     the button off the text. The button gets its own band above the code. */
+  @media (max-width: 767px) {
+    pre.docs-pre-copy {
+      padding-top: 3.75rem;
+    }
+  }
+}
+

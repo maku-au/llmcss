@@ -57,6 +57,9 @@ export function addCopyButtons(root: ParentNode = document) {
     wrap.className = 'relative';
     pre.parentNode?.insertBefore(wrap, pre);
     wrap.appendChild(pre);
+    // The button is laid over the block, so the block reserves a lane for it.
+    // This class is the hook showcase.css hangs that padding on.
+    pre.classList.add('docs-pre-copy');
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'btn btn-ghost btn-xs copy-pre-btn absolute right-2 top-2';

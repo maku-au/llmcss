@@ -78,6 +78,17 @@
     background: transparent;
   }
 
+  /* A .table in a scroll container keeps a readable minimum, otherwise the
+     browser squeezes every column to one word per line and the wrapper never
+     scrolls. Set --ai-table-min-width on the wrapper to retune one table.
+     Tables with their own floor, .matrix-table among them, are left alone. */
+  .scroll-x > .table,
+  .table-container > .table,
+  .matrix-container > .table,
+  .docs-matrix > .table {
+    min-width: var(--ai-table-min-width, 32rem);
+  }
+
   /* Cell marks: yes / warn / no, drawn from currentColor so they theme. */
   .mark {
     display: inline-block;
