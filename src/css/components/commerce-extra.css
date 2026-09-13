@@ -342,4 +342,33 @@
       margin-block-start: 0;
     }
   }
+
+  /* Explicit vertical variant at any width (the stacked geometry above, opted
+     in by class instead of by viewport). The rail runs pip centre to pip centre
+     down the column. */
+  .orderline-track.is-vertical {
+    flex-direction: column;
+    gap: var(--ai-space-4);
+  }
+  .orderline-track.is-vertical .orderline-step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--ai-space-3);
+    padding-inline: 0;
+    text-align: start;
+  }
+  .orderline-track.is-vertical .orderline-step:not(:last-child)::after {
+    inset-block-start: calc(0.2rem + var(--ai-orderline-pip) / 2);
+    inset-inline-start: calc((var(--ai-orderline-pip) - var(--ai-orderline-rail)) / 2);
+    inline-size: var(--ai-orderline-rail);
+    block-size: calc(100% + var(--ai-space-4));
+  }
+  .orderline-track.is-vertical .orderline-pip {
+    margin-block-start: 0.2rem;
+    align-self: flex-start;
+    flex: 0 0 auto;
+  }
+  .orderline-track.is-vertical .orderline-label {
+    margin-block-start: 0;
+  }
 }

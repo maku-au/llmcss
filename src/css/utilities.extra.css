@@ -30,8 +30,14 @@
     margin-right: auto;
     padding-left: var(--ai-space-4);
     padding-right: var(--ai-space-4);
-    max-width: 1280px;
   }
+
+  /* Every max-width in this family is wrapped in :where(), so the cap carries
+     zero specificity and an explicit max-w-* or container-w-* utility wins it
+     no matter which sheet that utility came from. Width, margin and padding
+     stay at class specificity: they are what the container is for, not a
+     default meant to be displaced. */
+  :where(.container) { max-width: 1280px; }
 
   @media (min-width: 640px) {
     .container {
@@ -61,7 +67,7 @@
   }
 
   /* Never capped, at any width, including when paired with `container`. */
-  .container-fluid { max-width: 100%; }
+  :where(.container-fluid) { max-width: 100%; }
 
   @media (min-width: 640px) {
     .container-sm,
@@ -73,12 +79,11 @@
       padding-left: var(--ai-space-6);
       padding-right: var(--ai-space-6);
     }
-    .container-sm { max-width: 600px; }
+    :where(.container-sm) { max-width: 600px; }
   }
 
   @media (min-width: 768px) {
-    .container-sm,
-    .container-md { max-width: 728px; }
+    :where(.container-sm, .container-md) { max-width: 728px; }
   }
 
   @media (min-width: 1024px) {
@@ -91,24 +96,15 @@
       padding-left: var(--ai-space-8);
       padding-right: var(--ai-space-8);
     }
-    .container-sm,
-    .container-md,
-    .container-lg { max-width: 984px; }
+    :where(.container-sm, .container-md, .container-lg) { max-width: 984px; }
   }
 
   @media (min-width: 1280px) {
-    .container-sm,
-    .container-md,
-    .container-lg,
-    .container-xl { max-width: 1240px; }
+    :where(.container-sm, .container-md, .container-lg, .container-xl) { max-width: 1240px; }
   }
 
   @media (min-width: 1536px) {
-    .container-sm,
-    .container-md,
-    .container-lg,
-    .container-xl,
-    .container-2xl { max-width: 1496px; }
+    :where(.container-sm, .container-md, .container-lg, .container-xl, .container-2xl) { max-width: 1496px; }
   }
 
   /* --------------------------------------------------------------------------
@@ -174,6 +170,18 @@
   }
 
   /* --------------------------------------------------------------------------
+     The hidden attribute
+
+     [hidden] is (0,1,0), the same weight as .flex, .grid or .block, so it can
+     only win on source order. It sits here, after every display utility in the
+     generated matrix and after the display-setting rules above, which makes
+     `class="flex" hidden` hide and stops any component that sets display from
+     painting an element the author took out of the page. Toggle with el.hidden;
+     the .hidden class in the generated matrix still exists and is unchanged.
+     -------------------------------------------------------------------------- */
+  [hidden] { display: none; }
+
+  /* --------------------------------------------------------------------------
      Accessibility
 
      Nine declarations, and not-sr-only must undo exactly those nine.
@@ -198,6 +206,11 @@
     overflow: visible;
     clip: auto;
     white-space: normal;
+    /* The ninth. sr-only sets border-width: 0, so without this a
+       `sr-only focus:not-sr-only` skip link came back visible with its borders
+       still collapsed. `medium` is the CSS initial value for border-width, not
+       a guess: it is what the property computes to with no author rule. */
+    border-width: medium;
   }
 
   /* --------------------------------------------------------------------------
@@ -206,18 +219,33 @@
      One property reading one author-supplied custom property. Generatable, but
      these are the library's documented escape hatch and their names should stay
      stable independent of the matrix.
+
+     Each var() carries the property's own initial value as its fallback. A
+     bare var() whose custom property is unset is invalid at computed-value
+     time, which is not the same as the declaration not being there: the
+     property falls back to `unset`, so an inherited one silently takes the
+     parent's value. `text-var` with no --ai-text-color set was the visible
+     case. Naming the initial value makes the class inert instead of
+     unpredictable when the author forgets the custom property, and costs
+     nothing when they do not.
+
+     `bg-var` is the exception and is left bare: background-color's initial
+     value is `transparent`, none of auto/0/none/inherit means that, and
+     `inherit` would be actively wrong (background-color does not inherit, so
+     it would repaint the parent's fill). Unset already computes to
+     transparent, which is the behaviour we want.
      -------------------------------------------------------------------------- */
-  .w-var { width: var(--ai-w); }
-  .h-var { height: var(--ai-h); }
-  .min-w-var { min-width: var(--ai-min-w); }
-  .max-w-var { max-width: var(--ai-max-w); }
-  .p-var { padding: var(--ai-p); }
-  .m-var { margin: var(--ai-m); }
-  .gap-var { gap: var(--ai-gap); }
-  .grid-cols-var { grid-template-columns: var(--ai-cols); }
-  .transform-var { transform: var(--ai-transform); }
+  .w-var { width: var(--ai-w, auto); }
+  .h-var { height: var(--ai-h, auto); }
+  .min-w-var { min-width: var(--ai-min-w, auto); }
+  .max-w-var { max-width: var(--ai-max-w, none); }
+  .p-var { padding: var(--ai-p, 0); }
+  .m-var { margin: var(--ai-m, 0); }
+  .gap-var { gap: var(--ai-gap, 0); }
+  .grid-cols-var { grid-template-columns: var(--ai-cols, none); }
+  .transform-var { transform: var(--ai-transform, none); }
   .bg-var { background-color: var(--ai-bg-color); }
-  .text-var { color: var(--ai-text-color); }
+  .text-var { color: var(--ai-text-color, inherit); }
 
   /* --------------------------------------------------------------------------
      Transition defaults
@@ -263,34 +291,39 @@
      A readable measure and the vertical rhythm that goes with it, for a block of
      flowing copy the author does not want to class element by element. A
      descendant block, so it cannot be a value map.
+
+     Every rule that reaches a DESCENDANT is wrapped in :where(), so it carries
+     zero specificity. Unwrapped, `.prose > * + *` was (0,2,0) and `.prose p`
+     was (0,1,1): both outranked a plain utility such as `mt-0` or `leading-6`
+     on the child, which is backwards. Utilities are the override mechanism,
+     and prose is a default. Inside the block the relative order is unchanged,
+     so ties still resolve the way they did: `:first-child` after `* + *` zeroes
+     the leading margin, and the heading rule after both sets the heading
+     rhythm. `.prose` itself keeps its class specificity; it styles the element
+     the author classed, so there is nothing for it to lose a tie to.
      -------------------------------------------------------------------------- */
   .prose {
     max-width: 65ch;
   }
-  .prose > * + * {
+  :where(.prose > * + *) {
     margin-block-start: var(--ai-space-4);
   }
-  .prose h1,
-  .prose h2,
-  .prose h3,
-  .prose h4 {
+  :where(.prose h1, .prose h2, .prose h3, .prose h4) {
     margin-block-start: var(--ai-space-8);
     margin-block-end: var(--ai-space-3);
     line-height: 1.25;
     text-wrap: balance;
   }
-  .prose > :first-child {
+  :where(.prose > :first-child) {
     margin-block-start: 0;
   }
-  .prose p,
-  .prose li {
+  :where(.prose p, .prose li) {
     line-height: 1.7;
   }
-  .prose ul,
-  .prose ol {
+  :where(.prose ul, .prose ol) {
     padding-inline-start: var(--ai-space-6);
   }
-  .prose li + li {
+  :where(.prose li + li) {
     margin-block-start: var(--ai-space-2);
   }
 
@@ -302,7 +335,11 @@
      `break-before-page` and `break-after-page` in the generated matrix.
      -------------------------------------------------------------------------- */
   @media print {
-    .modal, .drawer, .toast-container, .consent-bar, .command-palette { display: none !important; }
+    /* No !important. These are component classes being hidden from a rule in
+       @layer utilities, and index.css orders utilities after components, so the
+       layer already wins; the only thing !important added was blocking an
+       author who wanted to print an open modal on purpose. */
+    .modal, .drawer, .toast-container, .consent-bar, .command-palette { display: none; }
     body { background: #fff; color: #000; }
     a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; color: #555; }
   }

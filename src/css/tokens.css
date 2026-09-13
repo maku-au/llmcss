@@ -32,7 +32,7 @@
     /* Color Spectrum Primitives (HSL-based for algorithmic manipulation) */
     --ai-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --ai-font-display: 'Sora', 'Plus Jakarta Sans', sans-serif;
-    --ai-font-serif: 'Newsreader', 'Editorial New', Georgia, Cambria, serif;
+    --ai-font-serif: 'Newsreader', Georgia, Cambria, serif;
     --ai-font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace;
 
     /* Spacing Grid (4px base) */
@@ -125,12 +125,28 @@
     --ai-accent-rgb: 37, 99, 235;
     --ai-accent-text: #ffffff;
 
-    --ai-success: #16a34a;
+    /* Status hues carry label text (text-success, badge text, log lines, the
+       pip labels), so the light-theme values are the text-facing ones and owe
+       WCAG AA on both light surfaces. Each is its bright hue darkened in place
+       (same HSL hue and saturation) until it clears 4.5:1 on --ai-surface-1
+       #ececee, the darkest surface a status label sits on:
+
+         success #107435   5.88:1 on #ffffff   4.98:1 on #ececee
+         warning #ae4209   5.86:1 on #ffffff   4.97:1 on #ececee
+         danger  #c42020   5.87:1 on #ffffff   4.98:1 on #ececee
+
+       The old #16a34a / #ea580c / #dc2626 measured 3.30 / 3.56 / 4.83 on white
+       and 2.79 / 3.02 / 4.09 on --ai-surface-1: all three failed as text.
+       White on the darkened fills now reads 5.88:1 and 5.87:1, so bg-success
+       and bg-danger clear AA too. The -subtle tints keep the bright hue: they
+       are 10% washes used as backgrounds, and darkening them would only dirty
+       the wash without helping any text. */
+    --ai-success: #107435;
     --ai-success-text: #ffffff;
     --ai-success-subtle: rgba(22, 163, 74, 0.1);
-    --ai-warning: #ea580c;
+    --ai-warning: #ae4209;
     --ai-warning-subtle: rgba(234, 88, 12, 0.1);
-    --ai-danger: #dc2626;
+    --ai-danger: #c42020;
     --ai-danger-text: #ffffff;
     --ai-danger-subtle: rgba(220, 38, 38, 0.1);
     --ai-info: #0284c7;
@@ -165,8 +181,77 @@
     --ai-chart-6: #64748b;
   }
 
-  /* Dark Theme (explicit .theme-dark on a subtree, or [data-ai-theme="dark"] on html) */
+  /* Light theme as an explicit marker. Only :root carried the light palette,
+     so a [data-ai-theme="light"] or .theme-light container inside a dark
+     subtree re-lit themes.css and every dark: utility but left the core
+     palette dark: the mirror image of the bug the dark block below fixes.
+     Same shape as that block, and :root is listed first for the same reason:
+     it keeps the (0,1,1) weight for the document-level case. */
+  :root[data-ai-theme="light"],
+  [data-ai-theme="light"],
+  .theme-light {
+    --ai-bg: #f4f4f5;
+    --ai-surface-0: #ffffff;
+    --ai-surface-1: #ececee;
+    --ai-surface-2: #e1e1e4;
+    --ai-surface-3: #d1d1d6;
+
+    --ai-text-primary: #18181b;
+    --ai-text-secondary: #52525b;
+    --ai-text-muted: #66666f;
+    --ai-text-inverted: #fafafa;
+
+    --ai-border: rgba(24, 24, 27, 0.1);
+    --ai-border-subtle: rgba(24, 24, 27, 0.05);
+    --ai-border-hover: rgba(24, 24, 27, 0.2);
+    --ai-border-strong: rgba(24, 24, 27, 0.25);
+
+    --ai-primary: #18181b;
+    --ai-primary-hover: #27272a;
+    --ai-primary-text: #ffffff;
+
+    --ai-accent: #2563eb;
+    --ai-accent-hover: #1d4ed8;
+    --ai-accent-subtle: rgba(37, 99, 235, 0.08);
+    --ai-accent-rgb: 37, 99, 235;
+    --ai-accent-text: #ffffff;
+
+    --ai-success: #107435;
+    --ai-success-text: #ffffff;
+    --ai-success-subtle: rgba(22, 163, 74, 0.1);
+    --ai-warning: #ae4209;
+    --ai-warning-subtle: rgba(234, 88, 12, 0.1);
+    --ai-danger: #c42020;
+    --ai-danger-text: #ffffff;
+    --ai-danger-subtle: rgba(220, 38, 38, 0.1);
+    --ai-info: #0284c7;
+    --ai-info-subtle: rgba(2, 132, 199, 0.1);
+
+    --ai-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --ai-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --ai-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+    --ai-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+    --ai-shadow-inner: inset 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+
+    --ai-focus-color: color-mix(in srgb, var(--ai-accent) 65%, transparent);
+    --ai-focus-width: 2px;
+    --ai-focus-offset: 2px;
+    --ai-focus-ring: 0 0 0 var(--ai-focus-offset) var(--ai-bg), 0 0 0 calc(var(--ai-focus-offset) + var(--ai-focus-width)) var(--ai-focus-color);
+    --ai-tap-highlight: transparent;
+  }
+
+  /* Dark Theme. Set either marker on <html> or on any container, as the
+     conventions note above and public/states.json both promise.
+
+     The bare [data-ai-theme="dark"] is the one that makes the container case
+     work. With only :root[data-ai-theme="dark"] the attribute on a non-root
+     element flipped nothing here, so the core palette stayed light while
+     themes.css (which already qualifies its skins with a descendant form) and
+     every dark: utility switched: a half-dark subtree. :root stays listed so
+     the rule keeps its (0,1,1) specificity for the document-level case and
+     cannot lose a tie to an unrelated single-attribute selector. */
   :root[data-ai-theme="dark"],
+  [data-ai-theme="dark"],
   .theme-dark {
     --ai-bg: #09090b;
     --ai-surface-0: #121215;
@@ -231,6 +316,53 @@
   [data-ai-focus="none"] {
     --ai-focus-ring: none;
     --ai-focus-width: 0px;
+  }
+}
+
+@layer tokens {
+  /* Corner geometry presets. Works on <html> or on any container, like every
+     other data-ai-* theming attribute. The four archetypes are the scales the
+     showcase styler used to write as inline --ai-radius-* properties on the
+     root; they live here so setting the attribute is all an author (or the
+     styler) has to do. Absent means the stock scale, which is the precision
+     step: the :root values above are exactly what data-ai-radius="precision"
+     sets, so that preset is expressible by removing the attribute.
+     --ai-radius-none and --ai-radius-full are constants and never move. */
+  [data-ai-radius="sharp"] {
+    --ai-radius-xs: 0px;
+    --ai-radius-sm: 0px;
+    --ai-radius-md: 0px;
+    --ai-radius-lg: 0px;
+    --ai-radius-xl: 0px;
+    --ai-radius-2xl: 0px;
+    --ai-radius-base: 0px;
+  }
+  [data-ai-radius="precision"] {
+    --ai-radius-xs: 2px;
+    --ai-radius-sm: 3px;
+    --ai-radius-md: 4px;
+    --ai-radius-lg: 6px;
+    --ai-radius-xl: 8px;
+    --ai-radius-2xl: 10px;
+    --ai-radius-base: 2px;
+  }
+  [data-ai-radius="balanced"] {
+    --ai-radius-xs: 3px;
+    --ai-radius-sm: 4px;
+    --ai-radius-md: 6px;
+    --ai-radius-lg: 8px;
+    --ai-radius-xl: 10px;
+    --ai-radius-2xl: 12px;
+    --ai-radius-base: 4px;
+  }
+  [data-ai-radius="smooth"] {
+    --ai-radius-xs: 4px;
+    --ai-radius-sm: 6px;
+    --ai-radius-md: 8px;
+    --ai-radius-lg: 12px;
+    --ai-radius-xl: 16px;
+    --ai-radius-2xl: 20px;
+    --ai-radius-base: 6px;
   }
 }
 

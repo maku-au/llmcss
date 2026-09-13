@@ -1,0 +1,307 @@
+/* ==========================================================================
+   GENERATED FILE. Do not edit.
+
+   LLMCSS motion addon. Opt in with a second link tag, after the core sheet:
+     <link rel="stylesheet" href="/llmcss.css">
+     <link rel="stylesheet" href="/llmcss-motion.css">
+
+   Source of truth:  src/css/motion.spec.mjs
+   Regenerate with:  node src/registry/build-motion.mjs
+   Budget check:     node src/registry/build-motion.mjs --check
+   Minified to dist/llmcss-motion.css by `npm run build:motion`.
+
+   Everything here is inside @layer motion, the slot src/css/index.css
+   already reserves between components and utilities, so every utility still
+   outranks every rule in this file and nothing here needs !important.
+   Nothing here carries !important.
+
+   Durations, delays and easings are the core tokens. This file does not
+   redefine --ai-duration-*, --ai-delay-* or --ai-ease-*, it reads them, so
+   retuning a core token retunes the addon.
+
+   Reduced motion: the core kill switch stays in charge. animations.css sets
+   `animation-duration: 0.01ms !important` on everything inside
+   @layer components, and an important declaration in an earlier layer wins,
+   so every animation in this file is instant for a reduced-motion user.
+   With animation-fill-mode: both that lands the element on its final frame:
+   entrances appear, exits disappear, nothing travels, nothing is left
+   hidden. The reveal family is the exception: both of its paths sit inside
+   prefers-reduced-motion: no-preference, so a reduced-motion user gets the
+   plain, visible element and no transition at all.
+   ========================================================================== */
+@layer motion {
+  :root {
+    --ai-motion-instant: 90ms;
+    --ai-motion-fast: var(--ai-duration-fast);
+    --ai-motion-normal: var(--ai-duration-normal);
+    --ai-motion-slow: var(--ai-duration-slow);
+    --ai-motion-slower: 700ms;
+    --ai-motion-ease-standard: var(--ai-ease-in-out);
+    --ai-motion-ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+    --ai-motion-ease-decelerate: cubic-bezier(0, 0, 0.2, 1);
+    --ai-motion-ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
+    --ai-motion-ease-overshoot: cubic-bezier(0.22, 1.12, 0.36, 1);
+    --ai-motion-distance-sm: 4px;
+    --ai-motion-distance-md: 10px;
+    --ai-motion-distance-lg: 24px;
+    --ai-motion-distance: var(--ai-motion-distance-md);
+    --ai-motion-scale-in: 0.97;
+    --ai-motion-scale-out: 1.02;
+    --ai-motion-stagger: 60ms;
+    --ai-motion-i: 0;
+    --ai-motion-duration: var(--ai-motion-normal);
+    --ai-motion-ease: var(--ai-motion-ease-decelerate);
+    --ai-motion-delay: 0ms;
+    --ai-motion-repeat: 1;
+    --ai-vt: none;
+  }
+
+  /* keyframes: all ai-m-*, so no core keyframe is shadowed */
+  @keyframes ai-m-fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes ai-m-fade-out { from { opacity: 1; } to { opacity: 0; } }
+  @keyframes ai-m-slide-up { from { opacity: 0; translate: 0 var(--ai-motion-distance); } to { opacity: 1; translate: 0 0; } }
+  @keyframes ai-m-slide-down { from { opacity: 0; translate: 0 calc(-1 * var(--ai-motion-distance)); } to { opacity: 1; translate: 0 0; } }
+  @keyframes ai-m-slide-left { from { opacity: 0; translate: var(--ai-motion-distance) 0; } to { opacity: 1; translate: 0 0; } }
+  @keyframes ai-m-slide-right { from { opacity: 0; translate: calc(-1 * var(--ai-motion-distance)) 0; } to { opacity: 1; translate: 0 0; } }
+  @keyframes ai-m-scale-in { from { opacity: 0; scale: var(--ai-motion-scale-in); } to { opacity: 1; scale: 1; } }
+  @keyframes ai-m-scale-out { from { opacity: 1; scale: 1; } to { opacity: 0; scale: var(--ai-motion-scale-out); } }
+  @keyframes ai-m-rise { from { opacity: 0; translate: 0 var(--ai-motion-distance-sm); scale: var(--ai-motion-scale-in); } to { opacity: 1; translate: 0 0; scale: 1; } }
+  @keyframes ai-m-sink { from { opacity: 1; translate: 0 0; scale: 1; } to { opacity: 0; translate: 0 var(--ai-motion-distance-sm); scale: var(--ai-motion-scale-in); } }
+  @keyframes ai-m-collapse-in { from { grid-template-rows: 0fr; opacity: 0; } to { grid-template-rows: 1fr; opacity: 1; } }
+  @keyframes ai-m-collapse-out { from { grid-template-rows: 1fr; opacity: 1; } to { grid-template-rows: 0fr; opacity: 0; } }
+  @keyframes ai-m-nudge { 0%, 100% { translate: 0 0; } 33% { translate: -3px 0; } 66% { translate: 3px 0; } }
+  @keyframes ai-m-sweep { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+  @keyframes ai-m-reveal { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes ai-m-reveal-up { from { opacity: 0; translate: 0 var(--ai-motion-distance); } to { opacity: 1; translate: 0 0; } }
+  @keyframes ai-m-reveal-scale { from { opacity: 0; scale: var(--ai-motion-scale-in); } to { opacity: 1; scale: 1; } }
+
+  :where(.animate-fade-in, .animate-fade-out, .animate-slide-up, .animate-slide-down,
+         .animate-slide-left, .animate-slide-right, .animate-scale-in, .animate-scale-out,
+         .animate-rise, .animate-sink, .animate-collapse-in, .animate-collapse-out,
+         .animate-nudge, .animate-sweep) {
+    animation-duration: var(--ai-motion-duration);
+    animation-timing-function: var(--ai-motion-ease);
+    animation-delay: var(--ai-motion-delay);
+    animation-iteration-count: var(--ai-motion-repeat);
+    animation-fill-mode: both;
+  }
+  :where(.transition-discrete, .transition-size, .transition-filter) {
+    transition-duration: var(--ai-motion-fast);
+    transition-timing-function: var(--ai-motion-ease-standard);
+  }
+  :where(.animate-nudge) {
+    animation-duration: 320ms;
+    animation-timing-function: var(--ai-motion-ease-standard);
+  }
+
+  /* motion-animation (motion, tier C, P0) */
+  .animate-fade-in { animation-name: ai-m-fade-in; }
+  .animate-fade-out { animation-name: ai-m-fade-out; }
+  .animate-slide-up { animation-name: ai-m-slide-up; }
+  .animate-slide-down { animation-name: ai-m-slide-down; }
+  .animate-slide-left { animation-name: ai-m-slide-left; }
+  .animate-slide-right { animation-name: ai-m-slide-right; }
+  .animate-scale-in { animation-name: ai-m-scale-in; }
+  .animate-scale-out { animation-name: ai-m-scale-out; }
+  .animate-rise { animation-name: ai-m-rise; }
+  .animate-sink { animation-name: ai-m-sink; }
+  .animate-collapse-in { animation-name: ai-m-collapse-in; }
+  .animate-collapse-out { animation-name: ai-m-collapse-out; }
+  .animate-nudge { animation-name: ai-m-nudge; }
+
+  /* motion-animation-gated (motion, tier C, P1) */
+  .animate-sweep { --ai-motion-sweep: 1; }
+
+  /* motion-duration (motion, tier C, P0) */
+  .duration-0 { --ai-motion-duration: 0ms; }
+  .duration-instant { --ai-motion-duration: var(--ai-motion-instant); }
+  .duration-fast { --ai-motion-duration: var(--ai-motion-fast); }
+  .duration-normal { --ai-motion-duration: var(--ai-motion-normal); }
+  .duration-slow { --ai-motion-duration: var(--ai-motion-slow); }
+  .duration-slower { --ai-motion-duration: var(--ai-motion-slower); }
+
+  /* motion-delay (motion, tier C, P1) */
+  .delay-0 { --ai-motion-delay: 0ms; }
+  .delay-75 { --ai-motion-delay: 75ms; }
+  .delay-150 { --ai-motion-delay: 150ms; }
+  .delay-300 { --ai-motion-delay: 300ms; }
+  .delay-500 { --ai-motion-delay: 500ms; }
+  .delay-700 { --ai-motion-delay: 700ms; }
+
+  /* motion-ease (motion, tier C, P1) */
+  .ease-standard { --ai-motion-ease: var(--ai-motion-ease-standard); }
+  .ease-emphasized { --ai-motion-ease: var(--ai-motion-ease-emphasized); }
+  .ease-decelerate { --ai-motion-ease: var(--ai-motion-ease-decelerate); }
+  .ease-accelerate { --ai-motion-ease: var(--ai-motion-ease-accelerate); }
+  .ease-overshoot { --ai-motion-ease: var(--ai-motion-ease-overshoot); }
+  .ease-out { --ai-motion-ease: var(--ai-ease-out); }
+  .ease-in-out { --ai-motion-ease: var(--ai-ease-in-out); }
+  .ease-smooth { --ai-motion-ease: var(--ai-ease-smooth); }
+  .ease-spring { --ai-motion-ease: var(--ai-ease-spring); }
+  .ease-linear { --ai-motion-ease: linear; }
+
+  /* motion-repeat (motion, tier C, P1) */
+  .repeat-1 { --ai-motion-repeat: 1; }
+  .repeat-2 { --ai-motion-repeat: 2; }
+  .repeat-3 { --ai-motion-repeat: 3; }
+
+  /* motion-control (motion, tier C, P2) */
+  .once { animation-iteration-count: 1; }
+  .motion-paused { animation-play-state: paused; }
+  .motion-running { animation-play-state: running; }
+
+  /* motion-distance (motion, tier C, P1) */
+  .slide-sm { --ai-motion-distance: var(--ai-motion-distance-sm); }
+  .slide-md { --ai-motion-distance: var(--ai-motion-distance-md); }
+  .slide-lg { --ai-motion-distance: var(--ai-motion-distance-lg); }
+
+  /* motion-stagger (motion, tier C, P1) */
+  .stagger > * { animation-delay: calc(var(--ai-motion-delay) + var(--ai-motion-i) * var(--ai-motion-stagger)); }
+
+  /* motion-stagger-step (motion, tier C, P2) */
+  .stagger-fast { --ai-motion-stagger: 35ms; }
+  .stagger-slow { --ai-motion-stagger: 90ms; }
+
+  /* motion-reveal (motion, tier C, P1) */
+  .reveal { --ai-motion-reveal: ai-m-reveal; }
+  .reveal-up { --ai-motion-reveal: ai-m-reveal-up; }
+  .reveal-scale { --ai-motion-reveal: ai-m-reveal-scale; }
+
+  /* motion-transition (motion, tier C, P1) */
+  .transition-discrete { transition-behavior: allow-discrete; }
+  .transition-size { transition-property: grid-template-rows, block-size; interpolate-size: allow-keywords; }
+  .transition-filter { transition-property: filter, backdrop-filter; }
+
+  /* motion-vt (motion, tier C, P2) */
+  .vt-hero { view-transition-name: ai-hero; }
+  .vt-title { view-transition-name: ai-title; }
+  .vt-media { view-transition-name: ai-media; }
+  .vt-panel { view-transition-name: ai-panel; }
+  .vt-name { view-transition-name: var(--ai-vt); }
+  .vt-none { view-transition-name: none; }
+
+  /* motion-micro (motion, tier C, P2) */
+  .press { --ai-motion-press: 0.985; }
+  .press-firm { --ai-motion-press: 0.96; }
+  .lift { --ai-motion-lift: 2px; }
+  .lift-lg { --ai-motion-lift: 4px; }
+
+  /* motion-safe: */
+  @media (prefers-reduced-motion: no-preference) {
+    .motion-safe\:animate-fade-in { animation-name: ai-m-fade-in; }
+    .motion-safe\:animate-fade-out { animation-name: ai-m-fade-out; }
+    .motion-safe\:animate-slide-up { animation-name: ai-m-slide-up; }
+    .motion-safe\:animate-slide-down { animation-name: ai-m-slide-down; }
+    .motion-safe\:animate-slide-left { animation-name: ai-m-slide-left; }
+    .motion-safe\:animate-slide-right { animation-name: ai-m-slide-right; }
+    .motion-safe\:animate-scale-in { animation-name: ai-m-scale-in; }
+    .motion-safe\:animate-scale-out { animation-name: ai-m-scale-out; }
+    .motion-safe\:animate-rise { animation-name: ai-m-rise; }
+    .motion-safe\:animate-sink { animation-name: ai-m-sink; }
+    .motion-safe\:animate-collapse-in { animation-name: ai-m-collapse-in; }
+    .motion-safe\:animate-collapse-out { animation-name: ai-m-collapse-out; }
+    .motion-safe\:animate-nudge { animation-name: ai-m-nudge; }
+  }
+
+  /* motion-reduce: */
+  @media (prefers-reduced-motion: reduce) {
+    .motion-reduce\:animate-fade-in { animation-name: ai-m-fade-in; }
+    .motion-reduce\:animate-fade-out { animation-name: ai-m-fade-out; }
+    .motion-reduce\:animate-slide-up { animation-name: ai-m-slide-up; }
+    .motion-reduce\:animate-slide-down { animation-name: ai-m-slide-down; }
+    .motion-reduce\:animate-slide-left { animation-name: ai-m-slide-left; }
+    .motion-reduce\:animate-slide-right { animation-name: ai-m-slide-right; }
+    .motion-reduce\:animate-scale-in { animation-name: ai-m-scale-in; }
+    .motion-reduce\:animate-scale-out { animation-name: ai-m-scale-out; }
+    .motion-reduce\:animate-rise { animation-name: ai-m-rise; }
+    .motion-reduce\:animate-sink { animation-name: ai-m-sink; }
+    .motion-reduce\:animate-collapse-in { animation-name: ai-m-collapse-in; }
+    .motion-reduce\:animate-collapse-out { animation-name: ai-m-collapse-out; }
+    .motion-reduce\:animate-nudge { animation-name: ai-m-nudge; }
+  }
+
+  .animate-collapse-in,
+  .animate-collapse-out {
+    display: grid;
+  }
+  .animate-collapse-in > *,
+  .animate-collapse-out > * {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .stagger > :nth-child(1) { --ai-motion-i: 0; }
+  .stagger > :nth-child(2) { --ai-motion-i: 1; }
+  .stagger > :nth-child(3) { --ai-motion-i: 2; }
+  .stagger > :nth-child(4) { --ai-motion-i: 3; }
+  .stagger > :nth-child(5) { --ai-motion-i: 4; }
+  .stagger > :nth-child(6) { --ai-motion-i: 5; }
+  .stagger > :nth-child(7) { --ai-motion-i: 6; }
+  .stagger > :nth-child(8) { --ai-motion-i: 7; }
+  .stagger > :nth-child(9) { --ai-motion-i: 8; }
+  .stagger > :nth-child(10) { --ai-motion-i: 9; }
+  .stagger > :nth-child(11) { --ai-motion-i: 10; }
+  .stagger > :nth-child(12) { --ai-motion-i: 11; }
+  .stagger > :nth-child(n+13) { --ai-motion-i: 12; }
+
+  .progress .animate-sweep,
+  .skeleton .animate-sweep,
+  .animate-sweep.is-loading,
+  .animate-sweep.is-streaming,
+  [aria-busy="true"] .animate-sweep {
+    animation-name: ai-m-sweep;
+    animation-iteration-count: infinite;
+    animation-duration: var(--ai-motion-slower);
+    animation-timing-function: var(--ai-motion-ease-standard);
+    will-change: transform;
+  }
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal, .reveal-up, .reveal-scale {
+        animation-name: var(--ai-motion-reveal);
+        animation-fill-mode: both;
+        animation-timeline: view();
+        animation-range: entry 8% cover 30%;
+        animation-duration: 1ms;
+      }
+    }
+  }
+  @supports not (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      [data-ai-motion-observer] :where(.reveal, .reveal-up, .reveal-scale) {
+        opacity: 0;
+        transition: opacity var(--ai-motion-duration) var(--ai-motion-ease),
+                    translate var(--ai-motion-duration) var(--ai-motion-ease),
+                    scale var(--ai-motion-duration) var(--ai-motion-ease);
+      }
+      [data-ai-motion-observer] :where(.reveal-up) { translate: 0 var(--ai-motion-distance); }
+      [data-ai-motion-observer] :where(.reveal-scale) { scale: var(--ai-motion-scale-in); }
+      [data-ai-motion-observer] :where(.reveal, .reveal-up, .reveal-scale).is-visible {
+        opacity: 1;
+        translate: 0 0;
+        scale: 1;
+      }
+    }
+  }
+
+  :where(.press, .press-firm, .lift, .lift-lg) {
+    transition-property: scale, translate, box-shadow;
+    transition-duration: var(--ai-motion-fast);
+    transition-timing-function: var(--ai-motion-ease-standard);
+  }
+  :where(.press, .press-firm):active {
+    scale: var(--ai-motion-press);
+  }
+  @media (hover: hover) {
+    :where(.lift, .lift-lg):hover {
+      translate: 0 calc(-1 * var(--ai-motion-lift));
+      box-shadow: var(--ai-shadow-md);
+    }
+  }
+  :where(.lift, .lift-lg):active {
+    translate: 0 0;
+    box-shadow: var(--ai-shadow-sm);
+  }
+
+}

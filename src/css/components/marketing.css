@@ -230,6 +230,22 @@
     color: var(--ai-text-secondary);
   }
 
+  /* The list owns its marker so no page hand-types a check glyph. One hairline
+     dash on the text baseline, never a coloured tick. */
+  .pricing-features > li {
+    position: relative;
+    padding-inline-start: var(--ai-space-4);
+  }
+  .pricing-features > li::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0.65em;
+    width: 0.4375rem;
+    height: 1px;
+    background-color: var(--ai-border-strong);
+  }
+
   .pricing-feature-item {
     display: flex;
     align-items: center;
@@ -536,6 +552,7 @@
   }
 
   .matrix-feature-col {
+    width: 38%;
     text-align: left;
     font-weight: 500;
     position: sticky;
@@ -585,12 +602,15 @@
     color: var(--ai-text-secondary);
   }
 
-  /* Hero variants */
-  .hero-split.is-reversed {
-    grid-template-columns: 0.9fr 1.1fr;
-  }
-  .hero-split.is-reversed > :first-child {
-    order: 2;
+  /* Hero variants. The reversed column split only applies where the base rule
+     goes two-column; below 1024px it stacks like every other hero. */
+  @media (min-width: 1024px) {
+    .hero-split.is-reversed {
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+    .hero-split.is-reversed > :first-child {
+      order: 2;
+    }
   }
   .hero.is-centered {
     text-align: center;

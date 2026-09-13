@@ -888,20 +888,16 @@
   "space-y-0": "spacing",
   "space-y-1": "spacing",
   "space-y-2": "spacing",
-  "space-y-3": "spacing",
   "space-y-4": "spacing",
   "space-y-6": "spacing",
   "space-y-8": "spacing",
-  "space-y-12": "spacing",
   "space-y-16": "spacing",
   "space-x-0": "spacing",
   "space-x-1": "spacing",
   "space-x-2": "spacing",
-  "space-x-3": "spacing",
   "space-x-4": "spacing",
   "space-x-6": "spacing",
   "space-x-8": "spacing",
-  "space-x-12": "spacing",
   "space-x-16": "spacing",
   "w-0": "sizing",
   "w-1": "sizing",
@@ -1444,22 +1440,18 @@
   "scroll-mt-0": "interaction",
   "scroll-mt-1": "interaction",
   "scroll-mt-2": "interaction",
-  "scroll-mt-3": "interaction",
   "scroll-mt-4": "interaction",
   "scroll-mt-6": "interaction",
   "scroll-mt-8": "interaction",
-  "scroll-mt-12": "interaction",
   "scroll-mt-16": "interaction",
   "scroll-mt-20": "interaction",
   "scroll-mt-24": "interaction",
   "scroll-pt-0": "interaction",
   "scroll-pt-1": "interaction",
   "scroll-pt-2": "interaction",
-  "scroll-pt-3": "interaction",
   "scroll-pt-4": "interaction",
   "scroll-pt-6": "interaction",
   "scroll-pt-8": "interaction",
-  "scroll-pt-12": "interaction",
   "scroll-pt-16": "interaction",
   "snap-x": "interaction",
   "snap-y": "interaction",
@@ -2697,16 +2689,6 @@
    "sm",
    "xl"
   ],
-  "gap-3": [
-   "2xl",
-   "cq-lg",
-   "cq-md",
-   "cq-sm",
-   "lg",
-   "md",
-   "sm",
-   "xl"
-  ],
   "gap-4": [
    "2xl",
    "cq-lg",
@@ -2728,16 +2710,6 @@
    "xl"
   ],
   "gap-8": [
-   "2xl",
-   "cq-lg",
-   "cq-md",
-   "cq-sm",
-   "lg",
-   "md",
-   "sm",
-   "xl"
-  ],
-  "gap-12": [
    "2xl",
    "cq-lg",
    "cq-md",
@@ -2857,12 +2829,6 @@
    "sm",
    "xl"
   ],
-  "p-3": [
-   "lg",
-   "md",
-   "sm",
-   "xl"
-  ],
   "p-4": [
    "lg",
    "md",
@@ -2876,12 +2842,6 @@
    "xl"
   ],
   "p-8": [
-   "lg",
-   "md",
-   "sm",
-   "xl"
-  ],
-  "p-12": [
    "lg",
    "md",
    "sm",
@@ -2911,12 +2871,6 @@
    "sm",
    "xl"
   ],
-  "px-3": [
-   "lg",
-   "md",
-   "sm",
-   "xl"
-  ],
   "px-4": [
    "lg",
    "md",
@@ -2930,12 +2884,6 @@
    "xl"
   ],
   "px-8": [
-   "lg",
-   "md",
-   "sm",
-   "xl"
-  ],
-  "px-12": [
    "lg",
    "md",
    "sm",
@@ -2965,12 +2913,6 @@
    "sm",
    "xl"
   ],
-  "py-3": [
-   "lg",
-   "md",
-   "sm",
-   "xl"
-  ],
   "py-4": [
    "lg",
    "md",
@@ -2984,12 +2926,6 @@
    "xl"
   ],
   "py-8": [
-   "lg",
-   "md",
-   "sm",
-   "xl"
-  ],
-  "py-12": [
    "lg",
    "md",
    "sm",
@@ -3163,12 +3099,6 @@
    "sm",
    "xl"
   ],
-  "m-3": [
-   "lg",
-   "md",
-   "sm",
-   "xl"
-  ],
   "m-4": [
    "lg",
    "md",
@@ -3182,12 +3112,6 @@
    "xl"
   ],
   "m-8": [
-   "lg",
-   "md",
-   "sm",
-   "xl"
-  ],
-  "m-12": [
    "lg",
    "md",
    "sm",
@@ -3223,12 +3147,6 @@
    "sm",
    "xl"
   ],
-  "mx-3": [
-   "lg",
-   "md",
-   "sm",
-   "xl"
-  ],
   "mx-4": [
    "lg",
    "md",
@@ -3242,12 +3160,6 @@
    "xl"
   ],
   "mx-8": [
-   "lg",
-   "md",
-   "sm",
-   "xl"
-  ],
-  "mx-12": [
    "lg",
    "md",
    "sm",
@@ -3283,12 +3195,6 @@
    "sm",
    "xl"
   ],
-  "my-3": [
-   "lg",
-   "md",
-   "sm",
-   "xl"
-  ],
   "my-4": [
    "lg",
    "md",
@@ -3302,12 +3208,6 @@
    "xl"
   ],
   "my-8": [
-   "lg",
-   "md",
-   "sm",
-   "xl"
-  ],
-  "my-12": [
    "lg",
    "md",
    "sm",

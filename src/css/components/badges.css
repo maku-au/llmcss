@@ -126,6 +126,19 @@
     background-color: var(--ai-danger);
   }
 
+  /* Text-bearing status badges carry the label, so they owe WCAG AA. They now
+     take the raw status token in both themes: the light tokens were darkened
+     in tokens.css until each clears 4.5:1 on --ai-surface-1, which is the
+     badge background, so the label reads 4.98:1 (success), 4.97:1 (warning)
+     and 4.98:1 (danger) there and 5.88 / 5.86 / 5.87:1 on --ai-surface-0.
+     The old rule mixed the hue 70% toward --ai-text-primary to buy that
+     contrast; against the darkened tokens the same mix overshoots to 7.20,
+     7.25 and 7.43:1 and reads as near-black, so it is gone, and with it the
+     dark-theme rules that existed only to undo it (dark reads 7.78, 6.32 and
+     4.71:1 on #18181b with the raw hue). The border keeps its 30% mix: that
+     is a hairline tint, not text. The dot variants are untouched: the pip is
+     decoration and its colour comes from ::before, not from the label. */
+
   /* Free Catalog Tag */
   .badge-free {
     background: transparent;

@@ -60,15 +60,23 @@
     color: var(--ai-text-primary);
   }
 
+  /* The box owns the chrome, so the field inside it has none of its own. The
+     four resets below carried !important to beat .input and .input:focus from
+     components/inputs.css; they do not need it. index.css imports inputs.css
+     at 15 and this file at 38, both in @layer components, and each selector
+     here matches the specificity of the inputs.css rule it is overriding
+     (0,1,0 against .input, 0,2,0 against .input:focus and :focus-visible), so
+     source order already decides. Keeping !important only meant a utility or
+     an author override could not reach the field at all. */
   .command-input,
   .command-input:focus,
   .command-input:focus-visible {
     width: 100%;
     height: 3.5rem;
-    background: transparent !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
+    background: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
     font-family: var(--ai-font-sans);
     font-size: 0.9375rem;
     color: var(--ai-text-primary);

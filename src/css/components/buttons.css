@@ -71,6 +71,29 @@
     background-color: var(--ai-surface-1);
   }
 
+  /* Pressed / Active State (state twin for aria-pressed and is-active)
+     A toggled button (the btn-group Day/Week/Month demo, any .btn.is-active)
+     is announced in ARIA already; this is its visible twin. A hairline or
+     text-colour treatment, never a fill, so it reads as "on" without being
+     mistaken for btn-primary. Primary is already filled, so it only gets the
+     stronger border; ghost has no border to strengthen, so it gets a bottom
+     hairline via inset box-shadow instead. */
+  .btn[aria-pressed="true"],
+  .btn.is-active {
+    border-color: var(--ai-border-strong);
+    color: var(--ai-text-primary);
+  }
+  .btn-primary[aria-pressed="true"],
+  .btn-primary.is-active {
+    border-color: var(--ai-border-strong);
+    color: var(--ai-primary-text);
+  }
+  .btn-ghost[aria-pressed="true"],
+  .btn-ghost.is-active {
+    border-color: transparent;
+    box-shadow: inset 0 -1px 0 var(--ai-border-strong);
+  }
+
   .btn-accent {
     --ai-btn-fg: var(--ai-accent-text);
     background-color: var(--ai-accent);

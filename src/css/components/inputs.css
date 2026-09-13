@@ -277,12 +277,24 @@
     box-shadow: var(--ai-focus-ring);
   }
 
-  /* Prevent iOS Safari Viewport Auto-Zoom on Form Inputs */
+  /* Prevent iOS Safari Viewport Auto-Zoom on Form Inputs.
+     Safari zooms the viewport when a focused field computes under 16px, so a
+     default floor of 1rem is right. It was written as `font-size: 1rem
+     !important`, which made it a ceiling as well: at phone width no text-*
+     utility could size a field, because !important outranks every layer.
+     Two changes. max(1rem, 1em) keeps the floor but follows the inherited size
+     upward, so a field inside a larger-type block is no longer shrunk to 1rem
+     (1em in a font-size resolves against the parent). And dropping !important
+     hands the property back to the cascade: utilities.css sits in @layer
+     utilities, which index.css orders after @layer components, so `text-sm` on
+     the field wins here at any specificity. Sizing a field below 16px is then
+     an explicit author choice, which it should be, and belongs with a viewport
+     meta tag that disables the zoom. */
   @media (max-width: 768px) {
     .input,
     .textarea,
     .select {
-      font-size: 1rem !important;
+      font-size: max(1rem, 1em);
     }
   }
 

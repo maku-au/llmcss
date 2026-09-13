@@ -61,7 +61,10 @@ export const SPACE_NEG = ['px', '0.5', '1', '1.5', '2', '2.5', '3', '4', '5', '6
  * exactly these steps at every tier. This is the rule that replaces the audit's
  * hand-picked coverage: one list, applied uniformly.
  */
-export const SPACE_RESP = ['0', '1', '2', '3', '4', '6', '8', '12', '16'];
+// Steps 3 and 12 dropped from the responsive set on 2026-09-13 to stay under the 50KB
+// gzip ceiling (cut order in the generator design, item 1). md:p-3 is the
+// least-missed responsive step; the base p-3 is unaffected.
+export const SPACE_RESP = ['0', '1', '2', '4', '6', '8', '16'];
 
 /** Responsive subset for side-specific spacing. */
 export const SPACE_RESP_SIDE = ['0', '1', '2', '4', '6', '8'];

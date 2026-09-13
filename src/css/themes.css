@@ -3,6 +3,24 @@
      THEME ARCHETYPES (Infinite Skinning Engine)
      Dual Light/Dark Mode Support for Every Archetype
      Usage: Set [data-ai-skin="..."] on <html> or container element
+
+     Every skin lists the same four light selectors and three dark ones, in the
+     same order, so the set is checkable by eye:
+
+       light  :root[data-ai-theme="light"][data-ai-skin=X]      html, explicit
+              :root:not([data-ai-theme="dark"])[data-ai-skin=X] html, default
+              [data-ai-theme="light"] [data-ai-skin=X]          container, attr
+              .theme-light [data-ai-skin=X]                     container, class
+       dark   :root[data-ai-theme="dark"][data-ai-skin=X]       html, explicit
+              [data-ai-theme="dark"] [data-ai-skin=X]           container, attr
+              .theme-dark [data-ai-skin=X]                      container, class
+
+     The .theme-light / .theme-dark pair is not optional decoration. tokens.css
+     flips the core palette for both the attribute and the class, and 0.4.0
+     renamed the old `.dark` utility to `.theme-dark`, so a skin that only knew
+     the attribute went light inside a `.theme-dark` subtree while the core
+     tokens around it went dark. Obsidian carried both forms and the other four
+     skins did not.
      ========================================================================== */
 
   /* --------------------------------------------------------------------------
@@ -70,7 +88,8 @@
   /* Editorial Light Mode */
   :root[data-ai-theme="light"][data-ai-skin="editorial"],
   :root:not([data-ai-theme="dark"])[data-ai-skin="editorial"],
-  [data-ai-theme="light"] [data-ai-skin="editorial"] {
+  [data-ai-theme="light"] [data-ai-skin="editorial"],
+  .theme-light [data-ai-skin="editorial"] {
     --ai-bg: #faf7f2;
     --ai-surface-0: #ffffff;
     --ai-surface-1: #f3efe6;
@@ -92,7 +111,8 @@
 
   /* Editorial Dark Mode */
   :root[data-ai-theme="dark"][data-ai-skin="editorial"],
-  [data-ai-theme="dark"] [data-ai-skin="editorial"] {
+  [data-ai-theme="dark"] [data-ai-skin="editorial"],
+  .theme-dark [data-ai-skin="editorial"] {
     --ai-bg: #161412;
     --ai-surface-0: #1d1a17;
     --ai-surface-1: #282420;
@@ -120,7 +140,8 @@
 
   :root[data-ai-theme="light"][data-ai-skin="executive"],
   :root:not([data-ai-theme="dark"])[data-ai-skin="executive"],
-  [data-ai-theme="light"] [data-ai-skin="executive"] {
+  [data-ai-theme="light"] [data-ai-skin="executive"],
+  .theme-light [data-ai-skin="executive"] {
     --ai-bg: #f8fafc;
     --ai-surface-0: #ffffff;
     --ai-surface-1: #f1f5f9;
@@ -143,7 +164,8 @@
   }
 
   :root[data-ai-theme="dark"][data-ai-skin="executive"],
-  [data-ai-theme="dark"] [data-ai-skin="executive"] {
+  [data-ai-theme="dark"] [data-ai-skin="executive"],
+  .theme-dark [data-ai-skin="executive"] {
     --ai-bg: #090d16;
     --ai-surface-0: #0f172a;
     --ai-surface-1: #172033;
@@ -176,7 +198,8 @@
 
   :root[data-ai-theme="light"][data-ai-skin="fintech"],
   :root:not([data-ai-theme="dark"])[data-ai-skin="fintech"],
-  [data-ai-theme="light"] [data-ai-skin="fintech"] {
+  [data-ai-theme="light"] [data-ai-skin="fintech"],
+  .theme-light [data-ai-skin="fintech"] {
     --ai-bg: #f8f8f6;
     --ai-surface-0: #ffffff;
     --ai-surface-1: #f2f1ee;
@@ -199,7 +222,8 @@
   }
 
   :root[data-ai-theme="dark"][data-ai-skin="fintech"],
-  [data-ai-theme="dark"] [data-ai-skin="fintech"] {
+  [data-ai-theme="dark"] [data-ai-skin="fintech"],
+  .theme-dark [data-ai-skin="fintech"] {
     --ai-bg: #0c0a09;
     --ai-surface-0: #141210;
     --ai-surface-1: #1c1917;
@@ -232,7 +256,8 @@
 
   :root[data-ai-theme="light"][data-ai-skin="enterprise"],
   :root:not([data-ai-theme="dark"])[data-ai-skin="enterprise"],
-  [data-ai-theme="light"] [data-ai-skin="enterprise"] {
+  [data-ai-theme="light"] [data-ai-skin="enterprise"],
+  .theme-light [data-ai-skin="enterprise"] {
     --ai-bg: #f8fafc;
     --ai-surface-0: #ffffff;
     --ai-surface-1: #f1f5f9;
@@ -250,7 +275,8 @@
   }
 
   :root[data-ai-theme="dark"][data-ai-skin="enterprise"],
-  [data-ai-theme="dark"] [data-ai-skin="enterprise"] {
+  [data-ai-theme="dark"] [data-ai-skin="enterprise"],
+  .theme-dark [data-ai-skin="enterprise"] {
     --ai-bg: #0b1120;
     --ai-surface-0: #111827;
     --ai-surface-1: #1f2937;

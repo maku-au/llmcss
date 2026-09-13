@@ -20,57 +20,100 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { VARIANT_RE } from './css-names.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const publicDir = path.resolve(here, '../../public');
 
-// Names that used to need the ai- prefix. Since 0.4.0 the target is the name
-// itself, so the map is read the other way round: it is the near-miss list
-// used to turn a stale "ai-btn" back into "btn".
+/**
+ * Old class name -> the 0.4.0 name, for the renames the generated-utilities
+ * migration made. Read two ways:
+ *   - strippedTarget uses it to resolve a stale "ai-<old>" to the new name
+ *   - the legacy-class check below reports a bare <old> as an error with the
+ *     new name as the fix, and `llmcss lint --fix` applies it
+ *
+ * Source of truth is the codemod's rename map (the `flat` object in
+ * scratchpad/utilities-spec/rename-map.json); this is that map minus the two
+ * entries a validator cannot act on. It used to hold forty-odd identity pairs
+ * ("btn": "btn"), which made both branches that read it dead code: the
+ * legacy-class check is guarded on LEGACY_MAP[t] !== t, and it never was.
+ *
+ * Deliberately NOT here:
+ *   sticky -> sticky-top   `sticky` still exists and now means position-only.
+ *                          A validator cannot tell the two meanings apart, and
+ *                          guessing would rewrite correct markup.
+ *   table, collapse        removed with no replacement; they fall through to
+ *                          the unknown-class warning, which is the right shape.
+ *
+ * container-sm, container-md, container-lg and container-xl are renames AND
+ * live class names with a new meaning (the Bootstrap-shaped fluid-then-capped
+ * containers). They used to be checked ahead of the manifest so a stale one
+ * was caught, which also made the new, correct spelling an error. The
+ * migration has landed, so the manifest now answers first: writing
+ * container-lg is simply correct. The entries stay only to resolve the
+ * ai-prefixed spelling of the old cap.
+ */
 export const LEGACY_MAP = {
-  btn: 'btn',
-  'btn-primary': 'btn-primary',
-  'btn-secondary': 'btn-secondary',
-  'btn-outline': 'btn-outline',
-  'btn-ghost': 'btn-ghost',
-  'btn-danger': 'btn-danger',
-  flex: 'flex',
-  'flex-col': 'flex-col',
-  'flex-row': 'flex-row',
-  'flex-wrap': 'flex-wrap',
-  'items-center': 'items-center',
-  'items-start': 'items-start',
-  'justify-between': 'justify-between',
-  'justify-center': 'justify-center',
-  grid: 'grid',
-  card: 'card',
-  badge: 'badge',
-  spinner: 'spinner',
-  progress: 'progress',
-  'rounded-md': 'rounded-md',
-  'rounded-lg': 'rounded-lg',
-  container: 'container',
-  hidden: 'hidden',
-  'sr-only': 'sr-only',
-  'text-center': 'text-center',
-  'font-bold': 'font-bold',
-  'w-full': 'w-full',
-  input: 'input',
-  table: 'table',
-  modal: 'modal',
-  alert: 'alert',
-  tooltip: 'tooltip',
-  dropdown: 'dropdown',
-  accordion: 'accordion',
-  tabs: 'tabs',
-  navbar: 'navbar',
-  footer: 'footer',
-  'gap-2': 'gap-2',
-  'gap-4': 'gap-4',
-  'p-4': 'p-4',
-  'p-6': 'p-6',
-  'mt-4': 'mt-4',
-  'mb-4': 'mb-4',
+  // Ecommerce order tracker: the component gave up the order-* prefix to the
+  // flexbox/grid order-* utilities. Names from components/commerce-extra.css.
+  'order-head': 'orderline-head',
+  'order-title': 'orderline-title',
+  'order-eta': 'orderline-eta',
+  'order-track': 'orderline-track',
+  'order-step': 'orderline-step',
+  'order-pip': 'orderline-pip',
+  'order-label': 'orderline-label',
+  'order-date': 'orderline-date',
+  'order-meta': 'orderline-meta',
+  'order-id': 'orderline-id',
+
+  // Hard max-width caps kept their behaviour under container-w-*; the old
+  // names now mean the fluid-then-capped containers. See the note above.
+  'container-sm': 'container-w-sm',
+  'container-md': 'container-w-md',
+  'container-lg': 'container-w-lg',
+  'container-xl': 'container-w-xl',
+  'container-inline': 'cq-inline',
+
+  // print-* was a parallel naming scheme for what is a variant everywhere else.
+  'print-hidden': 'print:hidden',
+  'print-block': 'print:block',
+  'print-break-before': 'break-before-page',
+  'print-break-after': 'break-after-page',
+
+  // Folded into the grid-template-* value maps, so they get variants for free.
+  'subgrid-cols': 'grid-cols-subgrid',
+  'subgrid-rows': 'grid-rows-subgrid',
+
+  // The property is user-select; select-* read as a <select> element style.
+  'select-none': 'user-select-none',
+  'select-text': 'user-select-text',
+  'select-all': 'user-select-all',
+  'select-auto': 'user-select-auto',
+
+  // .border is width-and-style only now, so "none" had to say which.
+  'border-none': 'border-style-none',
+
+  // A theme switch, not a utility. Unrelated to the dark: variant prefix.
+  dark: 'theme-dark',
+
+  // Bare cq: was two variants sharing a name: nine classes fired at 380px and
+  // five at 600px. Per-class, so the thresholds are preserved exactly; a
+  // blanket cq: -> cq-md: would move the first nine from 380px to 600px.
+  'cq:block': 'cq-sm:block',
+  'cq:flex': 'cq-sm:flex',
+  'cq:grid': 'cq-sm:grid',
+  'cq:hidden': 'cq-sm:hidden',
+  'cq:flex-row': 'cq-sm:flex-row',
+  'cq:grid-cols-2': 'cq-sm:grid-cols-2',
+  'cq:col-span-1': 'cq-sm:col-span-1',
+  'cq:col-span-2': 'cq-sm:col-span-2',
+  'cq:gap-4': 'cq-sm:gap-4',
+  'cq:grid-cols-3': 'cq-md:grid-cols-3',
+  'cq:grid-cols-4': 'cq-md:grid-cols-4',
+  'cq:col-span-3': 'cq-md:col-span-3',
+  'cq:gap-6': 'cq-md:gap-6',
+  'cq:items-center': 'cq-md:items-center',
 };
 
 // Classes that are JavaScript hooks or runtime targets with no CSS of their own
@@ -98,6 +141,16 @@ function knownSets() {
       for (const v of entry.variants) classes.add(`${v}:${entry.class}`);
     }
   } catch { /* manifest missing: skip unknown-class checks */ }
+  // The motion addon is opt-in and ships its own manifest. When it is present
+  // its classes validate; when it is absent they stay unknown, which is right
+  // for a page that never loads llmcss-motion.css.
+  try {
+    const m = JSON.parse(fs.readFileSync(path.join(publicDir, 'classes.motion.json'), 'utf8'));
+    for (const entry of m.classes) {
+      classes.add(entry.class);
+      for (const v of entry.variants || []) classes.add(`${v}:${entry.class}`);
+    }
+  } catch { /* addon manifest absent */ }
   try {
     const s = JSON.parse(fs.readFileSync(path.join(publicDir, 'states.json'), 'utf8'));
     for (const entry of s.states) states.add(entry.class);
@@ -127,7 +180,10 @@ function strippedTarget(token, classes) {
   if (classes.has(bare)) return bare;
   if (Object.prototype.hasOwnProperty.call(LEGACY_MAP, bare)) return LEGACY_MAP[bare];
   // ai-md:flex -> md:flex, even when only the base class is in the manifest.
-  const vm = bare.match(/^(sm|md|lg|xl|cq):(.+)$/);
+  // VARIANT_RE is the build-manifests list: five breakpoints, three container
+  // tiers, fourteen states. The old pattern here knew sm|md|lg|xl|cq, so it
+  // missed 2xl and every state and container tier that shipped in 0.4.0.
+  const vm = bare.match(VARIANT_RE);
   if (vm && classes.has(vm[2])) return bare;
   return null;
 }
@@ -180,7 +236,9 @@ export function validateMarkup(html, options = {}) {
       continue;
     }
 
-    // Near miss 2: a legacy name that maps somewhere else.
+    // Near miss 2: a name the 0.4.0 rename retired outright. Reached only for
+    // tokens the manifest does not know, so a LEGACY_MAP key that is also a
+    // live class (container-sm and friends) never gets here: it resolved.
     if (Object.prototype.hasOwnProperty.call(LEGACY_MAP, t) && LEGACY_MAP[t] !== t) {
       issues.push({
         type: 'legacy-class',
@@ -208,11 +266,17 @@ export function validateMarkup(html, options = {}) {
   return { issues, tokens: tokens.length, errors, warnings: issues.length - errors };
 }
 
-// Closest known class by a cheap edit-distance on the part after the last hyphen group
+// Closest known class by a cheap edit-distance on the base name. The variant
+// prefix is stripped first and compared against the unprefixed names, so
+// `2xl:flexx` is scored as `flexx` and finds `flex`. The pattern used to be
+// sm|md|lg|xl|cq, which knew neither 2xl nor the container tiers nor any
+// state: `2xl:flexx` kept its prefix, no base name came within three edits of
+// it, and the validator reported the typo with no suggestion at all.
 function nearest(token, classes) {
   let best = null;
   let bestScore = 4;
-  const base = token.replace(/^(?:sm|md|lg|xl|cq):/, '');
+  const vm = token.match(VARIANT_RE);
+  const base = vm ? vm[2] : token;
   for (const c of classes) {
     if (c.includes(':')) continue;
     const d = distance(base, c);
@@ -221,6 +285,11 @@ function nearest(token, classes) {
       best = c;
     }
   }
+  if (!best) return null;
+  // Hand the prefix back, so the suggestion is a class the author can paste.
+  // Only when that variant of it exists: not every family takes every prefix,
+  // and `2xl:` in particular serves tier A only.
+  if (vm && classes.has(`${vm[1]}:${best}`)) return `${vm[1]}:${best}`;
   return best;
 }
 
@@ -288,6 +357,8 @@ export function legacyFix(token) {
   if (!token || HOOK_CLASSES.has(token) || CUSTOM_ELEMENT_TAGS.has(token) || HOOK_PREFIX.test(token)) return null;
   if (token.startsWith('is-')) return null;
   const { classes } = knownSets();
+  // Same order as validateMarkup: the manifest answers first, so a name the
+  // library still ships is never rewritten.
   if (classes.has(token)) return null;
   const stripped = strippedTarget(token, classes);
   if (stripped) return stripped;

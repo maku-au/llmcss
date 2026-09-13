@@ -29,6 +29,7 @@ import fs from 'fs';
 import path from 'path';
 import zlib from 'zlib';
 import { fileURLToPath, pathToFileURL } from 'url';
+import { selectorFor } from './css-names.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -38,6 +39,9 @@ const SPEC_PATH = path.join(cssDir, 'utilities.spec.mjs');
 const OUT_CSS = path.join(cssDir, 'utilities.css');
 const OUT_FAMILIES = path.join(cssDir, 'utilities.families.json');
 const TOKENS_CSS = path.join(cssDir, 'tokens.css');
+/* The hand-written half of the same sheet. Not generated, but it ships in the
+   same layer under the same no-!important rule, so --check scans it too. */
+const EXTRA_CSS = path.join(cssDir, 'utilities.extra.css');
 
 const spec = await import(pathToFileURL(SPEC_PATH).href);
 const { families, breakpoints, containerTiers, stateVariants, stateSets, tokensToAdd, tokensToAddZ, keepList } = spec;
@@ -46,45 +50,43 @@ const CHECK = process.argv.includes('--check');
 
 /* -------------------------------------------------------------------------
    Selector escaping
+
+   Lives in ./css-names.mjs, shared with build-manifests.mjs and the CLI's
+   `trim`, so the writer and both readers cannot disagree about what
+   `.\000032xl\:flex` means. Re-exported here for the scripts that used to
+   import it from this file.
    ------------------------------------------------------------------------- */
 
-/**
- * A class name to a CSS selector.
- *   md:flex        -> .md\:flex
- *   2xl:flex       -> .\000032xl\:flex  (an ident may not start with a digit)
- *   -m-1           -> .-m-1             (hyphen then letter is a legal start)
- *   p-0.5          -> .p-0\.5
- *   w-1/2          -> .w-1\/2
- *   hover:bg-accent-> .hover\:bg-accent
- *
- * The leading digit uses the six-hex-digit escape rather than Tailwind's
- * `\32 ` + space form. Both are valid CSS. The padded form needs no
- * terminating space, so nothing downstream that splits a selector on
- * whitespace, build-manifests included, can mistake one class for two.
- */
-export function selectorFor(cls) {
-  let out = '';
-  for (let i = 0; i < cls.length; i++) {
-    const ch = cls[i];
-    if (/[A-Za-z_-]/.test(ch)) out += ch;
-    else if (/[0-9]/.test(ch)) out += i === 0 ? `\\${ch.codePointAt(0).toString(16).padStart(6, '0')}` : ch;
-    else out += `\\${ch}`;
-  }
-  return `.${out}`;
-}
+export { escapeClass, selectorFor, unescapeSelectorClass } from './css-names.mjs';
 
 /* -------------------------------------------------------------------------
    State variant selectors
    ------------------------------------------------------------------------- */
 
-const STATE_DEFS = {
+/* Exported so build-motion.mjs emits its motion-safe: and motion-reduce:
+   copies through the same wrappers the core uses, rather than keeping a second
+   copy of the selector shapes that would drift. */
+export const STATE_DEFS = {
   hover: { wrap: (s) => `${s}:hover`, at: '@media (hover: hover)' },
   focus: { wrap: (s) => `${s}:focus` },
   'focus-visible': { wrap: (s) => `${s}:focus-visible` },
   active: { wrap: (s) => `${s}:active` },
   disabled: { wrap: (s) => `${s}:disabled, ${s}[aria-disabled="true"]` },
   'group-hover': { wrap: (s) => `.group:hover ${s}`, at: '@media (hover: hover)' },
-  dark: { wrap: (s) => `[data-ai-theme="dark"] ${s}, [data-ai-theme="dark"]${s}` },
+  /* Dark is the one state with no pseudo-class: it matches on an ancestor, or
+     on the element itself when the theme marker and the utility share a node.
+     Both markers count. tokens.css flips the core palette for `.theme-dark` as
+     well as `[data-ai-theme="dark"]`, and the 0.4.0 rename made `.theme-dark`
+     the documented class form, so a dark: utility that knew only the attribute
+     was dead inside a `.theme-dark` subtree: the palette went dark around it
+     and the utility did not fire.
+
+     Written with :is() rather than as four full selectors. Same match set and
+     the same specificity, because :is() takes the specificity of its most
+     specific argument and both arguments here are (0,1,0), so each of the two
+     selectors stays (0,2,0) exactly as before. It is 354 bytes smaller gzipped
+     across the 63 dark: classes, which on a 50KB budget is worth the paren. */
+  dark: { wrap: (s) => `:is([data-ai-theme="dark"], .theme-dark) ${s}, :is([data-ai-theme="dark"], .theme-dark)${s}` },
   print: { wrap: (s) => s, at: '@media print' },
   'motion-safe': { wrap: (s) => s, at: '@media (prefers-reduced-motion: no-preference)' },
   'motion-reduce': { wrap: (s) => s, at: '@media (prefers-reduced-motion: reduce)' },
@@ -111,13 +113,13 @@ function statesOf(family) {
    Rule construction
    ------------------------------------------------------------------------- */
 
-function className(family, key) {
+export function className(family, key) {
   if (family.prefix === null || family.prefix === undefined) return key;
   return key === '' ? family.prefix : `${family.prefix}-${key}`;
 }
 
 /** key -> [[property, value], ...] */
-function declsFor(family, key) {
+export function declsFor(family, key) {
   const v = family.values[key];
   if (v && typeof v === 'object') return Object.entries(v);
   return (family.props || []).map((p) => [p, v]);
@@ -137,14 +139,14 @@ function declsFor(family, key) {
  * keys are non-integer strings, so `hidden` stays last on insertion order and
  * `class="flex hidden"` hides.
  */
-function orderedKeys(family) {
+export function orderedKeys(family) {
   if (!family.valueOrder) return Object.keys(family.values);
   const declared = family.valueOrder.filter((k) => k in family.values);
   const rest = Object.keys(family.values).filter((k) => !declared.includes(k));
   return [...declared, ...rest];
 }
 
-function variantKeys(family) {
+export function variantKeys(family) {
   const all = orderedKeys(family);
   if (!family.variantValues || family.variantValues === 'all') return all;
   return family.variantValues.filter((k) => {
@@ -251,11 +253,28 @@ function build() {
    Validation
    ------------------------------------------------------------------------- */
 
+/** Count !important outside comments, so the file header may still name it. */
+function importantCount(css) {
+  const noComments = css.replace(/\/\*[\s\S]*?\*\//g, String());
+  return (noComments.match(/!important/g) || []).length;
+}
+
 function validate(css) {
   const problems = [];
 
-  const noComments = css.replace(/\/\*[\s\S]*?\*\//g, String());
-  if (/!important/.test(noComments)) problems.push('emitted CSS contains !important');
+  if (importantCount(css)) problems.push('emitted CSS contains !important');
+
+  /* The hand-written half of the utilities layer answers to the same rule:
+     index.css orders `@layer reset, tokens, base, components, utilities;`, so
+     nothing in either file needs !important to beat a component. This script
+     does not write utilities.extra.css, but it is the only check that runs
+     over the layer, so it reports on both. */
+  if (fs.existsSync(EXTRA_CSS)) {
+    const n = importantCount(fs.readFileSync(EXTRA_CSS, 'utf8'));
+    if (n) problems.push(`utilities.extra.css contains ${n} !important`);
+  } else {
+    problems.push(`utilities.extra.css not readable at ${EXTRA_CSS}; !important scan skipped`);
+  }
 
   /* Token names. */
   const declared = new Set();
@@ -293,8 +312,10 @@ function bytes(n) {
   return `${(n / 1024).toFixed(1)}KB`;
 }
 
-/** Rough stand-in for the vite minifier: drop indentation and blank lines. */
-function minify(css) {
+/** Rough stand-in for the vite minifier: drop indentation and blank lines.
+    Exported so build-motion.mjs measures its sheet the same way, and the two
+    gzip numbers are comparable. */
+export function minify(css) {
   return css
     .replace(/\/\*[\s\S]*?\*\//g, '')
     .replace(/\s*\n\s*/g, '')
@@ -345,7 +366,7 @@ function report(css) {
   lines.push(`  tokens referenced    ${v.used}`);
   lines.push(`  tokens pending       ${v.pending.length}${v.pending.length ? ' (in tokensToAdd, not yet in tokens.css)' : ''}`);
   if (v.missing.length) lines.push(`  TOKENS MISSING       ${v.missing.join(', ')}`);
-  lines.push(`  no !important        ${v.problems.some((p) => p.includes(String.fromCharCode(33) + 'important')) ? 'FAIL' : 'ok'}`);
+  lines.push(`  no !important        ${v.problems.some((p) => p.includes(String.fromCharCode(33) + 'important')) ? 'FAIL' : 'ok'}   (utilities.css + utilities.extra.css)`);
   lines.push(`  keep-list overlap    ${v.problems.filter((p) => p.includes('keep list')).length ? 'FAIL' : 'ok'}`);
   lines.push(`  duplicate classes    ${v.problems.filter((p) => p.startsWith('duplicate')).length ? 'FAIL' : 'ok'}`);
   if (v.problems.length) {
@@ -358,13 +379,30 @@ function report(css) {
 
 /* -------------------------------------------------------------------------
    Main
+
+   Guarded, because this module is now imported: build-motion.mjs reuses
+   STATE_DEFS and minify, and an unguarded main would have rebuilt and
+   rewritten utilities.css as a side effect of that import. The guard accepts
+   both the resolved path and the bare file name, so a symlinked or
+   relatively-invoked `node src/registry/build-utilities.mjs` still writes.
    ------------------------------------------------------------------------- */
 
-const css = build();
+const selfPath = fileURLToPath(import.meta.url);
+const invoked = process.argv[1] ? path.resolve(process.argv[1]) : '';
+const isMain = invoked === selfPath || path.basename(invoked) === path.basename(selfPath);
 
-if (CHECK) {
+if (!isMain) {
+  /* imported: nothing runs, nothing is written */
+} else if (CHECK) {
+  const css = build();
+  /* --check is a gate, not a readout: it used to print FAIL and exit 0, so a
+     CI step or a pre-deploy `&&` chain ran on regardless. Same report, and a
+     non-zero status whenever it has something to report. */
   console.log(report(css));
+  const v = validate(css);
+  if (v.problems.length || v.missing.length) process.exit(1);
 } else {
+  const css = build();
   const v = validate(css);
   if (v.problems.length || v.missing.length) {
     console.error(report(css));

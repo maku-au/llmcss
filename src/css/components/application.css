@@ -231,6 +231,31 @@
     text-align: center;
   }
 
+  /* Vertical stepper: same circles and rail, the rail runs down the column from
+     each circle's centre to the next. Opt in by class so a wizard sidebar can
+     stack at any width. */
+  .stepper.is-vertical {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--ai-space-6);
+  }
+  .stepper.is-vertical .step-item {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--ai-space-3);
+    flex: 0 0 auto;
+  }
+  .stepper.is-vertical .step-item:not(:last-child)::after {
+    top: var(--ai-step-size);
+    left: calc((var(--ai-step-size) - var(--ai-step-rail)) / 2);
+    width: var(--ai-step-rail);
+    height: calc(100% + var(--ai-space-6) - var(--ai-step-size));
+  }
+  .stepper.is-vertical .step-label {
+    margin-top: 0;
+    text-align: start;
+  }
+
   .step-item.is-active .step-label {
     color: var(--ai-text-primary);
     font-weight: 600;

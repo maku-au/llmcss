@@ -135,4 +135,12 @@
   .toast-info .toast-icon {
     color: var(--ai-accent);
   }
+
+  /* Exit state: a script that auto-dismisses a toast adds this rather than
+     writing an inline opacity. */
+  .toast.is-leaving,
+  ai-toast.is-leaving {
+    opacity: 0;
+    transition: opacity var(--ai-duration-fast) var(--ai-ease-out);
+  }
 }

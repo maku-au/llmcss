@@ -8,17 +8,22 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { classSelectorRe, unescapeSelectorClass, VARIANT_RE } from './css-names.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const cssDir = path.resolve(__dirname, '../css');
 const publicDir = path.resolve(__dirname, '../../public');
+// Manifests carry the package version so a consumer can tell which release they describe.
+const PKG_VERSION = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../package.json'), 'utf8')).version;
 
 function cssFiles(dir) {
   const out = [];
   for (const f of fs.readdirSync(dir)) {
     const p = path.join(dir, f);
     if (fs.statSync(p).isDirectory()) out.push(...cssFiles(p));
-    else if (p.endsWith('.css') && !p.endsWith('showcase.css')) out.push(p);
+    // showcase.css is site chrome; motion.css is the opt-in addon with its own
+    // manifest (public/classes.motion.json), so neither belongs in classes.json.
+    else if (p.endsWith('.css') && !p.endsWith('showcase.css') && !p.endsWith('motion.css')) out.push(p);
   }
   return out;
 }
@@ -89,21 +94,19 @@ function familyFor(cls, file) {
   return 'utilities';
 }
 
-// Every class selector in the stylesheet, prefix-free since 0.4.0. A name may
-// start with a hyphen (the negative margins, .-m-1) and may carry CSS escapes
-// for the variant colon (.md\:flex), for a dot (.p-0\.5) and for a slash
-// (.w-1\/2). A leading digit is escaped as six hex digits with no terminating
-// space (.\000032xl\:flex), so the alternation has to try that form first.
-const CLASS_RE = /\.((?:\\[0-9a-fA-F]{6}|\\.|[A-Za-z0-9_-])+)/g;
-const unescape = (name) =>
-  name
-    .replace(/\\([0-9a-fA-F]{6})/g, (_, h) => String.fromCodePoint(parseInt(h, 16)))
-    .replace(/\\(.)/g, '$1');
+// Every class selector in the stylesheet, prefix-free since 0.4.0. The pattern
+// and its inverse live in ./css-names.mjs, shared with build-utilities.mjs
+// (which writes the escapes) and the CLI's `trim` (which reads them), so the
+// three cannot disagree about what .\000032xl\:flex means.
+const CLASS_RE = classSelectorRe();
+const unescape = unescapeSelectorClass;
 
-// Variant prefixes: five breakpoints, three container tiers and the thirteen
-// state prefixes the spec emits. motion-safe is defined but unused today.
-const VARIANT_RE =
-  /^(sm|md|lg|xl|2xl|cq-sm|cq-md|cq-lg|hover|focus-visible|focus|active|disabled|group-hover|dark|print|motion-safe|motion-reduce|first|last|odd|even):(.+)$/;
+// Variant prefixes: five breakpoints, three container tiers and all fourteen
+// state prefixes the spec emits. Every one of the fourteen is reached by at
+// least one family, motion-safe included (utilities.spec.mjs puts it in the
+// `motion` state set alongside motion-reduce), so VARIANT_RE and stateVariants
+// in the spec must stay the same length. It lives in ./css-names.mjs because
+// validate.mjs needs the same list to suggest a fix for `2xl:flexx`.
 
 function buildClasses(files) {
   const classes = new Map();
@@ -233,7 +236,7 @@ function buildManifests() {
     path.join(publicDir, 'classes.json'),
     JSON.stringify(
       {
-        version: '0.1.0',
+        version: PKG_VERSION,
         generatedAt: now,
         note: 'Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the prefixes that exist for the class, written as md:name: responsive (sm 640px, md 768px, lg 1024px, xl 1280px, 2xl 1536px), container-query against the nearest cq or cq-inline ancestor (cq-sm 380px, cq-md 600px, cq-lg 900px), and state (hover, focus, focus-visible, active, disabled, group-hover, dark, print, motion-reduce, first, last, odd, even). A bare cq: prefix no longer exists. Nothing outside this list exists; do not invent classes.',
         stats: { total: list.length, families },
@@ -250,7 +253,7 @@ function buildManifests() {
     path.join(publicDir, 'tokens.json'),
     JSON.stringify(
       {
-        version: '0.1.0',
+        version: PKG_VERSION,
         generatedAt: now,
         note: 'Every --ai-* custom property with its value per context: light (default), dark (data-ai-theme="dark"), <skin> and <skin>:dark (data-ai-skin), accent:<name> (data-ai-accent), focus:<preset> (data-ai-focus). Override any of them on :root or a container. componentTokens lists the per-component tunables that are not declared anywhere by default: each is read as var(<token>, <default>) by that component, so setting it on the component, a container, or :root changes only that property.',
         stats: { total: tokens.length, componentTokens: componentTokens.length },
@@ -267,8 +270,9 @@ function buildManifests() {
     { attribute: 'data-ai-skin', values: ['obsidian', 'editorial', 'executive', 'fintech', 'enterprise', 'emerald', 'violet', 'rose'], on: 'html or any container', appliedBy: 'author', purpose: 'Archetype: surfaces, radius and type. emerald, violet and rose are deprecated aliases of data-ai-accent of the same name and will be removed in 1.0; use data-ai-accent instead.' },
     { attribute: 'data-ai-accent', values: ['emerald', 'violet', 'rose', 'teal', 'steel', 'amber'], on: 'html or any container', appliedBy: 'author', purpose: 'Accent only: sets --ai-accent, --ai-accent-hover, --ai-accent-subtle, --ai-accent-rgb and a contrast-checked --ai-accent-text. Composes with any data-ai-skin and outranks the skin accent. Absent means the blue default.' },
     { attribute: 'data-ai-density', values: ['compact', 'spacious'], on: 'html or any container', appliedBy: 'author', purpose: 'Scales the spacing steps components use for padding. Absent means standard.' },
+    { attribute: 'data-ai-radius', values: ['sharp', 'precision', 'balanced', 'smooth'], on: 'html or any container', appliedBy: 'author', purpose: 'Corner geometry preset: sets --ai-radius-xs through --ai-radius-2xl and --ai-radius-base. Absent means the stock scale, which is what precision sets. --ai-radius-none and --ai-radius-full never move.' },
     { attribute: 'data-ai-focus', values: ['neutral', 'thin', 'none'], on: 'html', appliedBy: 'author', purpose: 'Focus ring preset. Absent means the accent ring.' },
-    { attribute: 'data-ai-toggle', values: ['modal', 'drawer', 'dropdown', 'accordion'], on: 'button', appliedBy: 'author', purpose: 'Runtime toggle. modal and drawer need data-ai-target="#id"; dropdown needs a .dropdown ancestor; accordion needs a .accordion-item ancestor.' },
+    { attribute: 'data-ai-toggle', values: ['modal', 'drawer', 'dropdown', 'accordion', 'segmented'], on: 'button', appliedBy: 'author', purpose: 'Runtime toggle. modal and drawer need data-ai-target="#id"; dropdown needs a .dropdown ancestor; accordion needs a .accordion-item ancestor. segmented marks the clicked button inside its role=group (or its parent) with is-active and aria-pressed, and fires ai-segmented-change.' },
     { attribute: 'data-ai-target', values: ['#id'], on: 'the toggle button', appliedBy: 'author', purpose: 'Selector of the modal or drawer to open.' },
     { attribute: 'data-ai-dismiss', values: ['modal', 'drawer', 'toast'], on: 'button or backdrop inside the overlay', appliedBy: 'author', purpose: 'Closes the nearest overlay of that kind.' },
     { attribute: 'data-ai-tab', values: ['#panel-id'], on: 'button.tab inside .tabs', appliedBy: 'author', purpose: 'Activates the panel; the runtime syncs aria-selected and tabindex.' },
@@ -283,7 +287,7 @@ function buildManifests() {
     path.join(publicDir, 'states.json'),
     JSON.stringify(
       {
-        version: '0.1.0',
+        version: PKG_VERSION,
         generatedAt: now,
         note: 'State classes are set by the author for static markup or by the runtime for interactive components. usedBy lists the classes that appear in the same selector.',
         states: stateList,

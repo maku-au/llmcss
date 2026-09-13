@@ -152,6 +152,15 @@
   font-weight: 600;
   color: var(--ai-text-primary);
 }
+/* The literal data-ai-skin value next to the human name, so a swatch label can
+   never drift from the attribute you write in your own markup. */
+.styler-theme-value {
+  margin-left: auto;
+  font-family: var(--ai-font-mono);
+  font-size: 0.625rem;
+  color: var(--ai-text-muted);
+  line-height: 1.2;
+}
 .styler-segmented-track {
   display: flex;
   background: var(--ai-surface-1);
@@ -228,8 +237,16 @@
 .styler-code-disclosure summary::-webkit-details-marker {
   display: none;
 }
+/* One chevron shape everywhere: the same path as the accordion, sized in em
+   and rotated when the disclosure opens. */
 .styler-code-caret {
-  font-size: 0.75rem;
+  width: 0.85em;
+  height: 0.85em;
+  flex-shrink: 0;
+  transition: transform var(--ai-duration-fast) var(--ai-ease-out);
+}
+.styler-code-disclosure[open] .styler-code-caret {
+  transform: rotate(180deg);
 }
 .styler-code-output {
   margin-top: 0.5rem;
@@ -308,6 +325,16 @@
     grid-template-columns: 1fr 1.1fr 1fr;
   }
 }
+/* Two dock cards side by side from the same breakpoint as the three-up dock:
+   install on the left, the agent one-liner on the right. Home page only. */
+.docs-hero-dock-split {
+  grid-template-columns: repeat(1, 1fr);
+}
+@media (min-width: 900px) {
+  .docs-hero-dock-split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 .docs-hero-dock-card {
   background: var(--ai-surface-0);
   border: 1px solid var(--ai-border);
@@ -327,6 +354,22 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+/* Pro kit preview inside the pricing modal. The img keeps its intrinsic width
+   and height attributes so the row reserves space before decode; the frame
+   crops a tall page shot to one band. Home page only. */
+.docs-kit-shot {
+  max-height: 11rem;
+  overflow: hidden;
+  border: 1px solid var(--ai-border);
+  border-radius: var(--ai-radius-md);
+  background-color: var(--ai-surface-1);
+}
+.docs-kit-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .docs-hero-dock-title {
   font-family: var(--ai-font-sans);
   font-size: 0.8125rem;
@@ -634,6 +677,12 @@ th.docs-matrix-win {
 .docs-ecosystem-item:hover {
   color: var(--ai-text-primary);
 }
+/* Chips that point somewhere are links, so they take the pointer and lose the
+   default underline. The ones with no destination stay plain spans. */
+a.docs-ecosystem-item {
+  cursor: pointer;
+  text-decoration: none;
+}
 .docs-ecosystem-item svg {
   opacity: 0.6;
   transition: opacity var(--ai-duration-fast), stroke var(--ai-duration-fast);
@@ -747,6 +796,69 @@ th.docs-matrix-win {
   }
   .blueprint-strip-actions > .btn {
     flex: 1 1 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Wireframe-mode upsell strip: the themed work shown rather than described.
+   Same hairline geometry as the blueprint strip, no box, no fill.
+   -------------------------------------------------------------------------- */
+.template-upsell-strip {
+  display: flex;
+  align-items: center;
+  gap: var(--ai-space-4);
+  padding: var(--ai-space-4) 0;
+  border-bottom: 1px solid var(--ai-border-subtle);
+}
+.template-upsell-strip[hidden] {
+  display: none;
+}
+.template-upsell-shots {
+  display: flex;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+}
+/* The shots are full page renders, so they are cropped from the top rather
+   than scaled to a thumbnail nobody can read. */
+.template-upsell-shot {
+  display: block;
+  width: 5.25rem;
+  height: 3.5rem;
+  object-fit: cover;
+  object-position: top center;
+  border: 1px solid var(--ai-border);
+  border-radius: var(--ai-radius-sm);
+  background: var(--ai-surface-1);
+}
+.template-upsell-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.template-upsell-line {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ai-text-primary);
+}
+.template-upsell-note {
+  margin: 0.15rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ai-text-secondary);
+}
+.template-upsell-action {
+  flex: 0 0 auto;
+}
+@media (max-width: 719px) {
+  .template-upsell-strip {
+    flex-wrap: wrap;
+  }
+  .template-upsell-main {
+    flex-basis: 100%;
+    order: 3;
+  }
+  .template-upsell-action {
+    margin-left: auto;
   }
 }
 
@@ -1089,5 +1201,112 @@ th.docs-matrix-win {
   }
   .font-option.is-active {
     background-color: var(--ai-surface-1);
+  }
+}
+
+/* Touch targets: on a coarse pointer every docs-* control clears 44px so it can
+   be hit with a thumb. Height only, so the desktop rhythm is untouched. */
+@layer components {
+  @media (pointer: coarse) {
+    .docs-nav-btn,
+    .docs-link,
+    .docs-ecosystem-item {
+      min-height: 44px;
+    }
+  }
+}
+
+/* Same rule for the template gallery's own controls. The card header toggles
+   and the preview bar use the xs button size, which is under a thumb on a
+   phone, so the short edge is floored rather than the size variant changed. */
+@layer components {
+  @media (pointer: coarse) {
+    .template-upsell-action,
+    .template-guidance-toggle,
+    .template-code-toggle,
+    .template-preview-bar .btn {
+      min-height: 44px;
+    }
+    .template-code-toggle {
+      min-width: 44px;
+    }
+  }
+}
+
+/* Font picker previews. One class per allowed display font so the picker can
+   render each name in its own face without an inline style attribute. Ids
+   match DISPLAY_FONTS in src/showcase/fonts.ts. */
+@layer components {
+  .font-preview-sora { font-family: 'Sora', sans-serif; }
+  .font-preview-outfit { font-family: 'Outfit', sans-serif; }
+  .font-preview-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
+  .font-preview-dm-sans { font-family: 'DM Sans', sans-serif; }
+  .font-preview-plex-sans { font-family: 'IBM Plex Sans', sans-serif; }
+  .font-preview-figtree { font-family: 'Figtree', sans-serif; }
+  .font-preview-albert { font-family: 'Albert Sans', sans-serif; }
+  .font-preview-bricolage { font-family: 'Bricolage Grotesque', sans-serif; }
+  .font-preview-schibsted { font-family: 'Schibsted Grotesk', sans-serif; }
+  .font-preview-instrument-sans { font-family: 'Instrument Sans', sans-serif; }
+  .font-preview-karla { font-family: 'Karla', sans-serif; }
+  .font-preview-source-sans { font-family: 'Source Sans 3', sans-serif; }
+  .font-preview-newsreader { font-family: 'Newsreader', Georgia, serif; }
+  .font-preview-fraunces { font-family: 'Fraunces', Georgia, serif; }
+  .font-preview-instrument-serif { font-family: 'Instrument Serif', Georgia, serif; }
+  .font-preview-source-serif { font-family: 'Source Serif 4', Georgia, serif; }
+  .font-preview-literata { font-family: 'Literata', Georgia, serif; }
+  .font-preview-plex-serif { font-family: 'IBM Plex Serif', Georgia, serif; }
+}
+
+/* Touch targets for the Styler and the per-component customizer. The accent
+   swatch keeps its 24px dot: the hit area grows through a centred pseudo
+   element, so nothing about the visual row changes. */
+@layer components {
+  @media (pointer: coarse) {
+    .styler-theme-btn,
+    .styler-segmented-item,
+    .demo-pill {
+      min-height: 44px;
+    }
+    .styler-segmented-item,
+    .demo-pill {
+      min-width: 44px;
+    }
+    .styler-accent-swatch {
+      position: relative;
+    }
+    .styler-accent-swatch::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 44px;
+      height: 44px;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+/* ==========================================================================
+   Layout variants: the segmented control in a demo card header and the one
+   line under the demo that says what moved.
+   ========================================================================== */
+@layer components {
+  /* The header wraps at phone widths, so the control keeps its own row rather
+     than squeezing the action buttons to two lines each. */
+  .demo-header .docs-variant-group {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+  /* Sits under the demo canvas, not in the header: it changes on every click
+     and a changing line in a fixed header reads as a glitch. */
+  .docs-variant-note {
+    margin: 0;
+    padding: var(--ai-space-2) var(--ai-space-5) 0;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--ai-text-muted);
+  }
+  .docs-variant-note:empty {
+    display: none;
   }
 }

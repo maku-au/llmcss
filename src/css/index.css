@@ -3,7 +3,7 @@
    Pure Modern Native CSS with Layers, CSS Variables, and Zero External Dependencies
    ========================================================================== */
 
-@layer reset, tokens, base, components, utilities;
+@layer reset, tokens, base, components, motion, utilities;
 
 @import "./reset.css";
 @import "./tokens.css";

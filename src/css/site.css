@@ -1,4 +1,5 @@
 /* Site-only bundle: the library plus the llmcss.io showcase chrome.
    Consumers get dist/llmcss.css, which is index.css alone. */
 @import "./index.css";
+@import "./motion.css";
 @import "./components/showcase.css";
