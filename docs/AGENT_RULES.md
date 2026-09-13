@@ -124,7 +124,7 @@ The author writes these in static markup; the runtime sets the same classes at r
 | `is-unread` | `.inbox-item`, `.inbox-title`, `.notification-item` |
 | `is-up` | `.kpi-trend` |
 | `is-upcoming` | `.orderline-label`, `.orderline-pip`, `.orderline-step` |
-| `is-vertical` | `.orderline-label`, `.orderline-pip`, `.orderline-step`, `.orderline-track`, `.step-item`, `.step-label`, `.stepper` |
+| `is-vertical` | `.orderline-date`, `.orderline-label`, `.orderline-pip`, `.orderline-step`, `.orderline-track`, `.step-item`, `.step-label`, `.stepper` |
 | `is-visible` | `.password`, `.password-toggle` |
 | `is-warn` | `.cost-mark` |
 <!-- states:end -->

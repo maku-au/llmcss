@@ -321,11 +321,22 @@
       gap: var(--ai-space-4);
     }
     .orderline-step {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--ai-space-3);
+      /* Pip in the first column spanning both rows, label over date in the
+         second, so the date sits under its status instead of beside it. */
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-rows: auto auto;
+      column-gap: var(--ai-space-3);
+      row-gap: 0;
       padding-inline: 0;
       text-align: start;
+    }
+    .orderline-step > .orderline-pip {
+      grid-row: 1 / span 2;
+    }
+    .orderline-step > .orderline-label,
+    .orderline-step > .orderline-date {
+      grid-column: 2;
     }
     .orderline-step:not(:last-child)::after {
       inset-block-start: calc(0.2rem + var(--ai-orderline-pip) / 2);
@@ -335,8 +346,7 @@
     }
     .orderline-pip {
       margin-block-start: 0.2rem;
-      align-self: flex-start;
-      flex: 0 0 auto;
+      align-self: start;
     }
     .orderline-label {
       margin-block-start: 0;
@@ -351,11 +361,20 @@
     gap: var(--ai-space-4);
   }
   .orderline-track.is-vertical .orderline-step {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--ai-space-3);
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: var(--ai-space-3);
+    row-gap: 0;
     padding-inline: 0;
     text-align: start;
+  }
+  .orderline-track.is-vertical .orderline-pip {
+    grid-row: 1 / span 2;
+  }
+  .orderline-track.is-vertical .orderline-label,
+  .orderline-track.is-vertical .orderline-date {
+    grid-column: 2;
   }
   .orderline-track.is-vertical .orderline-step:not(:last-child)::after {
     inset-block-start: calc(0.2rem + var(--ai-orderline-pip) / 2);
@@ -365,8 +384,7 @@
   }
   .orderline-track.is-vertical .orderline-pip {
     margin-block-start: 0.2rem;
-    align-self: flex-start;
-    flex: 0 0 auto;
+    align-self: start;
   }
   .orderline-track.is-vertical .orderline-label {
     margin-block-start: 0;
