@@ -56,7 +56,7 @@ classes.json, https://llmcss.io/classes.json: every class that exists, no prefix
 
 [classes-json:start]
 ```json
-{ "version": "0.4.0", "generatedAt": "2026-09-13T09:58:40.961Z",
+{ "version": "0.4.0", "generatedAt": "2026-09-13T10:12:47.442Z",
   "note": "Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the prefixes that exist for the class, written as md:name: responsive (sm 640px, md 768px, lg 1024px, xl 1280px, 2xl 1536px), container-query against the nearest cq or cq-inline ancestor (cq-sm 380px, cq-md 600px, cq-lg 900px), and state (hover, focus, focus-visible, active, disabled, group-hover, dark, print, motion-reduce, first, last, odd, even). A bare cq: prefix no longer exists. Nothing outside this list exists; do not invent classes.",
   "stats": { "total": 2301, "families": { "spacing": 686, "interaction": 182, "sizing": 175, "agent-extra": 120 } },
   "classes": [ { "class": "gap-4", "family": "spacing", "file": "utilities.css", "variants": [ "2xl", "cq-lg", "cq-md", "cq-sm", "lg", "md", "sm", "xl" ] } ] }
@@ -356,7 +356,7 @@ Dark mode activates only when you set `data-ai-theme="dark"`. LLMCSS contains no
 Only the classes in classes.json exist.
 
 [families:start]
-Family sizes, largest first: spacing 686, interaction 182, sizing 175, agent-extra 120, position 114, typography 108, grid 107, flex 81, marketing 73, borders 70, layout 63, effects 55, dashboard 43, extras 39, animations 33, application 32, forms-extra 31, badges 28, commerce-extra 28, navigation 24, chat 19, display 19, cards 13, drawers 13, inputs 13, base 12, buttons 12, tables 12, toasts 12, modals 11, ecommerce 10, command 9, scrollspy 9, utilities 9, themes 7, accordions 6, alerts 6, cart 6, dropdowns 6, tabs 5.
+Family sizes, largest first: spacing 686, interaction 182, sizing 175, agent-extra 120, position 114, typography 108, grid 107, flex 81, marketing 74, borders 70, layout 63, effects 55, dashboard 43, extras 39, animations 33, application 32, forms-extra 31, badges 28, commerce-extra 28, navigation 24, chat 19, display 19, cards 13, drawers 13, inputs 13, base 12, buttons 12, toasts 12, modals 11, tables 11, ecommerce 10, command 9, scrollspy 9, utilities 9, themes 7, accordions 6, alerts 6, cart 6, dropdowns 6, tabs 5.
 [families:end]
 
 - Grid: `grid`, `grid-cols-1` to `grid-cols-12`, `col-span-*`, `grid-auto-fit` with `grid-min-xs|sm|md|lg`, `grid-cols-subgrid`, `grid-rows-subgrid`.

@@ -4243,17 +4243,17 @@
   "prefix": "ai-family-marketing-1",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|announcement,bento-cell,bento-code-pill,bento-col-2,bento-grid,bento-row-2,bento-span-2,brand,callout,callout-label,consent-actions,consent-bar,cta-actions,cta-band,feature-grid,feature-icon,feature-item,feature-list,feature-text,feature-title,footer,footer-blurb,footer-bottom,footer-brand,footer-cmd,footer-col,footer-col-toggle,footer-compact,footer-grid,footer-heading,footer-list,footer-stat,hero,hero-actions,hero-badge,hero-lead,hero-split,hero-title,hero-visual,logo-rail,matrix-category-header,matrix-container,matrix-feature-col,navbar,navbar-inner,navbar-search,pricing-amount,pricing-card,pricing-feature-item,pricing-featured,pricing-features,pricing-grid,pricing-header,pricing-period,pricing-plan,pricing-ribbon,section,section-banner,section-lead,section-shift|}"
+   "${1|announcement,bento-cell,bento-code-pill,bento-col-2,bento-grid,bento-row-2,bento-span-2,brand,callout,callout-label,consent-actions,consent-bar,cta-actions,cta-band,feature-grid,feature-icon,feature-item,feature-list,feature-text,feature-title,footer,footer-blurb,footer-bottom,footer-brand,footer-cmd,footer-col,footer-col-toggle,footer-compact,footer-grid,footer-heading,footer-list,footer-stat,hero,hero-actions,hero-badge,hero-lead,hero-split,hero-title,hero-visual,logo-rail,mark,matrix-category-header,matrix-container,matrix-feature-col,navbar,navbar-inner,navbar-search,pricing-amount,pricing-card,pricing-feature-item,pricing-featured,pricing-features,pricing-grid,pricing-header,pricing-period,pricing-plan,pricing-ribbon,section,section-banner,section-lead|}"
   ],
-  "description": "marketing utilities, part 1 of 2 (60 of 73 classes)"
+  "description": "marketing utilities, part 1 of 2 (60 of 74 classes)"
  },
  "LLMCSS marketing classes-2": {
   "prefix": "ai-family-marketing-2",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|section-title,stat,stat-label,stats-band,team-grid,team-member,team-name,team-photo,team-role,testimonial-author,testimonial-card,testimonial-grid,testimonial-quote|}"
+   "${1|section-shift,section-title,stat,stat-label,stats-band,team-grid,team-member,team-name,team-photo,team-role,testimonial-author,testimonial-card,testimonial-grid,testimonial-quote|}"
   ],
-  "description": "marketing utilities, part 2 of 2 (13 of 73 classes)"
+  "description": "marketing utilities, part 2 of 2 (14 of 74 classes)"
  },
  "LLMCSS modals classes": {
   "prefix": "ai-family-modals",
@@ -4419,9 +4419,9 @@
   "prefix": "ai-family-tables",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|cell-num,docs-matrix,mark,mark-no,mark-warn,mark-yes,scroll-x,table-compact,table-container,table-hover,table-sticky,table-striped|}"
+   "${1|cell-num,docs-matrix,mark-no,mark-warn,mark-yes,scroll-x,table-compact,table-container,table-hover,table-sticky,table-striped|}"
   ],
-  "description": "tables classes (12)"
+  "description": "tables classes (11)"
  },
  "LLMCSS tabs classes": {
   "prefix": "ai-family-tabs",

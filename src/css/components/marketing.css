@@ -727,6 +727,16 @@
     display: flex;
     gap: var(--ai-space-3);
     align-items: flex-start;
+    line-height: 1.5;
+  }
+  /* The glyph is a flex item, so vertical-align cannot centre it on the first
+     line of text: offset it by half the line-height slack instead, and let the
+     row gap carry the spacing rather than the mark's own inline margin. */
+  .feature-list > li > .mark,
+  .feature-list > li > svg {
+    flex: none;
+    margin-top: 0.25em;
+    margin-inline-end: 0;
   }
 
   /* Stats band: one dominant number, supporting stats smaller (Law 8) */

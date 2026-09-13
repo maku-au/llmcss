@@ -31,7 +31,7 @@ The family a class belongs to tells you which stylesheet file defines it and rou
 | `typography` | 108 | `utilities.css` |
 | `grid` | 107 | `utilities.css` |
 | `flex` | 81 | `utilities.css` |
-| `marketing` | 73 | `components/marketing.css` |
+| `marketing` | 74 | `components/marketing.css` |
 | `borders` | 70 | `utilities.css` |
 | `layout` | 63 | `utilities.css` |
 | `effects` | 55 | `utilities.css` |
@@ -50,9 +50,9 @@ The family a class belongs to tells you which stylesheet file defines it and rou
 | `inputs` | 13 | `components/inputs.css` |
 | `base` | 12 | `base.css` |
 | `buttons` | 12 | `components/buttons.css` |
-| `tables` | 12 | `components/tables.css` |
 | `toasts` | 12 | `components/toasts.css` |
 | `modals` | 11 | `components/modals.css` |
+| `tables` | 11 | `components/tables.css` |
 | `ecommerce` | 10 | `components/ecommerce.css` |
 | `command` | 9 | `components/command.css` |
 | `scrollspy` | 9 | `components/scrollspy.css` |
