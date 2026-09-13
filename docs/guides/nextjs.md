@@ -1,5 +1,13 @@
 # LLMCSS with Next.js
 
+## Quick reference
+
+- Install: `npm install llmcss`
+- Include: `<link rel="stylesheet" href="https://llmcss.io/llmcss.css" />`
+- Runtime (optional, for modal/drawer/dropdown/accordion/tabs/toast/command palette): `<script src="https://llmcss.io/llmcss.js" defer></script>`
+- Sample: `<button class="ai-btn ai-btn-primary">Save</button>`
+- Validate: `npx llmcss validate <file>`
+
 ## 1. Add the tags
 
 App Router, in `app/layout.tsx`:
@@ -22,7 +30,7 @@ The script is optional and only powers modal, drawer, dropdown, accordion, tabs,
 toast and command palette behavior; `<Script src="..." strategy="beforeInteractive" />`
 from `next/script` is an equivalent way to load it. For npm, `npm install llmcss`
 and `import "llmcss/dist/llmcss.css"` in the layout (pinned CDN copy:
-`https://cdn.jsdelivr.net/npm/llmcss@0.2.0/dist/llmcss.css`). In JSX write
+`https://cdn.jsdelivr.net/npm/llmcss@0.3.0/dist/llmcss.css`). In JSX write
 `className`, not `class`; `data-ai-*` attributes pass through unchanged.
 
 ## 2. React re-renders

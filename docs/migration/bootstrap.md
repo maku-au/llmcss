@@ -1,5 +1,13 @@
 # Migrating from Bootstrap
 
+## Quick reference
+
+- Install: `npm install llmcss`
+- Include: `<link rel="stylesheet" href="https://llmcss.io/llmcss.css" />`
+- Runtime (optional, for modal/drawer/dropdown/accordion/tabs/toast/command palette): `<script src="https://llmcss.io/llmcss.js" defer></script>`
+- Sample: `<button class="ai-btn ai-btn-primary">Save</button>`
+- Validate: `npx llmcss lint --fix <file>` then `npx llmcss validate <file>`
+
 Bootstrap and LLMCSS are the same kind of library: a stylesheet of named components
 with a thin utility layer, not a class generator. That makes most of the move a rename.
 `card` becomes `ai-card`, `alert-danger` becomes `ai-alert-danger`, `modal-header`
@@ -51,7 +59,7 @@ JavaScript bundle plus Popper is replaced by a much smaller delegation runtime. 
 | `list-group`, `list-group-item` | `ai-list-group`, `ai-list-group-item` | `ai-list-group-flush` drops the outer border. |
 | `text-center` | `ai-text-center` | `ai-text-muted` replaces `text-muted` and tracks the theme. |
 | `fw-bold` | `ai-font-bold` | Naming follows the CSS property, not Bootstrap's abbreviation. |
-| `p-3`, `mb-3` | `ai-p-3`, `ai-mb-3` | Bootstrap's 0 to 5 spacer scale does not line up with the LLMCSS scale (0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32). Check the rendered value rather than assuming `p-3` matches `ai-p-3` visually. |
+| `p-3`, `mb-3` | `ai-p-3`, `ai-mb-3` | Bootstrap's 0 to 5 spacer scale does not line up with the LLMCSS steps. Every spacing utility shares 0, 1, 2, 3, 4, 5, 6, 8, 10, 12; padding continues to 16, 20, 24, and `ai-gap-*` alone continues to 32. Check the rendered value rather than assuming `p-3` matches `ai-p-3` visually. |
 | `w-100`, `h-100` | `ai-w-full`, `ai-h-full` | `ai-sr-only` covers `visually-hidden`. |
 | `bg-light`, `bg-dark`, `text-bg-primary` | no direct equivalent | Surfaces are tokens, not classes. Use `ai-card` or `ai-panel`, or override the surface tokens on the container. |
 
@@ -97,7 +105,7 @@ or on a single subtree, which is how you preview a skin without a build step.
 Bootstrap ships `bootstrap.bundle.min.js` plus Popper, and every interactive component
 is a JavaScript class you either instantiate or drive through `data-bs-*` attributes.
 
-LLMCSS ships one optional script, `dist/llmcss.js`, about 12KB. It does document-level
+LLMCSS ships one optional script, `dist/llmcss.js`, about 21KB minified (about 6KB gzipped). It does document-level
 event delegation for `data-ai-toggle`, `data-ai-dismiss` and `data-ai-tab`, and
 registers the `ai-modal` style custom elements (`ai-modal`, `ai-drawer`, `ai-dropdown`,
 `ai-accordion`, `ai-tabs`, `ai-toast`, `ai-command-palette`). Focus trapping, inert
@@ -121,7 +129,7 @@ with `ai-col-span-6` or `ai-md:col-span-4`. There is no gutter-cancelling wrappe
 delete the `row` element rather than renaming it.
 
 Two shortcuts remove most of the 12-column arithmetic: `ai-grid-cols-3` for an even
-split, and `ai-grid-auto-fit` (with `ai-grid-min-sm` through `ai-grid-min-lg`) for a
+split, and `ai-grid-auto-fit` (with `ai-grid-min-xs` through `ai-grid-min-lg`) for a
 responsive card wall that needs no breakpoint classes at all.
 
 ## Mechanical first pass

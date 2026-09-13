@@ -15,6 +15,11 @@ Add the runtime only if you use modal, drawer, dropdown, accordion, tabs, or toa
 
 That is the whole install. Everything else in this repo is optional: a CLI, an MCP server, and a JSON registry for agents that would rather fetch markup than guess it.
 
+- Class prefix is `ai-*`. Nothing else styles the page.
+- [classes.json](https://llmcss.io/classes.json) is the universe of allowed classes; if a class is not listed there, it does not exist.
+- Theming lives in `data-ai-theme`, `data-ai-skin`, `data-ai-accent`, `data-ai-density`, and `data-ai-focus` attributes on `<html>`.
+- Run `npx llmcss validate <file>` before you ship markup.
+
 - Site: [llmcss.io](https://llmcss.io)
 - Components gallery: [llmcss.io/components](https://llmcss.io/components)
 - Templates gallery: [llmcss.io/templates](https://llmcss.io/templates)
@@ -24,15 +29,25 @@ That is the whole install. Everything else in this repo is optional: a CLI, an M
 
 ## What this is
 
-106 components (93 free, 13 Pro) across four categories, plus 18 wireframe section templates and 4 page blueprints. All CSS, no JavaScript required. An optional runtime adds modal, drawer, dropdown, accordion, tabs, toast, and command palette behavior, either via `data-ai-*` attributes on plain HTML or via light-DOM custom elements (`<ai-modal>`, `<ai-tabs>`, `<ai-dropdown>`, `<ai-accordion>`, `<ai-drawer>`, `<ai-toast>`, `<ai-command-palette>`).
+<!-- stats:start -->
+- **Classes:** 1407 `ai-*` classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Tokens:** 82 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
+- **States:** 36 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
+- **Components:** 125 (122 free, 3 themed Pro): 54 primitive, 44 application, 22 marketing, 5 ecommerce.
+- **Section templates:** 26 (18 free wireframe, 8 themed Pro).
+- **Page blueprints:** 6 (4 free, 2 Pro).
+<!-- stats:end -->
+
+All CSS, no JavaScript required. An optional runtime adds modal, drawer, dropdown, accordion, tabs, toast, command palette, and split-pane behavior, either via `data-ai-*` attributes on plain HTML or via light-DOM custom elements (`<ai-modal>`, `<ai-tabs>`, `<ai-dropdown>`, `<ai-accordion>`, `<ai-drawer>`, `<ai-toast>`, `<ai-command-palette>`).
 
 ## Install
 
 ```bash
-npm install
 npx llmcss list
 npx llmcss add btn-variants
 ```
+
+No clone needed: `npx` fetches the `llmcss` package on demand. To add the CLI as a dev dependency instead, run `npm install --save-dev llmcss`.
 
 `add` writes HTML into `components/<category>/<id>.html` in your project. You can also copy markup straight from the gallery, or fetch it as JSON.
 
@@ -45,8 +60,8 @@ curl https://llmcss.io/r/btn-variants.json
 
 Generated from the CSS at build time, so they cannot drift from the stylesheet. An agent should read these instead of guessing class names.
 
-- [classes.json](https://llmcss.io/classes.json): all 1176 `ai-*` classes, each with its family and the `ai-sm:` / `ai-md:` / `ai-lg:` / `ai-xl:` / `ai-cq:` prefixes that exist for it. If a class is not here, it does not exist.
-- [tokens.json](https://llmcss.io/tokens.json): all 82 `--ai-*` tokens with their value in light, dark, each skin, and each focus preset.
+- [classes.json](https://llmcss.io/classes.json): every `ai-*` class, each with its family and the `ai-sm:` / `ai-md:` / `ai-lg:` / `ai-xl:` / `ai-cq:` prefixes that exist for it. If a class is not here, it does not exist.
+- [tokens.json](https://llmcss.io/tokens.json): every `--ai-*` token with its value in light, dark, each skin, and each focus preset.
 - [states.json](https://llmcss.io/states.json): every `is-*` state class and every `data-ai-*` attribute, with allowed values and whether the author or the runtime applies it.
 - [registry.json](https://llmcss.io/registry.json), [templates.json](https://llmcss.io/templates.json): component catalog and wireframe templates.
 
@@ -77,19 +92,11 @@ Binaries: `llmcss` and `llmcss-mcp` (aliases `cssai`, `cssai-mcp` also work).
 npx llmcss-mcp
 ```
 
-A stdio JSON-RPC server for editors and agents. It talks to the public catalog at llmcss.io; nothing runs long-lived on your machine. Tools: `search_components`, `get_component_markup`, `validate_markup`, `list_tokens`, `llmcss_get_harness`, `llmcss_slop_audit`, `list_wireframe_templates`, `get_wireframe_template`, `get_page_blueprint` (plus `cssai_get_harness` and `cssai_slop_audit` as aliases).
+A stdio JSON-RPC server for editors and agents. It talks to the public catalog at llmcss.io; nothing runs long-lived on your machine. Tools: `search_components`, `get_component_markup`, `validate_markup`, `list_tokens`, `list_classes`, `list_states`, `llmcss_get_harness`, `llmcss_slop_audit`, `list_wireframe_templates`, `get_wireframe_template`, `get_page_blueprint` (plus `cssai_get_harness` and `cssai_slop_audit` as aliases).
 
 ## Component index
 
-Ids only. Full metadata: `npx llmcss info <id>` or `https://llmcss.io/r/{id}.json`. `*` marks Pro.
-
-**Primitive (48):** btn-variants, btn-sizes, input-text, input-addon, switch-toggle, card-standard, badge-status, avatar-group, modal-dialog, tabs-system, dropdown-menu, accordion-faq, table-data, alert-callouts, animated-loaders, progress-bars, interactive-slider, skeleton-card, stepper-flow, segmented-toggle, popover-anchor, toast-stack, breadcrumb-nav, tooltip-hover, pagination-controls, divider-separator, textarea-counter, checkbox-radio-group, empty-state, kbd-shortcuts, quote-pull, code-block, file-dropzone, split-button, collapse-details, carousel-snap, floating-label, list-group, btn-group, level-bar, media-object, panel-list, notification-block, file-input, title-subtitle, chip-removable, select-native, input-icon
-
-**Marketing (21):** navbar-modern, mobile-nav-drawer, mobile-nav-dropdown, hero-split, hero-bento-pro*, pricing-tier-cards, footer-multi-col, marquee-ticker, bento-editorial-pro*, pricing-matrix-pro*, section-shift, feature-grid, feature-list, stats-band, cta-band, callout-editorial, testimonial-grid, team-grid, announcement-bar, consent-bar, faq-section
-
-**Application (34):** kpi-metric-cards, command-palette-pro*, auth-login-card, filter-toolbar, ai-chat-thread*, tool-trace*, approval-bar*, thought-chain*, agent-workspace*, mcp-widget-shell*, streaming-status*, citation-list*, sidebar-nav, stats-dashboard, notification-list, timeline-log, page-header, app-topbar, quota-meter, spark-stat, donut-stat, settings-list, log-console, health-grid, kanban-column, inbox-list, bar-chart, detail-list, date-range, data-grid, bulk-action-bar, tree-view, onboarding-checklist, error-state
-
-**Ecommerce (3):** product-card, cart-drawer-pro*, product-grid
+Components are split across four categories: primitive, marketing, application, ecommerce, and the counts are in [What this is](#what-this-is). Full list: `npx llmcss list`. Full metadata for one id: `npx llmcss info <id>` or `https://llmcss.io/r/{id}.json`. Full catalog as JSON: [registry.json](https://llmcss.io/registry.json).
 
 ## Guides
 
@@ -108,7 +115,9 @@ Set attributes on `<html>`:
 ```
 
 - Theme: `data-ai-theme="light|dark"`
-- Skin: `data-ai-skin="obsidian|editorial|executive|fintech|enterprise|emerald|violet|rose"`
+- Skin: `data-ai-skin="obsidian|editorial|executive|fintech|enterprise|emerald|violet|rose"`. `emerald`, `violet`, and `rose` are deprecated aliases of `data-ai-accent` of the same name and will be removed in 1.0; use `data-ai-accent` instead.
+- Accent: `data-ai-accent="emerald|violet|rose|teal|steel|amber"`. Sets only the accent color; composes with any skin and outranks the skin's accent.
+- Density: `data-ai-density="compact|spacious"`. Scales the spacing steps components use for padding.
 - Focus ring: tune `--ai-focus-color`, `--ai-focus-width`, `--ai-focus-offset`, or set a preset with `data-ai-focus="neutral|thin|none"` on `<html>`. `--ai-tap-highlight` controls the mobile tap flash (transparent by default).
 - Per-instance overrides: components read local CSS variables, for example `--ai-drawer-offset` on a top or bottom drawer to clear a fixed navbar.
 
@@ -133,11 +142,11 @@ CSS-only usage (no runtime JS) still gets themed focus rings, WCAG AA contrast t
 Eleven anti-slop laws, generated from `src/registry/laws.mjs` by `node src/registry/build-docs.mjs`:
 
 <!-- laws:start -->
-1. **Never nest containers**: Do not put a bordered card inside another bordered card. Nested boxes waste screen real estate and create dizzying visual layers.
-2. **Never pulse static status pips**: Never attach continuous breathing or pulsing animations (`@keyframes pulse`) to steady states like "System Normal", "Online", or "Completed". Flashing elements demand attention when nothing has changed.
+1. **Never nest containers**: Do not put a bordered container inside another bordered container. The audit walks the tag stack and flags every `.ai-card`, `.ai-panel` or `.ai-kpi-card` that sits inside another `.ai-card`, `.ai-panel` or `.ai-kpi-card`. Nested boxes waste screen real estate and create dizzying visual layers.
+2. **Never pulse static status pips**: Never attach continuous breathing or pulsing animations to steady states like "System Normal", "Online", or "Completed". The audit flags the class tokens `animate-pulse`, `pulse`, `animate-ping`, `ping`, `breathe`, `blink` and `animate-bounce`, and any inline `animation:` value containing `pulse`, `ping`, `breathe`, `blink` or `glow`, unless the document also carries `is-streaming`. Flashing elements demand attention when nothing has changed.
 3. **Never use colored left-stripe borders**: Do not place thick 3px to 5px colored vertical stripes on the left edge of cards, toasts, or dialogs. This 2012-era alert tell makes every element scream for attention.
 4. **Never use electric purple or cyan halos and radial glows**: Avoid murky dark backgrounds flooded with saturated purple-to-blue gradients or zero-offset neon drop shadows.
-5. **Never stamp formulaic eyebrows above headlines**: Avoid adding an uppercase monospace overline (`01 // FEATURES` or `OVERVIEW`) above every heading. When repeated everywhere, eyebrows become visual noise that delays reading the headline.
+5. **Never stamp formulaic eyebrows above headlines**: Do not stamp a badge or a pill above a heading as an eyebrow, and do not repeat an uppercase monospace overline (`01 // FEATURES`, `OVERVIEW`) over every section. The audit flags a `span` or `div` carrying `.ai-badge` or `.ai-hero-badge` that is followed by an `h1` to `h4` within the next few lines, with `.ai-product-badge-float` the only exemption. Repeated eyebrows become visual noise that delays reading the headline.
 6. **Never crush letter-spacing below -0.04em or justify body text**: Do not apply extreme negative letter-spacing that makes characters collide, and never use `text-align: justify`, which causes distracting typographic rivers.
 7. **Never place low-contrast gray text on colored backgrounds**: Never render neutral `#71717a` gray text over an accent surface or a tinted banner.
 8. **Never create flat, identical metric grids**: Do not display 4 identical KPI cards with identical weights and icons.
@@ -150,18 +159,19 @@ Each law's remedy, plus the four archetypes (Executive Slate, Fintech Titanium, 
 
 ## Pro
 
-Pro adds advanced marketing, application, and ecommerce sections. $9/month via Polar. The token is shown once at checkout.
+The MIT catalog is the full component set, including command palette, cart drawer, agent chrome, and bento heroes. Pro ($9/month via Polar) is themed section templates, page kits, and a few skin-specific composed blocks. The token is shown once at checkout.
 
 ```bash
 npx llmcss login llmcss_live_...
-npx llmcss add tool-trace
+npx llmcss template get themed-hero-obsidian
+npx llmcss add themed-editorial-article-header
 ```
 
-Pro source is not in this repository. `npx llmcss add` on a Pro id fetches `GET /r/pro/{id}.json` with `Authorization: Bearer <token>`.
+Themed source is not in this repository. `npx llmcss add` / `npx llmcss template get` on a Pro id fetches `GET /r/pro/{id}.json` with `Authorization: Bearer <token>`.
 
 ## License
 
 - This repository: MIT ([LICENSE](LICENSE))
 - Pro catalog: commercial subscription, kept in a private repository
 
-Do not open a PR that adds Pro markup, Pro CSS sources, or `.env` files to this repo.
+Do not open a PR that adds themed Pro markup, Pro CSS sources, or `.env` files to this repo.

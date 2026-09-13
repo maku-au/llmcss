@@ -1,5 +1,13 @@
 # LLMCSS with Rails
 
+## Quick reference
+
+- Install: `npm install llmcss`
+- Include: `<link rel="stylesheet" href="https://llmcss.io/llmcss.css" />`
+- Runtime (optional, for modal/drawer/dropdown/accordion/tabs/toast/command palette): `<script src="https://llmcss.io/llmcss.js" defer></script>`
+- Sample: `<button class="ai-btn ai-btn-primary">Save</button>`
+- Validate: `npx llmcss validate <file>`
+
 ## 1. Add the tags
 
 In `app/views/layouts/application.html.erb`, inside `<head>`:
@@ -14,7 +22,7 @@ In `app/views/layouts/application.html.erb`, inside `<head>`:
 The `<script>` is optional and only powers modal, drawer, dropdown, accordion,
 tabs, toast and command palette behavior. For npm, install `llmcss` and serve
 `dist/llmcss.css` and `dist/llmcss.js`, or pin
-`https://cdn.jsdelivr.net/npm/llmcss@0.2.0/dist/llmcss.css`. On `<html>` set
+`https://cdn.jsdelivr.net/npm/llmcss@0.3.0/dist/llmcss.css`. On `<html>` set
 `data-ai-theme="light|dark"`, `data-ai-skin="obsidian|editorial|executive|fintech|enterprise|emerald|violet|rose"`,
 `data-ai-density="compact|spacious"`.
 

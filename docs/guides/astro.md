@@ -1,5 +1,13 @@
 # LLMCSS with Astro
 
+## Quick reference
+
+- Install: `npm install llmcss`
+- Include: `<link rel="stylesheet" href="https://llmcss.io/llmcss.css" />`
+- Runtime (optional, for modal/drawer/dropdown/accordion/tabs/toast/command palette): `<script src="https://llmcss.io/llmcss.js" defer></script>`
+- Sample: `<button class="ai-btn ai-btn-primary">Save</button>`
+- Validate: `npx llmcss validate <file>`
+
 ## 1. Add the tags
 
 In `src/layouts/Layout.astro`, inside `<head>`:
@@ -17,7 +25,7 @@ In `src/layouts/Layout.astro`, inside `<head>`:
 `is:inline` tells Astro to emit the tag verbatim instead of routing it through
 the bundler, so keep the directive (or install `llmcss` from npm and import
 `llmcss/dist/llmcss.js` yourself). Pinned CDN copy:
-`https://cdn.jsdelivr.net/npm/llmcss@0.2.0/dist/llmcss.css`. On `<html>` set `data-ai-theme="light|dark"`,
+`https://cdn.jsdelivr.net/npm/llmcss@0.3.0/dist/llmcss.css`. On `<html>` set `data-ai-theme="light|dark"`,
 `data-ai-skin="obsidian|editorial|executive|fintech|enterprise|emerald|violet|rose"`,
 `data-ai-density="compact|spacious"`.
 

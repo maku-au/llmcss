@@ -2,6 +2,17 @@
 
 All notable changes to the public LLMCSS package. Dates are UTC.
 
+## 0.3.0 (2026-09-13)
+
+### Changed
+- Pro is themed section templates, page kits, and a few skin-specific composed blocks. The previous 20 Pro components (command palette, cart drawer, agent chrome, bento heroes, pricing matrix, and related surfaces) are MIT. Their CSS now ships in `llmcss.css`.
+- Relicensed those 20 components from the commercial Pro catalog into this MIT repository. Existing Pro subscribers keep the same Polar token and now unlock the themed catalog instead.
+- `npx llmcss add` on former Pro ids no longer requires a token. `npx llmcss template get` on themed ids does.
+- Split pane drag/keyboard resize moved from an inline script into the public runtime (`llmcss.js`).
+
+### Added
+- First themed Pro kit: eight production sections, two page kits, three composed blocks (`themed-*`, `kit-*`).
+
 ## 0.2.0 (2026-09-12)
 
 ### Added

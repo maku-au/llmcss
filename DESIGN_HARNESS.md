@@ -3,6 +3,21 @@
 
 The LLMCSS Design Direction Harness eliminates the generic "AI look" (puffy gradients, nested card bento bloat, continuous pulsing dots, and formulaic uppercase eyebrows). It equips AI agents with opinionated, production-grade design directions and eleven deterministic quality laws.
 
+- Class prefix and the class universe: [AGENTS.md](AGENTS.md). Every class carries the `ai-` prefix, and a class that is not in [classes.json](https://llmcss.io/classes.json) does not exist.
+- Theming attributes (`data-ai-theme`, `data-ai-skin`, `data-ai-density`, `data-ai-focus`) are tabled in [AGENTS.md](AGENTS.md). Accent is a separate axis: `data-ai-accent="emerald|violet|rose|teal|steel|amber"` sets only the accent tokens and composes with any skin, while `data-ai-skin="emerald|violet|rose"` is a deprecated alias of the accent of the same name and goes away in 1.0.
+- Self-check commands: `npx llmcss validate <file>` and `npx llmcss audit <file>`, both documented in [AGENTS.md](AGENTS.md). Each exits 1 on any finding.
+
+Library totals, generated from the manifests in public/:
+
+<!-- stats:start -->
+- **Classes:** 1407 `ai-*` classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Tokens:** 82 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
+- **States:** 36 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
+- **Components:** 125 (122 free, 3 themed Pro): 54 primitive, 44 application, 22 marketing, 5 ecommerce.
+- **Section templates:** 26 (18 free wireframe, 8 themed Pro).
+- **Page blueprints:** 6 (4 free, 2 Pro).
+<!-- stats:end -->
+
 ---
 
 ## 1. The eleven non-negotiable anti-slop laws
@@ -11,11 +26,11 @@ Every AI coding agent generating interfaces with LLMCSS must comply with all ele
 
 <!-- laws:start -->
 ### Law 1: Never nest containers
-Do not put a bordered card inside another bordered card. Nested boxes waste screen real estate and create dizzying visual layers.
+Do not put a bordered container inside another bordered container. The audit walks the tag stack and flags every `.ai-card`, `.ai-panel` or `.ai-kpi-card` that sits inside another `.ai-card`, `.ai-panel` or `.ai-kpi-card`. Nested boxes waste screen real estate and create dizzying visual layers.
 - Instead: Use generous whitespace (`--ai-space-6`), subtle hairline rules (`<hr class="ai-divider">`), or distinct background shifts (`var(--ai-surface-1)`).
 
 ### Law 2: Never pulse static status pips
-Never attach continuous breathing or pulsing animations (`@keyframes pulse`) to steady states like "System Normal", "Online", or "Completed". Flashing elements demand attention when nothing has changed.
+Never attach continuous breathing or pulsing animations to steady states like "System Normal", "Online", or "Completed". The audit flags the class tokens `animate-pulse`, `pulse`, `animate-ping`, `ping`, `breathe`, `blink` and `animate-bounce`, and any inline `animation:` value containing `pulse`, `ping`, `breathe`, `blink` or `glow`, unless the document also carries `is-streaming`. Flashing elements demand attention when nothing has changed.
 - Instead: Render a calm, static jewel pip with `.ai-status-pip` and `box-shadow: 0 0 0 2px color-mix(...)`. Reserve `.ai-status-pip.is-streaming` strictly for ongoing inference or active data transmission.
 
 ### Law 3: Never use colored left-stripe borders
@@ -27,7 +42,7 @@ Avoid murky dark backgrounds flooded with saturated purple-to-blue gradients or 
 - Instead: Build depth using multi-stop physical elevation with a slight vertical offset: `box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 8px 16px -4px rgba(0, 0, 0, 0.04);`.
 
 ### Law 5: Never stamp formulaic eyebrows above headlines
-Avoid adding an uppercase monospace overline (`01 // FEATURES` or `OVERVIEW`) above every heading. When repeated everywhere, eyebrows become visual noise that delays reading the headline.
+Do not stamp a badge or a pill above a heading as an eyebrow, and do not repeat an uppercase monospace overline (`01 // FEATURES`, `OVERVIEW`) over every section. The audit flags a `span` or `div` carrying `.ai-badge` or `.ai-hero-badge` that is followed by an `h1` to `h4` within the next few lines, with `.ai-product-badge-float` the only exemption. Repeated eyebrows become visual noise that delays reading the headline.
 - Instead: Lead directly with a confident, well-typeset headline (`h1` or `h2`). If context is needed, fold it into the heading or the supporting sentence.
 
 ### Law 6: Never crush letter-spacing below -0.04em or justify body text
@@ -64,114 +79,204 @@ When starting a project or generating new UI, select one of these four curated a
 <!-- archetypes:start -->
 ### Archetype A: Executive Slate
 - **Vibe:** High-density, disciplined engineering workspace, precision data tools.
-- **Attributes:** Cool slate grays, 4px architectural radius, razor-sharp 1px borders, tabular numerals.
+- **Attributes:** Cool slate grays, 3px architectural radius (`--ai-radius-sm`, the only skin that is not 2px), razor-sharp hairline borders, blue #2563eb accent in light mode and sky #38bdf8 in dark.
 - **Attribute selector:** `[data-ai-skin="executive"]`
 - **CSS root variables:**
 ```css
-:root[data-ai-skin="executive"] {
-  --ai-font-sans: 'IBM Plex Sans', system-ui, sans-serif;
-  --ai-font-display: 'Sora', 'IBM Plex Sans', sans-serif;
-  --ai-font-mono: 'IBM Plex Mono', monospace;
-  --ai-radius-base: 4px;
-  --ai-radius-md: 4px;
-  --ai-radius-lg: 6px;
-  --ai-accent: #2563eb;
-  --ai-accent-rgb: 37, 99, 235;
+[data-ai-skin="executive"] {
+  --ai-radius-base: var(--ai-radius-sm);
+}
+:root[data-ai-theme="light"][data-ai-skin="executive"] {
   --ai-bg: #f8fafc;
   --ai-surface-0: #ffffff;
   --ai-surface-1: #f1f5f9;
-  --ai-border: rgba(15, 23, 42, 0.08);
-  --ai-border-strong: rgba(15, 23, 42, 0.18);
+  --ai-surface-2: #e2e8f0;
+  --ai-surface-3: #cbd5e1;
+  --ai-text-primary: #0f172a;
+  --ai-text-secondary: #475569;
+  --ai-text-muted: #64748b;
+  --ai-border: rgba(15, 23, 42, 0.1);
+  --ai-border-subtle: rgba(15, 23, 42, 0.05);
+  --ai-border-hover: rgba(15, 23, 42, 0.2);
+  --ai-border-strong: rgba(15, 23, 42, 0.25);
+  --ai-primary: #0f172a;
+  --ai-primary-hover: #1e293b;
+  --ai-primary-text: #ffffff;
+  --ai-accent: #2563eb;
+  --ai-accent-hover: #1d4ed8;
+  --ai-accent-subtle: rgba(37, 99, 235, 0.08);
+  --ai-accent-rgb: 37, 99, 235;
 }
-:root[data-ai-skin="executive"][data-ai-theme="dark"] {
-  --ai-bg: #09090b;
+:root[data-ai-theme="dark"][data-ai-skin="executive"] {
+  --ai-bg: #090d16;
   --ai-surface-0: #0f172a;
-  --ai-surface-1: #1e293b;
-  --ai-border: rgba(248, 250, 252, 0.08);
-  --ai-border-strong: rgba(248, 250, 252, 0.18);
+  --ai-surface-1: #172033;
+  --ai-surface-2: #1e293b;
+  --ai-surface-3: #334155;
+  --ai-text-primary: #f8fafc;
+  --ai-text-secondary: #94a3b8;
+  --ai-text-muted: #64748b;
+  --ai-border: rgba(255, 255, 255, 0.09);
+  --ai-border-subtle: rgba(255, 255, 255, 0.04);
+  --ai-border-hover: rgba(255, 255, 255, 0.18);
+  --ai-border-strong: rgba(255, 255, 255, 0.22);
+  --ai-primary: #f8fafc;
+  --ai-primary-hover: #ffffff;
+  --ai-primary-text: #090d16;
+  --ai-accent: #38bdf8;
+  --ai-accent-text: #082f49;
+  --ai-accent-hover: #7dd3fc;
+  --ai-accent-subtle: rgba(56, 189, 248, 0.12);
+  --ai-accent-rgb: 56, 189, 248;
 }
 ```
 
 ### Archetype B: Fintech Titanium
 - **Vibe:** Regulated financial intelligence, institutional security, high clarity.
-- **Attributes:** Warm stone neutrals, 6px radius, emerald and teal accents, generous white space, high-legibility sans.
+- **Attributes:** Warm stone neutrals, 2px radius (`--ai-radius-xs`), deep teal #0f766e accent in light mode and #2dd4bf in dark, generous white space. Status colors are the library defaults, not per-skin overrides.
 - **Attribute selector:** `[data-ai-skin="fintech"]`
 - **CSS root variables:**
 ```css
-:root[data-ai-skin="fintech"] {
-  --ai-font-sans: 'DM Sans', system-ui, sans-serif;
-  --ai-font-display: 'DM Sans', system-ui, sans-serif;
-  --ai-radius-base: 6px;
-  --ai-radius-md: 6px;
-  --ai-radius-lg: 8px;
-  --ai-accent: #0f766e;
-  --ai-accent-rgb: 15, 118, 110;
-  --ai-success: #059669;
+[data-ai-skin="fintech"] {
+  --ai-radius-base: var(--ai-radius-xs);
+}
+:root[data-ai-theme="light"][data-ai-skin="fintech"] {
   --ai-bg: #f8f8f6;
   --ai-surface-0: #ffffff;
-  --ai-surface-1: #f3f3f0;
-  --ai-border: rgba(28, 25, 23, 0.08);
-  --ai-border-strong: rgba(28, 25, 23, 0.16);
+  --ai-surface-1: #f2f1ee;
+  --ai-surface-2: #e7e5e1;
+  --ai-surface-3: #d6d3cd;
+  --ai-text-primary: #1c1917;
+  --ai-text-secondary: #57534e;
+  --ai-text-muted: #78716c;
+  --ai-border: rgba(28, 25, 23, 0.1);
+  --ai-border-subtle: rgba(28, 25, 23, 0.05);
+  --ai-border-hover: rgba(28, 25, 23, 0.2);
+  --ai-border-strong: rgba(28, 25, 23, 0.25);
+  --ai-primary: #1c1917;
+  --ai-primary-hover: #292524;
+  --ai-primary-text: #fbfaf8;
+  --ai-accent: #0f766e;
+  --ai-accent-hover: #115e59;
+  --ai-accent-subtle: rgba(15, 118, 110, 0.09);
+  --ai-accent-rgb: 15, 118, 110;
 }
-:root[data-ai-skin="fintech"][data-ai-theme="dark"] {
-  --ai-bg: #0c0d0e;
-  --ai-surface-0: #141618;
-  --ai-surface-1: #1c1e22;
-  --ai-border: rgba(245, 245, 244, 0.08);
-  --ai-border-strong: rgba(245, 245, 244, 0.16);
+:root[data-ai-theme="dark"][data-ai-skin="fintech"] {
+  --ai-bg: #0c0a09;
+  --ai-surface-0: #141210;
+  --ai-surface-1: #1c1917;
+  --ai-surface-2: #292524;
+  --ai-surface-3: #44403c;
+  --ai-text-primary: #fafaf9;
+  --ai-text-secondary: #a8a29e;
+  --ai-text-muted: #78716c;
+  --ai-border: rgba(250, 250, 249, 0.09);
+  --ai-border-subtle: rgba(250, 250, 249, 0.04);
+  --ai-border-hover: rgba(250, 250, 249, 0.18);
+  --ai-border-strong: rgba(250, 250, 249, 0.22);
+  --ai-primary: #fafaf9;
+  --ai-primary-hover: #ffffff;
+  --ai-primary-text: #0c0a09;
+  --ai-accent: #2dd4bf;
+  --ai-accent-text: #042f2e;
+  --ai-accent-hover: #5eead4;
+  --ai-accent-subtle: rgba(45, 212, 191, 0.14);
+  --ai-accent-rgb: 45, 212, 191;
 }
 ```
 
 ### Archetype C: Obsidian Minimal
-- **Vibe:** Pure dark-mode minimalist console, brutalist restraint, developer-first.
-- **Attributes:** Pitch-black background (`#000000`), stark white accents (`#ffffff`), 0px to 2px sharp radii, monospace accents.
+- **Vibe:** Monochrome minimalist console, brutalist restraint, developer-first, in both light and dark.
+- **Attributes:** Alabaster #fbfbfb in light mode and pitch black #000000 in dark, monochrome near-black or near-white accents (`#18181b` light, `#f5f5f5` dark), 2px sharp radius (`--ai-radius-xs`).
 - **Attribute selector:** `[data-ai-skin="obsidian"]`
 - **CSS root variables:**
 ```css
-:root[data-ai-skin="obsidian"] {
-  --ai-font-display: 'Sora', sans-serif;
-  --ai-font-sans: 'DM Sans', system-ui, sans-serif;
-  --ai-font-mono: 'IBM Plex Mono', monospace;
-  --ai-radius-base: 2px;
-  --ai-radius-md: 2px;
-  --ai-radius-lg: 4px;
-  --ai-accent: #ededed;
-  --ai-accent-rgb: 237, 237, 237;
+[data-ai-skin="obsidian"] {
+  --ai-radius-base: var(--ai-radius-xs);
+}
+:root[data-ai-theme="light"][data-ai-skin="obsidian"] {
+  --ai-bg: #fbfbfb;
+  --ai-surface-0: #ffffff;
+  --ai-surface-1: #f4f4f5;
+  --ai-surface-2: #e4e4e7;
+  --ai-surface-3: #d4d4d8;
+  --ai-text-primary: #09090b;
+  --ai-text-secondary: #52525b;
+  --ai-text-muted: #71717a;
+  --ai-border: rgba(9, 9, 11, 0.08);
+  --ai-border-subtle: rgba(9, 9, 11, 0.04);
+  --ai-border-strong: rgba(9, 9, 11, 0.16);
+  --ai-primary: #09090b;
+  --ai-primary-hover: #27272a;
+  --ai-primary-text: #ffffff;
+  --ai-accent: #18181b;
+  --ai-accent-hover: #09090b;
+}
+:root[data-ai-theme="dark"][data-ai-skin="obsidian"] {
   --ai-bg: #000000;
   --ai-surface-0: #0a0a0a;
   --ai-surface-1: #141414;
-  --ai-border: #27272a;
-  --ai-border-strong: #3f3f46;
+  --ai-surface-2: #1e1e1e;
+  --ai-surface-3: #2d2d2d;
+  --ai-text-primary: #ededed;
+  --ai-text-secondary: #9a9a9a;
+  --ai-text-muted: #7a7a7a;
+  --ai-border: rgba(255, 255, 255, 0.12);
+  --ai-border-subtle: rgba(255, 255, 255, 0.06);
+  --ai-border-strong: rgba(255, 255, 255, 0.22);
+  --ai-primary: #ffffff;
+  --ai-primary-hover: #e5e5e5;
+  --ai-primary-text: #000000;
+  --ai-accent: #f5f5f5;
+  --ai-accent-text: #09090b;
+  --ai-accent-hover: #ffffff;
 }
 ```
 
 ### Archetype D: Editorial Atelier
 - **Vibe:** High-craft publication, thoughtful essay, luxury studio, timeless typography.
-- **Attributes:** Warm paper substrate, Newsreader serif display headlines, crisp hairline borders, asymmetric rhythm, zero bento card clutter.
+- **Attributes:** Warm ivory paper substrate, terracotta #8c4a27 accent in light mode and #c48259 in dark, crisp hairline borders, 2px radius (`--ai-radius-xs`), asymmetric rhythm, zero bento card clutter. Serif display type is a page choice, not a token this skin sets.
 - **Attribute selector:** `[data-ai-skin="editorial"]`
 - **CSS root variables:**
 ```css
-:root[data-ai-skin="editorial"] {
-  --ai-font-serif: 'Newsreader', Georgia, serif;
-  --ai-font-display: 'Newsreader', Georgia, serif;
-  --ai-font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --ai-radius-base: 3px;
-  --ai-radius-md: 4px;
-  --ai-radius-lg: 6px;
-  --ai-accent: #8c4a27;
-  --ai-accent-rgb: 140, 74, 39;
-  --ai-bg: #faf8f5;
-  --ai-surface-0: #ffffff;
-  --ai-surface-1: #f4eee6;
-  --ai-border: rgba(41, 37, 36, 0.1);
-  --ai-border-strong: rgba(41, 37, 36, 0.2);
+[data-ai-skin="editorial"] {
+  --ai-radius-base: var(--ai-radius-xs);
 }
-:root[data-ai-skin="editorial"][data-ai-theme="dark"] {
-  --ai-bg: #141210;
-  --ai-surface-0: #1a1715;
-  --ai-surface-1: #24201c;
-  --ai-border: rgba(244, 238, 230, 0.08);
-  --ai-border-strong: rgba(244, 238, 230, 0.18);
+:root[data-ai-theme="light"][data-ai-skin="editorial"] {
+  --ai-bg: #faf7f2;
+  --ai-surface-0: #ffffff;
+  --ai-surface-1: #f3efe6;
+  --ai-surface-2: #e8e2d5;
+  --ai-surface-3: #d9d1c0;
+  --ai-text-primary: #26211c;
+  --ai-text-secondary: #574f46;
+  --ai-text-muted: #877d71;
+  --ai-border: rgba(38, 33, 28, 0.12);
+  --ai-border-subtle: rgba(38, 33, 28, 0.06);
+  --ai-border-strong: rgba(38, 33, 28, 0.22);
+  --ai-primary: #26211c;
+  --ai-primary-hover: #3b342c;
+  --ai-primary-text: #faf7f2;
+  --ai-accent: #8c4a27;
+  --ai-accent-hover: #733c1f;
+  --ai-accent-subtle: rgba(140, 74, 39, 0.1);
+}
+:root[data-ai-theme="dark"][data-ai-skin="editorial"] {
+  --ai-bg: #161412;
+  --ai-surface-0: #1d1a17;
+  --ai-surface-1: #282420;
+  --ai-surface-2: #38322c;
+  --ai-surface-3: #4a433b;
+  --ai-text-primary: #f2ede4;
+  --ai-text-secondary: #b8aea0;
+  --ai-text-muted: #857b6e;
+  --ai-border: rgba(242, 237, 228, 0.1);
+  --ai-border-strong: rgba(242, 237, 228, 0.2);
+  --ai-primary: #f2ede4;
+  --ai-primary-hover: #ffffff;
+  --ai-primary-text: #161412;
+  --ai-accent: #c48259;
+  --ai-accent-hover: #d4956d;
 }
 ```
 <!-- archetypes:end -->
@@ -182,10 +287,7 @@ When starting a project or generating new UI, select one of these four curated a
 
 Use [AGENTS.md](AGENTS.md) as the drop-in system prompt. It carries the same eleven laws, generated from the same source, plus the manifest links, the runtime rules, and the pre-flight commands. Do not paste a hand-shortened law list into a prompt: partial lists have drifted before.
 
-Two rules that only matter at prompt time:
-
-- Build UI from LLMCSS semantic classes (`.ai-btn`, `.ai-input`, `.ai-card`, `.ai-table`, `.ai-cq`, `.ai-badge`). Never emit an unprefixed or Tailwind-style utility when LLMCSS provides the primitive.
-- Choose a deliberate archetype before writing markup, rather than defaulting to generic dark SaaS styling.
+One rule only matters at prompt time: choose a deliberate archetype before writing markup, rather than defaulting to generic dark SaaS styling.
 
 ---
 
@@ -193,5 +295,3 @@ Two rules that only matter at prompt time:
 
 - **Buttons:** Use `.ai-btn .ai-btn-primary` for the single primary call to action. Use `.ai-btn .ai-btn-outline` or `.ai-btn .ai-btn-ghost` for secondary actions. Use decisive action verbs ("Export Telemetry", "Deploy Service", not "Continue" or "Click here").
 - **Metrics:** Always wrap numbers in `<span class="ai-kpi-value">` with `font-variant-numeric: tabular-nums`.
-- **Responsive Layouts:** Wrap adaptable panels in `<div class="ai-cq">` to use container queries instead of media queries.
-- **Modal Dialogs:** Ensure `<ai-modal>` or `.ai-modal` includes clear close affordances (backdrop dismiss, `ai-modal-close` button, and Escape key handling).

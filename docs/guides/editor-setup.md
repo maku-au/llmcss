@@ -1,5 +1,13 @@
 # Editor setup
 
+## Quick reference
+
+- Install: `npm install llmcss`
+- Include: `<link rel="stylesheet" href="https://llmcss.io/llmcss.css" />`
+- Regenerate editor data: `npm run build:vscode`
+- Sample completion: type `--ai-` inside a `:root` block, or `ai-btn-variants` to expand a component
+- Validate: `npx llmcss validate <file>`
+
 LLMCSS generates three editor artifacts from the manifests, so completions can
 never drift from the stylesheet. Regenerate them with:
 
@@ -17,21 +25,34 @@ npm run build:vscode
 
 ## VS Code, in this repo
 
-`.vscode/settings.json` is already committed and points at the three files, so a
-fresh checkout gets completions with no setup.
+`.vscode/settings.json` is already committed and points at
+`public/css-custom-data.json` and `public/html-custom-data.json`, so a fresh
+checkout gets token and attribute completions with no setup. Snippet completions
+still need `public/llmcss.code-snippets` copied or symlinked into `.vscode/`,
+since VS Code only reads `*.code-snippets` files from that folder, not from
+`public/`.
 
-Note that `.vscode/` is listed in `.gitignore`. If you want the settings to
-reach other contributors, un-ignore just that one file:
-
-```
-!.vscode/settings.json
-```
+`.vscode/` is listed in `.gitignore` except for `settings.json`
+(`!.vscode/settings.json`), so the settings file itself already reaches other
+contributors.
 
 ## VS Code, in your own project
 
-If you installed the npm package, the three files are not in the tarball (the
-`files` list ships only `llms.txt` and `llms-full.txt` from `public/`). Download
-them from the site instead:
+`package.json`'s `files` list now ships `public/classes.json`,
+`public/tokens.json`, `public/states.json`, `public/css-custom-data.json`,
+`public/html-custom-data.json` and `public/llmcss.code-snippets`, so if you
+installed the npm package they are already on disk at
+`node_modules/llmcss/public/`. Point `.vscode/settings.json` at them directly,
+or copy what you need:
+
+```bash
+mkdir -p .llmcss
+cp node_modules/llmcss/public/css-custom-data.json  .llmcss/
+cp node_modules/llmcss/public/html-custom-data.json .llmcss/
+cp node_modules/llmcss/public/llmcss.code-snippets  .vscode/
+```
+
+Without the npm package, download the same files from the site instead:
 
 ```bash
 mkdir -p .llmcss
@@ -96,7 +117,7 @@ If you want it locally, the shape is:
 {
   "$schema": "https://json.schemastore.org/web-types",
   "name": "llmcss",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "contributions": {
     "html": {
       "elements": [{ "name": "ai-modal", "description": "..." }],

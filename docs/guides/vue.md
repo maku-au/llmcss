@@ -1,5 +1,13 @@
 # LLMCSS with Vue
 
+## Quick reference
+
+- Install: `npm install llmcss`
+- Include: `<link rel="stylesheet" href="https://llmcss.io/llmcss.css" />`
+- Runtime (optional, for modal/drawer/dropdown/accordion/tabs/toast/command palette): `<script src="https://llmcss.io/llmcss.js" defer></script>`
+- Sample: `<button class="ai-btn ai-btn-primary">Save</button>`
+- Validate: `npx llmcss validate <file>`
+
 ## 1. Add the tags
 
 For a Vite SPA the shell is `index.html` at the project root:
@@ -17,7 +25,7 @@ For a Vite SPA the shell is `index.html` at the project root:
 The `<script>` is optional and only powers modal, drawer, dropdown, accordion,
 tabs, toast and command palette behavior. For npm, `npm install llmcss` and
 `import "llmcss/dist/llmcss.css"` in `src/main.ts` (pinned CDN copy:
-`https://cdn.jsdelivr.net/npm/llmcss@0.2.0/dist/llmcss.css`). On Nuxt there is no `index.html`: add the same two tags through `app.head.link` and `app.head.script`
+`https://cdn.jsdelivr.net/npm/llmcss@0.3.0/dist/llmcss.css`). On Nuxt there is no `index.html`: add the same two tags through `app.head.link` and `app.head.script`
 in `nuxt.config.ts`, and set the `<html>` attributes with `app.head.htmlAttrs`
 (`data-ai-theme`, `data-ai-skin`, `data-ai-density`).
 

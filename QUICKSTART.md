@@ -26,12 +26,18 @@ Interactive components (modal, drawer, dropdown, accordion, tabs, toasts) need t
 
 It registers `data-ai-toggle` / `data-ai-dismiss` / `data-ai-tab` handling and the `<ai-modal>` style custom elements. Everything else is CSS-only and works without it.
 
-Dark mode: `data-ai-theme="dark"` on `<html>`. There is no `prefers-color-scheme` query in the CSS, so the OS setting alone changes nothing; set the attribute yourself. Skin: `data-ai-skin="obsidian"` (also `editorial`, `executive`, `fintech`, `enterprise`, `emerald`, `violet`, `rose`). The first five change surfaces, radius and type; `emerald`, `violet` and `rose` change only the accent.
+Dark mode: `data-ai-theme="dark"` on `<html>`. There is no `prefers-color-scheme` query in the CSS, so the OS setting alone changes nothing; set the attribute yourself. Skin: `data-ai-skin="obsidian"` (also `editorial`, `executive`, `fintech`, `enterprise`). `emerald`, `violet`, and `rose` are deprecated aliases of `data-ai-accent` of the same name and will be removed in 1.0.
+
+Accent: `data-ai-accent="emerald|violet|rose|teal|steel|amber"` on `<html>` sets only the accent color; it composes with any skin and outranks the skin's own accent.
+
+Density: `data-ai-density="compact|spacious"` scales the spacing steps components use for padding.
+
+Focus: `data-ai-focus="neutral|thin|none"` on `<html>` swaps the focus ring preset.
 
 Pin a release instead of tracking latest:
 
 ```html
-<link rel="stylesheet" href="https://llmcss.io/v/0.2.0/llmcss.css" />
+<link rel="stylesheet" href="https://llmcss.io/v/0.3.0/llmcss.css" />
 ```
 
 Optional fonts (body, display, mono):
@@ -59,10 +65,10 @@ curl https://llmcss.io/r/btn-variants.json
 ## 3. A first layout
 
 ```html
-<div class="ai-container" style="max-width: 40rem; padding: var(--ai-space-8);">
+<div class="ai-container-sm ai-p-8">
   <h1>Hello</h1>
   <p class="ai-text-secondary">Body uses the sans token. Titles use the display token.</p>
-  <div class="ai-flex ai-gap-2" style="margin-top: var(--ai-space-4);">
+  <div class="ai-flex ai-gap-2 ai-mt-4">
     <button class="ai-btn ai-btn-primary">Continue</button>
     <button class="ai-btn ai-btn-outline">Cancel</button>
   </div>
@@ -87,7 +93,16 @@ Two ways to get modal, drawer, dropdown, accordion, tabs, toast, and command pal
 <ai-modal id="example">…</ai-modal>
 ```
 
-The nesting matters: modal and drawer toggles need `data-ai-target="#id"` and the target needs a backdrop plus a box or panel; a dropdown toggle sits inside `.ai-dropdown`; an accordion toggle inside `.ai-accordion-item`; tabs use `data-ai-tab="#panel"` inside `.ai-tabs`. Open state is the `open` attribute and the `.is-open` class interchangeably.
+The nesting matters:
+
+| Component | Toggle needs | Target needs |
+|---|---|---|
+| Modal / drawer | `data-ai-target="#id"` | A backdrop plus a box or panel |
+| Dropdown | An `.ai-dropdown` ancestor | |
+| Accordion | An `.ai-accordion-item` ancestor | |
+| Tabs | `data-ai-tab="#panel"` | An `.ai-tabs` ancestor |
+
+Open state is the `open` attribute and the `.is-open` class interchangeably.
 
 Both forms are optional. CSS-only markup renders and themes correctly without any JavaScript; the runtime adds focus trapping, Escape-to-close, and `aria-expanded` sync on top. Full contract: [llmcss.io/llms-full.txt](https://llmcss.io/llms-full.txt).
 
@@ -99,7 +114,12 @@ npx llmcss template get wireframe-nav-minimal
 npx llmcss template blueprint saas-landing
 ```
 
-18 section templates, 4 full-page blueprints. Gallery: [llmcss.io/templates](https://llmcss.io/templates).
+<!-- templates:start -->
+- 26 section templates: 18 free wireframe, 8 themed Pro.
+- 6 page blueprints: 4 free, 2 Pro.
+<!-- templates:end -->
+
+Gallery: [llmcss.io/templates](https://llmcss.io/templates).
 
 ## 6. Agents (MCP)
 
@@ -113,14 +133,15 @@ Point your editor at that stdio server. It bundles the public catalog and fetche
 
 ## 7. Pro (optional)
 
-Pro is $9/month via Polar. After checkout you get a token, shown once.
+Pro is $9/month via Polar and unlocks themed templates and kits. After checkout you get a token, shown once. The component catalog (including command palette, cart, and agent chrome) is MIT.
 
 ```bash
 npx llmcss login llmcss_live_...
-npx llmcss add tool-trace
+npx llmcss template get themed-hero-obsidian
+npx llmcss add themed-editorial-article-header
 ```
 
-Or paste the token under License at [llmcss.io/account](https://llmcss.io/account). Without a token, `npx llmcss add` on a Pro id exits 1 with a login hint, and the Pro entry in registry.json stays `locked: true` with `html: null`. Never write Pro markup from memory.
+Or paste the token under License at [llmcss.io/account](https://llmcss.io/account). Without a token, `npx llmcss add` / `npx llmcss template get` on a Pro id exits 1 with a login hint, and the Pro entry stays `locked: true` with `html: null`. Never write Pro markup from memory.
 
 ## Commands
 

@@ -1,5 +1,13 @@
 # Migrating from Tailwind CSS
 
+## Quick reference
+
+- Install: `npm install llmcss`
+- Include: `<link rel="stylesheet" href="https://llmcss.io/llmcss.css" />`
+- Runtime (optional, for modal/drawer/dropdown/accordion/tabs/toast/command palette): `<script src="https://llmcss.io/llmcss.js" defer></script>`
+- Sample: `<button class="ai-btn ai-btn-primary">Save</button>`
+- Validate: `npx llmcss lint --fix <file>` then `npx llmcss validate <file>`
+
 Tailwind and LLMCSS agree on one thing: you style in markup. They disagree on where
 the vocabulary comes from. Tailwind generates classes from a config at build time.
 LLMCSS ships a fixed, hand-written stylesheet, so every class in the table below is a
@@ -24,7 +32,7 @@ on purpose. This guide is honest about which rows are which.
 | `justify-between` | `ai-justify-between` | |
 | `justify-center` | `ai-justify-center` | |
 | `gap-4` | `ai-gap-4` | Fixed scale: 0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32. There is no `gap-[13px]`. |
-| `p-6` | `ai-p-6` | Same scale as gap. |
+| `p-6` | `ai-p-6` | Same steps as gap through 24; there is no `ai-p-32` (gap alone continues to 32). |
 | `px-4`, `py-2` | `ai-px-4`, `ai-py-2` | Logical forms `ai-ps-4` and `ai-pe-4` are the RTL-safe ones. |
 | `mx-auto` | `ai-mx-auto` | `ai-m-4`, `ai-mt-4`, `ai-mb-4` and friends behave as expected. |
 | `space-y-4` | no direct equivalent | There is no owl-selector utility. Put `ai-flex ai-flex-col ai-gap-4` on the parent instead, which is what you usually meant. |
@@ -102,7 +110,7 @@ enterprise, emerald, violet or rose. Both are plain attributes, so they work on 
 
 Tailwind ships no JavaScript, which is why every Tailwind project ends up with Headless
 UI, Radix or a hand-rolled dropdown. LLMCSS ships one optional script,
-`dist/llmcss.js`, about 12KB. It does document-level event delegation for
+`dist/llmcss.js`, about 21KB minified (about 6KB gzipped). It does document-level event delegation for
 `data-ai-toggle`, `data-ai-dismiss` and `data-ai-tab`, and registers the custom
 elements (`ai-modal`, `ai-drawer`, `ai-dropdown`, `ai-accordion`, `ai-tabs`,
 `ai-toast`, `ai-command-palette`). Focus trapping, inert backgrounds, Escape handling
