@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quickstart | LLMCSS</title>
-  <meta name="description" content="Install LLMCSS in a page: one stylesheet, copy a component, optional CLI and MCP." />
-  <meta property="og:title" content="Quickstart | LLMCSS" />
-  <meta property="og:description" content="Install LLMCSS in a page: one stylesheet, copy a component, optional CLI and MCP." />
+  <title>Docs | LLMCSS</title>
+  <meta name="description" content="LLMCSS docs: install the stylesheet, theme with data-ai-* attributes, copy components, validate markup with the CLI, and connect the MCP server to Claude Code, Cursor, Copilot, Codex CLI, Gemini CLI and other agents." />
+  <meta property="og:title" content="Docs | LLMCSS" />
+  <meta property="og:description" content="LLMCSS docs: install the stylesheet, theme with data-ai-* attributes, copy components, validate markup with the CLI, and connect the MCP server to any coding agent." />
   <meta property="og:url" content="https://llmcss.io/quickstart" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://llmcss.io/og.png" />
@@ -27,72 +27,515 @@
       if (f === 'neutral' || f === 'thin' || f === 'none') document.documentElement.setAttribute('data-ai-focus', f);
     })();
   </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "LLMCSS",
+      "alternateName": "llmcss",
+      "description": "Native CSS component library for human developers and AI coding agents. Every class name is published in classes.json, with no build step and no runtime dependency.",
+      "applicationCategory": "DeveloperApplication",
+      "applicationSubCategory": "CSS framework",
+      "operatingSystem": "Any",
+      "url": "https://llmcss.io",
+      "downloadUrl": "https://llmcss.io/llmcss.css",
+      "installUrl": "https://www.npmjs.com/package/llmcss",
+      "softwareVersion": "0.4.0",
+      "license": "https://opensource.org/licenses/MIT",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "category": "MIT core"
+      },
+      "softwareHelp": {
+        "@type": "CreativeWork",
+        "url": "https://llmcss.io/quickstart"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "LLMCSS",
+        "url": "https://llmcss.io"
+      }
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "LLMCSS",
+      "description": "Open source CSS library with machine-readable manifests (classes.json, tokens.json, states.json), a CLI named llmcss, and a stdio Model Context Protocol server named llmcss-mcp.",
+      "programmingLanguage": "CSS",
+      "runtimePlatform": "Web browser",
+      "codeRepository": "https://github.com/maku-au/llmcss",
+      "url": "https://llmcss.io",
+      "license": "https://opensource.org/licenses/MIT",
+      "targetProduct": {
+        "@type": "SoftwareApplication",
+        "name": "LLMCSS",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any"
+      }
+    }
+  ]
+}
+</script>
 </head>
-<body>
+<body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
   <header id="site-header" class="navbar"></header>
-  <main id="main" class="container max-w-2xl pt-16 px-4 pb-24">
-    <h1 class="text-2xl leading-tight tracking-tight">Quickstart</h1>
-    <p class="text-sm mt-3">
-      <a href="#qs-css">Install</a> ·
-      <a href="#qs-component">Component</a> ·
-      <a href="#qs-layout">Layout</a> ·
-      <a href="#qs-templates">Templates</a> ·
-      <a href="#qs-agents">Agents</a> ·
-      <a href="#qs-pro">Pro</a>
-    </p>
-    <p class="text-secondary mt-2">CSS library. Classes are plain names like <code>btn</code> and <code>md:flex</code>. Copy CSS, use the CLI, or point an agent at MCP.</p>
+  <main id="main">
 
-    <section class="docs-step" id="qs-css">
-      <h2>1. Link the stylesheet</h2>
-      <pre><code>&lt;link rel="stylesheet" href="https://llmcss.io/llmcss.css" /&gt;
-&lt;button class="btn btn-primary"&gt;Save&lt;/button&gt;</code></pre>
-      <p class="text-sm text-secondary mt-3">Dark mode: <code>data-ai-theme="dark"</code> on <code>&lt;html&gt;</code>. Skin: <code>data-ai-skin="obsidian"</code>.</p>
-      <p class="text-sm text-secondary mt-3">That file is CSS only. Buttons and layout work. Modals, tabs, and <code>data-ai-toggle</code> need the runtime: <code>&lt;script src="https://llmcss.io/llmcss.js" defer&gt;&lt;/script&gt;</code>. Skip that for a static page.</p>
-    </section>
+  <!-- ==========================================================================
+       PAGE HEADER (matches components.html and templates.html)
+       ========================================================================== -->
+  <section class="docs-hero-compact">
+    <div class="container container-w-lg">
+      <div class="flex justify-between items-end flex-wrap gap-4">
+        <div class="min-w-0">
+          <h1 class="text-2xl leading-tight tracking-tight">Docs</h1>
+          <p class="text-sm text-muted mt-1">
+            <span class="docs-meta-figure" data-ai-stat="total"></span>MIT components, one stylesheet, no build step, and the same written rules your coding agent reads.
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <a href="/components" class="btn btn-outline btn-sm">Components</a>
+          <a href="/templates" class="btn btn-outline btn-sm">Templates</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section class="docs-step" id="qs-component">
-      <h2>2. Copy a free component</h2>
-      <p class="text-secondary mt-2">Open the <a href="/components">gallery</a> and copy HTML, or:</p>
-      <pre><code>npx llmcss list
-npx llmcss add btn-variants</code></pre>
-      <p class="text-sm text-secondary mt-3">Writes <code>components/primitive/btn-variants.html</code>. Agents can fetch <code>https://llmcss.io/r/btn-variants.json</code>.</p>
-    </section>
+  <!-- ==========================================================================
+       DOCS: SIDEBAR OUTLINE + STREAM
+       ========================================================================== -->
+  <section class="docs-section pt-8">
+    <div class="container container-w-lg">
+      <div class="docs-layout">
 
-    <section class="docs-step" id="qs-layout">
-      <h2>3. A first layout</h2>
-      <pre><code>&lt;div class="container-w-sm p-8"&gt;
-  &lt;h1&gt;Hello&lt;/h1&gt;
-  &lt;p class="text-secondary"&gt;Titles use the display face. Body stays the sans.&lt;/p&gt;
-  &lt;div class="flex gap-2 mt-4"&gt;
-    &lt;button class="btn btn-primary"&gt;Continue&lt;/button&gt;
-    &lt;button class="btn btn-outline"&gt;Cancel&lt;/button&gt;
+        <!-- Sidebar outline. nav.scrollspy plus a.scrollspy-link is the library's
+             own scrollspy contract; the runtime marks the visible section. -->
+        <aside class="docs-sidebar">
+          <nav class="scrollspy flex flex-col gap-4" aria-label="Documentation sections">
+            <div>
+              <span class="docs-nav-label">Get started</span>
+              <div class="docs-nav-stack">
+                <a class="docs-nav-btn scrollspy-link is-active" href="#install"><span>Install</span></a>
+                <a class="docs-nav-btn scrollspy-link" href="#first-page"><span>First page</span></a>
+                <a class="docs-nav-btn scrollspy-link" href="#theme"><span>Theme and skin</span></a>
+              </div>
+            </div>
+            <div class="docs-nav-group">
+              <span class="docs-nav-label">Build</span>
+              <div class="docs-nav-stack">
+                <a class="docs-nav-btn scrollspy-link" href="#layout"><span>Layout and utilities</span></a>
+                <a class="docs-nav-btn scrollspy-link" href="#components"><span>Components</span></a>
+                <a class="docs-nav-btn scrollspy-link" href="#runtime"><span>Runtime and states</span></a>
+                <a class="docs-nav-btn scrollspy-link" href="#templates"><span>Templates and recipes</span></a>
+              </div>
+            </div>
+            <div class="docs-nav-group">
+              <span class="docs-nav-label">Verify</span>
+              <div class="docs-nav-stack">
+                <a class="docs-nav-btn scrollspy-link" href="#validate"><span>Validate and audit</span></a>
+                <a class="docs-nav-btn scrollspy-link" href="#cli"><span>CLI</span></a>
+                <a class="docs-nav-btn scrollspy-link" href="#mcp"><span>MCP server</span></a>
+              </div>
+            </div>
+            <div class="docs-nav-group">
+              <span class="docs-nav-label">Agents</span>
+              <div class="docs-nav-stack">
+                <a class="docs-nav-btn scrollspy-link" href="#agents"><span>Works with your agent</span></a>
+                <a class="docs-nav-btn scrollspy-link" href="#agent-docs"><span>Give your agent the docs</span></a>
+              </div>
+            </div>
+            <div class="docs-nav-group">
+              <span class="docs-nav-label">Endpoints</span>
+              <div class="docs-nav-stack">
+                <a href="/llms.txt" class="docs-link"><span>llms.txt</span><span class="docs-link-tag">Index</span></a>
+                <a href="/llms-full.txt" class="docs-link"><span>llms-full.txt</span><span class="docs-link-tag">Full</span></a>
+                <a href="/classes.json" class="docs-link"><span>classes.json</span><span class="docs-link-tag">JSON</span></a>
+              </div>
+            </div>
+          </nav>
+        </aside>
+
+        <!-- Docs stream -->
+        <div class="min-w-0">
+
+          <section class="scroll-mt-24 docs-step" id="install">
+            <h2>Install</h2>
+            <p class="text-secondary mt-2">One stylesheet is the entire install, with no build step and no dependency to resolve. Add the runtime script only when you use modal, drawer, dropdown, accordion, tabs, toast, command palette, combobox, scrollspy, or split panes.</p>
+            <pre class="code-block"><code>&lt;link rel="stylesheet" href="https://llmcss.io/llmcss.css" /&gt;
+&lt;script src="https://llmcss.io/llmcss.js" defer&gt;&lt;/script&gt;
+
+&lt;!-- Pin a release instead of tracking latest (served immutable): --&gt;
+&lt;link rel="stylesheet" href="https://llmcss.io/v/0.4.0/llmcss.css" /&gt;</code></pre>
+            <p class="text-sm text-muted mt-3">Classes carry no prefix as of 0.4.0: write <code>btn</code>, never <code>ai-btn</code>. Custom properties keep <code>--ai-</code>, data attributes keep <code>data-ai-</code>, and custom elements keep <code>ai-</code>.</p>
+          </section>
+
+          <section class="scroll-mt-24 docs-step" id="first-page">
+            <h2>First page</h2>
+            <p class="text-secondary mt-2">A page is a container, a heading, and components lifted straight out of the catalog. This file renders complete with the stylesheet alone, so the runtime script is left out until something needs to open or close.</p>
+            <pre class="code-block"><code>&lt;!doctype html&gt;
+&lt;html lang="en" data-ai-theme="light"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+    &lt;link rel="stylesheet" href="https://llmcss.io/llmcss.css" /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;main class="container container-w-md py-16"&gt;
+      &lt;h1 class="text-2xl leading-tight tracking-tight"&gt;Deployments&lt;/h1&gt;
+      &lt;p class="text-secondary mt-2"&gt;Titles use the display face. Body stays the sans.&lt;/p&gt;
+
+      &lt;div class="card max-w-sm mt-8"&gt;
+        &lt;div class="card-header"&gt;
+          &lt;h3 class="card-title"&gt;Project deployment&lt;/h3&gt;
+          &lt;p class="card-description"&gt;Production deployment configured for edge nodes.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="card-body"&gt;
+          &lt;p class="text-sm"&gt;Last deployed 14 minutes ago.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="card-footer"&gt;
+          &lt;span class="badge badge-success badge-dot"&gt;Online&lt;/span&gt;
+          &lt;button class="btn btn-outline btn-xs"&gt;View logs&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class="flex gap-2 mt-6"&gt;
+        &lt;button class="btn btn-primary"&gt;Continue&lt;/button&gt;
+        &lt;button class="btn btn-outline"&gt;Cancel&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/main&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <p class="text-sm text-muted mt-3">Buttons are <code>btn</code> plus one of <code>btn-primary</code>, <code>btn-secondary</code>, <code>btn-outline</code>, <code>btn-ghost</code>, <code>btn-accent</code>, <code>btn-danger</code>, and an optional size.</p>
+          </section>
+
+          <section class="scroll-mt-24 docs-step" id="theme">
+            <h2>Theme and skin</h2>
+            <p class="text-secondary mt-2">Theming is four attributes on <code>&lt;html&gt;</code>, never a stylesheet of your own. Dark mode is never derived from the operating system setting, so set <code>data-ai-theme</code> yourself.</p>
+            <pre class="code-block"><code>&lt;html lang="en"
+      data-ai-theme="dark"
+      data-ai-skin="obsidian"
+      data-ai-accent="teal"
+      data-ai-density="compact"&gt;</code></pre>
+            <p class="text-sm text-secondary mt-3">Theme: <code>light</code>, <code>dark</code>. Skin: <code>obsidian</code>, <code>editorial</code>, <code>executive</code>, <code>fintech</code>, <code>enterprise</code>. Accent: <code>emerald</code>, <code>violet</code>, <code>rose</code>, <code>teal</code>, <code>steel</code>, <code>amber</code>, composing with any skin and outranking its accent. Density: <code>compact</code>, <code>spacious</code>. Focus ring: <code>data-ai-focus="neutral|thin|none"</code>.</p>
+            <p class="text-sm text-muted mt-3">Every value resolves to <code>--ai-*</code> custom properties, all of them listed with their per-theme values in <a href="/tokens.json">tokens.json</a>.</p>
+          </section>
+
+          <section class="scroll-mt-24 docs-step" id="layout">
+            <h2>Layout and utilities</h2>
+            <p class="text-secondary mt-2">Utilities are plain names and variants are written prefix first, as in <code>md:grid-cols-2</code>. Container queries use <code>cq-sm:</code>, <code>cq-md:</code> and <code>cq-lg:</code> against the nearest ancestor carrying <code>cq</code> or <code>cq-inline</code>, which is what you want inside a sidebar or a panel that does not track the viewport.</p>
+            <pre class="code-block"><code>&lt;!-- Viewport breakpoints: one column, two at 768px, three at 1024px --&gt;
+&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"&gt;
+  &lt;div class="card"&gt;&lt;div class="card-body"&gt;&lt;p class="text-sm"&gt;One&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="card"&gt;&lt;div class="card-body"&gt;&lt;p class="text-sm"&gt;Two&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="card"&gt;&lt;div class="card-body"&gt;&lt;p class="text-sm"&gt;Three&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Container query: measures the panel, not the window --&gt;
+&lt;section class="cq"&gt;
+  &lt;div class="grid grid-cols-1 cq-md:grid-cols-2 gap-4"&gt;
+    &lt;div class="panel"&gt;&lt;p class="text-sm"&gt;Reflows at 600px of panel width&lt;/p&gt;&lt;/div&gt;
+    &lt;div class="panel"&gt;&lt;p class="text-sm"&gt;No viewport query involved&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+            <p class="text-sm text-muted mt-3">A variant exists for a class only when <a href="/classes.json">classes.json</a> lists it in that class's <code>variants</code> array. If a class is not in that file, it does not exist.</p>
+          </section>
+
+          <section class="scroll-mt-24 docs-step" id="components">
+            <h2>Components</h2>
+            <p class="text-secondary mt-2">Every component is MIT with its full HTML in the registry, so there is nothing to unlock and nothing to guess. Copy the markup from the <a href="/components">gallery</a>, write it to disk with the CLI, or fetch it as JSON.</p>
+            <pre class="code-block"><code>npx llmcss list
+npx llmcss search pricing
+npx llmcss add btn-variants          # writes components/primitive/btn-variants.html
+
+curl https://llmcss.io/registry.json
+curl https://llmcss.io/r/btn-variants.json</code></pre>
+            <p class="text-sm text-muted mt-3">Categories are primitive, application, marketing and ecommerce. Full metadata for one id: <code>npx llmcss info &lt;id&gt;</code>.</p>
+          </section>
+
+          <section class="scroll-mt-24 docs-step" id="runtime">
+            <h2>Runtime and states</h2>
+            <p class="text-secondary mt-2">Interactive components run on <code>data-ai-toggle</code> and <code>data-ai-dismiss</code> once <code>llmcss.js</code> is on the page, and the runtime handles focus trapping, Escape, and <code>aria-expanded</code> for you. The markup below renders and themes correctly without the script; only the opening and closing needs it.</p>
+            <pre class="code-block"><code>&lt;button class="btn btn-primary" data-ai-toggle="modal" data-ai-target="#demo-modal"
+        aria-haspopup="dialog" aria-expanded="false"&gt;Open&lt;/button&gt;
+
+&lt;div id="demo-modal" class="modal"&gt;
+  &lt;div class="modal-backdrop" data-ai-dismiss="modal"&gt;&lt;/div&gt;
+  &lt;div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title"&gt;
+    &lt;div class="modal-header"&gt;
+      &lt;h3 class="modal-title" id="demo-modal-title"&gt;Confirm database reset&lt;/h3&gt;
+      &lt;button class="modal-close" data-ai-dismiss="modal" aria-label="Close"&gt;&amp;times;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-body"&gt;&lt;p&gt;All mock records revert to initial seed.&lt;/p&gt;&lt;/div&gt;
+    &lt;div class="modal-footer"&gt;
+      &lt;button class="btn btn-outline" data-ai-dismiss="modal"&gt;Cancel&lt;/button&gt;
+      &lt;button class="btn btn-danger" data-ai-dismiss="modal"&gt;Reset&lt;/button&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-      <p class="text-sm text-secondary mt-3">No nested cards, no pulsing static dots, no purple gradients. Agent rules: <a href="https://github.com/maku-au/llmcss/blob/main/AGENTS.md">AGENTS.md</a>.</p>
-    </section>
+            <p class="text-secondary mt-6">State you write by hand is an <code>is-*</code> class from <a href="/states.json">states.json</a> plus the aria attribute that mirrors it. Write both: the runtime keeps them in sync after load, but it cannot fix the markup you shipped.</p>
+            <pre class="code-block"><code>&lt;button class="tab is-active" role="tab" aria-selected="true" data-ai-tab="#panel-a"&gt;Overview&lt;/button&gt;
+&lt;a class="nav-link is-active" href="/docs" aria-current="page"&gt;Docs&lt;/a&gt;
+&lt;button class="btn btn-primary is-loading" aria-busy="true"&gt;Saving&lt;/button&gt;
+&lt;input class="input is-error" aria-invalid="true" /&gt;
+&lt;span class="status-pip is-streaming"&gt;&lt;/span&gt;&lt;!-- the only state allowed to animate --&gt;</code></pre>
+          </section>
 
-    <section class="docs-step" id="qs-templates">
-      <h2>4. Templates</h2>
-      <pre><code>npx llmcss templates
-npx llmcss template get wireframe-nav-minimal
-npx llmcss template blueprint saas-landing</code></pre>
-      <p class="text-sm text-secondary mt-3"><a href="/templates">Template gallery</a></p>
-    </section>
+          <section class="scroll-mt-24 docs-step" id="templates">
+            <h2>Templates and recipes</h2>
+            <p class="text-secondary mt-2">Section templates are wireframe blocks for a header, hero, pricing table or footer, and page blueprints assemble a whole page in build order. Browse them in the <a href="/templates">template gallery</a> or pull them from the CLI.</p>
+            <pre class="code-block"><code>npx llmcss templates                              # every section template
+npx llmcss template get wireframe-nav-minimal     # one section's HTML
+npx llmcss template blueprints                    # full-page recipes
+npx llmcss template blueprint saas-landing        # assemble the page</code></pre>
+            <p class="text-sm text-muted mt-3">Themed templates and page kits are the Pro tier at $9 per month, unlocked with <code>npx llmcss login &lt;token&gt;</code>. Components are never Pro.</p>
+          </section>
 
-    <section class="docs-step" id="qs-agents">
-      <h2>5. Agents</h2>
-      <pre><code>npx llmcss-mcp</code></pre>
-      <p class="text-sm text-secondary mt-3">Stdio MCP. It talks to llmcss.io. Nothing to host yourself.</p>
-    </section>
+          <section class="scroll-mt-24 docs-step" id="validate">
+            <h2>Validate and audit</h2>
+            <p class="text-secondary mt-2"><code>validate</code> checks every token in every <code>class</code> attribute against classes.json, warning on an unknown name and failing on an unknown <code>is-*</code> state or a stray <code>ai-</code> prefix. <code>audit</code> checks the same file against the anti-slop design laws, and both exit 1 on a finding so either one can fail a build.</p>
+            <pre class="code-block"><code>npx llmcss validate index.html
+npx llmcss validate --strict index.html   # unknown classes fail too
+npx llmcss lint --fix index.html          # strips a stray ai- prefix in place
+npx llmcss audit index.html</code></pre>
+            <p class="text-secondary mt-6">A clean file prints one line per command. A file with findings prints the line number, the category and the fix, then exits 1.</p>
+            <pre class="code-block"><code>$ npx llmcss validate index.html
 
-    <section class="docs-step" id="qs-pro">
-      <h2>6. Pro</h2>
-      <p class="text-secondary mt-2">$9/month Polar subscription for themed templates and kits. Every component is MIT. Token is shown once on <a href="/account">/account</a>.</p>
-      <pre><code>npx llmcss login &lt;token&gt;
-npx llmcss template get themed-obsidian-status-rail</code></pre>
-      <p class="text-sm text-secondary mt-3"><a href="/account">Account</a> · <a href="/#pricing">Pricing</a></p>
-    </section>
+  Validating index.html for LLMCSS standards...
+
+  0 issues found! File conforms to LLMCSS standards.
+
+$ npx llmcss audit index.html
+
+  LLMCSS Design Quality Audit: index.html
+
+  Line 42 [NESTED_CONTAINERS]: .card inside another .card
+    Fix: Use whitespace, a hairline divider, or a surface shift instead.</code></pre>
+          </section>
+
+          <section class="scroll-mt-24 docs-step" id="cli">
+            <h2>CLI</h2>
+            <p class="text-secondary mt-2">The binary is <code>llmcss</code>, so <code>npx</code> runs it with nothing installed. Add it as a dev dependency with <code>npm install --save-dev llmcss</code> if you want it in a script.</p>
+            <pre class="code-block"><code>npx llmcss list                    # every component id, all MIT
+npx llmcss search &lt;query&gt;          # search by keyword, tag, or alias
+npx llmcss info &lt;id&gt;               # raw component metadata
+npx llmcss add &lt;id&gt;                # write component HTML into components/
+npx llmcss validate &lt;file&gt;         # class-name gate, --strict to fail on warnings
+npx llmcss lint --fix &lt;file&gt;       # strip a stray ai- prefix
+npx llmcss audit &lt;file&gt;            # anti-slop design checks
+npx llmcss harness &lt;archetype&gt;     # design tokens and prompt directives
+npx llmcss templates               # list wireframe section templates
+npx llmcss template blueprint &lt;id&gt; # assemble a full page
+npx llmcss login &lt;token&gt;           # save a Pro license token</code></pre>
+            <p class="text-sm text-muted mt-3">Legacy aliases <code>cssai</code> and <code>cssai-mcp</code> still resolve to the same binaries.</p>
+          </section>
+
+          <section class="scroll-mt-24 docs-step" id="mcp">
+            <h2>MCP server</h2>
+            <p class="text-secondary mt-2"><code>llmcss-mcp</code> is a stdio Model Context Protocol server that gives an agent the class list, the token list, the component markup and the validator as callable tools. It talks to the public catalog at llmcss.io, so there is nothing long-lived to host on your machine.</p>
+            <pre class="code-block"><code>npx llmcss-mcp</code></pre>
+            <p class="text-secondary mt-6">Almost every client takes the same three fields. This is the generic form; the cards below give the exact file for each tool.</p>
+            <pre class="code-block"><code>{
+  "mcpServers": {
+    "llmcss": {
+      "command": "npx",
+      "args": ["-y", "llmcss-mcp"]
+    }
+  }
+}</code></pre>
+            <p class="text-sm text-secondary mt-3">Tools: <code>search_components</code>, <code>get_component_markup</code>, <code>validate_markup</code>, <code>list_classes</code>, <code>list_tokens</code>, <code>list_states</code>, <code>llmcss_get_harness</code>, <code>llmcss_slop_audit</code>, <code>list_wireframe_templates</code>, <code>get_wireframe_template</code>, <code>get_page_blueprint</code>.</p>
+          </section>
+
+          <!-- ==================================================================
+               AGENT COMPATIBILITY
+               ================================================================== -->
+          <section class="scroll-mt-24 docs-step" id="agents">
+            <h2>Works with your agent</h2>
+            <p class="text-secondary mt-2">LLMCSS is an open-source CSS library whose class names, design tokens and state classes are published as machine-readable files, so a coding agent can look up what exists instead of inventing it. It ships <a href="/llms.txt">llms.txt</a>, <a href="/llms-full.txt">llms-full.txt</a>, <a href="/classes.json">classes.json</a>, an MCP server (<code>llmcss-mcp</code>) and a CLI (<code>llmcss</code>), and it works with any agent that can read a Markdown file or connect to an MCP server. No plugin, no extension and no account is required for any of the setups below.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">Claude Code</h3>
+                  <p class="text-sm text-secondary mt-2">Reads <code>AGENTS.md</code> from the project root automatically, so the LLMCSS rules load with no configuration. Add the MCP server to look classes up from the CSS library live.</p>
+                  <pre class="code-block mt-3"><code>claude mcp add llmcss -- npx -y llmcss-mcp</code></pre>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">Claude Desktop and Claude.ai</h3>
+                  <p class="text-sm text-secondary mt-2">Add LLMCSS as a connector in <code>claude_desktop_config.json</code> and the CSS library's tools appear in every chat.</p>
+                  <pre class="code-block mt-3"><code>{
+  "mcpServers": {
+    "llmcss": { "command": "npx", "args": ["-y", "llmcss-mcp"] }
+  }
+}</code></pre>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">Cursor</h3>
+                  <p class="text-sm text-secondary mt-2">Put the LLMCSS server in <code>.cursor/mcp.json</code> and point a project rule at <code>AGENTS.md</code> so the CSS library's conventions are always in context.</p>
+                  <pre class="code-block mt-3"><code>// .cursor/mcp.json
+{ "mcpServers": { "llmcss": { "command": "npx", "args": ["-y", "llmcss-mcp"] } } }
+
+// .cursor/rules/llmcss.mdc
+Always follow AGENTS.md. Never invent a class outside classes.json.</code></pre>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">GitHub Copilot in VS Code</h3>
+                  <p class="text-sm text-secondary mt-2">Copilot agent mode reads <code>.vscode/mcp.json</code>, and repository instructions carry the LLMCSS rules into every completion from the CSS library.</p>
+                  <pre class="code-block mt-3"><code>// .vscode/mcp.json
+{ "servers": { "llmcss": { "command": "npx", "args": ["-y", "llmcss-mcp"] } } }
+
+// .github/copilot-instructions.md
+Use LLMCSS classes only. The rules are in AGENTS.md.</code></pre>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">OpenAI Codex CLI</h3>
+                  <p class="text-sm text-secondary mt-2">Codex reads <code>AGENTS.md</code> natively, so the LLMCSS rules apply on the first run, and the CSS library's MCP server goes in the TOML config.</p>
+                  <pre class="code-block mt-3"><code># ~/.codex/config.toml
+[mcp_servers.llmcss]
+command = "npx"
+args = ["-y", "llmcss-mcp"]</code></pre>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">Gemini CLI</h3>
+                  <p class="text-sm text-secondary mt-2">Register the LLMCSS server in settings, then have <code>GEMINI.md</code> include <code>AGENTS.md</code> so the CSS library's rules travel with the project.</p>
+                  <pre class="code-block mt-3"><code>// ~/.gemini/settings.json
+{ "mcpServers": { "llmcss": { "command": "npx", "args": ["-y", "llmcss-mcp"] } } }
+
+// GEMINI.md
+@AGENTS.md</code></pre>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">Windsurf</h3>
+                  <p class="text-sm text-secondary mt-2">Cascade loads MCP servers from <code>mcp_config.json</code>, which is all LLMCSS needs to expose the CSS library's class and token lookups.</p>
+                  <pre class="code-block mt-3"><code>// mcp_config.json (Windsurf MCP settings)
+{ "mcpServers": { "llmcss": { "command": "npx", "args": ["-y", "llmcss-mcp"] } } }</code></pre>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">Cline and Roo Code</h3>
+                  <p class="text-sm text-secondary mt-2">Both keep MCP servers in a settings JSON file reachable from the MCP panel, and both take the LLMCSS entry unchanged for the CSS library's tools.</p>
+                  <pre class="code-block mt-3"><code>// cline_mcp_settings.json / mcp_settings.json
+{ "mcpServers": { "llmcss": { "command": "npx", "args": ["-y", "llmcss-mcp"] } } }</code></pre>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">Zed</h3>
+                  <p class="text-sm text-secondary mt-2">Zed calls MCP servers context servers, and one entry in <code>settings.json</code> gives the agent panel the LLMCSS tools for the CSS library.</p>
+                  <!-- Zed has revised the context_servers schema more than once; if this
+                       key is rejected, add the server through the agent panel UI instead. -->
+                  <pre class="code-block mt-3"><code>// ~/.config/zed/settings.json
+{ "context_servers": { "llmcss": { "command": { "path": "npx", "args": ["-y", "llmcss-mcp"] } } } }</code></pre>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">Aider</h3>
+                  <p class="text-sm text-secondary mt-2">Aider has no MCP client, so hand it the LLMCSS rules as a read-only file and the CSS library behaves the same way.</p>
+                  <pre class="code-block mt-3"><code>aider --read AGENTS.md
+# or pin the hosted copy
+aider --read https://llmcss.io/llms-full.txt</code></pre>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">Continue</h3>
+                  <p class="text-sm text-secondary mt-2">Continue loads MCP servers from its YAML config, which is the whole setup for the LLMCSS CSS library in VS Code or IntelliJ.</p>
+                  <!-- Continue moved from config.json to config.yaml; older installs use
+                       the JSON form with the same command and args. -->
+                  <pre class="code-block mt-3"><code># ~/.continue/config.yaml
+mcpServers:
+  - name: llmcss
+    command: npx
+    args: ["-y", "llmcss-mcp"]</code></pre>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">OpenAI Agents SDK</h3>
+                  <p class="text-sm text-secondary mt-2">Attach the LLMCSS server over stdio and your agent gets the CSS library's class lookup and validator as tools.</p>
+                  <pre class="code-block mt-3"><code>from agents import Agent
+from agents.mcp import MCPServerStdio
+
+async with MCPServerStdio(
+    params={"command": "npx", "args": ["-y", "llmcss-mcp"]}
+) as llmcss:
+    agent = Agent(name="UI", instructions="Use LLMCSS classes only.",
+                  mcp_servers=[llmcss])</code></pre>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">Claude Agent SDK</h3>
+                  <p class="text-sm text-secondary mt-2">Pass the LLMCSS server in the query options and the agent can validate its own markup against the CSS library before returning it.</p>
+                  <pre class="code-block mt-3"><code>import { query } from "@anthropic-ai/claude-agent-sdk";
+
+for await (const msg of query({
+  prompt: "Build a pricing page with LLMCSS.",
+  options: { mcpServers: { llmcss: { command: "npx", args: ["-y", "llmcss-mcp"] } } }
+})) console.log(msg);</code></pre>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">Anything else</h3>
+                  <p class="text-sm text-secondary mt-2">An agent that can fetch a URL needs no integration at all: one file describes the whole LLMCSS CSS library.</p>
+                  <pre class="code-block mt-3"><code>curl https://llmcss.io/llms.txt
+curl https://llmcss.io/classes.json</code></pre>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <section class="scroll-mt-24 docs-step" id="agent-docs">
+            <h2>Give your agent the docs</h2>
+            <p class="text-secondary mt-2">Three files cover every case: a short index, the full specification, and the drop-in system prompt. Paste the line below into any chat before you ask for HTML, and the agent will write classes that exist instead of classes it remembers.</p>
+            <pre class="code-block"><code>Read https://llmcss.io/llms.txt before writing any HTML for this project.</code></pre>
+            <div class="flex flex-col gap-2 mt-6">
+              <a href="/llms.txt" class="docs-link"><span>https://llmcss.io/llms.txt</span><span class="docs-link-tag">Index, install, variants, theming, laws</span></a>
+              <a href="/llms-full.txt" class="docs-link"><span>https://llmcss.io/llms-full.txt</span><span class="docs-link-tag">Full specification and worked examples</span></a>
+              <a href="https://github.com/maku-au/llmcss/blob/main/AGENTS.md" class="docs-link"><span>github.com/maku-au/llmcss/blob/main/AGENTS.md</span><span class="docs-link-tag">Drop-in system prompt</span></a>
+            </div>
+            <p class="text-sm text-muted mt-6">Working in a repository instead of a chat? Copy <code>AGENTS.md</code> into the project root. Claude Code and Codex CLI read it without being asked, and every other tool above can be pointed at it in one line.</p>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
   </main>
   <footer id="site-footer" class="footer footer-compact"></footer>
   <script type="module" src="/src/showcase/docs.ts"></script>

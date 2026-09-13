@@ -1,6 +1,6 @@
 {
  "version": "0.1.0",
- "generatedAt": "2026-09-13T04:08:34.688Z",
+ "generatedAt": "2026-09-13T04:11:58.219Z",
  "note": "State classes are set by the author for static markup or by the runtime for interactive components. usedBy lists the classes that appear in the same selector.",
  "states": [
   {
