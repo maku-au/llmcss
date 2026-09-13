@@ -11,5 +11,5 @@
     "toolbar",
     "table"
   ],
-  "html": "<div class=\"bulk-bar\" style=\"position: static; max-width: 40rem;\">\n  <span class=\"bulk-bar-count\">3 selected</span>\n  <button type=\"button\" class=\"btn btn-ghost btn-xs\">Clear</button>\n  <div class=\"bulk-bar-actions\">\n    <button type=\"button\" class=\"btn btn-outline btn-sm\">Restart</button>\n    <button type=\"button\" class=\"btn btn-outline btn-sm\">Scale</button>\n    <button type=\"button\" class=\"btn btn-danger btn-sm\">Delete</button>\n  </div>\n</div>"
+  "html": "<div class=\"bulk-bar static max-w-2xl\">\n  <span class=\"bulk-bar-count\">3 selected</span>\n  <button type=\"button\" class=\"btn btn-ghost btn-xs\">Clear</button>\n  <div class=\"bulk-bar-actions\">\n    <button type=\"button\" class=\"btn btn-outline btn-sm\">Restart</button>\n    <button type=\"button\" class=\"btn btn-outline btn-sm\">Scale</button>\n    <button type=\"button\" class=\"btn btn-danger btn-sm\">Delete</button>\n  </div>\n</div>"
 }

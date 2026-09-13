@@ -23,28 +23,28 @@ export const applicationVariants = {
       id: 'topbar',
       name: 'Topbar',
       description:
-        'Navigation moves into a full width bar above the content and the side rail is gone, so the content area gets the whole viewport width back.',
+        'Navigation moves into a full width bar above the content and the side rail is gone, so the content area gets the whole viewport width back. The current destination is marked by its text colour and a hairline under the label.',
       guidance:
-        'Use for an application with five or fewer top level destinations, or one where the content is wide by nature: a table, a canvas, a diff. Do not use it for an app with nested navigation or more than about seven destinations, because a horizontal bar has nowhere to put the second level and you end up with a dropdown per item. Below md the .nav-links list is display:none by design, so this variant pairs a drawer with it rather than leaving the navigation unreachable on a phone. The shell is not a card: do not wrap .app-content in one, or the KPI cards inside it become nested boxes.',
-      html: `<div class="app-shell flex-col">
+        'Use for an application with five or fewer top level destinations, or one where the content is wide by nature: a table, a canvas, a diff. Do not use it for an app with nested navigation or more than about seven destinations, because a horizontal bar has nowhere to put the second level and you end up with a dropdown per item. On a phone the destinations do not go into a drawer: inside .app-header the .nav-links list stays on screen as a horizontal scroll row, no wrap, each destination keeping its own width, so nothing squeezes to one word per line. The header sits in the flow and is never sticky inside a card or a preview frame; a real page adds sticky-top. The shell is not a card: do not wrap .app-content in one, or the KPI cards inside it become nested boxes. min-h-0 on .app-shell drops the 100dvh floor so the shell is exactly as tall as its content, which is what a card, a preview or an embed wants.',
+      html: `<div class="app-shell flex-col min-h-0">
   <header class="app-header">
-    <div class="flex items-center gap-6">
-      <button type="button" class="btn btn-ghost btn-sm btn-icon md:hidden" data-ai-toggle="drawer" data-ai-target="#app-nav-topbar" aria-label="Open navigation" aria-expanded="false">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
-      </button>
-      <a class="brand" href="/">Meridian</a>
-      <nav aria-label="Primary">
+    <div class="flex items-center gap-6 min-w-0">
+      <a class="brand" href="#home">Meridian</a>
+      <nav class="min-w-0" aria-label="Primary">
         <ul class="nav-links">
-          <li><a class="nav-link is-active" href="/overview" aria-current="page">Dashboard</a></li>
-          <li><a class="nav-link" href="/documents">Documents</a></li>
-          <li><a class="nav-link" href="/activity">Activity</a></li>
-          <li><a class="nav-link" href="/settings">Settings</a></li>
+          <li><a class="nav-link is-active" href="#dashboard" aria-current="page">Dashboard</a></li>
+          <li><a class="nav-link" href="#documents">Documents</a></li>
+          <li><a class="nav-link" href="#activity">Activity</a></li>
+          <li><a class="nav-link" href="#settings">Settings</a></li>
         </ul>
       </nav>
     </div>
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-3 shrink-0">
       <button type="button" class="btn btn-outline btn-sm">Invite</button>
-      <span class="avatar avatar-sm" aria-hidden="true">AC</span>
+      <button type="button" class="btn btn-ghost">
+        <span class="avatar avatar-sm" aria-hidden="true">AC</span>
+        Avery Chen
+      </button>
     </div>
   </header>
   <main class="app-main">
@@ -106,21 +106,6 @@ export const applicationVariants = {
       </div>
     </div>
   </main>
-  <div class="drawer drawer-left" id="app-nav-topbar">
-    <div class="drawer-backdrop" data-ai-dismiss="drawer"></div>
-    <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="app-nav-topbar-title">
-      <div class="drawer-header">
-        <h2 class="drawer-title" id="app-nav-topbar-title">Meridian</h2>
-        <button type="button" class="close" data-ai-dismiss="drawer" aria-label="Close navigation"></button>
-      </div>
-      <nav class="drawer-nav" aria-label="Primary">
-        <a class="sidebar-item is-active" href="/overview" aria-current="page">Dashboard</a>
-        <a class="sidebar-item" href="/documents">Documents</a>
-        <a class="sidebar-item" href="/activity">Activity</a>
-        <a class="sidebar-item" href="/settings">Settings</a>
-      </nav>
-    </div>
-  </div>
 </div>`,
     },
     {
@@ -129,23 +114,23 @@ export const applicationVariants = {
       description:
         'An icon only rail keeps the top level destinations and a second contextual panel sits between the rail and the content, holding the current section.',
       guidance:
-        'Use when the application has a shallow top level and a deep second level: files inside a project, channels inside a workspace, tables inside a schema. The rail never scrolls and the middle panel does, which is the whole point. Do not use it below about 1024px of content width, because three columns leave the content pane too narrow to read; the rail and the panel share one hairline through border-ie rather than each carrying a box of its own.',
-      html: `<div class="app-shell">
+        'Use when the application has a shallow top level and a deep second level: files inside a project, channels inside a workspace, tables inside a schema. The rail never scrolls and the middle panel does, which is the whole point. Every rail item carries an aria-label and a .tooltip with data-tooltip, because an icon with no accessible name is an unlabelled link; the tooltip opens downward (tooltip-bottom) so it is never clipped by the top edge of a card or a preview frame. The current rail item is marked on the icon colour as well as its surface, never by the grey box alone. Three columns need about 1024px of width, so below lg the panel is hidden and the rail plus the content stay: that is the phone strategy, panel out, rail in. The rail is only 4.25rem wide, so it stays a rail on a phone instead of becoming a full width band of centred icons, and the shell keeps its two columns at 390. The panel header is the section name in plain text with the count as plain muted text beside it, not a chip. min-h-0 on .app-shell drops the 100dvh floor so the shell is exactly as tall as its content.',
+      html: `<div class="app-shell min-h-0">
   <nav class="sidebar is-collapsed" aria-label="Sections">
     <div class="sidebar-header">
       <span class="font-semibold">M</span>
     </div>
     <ul class="sidebar-nav">
       <li class="sidebar-section">
-        <a href="/dashboard" class="sidebar-item is-active" aria-current="page" aria-label="Dashboard">
+        <a href="#dashboard" class="sidebar-item tooltip tooltip-bottom is-active" aria-current="page" aria-label="Dashboard" data-tooltip="Dashboard">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           <span>Dashboard</span>
         </a>
-        <a href="/documents" class="sidebar-item" aria-label="Documents">
+        <a href="#documents" class="sidebar-item tooltip tooltip-bottom" aria-label="Documents" data-tooltip="Documents">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
           <span>Documents</span>
         </a>
-        <a href="/activity" class="sidebar-item" aria-label="Activity">
+        <a href="#activity" class="sidebar-item tooltip tooltip-bottom" aria-label="Activity" data-tooltip="Activity">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           <span>Activity</span>
         </a>
@@ -153,20 +138,21 @@ export const applicationVariants = {
     </ul>
   </nav>
   <div class="w-64 shrink-0 surface-0 border-ie hidden lg:block">
-    <div class="sidebar-header">
+    <div class="sidebar-header gap-2">
       <span class="font-semibold">Dashboard</span>
+      <span class="text-xs text-muted tabular">5 pages</span>
     </div>
     <ul class="sidebar-nav">
       <li class="sidebar-section">
         <span class="sidebar-section-title">Main</span>
-        <a href="/dashboard/overview" class="sidebar-item is-active" aria-current="page">Overview<span class="sidebar-badge">12</span></a>
-        <a href="/dashboard/deploys" class="sidebar-item">Deploys</a>
-        <a href="/dashboard/incidents" class="sidebar-item">Incidents<span class="sidebar-badge">3</span></a>
+        <a href="#overview" class="sidebar-item is-active" aria-current="page">Overview<span class="sidebar-badge">12</span></a>
+        <a href="#deploys" class="sidebar-item">Deploys</a>
+        <a href="#incidents" class="sidebar-item">Incidents<span class="sidebar-badge">3</span></a>
       </li>
       <li class="sidebar-section">
         <span class="sidebar-section-title">Account</span>
-        <a href="/dashboard/members" class="sidebar-item">Members</a>
-        <a href="/dashboard/settings" class="sidebar-item">Settings</a>
+        <a href="#members" class="sidebar-item">Members</a>
+        <a href="#settings" class="sidebar-item">Settings</a>
       </li>
     </ul>
   </div>
@@ -192,6 +178,10 @@ export const applicationVariants = {
           <span class="health-name"><span class="pip pip-warn" aria-hidden="true"></span>image-resize</span>
           <span class="text-xs text-muted tabular">99.21%</span>
         </div>
+        <div class="health-row">
+          <span class="health-name"><span class="pip pip-ok" aria-hidden="true"></span>postgres-primary</span>
+          <span class="text-xs text-muted tabular">99.95%</span>
+        </div>
       </div>
     </div>
   </main>
@@ -201,10 +191,10 @@ export const applicationVariants = {
       id: 'collapsed-rail',
       name: 'Collapsed rail',
       description:
-        'The rail keeps only the icons and each item names itself through a tooltip, so the content pane takes back about twelve rem of width.',
+        'The rail keeps only the icons and each item names itself through an aria-label and a tooltip, so the content pane takes back about twelve rem of width.',
       guidance:
-        'Use when the content is the product and the navigation is muscle memory: an editor, a canvas, a log viewer. Every item still needs an accessible name, so the label stays in the markup and the rail hides it visually, and the tooltip is the only visible affordance, which means it has to be the themed .tooltip rather than the browser title attribute. Do not ship this as the only navigation for a first time user, because an icon with no word beside it teaches nothing until it is hovered.',
-      html: `<div class="app-shell">
+        'Use when the content is the product and the navigation is muscle memory: an editor, a canvas, a log viewer. Every item still needs an accessible name, and a label the rail hides visually is not one, so each item carries aria-label as well as the visually hidden word; the tooltip is the themed .tooltip with data-tooltip rather than the browser title attribute, and it opens downward (tooltip-bottom) so the top edge of a card cannot clip it. The current item is marked on the icon colour, not by the grey box alone, and every item is 44px on both axes under a coarse pointer. The rail is only 4.25rem wide, so on a phone it stays a rail beside the content rather than becoming a full width band of centred icons. Do not ship this as the only navigation for a first time user, because an icon with no word beside it teaches nothing until it is hovered. min-h-0 on .app-shell drops the 100dvh floor so the shell is exactly as tall as its content.',
+      html: `<div class="app-shell min-h-0">
   <nav class="sidebar is-collapsed" aria-label="Workspace">
     <div class="sidebar-header">
       <span class="font-semibold">M</span>
@@ -212,16 +202,16 @@ export const applicationVariants = {
     <ul class="sidebar-nav">
       <li class="sidebar-section">
         <span class="sidebar-section-title">Main</span>
-        <a href="/dashboard" class="sidebar-item tooltip is-active" aria-current="page" data-tooltip="Dashboard">
+        <a href="#dashboard" class="sidebar-item tooltip tooltip-bottom is-active" aria-current="page" aria-label="Dashboard" data-tooltip="Dashboard">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           <span>Dashboard</span>
           <span class="sidebar-badge">12</span>
         </a>
-        <a href="/documents" class="sidebar-item tooltip" data-tooltip="Documents">
+        <a href="#documents" class="sidebar-item tooltip tooltip-bottom" aria-label="Documents" data-tooltip="Documents">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
           <span>Documents</span>
         </a>
-        <a href="/activity" class="sidebar-item tooltip" data-tooltip="Activity">
+        <a href="#activity" class="sidebar-item tooltip tooltip-bottom" aria-label="Activity" data-tooltip="Activity">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           <span>Activity</span>
           <span class="sidebar-badge">3</span>
@@ -229,7 +219,7 @@ export const applicationVariants = {
       </li>
       <li class="sidebar-section">
         <span class="sidebar-section-title">Account</span>
-        <a href="/settings" class="sidebar-item tooltip" data-tooltip="Settings">
+        <a href="#settings" class="sidebar-item tooltip tooltip-bottom" aria-label="Settings" data-tooltip="Settings">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
           <span>Settings</span>
         </a>
@@ -254,6 +244,14 @@ export const applicationVariants = {
           <span class="health-name"><span class="pip pip-warn" aria-hidden="true"></span>image-resize</span>
           <span class="text-xs text-muted tabular">99.21%</span>
         </div>
+        <div class="health-row">
+          <span class="health-name"><span class="pip pip-ok" aria-hidden="true"></span>workers</span>
+          <span class="text-xs text-muted tabular">99.97%</span>
+        </div>
+        <div class="health-row">
+          <span class="health-name"><span class="pip pip-ok" aria-hidden="true"></span>postgres-primary</span>
+          <span class="text-xs text-muted tabular">99.95%</span>
+        </div>
       </div>
     </div>
   </main>
@@ -263,9 +261,9 @@ export const applicationVariants = {
       id: 'nested-sections',
       name: 'Nested sections',
       description:
-        'Each sidebar group becomes a disclosure with its own count, so a long navigation collapses to the section the reader is working in.',
+        'Each sidebar group becomes a disclosure with its count in plain muted text beside the title, so a long navigation collapses to the section the reader is working in.',
       guidance:
-        'Use when the rail carries more than about twelve destinations and the reader only ever works in one group at a time. Every trigger needs aria-expanded and aria-controls or the group reads as an undifferentiated list of buttons, and the chevron is the same m6 9 6 6 6-6 path the rest of the library uses, rotated on open. The accordion stays flush inside the rail: it must not gain a border of its own, because the rail is already the box.',
+        'Use when the rail carries more than about twelve destinations and the reader only ever works in one group at a time. Every trigger needs aria-expanded and aria-controls or the group reads as an undifferentiated list of buttons, and the chevron is the same m6 9 6 6 6-6 path the rest of the library uses, rotated on open. The count next to a section title is plain muted text, never a chip; chips are for the item rows, where a count belongs to a destination rather than to a heading. The accordion stays flush inside the rail: it must not gain a border of its own, because the rail is already the box, and the body carries no bottom padding of its own so no empty band opens between the last item and the section hairline. The trigger row is 44px under a coarse pointer.',
       html: `<nav class="sidebar border rounded-lg overflow-hidden" aria-label="Workspace">
   <div class="sidebar-header">
     <span class="font-semibold">Workspace</span>
@@ -273,21 +271,23 @@ export const applicationVariants = {
   <ul class="sidebar-nav accordion">
     <li class="sidebar-section accordion-item is-open">
       <button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="true" aria-controls="sidebar-nav-nested-sections-main">
-        <span class="sidebar-section-title">Main</span>
-        <span class="sidebar-badge">15</span>
+        <span class="flex items-center gap-2">
+          <span class="sidebar-section-title">Main</span>
+          <span class="text-xs text-muted tabular">15</span>
+        </span>
         <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
       </button>
       <div class="accordion-content" id="sidebar-nav-nested-sections-main">
-        <a href="/dashboard" class="sidebar-item is-active" aria-current="page">
+        <a href="#dashboard" class="sidebar-item is-active" aria-current="page">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           Dashboard
           <span class="sidebar-badge">12</span>
         </a>
-        <a href="/documents" class="sidebar-item">
+        <a href="#documents" class="sidebar-item">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
           Documents
         </a>
-        <a href="/activity" class="sidebar-item">
+        <a href="#activity" class="sidebar-item">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           Activity
           <span class="sidebar-badge">3</span>
@@ -296,13 +296,15 @@ export const applicationVariants = {
     </li>
     <li class="sidebar-section accordion-item">
       <button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="sidebar-nav-nested-sections-account">
-        <span class="sidebar-section-title">Account</span>
-        <span class="sidebar-badge">2</span>
+        <span class="flex items-center gap-2">
+          <span class="sidebar-section-title">Account</span>
+          <span class="text-xs text-muted tabular">2</span>
+        </span>
         <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
       </button>
       <div class="accordion-content" id="sidebar-nav-nested-sections-account">
-        <a href="/members" class="sidebar-item">Members</a>
-        <a href="/settings" class="sidebar-item">Settings</a>
+        <a href="#members" class="sidebar-item">Members</a>
+        <a href="#settings" class="sidebar-item">Settings</a>
       </div>
     </li>
   </ul>
@@ -322,7 +324,7 @@ export const applicationVariants = {
       guidance:
         'Use when search is the primary way people move around the product and the bar carries no navigation of its own, which is the shape a documentation site or a console with a command palette wants. The field is capped at max-w-sm so it does not stretch to the full width of a wide monitor and lose its centre. Do not centre the field when the bar also carries navigation links, because the two clusters then compete for the same optical middle.',
       html: `<div class="topbar justify-between">
-  <a class="brand" href="/">Meridian</a>
+  <a class="brand" href="#home">Meridian</a>
   <div class="flex-1 flex justify-center">
     <label class="sr-only" for="app-topbar-search-center-input">Search resources</label>
     <div class="input-group max-w-sm">
@@ -348,8 +350,8 @@ export const applicationVariants = {
       html: `<div class="topbar justify-between">
   <nav aria-label="Breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">Workspace</a></li>
-      <li class="breadcrumb-item"><a href="/resources">Resources</a></li>
+      <li class="breadcrumb-item"><a href="#home">Workspace</a></li>
+      <li class="breadcrumb-item"><a href="#resources">Resources</a></li>
       <li class="breadcrumb-item is-current" aria-current="page">api-gateway</li>
     </ol>
   </nav>
@@ -654,7 +656,7 @@ export const applicationVariants = {
       id: 'sparkline-column',
       name: 'Sparkline column',
       description:
-        'The lead metric keeps a tile and the three supporting metrics become hairline rows, each with its own sparkline between the name and the figure.',
+        'The lead metric keeps a tile and the three supporting metrics become hairline rows, each pairing a small sparkline and its weekly delta with the figure.',
       guidance:
         'Use when the shape of each metric over the week matters as much as its current value, for example a weekly review rather than a live console. The bar-row grid gives the three rows one column geometry, so the names, the sparklines and the figures line up without any hand set widths. Do not put a sparkline on the lead tile and on every row at the same weight, or the eye has four charts and no anchor.',
       html: `<div class="flex flex-col gap-4">
@@ -674,24 +676,33 @@ export const applicationVariants = {
   <div class="bars">
     <div class="bar-row">
       <span>Active Users</span>
-      <svg class="spark w-full" viewBox="0 0 120 40" fill="none" aria-hidden="true">
-        <polyline points="0,30 17,26 34,28 51,23 68,20 85,21 102,15 120,12" stroke="currentColor" stroke-width="1.75" />
-      </svg>
-      <span>2,847</span>
+      <span class="flex items-center justify-end gap-3">
+        <svg class="spark w-20 h-6 text-muted" viewBox="0 0 120 40" fill="none" aria-hidden="true">
+          <polyline points="0,30 17,26 34,28 51,23 68,20 85,21 102,15 120,12" stroke="currentColor" stroke-width="1.75" />
+        </svg>
+        <span class="kpi-trend is-up tabular">+8.1%</span>
+      </span>
+      <span class="font-semibold text-primary">2,847</span>
     </div>
     <div class="bar-row">
       <span>Bounce Rate</span>
-      <svg class="spark w-full" viewBox="0 0 120 40" fill="none" aria-hidden="true">
-        <polyline points="0,12 17,16 34,14 51,19 68,22 85,21 102,26 120,28" stroke="currentColor" stroke-width="1.75" />
-      </svg>
-      <span>24.6%</span>
+      <span class="flex items-center justify-end gap-3">
+        <svg class="spark w-20 h-6 text-muted" viewBox="0 0 120 40" fill="none" aria-hidden="true">
+          <polyline points="0,12 17,16 34,14 51,19 68,22 85,21 102,26 120,28" stroke="currentColor" stroke-width="1.75" />
+        </svg>
+        <span class="kpi-trend is-down tabular">-3.2%</span>
+      </span>
+      <span class="font-semibold text-primary">24.6%</span>
     </div>
     <div class="bar-row">
       <span>Avg. Session</span>
-      <svg class="spark w-full" viewBox="0 0 120 40" fill="none" aria-hidden="true">
-        <polyline points="0,28 17,25 34,24 51,20 68,18 85,14 102,13 120,9" stroke="currentColor" stroke-width="1.75" />
-      </svg>
-      <span>4m 32s</span>
+      <span class="flex items-center justify-end gap-3">
+        <svg class="spark w-20 h-6 text-muted" viewBox="0 0 120 40" fill="none" aria-hidden="true">
+          <polyline points="0,28 17,25 34,24 51,20 68,18 85,14 102,13 120,9" stroke="currentColor" stroke-width="1.75" />
+        </svg>
+        <span class="kpi-trend is-up tabular">+18.7%</span>
+      </span>
+      <span class="font-semibold text-primary">4m 32s</span>
     </div>
   </div>
 </div>`,
@@ -1232,7 +1243,7 @@ export const applicationVariants = {
     </div>
     <div class="flex gap-2">
       <input type="text" class="input" id="settings-list-inline-edit-domain" value="preview.llmcss.io" />
-      <button type="button" class="btn btn-outline btn-xs">Save</button>
+      <button type="button" class="btn btn-outline">Save</button>
     </div>
   </div>
   <div class="settings-row flex-col items-stretch gap-3">
@@ -1242,7 +1253,7 @@ export const applicationVariants = {
     </div>
     <div class="flex gap-2">
       <input type="email" class="input" id="settings-list-inline-edit-mail" value="ops@meridian.dev" />
-      <button type="button" class="btn btn-outline btn-xs">Save</button>
+      <button type="button" class="btn btn-outline">Save</button>
     </div>
   </div>
   <div class="settings-row flex-col items-stretch gap-3">
@@ -1252,7 +1263,7 @@ export const applicationVariants = {
     </div>
     <div class="flex gap-2">
       <input type="text" class="input" id="settings-list-inline-edit-registry" value="@meridian/ui" />
-      <button type="button" class="btn btn-outline btn-xs">Save</button>
+      <button type="button" class="btn btn-outline">Save</button>
     </div>
   </div>
 </form>`,
@@ -1299,15 +1310,15 @@ export const applicationVariants = {
   </div>
   <div class="surface-1 border rounded-lg aspect-video p-4 flex flex-col justify-center gap-3">
     <p class="text-xs text-muted">Start from</p>
-    <a class="flex items-center gap-2 text-sm text-primary" href="/documents/new?template=blank">
+    <a class="flex items-center gap-2 text-sm text-primary" href="#new-blank">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       Blank document
     </a>
-    <a class="flex items-center gap-2 text-sm text-primary" href="/documents/new?template=incident">
+    <a class="flex items-center gap-2 text-sm text-primary" href="#new-incident">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       Incident review
     </a>
-    <a class="flex items-center gap-2 text-sm text-primary" href="/documents/new?template=runbook">
+    <a class="flex items-center gap-2 text-sm text-primary" href="#new-runbook">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       Deploy runbook
     </a>

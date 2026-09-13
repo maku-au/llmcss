@@ -1,11 +1,12 @@
 {
  "version": "0.4.0",
- "generatedAt": "2026-09-13T08:58:15.296Z",
+ "generatedAt": "2026-09-13T09:19:06.042Z",
  "note": "State classes are set by the author for static markup or by the runtime for interactive components. usedBy lists the classes that appear in the same selector.",
  "states": [
   {
    "class": "is-active",
    "usedBy": [
+    "app-header",
     "btn",
     "btn-ghost",
     "btn-primary",
@@ -16,6 +17,7 @@
     "pagination-link",
     "scrollspy-link",
     "segmented-btn",
+    "sidebar",
     "sidebar-badge",
     "sidebar-item",
     "step-circle",
@@ -53,6 +55,7 @@
   {
    "class": "is-collapsed",
    "usedBy": [
+    "app-shell",
     "sidebar",
     "sidebar-badge",
     "sidebar-icon",

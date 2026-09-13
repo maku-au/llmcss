@@ -10,5 +10,5 @@
     "banner",
     "dismiss"
   ],
-  "html": "<div class=\"flex flex-col gap-4\" style=\"max-width: 36rem;\">\n  <div class=\"notification notification-info\" role=\"status\">\n    <strong>Scheduled maintenance.</strong> The API will be read-only on Saturday 20 September from 02:00 to 02:30 UTC.\n    <button type=\"button\" class=\"close\" data-ai-dismiss=\"toast\" aria-label=\"Dismiss\"></button>\n  </div>\n  <div class=\"notification notification-success\" role=\"status\">\n    Your workspace was upgraded. Seats renew on the 1st of each month.\n    <button type=\"button\" class=\"close\" aria-label=\"Dismiss\"></button>\n  </div>\n</div>"
+  "html": "<div class=\"flex flex-col gap-4 max-w-xl\">\n  <div class=\"notification notification-info\" role=\"status\">\n    <strong>Scheduled maintenance.</strong> The API will be read-only on Saturday 20 September from 02:00 to 02:30 UTC.\n    <button type=\"button\" class=\"close\" data-ai-dismiss=\"toast\" aria-label=\"Dismiss\"></button>\n  </div>\n  <div class=\"notification notification-success\" role=\"status\">\n    Your workspace was upgraded. Seats renew on the 1st of each month.\n    <button type=\"button\" class=\"close\" aria-label=\"Dismiss\"></button>\n  </div>\n</div>"
 }

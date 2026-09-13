@@ -54,7 +54,7 @@
 
   .dropdown-item:hover,
   .dropdown-item:focus {
-    background-color: var(--ai-surface-1);
+    background-color: var(--ai-surface-hover);
   }
 
   .dropdown-item.is-danger {

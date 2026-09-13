@@ -9,5 +9,5 @@
     "status",
     "agent"
   ],
-  "html": "<div class=\"card\" role=\"status\" aria-live=\"polite\" style=\"padding: var(--ai-space-4);\">\n  <div class=\"flex justify-between items-center\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"spinner spinner-sm\"></span>\n      <span class=\"text-sm font-medium\">Generating</span>\n    </div>\n    <span class=\"font-mono text-xs text-muted\">42 tok/s</span>\n  </div>\n  <div class=\"progress progress-indeterminate\" style=\"margin-top: var(--ai-space-3);\"><div class=\"progress-bar\"></div></div>\n  <p class=\"text-xs text-muted\" style=\"margin-top: var(--ai-space-2);\">Stream only. Do not pulse static dots.</p>\n</div>"
+  "html": "<div class=\"card p-4\" role=\"status\" aria-live=\"polite\">\n  <div class=\"flex justify-between items-center\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"spinner spinner-sm\"></span>\n      <span class=\"text-sm font-medium\">Generating</span>\n    </div>\n    <span class=\"font-mono text-xs text-muted\">42 tok/s</span>\n  </div>\n  <div class=\"progress progress-indeterminate mt-3\"><div class=\"progress-bar\"></div></div>\n  <p class=\"text-xs text-muted mt-2\">Stream only. Do not pulse static dots.</p>\n</div>"
 }

@@ -52,7 +52,7 @@ const baseComponents = [
     category: 'primitive',
     tier: 'free',
     tags: ['form', 'input', 'field'],
-    html: `<div class="grid gap-4" style="max-width: 24rem;">
+    html: `<div class="grid gap-4 max-w-sm">
   <div class="form-group">
     <label class="form-label" for="user-email">Email Address</label>
     <input type="email" id="user-email" class="input" placeholder="name@company.com" />
@@ -71,7 +71,7 @@ const baseComponents = [
     category: 'primitive',
     tier: 'free',
     tags: ['input', 'addon', 'domain'],
-    html: `<div class="form-group" style="max-width: 28rem;">
+    html: `<div class="form-group max-w-md">
   <label class="form-label">Project URL</label>
   <div class="input-group">
     <span class="input-addon">https://</span>
@@ -106,7 +106,7 @@ const baseComponents = [
     category: 'primitive',
     tier: 'free',
     tags: ['card', 'surface', 'container'],
-    html: `<div class="card" style="max-width: 24rem;">
+    html: `<div class="card max-w-sm">
   <div class="card-header">
     <h3 class="card-title">Project Deployment</h3>
     <p class="card-description">Production deployment configured for edge nodes.</p>
@@ -239,7 +239,7 @@ const baseComponents = [
     category: 'primitive',
     tier: 'free',
     tags: ['dropdown', 'menu', 'actions'],
-    html: `<div style="min-height: 14rem; padding-bottom: 11rem; display: flex; justify-content: center; align-items: flex-start; padding-top: var(--ai-space-2);">
+    html: `<div class="flex justify-center items-start pt-2" style="min-height: 14rem; padding-bottom: 11rem;">
   <div class="dropdown">
     <button class="btn btn-outline dropdown-trigger" data-ai-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="demo-dropdown-menu">
       Options
@@ -291,7 +291,7 @@ const baseComponents = [
     tier: 'free',
     tags: ['table', 'data', 'grid', 'list'],
     html: `<div class="table-container" style="max-height: 20rem;">
-  <table class="table table-hover table-sticky">
+  <table class="table table-hover table-sticky min-w-var" style="--ai-min-w: 40rem;">
     <thead>
       <tr>
         <th aria-sort="ascending">Repository</th>
@@ -389,7 +389,7 @@ const baseComponents = [
   <div class="drawer-backdrop" data-ai-dismiss="drawer"></div>
   <div class="drawer-panel" style="max-width: 18rem;">
     <div class="drawer-header">
-      <a href="#" class="brand" style="font-size: 1rem;">
+      <a href="#" class="brand text-base">
         <span>LLMCSS</span>
       </a>
       <button type="button" class="modal-close" data-ai-dismiss="drawer" aria-label="Close menu">&times;</button>
@@ -522,21 +522,27 @@ const baseComponents = [
         </div>
       </div>
       <div class="hero-visual">
-        <div style="background-color: var(--ai-surface-0); padding: var(--ai-space-8); border-radius: inherit;">
-          <div class="flex justify-between items-center" style="margin-bottom: var(--ai-space-6);">
+        <div class="p-8" style="background-color: var(--ai-surface-0); border-radius: inherit;">
+          <div class="flex justify-between items-center mb-6">
             <span class="text-xs font-mono text-muted">app.analytics.ts</span>
             <span class="badge badge-success badge-dot">Live Stream</span>
           </div>
           <div class="grid grid-cols-2 gap-4">
-            <div class="kpi-card" style="padding: var(--ai-space-4);">
+            <div class="kpi-card p-4">
               <span class="kpi-label">Weekly Active Users</span>
-              <span class="kpi-value" style="font-size: 1.5rem;">48,290</span>
-              <span class="kpi-trend is-up">↑ +24.8%</span>
+              <span class="kpi-value" style="--ai-kpi-value-size: 1.5rem;">48,290</span>
+              <span class="kpi-trend is-up">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                +24.8%
+              </span>
             </div>
-            <div class="kpi-card" style="padding: var(--ai-space-4);">
+            <div class="kpi-card p-4">
               <span class="kpi-label">Conversion Rate</span>
-              <span class="kpi-value" style="font-size: 1.5rem;">4.12%</span>
-              <span class="kpi-trend is-up">↑ +1.2%</span>
+              <span class="kpi-value" style="--ai-kpi-value-size: 1.5rem;">4.12%</span>
+              <span class="kpi-trend is-up">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                +1.2%
+              </span>
             </div>
           </div>
         </div>
@@ -549,15 +555,15 @@ const baseComponents = [
   {
     id: 'pricing-tier-cards',
     name: '3-Tier Pricing Table',
-    description: 'Clear pricing tiers with popular plan highlight, feature lists, and monthly/annual toggles.',
+    description: 'Clear pricing tiers with a highlighted recommended plan and a feature list per tier. For a monthly and annual switch, see the billing-toggle variant.',
     category: 'marketing',
     tier: 'free',
     tags: ['pricing', 'plans', 'conversion'],
-    html: `<section style="padding: var(--ai-space-16) 0;">
+    html: `<section class="py-16">
   <div class="container">
-    <div class="text-center" style="max-width: 36rem; margin: 0 auto;">
-      <h2 style="font-size: 2.25rem;">Predictable, Transparent Pricing</h2>
-      <p style="margin-top: var(--ai-space-2);">Start building for free. Upgrade to Pro when you need advanced marketing and SaaS templates.</p>
+    <div class="text-center max-w-xl mx-auto">
+      <h2 class="text-4xl">Predictable, Transparent Pricing</h2>
+      <p class="mt-2">Start building for free. Upgrade to Pro when you need advanced marketing and SaaS templates.</p>
     </div>
     <div class="pricing-grid">
       <!-- Free Plan -->
@@ -571,10 +577,10 @@ const baseComponents = [
           </div>
         </div>
         <ul class="pricing-features">
-          <li class="pricing-feature-item">✓ 40+ Core UI Primitives</li>
-          <li class="pricing-feature-item">✓ Pure Modern CSS Token Engine</li>
-          <li class="pricing-feature-item">✓ Light-DOM Custom Elements</li>
-          <li class="pricing-feature-item">✓ Public llms.txt & Docs</li>
+          <li class="pricing-feature-item">40+ Core UI Primitives</li>
+          <li class="pricing-feature-item">Pure Modern CSS Token Engine</li>
+          <li class="pricing-feature-item">Light-DOM Custom Elements</li>
+          <li class="pricing-feature-item">Public llms.txt & Docs</li>
         </ul>
         <button class="btn btn-outline w-full">Get Started Free</button>
       </div>
@@ -593,11 +599,11 @@ const baseComponents = [
           </div>
         </div>
         <ul class="pricing-features">
-          <li class="pricing-feature-item">✓ Everything in Starter</li>
-          <li class="pricing-feature-item">✓ Themed section templates and page kits</li>
-          <li class="pricing-feature-item">✓ Skin-specific composed blocks</li>
-          <li class="pricing-feature-item">✓ Dedicated MCP Server Integration</li>
-          <li class="pricing-feature-item">✓ Private CLI Token Access</li>
+          <li class="pricing-feature-item">Everything in Starter</li>
+          <li class="pricing-feature-item">Themed section templates and page kits</li>
+          <li class="pricing-feature-item">Skin-specific composed blocks</li>
+          <li class="pricing-feature-item">Dedicated MCP Server Integration</li>
+          <li class="pricing-feature-item">Private CLI Token Access</li>
         </ul>
         <button class="btn btn-primary w-full">Upgrade to Pro</button>
       </div>
@@ -612,10 +618,10 @@ const baseComponents = [
           </div>
         </div>
         <ul class="pricing-features">
-          <li class="pricing-feature-item">✓ Unlimited Team Seats</li>
-          <li class="pricing-feature-item">✓ Custom Theme Archetype Design</li>
-          <li class="pricing-feature-item">✓ Dedicated SLA & Support</li>
-          <li class="pricing-feature-item">✓ Figma Tokens Sync</li>
+          <li class="pricing-feature-item">Unlimited Team Seats</li>
+          <li class="pricing-feature-item">Custom Theme Archetype Design</li>
+          <li class="pricing-feature-item">Dedicated SLA & Support</li>
+          <li class="pricing-feature-item">Figma Tokens Sync</li>
         </ul>
         <button class="btn btn-outline w-full">Contact Sales</button>
       </div>
@@ -696,22 +702,34 @@ const baseComponents = [
   <div class="kpi-card is-primary">
     <span class="kpi-label">Monthly Recurring Revenue</span>
     <span class="kpi-value">$124,500</span>
-    <span class="kpi-trend is-up">↑ +14.2% from last month</span>
+    <span class="kpi-trend is-up">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      +14.2% from last month
+    </span>
   </div>
   <div class="kpi-card">
     <span class="kpi-label">Active Subscriptions</span>
     <span class="kpi-value">1,482</span>
-    <span class="kpi-trend is-up">↑ +8.4%</span>
+    <span class="kpi-trend is-up">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      +8.4%
+    </span>
   </div>
   <div class="kpi-card">
     <span class="kpi-label">Churn Rate</span>
     <span class="kpi-value">1.18%</span>
-    <span class="kpi-trend is-down">↓ -0.3% improvement</span>
+    <span class="kpi-trend is-down">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+      -0.3% improvement
+    </span>
   </div>
   <div class="kpi-card">
     <span class="kpi-label">Agent Queries / Day</span>
     <span class="kpi-value">4.8M</span>
-    <span class="kpi-trend is-up">↑ +42% spike</span>
+    <span class="kpi-trend is-up">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      +42% spike
+    </span>
   </div>
 </div>`,
   },
@@ -723,26 +741,26 @@ const baseComponents = [
     category: 'application',
     tier: 'free',
     tags: ['auth', 'login', 'signup', 'form'],
-    html: `<div class="auth-card" style="margin: 0 auto;">
-  <div class="text-center" style="margin-bottom: var(--ai-space-6);">
-    <h3 class="card-title" style="font-size: 1.5rem;">Welcome back</h3>
-    <p class="text-sm text-secondary" style="margin-top: 0.25rem;">Enter your credentials to access your agent workspace.</p>
+    html: `<div class="auth-card mx-auto">
+  <div class="text-center mb-6">
+    <h3 class="card-title text-2xl">Welcome back</h3>
+    <p class="text-sm text-secondary mt-1">Enter your credentials to access your agent workspace.</p>
   </div>
   <form class="flex flex-col gap-4">
-    <div class="form-group" style="margin-bottom: 0;">
+    <div class="form-group mb-0">
       <label class="form-label" for="auth-email">Email</label>
       <input type="email" id="auth-email" class="input" placeholder="you@domain.com" required />
     </div>
-    <div class="form-group" style="margin-bottom: 0;">
+    <div class="form-group mb-0">
       <div class="flex justify-between items-center">
         <label class="form-label" for="auth-pass">Password</label>
         <a href="#forgot" class="text-xs text-accent">Forgot password?</a>
       </div>
       <input type="password" id="auth-pass" class="input" placeholder="••••••••" required />
     </div>
-    <button type="submit" class="btn btn-primary w-full" style="margin-top: var(--ai-space-2);">Sign In</button>
+    <button type="submit" class="btn btn-primary w-full mt-2">Sign In</button>
   </form>
-  <div class="text-center" style="margin-top: var(--ai-space-6); border-top: 1px solid var(--ai-border); padding-top: var(--ai-space-4);">
+  <div class="text-center mt-6 pt-4 border-t">
     <p class="text-xs text-secondary">Don't have an account? <a href="#signup" class="text-accent font-semibold">Sign up</a></p>
   </div>
 </div>`,
@@ -758,7 +776,7 @@ const baseComponents = [
     category: 'ecommerce',
     tier: 'free',
     tags: ['ecommerce', 'product', 'shop', 'card'],
-    html: `<div class="product-card" style="max-width: 20rem;">
+    html: `<div class="product-card max-w-xs">
   <div class="product-media">
     <span class="badge badge-solid product-badge-float">NEW ARRIVAL</span>
     <img class="product-img" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80" alt="Minimalist Studio Headphones" />
@@ -770,7 +788,7 @@ const baseComponents = [
       <span class="product-price">$349.00</span>
       <span class="product-compare-price">$420.00</span>
     </div>
-    <button class="btn btn-primary btn-sm w-full" style="margin-top: var(--ai-space-3);">
+    <button class="btn btn-primary btn-sm w-full mt-3">
       Add to Cart
     </button>
   </div>
@@ -787,7 +805,7 @@ const baseComponents = [
     category: 'primitive',
     tier: 'free',
     tags: ['animation', 'spinner', 'loader', 'pulse', 'motion'],
-    html: `<div class="flex flex-wrap gap-6 items-center" style="padding: var(--ai-space-4);">
+    html: `<div class="flex flex-wrap gap-6 items-center p-4">
   <div class="flex items-center gap-3">
     <span class="spinner spinner-sm"></span>
     <span class="spinner"></span>
@@ -803,7 +821,7 @@ const baseComponents = [
   </div>
   <div class="flex items-center gap-2">
     <span class="pulse-dot pulse-dot-success"></span>
-    <span class="text-xs font-medium" style="color: var(--ai-success);">Operational</span>
+    <span class="text-xs font-medium text-success">Operational</span>
   </div>
 </div>`,
   },
@@ -814,9 +832,9 @@ const baseComponents = [
     category: 'primitive',
     tier: 'free',
     tags: ['progress', 'loading', 'animation', 'meter', 'bar'],
-    html: `<div class="grid gap-5" style="max-width: 28rem;">
+    html: `<div class="grid gap-5 max-w-md">
   <div>
-    <div class="flex justify-between text-xs font-medium" style="margin-bottom: 0.375rem;">
+    <div class="flex justify-between text-xs font-medium mb-1.5">
       <span>Indeterminate (Network Stream)</span>
       <span class="font-mono text-secondary">Syncing...</span>
     </div>
@@ -825,7 +843,7 @@ const baseComponents = [
     </div>
   </div>
   <div>
-    <div class="flex justify-between text-xs font-medium" style="margin-bottom: 0.375rem;">
+    <div class="flex justify-between text-xs font-medium mb-1.5">
       <span>Model Weights Downloaded</span>
       <span class="font-mono">68%</span>
     </div>
@@ -834,9 +852,9 @@ const baseComponents = [
     </div>
   </div>
   <div>
-    <div class="flex justify-between text-xs font-medium" style="margin-bottom: 0.375rem;">
+    <div class="flex justify-between text-xs font-medium mb-1.5">
       <span>Dataset Chunk Upload</span>
-      <span class="font-mono" style="color: var(--ai-success);">Active</span>
+      <span class="font-mono text-success">Active</span>
     </div>
     <div class="progress progress-striped" role="progressbar" aria-label="Sync" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
       <div class="progress-bar progress-bar-success" style="width: 85%;"></div>
@@ -851,7 +869,7 @@ const baseComponents = [
     category: 'primitive',
     tier: 'free',
     tags: ['slider', 'range', 'input', 'control', 'form'],
-    html: `<div class="grid gap-4" style="max-width: 24rem;">
+    html: `<div class="grid gap-4 max-w-sm">
   <div class="slider-wrapper">
     <div class="slider-header">
       <label for="temp-slider">Temperature</label>
@@ -875,17 +893,17 @@ const baseComponents = [
     category: 'primitive',
     tier: 'free',
     tags: ['skeleton', 'shimmer', 'loading', 'placeholder', 'animation'],
-    html: `<div class="card" style="max-width: 24rem; padding: var(--ai-space-5);">
-  <div class="flex items-center gap-3" style="margin-bottom: var(--ai-space-4);">
+    html: `<div class="card max-w-sm p-5">
+  <div class="flex items-center gap-3 mb-4">
     <div class="skeleton skeleton-avatar"></div>
-    <div style="flex: 1;">
-      <div class="skeleton skeleton-title" style="width: 50%;"></div>
-      <div class="skeleton skeleton-text" style="width: 75%; margin-bottom: 0;"></div>
+    <div class="flex-1">
+      <div class="skeleton skeleton-title w-1/2"></div>
+      <div class="skeleton skeleton-text w-3/4 mb-0"></div>
     </div>
   </div>
-  <div class="skeleton skeleton-rect" style="height: 7rem; margin-bottom: var(--ai-space-3);"></div>
-  <div class="skeleton skeleton-text" style="width: 90%;"></div>
-  <div class="skeleton skeleton-text" style="width: 65%;"></div>
+  <div class="skeleton skeleton-rect h-28 mb-3"></div>
+  <div class="skeleton skeleton-text w-11/12"></div>
+  <div class="skeleton skeleton-text w-2/3"></div>
 </div>`,
   },
   {
@@ -895,7 +913,7 @@ const baseComponents = [
     category: 'primitive',
     tier: 'free',
     tags: ['stepper', 'wizard', 'navigation', 'progress', 'flow'],
-    html: `<div class="stepper" style="max-width: 32rem;">
+    html: `<div class="stepper max-w-lg">
   <div class="step-item is-completed">
     <div class="step-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="sr-only">Completed</span></div>
     <span class="step-label">Account</span>
@@ -940,14 +958,14 @@ const baseComponents = [
     category: 'primitive',
     tier: 'free',
     tags: ['popover', 'tooltip', 'anchor', 'floating', 'overlay'],
-    html: `<div style="padding-top: 6.5rem; display: flex; justify-content: center;">
+    html: `<div class="flex justify-center" style="padding-top: 6.5rem;">
   <div class="popover-anchor popover-toggle">
     <div class="popover">
-      <div class="flex items-center gap-2" style="margin-bottom: 0.375rem;">
+      <div class="flex items-center gap-2 mb-1.5">
         <span class="pulse-dot pulse-dot-success"></span>
         <span class="font-semibold text-xs">Agent Worker #4 Active</span>
       </div>
-      <p class="text-xs text-secondary" style="margin-bottom: 0.5rem; line-height: 1.4;">Running automated test suite across 34 components.</p>
+      <p class="text-xs text-secondary mb-2 leading-snug">Running automated test suite across 34 components.</p>
       <div class="flex justify-between items-center">
         <a href="#" class="text-xs font-medium text-accent">View Stream &rarr;</a>
         <span class="font-mono text-xs text-muted">450ms</span>
@@ -965,7 +983,7 @@ const baseComponents = [
     category: 'primitive',
     tier: 'free',
     tags: ['toast', 'notification', 'alert', 'stack', 'animation'],
-    html: `<div class="grid gap-3" role="status" aria-live="polite" style="max-width: 24rem;">
+    html: `<div class="grid gap-3 max-w-sm" role="status" aria-live="polite">
   <div class="toast toast-success toast-countdown">
     <span class="toast-message">Deployment completed to edge servers.</span>
     <button type="button" class="toast-close" aria-label="Dismiss deployment notification"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button>
@@ -998,15 +1016,15 @@ ${logoRailItems('span')}
     tags: ['filter', 'toolbar', 'tags', 'search', 'application'],
     html: `<div class="filter-toolbar">
   <div class="filter-tags" role="group" aria-label="Filter jobs">
-    <span class="text-xs font-medium text-muted" style="margin-right: 0.25rem;">Filter:</span>
+    <span class="text-xs font-medium text-muted mr-1">Filter:</span>
     <button type="button" class="filter-tag is-active" aria-pressed="true">All (48)</button>
     <button type="button" class="filter-tag" aria-pressed="false">Production</button>
     <button type="button" class="filter-tag" aria-pressed="false">Staging</button>
     <button type="button" class="filter-tag" aria-pressed="false">Failed</button>
   </div>
   <div class="flex items-center gap-2">
-    <input type="text" class="input" placeholder="Filter jobs..." style="height: 1.875rem; font-size: 0.75rem; width: 10rem;" />
-    <select class="select" style="height: 1.875rem; font-size: 0.75rem; padding: 0 1.5rem 0 0.5rem;">
+    <input type="text" class="input text-xs w-40" placeholder="Filter jobs..." style="height: 1.875rem;" />
+    <select class="select text-xs" style="height: 1.875rem; padding: 0 1.5rem 0 0.5rem;">
       <option>Latest</option>
       <option>Oldest</option>
       <option>Duration</option>
@@ -1105,13 +1123,13 @@ ${logoRailItems('span')}
     category: 'primitive',
     tier: 'free',
     tags: ['divider', 'separator', 'hr', 'line', 'rule'],
-    html: `<div style="max-width: 28rem;">
+    html: `<div class="max-w-md">
   <p class="text-sm text-secondary">Content above the divider.</p>
   <div class="divider"></div>
   <p class="text-sm text-secondary">Content below the plain divider.</p>
   <div class="divider">or continue with</div>
   <p class="text-sm text-secondary">Content below the labeled divider.</p>
-  <div class="flex items-center gap-4" style="margin-top: var(--ai-space-6);">
+  <div class="flex items-center gap-4 mt-6">
     <span class="text-sm">Item A</span>
     <span class="divider-vertical"></span>
     <span class="text-sm">Item B</span>
@@ -1127,7 +1145,7 @@ ${logoRailItems('span')}
     category: 'primitive',
     tier: 'free',
     tags: ['textarea', 'form', 'input', 'counter', 'multiline'],
-    html: `<div style="max-width: 28rem;">
+    html: `<div class="max-w-md">
   <div class="form-group">
     <label class="form-label" for="bio-field">Bio</label>
     <div class="textarea-group">
@@ -1152,10 +1170,10 @@ ${logoRailItems('span')}
     category: 'primitive',
     tier: 'free',
     tags: ['checkbox', 'radio', 'form', 'input', 'toggle', 'select'],
-    html: `<div class="flex gap-12" style="max-width: 32rem;">
+    html: `<div class="flex gap-12 max-w-lg">
   <div>
-    <span class="form-label" style="margin-bottom: var(--ai-space-3); display: block;">Notifications</span>
-    <div style="display: flex; flex-direction: column; gap: var(--ai-space-3);">
+    <span class="form-label mb-3 block">Notifications</span>
+    <div class="flex flex-col gap-3">
       <label class="checkbox">
         <input type="checkbox" class="checkbox-input" checked />
         Email notifications
@@ -1171,7 +1189,7 @@ ${logoRailItems('span')}
     </div>
   </div>
   <div>
-    <span class="form-label" style="margin-bottom: var(--ai-space-3); display: block;">Plan</span>
+    <span class="form-label mb-3 block">Plan</span>
     <div class="radio-group">
       <label class="radio">
         <input type="radio" name="plan" class="radio-input" checked />
@@ -1196,7 +1214,7 @@ ${logoRailItems('span')}
     category: 'primitive',
     tier: 'free',
     tags: ['empty', 'placeholder', 'no-data', 'blank', 'zero-state'],
-    html: `<div class="empty-state" style="border: 1px dashed var(--ai-border); border-radius: var(--ai-radius-lg);">
+    html: `<div class="empty-state border border-dashed rounded-lg">
   <svg class="empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
     <polyline points="14 2 14 8 20 8"></polyline>
@@ -1221,8 +1239,8 @@ ${logoRailItems('span')}
     category: 'application',
     tier: 'free',
     tags: ['sidebar', 'navigation', 'menu', 'drawer', 'app'],
-    html: `<div style="width: 16rem;">
-  <nav class="sidebar" style="height: auto; border: 1px solid var(--ai-border); border-radius: var(--ai-radius-lg); overflow: hidden;">
+    html: `<div class="w-64">
+  <nav class="sidebar h-auto border rounded-lg overflow-hidden">
     <div class="sidebar-header">
       <span class="font-semibold" style="font-size: 0.9375rem;">Workspace</span>
     </div>
@@ -1304,7 +1322,7 @@ ${logoRailItems('span')}
     category: 'application',
     tier: 'free',
     tags: ['notification', 'alert', 'inbox', 'message', 'feed'],
-    html: `<div class="notification-list" style="max-width: 28rem;">
+    html: `<div class="notification-list max-w-md">
   <div class="notification-item is-unread">
     <span class="notification-dot"></span>
     <div class="notification-content">
@@ -1378,9 +1396,9 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     tier: 'free',
     tags: ['upload', 'file', 'dropzone', 'form'],
     html: `<label class="dropzone" for="dropzone-file">
-  <strong style="color: var(--ai-text-primary);">Drop a file</strong>
+  <strong class="text-primary">Drop a file</strong>
   <span class="text-xs">PNG, JSON, or CSV up to 8MB</span>
-  <span class="btn btn-outline btn-sm" style="margin-top: var(--ai-space-2);">Browse</span>
+  <span class="btn btn-outline btn-sm mt-2">Browse</span>
   <input id="dropzone-file" type="file" class="sr-only" multiple />
 </label>`,
   },
@@ -1394,15 +1412,15 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     html: `<ol class="timeline">
   <li class="timeline-item">
     <div class="timeline-title">Registry published</div>
-    <div class="timeline-meta">origin · 2m ago</div>
+    <div class="timeline-meta">origin<span class="divider-vertical" aria-hidden="true"></span>2m ago</div>
   </li>
   <li class="timeline-item">
     <div class="timeline-title">Token issued</div>
-    <div class="timeline-meta">polar webhook · 18m ago</div>
+    <div class="timeline-meta">polar webhook<span class="divider-vertical" aria-hidden="true"></span>18m ago</div>
   </li>
   <li class="timeline-item">
     <div class="timeline-title">Pro component added</div>
-    <div class="timeline-meta">tool-trace · yesterday</div>
+    <div class="timeline-meta">tool-trace<span class="divider-vertical" aria-hidden="true"></span>yesterday</div>
   </li>
 </ol>`,
   },
@@ -1430,7 +1448,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     html: `<div class="page-header">
   <div>
     <h1>Overview</h1>
-    <p class="page-header-meta">Workspace production · last deploy 14m ago</p>
+    <p class="page-header-meta">Workspace production<span class="divider-vertical" aria-hidden="true"></span>last deploy 14m ago</p>
   </div>
   <div class="flex gap-2">
     <button class="btn btn-outline btn-sm" type="button">Export</button>
@@ -1447,7 +1465,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     tags: ['dashboard', 'topbar', 'search', 'header', 'app'],
     html: `<div class="topbar">
   <input class="input" type="search" placeholder="Search resources..." aria-label="Search" />
-  <span class="text-xs text-muted" style="white-space: nowrap;">12 unread</span>
+  <span class="text-xs text-muted whitespace-nowrap">12 unread</span>
   <span class="avatar avatar-sm" aria-hidden="true">AC</span>
 </div>`,
   },
@@ -1458,7 +1476,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'application',
     tier: 'free',
     tags: ['dashboard', 'quota', 'usage', 'progress', 'storage'],
-    html: `<div class="quota" style="max-width: 24rem;">
+    html: `<div class="quota max-w-sm">
   <div class="quota-head">
     <span>Build minutes</span>
     <strong>1,240 / 2,000</strong>
@@ -1474,7 +1492,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'application',
     tier: 'free',
     tags: ['dashboard', 'kpi', 'sparkline', 'chart', 'metric'],
-    html: `<div class="spark-stat" style="max-width: 28rem;">
+    html: `<div class="spark-stat max-w-md">
   <div>
     <span class="kpi-label">Requests</span>
     <div class="kpi-value">128k</div>
@@ -1496,7 +1514,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
   <div class="donut" aria-hidden="true"><div class="donut-hole">68%</div></div>
   <div>
     <div class="font-semibold">Job success</div>
-    <p class="text-sm text-secondary" style="margin: 0.25rem 0 0;">1,024 of 1,504 runs finished clean this week.</p>
+    <p class="text-sm text-secondary m-0 mt-1">1,024 of 1,504 runs finished clean this week.</p>
   </div>
 </div>`,
   },
@@ -1507,7 +1525,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'application',
     tier: 'free',
     tags: ['dashboard', 'settings', 'form', 'switch', 'list'],
-    html: `<div class="settings-list" style="max-width: 32rem;">
+    html: `<div class="settings-list max-w-lg">
   <div class="settings-row">
     <div>
       <div class="font-medium">Deploy previews</div>
@@ -1538,7 +1556,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'application',
     tier: 'free',
     tags: ['dashboard', 'log', 'console', 'terminal', 'ops'],
-    html: `<pre class="log" style="max-width: 36rem;"><code><span class="log-line"><span class="log-ts">14:02:11</span> <span class="log-ok">ok</span> registry built 60 components</span>
+    html: `<pre class="log max-w-xl"><code><span class="log-line"><span class="log-ts">14:02:11</span> <span class="log-ok">ok</span> registry built 60 components</span>
 <span class="log-line"><span class="log-ts">14:02:18</span> <span class="log-ok">ok</span> origin sync public_html</span>
 <span class="log-line"><span class="log-ts">14:03:02</span> <span class="log-warn">warn</span> cf cache still hot on /r/*</span>
 <span class="log-line"><span class="log-ts">14:03:41</span> <span class="log-err">fail</span> polar webhook 403 (bot fight)</span></code></pre>`,
@@ -1550,14 +1568,14 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'application',
     tier: 'free',
     tags: ['dashboard', 'health', 'status', 'ops', 'monitor'],
-    html: `<div class="health" style="max-width: 28rem;">
+    html: `<div class="health max-w-md">
   <div class="health-row">
     <span class="health-name"><span class="pip pip-ok"></span> Origin</span>
-    <span class="text-xs text-muted">200 · 41ms</span>
+    <span class="text-xs text-muted">200<span class="divider-vertical" aria-hidden="true"></span>41ms</span>
   </div>
   <div class="health-row">
     <span class="health-name"><span class="pip pip-ok"></span> Registry</span>
-    <span class="text-xs text-muted">200 · 18ms</span>
+    <span class="text-xs text-muted">200<span class="divider-vertical" aria-hidden="true"></span>18ms</span>
   </div>
   <div class="health-row">
     <span class="health-name"><span class="pip pip-warn"></span> Webhook</span>
@@ -1590,12 +1608,12 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'application',
     tier: 'free',
     tags: ['dashboard', 'inbox', 'list', 'tickets', 'support'],
-    html: `<div style="max-width: 32rem;">
+    html: `<div class="max-w-lg">
   <div class="inbox-item is-unread">
-    <span class="pip pip-ok"></span>
+    <span class="pip pip-err"></span>
     <div>
       <div class="inbox-title">Build failed on main</div>
-      <div class="text-xs text-muted">origin · php -l api/lib.php</div>
+      <div class="text-xs text-muted">origin<span class="divider-vertical" aria-hidden="true"></span>php -l api/lib.php</div>
     </div>
     <span class="text-xs text-muted">2m</span>
   </div>
@@ -1624,7 +1642,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'application',
     tier: 'free',
     tags: ['dashboard', 'chart', 'bars', 'analytics'],
-    html: `<div class="bars" style="max-width: 28rem;">
+    html: `<div class="bars max-w-md">
   <div class="bar-row"><span>Free CLI</span><div class="bar-track"><div class="bar-fill" style="width: 62%;"></div></div><span>62%</span></div>
   <div class="bar-row"><span>Gallery</span><div class="bar-track"><div class="bar-fill" style="width: 24%;"></div></div><span>24%</span></div>
   <div class="bar-row"><span>MCP</span><div class="bar-track"><div class="bar-fill" style="width: 14%;"></div></div><span>14%</span></div>
@@ -1637,7 +1655,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'application',
     tier: 'free',
     tags: ['dashboard', 'detail', 'definition', 'meta'],
-    html: `<dl class="detail" style="max-width: 28rem;">
+    html: `<dl class="detail max-w-md">
   <dt>ID</dt><dd>prj_8f2c1a</dd>
   <dt>Region</dt><dd>syd-1</dd>
   <dt>Owner</dt><dd>ops@llmcss.io</dd>
@@ -1651,12 +1669,12 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'application',
     tier: 'free',
     tags: ['dashboard', 'date', 'filter', 'form', 'range'],
-    html: `<div class="flex gap-3 flex-wrap" style="max-width: 28rem;">
-  <label class="form-group" style="flex: 1;">
+    html: `<div class="flex gap-3 flex-wrap max-w-md">
+  <label class="form-group flex-1">
     <span class="form-label">From</span>
     <input class="input" type="date" value="2026-09-01" />
   </label>
-  <label class="form-group" style="flex: 1;">
+  <label class="form-group flex-1">
     <span class="form-label">To</span>
     <input class="input" type="date" value="2026-09-12" />
   </label>
@@ -1669,7 +1687,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'primitive',
     tier: 'free',
     tags: ['collapse', 'details', 'disclosure', 'toggle', 'css-only'],
-    html: `<details class="collapse" style="max-width: 32rem;">
+    html: `<details class="collapse max-w-lg">
   <summary>Advanced deployment options</summary>
   <div class="collapse-body">
     Region pinning, canary percentage, and rollback window. These apply to this service only and do not change organisation defaults.
@@ -1683,18 +1701,18 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'primitive',
     tier: 'free',
     tags: ['carousel', 'slider', 'scroll-snap', 'gallery', 'css-only'],
-    html: `<div class="carousel carousel-peek" tabindex="0" aria-label="Release highlights" style="--ai-carousel-item: 72%; max-width: 40rem;">
-  <article class="card" style="padding: var(--ai-space-6);">
+    html: `<div class="carousel carousel-peek max-w-2xl" tabindex="0" aria-label="Release highlights" style="--ai-carousel-item: 72%;">
+  <article class="card p-6">
     <h3 class="card-title">Edge caching</h3>
-    <p class="text-sm text-secondary" style="margin-top: var(--ai-space-2);">Static assets served from 34 regions. Median time to first byte dropped to 38 ms.</p>
+    <p class="text-sm text-secondary mt-2">Static assets served from 34 regions. Median time to first byte dropped to 38 ms.</p>
   </article>
-  <article class="card" style="padding: var(--ai-space-6);">
+  <article class="card p-6">
     <h3 class="card-title">Preview environments</h3>
-    <p class="text-sm text-secondary" style="margin-top: var(--ai-space-2);">Every pull request gets a URL. Expires seven days after merge.</p>
+    <p class="text-sm text-secondary mt-2">Every pull request gets a URL. Expires seven days after merge.</p>
   </article>
-  <article class="card" style="padding: var(--ai-space-6);">
+  <article class="card p-6">
     <h3 class="card-title">Audit log export</h3>
-    <p class="text-sm text-secondary" style="margin-top: var(--ai-space-2);">Stream events to your SIEM. JSON lines, hourly rotation.</p>
+    <p class="text-sm text-secondary mt-2">Stream events to your SIEM. JSON lines, hourly rotation.</p>
   </article>
 </div>`,
   },
@@ -1705,7 +1723,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'primitive',
     tier: 'free',
     tags: ['form', 'input', 'label', 'floating', 'css-only'],
-    html: `<form class="flex flex-col gap-4" style="max-width: 24rem;">
+    html: `<form class="flex flex-col gap-4 max-w-sm">
   <div class="form-float">
     <input id="fl-email" class="input" type="email" placeholder=" " autocomplete="email" />
     <label for="fl-email">Work email</label>
@@ -1731,7 +1749,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'primitive',
     tier: 'free',
     tags: ['list', 'group', 'rows', 'navigation'],
-    html: `<ul class="list-group" style="max-width: 24rem;">
+    html: `<ul class="list-group max-w-sm">
   <li><a href="#" class="list-group-item is-active" aria-current="page">Overview <span class="badge badge-counter ml-auto">3</span></a></li>
   <li><a href="#" class="list-group-item">Deployments</a></li>
   <li><a href="#" class="list-group-item">Environment variables</a></li>
@@ -1764,7 +1782,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'primitive',
     tier: 'free',
     tags: ['level', 'layout', 'header', 'row', 'flex'],
-    html: `<div class="level" style="padding: var(--ai-space-4) 0; border-bottom: 1px solid var(--ai-border);">
+    html: `<div class="level py-4 border-b">
   <div class="level-left">
     <strong>Invoices</strong>
     <span class="badge badge-neutral">June 2026</span>
@@ -1782,7 +1800,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'primitive',
     tier: 'free',
     tags: ['media', 'comment', 'avatar', 'layout'],
-    html: `<div class="media" style="max-width: 36rem;">
+    html: `<div class="media max-w-xl">
   <div class="media-figure">
     <div class="avatar" style="background-color: var(--ai-surface-3);">MR</div>
   </div>
@@ -1790,7 +1808,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     <div class="level">
       <div class="level-left"><strong>Mia Rahman</strong><span class="text-xs text-muted">2 hours ago</span></div>
     </div>
-    <p class="text-sm text-secondary" style="margin-top: var(--ai-space-1);">Rolled back the pricing page to build 412. The variant with the annual toggle was posting the wrong plan id.</p>
+    <p class="text-sm text-secondary mt-1">Rolled back the pricing page to build 412. The variant with the annual toggle was posting the wrong plan id.</p>
   </div>
 </div>`,
   },
@@ -1801,7 +1819,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'primitive',
     tier: 'free',
     tags: ['panel', 'card', 'list', 'container'],
-    html: `<div class="panel" style="max-width: 24rem;">
+    html: `<div class="panel max-w-sm">
   <div class="panel-header">
     Recent branches
     <button type="button" class="btn btn-ghost btn-xs">View all</button>
@@ -1820,7 +1838,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'primitive',
     tier: 'free',
     tags: ['notification', 'message', 'banner', 'dismiss'],
-    html: `<div class="flex flex-col gap-4" style="max-width: 36rem;">
+    html: `<div class="flex flex-col gap-4 max-w-xl">
   <div class="notification notification-info" role="status">
     <strong>Scheduled maintenance.</strong> The API will be read-only on Saturday 20 September from 02:00 to 02:30 UTC.
     <button type="button" class="close" data-ai-dismiss="toast" aria-label="Dismiss"></button>
@@ -1838,7 +1856,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'primitive',
     tier: 'free',
     tags: ['file', 'upload', 'input', 'form', 'css-only'],
-    html: `<div class="form-group" style="max-width: 24rem;">
+    html: `<div class="form-group max-w-sm">
   <label class="form-label" for="report-file">Import CSV</label>
   <input id="report-file" type="file" class="file-input" accept=".csv" />
   <p class="form-hint">Up to 25 MB. First row is treated as the header.</p>
@@ -1851,7 +1869,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'primitive',
     tier: 'free',
     tags: ['title', 'heading', 'typography', 'subtitle'],
-    html: `<div style="max-width: 36rem;">
+    html: `<div class="max-w-xl">
   <h2 class="title">Usage and billing</h2>
   <p class="subtitle">Meter reads are final at midnight UTC. Overages are billed with the next invoice.</p>
 </div>`,
@@ -1876,7 +1894,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'primitive',
     tier: 'free',
     tags: ['select', 'form', 'dropdown', 'input'],
-    html: `<div class="flex flex-col gap-4" style="max-width: 24rem;">
+    html: `<div class="flex flex-col gap-4 max-w-sm">
   <div class="form-group">
     <label class="form-label" for="sel-plan">Plan</label>
     <select id="sel-plan" class="select">
@@ -1892,7 +1910,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
       <option>Sydney</option>
       <option>Frankfurt</option>
     </select>
-    <p class="form-hint" id="sel-region-err" style="color: var(--ai-danger);">A region is required before the first deploy.</p>
+    <p class="form-hint text-danger" id="sel-region-err">A region is required before the first deploy.</p>
   </div>
 </div>`,
   },
@@ -1903,7 +1921,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'primitive',
     tier: 'free',
     tags: ['input', 'icon', 'search', 'form'],
-    html: `<div class="flex flex-col gap-4" style="max-width: 24rem;">
+    html: `<div class="flex flex-col gap-4 max-w-sm">
   <div class="input-icon-wrap">
     <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
     <input class="input" type="search" placeholder="Search deployments" aria-label="Search deployments" />
@@ -1971,7 +1989,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'marketing',
     tier: 'free',
     tags: ['features', 'list', 'checklist', 'pricing'],
-    html: `<ul class="feature-list" style="max-width: 28rem;">
+    html: `<ul class="feature-list max-w-md">
   <li><span class="mark mark-yes" role="img" aria-label="Included"></span> Unlimited environments per project</li>
   <li><span class="mark mark-yes" role="img" aria-label="Included"></span> Preview URL for every pull request</li>
   <li><span class="mark mark-yes" role="img" aria-label="Included"></span> Audit log with 90 day retention</li>
@@ -2010,7 +2028,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     tags: ['cta', 'conversion', 'band', 'signup'],
     html: `<div class="cta-band">
   <h2 class="section-title">Start with the free tier</h2>
-  <p class="section-lead" style="margin-inline: auto;">No card required. Upgrade when you need SSO, audit export, or more than three projects.</p>
+  <p class="section-lead mx-auto">No card required. Upgrade when you need SSO, audit export, or more than three projects.</p>
   <div class="cta-actions">
     <a href="#" class="btn btn-primary btn-lg">Create account</a>
     <a href="#" class="btn btn-outline btn-lg">Talk to sales</a>
@@ -2024,7 +2042,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'marketing',
     tier: 'free',
     tags: ['callout', 'note', 'editorial', 'aside'],
-    html: `<aside class="callout" style="max-width: 40rem;">
+    html: `<aside class="callout max-w-2xl">
   <span class="callout-label">Worth knowing</span>
   Rollbacks restore the previous build and its environment variables together. Secrets rotated after that build are not reverted.
 </aside>`,
@@ -2086,7 +2104,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     html: `<div class="announcement" role="region" aria-label="Announcement">
   <span>LLMCSS 0.2 ships the runtime as one script tag.</span>
   <a href="#">Read the changelog</a>
-  <button type="button" class="close ml-auto" aria-label="Dismiss announcement" style="color: inherit;"></button>
+  <button type="button" class="close ml-auto text-inherit" aria-label="Dismiss announcement"></button>
 </div>`,
   },
   {
@@ -2112,18 +2130,18 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'marketing',
     tier: 'free',
     tags: ['faq', 'questions', 'collapse', 'details', 'css-only'],
-    html: `<div style="max-width: 40rem;">
+    html: `<div class="max-w-2xl">
   <h2 class="section-title">Questions</h2>
-  <div style="margin-top: var(--ai-space-6);">
-    <details class="collapse" style="padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border);">
+  <div class="mt-6">
+    <details class="collapse py-4 border-t">
       <summary>Do I need a build step?</summary>
       <div class="collapse-body">No. Link the stylesheet and start writing classes. The CLI and MCP server are optional.</div>
     </details>
-    <details class="collapse" style="padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border);">
+    <details class="collapse py-4 border-t">
       <summary>What happens when I cancel Pro?</summary>
       <div class="collapse-body">The token stops working at the end of the period. CSS and HTML you already copied stay yours.</div>
     </details>
-    <details class="collapse" style="padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border); border-bottom: 1px solid var(--ai-border);">
+    <details class="collapse py-4 border-t border-b">
       <summary>Which browsers?</summary>
       <div class="collapse-body">Current Chrome, Edge, Firefox, and Safari. Features like :has() and container queries have been stable in all four since 2023.</div>
     </details>
@@ -2172,10 +2190,10 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     tier: 'free',
     tags: ['table', 'grid', 'sort', 'select', 'sticky', 'data'],
     html: `<div class="table-container" style="max-height: 18rem;">
-  <table class="table table-hover table-sticky table-compact">
+  <table class="table table-hover table-sticky table-compact min-w-var" style="--ai-min-w: 36rem;">
     <thead>
       <tr>
-        <th style="width: 2.5rem;"><input type="checkbox" class="checkbox-input" aria-label="Select all" /></th>
+        <th class="w-10"><input type="checkbox" class="checkbox-input" aria-label="Select all" /></th>
         <th aria-sort="descending">Service</th>
         <th aria-sort="none">Region</th>
         <th class="cell-num" aria-sort="none">p95 ms</th>
@@ -2210,7 +2228,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'application',
     tier: 'free',
     tags: ['bulk', 'selection', 'actions', 'toolbar', 'table'],
-    html: `<div class="bulk-bar" style="position: static; max-width: 40rem;">
+    html: `<div class="bulk-bar static max-w-2xl">
   <span class="bulk-bar-count">3 selected</span>
   <button type="button" class="btn btn-ghost btn-xs">Clear</button>
   <div class="bulk-bar-actions">
@@ -2227,7 +2245,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'application',
     tier: 'free',
     tags: ['tree', 'files', 'folders', 'nested', 'details', 'css-only'],
-    html: `<ul class="tree" style="max-width: 20rem;">
+    html: `<ul class="tree max-w-xs">
   <li>
     <details open>
       <summary>src</summary>
@@ -2261,13 +2279,13 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'application',
     tier: 'free',
     tags: ['onboarding', 'checklist', 'setup', 'progress', 'tasks'],
-    html: `<div style="max-width: 28rem;">
+    html: `<div class="max-w-md">
   <div class="level">
     <strong>Get set up</strong>
     <span class="text-sm text-secondary" data-tabular>2 of 4</span>
   </div>
-  <div class="progress progress-sm" role="progressbar" aria-label="Setup progress" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="margin-top: var(--ai-space-3);"><div class="progress-bar" style="width: 50%;"></div></div>
-  <ul class="checklist" style="margin-top: var(--ai-space-4);">
+  <div class="progress progress-sm mt-3" role="progressbar" aria-label="Setup progress" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar" style="width: 50%;"></div></div>
+  <ul class="checklist mt-4">
     <li class="checklist-item is-completed"><span class="checklist-mark">1</span><span class="checklist-label">Create your first project</span></li>
     <li class="checklist-item is-completed"><span class="checklist-mark">2</span><span class="checklist-label">Connect a repository</span></li>
     <li class="checklist-item"><span class="checklist-mark">3</span><span class="checklist-label">Add a custom domain</span><button type="button" class="btn btn-outline btn-xs">Add</button></li>
@@ -2282,11 +2300,11 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     category: 'application',
     tier: 'free',
     tags: ['error', 'failure', 'retry', 'empty-state'],
-    html: `<div class="empty-state is-error" style="max-width: 28rem;">
+    html: `<div class="empty-state is-error max-w-md">
   <div class="empty-state-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></div>
   <h3 class="empty-state-title">Could not load deployments</h3>
   <p class="empty-state-description">The API returned 503 twice. Nothing was changed. Try again, or send the request id to support.</p>
-  <div class="flex gap-2 justify-center" style="margin-top: var(--ai-space-4);">
+  <div class="flex gap-2 justify-center mt-4">
     <button type="button" class="btn btn-primary btn-sm">Retry</button>
     <button type="button" class="btn btn-outline btn-sm">Copy request id</button>
   </div>

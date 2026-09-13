@@ -14,6 +14,9 @@
     position: relative;
     padding-bottom: 0;
     overflow-x: auto;
+    /* A tab's 1px overlap with the list's hairline would otherwise open a
+       vertical scrollbar on the row. */
+    overflow-y: hidden;
   }
 
   .tab {

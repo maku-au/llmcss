@@ -603,7 +603,7 @@
   }
 
   .trace-row:hover {
-    background-color: var(--ai-surface-1);
+    background-color: var(--ai-surface-hover);
   }
 
   .trace-name {

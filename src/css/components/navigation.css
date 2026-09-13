@@ -121,7 +121,7 @@
   }
 
   .pagination-link:hover {
-    background-color: var(--ai-surface-1);
+    background-color: var(--ai-surface-hover);
     border-color: var(--ai-border);
     color: var(--ai-text-primary);
   }
@@ -341,6 +341,29 @@
     color: var(--ai-primary-text);
   }
 
+  /* A disclosure inside the rail stays flush: the rail is already the box, so
+     the trigger takes the item's padding rather than the accordion's card
+     padding, and it is a 44px row under a coarse pointer. The count beside the
+     title is plain muted text, never a chip, so no rule paints it here. */
+  .sidebar-nav .accordion-trigger {
+    padding: var(--ai-space-2) var(--ai-space-3);
+    font-size: 0.8125rem;
+  }
+  .sidebar-nav .accordion-trigger .sidebar-section-title {
+    padding: 0;
+  }
+  /* The body ends at the last item. .sidebar-section already supplies the gap
+     before the hairline, and the accordion's bottom padding doubled it into an
+     empty band. */
+  .sidebar-nav .accordion-content {
+    padding-bottom: 0;
+  }
+  @media (pointer: coarse) {
+    .sidebar-nav .accordion-trigger {
+      min-height: var(--ai-touch-min, 44px);
+    }
+  }
+
   /* ==========================================================================
      NOTIFICATION LIST
      ========================================================================== */
@@ -367,7 +390,7 @@
   }
 
   .notification-item:hover {
-    background-color: var(--ai-surface-1);
+    background-color: var(--ai-surface-hover);
   }
 
   .notification-item.is-unread {

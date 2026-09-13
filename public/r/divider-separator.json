@@ -11,5 +11,5 @@
     "line",
     "rule"
   ],
-  "html": "<div style=\"max-width: 28rem;\">\n  <p class=\"text-sm text-secondary\">Content above the divider.</p>\n  <div class=\"divider\"></div>\n  <p class=\"text-sm text-secondary\">Content below the plain divider.</p>\n  <div class=\"divider\">or continue with</div>\n  <p class=\"text-sm text-secondary\">Content below the labeled divider.</p>\n  <div class=\"flex items-center gap-4\" style=\"margin-top: var(--ai-space-6);\">\n    <span class=\"text-sm\">Item A</span>\n    <span class=\"divider-vertical\"></span>\n    <span class=\"text-sm\">Item B</span>\n    <span class=\"divider-vertical\"></span>\n    <span class=\"text-sm\">Item C</span>\n  </div>\n</div>"
+  "html": "<div class=\"max-w-md\">\n  <p class=\"text-sm text-secondary\">Content above the divider.</p>\n  <div class=\"divider\"></div>\n  <p class=\"text-sm text-secondary\">Content below the plain divider.</p>\n  <div class=\"divider\">or continue with</div>\n  <p class=\"text-sm text-secondary\">Content below the labeled divider.</p>\n  <div class=\"flex items-center gap-4 mt-6\">\n    <span class=\"text-sm\">Item A</span>\n    <span class=\"divider-vertical\"></span>\n    <span class=\"text-sm\">Item B</span>\n    <span class=\"divider-vertical\"></span>\n    <span class=\"text-sm\">Item C</span>\n  </div>\n</div>"
 }

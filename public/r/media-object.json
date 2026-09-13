@@ -10,5 +10,5 @@
     "avatar",
     "layout"
   ],
-  "html": "<div class=\"media\" style=\"max-width: 36rem;\">\n  <div class=\"media-figure\">\n    <div class=\"avatar\" style=\"background-color: var(--ai-surface-3);\">MR</div>\n  </div>\n  <div class=\"media-body\">\n    <div class=\"level\">\n      <div class=\"level-left\"><strong>Mia Rahman</strong><span class=\"text-xs text-muted\">2 hours ago</span></div>\n    </div>\n    <p class=\"text-sm text-secondary\" style=\"margin-top: var(--ai-space-1);\">Rolled back the pricing page to build 412. The variant with the annual toggle was posting the wrong plan id.</p>\n  </div>\n</div>"
+  "html": "<div class=\"media max-w-xl\">\n  <div class=\"media-figure\">\n    <div class=\"avatar\" style=\"background-color: var(--ai-surface-3);\">MR</div>\n  </div>\n  <div class=\"media-body\">\n    <div class=\"level\">\n      <div class=\"level-left\"><strong>Mia Rahman</strong><span class=\"text-xs text-muted\">2 hours ago</span></div>\n    </div>\n    <p class=\"text-sm text-secondary mt-1\">Rolled back the pricing page to build 412. The variant with the annual toggle was posting the wrong plan id.</p>\n  </div>\n</div>"
 }

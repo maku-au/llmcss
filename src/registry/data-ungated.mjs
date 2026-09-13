@@ -228,18 +228,18 @@ export const ungatedById = {
     html: `<div class="bento-grid">
   <div class="bento-cell bento-span-2">
     <div>
-      <span class="bento-code-pill" style="margin-bottom: var(--ai-space-4);">
-        <span class="text-muted font-mono" style="font-weight: 600; opacity: 0.6; margin-right: 0.15rem;">$</span>
+      <span class="bento-code-pill mb-4">
+        <span class="text-muted font-mono font-semibold opacity-60 mr-0.5">$</span>
         <span>llmcss init --theme=obsidian</span>
       </span>
-      <h3 class="font-display font-bold" style="font-size: 1.5rem; margin-top: var(--ai-space-2);">
+      <h3 class="font-display font-bold text-2xl mt-2">
         Zero-token dark mode with pure native cascading variables
       </h3>
-      <p class="text-secondary text-sm" style="margin-top: var(--ai-space-2); max-width: 28rem;">
+      <p class="text-secondary text-sm mt-2 max-w-md">
         No arbitrary class name hallucination. Full Light-DOM Web Components and zero external dependencies.
       </p>
     </div>
-    <div class="flex gap-4 items-center" style="margin-top: var(--ai-space-6);">
+    <div class="flex gap-4 items-center mt-6">
       <span class="badge badge-mono">&lt; 2.5KB Bundle</span>
       <span class="badge badge-neutral">68% Token Savings</span>
     </div>
@@ -247,30 +247,30 @@ export const ungatedById = {
   <div class="bento-cell">
     <div>
       <span class="text-xs font-mono text-muted">BENCHMARK</span>
-      <div class="font-display font-bold" style="font-size: 2.25rem; margin-top: var(--ai-space-2);">
+      <div class="font-display font-bold text-4xl mt-2">
         0ms
       </div>
-      <p class="text-secondary text-xs" style="margin-top: 0.25rem;">
+      <p class="text-secondary text-xs mt-1">
         CSS-in-JS runtime overhead. 100% native browser layers.
       </p>
     </div>
-    <div class="progress" style="margin-top: var(--ai-space-4);">
-      <div class="progress-bar" style="width: 100%;"></div>
+    <div class="progress mt-4">
+      <div class="progress-bar w-full"></div>
     </div>
   </div>
   <div class="bento-cell">
     <div>
       <span class="text-xs font-mono text-muted">COMPATIBILITY</span>
-      <h4 class="font-semibold" style="margin-top: var(--ai-space-2);">Universal Standard</h4>
-      <p class="text-secondary text-xs" style="margin-top: 0.25rem;">Vanilla HTML, Astro, Svelte, Vue, React, Next.js.</p>
+      <h4 class="font-semibold mt-2">Universal Standard</h4>
+      <p class="text-secondary text-xs mt-1">Vanilla HTML, Astro, Svelte, Vue, React, Next.js.</p>
     </div>
   </div>
   <div class="bento-cell bento-span-2">
     <div class="flex justify-between items-start">
       <div>
         <span class="text-xs font-mono text-muted">AGENT CO-PILOT</span>
-        <h4 class="font-semibold" style="margin-top: var(--ai-space-1);">Model Context Protocol Ready</h4>
-        <p class="text-secondary text-xs" style="margin-top: 0.25rem;">Native stdio MCP server for autonomous coding agents.</p>
+        <h4 class="font-semibold mt-1">Model Context Protocol Ready</h4>
+        <p class="text-secondary text-xs mt-1">Native stdio MCP server for autonomous coding agents.</p>
       </div>
       <button class="btn btn-outline btn-xs">Docs &rarr;</button>
     </div>
@@ -304,10 +304,10 @@ export const ungatedById = {
         <div class="cart-details">
           <span class="cart-name">Aether Precision Studio</span>
           <span class="cart-subtext">Matte Obsidian / Bluetooth 5.4</span>
-          <div class="flex justify-between items-center" style="margin-top: 0.5rem;">
+          <div class="flex justify-between items-center mt-2">
             <div class="cart-stepper">
               <button type="button" aria-label="Decrease quantity">-</button>
-              <span style="padding: 0 0.5rem; font-size: 0.8125rem;">1</span>
+              <span class="px-2" style="font-size: 0.8125rem;">1</span>
               <button type="button" aria-label="Increase quantity">+</button>
             </div>
             <span class="font-bold">$349.00</span>
@@ -316,9 +316,9 @@ export const ungatedById = {
       </div>
     </div>
     <div class="drawer-footer">
-      <div class="flex justify-between items-center" style="margin-bottom: var(--ai-space-4);">
+      <div class="flex justify-between items-center mb-4">
         <span class="text-sm text-secondary">Subtotal</span>
-        <span class="font-display font-bold" style="font-size: 1.25rem;">$349.00</span>
+        <span class="font-display font-bold text-xl">$349.00</span>
       </div>
       <button class="btn btn-primary w-full btn-lg">Checkout Now</button>
     </div>
@@ -344,20 +344,20 @@ export const ungatedById = {
     category: 'application',
     tier: 'free',
     tags: ["citations","sources","rag"],
-    html: `<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--ai-space-3);">
-  <li class="card" style="padding: var(--ai-space-4);">
+    html: `<ol class="list-none m-0 p-0 flex flex-col gap-3">
+  <li class="card p-4">
     <div class="flex justify-between items-center">
       <span class="font-mono text-xs text-muted">[1] polar.sh</span>
-      <a class="btn btn-ghost btn-xs" href="https://polar.sh/docs">Open</a>
+      <a class="btn btn-ghost btn-xs" href="#polar-docs">Open</a>
     </div>
-    <p class="text-sm" style="margin-top: 0.35rem;">Webhook signatures use Standard Webhooks headers.</p>
+    <p class="text-sm mt-1.5">Webhook signatures use Standard Webhooks headers.</p>
   </li>
-  <li class="card" style="padding: var(--ai-space-4);">
+  <li class="card p-4">
     <div class="flex justify-between items-center">
       <span class="font-mono text-xs text-muted">[2] llmcss.io</span>
-      <a class="btn btn-ghost btn-xs" href="https://llmcss.io/llms.txt">Open</a>
+      <a class="btn btn-ghost btn-xs" href="#llms-txt">Open</a>
     </div>
-    <p class="text-sm" style="margin-top: 0.35rem;">Free registry is MIT. Pro is token-gated.</p>
+    <p class="text-sm mt-1.5">Free registry is MIT. Pro is token-gated.</p>
   </li>
 </ol>`,
   },
@@ -369,7 +369,7 @@ export const ungatedById = {
     tier: 'free',
     tags: ["command","search","palette","keyboard"],
     html: `<button class="btn btn-outline" data-ai-toggle="modal" data-ai-target="#command-demo">
-  Open ⌘K Command Palette <span class="command-kbd" style="margin-left: 0.5rem;">⌘K</span>
+  Open ⌘K Command Palette <span class="command-kbd ml-2">⌘K</span>
 </button>
 
 <div id="command-demo" class="command-palette">
@@ -569,19 +569,19 @@ export const ungatedById = {
     tags: ["hero","bento","luxury"],
     html: `<section class="hero">
   <div class="container">
-    <div class="text-center" style="max-width: 48rem; margin: 0 auto var(--ai-space-12);">
+    <div class="text-center max-w-3xl mx-auto mb-12">
       <h1 class="hero-title">Architected for deep intelligence</h1>
-      <p class="hero-lead" style="margin: 0 auto;">
+      <p class="hero-lead mx-auto my-0">
         Give your agentic coding workflows the aesthetic craft of top-tier product studios.
       </p>
     </div>
     <div class="bento-grid">
       <div class="card-bento bento-col-2">
         <div>
-          <h3 class="card-title" style="font-size: 1.5rem;">Infinite Skinning Architecture</h3>
-          <p class="text-secondary" style="margin-top: var(--ai-space-2);">Switch between Minimalist Obsidian, Warm Editorial, Neo-Brutalist, and Swiss Modern with a single data-attribute.</p>
+          <h3 class="card-title text-2xl">Infinite Skinning Architecture</h3>
+          <p class="text-secondary mt-2">Switch between Minimalist Obsidian, Warm Editorial, Neo-Brutalist, and Swiss Modern with a single data-attribute.</p>
         </div>
-        <div style="background-color: var(--ai-surface-1); padding: var(--ai-space-4); border-radius: var(--ai-radius-md); margin-top: var(--ai-space-6); border: 1px solid var(--ai-border);">
+        <div class="p-4 rounded-md mt-6 border" style="background-color: var(--ai-surface-1);">
           <pre><code>&lt;html data-ai-skin="editorial"&gt;
   &lt;!-- Instant warm ivory surfaces &amp; serif display --&gt;
 &lt;/html&gt;</code></pre>
@@ -590,9 +590,9 @@ export const ungatedById = {
       <div class="card-bento">
         <div>
           <h3 class="card-title">MCP Server Ready</h3>
-          <p class="text-secondary" style="margin-top: var(--ai-space-2);">Native Model Context Protocol integration allows autonomous AI agents to query and assemble sections dynamically.</p>
+          <p class="text-secondary mt-2">Native Model Context Protocol integration allows autonomous AI agents to query and assemble sections dynamically.</p>
         </div>
-        <div class="flex items-center gap-2" style="margin-top: var(--ai-space-6);">
+        <div class="flex items-center gap-2 mt-6">
           <span class="badge badge-success badge-dot">MCP Connected</span>
           <span class="badge badge-outline">Port 8080</span>
         </div>
@@ -608,7 +608,7 @@ export const ungatedById = {
     category: 'application',
     tier: 'free',
     tags: ["mcp","widget","agent"],
-    html: `<div class="card" style="padding: var(--ai-space-4);">
+    html: `<div class="card p-4">
   <div class="flex justify-between items-center">
     <div class="flex items-center gap-2">
       <span class="badge badge-mono">MCP</span>
@@ -616,8 +616,8 @@ export const ungatedById = {
     </div>
     <button class="btn btn-ghost btn-xs" type="button">Copy JSON</button>
   </div>
-  <p class="text-xs text-secondary" style="margin-top: var(--ai-space-3);">id=btn-variants · tier=free · 489 bytes html</p>
-  <pre style="margin-top: var(--ai-space-3); font-size: 0.75rem; background: var(--ai-surface-1); padding: var(--ai-space-3); border-radius: var(--ai-radius-sm);"><code>{ "id": "btn-variants", "tier": "free" }</code></pre>
+  <p class="text-xs text-secondary mt-3">id=btn-variants<span class="divider-vertical" aria-hidden="true"></span>tier=free<span class="divider-vertical" aria-hidden="true"></span>489 bytes html</p>
+  <pre class="mt-3 text-xs p-3 rounded-sm" style="background: var(--ai-surface-1);"><code>{ "id": "btn-variants", "tier": "free" }</code></pre>
 </div>`,
   },
   'model-picker': {
@@ -774,10 +774,10 @@ export const ungatedById = {
   <table class="matrix-table">
     <thead>
       <tr>
-        <th class="matrix-feature-col" style="width: 40%;">Core Capabilities</th>
-        <th style="width: 20%;">Free</th>
-        <th style="width: 20%; background-color: var(--ai-surface-1);">Pro ($9/mo)</th>
-        <th style="width: 20%;">Enterprise</th>
+        <th class="matrix-feature-col w-2/5">Core Capabilities</th>
+        <th class="w-1/5">Free</th>
+        <th class="w-1/5" style="background-color: var(--ai-surface-1);">Pro ($9/mo)</th>
+        <th class="w-1/5">Enterprise</th>
       </tr>
     </thead>
     <tbody>
@@ -808,19 +808,19 @@ export const ungatedById = {
       <tr>
         <td class="matrix-feature-col">Core UI Primitives</td>
         <td>20+ Primitives</td>
-        <td style="background-color: var(--ai-surface-1); font-weight: 600;">All 40+ Primitives</td>
+        <td class="font-semibold" style="background-color: var(--ai-surface-1);">All 40+ Primitives</td>
         <td>All + Custom</td>
       </tr>
       <tr>
         <td class="matrix-feature-col">High-Craft Bento Heroes</td>
         <td class="text-muted">-</td>
-        <td style="background-color: var(--ai-surface-1); color: var(--ai-accent); font-weight: 600;"><span class="mark mark-yes" role="img" aria-label="Yes"></span>Pro Bento Kit</td>
+        <td class="text-accent font-semibold" style="background-color: var(--ai-surface-1);"><span class="mark mark-yes" role="img" aria-label="Yes"></span>Pro Bento Kit</td>
         <td><span class="mark mark-yes" role="img" aria-label="Yes"></span>Bespoke</td>
       </tr>
       <tr>
         <td class="matrix-feature-col">Conversational AI Threads</td>
         <td class="text-muted">-</td>
-        <td style="background-color: var(--ai-surface-1); color: var(--ai-accent); font-weight: 600;"><span class="mark mark-yes" role="img" aria-label="Yes"></span>Full App Kits</td>
+        <td class="text-accent font-semibold" style="background-color: var(--ai-surface-1);"><span class="mark mark-yes" role="img" aria-label="Yes"></span>Full App Kits</td>
         <td><span class="mark mark-yes" role="img" aria-label="Yes"></span>Full App Kits</td>
       </tr>
       <tr>
@@ -829,7 +829,7 @@ export const ungatedById = {
       <tr>
         <td class="matrix-feature-col">CLI Tooling (llmcss add)</td>
         <td>Free Registry</td>
-        <td style="background-color: var(--ai-surface-1); font-weight: 600;">Full Pro Access</td>
+        <td class="font-semibold" style="background-color: var(--ai-surface-1);">Full Pro Access</td>
         <td>Private Registry</td>
       </tr>
       <tr>
@@ -972,7 +972,7 @@ Tests: 24 passed, 24 total</code></pre>
   </section>
 </div>
 
-<div class="split split-vertical" style="--ai-split-a: 45%; margin-top: var(--ai-space-4);">
+<div class="split split-vertical mt-4" style="--ai-split-a: 45%;">
   <section class="split-pane" aria-label="Request">
     <h3 class="split-title">Request</h3>
     <p class="split-note">Drag the divider, or focus it and use the arrow keys. Without the script the panes still render at their declared ratio.</p>
@@ -991,7 +991,7 @@ Tests: 24 passed, 24 total</code></pre>
     category: 'application',
     tier: 'free',
     tags: ["streaming","status","agent"],
-    html: `<div class="card" role="status" aria-live="polite" style="padding: var(--ai-space-4);">
+    html: `<div class="card p-4" role="status" aria-live="polite">
   <div class="flex justify-between items-center">
     <div class="flex items-center gap-2">
       <span class="spinner spinner-sm"></span>
@@ -999,8 +999,8 @@ Tests: 24 passed, 24 total</code></pre>
     </div>
     <span class="font-mono text-xs text-muted">42 tok/s</span>
   </div>
-  <div class="progress progress-indeterminate" style="margin-top: var(--ai-space-3);"><div class="progress-bar"></div></div>
-  <p class="text-xs text-muted" style="margin-top: var(--ai-space-2);">Stream only. Do not pulse static dots.</p>
+  <div class="progress progress-indeterminate mt-3"><div class="progress-bar"></div></div>
+  <p class="text-xs text-muted mt-2">Stream only. Do not pulse static dots.</p>
 </div>`,
   },
   'thought-chain': {
@@ -1020,7 +1020,7 @@ Tests: 24 passed, 24 total</code></pre>
       </span>
     </button>
     <div class="accordion-content" id="thought-chain-steps">
-      <ol style="margin: var(--ai-space-3) 0 0; padding-left: 1.1rem; font-size: 0.8125rem; color: var(--ai-text-secondary); display:flex; flex-direction:column; gap: 0.5rem;">
+      <ol class="m-0 mt-3 pl-4 text-secondary flex flex-col gap-2" style="font-size: 0.8125rem;">
         <li>Locate the token layer in <code>src/css/tokens.css</code>.</li>
         <li>Check gallery copy path does not leak Pro markup.</li>
         <li class="is-streaming">Draft the PHP gate using SQLite outside the docroot.</li>

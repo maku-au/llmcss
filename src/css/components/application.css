@@ -3,7 +3,10 @@
      APPLICATION & SAAS DASHBOARD UI
      ========================================================================== */
 
-  /* App Shell & Sidebar */
+  /* App Shell & Sidebar
+     100dvh is right for a real page. Inside a card, a preview frame or any
+     other embed, add the min-h-0 utility to the shell and it shrinks to its
+     content instead of inheriting the viewport height. */
   .app-shell {
     display: flex;
     min-height: 100dvh;
@@ -20,7 +23,11 @@
     flex-shrink: 0;
   }
 
-  /* Below md the shell stacks and the sidebar becomes a full-width rail */
+  /* Below md the shell stacks and the sidebar becomes a full-width rail.
+     A full width rail is right for a sidebar with words in it and wrong for an
+     icon rail, which would become a tall column of centred icons above the
+     content, so a collapsed rail keeps its 4.25rem width and the shell keeps
+     its two columns on a phone. */
   @media (max-width: 767px) {
     .app-shell {
       flex-direction: column;
@@ -29,6 +36,14 @@
       width: 100%;
       border-right: none;
       border-bottom: 1px solid var(--ai-border);
+    }
+    .app-shell:has(> .sidebar.is-collapsed) {
+      flex-direction: row;
+    }
+    .sidebar.is-collapsed {
+      width: var(--ai-sidebar-width);
+      border-bottom: 0;
+      border-inline-end: 1px solid var(--ai-border);
     }
   }
 
@@ -63,7 +78,7 @@
   }
 
   .sidebar-item:hover {
-    background-color: var(--ai-surface-1);
+    background-color: var(--ai-surface-hover);
     color: var(--ai-text-primary);
   }
 
@@ -89,7 +104,44 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--ai-space-4);
     padding: 0 var(--ai-space-8);
+  }
+
+  /* The app header sits in the flow, never sticky or fixed: inside a demo card
+     or a preview frame a pinned bar floats over the content it is supposed to
+     head. A real page pins it with the sticky-top utility.
+
+     Destinations inside the header: the current one is marked by text colour
+     and an accent underline, never by the filled surface alone, so the state
+     survives a high contrast theme. Every destination carries the transparent
+     border so the row never shifts when the current one changes. */
+  .app-header .nav-link {
+    border-bottom: 2px solid transparent;
+  }
+  .app-header .nav-link.is-active,
+  .app-header .nav-link[aria-current] {
+    background-color: transparent;
+    border-bottom-color: var(--ai-accent);
+    color: var(--ai-text-primary);
+    font-weight: 600;
+  }
+
+  /* Phone strategy for a top bar app. .nav-links hides itself below md because
+     a marketing navbar hands its links to a drawer; an app header has nowhere
+     else to put them, so here the list stays on screen at every width and
+     becomes a scroll row when it runs out of room: no wrap, every destination
+     keeps its own width, the row scrolls sideways. Squeezed is worse than
+     scrolled. */
+  .app-header .nav-links {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    min-width: 6rem;
+  }
+  .app-header .nav-links > li {
+    flex: none;
+    white-space: nowrap;
   }
 
   .app-content {
@@ -296,6 +348,12 @@
     font-weight: 600;
   }
 
+  @media (pointer: coarse) {
+    .segmented-btn {
+      min-height: var(--ai-touch-min, 44px);
+    }
+  }
+
   /* Compact size, 1.75rem tall overall, so a segmented control sits level
      with btn-xs in a toolbar or a card header. */
   .segmented-sm {
@@ -368,6 +426,19 @@
   .sidebar.is-collapsed .sidebar-section-title,
   .sidebar.is-collapsed .sidebar-badge {
     display: none;
+  }
+  /* The label is hidden here, so the current item is marked on the icon and
+     keeps its surface underneath. A grey box alone is never the signal. */
+  .sidebar.is-collapsed .sidebar-item.is-active,
+  .sidebar.is-collapsed .sidebar-item[aria-current] {
+    color: var(--ai-accent);
+  }
+  /* A rail item is a touch target whatever the icon inside it measures. */
+  @media (pointer: coarse) {
+    .sidebar.is-collapsed .sidebar-item {
+      min-width: var(--ai-touch-min, 44px);
+      min-height: var(--ai-touch-min, 44px);
+    }
   }
 
   /* Segmented control as a radio group: works with no JavaScript.

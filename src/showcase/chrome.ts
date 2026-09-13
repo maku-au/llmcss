@@ -296,6 +296,24 @@ function bindFocusPreference() {
   });
 }
 
+// Links inside a demo are demo data: a sidebar item, a footer column, a CTA.
+// None of them lead anywhere on this site, so a click never navigates and
+// never jumps the page to the top on href="#". Runtime toggles on anchors keep
+// working because the runtime reads the click before this listener runs on
+// the document and does its own work regardless of the default action.
+const DEMO_SCOPE = '.demo-canvas, .template-frame, .template-assembled, .blueprint-modal-dialog, .docs-hero-dock-card';
+function guardDemoLinks() {
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement | null;
+    const link = target?.closest<HTMLAnchorElement>('a[href]');
+    if (!link || !link.closest(DEMO_SCOPE)) return;
+    const href = link.getAttribute('href') || '';
+    // The Pro unlock inside a locked preview is a real link and must work.
+    if (/^https?:\/\/|^\/api\//.test(href)) return;
+    e.preventDefault();
+  });
+}
+
 export async function mountChrome() {
   const licensed = !!getBrowserToken() && (await validateToken(getBrowserToken())).valid;
 
@@ -321,6 +339,7 @@ export async function mountChrome() {
   }
 
   bindFocusPreference();
+  guardDemoLinks();
 
   // Render the pricing card before hydrating, so its own data-ai-stat spans are
   // in the DOM when the pass below runs.

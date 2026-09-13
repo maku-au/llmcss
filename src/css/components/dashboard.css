@@ -188,6 +188,9 @@
     font-size: 0.875rem;
   }
   .inbox-item:last-child { border-bottom: 0; }
+  /* The pip centres on the title's first line rather than the row's top edge */
+  .inbox-item > .pip { margin-top: 0.45em; }
+  .inbox-item > :last-child { font-variant-numeric: tabular-nums; }
   .inbox-item.is-unread .inbox-title { font-weight: 600; }
 
   .bars { display: flex; flex-direction: column; gap: var(--ai-space-3); }
@@ -274,7 +277,7 @@
   }
   .tree details[open] > summary::before { transform: rotate(45deg); }
   .tree summary:hover,
-  .tree-leaf:hover { background-color: var(--ai-surface-1); }
+  .tree-leaf:hover { background-color: var(--ai-surface-hover); }
   .tree-leaf.is-active { background-color: var(--ai-accent-subtle); }
   .tree-leaf::before { content: ""; width: 0.55rem; }
 

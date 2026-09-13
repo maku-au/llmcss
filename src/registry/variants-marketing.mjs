@@ -136,6 +136,50 @@ npx llmcss audit index.html</code></pre>
   </div>
 </section>`,
     },
+    {
+      id: 'signup-form',
+      name: 'Signup form',
+      description:
+        'The button pair becomes one email field with the submit inside the group and a one line assurance under it, while the media column stays where it was.',
+      guidance:
+        'Sits at the top of a page whose next step is an account rather than a tour. Best when the product is self serve and the signup genuinely needs one field, so the fold ends on the thing the visitor came to do. Avoid it when the real form asks for a company, a seat count and a demo slot, because the hero then promises a shortcut that does not exist. Pairs with cta-band:inline-form at the foot of the page, which closes on the same single field.',
+      html: `<section class="hero">
+  <div class="container">
+    <div class="hero-split">
+      <div>
+        <h1 class="hero-title">Build software that looks human, not generated.</h1>
+        <p class="hero-lead">The open UI library built for AI agents and design engineers. Pure native CSS, tokenized skinning, and zero cookie-cutter templates.</p>
+        <form class="form-group max-w-md mt-8">
+          <label class="form-label sr-only" for="hero-signup-email">Work email</label>
+          <div class="input-group">
+            <input id="hero-signup-email" class="input" type="email" name="email" autocomplete="email" placeholder="you@company.com" required />
+            <button type="submit" class="btn btn-primary">Start free</button>
+          </div>
+          <p class="form-hint">One confirmation email, no card, and the free tier stays free.</p>
+        </form>
+      </div>
+      <div class="hero-visual p-6 md:p-8">
+        <div class="flex justify-between items-center mb-6">
+          <span class="text-xs font-mono text-muted">app.analytics.ts</span>
+          <span class="text-xs text-muted flex items-center gap-2"><span class="pip pip-ok"></span>Live stream</span>
+        </div>
+        <div class="grid grid-cols-1 gap-4">
+          <div class="kpi-card">
+            <span class="kpi-label">Weekly Active Users</span>
+            <span class="kpi-value">48,290</span>
+            <span class="kpi-trend is-up">Up 24.8 percent on last week</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Conversion Rate</span>
+            <span class="kpi-value">4.12%</span>
+            <span class="kpi-trend is-up">Up 1.2 points on last week</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>`,
+    },
   ],
 
   'hero-bento-pro': [
@@ -377,6 +421,103 @@ npx llmcss audit index.html</code></pre>
   </div>
 </header>`,
     },
+    {
+      id: 'mega-menu',
+      name: 'Mega menu',
+      description:
+        'One nav item opens a panel the full width of the bar holding three labelled link columns and a promoted item in the fourth, and below md those same groups move into the drawer.',
+      guidance:
+        'Sits at the top of a site with more destinations than one row of links can carry. Best when the catalog groups into three families a visitor already thinks in, with one item worth promoting this month. Avoid it when each column would hold two links, because a full width panel over six links reads as an empty room. Pairs with mobile-nav-drawer below md, which is where the three groups land rather than in a third menu shape.',
+      html: `<header class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="#" class="brand">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        <span>LLMCSS</span>
+      </a>
+      <nav class="nav-links hidden md:flex" aria-label="Primary">
+        <div class="dropdown static is-open">
+          <button type="button" class="nav-link dropdown-trigger inline-flex items-center gap-1" data-ai-toggle="dropdown" aria-haspopup="true" aria-expanded="true" aria-controls="mega-product-panel">
+            Product
+            <svg class="rotate-180" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="dropdown-menu w-full p-6" id="mega-product-panel">
+            <div class="container grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div>
+                <p class="dropdown-header">Build</p>
+                <a class="dropdown-item" href="#components">Components</a>
+                <a class="dropdown-item" href="#primitives">Primitives</a>
+                <a class="dropdown-item" href="#templates">Marketing sections</a>
+                <a class="dropdown-item" href="#dashboard">SaaS dashboard</a>
+              </div>
+              <div>
+                <p class="dropdown-header">Theme</p>
+                <a class="dropdown-item" href="#tokens">Design tokens</a>
+                <a class="dropdown-item" href="#skins">Skins</a>
+                <a class="dropdown-item" href="#density">Density and radius</a>
+                <a class="dropdown-item" href="#harness">Design harness</a>
+              </div>
+              <div>
+                <p class="dropdown-header">Automate</p>
+                <a class="dropdown-item" href="#cli">CLI reference</a>
+                <a class="dropdown-item" href="#mcp">MCP server</a>
+                <a class="dropdown-item" href="#llms">llms.txt specification</a>
+                <a class="dropdown-item" href="#rules">Agent rules</a>
+              </div>
+              <div class="flex gap-6">
+                <span class="divider-vertical h-auto self-stretch" aria-hidden="true"></span>
+                <div>
+                  <p class="dropdown-header">New this month</p>
+                  <p class="text-sm font-semibold">Audit in continuous integration</p>
+                  <p class="text-sm text-secondary mt-1">Run the anti-slop audit on every pull request and fail the build when a status pip starts pulsing.</p>
+                  <a class="btn btn-outline btn-sm mt-3" href="#audit">Read the guide</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#docs" class="nav-link">Documentation</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <a href="#start" class="btn btn-primary btn-xs">Get Started</a>
+        <button type="button" class="btn btn-outline btn-xs btn-icon md:hidden" data-ai-toggle="drawer" data-ai-target="#mega-nav-drawer" aria-controls="mega-nav-drawer" aria-expanded="false" aria-label="Open menu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div id="mega-nav-drawer" class="drawer drawer-sm md:hidden">
+  <div class="drawer-backdrop" data-ai-dismiss="drawer"></div>
+  <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="drawer-header">
+      <span class="drawer-title">Product</span>
+      <button type="button" class="btn btn-ghost btn-icon btn-xs" data-ai-dismiss="drawer" aria-label="Close menu"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button>
+    </div>
+    <nav class="drawer-body drawer-nav" aria-label="Primary">
+      <p class="sidebar-section-title">Build</p>
+      <a href="#components" class="sidebar-item" data-ai-dismiss="drawer">Components</a>
+      <a href="#primitives" class="sidebar-item" data-ai-dismiss="drawer">Primitives</a>
+      <a href="#templates" class="sidebar-item" data-ai-dismiss="drawer">Marketing sections</a>
+      <p class="sidebar-section-title">Theme</p>
+      <a href="#tokens" class="sidebar-item" data-ai-dismiss="drawer">Design tokens</a>
+      <a href="#skins" class="sidebar-item" data-ai-dismiss="drawer">Skins</a>
+      <p class="sidebar-section-title">Automate</p>
+      <a href="#cli" class="sidebar-item" data-ai-dismiss="drawer">CLI reference</a>
+      <a href="#mcp" class="sidebar-item" data-ai-dismiss="drawer">MCP server</a>
+      <hr class="divider" />
+      <p class="text-sm font-semibold">Audit in continuous integration</p>
+      <p class="text-sm text-secondary mt-1">Run the anti-slop audit on every pull request and fail the build when a status pip starts pulsing.</p>
+      <a href="#audit" class="btn btn-outline btn-sm mt-3" data-ai-dismiss="drawer">Read the guide</a>
+    </nav>
+    <div class="drawer-footer">
+      <a href="#start" class="btn btn-primary w-full">Get Started</a>
+    </div>
+  </div>
+</div>`,
+    },
   ],
 
   'mobile-nav-drawer': [
@@ -515,12 +656,12 @@ npx llmcss audit index.html</code></pre>
 </footer>`,
     },
     {
-      id: 'brand-heavy',
-      name: 'Brand heavy',
+      id: 'two-column',
+      name: 'Two column',
       description:
-        'The brand column runs double width and carries the blurb and the install line, leaving two link columns rather than three.',
+        'A double width brand block carrying the blurb and the install line takes the first half, two link columns take the second, and the changelog field drops to a row of its own underneath.',
       guidance:
-        'Sits at the foot of a developer facing site. Best when the last thing on the page should be the one command that gets someone started, which is a stronger close than a list of legal links. Avoid it when the footer is doing real navigation work, because two columns will not hold a sitemap. Pairs with hero-split:terminal at the top, so the page opens and closes on the same command.',
+        'Sits at the foot of a developer facing page. Best when the last thing a reader sees should be the command that gets them started and a way to hear about the next release, and when there is something genuinely worth mailing on a predictable cadence. Avoid it when the footer is doing real navigation work, because two columns will not hold a sitemap, and avoid it when the field is a lead capture in disguise. Pairs with hero-split:terminal at the top, so the page opens and closes on the same command.',
       html: `<footer class="footer">
   <div class="container">
     <div class="footer-grid md:grid-cols-2 lg:grid-cols-4">
@@ -532,46 +673,6 @@ npx llmcss audit index.html</code></pre>
         <p class="footer-blurb">High-craft UI library engineered for human developers and autonomous AI agents.</p>
         <span class="footer-cmd mt-4">npx llmcss add footer-multi-col</span>
       </div>
-      <div class="footer-col accordion-item">
-        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false" aria-controls="footer-brand-heavy-product">Product <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
-        <ul class="footer-list accordion-content" id="footer-brand-heavy-product">
-          <li><a href="#">Components</a></li>
-          <li><a href="#">Marketing Sections</a></li>
-          <li><a href="#">SaaS Dashboard</a></li>
-          <li><a href="#">Themes</a></li>
-        </ul>
-      </div>
-      <div class="footer-col accordion-item">
-        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false" aria-controls="footer-brand-heavy-tools">Agentic Tools <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
-        <ul class="footer-list accordion-content" id="footer-brand-heavy-tools">
-          <li><a href="#">MCP Server</a></li>
-          <li><a href="#">CLI Reference</a></li>
-          <li><a href="#">llms.txt Specification</a></li>
-          <li><a href="#">Agent Rules</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 LLMCSS Inc. All rights reserved.</p>
-      <div class="flex gap-4">
-        <a href="#">GitHub</a>
-        <a href="#">Discord</a>
-        <a href="#">X (Twitter)</a>
-      </div>
-    </div>
-  </div>
-</footer>`,
-    },
-    {
-      id: 'two-column',
-      name: 'Two column',
-      description:
-        'Two link columns on the left and a newsletter field taking the remaining half, so the footer ends on a field rather than a list.',
-      guidance:
-        'Sits at the foot of a page where the release notes are the reason to come back. Best when there is something genuinely worth mailing, such as a changelog, and the cadence is predictable. Avoid it when the list is a lead capture in disguise, because a footer field that asks for an email and gives nothing back is read that way. Pairs with announcement-bar at the top pointing at the same changelog.',
-      html: `<footer class="footer">
-  <div class="container">
-    <div class="footer-grid md:grid-cols-2 lg:grid-cols-4">
       <div class="footer-col accordion-item">
         <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false" aria-controls="footer-two-col-product">Product <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
         <ul class="footer-list accordion-content" id="footer-two-col-product">
@@ -671,6 +772,71 @@ npx llmcss audit index.html</code></pre>
     <div class="footer-bottom">
       <p>&copy; 2026 LLMCSS Inc. All rights reserved.</p>
       <div class="flex gap-4">
+        <a href="#">GitHub</a>
+        <a href="#">Discord</a>
+        <a href="#">X (Twitter)</a>
+      </div>
+    </div>
+  </div>
+</footer>`,
+    },
+    {
+      id: 'locale-switcher',
+      name: 'Locale switcher',
+      description:
+        'The bottom bar takes a region select beside the copyright and moves the social links onto the same row, under the hairline the bar already carries.',
+      guidance:
+        'Sits at the foot of a site that ships in more than one region, where currency, tax or support hours differ. Best when the choice genuinely changes the page, because a switcher that only changes a flag is decoration. Avoid it when one region is 95 percent of traffic, since the control then asks every visitor to answer a question that has one answer. Pairs with pricing-tier-cards above, whose figures are the thing the region actually changes.',
+      html: `<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="brand">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          <span>LLMCSS</span>
+        </a>
+        <p class="footer-blurb">High-craft UI library engineered for human developers and autonomous AI agents.</p>
+      </div>
+      <div class="footer-col accordion-item">
+        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false" aria-controls="footer-locale-product">Product <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <ul class="footer-list accordion-content" id="footer-locale-product">
+          <li><a href="#">Components</a></li>
+          <li><a href="#">Marketing Sections</a></li>
+          <li><a href="#">SaaS Dashboard</a></li>
+          <li><a href="#">Themes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col accordion-item">
+        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false" aria-controls="footer-locale-tools">Agentic Tools <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <ul class="footer-list accordion-content" id="footer-locale-tools">
+          <li><a href="#">MCP Server</a></li>
+          <li><a href="#">CLI Reference</a></li>
+          <li><a href="#">llms.txt Specification</a></li>
+          <li><a href="#">Agent Rules</a></li>
+        </ul>
+      </div>
+      <div class="footer-col accordion-item">
+        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false" aria-controls="footer-locale-company">Company <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <ul class="footer-list accordion-content" id="footer-locale-company">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 LLMCSS Inc. All rights reserved.</p>
+      <div class="flex flex-wrap items-center gap-4">
+        <label class="form-label sr-only" for="footer-region">Region and language</label>
+        <select class="select w-auto" id="footer-region">
+          <option selected>Australia, English, AUD</option>
+          <option>United States, English, USD</option>
+          <option>United Kingdom, English, GBP</option>
+          <option>Deutschland, Deutsch, EUR</option>
+          <option>Japan, Japanese, JPY</option>
+        </select>
+        <span class="divider-vertical hidden sm:inline-block" aria-hidden="true"></span>
         <a href="#">GitHub</a>
         <a href="#">Discord</a>
         <a href="#">X (Twitter)</a>
@@ -886,6 +1052,91 @@ npx llmcss audit index.html</code></pre>
   </div>
 </section>`,
     },
+    {
+      id: 'billing-toggle',
+      name: 'Billing toggle',
+      description:
+        'A monthly and annual segmented control sits above the grid and every card grows a second price line, so the annual figure is the one set large and the monthly figure reads as text beneath it.',
+      guidance:
+        'Sits in the middle of a pricing page for a subscription with two billing periods. Best when the annual discount is real and worth naming in money rather than in a percentage. Avoid it when both periods cost the same, because a control that changes nothing is noise. Pairs with faq-section beneath, which is where the proration question belongs. The control is a radio group, so it works with no JavaScript and announces itself, but swapping which figure is large still needs a script or a page rule: the library has no class that repaints a price from a checked input.',
+      html: `<section class="section">
+  <div class="container">
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="section-title">Predictable, transparent pricing</h2>
+      <p class="section-lead mx-auto">Start building for free. Upgrade to Pro when you need advanced marketing and SaaS templates.</p>
+    </div>
+    <div class="flex justify-center mt-8">
+      <div class="segmented" role="group" aria-label="Billing period">
+        <label class="segmented-btn">
+          <input type="radio" class="segmented-input" name="billing-period" value="monthly" />
+          Monthly
+        </label>
+        <label class="segmented-btn">
+          <input type="radio" class="segmented-input" name="billing-period" value="annual" checked />
+          Annual
+        </label>
+      </div>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3 class="pricing-plan">Starter (Free)</h3>
+          <p class="text-sm text-secondary">For individual developers and open source projects.</p>
+          <div class="pricing-amount">
+            <span class="pricing-price">$0</span>
+            <span class="pricing-period">/ month</span>
+          </div>
+          <p class="text-sm text-muted">Free on both billing periods. No card at any point.</p>
+        </div>
+        <ul class="feature-list mt-6 mb-8">
+          <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>40+ core UI primitives</li>
+          <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pure modern CSS token engine</li>
+          <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Light-DOM custom elements</li>
+          <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Public llms.txt and docs</li>
+        </ul>
+        <a class="btn btn-outline w-full" href="#start">Get Started Free</a>
+      </div>
+      <div class="pricing-card pricing-featured">
+        <span class="pricing-ribbon">Most popular</span>
+        <div class="pricing-header">
+          <h3 class="pricing-plan">LLMCSS Pro</h3>
+          <p class="text-sm text-secondary">For agencies, AI builders, and fast-moving teams.</p>
+          <div class="pricing-amount">
+            <span class="pricing-price">$7.50</span>
+            <span class="pricing-period">/ month, billed annually</span>
+          </div>
+          <p class="text-sm text-muted">Save $18 a year. Monthly billing is $9 a month.</p>
+        </div>
+        <ul class="feature-list mt-6 mb-8">
+          <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Everything in Starter</li>
+          <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Themed section templates and page kits</li>
+          <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Skin-specific composed blocks</li>
+          <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Dedicated MCP server integration</li>
+          <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Private CLI token access</li>
+        </ul>
+        <a class="btn btn-primary w-full" href="#pricing">Upgrade to Pro</a>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3 class="pricing-plan">Team / Enterprise</h3>
+          <p class="text-sm text-secondary">For high-scale organizations building agent fleets.</p>
+          <div class="pricing-amount">
+            <span class="pricing-price">Custom</span>
+          </div>
+          <p class="text-sm text-muted">Annual invoicing only, in your currency.</p>
+        </div>
+        <ul class="feature-list mt-6 mb-8">
+          <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Unlimited team seats</li>
+          <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Custom theme archetype design</li>
+          <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Dedicated SLA and support</li>
+          <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Figma tokens sync</li>
+        </ul>
+        <a class="btn btn-outline w-full" href="#sales">Contact Sales</a>
+      </div>
+    </div>
+  </div>
+</section>`,
+    },
   ],
 
   'pricing-matrix-pro': [
@@ -1029,7 +1280,7 @@ npx llmcss audit index.html</code></pre>
       id: 'three-up',
       name: 'Three up',
       description:
-        'Three equal columns under a section heading and lead, with the icon tiles dropped so the titles start the row.',
+        'Three equal columns under a section heading and lead, with the icon tiles dropped so the titles start the row, or kept inline beside each title when the icon carries meaning the word does not.',
       guidance:
         'Sits after the hero and before the pricing. Best when there are exactly three things worth saying and each needs a sentence rather than a word. Avoid it with four or more features, because a three column grid then leaves one orphan on a second row. Pairs with hero-split:media-top above, which shows the product while this explains it.',
       html: `<section class="section">
@@ -1061,7 +1312,7 @@ npx llmcss audit index.html</code></pre>
       description:
         'Each feature becomes a full width row with its media on the left and the copy on the right, and the sides swap on alternate rows from lg.',
       guidance:
-        'Sits in the middle of a long page where each feature deserves its own stripe. Best when the media genuinely differs per feature, such as a different screen or a different snippet each time. Avoid it when the media would be the same picture four times, because the alternation then reads as filler. Pairs with feature-grid:two-column-dense further down for the capabilities that do not need a picture.',
+        'Sits in the middle of a long page where each feature deserves its own stripe. Best when the media genuinely differs per feature, such as a different screen or a different snippet each time. Avoid it when the media would be the same picture four times, because the alternation then reads as filler. Pairs with feature-grid:three-up further down for the capabilities that do not need a picture.',
       html: `<section class="section">
   <div class="container">
     <div class="max-w-2xl">
@@ -1148,42 +1399,125 @@ npx llmcss audit index.html</code></pre>
 </section>`,
     },
     {
-      id: 'two-column-dense',
-      name: 'Two column dense',
+      id: 'tabbed-panels',
+      name: 'Tabbed panels',
       description:
-        'Two columns on a tighter gap, with the icon and the title sharing one line so each cell is a heading row and a sentence.',
+        'The grid becomes a tab row, and the selected tab opens one panel that pairs a short checklist with a product panel beside it instead of showing all four features at once.',
       guidance:
-        'Sits low on a page, or inside a panel, where the features are supporting detail rather than the headline argument. Best for six to ten short capabilities that a reader scans rather than reads. Avoid it as the first feature block on a page, because dense pairs at the top look like a specification sheet. Pairs with feature-grid:three-up above it, which carries the three that matter most.',
-      html: `<div class="feature-grid grid-cols-1 md:grid-cols-2 gap-4">
-  <div class="feature-item">
-    <div class="flex items-center gap-3">
-      <span class="feature-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span>
-      <h3 class="feature-title">Layered CSS</h3>
+        'Sits after the hero on a page where each feature needs a picture and four pictures would make the page twice as long. Best when the four features are peers, because a reader only ever sees one and will not compare them. Avoid it when the point is breadth, since three of the four are hidden and a scanner counts one. Pairs with feature-grid:three-up further down for the capabilities that do not earn a panel, and the selected tab is marked by text colour and an underline rather than a fill.',
+      html: `<section class="section">
+  <div class="container">
+    <div class="max-w-2xl">
+      <h2 class="section-title">Built on the parts of CSS that already work</h2>
+      <p class="section-lead">Layers, container queries and custom properties do the work. The library names them so an agent can compose without guessing.</p>
     </div>
-    <p class="feature-text">Reset, tokens, base, components, utilities. Override anything without a specificity fight.</p>
-  </div>
-  <div class="feature-item">
-    <div class="flex items-center gap-3">
-      <span class="feature-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg></span>
-      <h3 class="feature-title">Container queries</h3>
+    <div class="tabs mt-10">
+      <div class="tabs-list snap-x" role="tablist" aria-label="What the library does">
+        <button class="tab is-active snap-start" role="tab" id="feat-tab-layers" aria-controls="feat-panel-layers" aria-selected="true" data-ai-tab="#feat-panel-layers">Layered CSS</button>
+        <button class="tab snap-start" role="tab" id="feat-tab-container" aria-controls="feat-panel-container" aria-selected="false" tabindex="-1" data-ai-tab="#feat-panel-container">Container queries</button>
+        <button class="tab snap-start" role="tab" id="feat-tab-cli" aria-controls="feat-panel-cli" aria-selected="false" tabindex="-1" data-ai-tab="#feat-panel-cli">Validated by the CLI</button>
+        <button class="tab snap-start" role="tab" id="feat-tab-runtime" aria-controls="feat-panel-runtime" aria-selected="false" tabindex="-1" data-ai-tab="#feat-panel-runtime">Zero runtime</button>
+      </div>
+      <div class="tab-panel is-active" id="feat-panel-layers" role="tabpanel" aria-labelledby="feat-tab-layers">
+        <div class="cq">
+          <div class="grid grid-cols-1 cq-md:grid-cols-2 gap-6 items-start">
+            <ul class="feature-list">
+              <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Five named layers, declared in one line</li>
+              <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Your own CSS outranks every component rule</li>
+              <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>No specificity fight and no important</li>
+            </ul>
+            <div class="hero-visual p-6">
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-xs font-mono text-muted">index.css</span>
+                <span class="text-xs text-muted">cascade order</span>
+              </div>
+              <div class="flex flex-col">
+                <div class="flex justify-between items-center text-sm border-t pt-2 pb-2"><span class="font-mono">reset</span><span class="text-muted">first</span></div>
+                <div class="flex justify-between items-center text-sm border-t pt-2 pb-2"><span class="font-mono">tokens</span><span class="text-muted">themes and skins</span></div>
+                <div class="flex justify-between items-center text-sm border-t pt-2 pb-2"><span class="font-mono">components</span><span class="text-muted">card, btn, table</span></div>
+                <div class="flex justify-between items-center text-sm border-t pt-2 pb-2"><span class="font-mono">utilities</span><span class="text-muted">last, wins</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-panel" id="feat-panel-container" role="tabpanel" aria-labelledby="feat-tab-container">
+        <div class="cq">
+          <div class="grid grid-cols-1 cq-md:grid-cols-2 gap-6 items-start">
+            <ul class="feature-list">
+              <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Widgets read the panel, not the viewport</li>
+              <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>One widget works in a sidebar and full bleed</li>
+              <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Four container breakpoints, same names as the viewport set</li>
+            </ul>
+            <div class="hero-visual p-6">
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-xs font-mono text-muted">revenue-widget</span>
+                <span class="text-xs text-muted flex items-center gap-2"><span class="pip pip-ok"></span>Live stream</span>
+              </div>
+              <div class="grid grid-cols-1 cq-md:grid-cols-2 gap-4">
+                <div class="kpi-card">
+                  <span class="kpi-label">Monthly Recurring Revenue</span>
+                  <span class="kpi-value">$124,500</span>
+                  <span class="kpi-trend is-up">Up 14.2 percent on last month</span>
+                </div>
+                <div class="kpi-card">
+                  <span class="kpi-label">Weekly Active Users</span>
+                  <span class="kpi-value">48,290</span>
+                  <span class="kpi-trend is-up">Up 24.8 percent on last week</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-panel" id="feat-panel-cli" role="tabpanel" aria-labelledby="feat-tab-cli">
+        <div class="cq">
+          <div class="grid grid-cols-1 cq-md:grid-cols-2 gap-6 items-start">
+            <ul class="feature-list">
+              <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Every class checked against the real stylesheet</li>
+              <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>A name that does not exist never reaches review</li>
+              <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>The anti-slop audit runs in the same pass</li>
+            </ul>
+            <div class="hero-visual p-6">
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-xs font-mono text-muted">npx llmcss validate --strict</span>
+                <span class="text-xs text-muted">exit 0</span>
+              </div>
+              <div class="flex flex-col gap-3">
+                <div class="flex items-center gap-2 text-sm"><span class="pip pip-ok"></span>index.html, no unknown classes</div>
+                <div class="flex items-center gap-2 text-sm"><span class="pip pip-ok"></span>pricing.html, no unknown classes</div>
+                <div class="flex items-center gap-2 text-sm"><span class="pip pip-ok"></span>docs/quickstart.html, no unknown classes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-panel" id="feat-panel-runtime" role="tabpanel" aria-labelledby="feat-tab-runtime">
+        <div class="cq">
+          <div class="grid grid-cols-1 cq-md:grid-cols-2 gap-6 items-start">
+            <ul class="feature-list">
+              <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>One link tag, no build step</li>
+              <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Accordions, tabs and carousels run on CSS alone</li>
+              <li><svg class="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Add the script only for modals and drawers</li>
+            </ul>
+            <div class="hero-visual p-6">
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-xs font-mono text-muted">what needs the script</span>
+                <span class="text-xs text-muted">optional</span>
+              </div>
+              <div class="flex flex-col">
+                <div class="flex justify-between items-center text-sm border-t pt-2 pb-2"><span>Accordion</span><span class="text-muted">CSS only</span></div>
+                <div class="flex justify-between items-center text-sm border-t pt-2 pb-2"><span>Carousel</span><span class="text-muted">CSS only</span></div>
+                <div class="flex justify-between items-center text-sm border-t pt-2 pb-2"><span>Modal</span><span class="text-muted">needs the script</span></div>
+                <div class="flex justify-between items-center text-sm border-t pt-2 pb-2"><span>Drawer</span><span class="text-muted">needs the script</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <p class="feature-text">Widgets adapt to the panel they sit in, not the viewport.</p>
   </div>
-  <div class="feature-item">
-    <div class="flex items-center gap-3">
-      <span class="feature-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
-      <h3 class="feature-title">Validated by the CLI</h3>
-    </div>
-    <p class="feature-text">Every class you emit is checked against the real stylesheet before you ship.</p>
-  </div>
-  <div class="feature-item">
-    <div class="flex items-center gap-3">
-      <span class="feature-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
-      <h3 class="feature-title">Zero runtime by default</h3>
-    </div>
-    <p class="feature-text">Add the runtime only when you need modals, drawers, or tabs.</p>
-  </div>
-</div>`,
+</section>`,
     },
   ],
 
@@ -1280,6 +1614,26 @@ npx llmcss audit index.html</code></pre>
   </div>
 </section>`,
     },
+    {
+      id: 'with-logos',
+      name: 'With logos',
+      description:
+        'The action pair moves up and a static customer rail takes the foot of the band, under a hairline, so the close carries its own proof.',
+      guidance:
+        'Sits immediately above the footer on a page that has no other social proof block. Best when the names are recognisable to the buyer you are closing, because a rail of unknown logos adds height and nothing else. Avoid it when a testimonial section already carries the same six names higher up the page, since repeating them halves what they are worth. Pairs with testimonial-grid:logo-attributed only if you drop this rail, and the rail stays still, which is law 9.',
+      html: `<div class="cta-band">
+  <h2 class="section-title">Start with the free tier</h2>
+  <p class="section-lead mx-auto">No card required. Upgrade when you need SSO, audit export, or more than three projects.</p>
+  <div class="cta-actions">
+    <a href="#" class="btn btn-primary btn-lg">Create account</a>
+    <a href="#" class="btn btn-outline btn-lg">Talk to sales</a>
+  </div>
+  <hr class="divider mt-10" />
+  <ul class="logo-rail list-none mt-6" aria-label="Teams already building on LLMCSS">
+${logoRailItems('li')}
+  </ul>
+</div>`,
+    },
   ],
 
   'testimonial-grid': [
@@ -1357,6 +1711,40 @@ npx llmcss audit index.html</code></pre>
           <span class="logo-rail justify-start">${logoRailItem('fieldnote')}</span>
         </figcaption>
       </figure>
+    </div>
+  </div>
+</section>`,
+    },
+    {
+      id: 'scroll-rail',
+      name: 'Scroll rail',
+      description:
+        'The three cards leave the grid and become one horizontally snapping rail, with prev and next sitting below it as real buttons rather than floating over a card.',
+      guidance:
+        'Sits mid-page when the quotes are long enough that three columns would set them in a narrow measure, or on a phone where a grid is a stack anyway. Best when a visitor reading one quote is enough, since the second and third are a swipe away. Avoid it when you need all three seen at once, because a rail shows one and a peek. It never scrolls on its own, which is law 9, and the controls stay under the rail so nothing floats over the text.',
+      html: `<section class="section">
+  <div class="container">
+    <div class="carousel carousel-peek snap-x" tabindex="0" role="group" aria-label="What teams say">
+      <figure class="testimonial-card snap-start snap-always">
+        <blockquote class="testimonial-quote">We replaced 4,000 lines of utility soup with the registry components and our agent stopped inventing class names.</blockquote>
+        <figcaption class="testimonial-author"><strong>Priya Natarajan</strong><span class="text-xs text-muted">Platform lead, Lattice Labs</span></figcaption>
+      </figure>
+      <figure class="testimonial-card snap-start snap-always">
+        <blockquote class="testimonial-quote">The anti-slop audit caught a pulsing status dot in a PR before a human ever looked at it.</blockquote>
+        <figcaption class="testimonial-author"><strong>Tom Okafor</strong><span class="text-xs text-muted">Design engineer, Meridian</span></figcaption>
+      </figure>
+      <figure class="testimonial-card snap-start snap-always">
+        <blockquote class="testimonial-quote">One link tag in a Rails layout. That was the whole migration.</blockquote>
+        <figcaption class="testimonial-author"><strong>Sofia Lindqvist</strong><span class="text-xs text-muted">CTO, Fieldnote</span></figcaption>
+      </figure>
+    </div>
+    <div class="carousel-controls">
+      <button type="button" class="btn btn-outline btn-icon" aria-label="Previous quote">
+        <svg class="rotate-90" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <button type="button" class="btn btn-outline btn-icon" aria-label="Next quote">
+        <svg class="-rotate-90" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
     </div>
   </div>
 </section>`,
@@ -1468,6 +1856,37 @@ npx llmcss audit index.html</code></pre>
   </div>
 </section>`,
     },
+    {
+      id: 'search-filtered',
+      name: 'Search filtered',
+      description:
+        'A search field takes the row above the accordion and a plain count of what matched sits under it, so the list is a result set rather than the whole set.',
+      guidance:
+        'Sits on a support or documentation page carrying more questions than anyone will read. Best from about fifteen questions up, where a reader arrives with a phrase in mind rather than a topic. Avoid it under ten questions, because a search field over a list you can see is furniture. The count is plain muted text in a live region, never a chip, and the demo shows a static result for one query: the filtering itself is yours to wire.',
+      html: `<section class="section">
+  <div class="container max-w-2xl">
+    <h2 class="section-title">Questions</h2>
+    <div class="form-group mt-6">
+      <label class="form-label sr-only" for="faq-search">Search the questions</label>
+      <div class="input-group">
+        <span class="input-addon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
+        <input id="faq-search" class="input" type="search" value="billing" placeholder="Search the questions" />
+      </div>
+      <p class="text-sm text-muted" role="status" aria-live="polite">Showing 2 of 14 questions for billing</p>
+    </div>
+    <div class="accordion">
+      <div class="accordion-item">
+        <h3><button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-search-cancel">What happens to billing when I cancel Pro?<svg class="accordion-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h3>
+        <div class="accordion-content" id="faq-search-cancel">Billing stops at the end of the period you already paid for and the token stops working on the same day. CSS and HTML you already copied stay yours.</div>
+      </div>
+      <div class="accordion-item">
+        <h3><button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-search-seats">Is billing per seat or per organisation?<svg class="accordion-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h3>
+        <div class="accordion-content" id="faq-search-seats">Pro is billed per developer, one token each. Team and Enterprise are billed per organisation and cover unlimited seats.</div>
+      </div>
+    </div>
+  </div>
+</section>`,
+    },
   ],
 
   'stats-band': [
@@ -1567,6 +1986,36 @@ npx llmcss audit index.html</code></pre>
   <div class="stat border-t pt-6">
     <div class="stat-value">4 h</div>
     <div class="stat-label">First response on a Pro support ticket</div>
+  </div>
+</div>`,
+    },
+    {
+      id: 'with-source',
+      name: 'With source',
+      description:
+        'Each figure hangs a dated source line under its label, so the band carries where every number came from instead of asserting it.',
+      guidance:
+        'Sits on a page making a measurable claim, which on a public site is every page. Best when the source is a file, a manifest or a report a reader can open, because a source line that names nothing is worse than none. Avoid it when the figures are marketing rounding, since the citation then draws attention to the fact that nothing backs them. Pairs with faq-section beneath, and the primary figure keeps its weight so the row is not four identical metrics, which is law 8.',
+      html: `<div class="stats-band grid-cols-1 md:grid-cols-4">
+  <div class="stat is-primary">
+    <div class="stat-value">50 KB</div>
+    <div class="stat-label">Stylesheet budget, gzipped</div>
+    <div class="text-sm text-muted mt-2">Source: build budget check on dist/llmcss.css, llmcss.io, September 2026</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">12</div>
+    <div class="stat-label">Anti-slop laws the catalog is held to</div>
+    <div class="text-sm text-muted mt-2">Source: the published law list, llmcss.io, September 2026</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">122</div>
+    <div class="stat-label">Components in the public catalog</div>
+    <div class="text-sm text-muted mt-2">Source: the public component manifest, llmcss.io, September 2026</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">0</div>
+    <div class="stat-label">Runtime dependencies</div>
+    <div class="text-sm text-muted mt-2">Source: the published package manifest, llmcss.io, September 2026</div>
   </div>
 </div>`,
     },
@@ -1713,6 +2162,46 @@ ${logoRailItems('li')}
     <span class="team-name mt-0 text-sm">Tom Okafor</span>
   </li>
 </ul>`,
+    },
+    {
+      id: 'with-bio',
+      name: 'With bio',
+      description:
+        'Each person becomes a two column row, the square portrait on the left and the name, the role and two sentences of biography on the right, instead of a caption under a photo.',
+      guidance:
+        'Sits on an about or investors page where what each person did matters as much as that they exist. Best for a team of three to six, since the rows are tall and ten of them is a scroll. Avoid it when the biographies would be one line of job title restated, because the row then holds the same words twice. Pairs with team-grid:compact-avatars lower down for everyone the rows have no room for.',
+      html: `<div class="max-w-2xl">
+  <div class="team-member flex-row gap-5 border-t pt-6 pb-6">
+    <div class="w-28 shrink-0">
+      <img class="team-photo" src="https://images.unsplash.com/photo-1770396529113-ba031cbf0cfa?w=480&h=480&auto=format&fit=crop&q=80" alt="Amara Osei" />
+    </div>
+    <div class="min-w-0">
+      <div class="team-name mt-0">Amara Osei</div>
+      <div class="team-role">Founder</div>
+      <p class="text-sm text-secondary mt-2">Amara wrote the first version of the anti-slop laws after reviewing three hundred generated pages in a fortnight and finding the same eight tells in all of them. She now spends most of her week on the audit, which is the part of the library that says no.</p>
+    </div>
+  </div>
+  <div class="team-member flex-row gap-5 border-t pt-6 pb-6">
+    <div class="w-28 shrink-0">
+      <img class="team-photo" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=480&h=480&auto=format&fit=crop&q=80" alt="Jonas Berg" />
+    </div>
+    <div class="min-w-0">
+      <div class="team-name mt-0">Jonas Berg</div>
+      <div class="team-role">Engineering</div>
+      <p class="text-sm text-secondary mt-2">Jonas owns the layer order, the utility generator and the gzip budget, and he is the reason the stylesheet is one file with no build step. He spent six years on design systems that shipped as npm packages and wanted one that shipped as a link tag.</p>
+    </div>
+  </div>
+  <div class="team-member flex-row gap-5 border-t pt-6 pb-6">
+    <div class="w-28 shrink-0">
+      <img class="team-photo" src="https://images.unsplash.com/photo-1582639849680-e2e89674e57b?w=480&h=480&auto=format&fit=crop&q=80" alt="Hana Sato" />
+    </div>
+    <div class="min-w-0">
+      <div class="team-name mt-0">Hana Sato</div>
+      <div class="team-role">Design</div>
+      <p class="text-sm text-secondary mt-2">Hana draws the tokens, the five skins and every icon in the shared set, so a chevron is one shape everywhere in the catalog. She tests each skin in both themes at 390 pixels before it ships, because that is where spacing decisions are actually made.</p>
+    </div>
+  </div>
+</div>`,
     },
   ],
 

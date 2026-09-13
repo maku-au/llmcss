@@ -10,5 +10,5 @@
     "history",
     "activity"
   ],
-  "html": "<ol class=\"timeline\">\n  <li class=\"timeline-item\">\n    <div class=\"timeline-title\">Registry published</div>\n    <div class=\"timeline-meta\">origin · 2m ago</div>\n  </li>\n  <li class=\"timeline-item\">\n    <div class=\"timeline-title\">Token issued</div>\n    <div class=\"timeline-meta\">polar webhook · 18m ago</div>\n  </li>\n  <li class=\"timeline-item\">\n    <div class=\"timeline-title\">Pro component added</div>\n    <div class=\"timeline-meta\">tool-trace · yesterday</div>\n  </li>\n</ol>"
+  "html": "<ol class=\"timeline\">\n  <li class=\"timeline-item\">\n    <div class=\"timeline-title\">Registry published</div>\n    <div class=\"timeline-meta\">origin<span class=\"divider-vertical\" aria-hidden=\"true\"></span>2m ago</div>\n  </li>\n  <li class=\"timeline-item\">\n    <div class=\"timeline-title\">Token issued</div>\n    <div class=\"timeline-meta\">polar webhook<span class=\"divider-vertical\" aria-hidden=\"true\"></span>18m ago</div>\n  </li>\n  <li class=\"timeline-item\">\n    <div class=\"timeline-title\">Pro component added</div>\n    <div class=\"timeline-meta\">tool-trace<span class=\"divider-vertical\" aria-hidden=\"true\"></span>yesterday</div>\n  </li>\n</ol>"
 }

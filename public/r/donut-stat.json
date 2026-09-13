@@ -11,5 +11,5 @@
     "progress",
     "metric"
   ],
-  "html": "<div class=\"donut-wrap\">\n  <div class=\"donut\" aria-hidden=\"true\"><div class=\"donut-hole\">68%</div></div>\n  <div>\n    <div class=\"font-semibold\">Job success</div>\n    <p class=\"text-sm text-secondary\" style=\"margin: 0.25rem 0 0;\">1,024 of 1,504 runs finished clean this week.</p>\n  </div>\n</div>"
+  "html": "<div class=\"donut-wrap\">\n  <div class=\"donut\" aria-hidden=\"true\"><div class=\"donut-hole\">68%</div></div>\n  <div>\n    <div class=\"font-semibold\">Job success</div>\n    <p class=\"text-sm text-secondary m-0 mt-1\">1,024 of 1,504 runs finished clean this week.</p>\n  </div>\n</div>"
 }

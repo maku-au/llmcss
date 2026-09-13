@@ -178,7 +178,7 @@
                 border-color var(--ai-duration-fast) var(--ai-ease-out);
   }
   .calendar-day:hover {
-    background-color: var(--ai-surface-1);
+    background-color: var(--ai-surface-hover);
   }
   .calendar-day:focus-visible {
     outline: none;

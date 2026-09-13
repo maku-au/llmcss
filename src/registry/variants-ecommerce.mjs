@@ -146,6 +146,115 @@ export const ecommerceVariants = {
   </div>
 </div>`,
     },
+    {
+      id: 'with-swatches',
+      name: 'With swatches',
+      description:
+        'A colour swatch row and an ear pad row move in between the title and the price, so the choice is made on the tile instead of on the product page.',
+      guidance:
+        'Use on a listing where the same product ships in several colourways and the reader has a preference before they have a product: apparel, accessories, anything with a finish. Do not use it when the options run past four, because a fifth swatch wraps and the tile stops being one glance. Both rows are radios, so the choice survives with no JavaScript, each swatch clears 44px on both axes, and the selected one is carried by a ring and the name under the row rather than by colour alone, which is law 12 applied to a control that has no text of its own.',
+      html: `<article class="product-card max-w-xs">
+  <div class="product-media">
+    <span class="badge badge-solid product-badge-float">NEW ARRIVAL</span>
+    <img class="product-img" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80" alt="Minimalist Studio Headphones" />
+  </div>
+  <div class="product-body gap-3">
+    <h4 class="product-title">Aether Precision Wireless Studio Headphones</h4>
+    <span class="product-category">Audio &amp; Acoustics</span>
+
+    <fieldset class="border-0 p-0 m-0">
+      <legend class="form-label p-0">Colour</legend>
+      <div class="radio-group radio-group-horizontal flex-wrap gap-2 mt-1">
+        <label class="radio size-11 justify-center rounded-full ring-accent" for="pc-colour-slate">
+          <input id="pc-colour-slate" class="radio-input size-8 bg-accent" data-ai-accent="steel" type="radio" name="pc-swatch-colour" checked />
+          <span class="sr-only">Slate, selected</span>
+        </label>
+        <label class="radio size-11 justify-center rounded-full" for="pc-colour-teal">
+          <input id="pc-colour-teal" class="radio-input size-8 bg-accent" data-ai-accent="teal" type="radio" name="pc-swatch-colour" />
+          <span class="sr-only">Deep Teal</span>
+        </label>
+        <label class="radio size-11 justify-center rounded-full" for="pc-colour-amber">
+          <input id="pc-colour-amber" class="radio-input size-8 bg-accent" data-ai-accent="amber" type="radio" name="pc-swatch-colour" />
+          <span class="sr-only">Amber</span>
+        </label>
+      </div>
+      <p class="text-sm text-secondary mt-1">Colour: Slate</p>
+    </fieldset>
+
+    <fieldset class="border-0 p-0 m-0">
+      <legend class="form-label p-0">Ear pad</legend>
+      <div class="segmented segmented-sm mt-1">
+        <label class="segmented-btn" for="pc-pad-small">
+          <input id="pc-pad-small" class="segmented-input" type="radio" name="pc-swatch-pad" /> Small
+        </label>
+        <label class="segmented-btn" for="pc-pad-standard">
+          <input id="pc-pad-standard" class="segmented-input" type="radio" name="pc-swatch-pad" checked /> Standard
+        </label>
+        <label class="segmented-btn" for="pc-pad-deep">
+          <input id="pc-pad-deep" class="segmented-input" type="radio" name="pc-swatch-pad" /> Deep
+        </label>
+      </div>
+    </fieldset>
+
+    <div class="product-price-row">
+      <span class="product-price">$349.00</span>
+      <span class="product-compare-price">$420.00</span>
+    </div>
+    <button type="button" class="btn btn-primary btn-sm w-full">Add to cart</button>
+  </div>
+</article>`,
+    },
+    {
+      id: 'gallery-thumbs',
+      name: 'Gallery with thumbnails',
+      description:
+        'The single photograph becomes a snapping gallery with a thumbnail rail under it, and the buy column moves beside the gallery once the container is wide enough.',
+      guidance:
+        'Use at the top of a product page for anything a reader inspects before buying, where one photograph answers a third of the questions and three answer most of them. Do not use it in a listing grid: a gallery in a tile asks the reader to shop inside a 300px window. Nothing advances on its own, which is law 9 for images, and each thumbnail is a link to its own slide, so the rail works with the scroll snapping alone and needs no script. The two column split comes from a container query rather than a breakpoint, so the same markup works in a page, a rail or a modal.',
+      html: `<div class="cq max-w-3xl">
+  <div class="grid grid-cols-1 cq-md:grid-cols-2 gap-6">
+    <div class="flex flex-col gap-3">
+      <div class="carousel carousel-peek snap-x" tabindex="0" role="group" aria-label="Aether Precision photographs">
+        <figure class="product-media snap-start m-0 rounded-lg" id="pc-shot-desk">
+          <img class="product-img" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80" alt="Aether Precision headphones resting on a studio desk" />
+        </figure>
+        <figure class="product-media snap-start m-0 rounded-lg" id="pc-shot-front">
+          <img class="product-img" src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&auto=format&fit=crop&q=80" alt="Aether Precision headphones seen from the front, headband extended" />
+        </figure>
+        <figure class="product-media snap-start m-0 rounded-lg" id="pc-shot-earcup">
+          <img class="product-img" src="https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600&auto=format&fit=crop&q=80" alt="Close view of the earcup, hinge and cable entry" />
+        </figure>
+      </div>
+      <div class="flex items-center gap-2" role="group" aria-label="Jump to a photograph">
+        <a class="btn btn-ghost btn-icon size-11 p-0" href="#pc-shot-desk" aria-label="Photograph 1, on a studio desk">
+          <span class="avatar"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=120&h=120&auto=format&fit=crop&q=80" alt="" /></span>
+        </a>
+        <a class="btn btn-ghost btn-icon size-11 p-0" href="#pc-shot-front" aria-label="Photograph 2, front view">
+          <span class="avatar"><img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=120&h=120&auto=format&fit=crop&q=80" alt="" /></span>
+        </a>
+        <a class="btn btn-ghost btn-icon size-11 p-0" href="#pc-shot-earcup" aria-label="Photograph 3, earcup detail">
+          <span class="avatar"><img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?w=120&h=120&auto=format&fit=crop&q=80" alt="" /></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-1">
+        <h3 class="product-title text-xl">Aether Precision Wireless Studio Headphones</h3>
+        <span class="product-category">Audio &amp; Acoustics</span>
+      </div>
+      <div class="product-price-row mt-0">
+        <span class="product-price text-2xl">$349.00</span>
+        <span class="product-compare-price">$420.00</span>
+        <span class="badge badge-outline">Save $71</span>
+      </div>
+      <p class="text-sm text-secondary">Closed back, 40 mm beryllium coated drivers, 38 hour battery and a detachable balanced cable. Ships from the Alexandria warehouse.</p>
+      <button type="button" class="btn btn-primary w-full">Add to cart</button>
+      <p class="text-sm text-muted">Three photographs. Swipe the gallery or pick a thumbnail; it never advances on its own.</p>
+    </div>
+  </div>
+</div>`,
+    },
   ],
 
   /* ==========================================================================
@@ -324,6 +433,42 @@ export const ecommerceVariants = {
   </div>
 </div>`,
     },
+    {
+      id: 'category-preview',
+      name: 'Category preview',
+      description:
+        'One category tile spanning two columns sits above the product rows, with its own photograph and count, so the grid opens on a collection instead of on a product.',
+      guidance:
+        'Use on a landing page or a department page where the reader has not chosen a category yet and the row below is a sample rather than the whole catalogue. Do not use it on the collection page the tile leads to, because a category tile inside its own category sends the reader in a circle. The tile is one link end to end rather than a card with a button inside it, and the count is plain text under the description rather than a badge over the heading, which is the eyebrow law 5 exists to stop.',
+      html: `<div class="product-grid grid-cols-2 md:grid-cols-4">
+  <a class="product-card col-span-2 sm:flex-row no-underline" href="#collection-desk">
+    <div class="product-media w-full sm:w-1/2 shrink-0">
+      <img class="product-img" src="https://images.unsplash.com/photo-1629317297639-9201108cca3c?w=600&auto=format&fit=crop&q=80" alt="A desk mat, notebook and ruler laid out on a working surface" />
+    </div>
+    <div class="product-body">
+      <h3 class="product-title text-lg">The desk collection</h3>
+      <p class="text-sm text-secondary">Everything that lives on the working surface: mats, rulers, notebooks and the stands that hold them.</p>
+      <p class="text-sm font-semibold text-accent mt-auto">Browse 9 products</p>
+    </div>
+  </a>
+  <article class="product-card">
+    <div class="product-media"><img class="product-img" src="https://images.unsplash.com/photo-1565999741380-5f78494ebf64?w=600&auto=format&fit=crop&q=80" alt="Field Notebook" /></div>
+    <div class="product-body">
+      <div class="level"><h3 class="product-title">Field Notebook</h3><span class="badge badge-sale badge-sm">Sale</span></div>
+      <p class="product-price"><span>$18</span> <s class="product-compare-price">$24</s></p>
+      <button type="button" class="btn btn-primary btn-sm w-full">Add to cart</button>
+    </div>
+  </article>
+  <article class="product-card">
+    <div class="product-media"><img class="product-img" src="https://images.unsplash.com/photo-1502043150060-b01aa3030556?w=600&auto=format&fit=crop&q=80" alt="Wooden Ruler" /></div>
+    <div class="product-body">
+      <h3 class="product-title">Wooden Ruler</h3>
+      <p class="product-price">$32</p>
+      <button type="button" class="btn btn-primary btn-sm w-full">Add to cart</button>
+    </div>
+  </article>
+</div>`,
+    },
   ],
 
   /* ==========================================================================
@@ -498,6 +643,75 @@ export const ecommerceVariants = {
         <span class="font-display font-bold text-xl tabular">$367.00</span>
       </div>
       <button type="button" class="btn btn-primary w-full btn-lg">Checkout Now</button>
+    </div>
+  </div>
+</div>`,
+    },
+    {
+      id: 'empty-bag',
+      name: 'Empty bag',
+      description:
+        'The line items and the totals are replaced by an empty state with three suggested products under it, and the footer action becomes a way back to the shop.',
+      guidance:
+        'Use as the zero state of the same drawer, so an empty bag opened by accident still offers the reader somewhere to go. Do not fill it with the last thing the reader looked at unless you know it is still in stock, because a suggestion that cannot be bought is worse than an empty drawer. The suggestions are hairline separated rows on the drawer surface rather than three little cards, which is law 1, and the checkout button is gone instead of disabled: there is nothing to check out.',
+      html: `<button type="button" class="btn btn-primary" data-ai-toggle="drawer" data-ai-target="#cart-empty-bag">
+  Open Cart Drawer
+</button>
+
+<div id="cart-empty-bag" class="drawer">
+  <div class="drawer-backdrop" data-ai-dismiss="drawer"></div>
+  <div class="drawer-panel">
+    <div class="drawer-header">
+      <h3 class="drawer-title">Shopping Bag <span class="text-sm text-muted font-normal">0 items</span></h3>
+      <button type="button" class="modal-close" data-ai-dismiss="drawer" aria-label="Close shopping bag">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <div class="empty-state py-8">
+        <svg class="empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5.5 7.5h13l1 12.5h-15z" />
+          <path d="M9 7.5a3 3 0 0 1 6 0" />
+        </svg>
+        <p class="empty-state-title">Your bag is empty</p>
+        <p class="empty-state-description">Nothing has been added yet. These three are the ones people come back for.</p>
+      </div>
+
+      <hr class="divider" />
+
+      <p class="text-sm font-semibold">Popular this week</p>
+      <div class="flex flex-col mt-2">
+        <div class="flex items-center gap-3 py-3">
+          <img class="cart-thumb" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=150&auto=format&fit=crop&q=80" alt="Aether Precision Studio headphones" />
+          <div class="cart-details min-w-0">
+            <span class="cart-name truncate">Aether Precision Studio</span>
+            <span class="cart-subtext truncate">Matte Obsidian / Bluetooth 5.4</span>
+            <span class="font-bold text-sm tabular">$349.00</span>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm">Add</button>
+        </div>
+        <hr class="divider" />
+        <div class="flex items-center gap-3 py-3">
+          <img class="cart-thumb" src="https://images.unsplash.com/photo-1565999741380-5f78494ebf64?w=150&auto=format&fit=crop&q=80" alt="Field Notebook" />
+          <div class="cart-details min-w-0">
+            <span class="cart-name truncate">Field Notebook</span>
+            <span class="cart-subtext truncate">Sewn signatures / 90 gsm</span>
+            <span class="font-bold text-sm tabular">$18.00</span>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm">Add</button>
+        </div>
+        <hr class="divider" />
+        <div class="flex items-center gap-3 py-3">
+          <img class="cart-thumb" src="https://images.unsplash.com/photo-1502043150060-b01aa3030556?w=150&auto=format&fit=crop&q=80" alt="Wooden Ruler" />
+          <div class="cart-details min-w-0">
+            <span class="cart-name truncate">Wooden Ruler</span>
+            <span class="cart-subtext truncate">Beech / 300 mm</span>
+            <span class="font-bold text-sm tabular">$32.00</span>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm">Add</button>
+        </div>
+      </div>
+    </div>
+    <div class="drawer-footer">
+      <button type="button" class="btn btn-outline w-full btn-lg" data-ai-dismiss="drawer">Keep shopping</button>
     </div>
   </div>
 </div>`,
@@ -754,77 +968,110 @@ export const ecommerceVariants = {
 </div>`,
     },
     {
-      id: 'promo-first',
-      name: 'Promo first',
+      id: 'with-address-form',
+      name: 'With address form',
       description:
-        'The promo field moves above the totals ledger, so the code is entered before the numbers it changes rather than under them.',
+        'The summary moves into the second column of a two column checkout, with the delivery form beside it and the applied promo code shown as a credit line in the ledger.',
       guidance:
-        'Use when a discount is part of the offer and most readers arrive holding a code: a campaign landing page, a member store, a referral flow. Do not use it on a store where codes are rare, because an empty promo field above the total is an invitation to leave and go looking for one. The applied discount stays in the ledger as a credit row so the arithmetic still reads top to bottom, and the hint under the field names the code that is already on.',
-      html: `<div class="checkout max-w-sm">
-  <h3 class="checkout-title">Order summary</h3>
-
-  <ul class="checkout-items">
-    <li class="checkout-item">
-      <span class="checkout-thumb" aria-hidden="true">AD</span>
-      <div class="checkout-body">
-        <div class="checkout-name">Atlas standing desk, walnut</div>
-        <div class="checkout-meta">1600 by 800 mm, qty 1</div>
+        'Use as the whole checkout step on a page wide enough for two columns, so the reader fills in an address with the total in view instead of scrolling between them. Do not use it inside a narrow rail: below the container query the form stacks above the summary and the reader is back to scrolling. The form sits on the page surface rather than in a second box beside the summary, which is law 1, every field clears 44px on both axes, and the code the reader already applied stays in the ledger as a credit row so the arithmetic still reads top to bottom.',
+      html: `<div class="cq">
+  <div class="grid grid-cols-1 cq-md:grid-cols-2 gap-8">
+    <section aria-label="Delivery address">
+      <h2 class="text-lg font-semibold">Delivery address</h2>
+      <div class="mt-4">
+        <div class="form-group">
+          <label class="form-label" for="co-addr-name">Full name</label>
+          <input id="co-addr-name" class="input h-11" type="text" autocomplete="name" value="Priya Raghavan" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="co-addr-street">Street address</label>
+          <input id="co-addr-street" class="input h-11" type="text" autocomplete="street-address" value="41 Wentworth Avenue" />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="form-group">
+            <label class="form-label" for="co-addr-suburb">Suburb</label>
+            <input id="co-addr-suburb" class="input h-11" type="text" autocomplete="address-level2" value="Surry Hills" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="co-addr-post">Postcode</label>
+            <input id="co-addr-post" class="input h-11" type="text" inputmode="numeric" autocomplete="postal-code" value="2010" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="co-addr-note">Delivery note</label>
+          <input id="co-addr-note" class="input h-11" type="text" placeholder="Loading dock is off Hutchinson Lane" />
+          <span class="form-hint">The freight crew calls 30 minutes before they arrive.</span>
+        </div>
       </div>
-      <span class="checkout-price">$640.00</span>
-    </li>
-    <li class="checkout-item">
-      <span class="checkout-thumb" aria-hidden="true">CC</span>
-      <div class="checkout-body">
-        <div class="checkout-name">Caliper task chair</div>
-        <div class="checkout-meta">Graphite mesh, qty 2</div>
+    </section>
+
+    <div class="checkout">
+      <h3 class="checkout-title">Order summary</h3>
+
+      <ul class="checkout-items">
+        <li class="checkout-item">
+          <span class="checkout-thumb" aria-hidden="true">AD</span>
+          <div class="checkout-body">
+            <div class="checkout-name">Atlas standing desk, walnut</div>
+            <div class="checkout-meta">1600 by 800 mm, qty 1</div>
+          </div>
+          <span class="checkout-price">$640.00</span>
+        </li>
+        <li class="checkout-item">
+          <span class="checkout-thumb" aria-hidden="true">CC</span>
+          <div class="checkout-body">
+            <div class="checkout-name">Caliper task chair</div>
+            <div class="checkout-meta">Graphite mesh, qty 2</div>
+          </div>
+          <span class="checkout-price">$498.00</span>
+        </li>
+        <li class="checkout-item">
+          <span class="checkout-thumb" aria-hidden="true">VM</span>
+          <div class="checkout-body">
+            <div class="checkout-name">Verge monitor arm</div>
+            <div class="checkout-meta">Single head, qty 1</div>
+          </div>
+          <span class="checkout-price">$129.00</span>
+        </li>
+      </ul>
+
+      <dl class="checkout-totals">
+        <div class="checkout-row">
+          <dt class="checkout-label">Subtotal</dt>
+          <dd class="checkout-value">$1,267.00</dd>
+        </div>
+        <div class="checkout-row">
+          <dt class="checkout-label">Shipping, two day freight</dt>
+          <dd class="checkout-value">$45.00</dd>
+        </div>
+        <div class="checkout-row">
+          <dt class="checkout-label">GST</dt>
+          <dd class="checkout-value">$126.70</dd>
+        </div>
+        <div class="checkout-row">
+          <dt class="checkout-label">Discount, FITOUT10</dt>
+          <dd class="checkout-value is-credit">-$95.00</dd>
+        </div>
+        <div class="checkout-row is-total">
+          <dt class="checkout-label">Total due</dt>
+          <dd class="checkout-value">$1,343.70</dd>
+        </div>
+      </dl>
+
+      <div class="checkout-promo">
+        <label class="form-label" for="co-promo-with-address-form">Promo code</label>
+        <div class="input-group">
+          <input id="co-promo-with-address-form" class="input h-11" type="text" autocomplete="off" value="FITOUT10" />
+          <button type="button" class="btn btn-outline">Apply</button>
+        </div>
+        <span class="form-hint">FITOUT10 is applied and shows as a credit in the ledger above.</span>
       </div>
-      <span class="checkout-price">$498.00</span>
-    </li>
-    <li class="checkout-item">
-      <span class="checkout-thumb" aria-hidden="true">VM</span>
-      <div class="checkout-body">
-        <div class="checkout-name">Verge monitor arm</div>
-        <div class="checkout-meta">Single head, qty 1</div>
+
+      <div class="checkout-actions">
+        <button type="submit" class="btn btn-primary w-full">Place order</button>
+        <p class="checkout-note">Delivery is booked once payment clears. Returns accepted for 30 days.</p>
       </div>
-      <span class="checkout-price">$129.00</span>
-    </li>
-  </ul>
-
-  <div class="checkout-promo">
-    <label class="form-label" for="co-promo-promo-first">Promo code</label>
-    <div class="input-group">
-      <input id="co-promo-promo-first" class="input" type="text" autocomplete="off" value="FITOUT10" />
-      <button type="button" class="btn btn-outline">Apply</button>
     </div>
-    <span class="form-hint">FITOUT10 is applied and shows as a credit in the ledger below.</span>
-  </div>
-
-  <dl class="checkout-totals">
-    <div class="checkout-row">
-      <dt class="checkout-label">Subtotal</dt>
-      <dd class="checkout-value">$1,267.00</dd>
-    </div>
-    <div class="checkout-row">
-      <dt class="checkout-label">Shipping, two day freight</dt>
-      <dd class="checkout-value">$45.00</dd>
-    </div>
-    <div class="checkout-row">
-      <dt class="checkout-label">GST</dt>
-      <dd class="checkout-value">$126.70</dd>
-    </div>
-    <div class="checkout-row">
-      <dt class="checkout-label">Discount, FITOUT10</dt>
-      <dd class="checkout-value is-credit">-$95.00</dd>
-    </div>
-    <div class="checkout-row is-total">
-      <dt class="checkout-label">Total due</dt>
-      <dd class="checkout-value">$1,343.70</dd>
-    </div>
-  </dl>
-
-  <div class="checkout-actions">
-    <button type="submit" class="btn btn-primary w-full">Place order</button>
-    <p class="checkout-note">Delivery is booked once payment clears. Returns accepted for 30 days.</p>
   </div>
 </div>`,
     },
@@ -981,6 +1228,74 @@ export const ecommerceVariants = {
   </div>
 </div>`,
     },
+    {
+      id: 'history-rows',
+      name: 'History rows',
+      description:
+        'The four step tracker is replaced by one row per order, each carrying the order number, the date, a status pip with its word beside it and the total.',
+      guidance:
+        'Use on an account page or an order index, where the reader is looking for one order among many and the state of each is a single word. Do not use it as the tracker on an order detail page, because a row says where an order got to without saying what happens next. Each state is a static pip plus plain text rather than a coloured chip, so nothing here is a box inside a box and nothing moves at rest, and the rows are separated by hairlines rather than borders so the list stays one surface.',
+      html: `<div class="order max-w-2xl">
+  <div class="flex items-center justify-between gap-4 flex-wrap">
+    <h3 class="orderline-title">Order history <span class="text-sm text-muted font-normal">4 orders</span></h3>
+    <a class="btn btn-outline btn-sm" href="#orders-invoices">Download invoices</a>
+  </div>
+
+  <div class="flex flex-col mt-4">
+    <div class="flex items-center gap-4 flex-wrap py-3">
+      <div class="flex-1 min-w-0">
+        <p class="font-semibold">Order 48210</p>
+        <p class="text-sm text-muted tabular">9 September 2026, three items</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="pip pip-ok"></span>
+        <span class="text-sm">Shipped</span>
+      </div>
+      <span class="font-bold tabular">$1,343.70</span>
+      <a class="btn btn-ghost btn-sm" href="#order-48210-history-rows">View</a>
+    </div>
+    <hr class="divider" />
+    <div class="flex items-center gap-4 flex-wrap py-3">
+      <div class="flex-1 min-w-0">
+        <p class="font-semibold">Order 48154</p>
+        <p class="text-sm text-muted tabular">28 August 2026, one item</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="pip"></span>
+        <span class="text-sm">Delivered</span>
+      </div>
+      <span class="font-bold tabular">$349.00</span>
+      <a class="btn btn-ghost btn-sm" href="#order-48154-history-rows">View</a>
+    </div>
+    <hr class="divider" />
+    <div class="flex items-center gap-4 flex-wrap py-3">
+      <div class="flex-1 min-w-0">
+        <p class="font-semibold">Order 47980</p>
+        <p class="text-sm text-muted tabular">14 August 2026, two items</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="pip pip-warn"></span>
+        <span class="text-sm">Return in progress</span>
+      </div>
+      <span class="font-bold tabular">$96.00</span>
+      <a class="btn btn-ghost btn-sm" href="#order-47980-history-rows">View</a>
+    </div>
+    <hr class="divider" />
+    <div class="flex items-center gap-4 flex-wrap py-3">
+      <div class="flex-1 min-w-0">
+        <p class="font-semibold">Order 47822</p>
+        <p class="text-sm text-muted tabular">2 August 2026, one item</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="pip pip-err"></span>
+        <span class="text-sm">Cancelled</span>
+      </div>
+      <span class="font-bold tabular">$48.00</span>
+      <a class="btn btn-ghost btn-sm" href="#order-47822-history-rows">View</a>
+    </div>
+  </div>
+</div>`,
+    },
   ],
 
   /* ==========================================================================
@@ -1030,6 +1345,65 @@ export const ecommerceVariants = {
     </div>
   </div>
   <span class="product-price text-base">$349.00</span>
+</div>`,
+    },
+    {
+      id: 'review-list',
+      name: 'Review list',
+      description:
+        'The read only average keeps its line and gains the reviews themselves underneath: one hairline separated row per reviewer with a portrait, a star row, a date and the review.',
+      guidance:
+        'Use on a product page under the rating summary, or as the body of a reviews page, where the average is the headline and the individual reviews are the evidence. Do not use it in a listing tile: three reviews are taller than the product they belong to. Each review is a row on one surface rather than a card of its own, which is law 1, the date sits in tabular numerals so a column of dates lines up, and the review text is held to a prose measure so a wide container does not stretch a sentence across 120 characters.',
+      html: `<div class="flex flex-col gap-5 max-w-lg">
+  <div class="flex items-center gap-3">
+    <span class="rating-static" role="img" aria-label="Rated 4.0 out of 5">
+      <span class="rating-track"></span><span class="rating-fill w-4/5"></span>
+    </span>
+    <span class="rating-value">4.0</span>
+    <span class="rating-count">1,284 reviews</span>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item items-start gap-3 py-4">
+      <span class="avatar"><img src="https://images.unsplash.com/photo-1770396529113-ba031cbf0cfa?w=96&h=96&auto=format&fit=crop&q=80" alt="Amara Osei" /></span>
+      <div class="flex flex-col gap-1 min-w-0">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="font-semibold text-sm">Amara Osei</span>
+          <span class="rating-static" role="img" aria-label="Rated 5 out of 5">
+            <span class="rating-track"></span><span class="rating-fill w-full"></span>
+          </span>
+          <span class="text-sm text-muted tabular">2 September 2026</span>
+        </div>
+        <p class="text-sm max-w-prose">Mixed a full record on these over three weeks and never reached for the monitors. The clamp is firm out of the box and settles after a day or two.</p>
+      </div>
+    </li>
+    <li class="list-group-item items-start gap-3 py-4">
+      <span class="avatar"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=96&h=96&auto=format&fit=crop&q=80" alt="Jonas Berg" /></span>
+      <div class="flex flex-col gap-1 min-w-0">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="font-semibold text-sm">Jonas Berg</span>
+          <span class="rating-static" role="img" aria-label="Rated 4 out of 5">
+            <span class="rating-track"></span><span class="rating-fill w-4/5"></span>
+          </span>
+          <span class="text-sm text-muted tabular">21 August 2026</span>
+        </div>
+        <p class="text-sm max-w-prose">Battery lasted four long haul flights on one charge. The case is bigger than it needs to be, which is the only reason this is not five stars.</p>
+      </div>
+    </li>
+    <li class="list-group-item items-start gap-3 py-4">
+      <span class="avatar"><img src="https://images.unsplash.com/photo-1582639849680-e2e89674e57b?w=96&h=96&auto=format&fit=crop&q=80" alt="Hana Sato" /></span>
+      <div class="flex flex-col gap-1 min-w-0">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="font-semibold text-sm">Hana Sato</span>
+          <span class="rating-static" role="img" aria-label="Rated 3 out of 5">
+            <span class="rating-track"></span><span class="rating-fill w-3/5"></span>
+          </span>
+          <span class="text-sm text-muted tabular">6 August 2026</span>
+        </div>
+        <p class="text-sm max-w-prose">Sound is exactly as described and the balanced cable is a real one. My glasses break the seal on the left cup, so the bass goes with them.</p>
+      </div>
+    </li>
+  </ul>
 </div>`,
     },
   ],

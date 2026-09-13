@@ -10,7 +10,7 @@
     "top-bar",
     "notice"
   ],
-  "html": "<div class=\"announcement\" role=\"region\" aria-label=\"Announcement\">\n  <span>LLMCSS 0.2 ships the runtime as one script tag.</span>\n  <a href=\"#\">Read the changelog</a>\n  <button type=\"button\" class=\"close ml-auto\" aria-label=\"Dismiss announcement\" style=\"color: inherit;\"></button>\n</div>",
+  "html": "<div class=\"announcement\" role=\"region\" aria-label=\"Announcement\">\n  <span>LLMCSS 0.2 ships the runtime as one script tag.</span>\n  <a href=\"#\">Read the changelog</a>\n  <button type=\"button\" class=\"close ml-auto text-inherit\" aria-label=\"Dismiss announcement\"></button>\n</div>",
   "variants": [
     {
       "id": "dismissible",

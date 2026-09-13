@@ -11,5 +11,5 @@
     "progress",
     "storage"
   ],
-  "html": "<div class=\"quota\" style=\"max-width: 24rem;\">\n  <div class=\"quota-head\">\n    <span>Build minutes</span>\n    <strong>1,240 / 2,000</strong>\n  </div>\n  <div class=\"progress\"><div class=\"progress-bar\" style=\"width: 62%;\"></div></div>\n  <span class=\"text-xs text-muted\">Resets on the 1st</span>\n</div>"
+  "html": "<div class=\"quota max-w-sm\">\n  <div class=\"quota-head\">\n    <span>Build minutes</span>\n    <strong>1,240 / 2,000</strong>\n  </div>\n  <div class=\"progress\"><div class=\"progress-bar\" style=\"width: 62%;\"></div></div>\n  <span class=\"text-xs text-muted\">Resets on the 1st</span>\n</div>"
 }

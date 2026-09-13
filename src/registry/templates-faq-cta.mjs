@@ -333,8 +333,8 @@ export const faqCtaTemplates = [
           Run llmcss serve and the local registry opens next to your editor: every component, its exact markup, and the validator watching the file you have open. Paste a snippet and it tells you which token is wrong before the page renders.
         </p>
         <div class="flex flex-wrap gap-3 mb-6">
-          <a href="/quickstart" class="btn btn-primary">Install the CLI</a>
-          <a href="/components" class="btn btn-outline">Browse components</a>
+          <a href="#quickstart" class="btn btn-primary">Install the CLI</a>
+          <a href="#components" class="btn btn-outline">Browse components</a>
         </div>
         <span class="flex items-center gap-2 text-sm text-muted">
           <span class="status-pip status-pip-success" aria-hidden="true"></span>
@@ -380,7 +380,7 @@ export const faqCtaTemplates = [
       <p class="section-lead mx-auto mb-8">
         One stylesheet, a class manifest your agent can read, and a validator that fails the build when the markup drifts. Install it in the time it takes to read this paragraph.
       </p>
-      <a href="/quickstart" class="btn btn-primary btn-lg">Read the quickstart</a>
+      <a href="#quickstart" class="btn btn-primary btn-lg">Read the quickstart</a>
     </div>
   </div>
 </section>`
@@ -415,7 +415,7 @@ export const faqCtaTemplates = [
             <button type="submit" class="btn btn-primary whitespace-nowrap">Subscribe</button>
           </div>
           <p class="text-xs text-muted mt-3">
-            Release notes only. We do not sell or share the list, and every message carries a one click unsubscribe link. Read the <a href="/privacy" class="link">privacy policy</a>.
+            Release notes only. We do not sell or share the list, and every message carries a one click unsubscribe link. Read the <a href="#privacy" class="link">privacy policy</a>.
           </p>
         </form>
       </div>
@@ -456,7 +456,7 @@ export const faqCtaTemplates = [
           </ul>
         </div>
         <div class="card-footer">
-          <a href="/quickstart" class="btn btn-outline">Install from npm</a>
+          <a href="#quickstart" class="btn btn-outline">Install from npm</a>
         </div>
       </div>
       <div class="card">
@@ -472,7 +472,7 @@ export const faqCtaTemplates = [
           </ul>
         </div>
         <div class="card-footer">
-          <a href="/pricing" class="btn btn-primary">See Pro pricing</a>
+          <a href="#pricing" class="btn btn-primary">See Pro pricing</a>
         </div>
       </div>
     </div>

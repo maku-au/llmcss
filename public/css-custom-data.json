@@ -1658,6 +1658,24 @@
    ]
   },
   {
+   "name": "--ai-surface-hover",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `color-mix(in srgb, var(--ai-text-primary) 4%, transparent)`\n- `dark`: `color-mix(in srgb, var(--ai-text-primary) 6%, transparent)`"
+   },
+   "values": [
+    {
+     "name": "color-mix(in srgb, var(--ai-text-primary) 4%, transparent)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
    "name": "--ai-tap-highlight",
    "description": {
     "kind": "markdown",

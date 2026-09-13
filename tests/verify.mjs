@@ -1119,7 +1119,41 @@ console.log('\n27. Testing Component CSS for Visible Type Below 0.75rem...');
   );
 }
 
-console.log('\n🎉 ALL 27 TESTS PASSED SUCCESSFULLY!\n');
+
+// Test 28: Demo links never leave the page
+// Every href in demo, variant and template markup is a fragment, mailto: or
+// tel:. A path or an external URL in a demo is a dead link on the catalog and
+// a surprise in a copied snippet. The one exception is the Pro unlock button in
+// a locked preview, which lives in locked.mjs and is not scanned here.
+console.log('\n28. Testing Demo Links Stay On The Page...');
+{
+  const { components: allComps } = await import('../src/registry/data.mjs');
+  const { wireframeTemplates: tpls, pageBlueprints: bps } = await import('../src/registry/templates-data.mjs');
+  const HREF = /href\s*=\s*"([^"]*)"/g;
+  // /api/ is the Pro unlock inside a locked preview, the one real link a demo
+  // may carry; the site's click guard lets it through for the same reason.
+  const OK = /^(#|mailto:|tel:|\/api\/)/;
+  // Escaped markup inside a code sample is prose, not a link.
+  const CODE = /<(pre|code)\b[\s\S]*?<\/\1>/g;
+  const bad = [];
+  const scan = (label, html) => {
+    let m;
+    HREF.lastIndex = 0;
+    while ((m = HREF.exec((html || '').replace(CODE, '')))) {
+      if (!OK.test(m[1])) bad.push(`${label}: href="${m[1]}"`);
+    }
+  };
+  for (const c of allComps) {
+    scan(c.id, c.html);
+    for (const v of c.variants || []) scan(`${c.id}:${v.id}`, v.html);
+  }
+  for (const t of tpls) scan(`template ${t.id}`, t.html);
+  for (const b of bps) scan(`blueprint ${b.id}`, b.html);
+  assert(bad.length === 0, `Demo links that leave the page:\n  ${bad.slice(0, 40).join('\n  ')}`);
+  console.log(`✓ Verified every demo, variant, template and blueprint link is a fragment, mailto: or tel:.`);
+}
+
+console.log('\n🎉 ALL 28 TESTS PASSED SUCCESSFULLY!\n');
 
 
 

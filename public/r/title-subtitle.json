@@ -10,5 +10,5 @@
     "typography",
     "subtitle"
   ],
-  "html": "<div style=\"max-width: 36rem;\">\n  <h2 class=\"title\">Usage and billing</h2>\n  <p class=\"subtitle\">Meter reads are final at midnight UTC. Overages are billed with the next invoice.</p>\n</div>"
+  "html": "<div class=\"max-w-xl\">\n  <h2 class=\"title\">Usage and billing</h2>\n  <p class=\"subtitle\">Meter reads are final at midnight UTC. Overages are billed with the next invoice.</p>\n</div>"
 }

@@ -10,5 +10,5 @@
     "definition",
     "meta"
   ],
-  "html": "<dl class=\"detail\" style=\"max-width: 28rem;\">\n  <dt>ID</dt><dd>prj_8f2c1a</dd>\n  <dt>Region</dt><dd>syd-1</dd>\n  <dt>Owner</dt><dd>ops@llmcss.io</dd>\n  <dt>Updated</dt><dd>2026-09-12 14:03</dd>\n</dl>"
+  "html": "<dl class=\"detail max-w-md\">\n  <dt>ID</dt><dd>prj_8f2c1a</dd>\n  <dt>Region</dt><dd>syd-1</dd>\n  <dt>Owner</dt><dd>ops@llmcss.io</dd>\n  <dt>Updated</dt><dd>2026-09-12 14:03</dd>\n</dl>"
 }

@@ -11,5 +11,5 @@
     "row",
     "flex"
   ],
-  "html": "<div class=\"level\" style=\"padding: var(--ai-space-4) 0; border-bottom: 1px solid var(--ai-border);\">\n  <div class=\"level-left\">\n    <strong>Invoices</strong>\n    <span class=\"badge badge-neutral\">June 2026</span>\n  </div>\n  <div class=\"level-right\">\n    <button type=\"button\" class=\"btn btn-outline btn-sm\">Export</button>\n    <button type=\"button\" class=\"btn btn-primary btn-sm\">New invoice</button>\n  </div>\n</div>"
+  "html": "<div class=\"level py-4 border-b\">\n  <div class=\"level-left\">\n    <strong>Invoices</strong>\n    <span class=\"badge badge-neutral\">June 2026</span>\n  </div>\n  <div class=\"level-right\">\n    <button type=\"button\" class=\"btn btn-outline btn-sm\">Export</button>\n    <button type=\"button\" class=\"btn btn-primary btn-sm\">New invoice</button>\n  </div>\n</div>"
 }

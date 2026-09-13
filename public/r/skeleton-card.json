@@ -11,5 +11,5 @@
     "placeholder",
     "animation"
   ],
-  "html": "<div class=\"card\" style=\"max-width: 24rem; padding: var(--ai-space-5);\">\n  <div class=\"flex items-center gap-3\" style=\"margin-bottom: var(--ai-space-4);\">\n    <div class=\"skeleton skeleton-avatar\"></div>\n    <div style=\"flex: 1;\">\n      <div class=\"skeleton skeleton-title\" style=\"width: 50%;\"></div>\n      <div class=\"skeleton skeleton-text\" style=\"width: 75%; margin-bottom: 0;\"></div>\n    </div>\n  </div>\n  <div class=\"skeleton skeleton-rect\" style=\"height: 7rem; margin-bottom: var(--ai-space-3);\"></div>\n  <div class=\"skeleton skeleton-text\" style=\"width: 90%;\"></div>\n  <div class=\"skeleton skeleton-text\" style=\"width: 65%;\"></div>\n</div>"
+  "html": "<div class=\"card max-w-sm p-5\">\n  <div class=\"flex items-center gap-3 mb-4\">\n    <div class=\"skeleton skeleton-avatar\"></div>\n    <div class=\"flex-1\">\n      <div class=\"skeleton skeleton-title w-1/2\"></div>\n      <div class=\"skeleton skeleton-text w-3/4 mb-0\"></div>\n    </div>\n  </div>\n  <div class=\"skeleton skeleton-rect h-28 mb-3\"></div>\n  <div class=\"skeleton skeleton-text w-11/12\"></div>\n  <div class=\"skeleton skeleton-text w-2/3\"></div>\n</div>"
 }

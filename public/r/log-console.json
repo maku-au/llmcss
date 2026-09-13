@@ -11,5 +11,5 @@
     "terminal",
     "ops"
   ],
-  "html": "<pre class=\"log\" style=\"max-width: 36rem;\"><code><span class=\"log-line\"><span class=\"log-ts\">14:02:11</span> <span class=\"log-ok\">ok</span> registry built 60 components</span>\n<span class=\"log-line\"><span class=\"log-ts\">14:02:18</span> <span class=\"log-ok\">ok</span> origin sync public_html</span>\n<span class=\"log-line\"><span class=\"log-ts\">14:03:02</span> <span class=\"log-warn\">warn</span> cf cache still hot on /r/*</span>\n<span class=\"log-line\"><span class=\"log-ts\">14:03:41</span> <span class=\"log-err\">fail</span> polar webhook 403 (bot fight)</span></code></pre>"
+  "html": "<pre class=\"log max-w-xl\"><code><span class=\"log-line\"><span class=\"log-ts\">14:02:11</span> <span class=\"log-ok\">ok</span> registry built 60 components</span>\n<span class=\"log-line\"><span class=\"log-ts\">14:02:18</span> <span class=\"log-ok\">ok</span> origin sync public_html</span>\n<span class=\"log-line\"><span class=\"log-ts\">14:03:02</span> <span class=\"log-warn\">warn</span> cf cache still hot on /r/*</span>\n<span class=\"log-line\"><span class=\"log-ts\">14:03:41</span> <span class=\"log-err\">fail</span> polar webhook 403 (bot fight)</span></code></pre>"
 }

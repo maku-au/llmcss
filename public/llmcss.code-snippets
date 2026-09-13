@@ -35,7 +35,7 @@
   "prefix": "ai-input-text",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"grid gap-4\" style=\"max-width: 24rem;\">",
+   "<div class=\"grid gap-4 max-w-sm\">",
    "  <div class=\"form-group\">",
    "    <label class=\"form-label\" for=\"user-email\">Email Address</label>",
    "    <input type=\"email\" id=\"user-email\" class=\"input\" placeholder=\"name@company.com\" />",
@@ -53,7 +53,7 @@
   "prefix": "ai-input-addon",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"form-group\" style=\"max-width: 28rem;\">",
+   "<div class=\"form-group max-w-md\">",
    "  <label class=\"form-label\">Project URL</label>",
    "  <div class=\"input-group\">",
    "    <span class=\"input-addon\">https://</span>",
@@ -86,7 +86,7 @@
   "prefix": "ai-card-standard",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"card\" style=\"max-width: 24rem;\">",
+   "<div class=\"card max-w-sm\">",
    "  <div class=\"card-header\">",
    "    <h3 class=\"card-title\">Project Deployment</h3>",
    "    <p class=\"card-description\">Production deployment configured for edge nodes.</p>",
@@ -191,7 +191,7 @@
   "prefix": "ai-dropdown-menu",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div style=\"min-height: 14rem; padding-bottom: 11rem; display: flex; justify-content: center; align-items: flex-start; padding-top: var(--ai-space-2);\">",
+   "<div class=\"flex justify-center items-start pt-2\" style=\"min-height: 14rem; padding-bottom: 11rem;\">",
    "  <div class=\"dropdown\">",
    "    <button class=\"btn btn-outline dropdown-trigger\" data-ai-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" aria-controls=\"demo-dropdown-menu\">",
    "      Options",
@@ -241,7 +241,7 @@
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
    "<div class=\"table-container\" style=\"max-height: 20rem;\">",
-   "  <table class=\"table table-hover table-sticky\">",
+   "  <table class=\"table table-hover table-sticky min-w-var\" style=\"--ai-min-w: 40rem;\">",
    "    <thead>",
    "      <tr>",
    "        <th aria-sort=\"ascending\">Repository</th>",
@@ -333,7 +333,7 @@
    "  <div class=\"drawer-backdrop\" data-ai-dismiss=\"drawer\"></div>",
    "  <div class=\"drawer-panel\" style=\"max-width: 18rem;\">",
    "    <div class=\"drawer-header\">",
-   "      <a href=\"#\" class=\"brand\" style=\"font-size: 1rem;\">",
+   "      <a href=\"#\" class=\"brand text-base\">",
    "        <span>LLMCSS</span>",
    "      </a>",
    "      <button type=\"button\" class=\"modal-close\" data-ai-dismiss=\"drawer\" aria-label=\"Close menu\">&times;</button>",
@@ -463,21 +463,27 @@
    "        </div>",
    "      </div>",
    "      <div class=\"hero-visual\">",
-   "        <div style=\"background-color: var(--ai-surface-0); padding: var(--ai-space-8); border-radius: inherit;\">",
-   "          <div class=\"flex justify-between items-center\" style=\"margin-bottom: var(--ai-space-6);\">",
+   "        <div class=\"p-8\" style=\"background-color: var(--ai-surface-0); border-radius: inherit;\">",
+   "          <div class=\"flex justify-between items-center mb-6\">",
    "            <span class=\"text-xs font-mono text-muted\">app.analytics.ts</span>",
    "            <span class=\"badge badge-success badge-dot\">Live Stream</span>",
    "          </div>",
    "          <div class=\"grid grid-cols-2 gap-4\">",
-   "            <div class=\"kpi-card\" style=\"padding: var(--ai-space-4);\">",
+   "            <div class=\"kpi-card p-4\">",
    "              <span class=\"kpi-label\">Weekly Active Users</span>",
-   "              <span class=\"kpi-value\" style=\"font-size: 1.5rem;\">48,290</span>",
-   "              <span class=\"kpi-trend is-up\">↑ +24.8%</span>",
+   "              <span class=\"kpi-value\" style=\"--ai-kpi-value-size: 1.5rem;\">48,290</span>",
+   "              <span class=\"kpi-trend is-up\">",
+   "                <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" aria-hidden=\"true\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>",
+   "                +24.8%",
+   "              </span>",
    "            </div>",
-   "            <div class=\"kpi-card\" style=\"padding: var(--ai-space-4);\">",
+   "            <div class=\"kpi-card p-4\">",
    "              <span class=\"kpi-label\">Conversion Rate</span>",
-   "              <span class=\"kpi-value\" style=\"font-size: 1.5rem;\">4.12%</span>",
-   "              <span class=\"kpi-trend is-up\">↑ +1.2%</span>",
+   "              <span class=\"kpi-value\" style=\"--ai-kpi-value-size: 1.5rem;\">4.12%</span>",
+   "              <span class=\"kpi-trend is-up\">",
+   "                <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" aria-hidden=\"true\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>",
+   "                +1.2%",
+   "              </span>",
    "            </div>",
    "          </div>",
    "        </div>",
@@ -494,19 +500,19 @@
   "body": [
    "<section class=\"hero\">",
    "  <div class=\"container\">",
-   "    <div class=\"text-center\" style=\"max-width: 48rem; margin: 0 auto var(--ai-space-12);\">",
+   "    <div class=\"text-center max-w-3xl mx-auto mb-12\">",
    "      <h1 class=\"hero-title\">Architected for deep intelligence</h1>",
-   "      <p class=\"hero-lead\" style=\"margin: 0 auto;\">",
+   "      <p class=\"hero-lead mx-auto my-0\">",
    "        Give your agentic coding workflows the aesthetic craft of top-tier product studios.",
    "      </p>",
    "    </div>",
    "    <div class=\"bento-grid\">",
    "      <div class=\"card-bento bento-col-2\">",
    "        <div>",
-   "          <h3 class=\"card-title\" style=\"font-size: 1.5rem;\">Infinite Skinning Architecture</h3>",
-   "          <p class=\"text-secondary\" style=\"margin-top: var(--ai-space-2);\">Switch between Minimalist Obsidian, Warm Editorial, Neo-Brutalist, and Swiss Modern with a single data-attribute.</p>",
+   "          <h3 class=\"card-title text-2xl\">Infinite Skinning Architecture</h3>",
+   "          <p class=\"text-secondary mt-2\">Switch between Minimalist Obsidian, Warm Editorial, Neo-Brutalist, and Swiss Modern with a single data-attribute.</p>",
    "        </div>",
-   "        <div style=\"background-color: var(--ai-surface-1); padding: var(--ai-space-4); border-radius: var(--ai-radius-md); margin-top: var(--ai-space-6); border: 1px solid var(--ai-border);\">",
+   "        <div class=\"p-4 rounded-md mt-6 border\" style=\"background-color: var(--ai-surface-1);\">",
    "          <pre><code>&lt;html data-ai-skin=\"editorial\"&gt;",
    "  &lt;!-- Instant warm ivory surfaces &amp; serif display --&gt;",
    "&lt;/html&gt;</code></pre>",
@@ -515,9 +521,9 @@
    "      <div class=\"card-bento\">",
    "        <div>",
    "          <h3 class=\"card-title\">MCP Server Ready</h3>",
-   "          <p class=\"text-secondary\" style=\"margin-top: var(--ai-space-2);\">Native Model Context Protocol integration allows autonomous AI agents to query and assemble sections dynamically.</p>",
+   "          <p class=\"text-secondary mt-2\">Native Model Context Protocol integration allows autonomous AI agents to query and assemble sections dynamically.</p>",
    "        </div>",
-   "        <div class=\"flex items-center gap-2\" style=\"margin-top: var(--ai-space-6);\">",
+   "        <div class=\"flex items-center gap-2 mt-6\">",
    "          <span class=\"badge badge-success badge-dot\">MCP Connected</span>",
    "          <span class=\"badge badge-outline\">Port 8080</span>",
    "        </div>",
@@ -532,11 +538,11 @@
   "prefix": "ai-pricing-tier-cards",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<section style=\"padding: var(--ai-space-16) 0;\">",
+   "<section class=\"py-16\">",
    "  <div class=\"container\">",
-   "    <div class=\"text-center\" style=\"max-width: 36rem; margin: 0 auto;\">",
-   "      <h2 style=\"font-size: 2.25rem;\">Predictable, Transparent Pricing</h2>",
-   "      <p style=\"margin-top: var(--ai-space-2);\">Start building for free. Upgrade to Pro when you need advanced marketing and SaaS templates.</p>",
+   "    <div class=\"text-center max-w-xl mx-auto\">",
+   "      <h2 class=\"text-4xl\">Predictable, Transparent Pricing</h2>",
+   "      <p class=\"mt-2\">Start building for free. Upgrade to Pro when you need advanced marketing and SaaS templates.</p>",
    "    </div>",
    "    <div class=\"pricing-grid\">",
    "      <!-- Free Plan -->",
@@ -550,10 +556,10 @@
    "          </div>",
    "        </div>",
    "        <ul class=\"pricing-features\">",
-   "          <li class=\"pricing-feature-item\">✓ 40+ Core UI Primitives</li>",
-   "          <li class=\"pricing-feature-item\">✓ Pure Modern CSS Token Engine</li>",
-   "          <li class=\"pricing-feature-item\">✓ Light-DOM Custom Elements</li>",
-   "          <li class=\"pricing-feature-item\">✓ Public llms.txt & Docs</li>",
+   "          <li class=\"pricing-feature-item\">40+ Core UI Primitives</li>",
+   "          <li class=\"pricing-feature-item\">Pure Modern CSS Token Engine</li>",
+   "          <li class=\"pricing-feature-item\">Light-DOM Custom Elements</li>",
+   "          <li class=\"pricing-feature-item\">Public llms.txt & Docs</li>",
    "        </ul>",
    "        <button class=\"btn btn-outline w-full\">Get Started Free</button>",
    "      </div>",
@@ -572,11 +578,11 @@
    "          </div>",
    "        </div>",
    "        <ul class=\"pricing-features\">",
-   "          <li class=\"pricing-feature-item\">✓ Everything in Starter</li>",
-   "          <li class=\"pricing-feature-item\">✓ Themed section templates and page kits</li>",
-   "          <li class=\"pricing-feature-item\">✓ Skin-specific composed blocks</li>",
-   "          <li class=\"pricing-feature-item\">✓ Dedicated MCP Server Integration</li>",
-   "          <li class=\"pricing-feature-item\">✓ Private CLI Token Access</li>",
+   "          <li class=\"pricing-feature-item\">Everything in Starter</li>",
+   "          <li class=\"pricing-feature-item\">Themed section templates and page kits</li>",
+   "          <li class=\"pricing-feature-item\">Skin-specific composed blocks</li>",
+   "          <li class=\"pricing-feature-item\">Dedicated MCP Server Integration</li>",
+   "          <li class=\"pricing-feature-item\">Private CLI Token Access</li>",
    "        </ul>",
    "        <button class=\"btn btn-primary w-full\">Upgrade to Pro</button>",
    "      </div>",
@@ -591,10 +597,10 @@
    "          </div>",
    "        </div>",
    "        <ul class=\"pricing-features\">",
-   "          <li class=\"pricing-feature-item\">✓ Unlimited Team Seats</li>",
-   "          <li class=\"pricing-feature-item\">✓ Custom Theme Archetype Design</li>",
-   "          <li class=\"pricing-feature-item\">✓ Dedicated SLA & Support</li>",
-   "          <li class=\"pricing-feature-item\">✓ Figma Tokens Sync</li>",
+   "          <li class=\"pricing-feature-item\">Unlimited Team Seats</li>",
+   "          <li class=\"pricing-feature-item\">Custom Theme Archetype Design</li>",
+   "          <li class=\"pricing-feature-item\">Dedicated SLA & Support</li>",
+   "          <li class=\"pricing-feature-item\">Figma Tokens Sync</li>",
    "        </ul>",
    "        <button class=\"btn btn-outline w-full\">Contact Sales</button>",
    "      </div>",
@@ -602,7 +608,7 @@
    "  </div>",
    "</section>"
   ],
-  "description": "Clear pricing tiers with popular plan highlight, feature lists, and monthly/annual toggles. (marketing, free)"
+  "description": "Clear pricing tiers with a highlighted recommended plan and a feature list per tier. For a monthly and annual switch, see the billing-toggle variant. (marketing, free)"
  },
  "LLMCSS Multi-Column Modern Footer": {
   "prefix": "ai-footer-multi-col",
@@ -669,22 +675,34 @@
    "  <div class=\"kpi-card is-primary\">",
    "    <span class=\"kpi-label\">Monthly Recurring Revenue</span>",
    "    <span class=\"kpi-value\">\\$124,500</span>",
-   "    <span class=\"kpi-trend is-up\">↑ +14.2% from last month</span>",
+   "    <span class=\"kpi-trend is-up\">",
+   "      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" aria-hidden=\"true\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>",
+   "      +14.2% from last month",
+   "    </span>",
    "  </div>",
    "  <div class=\"kpi-card\">",
    "    <span class=\"kpi-label\">Active Subscriptions</span>",
    "    <span class=\"kpi-value\">1,482</span>",
-   "    <span class=\"kpi-trend is-up\">↑ +8.4%</span>",
+   "    <span class=\"kpi-trend is-up\">",
+   "      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" aria-hidden=\"true\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>",
+   "      +8.4%",
+   "    </span>",
    "  </div>",
    "  <div class=\"kpi-card\">",
    "    <span class=\"kpi-label\">Churn Rate</span>",
    "    <span class=\"kpi-value\">1.18%</span>",
-   "    <span class=\"kpi-trend is-down\">↓ -0.3% improvement</span>",
+   "    <span class=\"kpi-trend is-down\">",
+   "      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" aria-hidden=\"true\"><polyline points=\"23 18 13.5 8.5 8.5 13.5 1 6\"/><polyline points=\"17 18 23 18 23 12\"/></svg>",
+   "      -0.3% improvement",
+   "    </span>",
    "  </div>",
    "  <div class=\"kpi-card\">",
    "    <span class=\"kpi-label\">Agent Queries / Day</span>",
    "    <span class=\"kpi-value\">4.8M</span>",
-   "    <span class=\"kpi-trend is-up\">↑ +42% spike</span>",
+   "    <span class=\"kpi-trend is-up\">",
+   "      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" aria-hidden=\"true\"><polyline points=\"23 6 13.5 15.5 8.5 10.5 1 18\"/><polyline points=\"17 6 23 6 23 12\"/></svg>",
+   "      +42% spike",
+   "    </span>",
    "  </div>",
    "</div>"
   ],
@@ -695,7 +713,7 @@
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
    "<button class=\"btn btn-outline\" data-ai-toggle=\"modal\" data-ai-target=\"#command-demo\">",
-   "  Open ⌘K Command Palette <span class=\"command-kbd\" style=\"margin-left: 0.5rem;\">⌘K</span>",
+   "  Open ⌘K Command Palette <span class=\"command-kbd ml-2\">⌘K</span>",
    "</button>",
    "",
    "<div id=\"command-demo\" class=\"command-palette\">",
@@ -747,26 +765,26 @@
   "prefix": "ai-auth-login-card",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"auth-card\" style=\"margin: 0 auto;\">",
-   "  <div class=\"text-center\" style=\"margin-bottom: var(--ai-space-6);\">",
-   "    <h3 class=\"card-title\" style=\"font-size: 1.5rem;\">Welcome back</h3>",
-   "    <p class=\"text-sm text-secondary\" style=\"margin-top: 0.25rem;\">Enter your credentials to access your agent workspace.</p>",
+   "<div class=\"auth-card mx-auto\">",
+   "  <div class=\"text-center mb-6\">",
+   "    <h3 class=\"card-title text-2xl\">Welcome back</h3>",
+   "    <p class=\"text-sm text-secondary mt-1\">Enter your credentials to access your agent workspace.</p>",
    "  </div>",
    "  <form class=\"flex flex-col gap-4\">",
-   "    <div class=\"form-group\" style=\"margin-bottom: 0;\">",
+   "    <div class=\"form-group mb-0\">",
    "      <label class=\"form-label\" for=\"auth-email\">Email</label>",
    "      <input type=\"email\" id=\"auth-email\" class=\"input\" placeholder=\"you@domain.com\" required />",
    "    </div>",
-   "    <div class=\"form-group\" style=\"margin-bottom: 0;\">",
+   "    <div class=\"form-group mb-0\">",
    "      <div class=\"flex justify-between items-center\">",
    "        <label class=\"form-label\" for=\"auth-pass\">Password</label>",
    "        <a href=\"#forgot\" class=\"text-xs text-accent\">Forgot password?</a>",
    "      </div>",
    "      <input type=\"password\" id=\"auth-pass\" class=\"input\" placeholder=\"••••••••\" required />",
    "    </div>",
-   "    <button type=\"submit\" class=\"btn btn-primary w-full\" style=\"margin-top: var(--ai-space-2);\">Sign In</button>",
+   "    <button type=\"submit\" class=\"btn btn-primary w-full mt-2\">Sign In</button>",
    "  </form>",
-   "  <div class=\"text-center\" style=\"margin-top: var(--ai-space-6); border-top: 1px solid var(--ai-border); padding-top: var(--ai-space-4);\">",
+   "  <div class=\"text-center mt-6 pt-4 border-t\">",
    "    <p class=\"text-xs text-secondary\">Don't have an account? <a href=\"#signup\" class=\"text-accent font-semibold\">Sign up</a></p>",
    "  </div>",
    "</div>"
@@ -777,7 +795,7 @@
   "prefix": "ai-product-card",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"product-card\" style=\"max-width: 20rem;\">",
+   "<div class=\"product-card max-w-xs\">",
    "  <div class=\"product-media\">",
    "    <span class=\"badge badge-solid product-badge-float\">NEW ARRIVAL</span>",
    "    <img class=\"product-img\" src=\"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80\" alt=\"Minimalist Studio Headphones\" />",
@@ -789,7 +807,7 @@
    "      <span class=\"product-price\">\\$349.00</span>",
    "      <span class=\"product-compare-price\">\\$420.00</span>",
    "    </div>",
-   "    <button class=\"btn btn-primary btn-sm w-full\" style=\"margin-top: var(--ai-space-3);\">",
+   "    <button class=\"btn btn-primary btn-sm w-full mt-3\">",
    "      Add to Cart",
    "    </button>",
    "  </div>",
@@ -821,10 +839,10 @@
    "        <div class=\"cart-details\">",
    "          <span class=\"cart-name\">Aether Precision Studio</span>",
    "          <span class=\"cart-subtext\">Matte Obsidian / Bluetooth 5.4</span>",
-   "          <div class=\"flex justify-between items-center\" style=\"margin-top: 0.5rem;\">",
+   "          <div class=\"flex justify-between items-center mt-2\">",
    "            <div class=\"cart-stepper\">",
    "              <button type=\"button\" aria-label=\"Decrease quantity\">-</button>",
-   "              <span style=\"padding: 0 0.5rem; font-size: 0.8125rem;\">1</span>",
+   "              <span class=\"px-2\" style=\"font-size: 0.8125rem;\">1</span>",
    "              <button type=\"button\" aria-label=\"Increase quantity\">+</button>",
    "            </div>",
    "            <span class=\"font-bold\">\\$349.00</span>",
@@ -833,9 +851,9 @@
    "      </div>",
    "    </div>",
    "    <div class=\"drawer-footer\">",
-   "      <div class=\"flex justify-between items-center\" style=\"margin-bottom: var(--ai-space-4);\">",
+   "      <div class=\"flex justify-between items-center mb-4\">",
    "        <span class=\"text-sm text-secondary\">Subtotal</span>",
-   "        <span class=\"font-display font-bold\" style=\"font-size: 1.25rem;\">\\$349.00</span>",
+   "        <span class=\"font-display font-bold text-xl\">\\$349.00</span>",
    "      </div>",
    "      <button class=\"btn btn-primary w-full btn-lg\">Checkout Now</button>",
    "    </div>",
@@ -848,7 +866,7 @@
   "prefix": "ai-animated-loaders",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"flex flex-wrap gap-6 items-center\" style=\"padding: var(--ai-space-4);\">",
+   "<div class=\"flex flex-wrap gap-6 items-center p-4\">",
    "  <div class=\"flex items-center gap-3\">",
    "    <span class=\"spinner spinner-sm\"></span>",
    "    <span class=\"spinner\"></span>",
@@ -864,7 +882,7 @@
    "  </div>",
    "  <div class=\"flex items-center gap-2\">",
    "    <span class=\"pulse-dot pulse-dot-success\"></span>",
-   "    <span class=\"text-xs font-medium\" style=\"color: var(--ai-success);\">Operational</span>",
+   "    <span class=\"text-xs font-medium text-success\">Operational</span>",
    "  </div>",
    "</div>"
   ],
@@ -874,9 +892,9 @@
   "prefix": "ai-progress-bars",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"grid gap-5\" style=\"max-width: 28rem;\">",
+   "<div class=\"grid gap-5 max-w-md\">",
    "  <div>",
-   "    <div class=\"flex justify-between text-xs font-medium\" style=\"margin-bottom: 0.375rem;\">",
+   "    <div class=\"flex justify-between text-xs font-medium mb-1.5\">",
    "      <span>Indeterminate (Network Stream)</span>",
    "      <span class=\"font-mono text-secondary\">Syncing...</span>",
    "    </div>",
@@ -885,7 +903,7 @@
    "    </div>",
    "  </div>",
    "  <div>",
-   "    <div class=\"flex justify-between text-xs font-medium\" style=\"margin-bottom: 0.375rem;\">",
+   "    <div class=\"flex justify-between text-xs font-medium mb-1.5\">",
    "      <span>Model Weights Downloaded</span>",
    "      <span class=\"font-mono\">68%</span>",
    "    </div>",
@@ -894,9 +912,9 @@
    "    </div>",
    "  </div>",
    "  <div>",
-   "    <div class=\"flex justify-between text-xs font-medium\" style=\"margin-bottom: 0.375rem;\">",
+   "    <div class=\"flex justify-between text-xs font-medium mb-1.5\">",
    "      <span>Dataset Chunk Upload</span>",
-   "      <span class=\"font-mono\" style=\"color: var(--ai-success);\">Active</span>",
+   "      <span class=\"font-mono text-success\">Active</span>",
    "    </div>",
    "    <div class=\"progress progress-striped\" role=\"progressbar\" aria-label=\"Sync\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\">",
    "      <div class=\"progress-bar progress-bar-success\" style=\"width: 85%;\"></div>",
@@ -910,7 +928,7 @@
   "prefix": "ai-interactive-slider",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"grid gap-4\" style=\"max-width: 24rem;\">",
+   "<div class=\"grid gap-4 max-w-sm\">",
    "  <div class=\"slider-wrapper\">",
    "    <div class=\"slider-header\">",
    "      <label for=\"temp-slider\">Temperature</label>",
@@ -933,17 +951,17 @@
   "prefix": "ai-skeleton-card",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"card\" style=\"max-width: 24rem; padding: var(--ai-space-5);\">",
-   "  <div class=\"flex items-center gap-3\" style=\"margin-bottom: var(--ai-space-4);\">",
+   "<div class=\"card max-w-sm p-5\">",
+   "  <div class=\"flex items-center gap-3 mb-4\">",
    "    <div class=\"skeleton skeleton-avatar\"></div>",
-   "    <div style=\"flex: 1;\">",
-   "      <div class=\"skeleton skeleton-title\" style=\"width: 50%;\"></div>",
-   "      <div class=\"skeleton skeleton-text\" style=\"width: 75%; margin-bottom: 0;\"></div>",
+   "    <div class=\"flex-1\">",
+   "      <div class=\"skeleton skeleton-title w-1/2\"></div>",
+   "      <div class=\"skeleton skeleton-text w-3/4 mb-0\"></div>",
    "    </div>",
    "  </div>",
-   "  <div class=\"skeleton skeleton-rect\" style=\"height: 7rem; margin-bottom: var(--ai-space-3);\"></div>",
-   "  <div class=\"skeleton skeleton-text\" style=\"width: 90%;\"></div>",
-   "  <div class=\"skeleton skeleton-text\" style=\"width: 65%;\"></div>",
+   "  <div class=\"skeleton skeleton-rect h-28 mb-3\"></div>",
+   "  <div class=\"skeleton skeleton-text w-11/12\"></div>",
+   "  <div class=\"skeleton skeleton-text w-2/3\"></div>",
    "</div>"
   ],
   "description": "Hardware-accelerated content placeholder shimmer skeletons for cards, avatars, and text blocks. (primitive, free)"
@@ -952,7 +970,7 @@
   "prefix": "ai-stepper-flow",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"stepper\" style=\"max-width: 32rem;\">",
+   "<div class=\"stepper max-w-lg\">",
    "  <div class=\"step-item is-completed\">",
    "    <div class=\"step-circle\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"/></svg><span class=\"sr-only\">Completed</span></div>",
    "    <span class=\"step-label\">Account</span>",
@@ -995,14 +1013,14 @@
   "prefix": "ai-popover-anchor",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div style=\"padding-top: 6.5rem; display: flex; justify-content: center;\">",
+   "<div class=\"flex justify-center\" style=\"padding-top: 6.5rem;\">",
    "  <div class=\"popover-anchor popover-toggle\">",
    "    <div class=\"popover\">",
-   "      <div class=\"flex items-center gap-2\" style=\"margin-bottom: 0.375rem;\">",
+   "      <div class=\"flex items-center gap-2 mb-1.5\">",
    "        <span class=\"pulse-dot pulse-dot-success\"></span>",
    "        <span class=\"font-semibold text-xs\">Agent Worker #4 Active</span>",
    "      </div>",
-   "      <p class=\"text-xs text-secondary\" style=\"margin-bottom: 0.5rem; line-height: 1.4;\">Running automated test suite across 34 components.</p>",
+   "      <p class=\"text-xs text-secondary mb-2 leading-snug\">Running automated test suite across 34 components.</p>",
    "      <div class=\"flex justify-between items-center\">",
    "        <a href=\"#\" class=\"text-xs font-medium text-accent\">View Stream &rarr;</a>",
    "        <span class=\"font-mono text-xs text-muted\">450ms</span>",
@@ -1019,7 +1037,7 @@
   "prefix": "ai-toast-stack",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"grid gap-3\" role=\"status\" aria-live=\"polite\" style=\"max-width: 24rem;\">",
+   "<div class=\"grid gap-3 max-w-sm\" role=\"status\" aria-live=\"polite\">",
    "  <div class=\"toast toast-success toast-countdown\">",
    "    <span class=\"toast-message\">Deployment completed to edge servers.</span>",
    "    <button type=\"button\" class=\"toast-close\" aria-label=\"Dismiss deployment notification\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M6 6l12 12\"/><path d=\"M18 6L6 18\"/></svg></button>",
@@ -1055,15 +1073,15 @@
   "body": [
    "<div class=\"filter-toolbar\">",
    "  <div class=\"filter-tags\" role=\"group\" aria-label=\"Filter jobs\">",
-   "    <span class=\"text-xs font-medium text-muted\" style=\"margin-right: 0.25rem;\">Filter:</span>",
+   "    <span class=\"text-xs font-medium text-muted mr-1\">Filter:</span>",
    "    <button type=\"button\" class=\"filter-tag is-active\" aria-pressed=\"true\">All (48)</button>",
    "    <button type=\"button\" class=\"filter-tag\" aria-pressed=\"false\">Production</button>",
    "    <button type=\"button\" class=\"filter-tag\" aria-pressed=\"false\">Staging</button>",
    "    <button type=\"button\" class=\"filter-tag\" aria-pressed=\"false\">Failed</button>",
    "  </div>",
    "  <div class=\"flex items-center gap-2\">",
-   "    <input type=\"text\" class=\"input\" placeholder=\"Filter jobs...\" style=\"height: 1.875rem; font-size: 0.75rem; width: 10rem;\" />",
-   "    <select class=\"select\" style=\"height: 1.875rem; font-size: 0.75rem; padding: 0 1.5rem 0 0.5rem;\">",
+   "    <input type=\"text\" class=\"input text-xs w-40\" placeholder=\"Filter jobs...\" style=\"height: 1.875rem;\" />",
+   "    <select class=\"select text-xs\" style=\"height: 1.875rem; padding: 0 1.5rem 0 0.5rem;\">",
    "      <option>Latest</option>",
    "      <option>Oldest</option>",
    "      <option>Duration</option>",
@@ -1080,18 +1098,18 @@
    "<div class=\"bento-grid\">",
    "  <div class=\"bento-cell bento-span-2\">",
    "    <div>",
-   "      <span class=\"bento-code-pill\" style=\"margin-bottom: var(--ai-space-4);\">",
-   "        <span class=\"text-muted font-mono\" style=\"font-weight: 600; opacity: 0.6; margin-right: 0.15rem;\">\\$</span>",
+   "      <span class=\"bento-code-pill mb-4\">",
+   "        <span class=\"text-muted font-mono font-semibold opacity-60 mr-0.5\">\\$</span>",
    "        <span>llmcss init --theme=obsidian</span>",
    "      </span>",
-   "      <h3 class=\"font-display font-bold\" style=\"font-size: 1.5rem; margin-top: var(--ai-space-2);\">",
+   "      <h3 class=\"font-display font-bold text-2xl mt-2\">",
    "        Zero-token dark mode with pure native cascading variables",
    "      </h3>",
-   "      <p class=\"text-secondary text-sm\" style=\"margin-top: var(--ai-space-2); max-width: 28rem;\">",
+   "      <p class=\"text-secondary text-sm mt-2 max-w-md\">",
    "        No arbitrary class name hallucination. Full Light-DOM Web Components and zero external dependencies.",
    "      </p>",
    "    </div>",
-   "    <div class=\"flex gap-4 items-center\" style=\"margin-top: var(--ai-space-6);\">",
+   "    <div class=\"flex gap-4 items-center mt-6\">",
    "      <span class=\"badge badge-mono\">&lt; 2.5KB Bundle</span>",
    "      <span class=\"badge badge-neutral\">68% Token Savings</span>",
    "    </div>",
@@ -1099,30 +1117,30 @@
    "  <div class=\"bento-cell\">",
    "    <div>",
    "      <span class=\"text-xs font-mono text-muted\">BENCHMARK</span>",
-   "      <div class=\"font-display font-bold\" style=\"font-size: 2.25rem; margin-top: var(--ai-space-2);\">",
+   "      <div class=\"font-display font-bold text-4xl mt-2\">",
    "        0ms",
    "      </div>",
-   "      <p class=\"text-secondary text-xs\" style=\"margin-top: 0.25rem;\">",
+   "      <p class=\"text-secondary text-xs mt-1\">",
    "        CSS-in-JS runtime overhead. 100% native browser layers.",
    "      </p>",
    "    </div>",
-   "    <div class=\"progress\" style=\"margin-top: var(--ai-space-4);\">",
-   "      <div class=\"progress-bar\" style=\"width: 100%;\"></div>",
+   "    <div class=\"progress mt-4\">",
+   "      <div class=\"progress-bar w-full\"></div>",
    "    </div>",
    "  </div>",
    "  <div class=\"bento-cell\">",
    "    <div>",
    "      <span class=\"text-xs font-mono text-muted\">COMPATIBILITY</span>",
-   "      <h4 class=\"font-semibold\" style=\"margin-top: var(--ai-space-2);\">Universal Standard</h4>",
-   "      <p class=\"text-secondary text-xs\" style=\"margin-top: 0.25rem;\">Vanilla HTML, Astro, Svelte, Vue, React, Next.js.</p>",
+   "      <h4 class=\"font-semibold mt-2\">Universal Standard</h4>",
+   "      <p class=\"text-secondary text-xs mt-1\">Vanilla HTML, Astro, Svelte, Vue, React, Next.js.</p>",
    "    </div>",
    "  </div>",
    "  <div class=\"bento-cell bento-span-2\">",
    "    <div class=\"flex justify-between items-start\">",
    "      <div>",
    "        <span class=\"text-xs font-mono text-muted\">AGENT CO-PILOT</span>",
-   "        <h4 class=\"font-semibold\" style=\"margin-top: var(--ai-space-1);\">Model Context Protocol Ready</h4>",
-   "        <p class=\"text-secondary text-xs\" style=\"margin-top: 0.25rem;\">Native stdio MCP server for autonomous coding agents.</p>",
+   "        <h4 class=\"font-semibold mt-1\">Model Context Protocol Ready</h4>",
+   "        <p class=\"text-secondary text-xs mt-1\">Native stdio MCP server for autonomous coding agents.</p>",
    "      </div>",
    "      <button class=\"btn btn-outline btn-xs\">Docs &rarr;</button>",
    "    </div>",
@@ -1139,10 +1157,10 @@
    "  <table class=\"matrix-table\">",
    "    <thead>",
    "      <tr>",
-   "        <th class=\"matrix-feature-col\" style=\"width: 40%;\">Core Capabilities</th>",
-   "        <th style=\"width: 20%;\">Free</th>",
-   "        <th style=\"width: 20%; background-color: var(--ai-surface-1);\">Pro (\\$9/mo)</th>",
-   "        <th style=\"width: 20%;\">Enterprise</th>",
+   "        <th class=\"matrix-feature-col w-2/5\">Core Capabilities</th>",
+   "        <th class=\"w-1/5\">Free</th>",
+   "        <th class=\"w-1/5\" style=\"background-color: var(--ai-surface-1);\">Pro (\\$9/mo)</th>",
+   "        <th class=\"w-1/5\">Enterprise</th>",
    "      </tr>",
    "    </thead>",
    "    <tbody>",
@@ -1173,19 +1191,19 @@
    "      <tr>",
    "        <td class=\"matrix-feature-col\">Core UI Primitives</td>",
    "        <td>20+ Primitives</td>",
-   "        <td style=\"background-color: var(--ai-surface-1); font-weight: 600;\">All 40+ Primitives</td>",
+   "        <td class=\"font-semibold\" style=\"background-color: var(--ai-surface-1);\">All 40+ Primitives</td>",
    "        <td>All + Custom</td>",
    "      </tr>",
    "      <tr>",
    "        <td class=\"matrix-feature-col\">High-Craft Bento Heroes</td>",
    "        <td class=\"text-muted\">-</td>",
-   "        <td style=\"background-color: var(--ai-surface-1); color: var(--ai-accent); font-weight: 600;\"><span class=\"mark mark-yes\" role=\"img\" aria-label=\"Yes\"></span>Pro Bento Kit</td>",
+   "        <td class=\"text-accent font-semibold\" style=\"background-color: var(--ai-surface-1);\"><span class=\"mark mark-yes\" role=\"img\" aria-label=\"Yes\"></span>Pro Bento Kit</td>",
    "        <td><span class=\"mark mark-yes\" role=\"img\" aria-label=\"Yes\"></span>Bespoke</td>",
    "      </tr>",
    "      <tr>",
    "        <td class=\"matrix-feature-col\">Conversational AI Threads</td>",
    "        <td class=\"text-muted\">-</td>",
-   "        <td style=\"background-color: var(--ai-surface-1); color: var(--ai-accent); font-weight: 600;\"><span class=\"mark mark-yes\" role=\"img\" aria-label=\"Yes\"></span>Full App Kits</td>",
+   "        <td class=\"text-accent font-semibold\" style=\"background-color: var(--ai-surface-1);\"><span class=\"mark mark-yes\" role=\"img\" aria-label=\"Yes\"></span>Full App Kits</td>",
    "        <td><span class=\"mark mark-yes\" role=\"img\" aria-label=\"Yes\"></span>Full App Kits</td>",
    "      </tr>",
    "      <tr>",
@@ -1194,7 +1212,7 @@
    "      <tr>",
    "        <td class=\"matrix-feature-col\">CLI Tooling (llmcss add)</td>",
    "        <td>Free Registry</td>",
-   "        <td style=\"background-color: var(--ai-surface-1); font-weight: 600;\">Full Pro Access</td>",
+   "        <td class=\"font-semibold\" style=\"background-color: var(--ai-surface-1);\">Full Pro Access</td>",
    "        <td>Private Registry</td>",
    "      </tr>",
    "      <tr>",
@@ -1366,7 +1384,7 @@
    "      </span>",
    "    </button>",
    "    <div class=\"accordion-content\" id=\"thought-chain-steps\">",
-   "      <ol style=\"margin: var(--ai-space-3) 0 0; padding-left: 1.1rem; font-size: 0.8125rem; color: var(--ai-text-secondary); display:flex; flex-direction:column; gap: 0.5rem;\">",
+   "      <ol class=\"m-0 mt-3 pl-4 text-secondary flex flex-col gap-2\" style=\"font-size: 0.8125rem;\">",
    "        <li>Locate the token layer in <code>src/css/tokens.css</code>.</li>",
    "        <li>Check gallery copy path does not leak Pro markup.</li>",
    "        <li class=\"is-streaming\">Draft the PHP gate using SQLite outside the docroot.</li>",
@@ -1495,7 +1513,7 @@
   "prefix": "ai-mcp-widget-shell",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"card\" style=\"padding: var(--ai-space-4);\">",
+   "<div class=\"card p-4\">",
    "  <div class=\"flex justify-between items-center\">",
    "    <div class=\"flex items-center gap-2\">",
    "      <span class=\"badge badge-mono\">MCP</span>",
@@ -1503,8 +1521,8 @@
    "    </div>",
    "    <button class=\"btn btn-ghost btn-xs\" type=\"button\">Copy JSON</button>",
    "  </div>",
-   "  <p class=\"text-xs text-secondary\" style=\"margin-top: var(--ai-space-3);\">id=btn-variants · tier=free · 489 bytes html</p>",
-   "  <pre style=\"margin-top: var(--ai-space-3); font-size: 0.75rem; background: var(--ai-surface-1); padding: var(--ai-space-3); border-radius: var(--ai-radius-sm);\"><code>{ \"id\": \"btn-variants\", \"tier\": \"free\" \\}</code></pre>",
+   "  <p class=\"text-xs text-secondary mt-3\">id=btn-variants<span class=\"divider-vertical\" aria-hidden=\"true\"></span>tier=free<span class=\"divider-vertical\" aria-hidden=\"true\"></span>489 bytes html</p>",
+   "  <pre class=\"mt-3 text-xs p-3 rounded-sm\" style=\"background: var(--ai-surface-1);\"><code>{ \"id\": \"btn-variants\", \"tier\": \"free\" \\}</code></pre>",
    "</div>"
   ],
   "description": "Card shell for an MCP tool result with schema badge and copy. (application, free)"
@@ -1513,7 +1531,7 @@
   "prefix": "ai-streaming-status",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"card\" role=\"status\" aria-live=\"polite\" style=\"padding: var(--ai-space-4);\">",
+   "<div class=\"card p-4\" role=\"status\" aria-live=\"polite\">",
    "  <div class=\"flex justify-between items-center\">",
    "    <div class=\"flex items-center gap-2\">",
    "      <span class=\"spinner spinner-sm\"></span>",
@@ -1521,8 +1539,8 @@
    "    </div>",
    "    <span class=\"font-mono text-xs text-muted\">42 tok/s</span>",
    "  </div>",
-   "  <div class=\"progress progress-indeterminate\" style=\"margin-top: var(--ai-space-3);\"><div class=\"progress-bar\"></div></div>",
-   "  <p class=\"text-xs text-muted\" style=\"margin-top: var(--ai-space-2);\">Stream only. Do not pulse static dots.</p>",
+   "  <div class=\"progress progress-indeterminate mt-3\"><div class=\"progress-bar\"></div></div>",
+   "  <p class=\"text-xs text-muted mt-2\">Stream only. Do not pulse static dots.</p>",
    "</div>"
   ],
   "description": "Indeterminate progress plus token/sec readout for live generation. (application, free)"
@@ -1531,20 +1549,20 @@
   "prefix": "ai-citation-list",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<ol style=\"list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--ai-space-3);\">",
-   "  <li class=\"card\" style=\"padding: var(--ai-space-4);\">",
+   "<ol class=\"list-none m-0 p-0 flex flex-col gap-3\">",
+   "  <li class=\"card p-4\">",
    "    <div class=\"flex justify-between items-center\">",
    "      <span class=\"font-mono text-xs text-muted\">[1] polar.sh</span>",
-   "      <a class=\"btn btn-ghost btn-xs\" href=\"https://polar.sh/docs\">Open</a>",
+   "      <a class=\"btn btn-ghost btn-xs\" href=\"#polar-docs\">Open</a>",
    "    </div>",
-   "    <p class=\"text-sm\" style=\"margin-top: 0.35rem;\">Webhook signatures use Standard Webhooks headers.</p>",
+   "    <p class=\"text-sm mt-1.5\">Webhook signatures use Standard Webhooks headers.</p>",
    "  </li>",
-   "  <li class=\"card\" style=\"padding: var(--ai-space-4);\">",
+   "  <li class=\"card p-4\">",
    "    <div class=\"flex justify-between items-center\">",
    "      <span class=\"font-mono text-xs text-muted\">[2] llmcss.io</span>",
-   "      <a class=\"btn btn-ghost btn-xs\" href=\"https://llmcss.io/llms.txt\">Open</a>",
+   "      <a class=\"btn btn-ghost btn-xs\" href=\"#llms-txt\">Open</a>",
    "    </div>",
-   "    <p class=\"text-sm\" style=\"margin-top: 0.35rem;\">Free registry is MIT. Pro is token-gated.</p>",
+   "    <p class=\"text-sm mt-1.5\">Free registry is MIT. Pro is token-gated.</p>",
    "  </li>",
    "</ol>"
   ],
@@ -1622,13 +1640,13 @@
   "prefix": "ai-divider-separator",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div style=\"max-width: 28rem;\">",
+   "<div class=\"max-w-md\">",
    "  <p class=\"text-sm text-secondary\">Content above the divider.</p>",
    "  <div class=\"divider\"></div>",
    "  <p class=\"text-sm text-secondary\">Content below the plain divider.</p>",
    "  <div class=\"divider\">or continue with</div>",
    "  <p class=\"text-sm text-secondary\">Content below the labeled divider.</p>",
-   "  <div class=\"flex items-center gap-4\" style=\"margin-top: var(--ai-space-6);\">",
+   "  <div class=\"flex items-center gap-4 mt-6\">",
    "    <span class=\"text-sm\">Item A</span>",
    "    <span class=\"divider-vertical\"></span>",
    "    <span class=\"text-sm\">Item B</span>",
@@ -1643,7 +1661,7 @@
   "prefix": "ai-textarea-counter",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div style=\"max-width: 28rem;\">",
+   "<div class=\"max-w-md\">",
    "  <div class=\"form-group\">",
    "    <label class=\"form-label\" for=\"bio-field\">Bio</label>",
    "    <div class=\"textarea-group\">",
@@ -1667,10 +1685,10 @@
   "prefix": "ai-checkbox-radio-group",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"flex gap-12\" style=\"max-width: 32rem;\">",
+   "<div class=\"flex gap-12 max-w-lg\">",
    "  <div>",
-   "    <span class=\"form-label\" style=\"margin-bottom: var(--ai-space-3); display: block;\">Notifications</span>",
-   "    <div style=\"display: flex; flex-direction: column; gap: var(--ai-space-3);\">",
+   "    <span class=\"form-label mb-3 block\">Notifications</span>",
+   "    <div class=\"flex flex-col gap-3\">",
    "      <label class=\"checkbox\">",
    "        <input type=\"checkbox\" class=\"checkbox-input\" checked />",
    "        Email notifications",
@@ -1686,7 +1704,7 @@
    "    </div>",
    "  </div>",
    "  <div>",
-   "    <span class=\"form-label\" style=\"margin-bottom: var(--ai-space-3); display: block;\">Plan</span>",
+   "    <span class=\"form-label mb-3 block\">Plan</span>",
    "    <div class=\"radio-group\">",
    "      <label class=\"radio\">",
    "        <input type=\"radio\" name=\"plan\" class=\"radio-input\" checked />",
@@ -1710,7 +1728,7 @@
   "prefix": "ai-empty-state",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"empty-state\" style=\"border: 1px dashed var(--ai-border); border-radius: var(--ai-radius-lg);\">",
+   "<div class=\"empty-state border border-dashed rounded-lg\">",
    "  <svg class=\"empty-state-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\">",
    "    <path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"></path>",
    "    <polyline points=\"14 2 14 8 20 8\"></polyline>",
@@ -1731,8 +1749,8 @@
   "prefix": "ai-sidebar-nav",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div style=\"width: 16rem;\">",
-   "  <nav class=\"sidebar\" style=\"height: auto; border: 1px solid var(--ai-border); border-radius: var(--ai-radius-lg); overflow: hidden;\">",
+   "<div class=\"w-64\">",
+   "  <nav class=\"sidebar h-auto border rounded-lg overflow-hidden\">",
    "    <div class=\"sidebar-header\">",
    "      <span class=\"font-semibold\" style=\"font-size: 0.9375rem;\">Workspace</span>",
    "    </div>",
@@ -1812,7 +1830,7 @@
   "prefix": "ai-notification-list",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"notification-list\" style=\"max-width: 28rem;\">",
+   "<div class=\"notification-list max-w-md\">",
    "  <div class=\"notification-item is-unread\">",
    "    <span class=\"notification-dot\"></span>",
    "    <div class=\"notification-content\">",
@@ -1882,9 +1900,9 @@
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
    "<label class=\"dropzone\" for=\"dropzone-file\">",
-   "  <strong style=\"color: var(--ai-text-primary);\">Drop a file</strong>",
+   "  <strong class=\"text-primary\">Drop a file</strong>",
    "  <span class=\"text-xs\">PNG, JSON, or CSV up to 8MB</span>",
-   "  <span class=\"btn btn-outline btn-sm\" style=\"margin-top: var(--ai-space-2);\">Browse</span>",
+   "  <span class=\"btn btn-outline btn-sm mt-2\">Browse</span>",
    "  <input id=\"dropzone-file\" type=\"file\" class=\"sr-only\" multiple />",
    "</label>"
   ],
@@ -1897,15 +1915,15 @@
    "<ol class=\"timeline\">",
    "  <li class=\"timeline-item\">",
    "    <div class=\"timeline-title\">Registry published</div>",
-   "    <div class=\"timeline-meta\">origin · 2m ago</div>",
+   "    <div class=\"timeline-meta\">origin<span class=\"divider-vertical\" aria-hidden=\"true\"></span>2m ago</div>",
    "  </li>",
    "  <li class=\"timeline-item\">",
    "    <div class=\"timeline-title\">Token issued</div>",
-   "    <div class=\"timeline-meta\">polar webhook · 18m ago</div>",
+   "    <div class=\"timeline-meta\">polar webhook<span class=\"divider-vertical\" aria-hidden=\"true\"></span>18m ago</div>",
    "  </li>",
    "  <li class=\"timeline-item\">",
    "    <div class=\"timeline-title\">Pro component added</div>",
-   "    <div class=\"timeline-meta\">tool-trace · yesterday</div>",
+   "    <div class=\"timeline-meta\">tool-trace<span class=\"divider-vertical\" aria-hidden=\"true\"></span>yesterday</div>",
    "  </li>",
    "</ol>"
   ],
@@ -1931,7 +1949,7 @@
    "<div class=\"page-header\">",
    "  <div>",
    "    <h1>Overview</h1>",
-   "    <p class=\"page-header-meta\">Workspace production · last deploy 14m ago</p>",
+   "    <p class=\"page-header-meta\">Workspace production<span class=\"divider-vertical\" aria-hidden=\"true\"></span>last deploy 14m ago</p>",
    "  </div>",
    "  <div class=\"flex gap-2\">",
    "    <button class=\"btn btn-outline btn-sm\" type=\"button\">Export</button>",
@@ -1947,7 +1965,7 @@
   "body": [
    "<div class=\"topbar\">",
    "  <input class=\"input\" type=\"search\" placeholder=\"Search resources...\" aria-label=\"Search\" />",
-   "  <span class=\"text-xs text-muted\" style=\"white-space: nowrap;\">12 unread</span>",
+   "  <span class=\"text-xs text-muted whitespace-nowrap\">12 unread</span>",
    "  <span class=\"avatar avatar-sm\" aria-hidden=\"true\">AC</span>",
    "</div>"
   ],
@@ -1957,7 +1975,7 @@
   "prefix": "ai-quota-meter",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"quota\" style=\"max-width: 24rem;\">",
+   "<div class=\"quota max-w-sm\">",
    "  <div class=\"quota-head\">",
    "    <span>Build minutes</span>",
    "    <strong>1,240 / 2,000</strong>",
@@ -1972,7 +1990,7 @@
   "prefix": "ai-spark-stat",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"spark-stat\" style=\"max-width: 28rem;\">",
+   "<div class=\"spark-stat max-w-md\">",
    "  <div>",
    "    <span class=\"kpi-label\">Requests</span>",
    "    <div class=\"kpi-value\">128k</div>",
@@ -1993,7 +2011,7 @@
    "  <div class=\"donut\" aria-hidden=\"true\"><div class=\"donut-hole\">68%</div></div>",
    "  <div>",
    "    <div class=\"font-semibold\">Job success</div>",
-   "    <p class=\"text-sm text-secondary\" style=\"margin: 0.25rem 0 0;\">1,024 of 1,504 runs finished clean this week.</p>",
+   "    <p class=\"text-sm text-secondary m-0 mt-1\">1,024 of 1,504 runs finished clean this week.</p>",
    "  </div>",
    "</div>"
   ],
@@ -2003,7 +2021,7 @@
   "prefix": "ai-settings-list",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"settings-list\" style=\"max-width: 32rem;\">",
+   "<div class=\"settings-list max-w-lg\">",
    "  <div class=\"settings-row\">",
    "    <div>",
    "      <div class=\"font-medium\">Deploy previews</div>",
@@ -2033,7 +2051,7 @@
   "prefix": "ai-log-console",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<pre class=\"log\" style=\"max-width: 36rem;\"><code><span class=\"log-line\"><span class=\"log-ts\">14:02:11</span> <span class=\"log-ok\">ok</span> registry built 60 components</span>",
+   "<pre class=\"log max-w-xl\"><code><span class=\"log-line\"><span class=\"log-ts\">14:02:11</span> <span class=\"log-ok\">ok</span> registry built 60 components</span>",
    "<span class=\"log-line\"><span class=\"log-ts\">14:02:18</span> <span class=\"log-ok\">ok</span> origin sync public_html</span>",
    "<span class=\"log-line\"><span class=\"log-ts\">14:03:02</span> <span class=\"log-warn\">warn</span> cf cache still hot on /r/*</span>",
    "<span class=\"log-line\"><span class=\"log-ts\">14:03:41</span> <span class=\"log-err\">fail</span> polar webhook 403 (bot fight)</span></code></pre>"
@@ -2044,14 +2062,14 @@
   "prefix": "ai-health-grid",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"health\" style=\"max-width: 28rem;\">",
+   "<div class=\"health max-w-md\">",
    "  <div class=\"health-row\">",
    "    <span class=\"health-name\"><span class=\"pip pip-ok\"></span> Origin</span>",
-   "    <span class=\"text-xs text-muted\">200 · 41ms</span>",
+   "    <span class=\"text-xs text-muted\">200<span class=\"divider-vertical\" aria-hidden=\"true\"></span>41ms</span>",
    "  </div>",
    "  <div class=\"health-row\">",
    "    <span class=\"health-name\"><span class=\"pip pip-ok\"></span> Registry</span>",
-   "    <span class=\"text-xs text-muted\">200 · 18ms</span>",
+   "    <span class=\"text-xs text-muted\">200<span class=\"divider-vertical\" aria-hidden=\"true\"></span>18ms</span>",
    "  </div>",
    "  <div class=\"health-row\">",
    "    <span class=\"health-name\"><span class=\"pip pip-warn\"></span> Webhook</span>",
@@ -2082,12 +2100,12 @@
   "prefix": "ai-inbox-list",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div style=\"max-width: 32rem;\">",
+   "<div class=\"max-w-lg\">",
    "  <div class=\"inbox-item is-unread\">",
-   "    <span class=\"pip pip-ok\"></span>",
+   "    <span class=\"pip pip-err\"></span>",
    "    <div>",
    "      <div class=\"inbox-title\">Build failed on main</div>",
-   "      <div class=\"text-xs text-muted\">origin · php -l api/lib.php</div>",
+   "      <div class=\"text-xs text-muted\">origin<span class=\"divider-vertical\" aria-hidden=\"true\"></span>php -l api/lib.php</div>",
    "    </div>",
    "    <span class=\"text-xs text-muted\">2m</span>",
    "  </div>",
@@ -2115,7 +2133,7 @@
   "prefix": "ai-bar-chart",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"bars\" style=\"max-width: 28rem;\">",
+   "<div class=\"bars max-w-md\">",
    "  <div class=\"bar-row\"><span>Free CLI</span><div class=\"bar-track\"><div class=\"bar-fill\" style=\"width: 62%;\"></div></div><span>62%</span></div>",
    "  <div class=\"bar-row\"><span>Gallery</span><div class=\"bar-track\"><div class=\"bar-fill\" style=\"width: 24%;\"></div></div><span>24%</span></div>",
    "  <div class=\"bar-row\"><span>MCP</span><div class=\"bar-track\"><div class=\"bar-fill\" style=\"width: 14%;\"></div></div><span>14%</span></div>",
@@ -2127,7 +2145,7 @@
   "prefix": "ai-detail-list",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<dl class=\"detail\" style=\"max-width: 28rem;\">",
+   "<dl class=\"detail max-w-md\">",
    "  <dt>ID</dt><dd>prj_8f2c1a</dd>",
    "  <dt>Region</dt><dd>syd-1</dd>",
    "  <dt>Owner</dt><dd>ops@llmcss.io</dd>",
@@ -2140,12 +2158,12 @@
   "prefix": "ai-date-range",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"flex gap-3 flex-wrap\" style=\"max-width: 28rem;\">",
-   "  <label class=\"form-group\" style=\"flex: 1;\">",
+   "<div class=\"flex gap-3 flex-wrap max-w-md\">",
+   "  <label class=\"form-group flex-1\">",
    "    <span class=\"form-label\">From</span>",
    "    <input class=\"input\" type=\"date\" value=\"2026-09-01\" />",
    "  </label>",
-   "  <label class=\"form-group\" style=\"flex: 1;\">",
+   "  <label class=\"form-group flex-1\">",
    "    <span class=\"form-label\">To</span>",
    "    <input class=\"input\" type=\"date\" value=\"2026-09-12\" />",
    "  </label>",
@@ -2157,7 +2175,7 @@
   "prefix": "ai-collapse-details",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<details class=\"collapse\" style=\"max-width: 32rem;\">",
+   "<details class=\"collapse max-w-lg\">",
    "  <summary>Advanced deployment options</summary>",
    "  <div class=\"collapse-body\">",
    "    Region pinning, canary percentage, and rollback window. These apply to this service only and do not change organisation defaults.",
@@ -2170,18 +2188,18 @@
   "prefix": "ai-carousel-snap",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"carousel carousel-peek\" tabindex=\"0\" aria-label=\"Release highlights\" style=\"--ai-carousel-item: 72%; max-width: 40rem;\">",
-   "  <article class=\"card\" style=\"padding: var(--ai-space-6);\">",
+   "<div class=\"carousel carousel-peek max-w-2xl\" tabindex=\"0\" aria-label=\"Release highlights\" style=\"--ai-carousel-item: 72%;\">",
+   "  <article class=\"card p-6\">",
    "    <h3 class=\"card-title\">Edge caching</h3>",
-   "    <p class=\"text-sm text-secondary\" style=\"margin-top: var(--ai-space-2);\">Static assets served from 34 regions. Median time to first byte dropped to 38 ms.</p>",
+   "    <p class=\"text-sm text-secondary mt-2\">Static assets served from 34 regions. Median time to first byte dropped to 38 ms.</p>",
    "  </article>",
-   "  <article class=\"card\" style=\"padding: var(--ai-space-6);\">",
+   "  <article class=\"card p-6\">",
    "    <h3 class=\"card-title\">Preview environments</h3>",
-   "    <p class=\"text-sm text-secondary\" style=\"margin-top: var(--ai-space-2);\">Every pull request gets a URL. Expires seven days after merge.</p>",
+   "    <p class=\"text-sm text-secondary mt-2\">Every pull request gets a URL. Expires seven days after merge.</p>",
    "  </article>",
-   "  <article class=\"card\" style=\"padding: var(--ai-space-6);\">",
+   "  <article class=\"card p-6\">",
    "    <h3 class=\"card-title\">Audit log export</h3>",
-   "    <p class=\"text-sm text-secondary\" style=\"margin-top: var(--ai-space-2);\">Stream events to your SIEM. JSON lines, hourly rotation.</p>",
+   "    <p class=\"text-sm text-secondary mt-2\">Stream events to your SIEM. JSON lines, hourly rotation.</p>",
    "  </article>",
    "</div>"
   ],
@@ -2191,7 +2209,7 @@
   "prefix": "ai-floating-label",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<form class=\"flex flex-col gap-4\" style=\"max-width: 24rem;\">",
+   "<form class=\"flex flex-col gap-4 max-w-sm\">",
    "  <div class=\"form-float\">",
    "    <input id=\"fl-email\" class=\"input\" type=\"email\" placeholder=\" \" autocomplete=\"email\" />",
    "    <label for=\"fl-email\">Work email</label>",
@@ -2216,7 +2234,7 @@
   "prefix": "ai-list-group",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<ul class=\"list-group\" style=\"max-width: 24rem;\">",
+   "<ul class=\"list-group max-w-sm\">",
    "  <li><a href=\"#\" class=\"list-group-item is-active\" aria-current=\"page\">Overview <span class=\"badge badge-counter ml-auto\">3</span></a></li>",
    "  <li><a href=\"#\" class=\"list-group-item\">Deployments</a></li>",
    "  <li><a href=\"#\" class=\"list-group-item\">Environment variables</a></li>",
@@ -2247,7 +2265,7 @@
   "prefix": "ai-level-bar",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"level\" style=\"padding: var(--ai-space-4) 0; border-bottom: 1px solid var(--ai-border);\">",
+   "<div class=\"level py-4 border-b\">",
    "  <div class=\"level-left\">",
    "    <strong>Invoices</strong>",
    "    <span class=\"badge badge-neutral\">June 2026</span>",
@@ -2264,7 +2282,7 @@
   "prefix": "ai-media-object",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"media\" style=\"max-width: 36rem;\">",
+   "<div class=\"media max-w-xl\">",
    "  <div class=\"media-figure\">",
    "    <div class=\"avatar\" style=\"background-color: var(--ai-surface-3);\">MR</div>",
    "  </div>",
@@ -2272,7 +2290,7 @@
    "    <div class=\"level\">",
    "      <div class=\"level-left\"><strong>Mia Rahman</strong><span class=\"text-xs text-muted\">2 hours ago</span></div>",
    "    </div>",
-   "    <p class=\"text-sm text-secondary\" style=\"margin-top: var(--ai-space-1);\">Rolled back the pricing page to build 412. The variant with the annual toggle was posting the wrong plan id.</p>",
+   "    <p class=\"text-sm text-secondary mt-1\">Rolled back the pricing page to build 412. The variant with the annual toggle was posting the wrong plan id.</p>",
    "  </div>",
    "</div>"
   ],
@@ -2282,7 +2300,7 @@
   "prefix": "ai-panel-list",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"panel\" style=\"max-width: 24rem;\">",
+   "<div class=\"panel max-w-sm\">",
    "  <div class=\"panel-header\">",
    "    Recent branches",
    "    <button type=\"button\" class=\"btn btn-ghost btn-xs\">View all</button>",
@@ -2300,7 +2318,7 @@
   "prefix": "ai-notification-block",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"flex flex-col gap-4\" style=\"max-width: 36rem;\">",
+   "<div class=\"flex flex-col gap-4 max-w-xl\">",
    "  <div class=\"notification notification-info\" role=\"status\">",
    "    <strong>Scheduled maintenance.</strong> The API will be read-only on Saturday 20 September from 02:00 to 02:30 UTC.",
    "    <button type=\"button\" class=\"close\" data-ai-dismiss=\"toast\" aria-label=\"Dismiss\"></button>",
@@ -2317,7 +2335,7 @@
   "prefix": "ai-file-input",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"form-group\" style=\"max-width: 24rem;\">",
+   "<div class=\"form-group max-w-sm\">",
    "  <label class=\"form-label\" for=\"report-file\">Import CSV</label>",
    "  <input id=\"report-file\" type=\"file\" class=\"file-input\" accept=\".csv\" />",
    "  <p class=\"form-hint\">Up to 25 MB. First row is treated as the header.</p>",
@@ -2329,7 +2347,7 @@
   "prefix": "ai-title-subtitle",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div style=\"max-width: 36rem;\">",
+   "<div class=\"max-w-xl\">",
    "  <h2 class=\"title\">Usage and billing</h2>",
    "  <p class=\"subtitle\">Meter reads are final at midnight UTC. Overages are billed with the next invoice.</p>",
    "</div>"
@@ -2352,7 +2370,7 @@
   "prefix": "ai-select-native",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"flex flex-col gap-4\" style=\"max-width: 24rem;\">",
+   "<div class=\"flex flex-col gap-4 max-w-sm\">",
    "  <div class=\"form-group\">",
    "    <label class=\"form-label\" for=\"sel-plan\">Plan</label>",
    "    <select id=\"sel-plan\" class=\"select\">",
@@ -2368,7 +2386,7 @@
    "      <option>Sydney</option>",
    "      <option>Frankfurt</option>",
    "    </select>",
-   "    <p class=\"form-hint\" id=\"sel-region-err\" style=\"color: var(--ai-danger);\">A region is required before the first deploy.</p>",
+   "    <p class=\"form-hint text-danger\" id=\"sel-region-err\">A region is required before the first deploy.</p>",
    "  </div>",
    "</div>"
   ],
@@ -2378,7 +2396,7 @@
   "prefix": "ai-input-icon",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"flex flex-col gap-4\" style=\"max-width: 24rem;\">",
+   "<div class=\"flex flex-col gap-4 max-w-sm\">",
    "  <div class=\"input-icon-wrap\">",
    "    <svg class=\"input-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/></svg>",
    "    <input class=\"input\" type=\"search\" placeholder=\"Search deployments\" aria-label=\"Search deployments\" />",
@@ -2443,7 +2461,7 @@
   "prefix": "ai-feature-list",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<ul class=\"feature-list\" style=\"max-width: 28rem;\">",
+   "<ul class=\"feature-list max-w-md\">",
    "  <li><span class=\"mark mark-yes\" role=\"img\" aria-label=\"Included\"></span> Unlimited environments per project</li>",
    "  <li><span class=\"mark mark-yes\" role=\"img\" aria-label=\"Included\"></span> Preview URL for every pull request</li>",
    "  <li><span class=\"mark mark-yes\" role=\"img\" aria-label=\"Included\"></span> Audit log with 90 day retention</li>",
@@ -2480,7 +2498,7 @@
   "body": [
    "<div class=\"cta-band\">",
    "  <h2 class=\"section-title\">Start with the free tier</h2>",
-   "  <p class=\"section-lead\" style=\"margin-inline: auto;\">No card required. Upgrade when you need SSO, audit export, or more than three projects.</p>",
+   "  <p class=\"section-lead mx-auto\">No card required. Upgrade when you need SSO, audit export, or more than three projects.</p>",
    "  <div class=\"cta-actions\">",
    "    <a href=\"#\" class=\"btn btn-primary btn-lg\">Create account</a>",
    "    <a href=\"#\" class=\"btn btn-outline btn-lg\">Talk to sales</a>",
@@ -2493,7 +2511,7 @@
   "prefix": "ai-callout-editorial",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<aside class=\"callout\" style=\"max-width: 40rem;\">",
+   "<aside class=\"callout max-w-2xl\">",
    "  <span class=\"callout-label\">Worth knowing</span>",
    "  Rollbacks restore the previous build and its environment variables together. Secrets rotated after that build are not reverted.",
    "</aside>"
@@ -2552,7 +2570,7 @@
    "<div class=\"announcement\" role=\"region\" aria-label=\"Announcement\">",
    "  <span>LLMCSS 0.2 ships the runtime as one script tag.</span>",
    "  <a href=\"#\">Read the changelog</a>",
-   "  <button type=\"button\" class=\"close ml-auto\" aria-label=\"Dismiss announcement\" style=\"color: inherit;\"></button>",
+   "  <button type=\"button\" class=\"close ml-auto text-inherit\" aria-label=\"Dismiss announcement\"></button>",
    "</div>"
   ],
   "description": "Single-line bar above the header for a release or notice, with a link and a dismiss control. (marketing, free)"
@@ -2576,18 +2594,18 @@
   "prefix": "ai-faq-section",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div style=\"max-width: 40rem;\">",
+   "<div class=\"max-w-2xl\">",
    "  <h2 class=\"section-title\">Questions</h2>",
-   "  <div style=\"margin-top: var(--ai-space-6);\">",
-   "    <details class=\"collapse\" style=\"padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border);\">",
+   "  <div class=\"mt-6\">",
+   "    <details class=\"collapse py-4 border-t\">",
    "      <summary>Do I need a build step?</summary>",
    "      <div class=\"collapse-body\">No. Link the stylesheet and start writing classes. The CLI and MCP server are optional.</div>",
    "    </details>",
-   "    <details class=\"collapse\" style=\"padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border);\">",
+   "    <details class=\"collapse py-4 border-t\">",
    "      <summary>What happens when I cancel Pro?</summary>",
    "      <div class=\"collapse-body\">The token stops working at the end of the period. CSS and HTML you already copied stay yours.</div>",
    "    </details>",
-   "    <details class=\"collapse\" style=\"padding: var(--ai-space-4) 0; border-top: 1px solid var(--ai-border); border-bottom: 1px solid var(--ai-border);\">",
+   "    <details class=\"collapse py-4 border-t border-b\">",
    "      <summary>Which browsers?</summary>",
    "      <div class=\"collapse-body\">Current Chrome, Edge, Firefox, and Safari. Features like :has() and container queries have been stable in all four since 2023.</div>",
    "    </details>",
@@ -2634,10 +2652,10 @@
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
    "<div class=\"table-container\" style=\"max-height: 18rem;\">",
-   "  <table class=\"table table-hover table-sticky table-compact\">",
+   "  <table class=\"table table-hover table-sticky table-compact min-w-var\" style=\"--ai-min-w: 36rem;\">",
    "    <thead>",
    "      <tr>",
-   "        <th style=\"width: 2.5rem;\"><input type=\"checkbox\" class=\"checkbox-input\" aria-label=\"Select all\" /></th>",
+   "        <th class=\"w-10\"><input type=\"checkbox\" class=\"checkbox-input\" aria-label=\"Select all\" /></th>",
    "        <th aria-sort=\"descending\">Service</th>",
    "        <th aria-sort=\"none\">Region</th>",
    "        <th class=\"cell-num\" aria-sort=\"none\">p95 ms</th>",
@@ -2671,7 +2689,7 @@
   "prefix": "ai-bulk-action-bar",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"bulk-bar\" style=\"position: static; max-width: 40rem;\">",
+   "<div class=\"bulk-bar static max-w-2xl\">",
    "  <span class=\"bulk-bar-count\">3 selected</span>",
    "  <button type=\"button\" class=\"btn btn-ghost btn-xs\">Clear</button>",
    "  <div class=\"bulk-bar-actions\">",
@@ -2687,7 +2705,7 @@
   "prefix": "ai-tree-view",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<ul class=\"tree\" style=\"max-width: 20rem;\">",
+   "<ul class=\"tree max-w-xs\">",
    "  <li>",
    "    <details open>",
    "      <summary>src</summary>",
@@ -2720,13 +2738,13 @@
   "prefix": "ai-onboarding-checklist",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div style=\"max-width: 28rem;\">",
+   "<div class=\"max-w-md\">",
    "  <div class=\"level\">",
    "    <strong>Get set up</strong>",
    "    <span class=\"text-sm text-secondary\" data-tabular>2 of 4</span>",
    "  </div>",
-   "  <div class=\"progress progress-sm\" role=\"progressbar\" aria-label=\"Setup progress\" aria-valuenow=\"50\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"margin-top: var(--ai-space-3);\"><div class=\"progress-bar\" style=\"width: 50%;\"></div></div>",
-   "  <ul class=\"checklist\" style=\"margin-top: var(--ai-space-4);\">",
+   "  <div class=\"progress progress-sm mt-3\" role=\"progressbar\" aria-label=\"Setup progress\" aria-valuenow=\"50\" aria-valuemin=\"0\" aria-valuemax=\"100\"><div class=\"progress-bar\" style=\"width: 50%;\"></div></div>",
+   "  <ul class=\"checklist mt-4\">",
    "    <li class=\"checklist-item is-completed\"><span class=\"checklist-mark\">1</span><span class=\"checklist-label\">Create your first project</span></li>",
    "    <li class=\"checklist-item is-completed\"><span class=\"checklist-mark\">2</span><span class=\"checklist-label\">Connect a repository</span></li>",
    "    <li class=\"checklist-item\"><span class=\"checklist-mark\">3</span><span class=\"checklist-label\">Add a custom domain</span><button type=\"button\" class=\"btn btn-outline btn-xs\">Add</button></li>",
@@ -2740,11 +2758,11 @@
   "prefix": "ai-error-state",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"empty-state is-error\" style=\"max-width: 28rem;\">",
+   "<div class=\"empty-state is-error max-w-md\">",
    "  <div class=\"empty-state-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 8v4\"/><path d=\"M12 16h.01\"/></svg></div>",
    "  <h3 class=\"empty-state-title\">Could not load deployments</h3>",
    "  <p class=\"empty-state-description\">The API returned 503 twice. Nothing was changed. Try again, or send the request id to support.</p>",
-   "  <div class=\"flex gap-2 justify-center\" style=\"margin-top: var(--ai-space-4);\">",
+   "  <div class=\"flex gap-2 justify-center mt-4\">",
    "    <button type=\"button\" class=\"btn btn-primary btn-sm\">Retry</button>",
    "    <button type=\"button\" class=\"btn btn-outline btn-sm\">Copy request id</button>",
    "  </div>",
@@ -2917,7 +2935,7 @@
    "  </section>",
    "</div>",
    "",
-   "<div class=\"split split-vertical\" style=\"--ai-split-a: 45%; margin-top: var(--ai-space-4);\">",
+   "<div class=\"split split-vertical mt-4\" style=\"--ai-split-a: 45%;\">",
    "  <section class=\"split-pane\" aria-label=\"Request\">",
    "    <h3 class=\"split-title\">Request</h3>",
    "    <p class=\"split-note\">Drag the divider, or focus it and use the arrow keys. Without the script the panes still render at their declared ratio.</p>",
@@ -3813,9 +3831,9 @@
   "prefix": "ai-family-application",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|app-content,app-header,app-main,app-shell,auth-card,auth-wrap,density-compact,filter-tag,filter-tags,filter-toolbar,health-row,inbox-item,kpi-card,kpi-label,kpi-trend,segmented,segmented-btn,segmented-input,segmented-sm,settings-row,sidebar,sidebar-badge,sidebar-header,sidebar-icon,sidebar-item,sidebar-nav,sidebar-section-title,step-item,step-label,stepper|}"
+   "${1|app-content,app-header,app-main,app-shell,auth-card,auth-wrap,density-compact,filter-tag,filter-tags,filter-toolbar,health-row,inbox-item,kpi-card,kpi-label,kpi-trend,nav-link,nav-links,segmented,segmented-btn,segmented-input,segmented-sm,settings-row,sidebar,sidebar-badge,sidebar-header,sidebar-icon,sidebar-item,sidebar-nav,sidebar-section-title,step-item,step-label,stepper|}"
   ],
-  "description": "application classes (30)"
+  "description": "application classes (32)"
  },
  "LLMCSS badges classes": {
   "prefix": "ai-family-badges",
@@ -3853,9 +3871,9 @@
   "prefix": "ai-family-buttons",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|btn-accent,btn-danger,btn-ghost,btn-icon,btn-lg,btn-outline,btn-primary,btn-secondary,btn-sm,btn-xl,btn-xs|}"
+   "${1|btn-accent,btn-danger,btn-ghost,btn-group,btn-icon,btn-lg,btn-outline,btn-primary,btn-secondary,btn-sm,btn-xl,btn-xs|}"
   ],
-  "description": "buttons classes (11)"
+  "description": "buttons classes (12)"
  },
  "LLMCSS cards classes": {
   "prefix": "ai-family-cards",
@@ -3949,9 +3967,9 @@
   "prefix": "ai-family-extras",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|btn-group,carousel,carousel-controls,carousel-peek,close,code-block,collapse,collapse-body,dropzone,file-input,form-float,kbd,level,level-left,level-right,list-group,list-group-flush,list-group-item,media,media-body,media-figure,notification,notification-danger,notification-info,notification-success,notification-warning,panel,panel-body,panel-header,quote,select,subtitle,textarea,timeline,timeline-item,timeline-meta,timeline-title,title,title-lg,title-sm|}"
+   "${1|carousel,carousel-controls,carousel-peek,close,code-block,collapse,collapse-body,dropzone,file-input,form-float,kbd,level,level-left,level-right,list-group,list-group-flush,list-group-item,media,media-body,media-figure,notification,notification-danger,notification-info,notification-success,notification-warning,panel,panel-body,panel-header,quote,select,subtitle,textarea,timeline,timeline-item,timeline-meta,timeline-title,title,title-lg,title-sm|}"
   ],
-  "description": "extras classes (40)"
+  "description": "extras classes (39)"
  },
  "LLMCSS flex classes-1": {
   "prefix": "ai-family-flex-1",
@@ -4007,31 +4025,31 @@
   "body": [
    "${1|-rotate-1,-rotate-12,-rotate-180,-rotate-2,-rotate-3,-rotate-45,-rotate-6,-rotate-90,-translate-x-1,-translate-x-12,-translate-x-2,-translate-x-3,-translate-x-4,-translate-x-6,-translate-x-8,-translate-x-full,-translate-x-half,-translate-x-px,-translate-y-1,-translate-y-12,-translate-y-2,-translate-y-3,-translate-y-4,-translate-y-6,-translate-y-8,-translate-y-full,-translate-y-half,-translate-y-px,appearance-auto,appearance-none,cursor-auto,cursor-default,cursor-grab,cursor-grabbing,cursor-help,cursor-move,cursor-none,cursor-not-allowed,cursor-pointer,cursor-progress,cursor-text,cursor-wait,cursor-zoom-in,cursor-zoom-out,delay-0,delay-150,delay-300,delay-75,duration-0,duration-fast,duration-normal,duration-slow,ease-in-out,ease-linear,ease-out,ease-smooth,ease-spring,group,origin-bottom,origin-bottom-left|}"
   ],
-  "description": "interaction utilities, part 1 of 4 (60 of 184 classes)"
+  "description": "interaction utilities, part 1 of 4 (60 of 182 classes)"
  },
  "LLMCSS interaction classes-2": {
   "prefix": "ai-family-interaction-2",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|origin-bottom-right,origin-center,origin-left,origin-right,origin-top,origin-top-left,origin-top-right,overflow-auto,overflow-clip,overflow-hidden,overflow-scroll,overflow-visible,overflow-x-auto,overflow-x-clip,overflow-x-hidden,overflow-x-scroll,overflow-x-visible,overflow-y-auto,overflow-y-clip,overflow-y-hidden,overflow-y-scroll,overflow-y-visible,overscroll-auto,overscroll-contain,overscroll-none,pointer-events-auto,pointer-events-none,resize,resize-none,resize-x,resize-y,rotate-0,rotate-1,rotate-12,rotate-180,rotate-2,rotate-3,rotate-45,rotate-6,rotate-90,scale-0,scale-100,scale-105,scale-110,scale-125,scale-150,scale-50,scale-75,scale-90,scale-95,scroll-auto,scroll-mt-0,scroll-mt-1,scroll-mt-16,scroll-mt-2,scroll-mt-20,scroll-mt-24,scroll-mt-4,scroll-mt-6,scroll-mt-8|}"
+   "${1|origin-bottom-right,origin-center,origin-left,origin-right,origin-top,origin-top-left,origin-top-right,overflow-auto,overflow-clip,overflow-hidden,overflow-scroll,overflow-visible,overflow-x-auto,overflow-x-clip,overflow-x-hidden,overflow-x-scroll,overflow-x-visible,overflow-y-auto,overflow-y-clip,overflow-y-hidden,overflow-y-scroll,overflow-y-visible,overscroll-auto,overscroll-contain,overscroll-none,pointer-events-auto,pointer-events-none,resize,resize-none,resize-x,resize-y,rotate-0,rotate-1,rotate-12,rotate-180,rotate-2,rotate-3,rotate-45,rotate-6,rotate-90,scale-0,scale-100,scale-105,scale-110,scale-125,scale-150,scale-50,scale-75,scale-90,scale-95,scroll-auto,scroll-mt-0,scroll-mt-1,scroll-mt-2,scroll-mt-20,scroll-mt-24,scroll-mt-4,scroll-mt-6,scroll-mt-8,scroll-pt-0|}"
   ],
-  "description": "interaction utilities, part 2 of 4 (60 of 184 classes)"
+  "description": "interaction utilities, part 2 of 4 (60 of 182 classes)"
  },
  "LLMCSS interaction classes-3": {
   "prefix": "ai-family-interaction-3",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|scroll-pt-0,scroll-pt-1,scroll-pt-16,scroll-pt-2,scroll-pt-4,scroll-pt-6,scroll-pt-8,scroll-smooth,snap-always,snap-both,snap-center,snap-end,snap-none,snap-normal,snap-proximity,snap-start,snap-x,snap-y,touch-auto,touch-manipulation,touch-none,touch-pan-x,touch-pan-y,transform-var,transition,transition-all,transition-colors,transition-none,transition-opacity,transition-shadow,transition-transform,translate-center,translate-x-0,translate-x-1,translate-x-12,translate-x-2,translate-x-3,translate-x-4,translate-x-6,translate-x-8,translate-x-center,translate-x-full,translate-x-half,translate-x-px,translate-y-0,translate-y-1,translate-y-12,translate-y-2,translate-y-3,translate-y-4,translate-y-6,translate-y-8,translate-y-center,translate-y-full,translate-y-half,translate-y-px,user-select-all,user-select-auto,user-select-none,user-select-text|}"
+   "${1|scroll-pt-1,scroll-pt-2,scroll-pt-4,scroll-pt-6,scroll-pt-8,scroll-smooth,snap-always,snap-both,snap-center,snap-end,snap-none,snap-normal,snap-proximity,snap-start,snap-x,snap-y,touch-auto,touch-manipulation,touch-none,touch-pan-x,touch-pan-y,transform-var,transition,transition-all,transition-colors,transition-none,transition-opacity,transition-shadow,transition-transform,translate-center,translate-x-0,translate-x-1,translate-x-12,translate-x-2,translate-x-3,translate-x-4,translate-x-6,translate-x-8,translate-x-center,translate-x-full,translate-x-half,translate-x-px,translate-y-0,translate-y-1,translate-y-12,translate-y-2,translate-y-3,translate-y-4,translate-y-6,translate-y-8,translate-y-center,translate-y-full,translate-y-half,translate-y-px,user-select-all,user-select-auto,user-select-none,user-select-text,will-change-auto,will-change-opacity|}"
   ],
-  "description": "interaction utilities, part 3 of 4 (60 of 184 classes)"
+  "description": "interaction utilities, part 3 of 4 (60 of 182 classes)"
  },
  "LLMCSS interaction classes-4": {
   "prefix": "ai-family-interaction-4",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|will-change-auto,will-change-opacity,will-change-scroll,will-change-transform|}"
+   "${1|will-change-scroll,will-change-transform|}"
   ],
-  "description": "interaction utilities, part 4 of 4 (4 of 184 classes)"
+  "description": "interaction utilities, part 4 of 4 (2 of 182 classes)"
  },
  "LLMCSS layout classes-1": {
   "prefix": "ai-family-layout-1",
@@ -4053,17 +4071,17 @@
   "prefix": "ai-family-marketing-1",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|announcement,bento-cell,bento-code-pill,bento-col-2,bento-grid,bento-row-2,bento-span-2,brand,callout,callout-label,consent-actions,consent-bar,cta-actions,cta-band,feature-grid,feature-icon,feature-item,feature-list,feature-text,feature-title,footer,footer-blurb,footer-bottom,footer-brand,footer-cmd,footer-col,footer-col-toggle,footer-compact,footer-grid,footer-heading,footer-list,footer-stat,hero,hero-actions,hero-badge,hero-lead,hero-split,hero-title,hero-visual,logo-rail,matrix-category-header,matrix-container,matrix-feature-col,nav-link,nav-links,navbar,navbar-inner,navbar-search,pricing-amount,pricing-card,pricing-feature-item,pricing-featured,pricing-features,pricing-grid,pricing-header,pricing-period,pricing-plan,pricing-ribbon,section,section-banner|}"
+   "${1|announcement,bento-cell,bento-code-pill,bento-col-2,bento-grid,bento-row-2,bento-span-2,brand,callout,callout-label,consent-actions,consent-bar,cta-actions,cta-band,feature-grid,feature-icon,feature-item,feature-list,feature-text,feature-title,footer,footer-blurb,footer-bottom,footer-brand,footer-cmd,footer-col,footer-col-toggle,footer-compact,footer-grid,footer-heading,footer-list,footer-stat,hero,hero-actions,hero-badge,hero-lead,hero-split,hero-title,hero-visual,logo-rail,matrix-category-header,matrix-container,matrix-feature-col,navbar,navbar-inner,navbar-search,pricing-amount,pricing-card,pricing-feature-item,pricing-featured,pricing-features,pricing-grid,pricing-header,pricing-period,pricing-plan,pricing-ribbon,section,section-banner,section-lead,section-shift|}"
   ],
-  "description": "marketing utilities, part 1 of 2 (60 of 75 classes)"
+  "description": "marketing utilities, part 1 of 2 (60 of 73 classes)"
  },
  "LLMCSS marketing classes-2": {
   "prefix": "ai-family-marketing-2",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|section-lead,section-shift,section-title,stat,stat-label,stats-band,team-grid,team-member,team-name,team-photo,team-role,testimonial-author,testimonial-card,testimonial-grid,testimonial-quote|}"
+   "${1|section-title,stat,stat-label,stats-band,team-grid,team-member,team-name,team-photo,team-role,testimonial-author,testimonial-card,testimonial-grid,testimonial-quote|}"
   ],
-  "description": "marketing utilities, part 2 of 2 (15 of 75 classes)"
+  "description": "marketing utilities, part 2 of 2 (13 of 73 classes)"
  },
  "LLMCSS modals classes": {
   "prefix": "ai-family-modals",
@@ -4135,7 +4153,7 @@
   "body": [
    "${1|-m-0.5,-m-1,-m-1.5,-m-10,-m-12,-m-16,-m-2,-m-2.5,-m-20,-m-24,-m-3,-m-4,-m-5,-m-6,-m-8,-m-px,-mb-0.5,-mb-1,-mb-1.5,-mb-10,-mb-12,-mb-16,-mb-2,-mb-2.5,-mb-20,-mb-24,-mb-3,-mb-4,-mb-5,-mb-6,-mb-8,-mb-px,-me-0.5,-me-1,-me-1.5,-me-10,-me-12,-me-16,-me-2,-me-2.5,-me-20,-me-24,-me-3,-me-4,-me-5,-me-6,-me-8,-me-px,-ml-0.5,-ml-1,-ml-1.5,-ml-10,-ml-12,-ml-16,-ml-2,-ml-2.5,-ml-20,-ml-24,-ml-3,-ml-4|}"
   ],
-  "description": "spacing utilities, part 1 of 12 (60 of 688 classes)"
+  "description": "spacing utilities, part 1 of 12 (60 of 686 classes)"
  },
  "LLMCSS spacing classes-2": {
   "prefix": "ai-family-spacing-2",
@@ -4143,7 +4161,7 @@
   "body": [
    "${1|-ml-5,-ml-6,-ml-8,-ml-px,-mr-0.5,-mr-1,-mr-1.5,-mr-10,-mr-12,-mr-16,-mr-2,-mr-2.5,-mr-20,-mr-24,-mr-3,-mr-4,-mr-5,-mr-6,-mr-8,-mr-px,-ms-0.5,-ms-1,-ms-1.5,-ms-10,-ms-12,-ms-16,-ms-2,-ms-2.5,-ms-20,-ms-24,-ms-3,-ms-4,-ms-5,-ms-6,-ms-8,-ms-px,-mt-0.5,-mt-1,-mt-1.5,-mt-10,-mt-12,-mt-16,-mt-2,-mt-2.5,-mt-20,-mt-24,-mt-3,-mt-4,-mt-5,-mt-6,-mt-8,-mt-px,-mx-0.5,-mx-1,-mx-1.5,-mx-10,-mx-12,-mx-16,-mx-2,-mx-2.5|}"
   ],
-  "description": "spacing utilities, part 2 of 12 (60 of 688 classes)"
+  "description": "spacing utilities, part 2 of 12 (60 of 686 classes)"
  },
  "LLMCSS spacing classes-3": {
   "prefix": "ai-family-spacing-3",
@@ -4151,7 +4169,7 @@
   "body": [
    "${1|-mx-20,-mx-24,-mx-3,-mx-4,-mx-5,-mx-6,-mx-8,-mx-px,-my-0.5,-my-1,-my-1.5,-my-10,-my-12,-my-16,-my-2,-my-2.5,-my-20,-my-24,-my-3,-my-4,-my-5,-my-6,-my-8,-my-px,gap-0,gap-0.5,gap-1,gap-1.5,gap-10,gap-11,gap-12,gap-14,gap-16,gap-2,gap-2.5,gap-20,gap-24,gap-28,gap-3,gap-3.5,gap-32,gap-36,gap-4,gap-40,gap-48,gap-5,gap-56,gap-6,gap-64,gap-7,gap-72,gap-8,gap-80,gap-9,gap-96,gap-px,gap-var,gap-x-0,gap-x-0.5,gap-x-1|}"
   ],
-  "description": "spacing utilities, part 3 of 12 (60 of 688 classes)"
+  "description": "spacing utilities, part 3 of 12 (60 of 686 classes)"
  },
  "LLMCSS spacing classes-4": {
   "prefix": "ai-family-spacing-4",
@@ -4159,7 +4177,7 @@
   "body": [
    "${1|gap-x-1.5,gap-x-10,gap-x-12,gap-x-14,gap-x-16,gap-x-2,gap-x-2.5,gap-x-20,gap-x-24,gap-x-3,gap-x-3.5,gap-x-32,gap-x-4,gap-x-5,gap-x-6,gap-x-7,gap-x-8,gap-x-px,gap-y-0,gap-y-0.5,gap-y-1,gap-y-1.5,gap-y-10,gap-y-12,gap-y-14,gap-y-16,gap-y-2,gap-y-2.5,gap-y-20,gap-y-24,gap-y-3,gap-y-3.5,gap-y-32,gap-y-4,gap-y-5,gap-y-6,gap-y-7,gap-y-8,gap-y-px,m-0,m-0.5,m-1,m-1.5,m-10,m-11,m-12,m-14,m-16,m-2,m-2.5,m-20,m-24,m-28,m-3,m-3.5,m-32,m-36,m-4,m-40,m-48|}"
   ],
-  "description": "spacing utilities, part 4 of 12 (60 of 688 classes)"
+  "description": "spacing utilities, part 4 of 12 (60 of 686 classes)"
  },
  "LLMCSS spacing classes-5": {
   "prefix": "ai-family-spacing-5",
@@ -4167,7 +4185,7 @@
   "body": [
    "${1|m-5,m-56,m-6,m-64,m-7,m-72,m-8,m-80,m-9,m-96,m-auto,m-px,m-var,mb-0,mb-0.5,mb-1,mb-1.5,mb-10,mb-12,mb-14,mb-16,mb-2,mb-2.5,mb-20,mb-24,mb-3,mb-3.5,mb-32,mb-4,mb-5,mb-6,mb-7,mb-8,mb-auto,mb-px,me-0,me-0.5,me-1,me-1.5,me-10,me-12,me-14,me-16,me-2,me-2.5,me-20,me-24,me-3,me-3.5,me-32,me-4,me-5,me-6,me-7,me-8,me-auto,me-px,ml-0,ml-0.5,ml-1|}"
   ],
-  "description": "spacing utilities, part 5 of 12 (60 of 688 classes)"
+  "description": "spacing utilities, part 5 of 12 (60 of 686 classes)"
  },
  "LLMCSS spacing classes-6": {
   "prefix": "ai-family-spacing-6",
@@ -4175,7 +4193,7 @@
   "body": [
    "${1|ml-1.5,ml-10,ml-12,ml-14,ml-16,ml-2,ml-2.5,ml-20,ml-24,ml-3,ml-3.5,ml-32,ml-4,ml-5,ml-6,ml-7,ml-8,ml-auto,ml-px,mr-0,mr-0.5,mr-1,mr-1.5,mr-10,mr-12,mr-14,mr-16,mr-2,mr-2.5,mr-20,mr-24,mr-3,mr-3.5,mr-32,mr-4,mr-5,mr-6,mr-7,mr-8,mr-auto,mr-px,ms-0,ms-0.5,ms-1,ms-1.5,ms-10,ms-12,ms-14,ms-16,ms-2,ms-2.5,ms-20,ms-24,ms-3,ms-3.5,ms-32,ms-4,ms-5,ms-6,ms-7|}"
   ],
-  "description": "spacing utilities, part 6 of 12 (60 of 688 classes)"
+  "description": "spacing utilities, part 6 of 12 (60 of 686 classes)"
  },
  "LLMCSS spacing classes-7": {
   "prefix": "ai-family-spacing-7",
@@ -4183,7 +4201,7 @@
   "body": [
    "${1|ms-8,ms-auto,ms-px,mt-0,mt-0.5,mt-1,mt-1.5,mt-10,mt-12,mt-14,mt-16,mt-2,mt-2.5,mt-20,mt-24,mt-3,mt-3.5,mt-32,mt-4,mt-5,mt-6,mt-7,mt-8,mt-auto,mt-px,mx-0,mx-0.5,mx-1,mx-1.5,mx-10,mx-11,mx-12,mx-14,mx-16,mx-2,mx-2.5,mx-20,mx-24,mx-28,mx-3,mx-3.5,mx-32,mx-36,mx-4,mx-40,mx-48,mx-5,mx-56,mx-6,mx-64,mx-7,mx-72,mx-8,mx-80,mx-9,mx-96,mx-auto,mx-px,my-0,my-0.5|}"
   ],
-  "description": "spacing utilities, part 7 of 12 (60 of 688 classes)"
+  "description": "spacing utilities, part 7 of 12 (60 of 686 classes)"
  },
  "LLMCSS spacing classes-8": {
   "prefix": "ai-family-spacing-8",
@@ -4191,7 +4209,7 @@
   "body": [
    "${1|my-1,my-1.5,my-10,my-11,my-12,my-14,my-16,my-2,my-2.5,my-20,my-24,my-28,my-3,my-3.5,my-32,my-36,my-4,my-40,my-48,my-5,my-56,my-6,my-64,my-7,my-72,my-8,my-80,my-9,my-96,my-auto,my-px,p-0,p-0.5,p-1,p-1.5,p-10,p-11,p-12,p-14,p-16,p-2,p-2.5,p-20,p-24,p-28,p-3,p-3.5,p-32,p-36,p-4,p-40,p-48,p-5,p-56,p-6,p-64,p-7,p-72,p-8,p-80|}"
   ],
-  "description": "spacing utilities, part 8 of 12 (60 of 688 classes)"
+  "description": "spacing utilities, part 8 of 12 (60 of 686 classes)"
  },
  "LLMCSS spacing classes-9": {
   "prefix": "ai-family-spacing-9",
@@ -4199,7 +4217,7 @@
   "body": [
    "${1|p-9,p-96,p-px,p-var,pb-0,pb-0.5,pb-1,pb-1.5,pb-10,pb-12,pb-14,pb-16,pb-2,pb-2.5,pb-20,pb-24,pb-3,pb-3.5,pb-32,pb-4,pb-5,pb-6,pb-7,pb-8,pb-px,pe-0,pe-0.5,pe-1,pe-1.5,pe-10,pe-12,pe-14,pe-16,pe-2,pe-2.5,pe-20,pe-24,pe-3,pe-3.5,pe-32,pe-4,pe-5,pe-6,pe-7,pe-8,pe-px,pl-0,pl-0.5,pl-1,pl-1.5,pl-10,pl-12,pl-14,pl-16,pl-2,pl-2.5,pl-20,pl-24,pl-3,pl-3.5|}"
   ],
-  "description": "spacing utilities, part 9 of 12 (60 of 688 classes)"
+  "description": "spacing utilities, part 9 of 12 (60 of 686 classes)"
  },
  "LLMCSS spacing classes-10": {
   "prefix": "ai-family-spacing-10",
@@ -4207,7 +4225,7 @@
   "body": [
    "${1|pl-32,pl-4,pl-5,pl-6,pl-7,pl-8,pl-px,pr-0,pr-0.5,pr-1,pr-1.5,pr-10,pr-12,pr-14,pr-16,pr-2,pr-2.5,pr-20,pr-24,pr-3,pr-3.5,pr-32,pr-4,pr-5,pr-6,pr-7,pr-8,pr-px,ps-0,ps-0.5,ps-1,ps-1.5,ps-10,ps-12,ps-14,ps-16,ps-2,ps-2.5,ps-20,ps-24,ps-3,ps-3.5,ps-32,ps-4,ps-5,ps-6,ps-7,ps-8,ps-px,pt-0,pt-0.5,pt-1,pt-1.5,pt-10,pt-12,pt-14,pt-16,pt-2,pt-2.5,pt-20|}"
   ],
-  "description": "spacing utilities, part 10 of 12 (60 of 688 classes)"
+  "description": "spacing utilities, part 10 of 12 (60 of 686 classes)"
  },
  "LLMCSS spacing classes-11": {
   "prefix": "ai-family-spacing-11",
@@ -4215,15 +4233,15 @@
   "body": [
    "${1|pt-24,pt-3,pt-3.5,pt-32,pt-4,pt-5,pt-6,pt-7,pt-8,pt-px,px-0,px-0.5,px-1,px-1.5,px-10,px-11,px-12,px-14,px-16,px-2,px-2.5,px-20,px-24,px-28,px-3,px-3.5,px-32,px-36,px-4,px-40,px-48,px-5,px-56,px-6,px-64,px-7,px-72,px-8,px-80,px-9,px-96,px-px,py-0,py-0.5,py-1,py-1.5,py-10,py-11,py-12,py-14,py-16,py-2,py-2.5,py-20,py-24,py-28,py-3,py-3.5,py-32,py-36|}"
   ],
-  "description": "spacing utilities, part 11 of 12 (60 of 688 classes)"
+  "description": "spacing utilities, part 11 of 12 (60 of 686 classes)"
  },
  "LLMCSS spacing classes-12": {
   "prefix": "ai-family-spacing-12",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|py-4,py-40,py-48,py-5,py-56,py-6,py-64,py-7,py-72,py-8,py-80,py-9,py-96,py-px,space-x-0,space-x-1,space-x-16,space-x-2,space-x-4,space-x-6,space-x-8,space-y-0,space-y-1,space-y-16,space-y-2,space-y-4,space-y-6,space-y-8|}"
+   "${1|py-4,py-40,py-48,py-5,py-56,py-6,py-64,py-7,py-72,py-8,py-80,py-9,py-96,py-px,space-x-0,space-x-1,space-x-2,space-x-4,space-x-6,space-x-8,space-y-0,space-y-1,space-y-2,space-y-4,space-y-6,space-y-8|}"
   ],
-  "description": "spacing utilities, part 12 of 12 (28 of 688 classes)"
+  "description": "spacing utilities, part 12 of 12 (26 of 686 classes)"
  },
  "LLMCSS tables classes": {
   "prefix": "ai-family-tables",

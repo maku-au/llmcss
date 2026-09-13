@@ -104,6 +104,9 @@
     --ai-surface-1: #ececee;
     --ai-surface-2: #e1e1e4;
     --ai-surface-3: #d1d1d6;
+    /* Row hover: a 4 percent tint of the text colour over whatever surface the
+       row sits on, so a hover never turns a warm skin's rows grey or dark. */
+    --ai-surface-hover: color-mix(in srgb, var(--ai-text-primary) 4%, transparent);
     
     --ai-text-primary: #18181b;
     --ai-text-secondary: #52525b;
@@ -258,6 +261,7 @@
     --ai-surface-1: #18181b;
     --ai-surface-2: #27272a;
     --ai-surface-3: #3f3f46;
+    --ai-surface-hover: color-mix(in srgb, var(--ai-text-primary) 6%, transparent);
 
     --ai-text-primary: #f4f4f5;
     --ai-text-secondary: #a1a1aa;

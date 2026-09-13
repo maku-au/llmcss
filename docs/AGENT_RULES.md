@@ -7,12 +7,12 @@ Source of truth, in this order: [classes.json](https://llmcss.io/classes.json) f
 ## Where classes live
 
 <!-- stats:start -->
-- **Classes:** 2305 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
-- **Tokens:** 107 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
+- **Classes:** 2301 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Tokens:** 108 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
 - **States:** 38 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
 - **Components:** 122, all MIT: 54 primitive, 42 application, 21 marketing, 5 ecommerce.
 - **Motion demos:** 8, in the optional addon.
-- **Layout variants:** 150 across 52 components, addressed `component:variant`.
+- **Layout variants:** 164 across 52 components, addressed `component:variant`.
 - **Section templates:** 55 (44 free wireframe, 11 themed Pro).
 - **Page blueprints:** 6 (4 free, 2 Pro).
 - **Motion addon:** 64 classes, 2.0KB gzipped, listed in [classes.motion.json](https://llmcss.io/classes.motion.json).
@@ -23,23 +23,23 @@ The family a class belongs to tells you which stylesheet file defines it and rou
 <!-- families:start -->
 | Family | Classes | Defined in |
 |---|---:|---|
-| `spacing` | 688 | `utilities.css` |
-| `interaction` | 184 | `utilities.css` |
+| `spacing` | 686 | `utilities.css` |
+| `interaction` | 182 | `utilities.css` |
 | `sizing` | 175 | `utilities.css` |
 | `agent-extra` | 120 | `components/agent-extra.css` |
 | `position` | 114 | `utilities.css` |
 | `typography` | 108 | `utilities.css` |
 | `grid` | 107 | `utilities.css` |
 | `flex` | 81 | `utilities.css` |
-| `marketing` | 75 | `components/marketing.css` |
+| `marketing` | 73 | `components/marketing.css` |
 | `borders` | 70 | `utilities.css` |
 | `layout` | 63 | `utilities.css` |
 | `effects` | 55 | `utilities.css` |
 | `dashboard` | 43 | `components/dashboard.css` |
-| `extras` | 40 | `components/extras.css` |
+| `extras` | 39 | `components/extras.css` |
 | `animations` | 33 | `animations.css` |
+| `application` | 32 | `components/application.css` |
 | `forms-extra` | 31 | `components/forms-extra.css` |
-| `application` | 30 | `components/application.css` |
 | `badges` | 28 | `components/badges.css` |
 | `commerce-extra` | 28 | `components/commerce-extra.css` |
 | `navigation` | 24 | `components/navigation.css` |
@@ -49,9 +49,9 @@ The family a class belongs to tells you which stylesheet file defines it and rou
 | `drawers` | 13 | `components/drawers.css` |
 | `inputs` | 13 | `components/inputs.css` |
 | `base` | 12 | `base.css` |
+| `buttons` | 12 | `components/buttons.css` |
 | `tables` | 12 | `components/tables.css` |
 | `toasts` | 12 | `components/toasts.css` |
-| `buttons` | 11 | `components/buttons.css` |
 | `modals` | 11 | `components/modals.css` |
 | `ecommerce` | 10 | `components/ecommerce.css` |
 | `command` | 9 | `components/command.css` |
@@ -89,11 +89,11 @@ The author writes these in static markup; the runtime sets the same classes at r
 <!-- states:start -->
 | State | Styled on |
 |---|---|
-| `is-active` | `.btn`, `.btn-ghost`, `.btn-primary`, `.combobox-option`, `.filter-tag`, `.list-group-item`, `.nav-link`, `.pagination-link`, `.scrollspy-link`, `.segmented-btn`, `.sidebar-badge`, `.sidebar-item`, `.step-circle`, `.step-item`, `.step-label`, `.tab`, `.tab-panel`, `.tabs-pills`, `.tree-leaf` |
+| `is-active` | `.app-header`, `.btn`, `.btn-ghost`, `.btn-primary`, `.combobox-option`, `.filter-tag`, `.list-group-item`, `.nav-link`, `.pagination-link`, `.scrollspy-link`, `.segmented-btn`, `.sidebar`, `.sidebar-badge`, `.sidebar-item`, `.step-circle`, `.step-item`, `.step-label`, `.tab`, `.tab-panel`, `.tabs-pills`, `.tree-leaf` |
 | `is-added` | `.diff-gutter`, `.diff-marker`, `.diff-row` |
 | `is-auto` | `.marquee`, `.marquee-track` |
 | `is-centered` | `.hero`, `.hero-actions`, `.hero-lead` |
-| `is-collapsed` | `.sidebar`, `.sidebar-badge`, `.sidebar-icon`, `.sidebar-item`, `.sidebar-section-title` |
+| `is-collapsed` | `.app-shell`, `.sidebar`, `.sidebar-badge`, `.sidebar-icon`, `.sidebar-item`, `.sidebar-section-title` |
 | `is-completed` | `.checklist-item`, `.checklist-label`, `.checklist-mark`, `.orderline-pip`, `.orderline-step`, `.step-circle`, `.step-item` |
 | `is-credit` | `.checkout-value` |
 | `is-current` | `.breadcrumb-item`, `.orderline-label`, `.orderline-pip`, `.orderline-step` |
