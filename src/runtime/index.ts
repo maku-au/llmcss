@@ -9,6 +9,7 @@ import { AiToastElement } from './elements/toast.element';
 import { AiCommandPaletteElement } from './elements/command-palette.element';
 import { initCombobox } from './combobox';
 import { initScrollspy } from './scrollspy';
+import { initSplit } from './split';
 
 export {
   AiModalElement,
@@ -56,6 +57,7 @@ export function initLLMCSS() {
   initDataAttributes(activeConfig.prefix);
   initCombobox(activeConfig.prefix);
   initScrollspy(activeConfig.prefix);
+  initSplit(activeConfig.prefix);
 }
 
 // Auto-run if in browser environment
