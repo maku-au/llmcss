@@ -198,7 +198,7 @@ export const ungatedById = {
   'approval-bar': {
     id: 'approval-bar',
     name: "Approval Bar",
-    description: "Pending action bar with a warning accent and pip, the tool call in mono, and quiet deny, outline edit and primary allow once actions.",
+    description: "Pending action bar with a warning status line and a steady pip, the tool call in mono, and quiet deny, outline edit and primary allow once actions.",
     category: 'application',
     tier: 'free',
     tags: ["agent","approval","bar"],

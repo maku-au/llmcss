@@ -3,8 +3,10 @@
      AGENT SURFACES (diff, split, composer, cost, model, permission, run header)
      ========================================================================== */
 
-/* Pending action bar. A left accent and a warning pip carry the state, so the
-     label stays plain text instead of becoming an eyebrow pill. */
+/* Pending action bar. The warning ink on the status line and a steady warning
+     pip carry the state, so the label stays plain text instead of becoming an
+     eyebrow pill. The card keeps the same 1px hairline as every other surface:
+     a coloured left edge is the law 3 stripe tell, whatever its width. */
   .approval {
     --ai-approval-ink: color-mix(in srgb, var(--ai-warning) 70%, var(--ai-text-primary));
     container-type: inline-size;
@@ -14,7 +16,6 @@
     gap: var(--ai-space-3) var(--ai-space-4);
     padding: var(--ai-space-4);
     border: 1px solid var(--ai-border);
-    border-left: 2px solid var(--ai-warning);
     border-radius: var(--ai-radius-lg);
     background-color: var(--ai-surface-0);
   }
@@ -71,17 +72,24 @@
     color: color-mix(in srgb, var(--ai-danger) 70%, var(--ai-text-primary));
   }
 
-  .approval.is-done {
-    border-left-color: var(--ai-border);
-  }
-
+  /* Once the call is allowed or denied the status line drops to secondary ink.
+     Nothing about the frame changes, because the frame never carried state. */
   .approval.is-done .approval-status {
     color: var(--ai-text-secondary);
   }
 
   @container (max-width: 32rem) {
+    /* An element can never answer its own container query, so the single column
+       fallback is carried by the children: both span every column and the auto
+       track is left empty. The scope table inherits the full width that way and
+       has room for its three columns instead of a 60px scrap of one. */
     .approval {
       grid-template-columns: minmax(0, 1fr);
+    }
+
+    .approval-main,
+    .approval-actions {
+      grid-column: 1 / -1;
     }
 
     .approval-actions {
@@ -92,6 +100,15 @@
     .approval-actions > .btn {
       flex: 1 1 0;
       min-width: 0;
+    }
+  }
+
+  /* The bar is its own container, so its own column count cannot come from the
+     container query above. On a page the viewport is the honest signal: below
+     40rem the actions sit under the call, never beside it. */
+  @media (max-width: 40rem) {
+    .approval {
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 

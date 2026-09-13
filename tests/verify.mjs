@@ -205,7 +205,10 @@ console.log('✓ Verified Container Queries, Intrinsic Auto-Fit Grids, and Motio
 console.log('\n7. Testing public/registry.json build artifact...');
 assert(fs.existsSync('public/registry.json'), 'Missing public/registry.json');
 const registryJson = JSON.parse(fs.readFileSync('public/registry.json', 'utf-8'));
-assert(registryJson.stats.total === components.length, 'Registry JSON total mismatch');
+assert(
+  registryJson.stats.total === components.filter((c) => !c.addon).length,
+  'Registry JSON total mismatch'
+);
 assert(registryJson.stats.pro === components.filter((c) => c.tier === 'pro').length, 'Registry JSON pro count mismatch');
 assert(registryJson.stats.pro === 0, 'Registry JSON must list zero Pro components');
 const bento = components.find((c) => c.id === 'bento-editorial-pro');
@@ -893,7 +896,7 @@ console.log('\n24. Testing Component Layout Variants (refs, strict validation, a
     `public/registry.json stats.variants is ${registryStats.variants}, the data says ${variantCount}`
   );
   assert(
-    registryStats.total === components.length,
+    registryStats.total === components.filter((c) => !c.addon).length,
     'A variant is not a component: stats.total must stay the component count'
   );
   const statsJson = JSON.parse(fs.readFileSync('src/registry/stats.json', 'utf-8'));
@@ -927,7 +930,96 @@ console.log('\n25. Testing Motion Addon (gzip budget, ai-m-* keyframes, no atten
   console.log(`✓ Verified motion addon: ${names.length} ai-m-* keyframes, ${gz} bytes gzipped of ${MOTION_BUDGET}, no banned loops, no !important.`);
 }
 
-console.log('\n🎉 ALL 25 TESTS PASSED SUCCESSFULLY!\n');
+// Test 26: Component CSS Left-Stripe and Static-Pip Motion Guard (Laws 3 and 2)
+// `llmcss audit` enforces both laws on the markup a user hands it. This checks
+// the library's own stylesheets, where one stripe or one breathing pip ships to
+// every consumer at once. showcase.css is site chrome, not library CSS.
+console.log('\n26. Testing Component CSS for Left Stripes and Unguarded Pip Motion (Laws 3 and 2)...');
+{
+  const cssDir = path.resolve('src/css/components');
+  const files = fs.readdirSync(cssDir).filter((f) => f.endsWith('.css') && f !== 'showcase.css');
+
+  // A width of 2px or more on the left edge alone. A glyph drawn out of borders
+  // (the checkbox tick, a popover arrow) always declares a second edge at the
+  // same width, and a neutral --ai-border* rule is architecture rather than a
+  // status stripe, so both of those are exempt. Table rules are exempt too.
+  const STRIPE = /border-(?:left|inline-start)\s*:\s*([0-9.]+)px\s+[a-z]+\s+([^;]+)/i;
+  const PAIRED = (w) => new RegExp(`border-(?:right|top|bottom|inline-end|block)[^:{]*:\\s*${w}px`, 'i');
+  const TABLE_SEL = /\b(?:table|thead|tbody|tfoot|tr|td|th)\b/i;
+  // A pip, a dot or a status element is a steady state unless its own selector
+  // says otherwise: only streaming, progress and loading states may move.
+  const PIPISH = /pip|dot|status/i;
+  const GUARDED = /is-streaming|progress|skeleton|is-loading|aria-busy/i;
+
+  const stripes = [];
+  const motion = [];
+
+  for (const file of files) {
+    const css = fs.readFileSync(path.join(cssDir, file), 'utf-8').replace(/\/\*[\s\S]*?\*\//g, '');
+    // Innermost rule blocks only, so a selector nested in @media or @container
+    // is read on its own and an at-rule prelude never lands in the selector.
+    const ruleRe = /([^{}]*)\{([^{}]*)\}/g;
+    let m;
+    while ((m = ruleRe.exec(css))) {
+      const selector = m[1].replace(/\s+/g, ' ').trim();
+      const body = m[2];
+      if (!selector || selector.startsWith('@') || /^(?:\d|from\b|to\b)/.test(selector)) continue;
+
+      const stripe = body.match(STRIPE);
+      if (
+        stripe &&
+        parseFloat(stripe[1]) >= 2 &&
+        !/transparent/i.test(stripe[2]) &&
+        !/--ai-border/.test(stripe[2]) &&
+        !PAIRED(stripe[1]).test(body) &&
+        !TABLE_SEL.test(selector)
+      ) {
+        stripes.push(`${file}: ${selector} -> ${stripe[1]}px ${stripe[2].trim()}`);
+      }
+
+      const anim = body.match(/(?:^|[;\s])animation\s*:\s*([^;]+)/i);
+      if (anim && anim[1].trim() !== 'none' && PIPISH.test(selector) && !GUARDED.test(selector)) {
+        motion.push(`${file}: ${selector} -> animation: ${anim[1].trim()}`);
+      }
+    }
+  }
+
+  assert(stripes.length === 0, `Law 3: coloured left stripe in component CSS:\n  ${stripes.join('\n  ')}`);
+  assert(motion.length === 0, `Law 2: motion on a steady pip, dot or status element:\n  ${motion.join('\n  ')}`);
+
+  const agentCss = fs.readFileSync(path.join(cssDir, 'agent-extra.css'), 'utf-8');
+  assert(
+    !/\.approval\s*\{[^}]*border-(?:left|inline-start)/.test(agentCss),
+    '.approval must keep the plain hairline border, with no left accent'
+  );
+
+  // The audit has to catch both spellings in the markup it is handed.
+  const stripeSnippetFile = path.resolve('scratch_bad_stripe_test.html');
+  fs.writeFileSync(
+    stripeSnippetFile,
+    '<div class="card" style="border-inline-start: 4px solid #f59e0b;">Pending</div>\n<div class="panel" style="box-shadow: inset 3px 0 0 #f59e0b;">Pending</div>',
+    'utf-8'
+  );
+  try {
+    let auditFailed = false;
+    try {
+      execSync(`node bin/cssai.mjs audit ${stripeSnippetFile}`, { stdio: 'pipe' });
+    } catch (err) {
+      auditFailed = true;
+      const stdout = err.stdout ? err.stdout.toString() : '';
+      assert(stdout.includes('Side-Tab Cards'), 'Audit output missing Side-Tab Cards finding');
+    }
+    assert(auditFailed, 'cssai audit should have failed on a border-inline-start stripe and an inset shadow stripe');
+  } finally {
+    if (fs.existsSync(stripeSnippetFile)) fs.unlinkSync(stripeSnippetFile);
+  }
+
+  console.log(
+    `✓ Verified ${files.length} component stylesheets: 0 coloured left stripes, 0 animated pips outside a streaming or loading state, and audit detection for both stripe spellings.`
+  );
+}
+
+console.log('\n🎉 ALL 26 TESTS PASSED SUCCESSFULLY!\n');
 
 
 

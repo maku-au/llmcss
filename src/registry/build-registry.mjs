@@ -40,27 +40,34 @@ function buildRegistry() {
   }
 
   const publicComponents = components.map(toPublicComponent);
-  const freeCount = publicComponents.filter((c) => c.tier === 'free').length;
-  const proCount = publicComponents.filter((c) => c.tier === 'pro').length;
+  // Addon demos stay in the served catalog so the CLI and the MCP server can
+  // still resolve them by id, but they are not part of the component count:
+  // their classes live in an opt-in second stylesheet, so folding them in would
+  // make "every component, one stylesheet" false. Counted on their own below.
+  const catalogComponents = publicComponents.filter((c) => !c.addon);
+  const motionCount = publicComponents.filter((c) => c.addon === 'motion').length;
+  const freeCount = catalogComponents.filter((c) => c.tier === 'free').length;
+  const proCount = catalogComponents.filter((c) => c.tier === 'pro').length;
   // Layout variants ride along inside their parent, so they never inflate the
   // component count. Counted here, never typed anywhere.
-  const variantCount = countVariants(publicComponents);
+  const variantCount = countVariants(catalogComponents);
 
   const categories = {
-    primitive: publicComponents.filter((c) => c.category === 'primitive').length,
-    marketing: publicComponents.filter((c) => c.category === 'marketing').length,
-    application: publicComponents.filter((c) => c.category === 'application').length,
-    ecommerce: publicComponents.filter((c) => c.category === 'ecommerce').length,
+    primitive: catalogComponents.filter((c) => c.category === 'primitive').length,
+    marketing: catalogComponents.filter((c) => c.category === 'marketing').length,
+    application: catalogComponents.filter((c) => c.category === 'application').length,
+    ecommerce: catalogComponents.filter((c) => c.category === 'ecommerce').length,
   };
 
   const registryData = {
     version: PKG_VERSION,
     generatedAt: new Date().toISOString(),
     stats: {
-      total: publicComponents.length,
+      total: catalogComponents.length,
       free: freeCount,
       pro: proCount,
       variants: variantCount,
+      motion: motionCount,
       categories,
     },
     components: publicComponents,
@@ -78,10 +85,11 @@ function buildRegistry() {
   }
 
   console.log(`[build-registry] Successfully generated public/registry.json:`);
-  console.log(`  - Total components: ${components.length}`);
+  console.log(`  - Total components: ${catalogComponents.length}`);
   console.log(`  - Free components:  ${freeCount}`);
   console.log(`  - Pro components:   ${proCount}`);
   console.log(`  - Layout variants:  ${variantCount}`);
+  console.log(`  - Motion demos:     ${motionCount}, served but counted apart`);
   console.log(`  - Categories:`, categories);
 
   const publicTemplates = wireframeTemplates.map(toPublicTemplate);
@@ -121,10 +129,11 @@ function buildRegistry() {
   // numbers generated rather than typed. Committed because it is small.
   const isKit = (b) => b.kind === 'themed' || b.tier === 'pro';
   const stats = {
-    total: publicComponents.length,
+    total: catalogComponents.length,
     free: freeCount,
     pro: proCount,
     variants: variantCount,
+    motion: motionCount,
     ...categories,
     themedSections: publicTemplates.filter((t) => t.kind === 'themed').length,
     wireframeSections: publicTemplates.filter((t) => t.kind !== 'themed').length,

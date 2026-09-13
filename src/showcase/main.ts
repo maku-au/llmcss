@@ -42,6 +42,15 @@ const componentVariants: Record<string, string> = {};
 type CatalogComponent = (typeof components)[number];
 type CatalogVariant = NonNullable<CatalogComponent['variants']>[number];
 
+// Motion addon demos ride in the same registry array so the CLI and the MCP
+// server still resolve them by id, but on this page they are their own group:
+// their classes live in a second stylesheet, so they are never counted with the
+// core components and never listed inside a real category. The sidebar row uses
+// this id as its data-cat value.
+const MOTION_CATEGORY = 'motion';
+const catalogComponents = components.filter((c) => !c.addon);
+const motionComponents = components.filter((c) => c.addon === MOTION_CATEGORY);
+
 function selectedVariant(comp: CatalogComponent): CatalogVariant | null {
   const id = componentVariants[comp.id];
   if (!id) return null;
@@ -694,11 +703,11 @@ function rebindPreviewControls(id: string) {
 // COMPONENT RENDERING & SIDEBAR
 // ============================================================================
 function updateSidebarCounts() {
-  const total = components.length;
-  const primitives = components.filter((c) => c.category === 'primitive').length;
-  const marketing = components.filter((c) => c.category === 'marketing').length;
-  const application = components.filter((c) => c.category === 'application').length;
-  const ecommerce = components.filter((c) => c.category === 'ecommerce').length;
+  const total = catalogComponents.length;
+  const primitives = catalogComponents.filter((c) => c.category === 'primitive').length;
+  const marketing = catalogComponents.filter((c) => c.category === 'marketing').length;
+  const application = catalogComponents.filter((c) => c.category === 'application').length;
+  const ecommerce = catalogComponents.filter((c) => c.category === 'ecommerce').length;
 
   const countAll = document.getElementById('count-all');
   if (countAll) countAll.textContent = String(total);
@@ -714,6 +723,11 @@ function updateSidebarCounts() {
 
   const countEcom = document.getElementById('count-ecommerce');
   if (countEcom) countEcom.textContent = String(ecommerce);
+
+  // Its own group, so it is never read as a fifth category: the addon demos are
+  // filed under primitive in the registry and would inflate that row.
+  const countMotion = document.getElementById('count-motion');
+  if (countMotion) countMotion.textContent = String(motionComponents.length);
 
   // Category and tier counts are component counts and stay that way: a variant
   // is not a component. The layout total gets one muted line of its own, and
@@ -747,8 +761,16 @@ function readFiltersFromUrl() {
   const q = params.get('q');
   if (q) searchQuery = q;
   const cat = params.get('cat');
-  const known = ['all', 'primitive', 'marketing', 'application', 'ecommerce'];
+  const known = ['all', 'primitive', 'marketing', 'application', 'ecommerce', MOTION_CATEGORY];
   if (cat && known.includes(cat)) activeCategory = cat;
+
+  // A permalink to an addon demo has to land on it. Those demos live in their
+  // own row now, so a #comp- hash naming one selects that row, unless the URL
+  // already asked for a filter of its own.
+  const hit = readHashRef();
+  if (!cat && hit && motionComponents.some((c) => c.id === hit.id)) {
+    activeCategory = MOTION_CATEGORY;
+  }
 }
 
 // A segmented control in the card header, Default first. It sits in the same
@@ -824,48 +846,75 @@ function selectVariant(id: string, variantId: string) {
   history.replaceState(null, '', `${url.pathname}${url.search}#comp-${refFor(comp)}`);
 }
 
+// True when a demo answers the current query. A variant match also opens that
+// variant: typing "topbar" has to land on the app shell card already showing
+// the topbar layout, not on the card showing a sidebar with a control the
+// reader has not noticed yet.
+function matchesSearch(comp: CatalogComponent, q: string): boolean {
+  if (!q) return true;
+  const variantHit = (comp.variants || []).find(
+    (v) =>
+      v.id.includes(q) ||
+      v.name.toLowerCase().includes(q) ||
+      v.description.toLowerCase().includes(q)
+  );
+  const hit =
+    comp.id.includes(q) ||
+    comp.name.toLowerCase().includes(q) ||
+    comp.description.toLowerCase().includes(q) ||
+    comp.tags.some((t) => t.toLowerCase().includes(q)) ||
+    // Class names are what people actually search for: btn-outline,
+    // card-footer, is-loading. Match the snippet itself.
+    comp.html.toLowerCase().includes(q) ||
+    Boolean(variantHit);
+
+  if (hit && variantHit && !componentVariants[comp.id]) {
+    componentVariants[comp.id] = variantHit.id;
+  }
+  return hit;
+}
+
+// The heading above the motion run. Its note is the one thing a reader needs
+// that no component card does: these demos are inert without a second
+// stylesheet, and the link tag is the whole instruction.
+function motionSectionHead(): string {
+  return `
+      <header class="docs-motion-head">
+        <h2 class="text-base font-semibold tracking-tight">Motion addon</h2>
+        <p class="docs-motion-note">These need the addon stylesheet, <code>&lt;link rel="stylesheet" href="llmcss-motion.css"&gt;</code>, loaded after llmcss.css. <a href="/quickstart#motion">How to add it</a>.</p>
+      </header>
+      `;
+}
+
 function renderComponents() {
   if (!streamEl) return;
-  const filtered = components.filter((comp) => {
-    const matchCat = activeCategory === 'all' || comp.category === activeCategory;
-    const q = searchQuery.toLowerCase().trim();
-    // Typing "topbar" has to land on the app shell card already showing the
-    // topbar layout, not on the card showing a sidebar with a control the
-    // reader has not noticed yet. So a variant match also opens that variant.
-    const variantHit = (comp.variants || []).find(
-      (v) =>
-        v.id.includes(q) ||
-        v.name.toLowerCase().includes(q) ||
-        v.description.toLowerCase().includes(q)
-    );
-    const matchSearch =
-      !q ||
-      comp.id.includes(q) ||
-      comp.name.toLowerCase().includes(q) ||
-      comp.description.toLowerCase().includes(q) ||
-      comp.tags.some((t) => t.toLowerCase().includes(q)) ||
-      // Class names are what people actually search for: btn-outline,
-      // card-footer, is-loading. Match the snippet itself.
-      comp.html.toLowerCase().includes(q) ||
-      Boolean(variantHit);
+  const q = searchQuery.toLowerCase().trim();
+  const motionActive = activeCategory === MOTION_CATEGORY;
 
-    if (q && matchCat && variantHit && !componentVariants[comp.id]) {
-      componentVariants[comp.id] = variantHit.id;
-    }
-
-    return matchCat && matchSearch;
-  });
+  // The addon demos are a pseudo-category: never in All, never inside a real
+  // category, never in the "of 122" figure. Their own row shows them alone.
+  // Everywhere else they appear only when a query asks for one, and then under
+  // their own heading rather than mixed into the component stream, so nobody
+  // copies a snippet that needs a stylesheet they have not linked.
+  const comps = motionActive
+    ? []
+    : catalogComponents.filter(
+        (c) => (activeCategory === 'all' || c.category === activeCategory) && matchesSearch(c, q)
+      );
+  const motionHits = motionActive || q ? motionComponents.filter((c) => matchesSearch(c, q)) : [];
 
   const resultEl = document.getElementById('catalog-result-count');
   if (resultEl) {
-    // Component counts only. A variant is not a component, so the figure that
-    // people trust in the page header keeps its shape.
-    resultEl.textContent = `${filtered.length} of ${components.length}`;
+    // Component counts only. A variant is not a component and neither is an
+    // addon demo, so the figure people trust in the page header keeps its shape.
+    resultEl.textContent = motionActive
+      ? `${motionHits.length} motion demos`
+      : `${comps.length} of ${catalogComponents.length}`;
   }
 
   syncUrlToFilters();
 
-  if (filtered.length === 0) {
+  if (comps.length === 0 && motionHits.length === 0) {
     streamEl.innerHTML = `<div class="empty-state border border-dashed rounded-md">
       <p class="empty-state-title">No matches${searchQuery ? ` for “${escapeHtml(searchQuery)}”` : ''}</p>
       <p class="empty-state-description">Try another query, or search a class name such as btn-outline.</p>
@@ -881,11 +930,22 @@ function renderComponents() {
     return;
   }
 
-  streamEl.innerHTML = filtered
-    .map((comp) => {
-      const currentHtml = generateCustomizedHtml(comp);
+  streamEl.innerHTML =
+    comps.map(cardHtml).join('') +
+    (motionHits.length > 0 ? motionSectionHead() + motionHits.map(cardHtml).join('') : '');
 
-      return `
+  applyViewportWidth();
+  addCopyButtons(streamEl);
+  bindComponentEvents();
+}
+
+// One demo card, identical for a catalog component and an addon demo. The
+// group heading above the motion run is the only thing that separates them, so
+// a card can never carry a second style that has to be kept in step.
+function cardHtml(comp: CatalogComponent): string {
+  const currentHtml = generateCustomizedHtml(comp);
+
+  return `
       <article class="demo-card scroll-mt-24" id="comp-${comp.id}">
         <div class="demo-header">
           <div class="flex items-center gap-3">
@@ -927,12 +987,6 @@ function renderComponents() {
         </div>
       </article>
       `;
-    })
-    .join('');
-
-  applyViewportWidth();
-  addCopyButtons(streamEl);
-  bindComponentEvents();
 }
 
 // The preview width control is a live measurement, not a style choice, so it
@@ -1287,7 +1341,10 @@ async function boot() {
       renderComponents();
     }, 150);
   });
-  console.log(`[LLMCSS Showcase] Initialized successfully with ${components.length} components.`);
+  console.log(
+    `[LLMCSS Showcase] Initialized with ${catalogComponents.length} components ` +
+      `and ${motionComponents.length} motion addon demos.`
+  );
 }
 boot();
 

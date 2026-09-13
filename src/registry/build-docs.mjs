@@ -113,12 +113,21 @@ const familyRows = Object.entries(familyCounts)
 const tokenTotal = tokenList.length;
 const stateTotal = stateList.length;
 
-const componentTotal = componentList.length;
-const componentPro = componentList.filter((c) => c.tier === 'pro').length;
+// Addon demos are served inside registry.json so the CLI can resolve them, but
+// they are not components of the core library: their classes need a second
+// stylesheet. Every number below counts the core catalog, and the addon gets a
+// line of its own. registry.json states the same split; recomputing it from the
+// component array keeps this file honest if that ever drifts.
+const catalogComponents = componentList.filter((c) => !c.addon);
+const motionComponents = componentList.filter((c) => c.addon === 'motion');
+
+const componentTotal = catalogComponents.length;
+const componentPro = catalogComponents.filter((c) => c.tier === 'pro').length;
 const componentFree = componentTotal - componentPro;
+const motionTotal = motionComponents.length;
 const categoryRows = (() => {
   const counts = new Map();
-  for (const c of componentList) counts.set(c.category, (counts.get(c.category) || 0) + 1);
+  for (const c of catalogComponents) counts.set(c.category, (counts.get(c.category) || 0) + 1);
   return [...counts.entries()]
     .map(([category, count]) => ({ category, count }))
     .sort((a, b) => b.count - a.count || a.category.localeCompare(b.category));
@@ -127,8 +136,8 @@ const categorySplit = categoryRows.map((r) => `${r.count} ${r.category}`).join('
 
 // Layout variants are nested inside their parent, so they never inflate the
 // component count. Counted here so no document ever types the number.
-const variantTotal = componentList.reduce((n, c) => n + (c.variants ? c.variants.length : 0), 0);
-const variantParents = componentList.filter((c) => c.variants && c.variants.length > 0).length;
+const variantTotal = catalogComponents.reduce((n, c) => n + (c.variants ? c.variants.length : 0), 0);
+const variantParents = catalogComponents.filter((c) => c.variants && c.variants.length > 0).length;
 
 const sectionTotal = sectionList.length;
 const sectionPro = sectionList.filter((t) => t.tier === 'pro').length;
@@ -236,6 +245,7 @@ const statsRenderers = {
       `- **Tokens:** ${tokenTotal} \`--ai-*\` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).`,
       `- **States:** ${stateTotal} \`is-*\` classes, listed in [states.json](https://llmcss.io/states.json).`,
       `- **Components:** ${componentTotal}, all MIT: ${categorySplit}.`,
+      ...(motionTotal > 0 ? [`- **Motion demos:** ${motionTotal}, in the optional addon.`] : []),
       `- **Layout variants:** ${variantTotal} across ${variantParents} components, addressed \`component:variant\`.`,
       `- **Section templates:** ${sectionTotal} (${sectionFree} free wireframe, ${sectionPro} themed Pro).`,
       `- **Page blueprints:** ${blueprintTotal} (${blueprintFree} free, ${blueprintPro} Pro).`,
@@ -253,6 +263,7 @@ const statsRenderers = {
       `Tokens: ${tokenTotal} --ai-* custom properties, https://llmcss.io/tokens.json.`,
       `States: ${stateTotal} is-* classes, https://llmcss.io/states.json.`,
       `Components: ${componentTotal}, all MIT: ${categorySplit}.`,
+      ...(motionTotal > 0 ? [`Motion demos: ${motionTotal}, in the optional addon.`] : []),
       `Layout variants: ${variantTotal} across ${variantParents} components, addressed component:variant.`,
       `Section templates: ${sectionTotal} (${sectionFree} free wireframe, ${sectionPro} themed Pro).`,
       `Page blueprints: ${blueprintTotal} (${blueprintFree} free, ${blueprintPro} Pro).`,
@@ -347,7 +358,7 @@ const sampleRenderers = {
   },
 
   'registry-json': () => {
-    const sample = componentList.find((c) => c.tier !== 'pro') || componentList[0];
+    const sample = catalogComponents.find((c) => c.tier !== 'pro') || catalogComponents[0];
     const trimmed = {
       id: sample.id,
       name: sample.name,

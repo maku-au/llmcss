@@ -1,13 +1,14 @@
 {
   "version": "0.4.0",
-  "generatedAt": "2026-09-13T05:32:39.603Z",
+  "generatedAt": "2026-09-13T06:36:49.896Z",
   "stats": {
-    "total": 130,
-    "free": 130,
+    "total": 122,
+    "free": 122,
     "pro": 0,
     "variants": 150,
+    "motion": 8,
     "categories": {
-      "primitive": 62,
+      "primitive": 54,
       "marketing": 21,
       "application": 42,
       "ecommerce": 5
@@ -1071,7 +1072,7 @@
     {
       "id": "approval-bar",
       "name": "Approval Bar",
-      "description": "Pending action bar with a warning accent and pip, the tool call in mono, and quiet deny, outline edit and primary allow once actions.",
+      "description": "Pending action bar with a warning status line and a steady pip, the tool call in mono, and quiet deny, outline edit and primary allow once actions.",
       "category": "application",
       "tier": "free",
       "tags": [
@@ -1085,7 +1086,7 @@
           "id": "stacked",
           "name": "Stacked",
           "description": "The call and its note take the full width and the three actions drop to a full width row beneath, instead of sitting to the right of the text.",
-          "guidance": "Use in a narrow column, a drawer or a mobile sheet, where the side by side layout would squeeze the note to four words a line. The buttons are a three column grid that folds to one below md, so Allow once is never a thumb width from Deny on a phone. The 2px warning edge on .approval is the accent and it stays 2px: widening it is the left stripe tell law 3 exists to stop.",
+          "guidance": "Use in a narrow column, a drawer or a mobile sheet, where the side by side layout would squeeze the note to four words a line. The buttons are a three column grid that folds to one below md, so Allow once is never a thumb width from Deny on a phone. The state is carried by the warning ink on the status line and the steady pip beside it, never by a coloured left edge: any left border thicker than the hairline is the stripe tell law 3 exists to stop.",
           "html": "<div class=\"approval grid-cols-1\">\n  <div class=\"approval-main\">\n    <span class=\"approval-status\">\n      <span class=\"status-pip status-pip-warning\" aria-hidden=\"true\"></span>\n      Needs approval\n    </span>\n    <span class=\"approval-action\">write_file <span class=\"approval-target\">src/auth.ts</span></span>\n    <p class=\"approval-note\">Replaces the session helper and rewrites two call sites. Review the diff before allowing.</p>\n  </div>\n  <div class=\"approval-actions grid grid-cols-1 md:grid-cols-3 gap-2\">\n    <button class=\"btn btn-ghost btn-sm approval-deny w-full\" type=\"button\">Deny</button>\n    <button class=\"btn btn-outline btn-sm w-full\" type=\"button\">Edit</button>\n    <button class=\"btn btn-primary btn-sm w-full\" type=\"button\">Allow once</button>\n  </div>\n</div>"
         },
         {
@@ -1099,8 +1100,8 @@
           "id": "detail-expanded",
           "name": "Detail expanded",
           "description": "A scope table sits between the call and the actions, listing each capability the approval actually grants with its resource and risk.",
-          "guidance": "Use when one approval grants more than the call name implies, which is most write and migrate calls. Reading the capability list is the decision, so the table goes above the buttons and never behind a disclosure. Risk is a pip plus a word in the same three step vocabulary as the permission dialog, so a user who has seen one has seen both. The table is flush inside the bar rather than a second bordered box.",
-          "html": "<div class=\"approval grid-cols-1\">\n  <div class=\"approval-main\">\n    <span class=\"approval-status\">\n      <span class=\"status-pip status-pip-warning\" aria-hidden=\"true\"></span>\n      Needs approval\n    </span>\n    <span class=\"approval-action\">write_file <span class=\"approval-target\">src/auth.ts</span></span>\n    <p class=\"approval-note\">Replaces the session helper and rewrites two call sites. Review the diff before allowing.</p>\n    <table class=\"table table-compact permission-scope mt-3\">\n      <thead>\n        <tr>\n          <th scope=\"col\">Capability</th>\n          <th scope=\"col\">Resource</th>\n          <th scope=\"col\">Risk</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td><code class=\"permission-cap\">files.write</code></td>\n          <td class=\"permission-resource\">repo / src/auth.ts</td>\n          <td><span class=\"permission-risk\"><span class=\"status-pip status-pip-warning\" aria-hidden=\"true\"></span>Medium</span></td>\n        </tr>\n        <tr>\n          <td><code class=\"permission-cap\">files.write</code></td>\n          <td class=\"permission-resource\">repo / src/session.ts</td>\n          <td><span class=\"permission-risk\"><span class=\"status-pip status-pip-warning\" aria-hidden=\"true\"></span>Medium</span></td>\n        </tr>\n        <tr>\n          <td><code class=\"permission-cap\">files.read</code></td>\n          <td class=\"permission-resource\">repo / src/auth.spec.ts</td>\n          <td><span class=\"permission-risk\"><span class=\"status-pip status-pip-success\" aria-hidden=\"true\"></span>Low</span></td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"approval-actions\">\n    <button class=\"btn btn-ghost btn-sm approval-deny\" type=\"button\">Deny</button>\n    <button class=\"btn btn-outline btn-sm\" type=\"button\">Edit</button>\n    <button class=\"btn btn-primary btn-sm\" type=\"button\">Allow once</button>\n  </div>\n</div>"
+          "guidance": "Use when one approval grants more than the call name implies, which is most write and migrate calls. Reading the capability list is the decision, so the table goes above the buttons and never behind a disclosure. Risk is a pip plus a word in the same three step vocabulary as the permission dialog, so a user who has seen one has seen both. The table is flush inside the bar rather than a second bordered box, and it sits in an overflow-x-auto block so a long resource path scrolls the table instead of running past the card on a phone.",
+          "html": "<div class=\"approval grid-cols-1\">\n  <div class=\"approval-main\">\n    <span class=\"approval-status\">\n      <span class=\"status-pip status-pip-warning\" aria-hidden=\"true\"></span>\n      Needs approval\n    </span>\n    <span class=\"approval-action\">write_file <span class=\"approval-target\">src/auth.ts</span></span>\n    <p class=\"approval-note\">Replaces the session helper and rewrites two call sites. Review the diff before allowing.</p>\n    <div class=\"overflow-x-auto mt-3\">\n      <table class=\"table table-compact permission-scope\">\n        <thead>\n          <tr>\n            <th scope=\"col\">Capability</th>\n            <th scope=\"col\">Resource</th>\n            <th scope=\"col\">Risk</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td><code class=\"permission-cap\">files.write</code></td>\n            <td class=\"permission-resource\">repo / src/auth.ts</td>\n            <td><span class=\"permission-risk\"><span class=\"status-pip status-pip-warning\" aria-hidden=\"true\"></span>Medium</span></td>\n          </tr>\n          <tr>\n            <td><code class=\"permission-cap\">files.write</code></td>\n            <td class=\"permission-resource\">repo / src/session.ts</td>\n            <td><span class=\"permission-risk\"><span class=\"status-pip status-pip-warning\" aria-hidden=\"true\"></span>Medium</span></td>\n          </tr>\n          <tr>\n            <td><code class=\"permission-cap\">files.read</code></td>\n            <td class=\"permission-resource\">repo / src/auth.spec.ts</td>\n            <td><span class=\"permission-risk\"><span class=\"status-pip status-pip-success\" aria-hidden=\"true\"></span>Low</span></td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  <div class=\"approval-actions\">\n    <button class=\"btn btn-ghost btn-sm approval-deny\" type=\"button\">Deny</button>\n    <button class=\"btn btn-outline btn-sm\" type=\"button\">Edit</button>\n    <button class=\"btn btn-primary btn-sm\" type=\"button\">Allow once</button>\n  </div>\n</div>"
         }
       ]
     },

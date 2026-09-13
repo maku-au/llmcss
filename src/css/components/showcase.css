@@ -1310,3 +1310,32 @@ a.docs-ecosystem-item {
     display: none;
   }
 }
+
+/* ==========================================================================
+   Motion addon group in the component catalog. The addon demos are their own
+   run in the stream, never mixed into the component list, because their
+   classes need a second stylesheet. A hairline and the space above it are the
+   whole boundary: the cards below already carry borders, so a box here would
+   nest one inside another.
+   ========================================================================== */
+@layer components {
+  .docs-motion-head {
+    margin: 0 0 var(--ai-space-5);
+  }
+  /* Only when the group follows component results. On its own row it is the
+     top of the stream and there is nothing above it to divide from. */
+  .docs-motion-head:not(:first-child) {
+    margin-top: var(--ai-space-8);
+    padding-top: var(--ai-space-6);
+    border-top: 1px solid var(--ai-border-subtle);
+  }
+  .docs-motion-note {
+    margin: 0.35rem 0 0;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--ai-text-muted);
+  }
+  .docs-motion-note code {
+    color: var(--ai-text-secondary);
+  }
+}

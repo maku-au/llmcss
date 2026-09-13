@@ -496,7 +496,7 @@ export const agentVariants = {
       description:
         'The call and its note take the full width and the three actions drop to a full width row beneath, instead of sitting to the right of the text.',
       guidance:
-        'Use in a narrow column, a drawer or a mobile sheet, where the side by side layout would squeeze the note to four words a line. The buttons are a three column grid that folds to one below md, so Allow once is never a thumb width from Deny on a phone. The 2px warning edge on .approval is the accent and it stays 2px: widening it is the left stripe tell law 3 exists to stop.',
+        'Use in a narrow column, a drawer or a mobile sheet, where the side by side layout would squeeze the note to four words a line. The buttons are a three column grid that folds to one below md, so Allow once is never a thumb width from Deny on a phone. The state is carried by the warning ink on the status line and the steady pip beside it, never by a coloured left edge: any left border thicker than the hairline is the stripe tell law 3 exists to stop.',
       html: `<div class="approval grid-cols-1">
   <div class="approval-main">
     <span class="approval-status">
@@ -538,7 +538,7 @@ export const agentVariants = {
       description:
         'A scope table sits between the call and the actions, listing each capability the approval actually grants with its resource and risk.',
       guidance:
-        'Use when one approval grants more than the call name implies, which is most write and migrate calls. Reading the capability list is the decision, so the table goes above the buttons and never behind a disclosure. Risk is a pip plus a word in the same three step vocabulary as the permission dialog, so a user who has seen one has seen both. The table is flush inside the bar rather than a second bordered box.',
+        'Use when one approval grants more than the call name implies, which is most write and migrate calls. Reading the capability list is the decision, so the table goes above the buttons and never behind a disclosure. Risk is a pip plus a word in the same three step vocabulary as the permission dialog, so a user who has seen one has seen both. The table is flush inside the bar rather than a second bordered box, and it sits in an overflow-x-auto block so a long resource path scrolls the table instead of running past the card on a phone.',
       html: `<div class="approval grid-cols-1">
   <div class="approval-main">
     <span class="approval-status">
@@ -547,32 +547,34 @@ export const agentVariants = {
     </span>
     <span class="approval-action">write_file <span class="approval-target">src/auth.ts</span></span>
     <p class="approval-note">Replaces the session helper and rewrites two call sites. Review the diff before allowing.</p>
-    <table class="table table-compact permission-scope mt-3">
-      <thead>
-        <tr>
-          <th scope="col">Capability</th>
-          <th scope="col">Resource</th>
-          <th scope="col">Risk</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code class="permission-cap">files.write</code></td>
-          <td class="permission-resource">repo / src/auth.ts</td>
-          <td><span class="permission-risk"><span class="status-pip status-pip-warning" aria-hidden="true"></span>Medium</span></td>
-        </tr>
-        <tr>
-          <td><code class="permission-cap">files.write</code></td>
-          <td class="permission-resource">repo / src/session.ts</td>
-          <td><span class="permission-risk"><span class="status-pip status-pip-warning" aria-hidden="true"></span>Medium</span></td>
-        </tr>
-        <tr>
-          <td><code class="permission-cap">files.read</code></td>
-          <td class="permission-resource">repo / src/auth.spec.ts</td>
-          <td><span class="permission-risk"><span class="status-pip status-pip-success" aria-hidden="true"></span>Low</span></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="overflow-x-auto mt-3">
+      <table class="table table-compact permission-scope">
+        <thead>
+          <tr>
+            <th scope="col">Capability</th>
+            <th scope="col">Resource</th>
+            <th scope="col">Risk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code class="permission-cap">files.write</code></td>
+            <td class="permission-resource">repo / src/auth.ts</td>
+            <td><span class="permission-risk"><span class="status-pip status-pip-warning" aria-hidden="true"></span>Medium</span></td>
+          </tr>
+          <tr>
+            <td><code class="permission-cap">files.write</code></td>
+            <td class="permission-resource">repo / src/session.ts</td>
+            <td><span class="permission-risk"><span class="status-pip status-pip-warning" aria-hidden="true"></span>Medium</span></td>
+          </tr>
+          <tr>
+            <td><code class="permission-cap">files.read</code></td>
+            <td class="permission-resource">repo / src/auth.spec.ts</td>
+            <td><span class="permission-risk"><span class="status-pip status-pip-success" aria-hidden="true"></span>Low</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <div class="approval-actions">
     <button class="btn btn-ghost btn-sm approval-deny" type="button">Deny</button>

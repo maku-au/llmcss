@@ -1,9 +1,10 @@
 {
-  "total": 130,
-  "free": 130,
+  "total": 122,
+  "free": 122,
   "pro": 0,
   "variants": 150,
-  "primitive": 62,
+  "motion": 8,
+  "primitive": 54,
   "marketing": 21,
   "application": 42,
   "ecommerce": 5,

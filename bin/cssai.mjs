@@ -632,8 +632,12 @@ switch (command) {
         });
       }
 
-      // 2. Colored left-border stripes
-      if (/border-left:\s*[2-9]px\s+solid/i.test(line)) {
+      // 2. Colored left-border stripes. The logical property is the same tell
+      // as the physical one, the `solid` keyword is optional in the shorthand,
+      // and an `inset Npx 0` shadow paints the identical bar without ever
+      // writing the word border.
+      if (/border-(?:left|inline-start)\s*:\s*[2-9]px/i.test(line) ||
+          /box-shadow\s*:\s*inset\s+[2-9]px\s+0/i.test(line)) {
         slopFindings.push({
           line: lineNum,
           category: 'Side-Tab Cards',

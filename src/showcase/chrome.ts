@@ -329,8 +329,9 @@ export async function mountChrome() {
 
   // Catalog numbers in page copy come from the registry, never typed by hand.
   // Keys are whatever build-registry.mjs put in stats.json: total, free, pro,
-  // variants, the four categories, themedSections, wireframeSections, kits,
-  // blueprints.
+  // variants, motion, the four categories, themedSections, wireframeSections,
+  // kits, blueprints. total is the 122 core components; motion is the addon
+  // demo count, which is deliberately not folded into total.
   document.querySelectorAll<HTMLElement>('[data-ai-stat]').forEach((el) => {
     const key = el.getAttribute('data-ai-stat') as keyof typeof catalogStats;
     if (key in catalogStats) el.textContent = String(catalogStats[key]);

@@ -1350,7 +1350,7 @@
    "  </div>",
    "</div>"
   ],
-  "description": "Pending action bar with a warning accent and pip, the tool call in mono, and quiet deny, outline edit and primary allow once actions. (application, free)"
+  "description": "Pending action bar with a warning status line and a steady pip, the tool call in mono, and quiet deny, outline edit and primary allow once actions. (application, free)"
  },
  "LLMCSS Thought Chain": {
   "prefix": "ai-thought-chain",
