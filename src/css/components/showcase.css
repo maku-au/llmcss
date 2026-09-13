@@ -1327,7 +1327,8 @@ a.docs-ecosystem-item {
      and a changing line in a fixed header reads as a glitch. */
   .docs-variant-note {
     margin: 0;
-    padding: var(--ai-space-2) var(--ai-space-5) 0;
+    padding: var(--ai-space-3) var(--ai-space-6) var(--ai-space-4);
+    border-top: 1px solid var(--ai-border-subtle);
     font-size: 0.75rem;
     line-height: 1.5;
     color: var(--ai-text-muted);
