@@ -792,7 +792,34 @@ function holdUntilSettled(btn: HTMLButtonElement, root: HTMLElement) {
 // still works there, because that one is asked for.
 const autoReplayedCanvases = new WeakSet<Element>();
 const autoReplayedIds = new Set<string>();
+const canvasRenderedAt = new WeakMap<Element, number>();
 let motionSightObserver: IntersectionObserver | null = null;
+
+// True when the card's entrance is on screen already, which is what happens to
+// every card that was in view when the catalog rendered. Replaying one of those
+// restarts an animation the reader is watching, and that reads as a stutter, so
+// the render-time play counts as the first sight instead.
+//
+// Two readings, because they answer different questions. A running animation is
+// proof the entrance is playing right now. The age check covers the frames just
+// after it ended, where every animation already reports finished but the reader
+// has certainly seen it.
+function entranceStillFresh(canvas: Element): boolean {
+  if (typeof canvas.getAnimations !== 'function') return false;
+  const anims = canvas.getAnimations({ subtree: true });
+  if (anims.length === 0) return false;
+  if (anims.some((a) => a.playState === 'running' || a.playState === 'paused')) return true;
+
+  const renderedAt = canvasRenderedAt.get(canvas);
+  if (renderedAt === undefined) return false;
+  // endTime is delay plus duration, so a delay-150 child keeps the whole card
+  // fresh for as long as its own cascade lasts.
+  const longest = anims.reduce((max, a) => {
+    const end = Number(a.effect?.getComputedTiming().endTime ?? 0);
+    return end > max ? end : max;
+  }, 0);
+  return performance.now() - renderedAt < longest;
+}
 
 function motionSight(): IntersectionObserver | null {
   if (typeof IntersectionObserver === 'undefined') return null;
@@ -810,7 +837,11 @@ function motionSight(): IntersectionObserver | null {
         // covers one element: filtering rebuilds every card, and a fresh
         // canvas would otherwise read as a demo nobody had seen yet.
         if (!id || autoReplayedIds.has(id)) return;
+        // Marked seen either way, so the once-per-page-load contract holds: a
+        // card that was already animating has had its first sight, it just did
+        // not need a second render to get one.
         autoReplayedIds.add(id);
+        if (entranceStillFresh(entry.target)) return;
         replayMotion(id);
       });
     },
@@ -824,7 +855,11 @@ function observeMotionCards() {
   if (!observer) return;
   document.querySelectorAll('.js-motion-replay').forEach((btn) => {
     const canvas = btn.closest('.demo-card')?.querySelector('.demo-canvas');
-    if (canvas) observer.observe(canvas);
+    if (!canvas) return;
+    // This runs immediately after the stream is written, so it is the canvas's
+    // render time, and entranceStillFresh measures the entrance against it.
+    canvasRenderedAt.set(canvas, performance.now());
+    observer.observe(canvas);
   });
 }
 

@@ -67,7 +67,7 @@ export const SPACE_NEG = ['px', '0.5', '1', '1.5', '2', '2.5', '3', '4', '5', '6
 export const SPACE_RESP = ['0', '1', '2', '4', '6', '8', '16'];
 
 /** Responsive subset for side-specific spacing. */
-export const SPACE_RESP_SIDE = ['0', '1', '2', '4', '6', '8'];
+export const SPACE_RESP_SIDE = ['0', '2', '4', '6', '8'];
 
 /* -------------------------------------------------------------------------
    Variant model
