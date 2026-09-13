@@ -813,4 +813,300 @@ export const extraComponents = [
       },
     ],
   },
+
+  {
+    id: 'distribution-bar',
+    name: 'Distribution Bar',
+    description:
+      'One stacked bar of four toned segments over a legend that names, counts and times every share. No label sits inside a segment: the list under the bar carries every number.',
+    category: 'application',
+    tier: 'free',
+    tags: ['dashboard', 'chart', 'distribution', 'legend', 'tone'],
+    html: `<div class="card max-w-xl">
+  <div class="card-body flex flex-col gap-5">
+    <div class="flex flex-col gap-1">
+      <span class="kpi-label">Installs by surface, September</span>
+      <span class="text-sm text-muted tabular">12,480</span>
+    </div>
+
+    <div class="split-bar" role="img" aria-label="CLI 46 percent, MCP server 27 percent, gallery copy 18 percent, zip download 9 percent">
+      <div class="w-var" data-ai-tone="1" style="--ai-w: 46%"></div>
+      <div class="w-var" data-ai-tone="2" style="--ai-w: 27%"></div>
+      <div class="w-var" data-ai-tone="3" style="--ai-w: 18%"></div>
+      <div class="w-var" data-ai-tone="4" style="--ai-w: 9%"></div>
+    </div>
+
+    <dl class="flex flex-col gap-3">
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+        <span class="pip shrink-0" data-ai-tone="1"></span>
+        <dt class="text-sm">CLI</dt>
+        <dd class="ml-auto text-sm tabular">5,741 (46%)</dd>
+        <dd class="w-full text-sm text-muted tabular">median 1m 40s to first component</dd>
+      </div>
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+        <span class="pip shrink-0" data-ai-tone="2"></span>
+        <dt class="text-sm">MCP server</dt>
+        <dd class="ml-auto text-sm tabular">3,370 (27%)</dd>
+        <dd class="w-full text-sm text-muted tabular">median 2m 10s to first component</dd>
+      </div>
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+        <span class="pip shrink-0" data-ai-tone="3"></span>
+        <dt class="text-sm">Gallery copy</dt>
+        <dd class="ml-auto text-sm tabular">2,246 (18%)</dd>
+        <dd class="w-full text-sm text-muted tabular">median 3m 25s to first component</dd>
+      </div>
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+        <span class="pip shrink-0" data-ai-tone="4"></span>
+        <dt class="text-sm">Zip download</dt>
+        <dd class="ml-auto text-sm tabular">1,123 (9%)</dd>
+        <dd class="w-full text-sm text-muted tabular">median 6m 05s to first component</dd>
+      </div>
+    </dl>
+  </div>
+</div>`,
+    variants: [
+      {
+        id: 'legend-beside',
+        name: 'Legend beside',
+        description:
+          'The bar and the total keep the first column and the legend moves into a second one from cq-md up, so the shape and the numbers are read together instead of one under the other.',
+        guidance:
+          'Use where the card is wide and the legend is the point: a usage breakdown beside a total, a spend split in a two column dashboard row, or any place a reader compares the four figures rather than glancing at the shape. Do not use it in a narrow rail or beside a second chart, where the legend drops under the bar anyway and the extra column buys nothing. The split is a container query, not a viewport one, so the legend stacks below the bar inside a 360px card and every row keeps its own line. The tone on each segment is the tone on its pip, which is what makes the legend readable without a label inside the bar.',
+        html: `<div class="cq">
+  <div class="card">
+    <div class="card-body grid grid-cols-1 cq-md:grid-cols-2 gap-6 items-start">
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-1">
+          <span class="kpi-label">Installs by surface, September</span>
+          <span class="text-sm text-muted tabular">12,480</span>
+        </div>
+        <div class="split-bar" role="img" aria-label="CLI 46 percent, MCP server 27 percent, gallery copy 18 percent, zip download 9 percent">
+          <div class="w-var" data-ai-tone="1" style="--ai-w: 46%"></div>
+          <div class="w-var" data-ai-tone="2" style="--ai-w: 27%"></div>
+          <div class="w-var" data-ai-tone="3" style="--ai-w: 18%"></div>
+          <div class="w-var" data-ai-tone="4" style="--ai-w: 9%"></div>
+        </div>
+      </div>
+
+      <dl class="flex flex-col gap-3">
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span class="pip shrink-0" data-ai-tone="1"></span>
+          <dt class="text-sm">CLI</dt>
+          <dd class="ml-auto text-sm tabular">5,741 (46%)</dd>
+          <dd class="w-full text-sm text-muted tabular">median 1m 40s to first component</dd>
+        </div>
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span class="pip shrink-0" data-ai-tone="2"></span>
+          <dt class="text-sm">MCP server</dt>
+          <dd class="ml-auto text-sm tabular">3,370 (27%)</dd>
+          <dd class="w-full text-sm text-muted tabular">median 2m 10s to first component</dd>
+        </div>
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span class="pip shrink-0" data-ai-tone="3"></span>
+          <dt class="text-sm">Gallery copy</dt>
+          <dd class="ml-auto text-sm tabular">2,246 (18%)</dd>
+          <dd class="w-full text-sm text-muted tabular">median 3m 25s to first component</dd>
+        </div>
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span class="pip shrink-0" data-ai-tone="4"></span>
+          <dt class="text-sm">Zip download</dt>
+          <dd class="ml-auto text-sm tabular">1,123 (9%)</dd>
+          <dd class="w-full text-sm text-muted tabular">median 6m 05s to first component</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>`,
+      },
+    ],
+  },
+
+  {
+    id: 'column-chart',
+    name: 'Weekly Column Chart',
+    description:
+      'Seven day column chart with a period select, the peak day marked with aria-current, an sr-only table of every value, and three toned metric rows under a hairline where each tile keys the meter beside it.',
+    category: 'application',
+    tier: 'free',
+    tags: ['dashboard', 'chart', 'columns', 'revenue', 'tone'],
+    html: `<div class="card max-w-2xl">
+  <div class="card-body cq flex flex-col gap-5">
+    <div class="flex flex-wrap items-start justify-between gap-4">
+      <div class="flex flex-col gap-1">
+        <span class="kpi-label">Pro revenue this week</span>
+        <span class="kpi-value">$1,134</span>
+        <span class="kpi-trend is-up">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          +22.4% vs last week
+        </span>
+      </div>
+      <div>
+        <label class="sr-only" for="column-chart-period">Period</label>
+        <select class="select w-auto" id="column-chart-period" name="period">
+          <option>Last 7 days</option>
+          <option>Last 30 days</option>
+          <option>This quarter</option>
+        </select>
+      </div>
+    </div>
+
+    <figure>
+      <figcaption class="sr-only">Pro revenue by day, Monday to Sunday, peaking on Friday at $234. Every value is in the table below.</figcaption>
+      <div class="bar-cols" data-ai-tone="1" aria-hidden="true">
+        <div class="bar-col">
+          <div class="bar-col-fill h-var" style="--ai-h: 54%"></div>
+          <span class="text-xs text-muted">M</span>
+        </div>
+        <div class="bar-col">
+          <div class="bar-col-fill h-var" style="--ai-h: 65%"></div>
+          <span class="text-xs text-muted">T</span>
+        </div>
+        <div class="bar-col">
+          <div class="bar-col-fill h-var" style="--ai-h: 62%"></div>
+          <span class="text-xs text-muted">W</span>
+        </div>
+        <div class="bar-col">
+          <div class="bar-col-fill h-var" style="--ai-h: 73%"></div>
+          <span class="text-xs text-muted">T</span>
+        </div>
+        <div class="bar-col is-active" aria-current="true">
+          <div class="bar-col-fill h-var" style="--ai-h: 100%"></div>
+          <span class="text-xs">F</span>
+        </div>
+        <div class="bar-col">
+          <div class="bar-col-fill h-var" style="--ai-h: 69%"></div>
+          <span class="text-xs text-muted">S</span>
+        </div>
+        <div class="bar-col">
+          <div class="bar-col-fill h-var" style="--ai-h: 62%"></div>
+          <span class="text-xs text-muted">S</span>
+        </div>
+      </div>
+      <table class="sr-only">
+        <caption>Revenue by day</caption>
+        <thead>
+          <tr><th scope="col">Day</th><th scope="col">Revenue</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Monday</td><td>$126</td></tr>
+          <tr><td>Tuesday</td><td>$153</td></tr>
+          <tr><td>Wednesday</td><td>$144</td></tr>
+          <tr><td>Thursday</td><td>$171</td></tr>
+          <tr><td>Friday</td><td>$234, the highest day this week</td></tr>
+          <tr><td>Saturday</td><td>$162</td></tr>
+          <tr><td>Sunday</td><td>$144</td></tr>
+        </tbody>
+      </table>
+    </figure>
+
+    <hr class="divider" />
+
+    <div class="grid grid-cols-1 cq-sm:grid-cols-3 gap-4">
+      <div class="flex items-center gap-3">
+        <span class="metric-tile" data-ai-tone="1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 20V11"/><path d="M12 20V4"/><path d="M19 20v-6"/></svg>
+        </span>
+        <div class="flex flex-col gap-1 flex-1 min-w-0">
+          <span class="text-xs text-muted">Revenue</span>
+          <span class="text-sm font-semibold tabular">$1,134</span>
+          <div class="bar-track h-1 rounded-full" data-ai-tone="1" aria-hidden="true">
+            <div class="bar-fill w-var" style="--ai-w: 100%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="metric-tile" data-ai-tone="2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 20V11"/><path d="M12 20V4"/><path d="M19 20v-6"/></svg>
+        </span>
+        <div class="flex flex-col gap-1 flex-1 min-w-0">
+          <span class="text-xs text-muted">Refunds</span>
+          <span class="text-sm font-semibold tabular">$27</span>
+          <div class="bar-track h-1 rounded-full" data-ai-tone="2" aria-hidden="true">
+            <div class="bar-fill w-var" style="--ai-w: 2%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="metric-tile" data-ai-tone="6">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 20V11"/><path d="M12 20V4"/><path d="M19 20v-6"/></svg>
+        </span>
+        <div class="flex flex-col gap-1 flex-1 min-w-0">
+          <span class="text-xs text-muted">Net</span>
+          <span class="text-sm font-semibold tabular">$1,107</span>
+          <div class="bar-track h-1 rounded-full" data-ai-tone="6" aria-hidden="true">
+            <div class="bar-fill w-var" style="--ai-w: 98%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+    variants: [
+      {
+        id: 'compact',
+        name: 'Compact',
+        description:
+          'The chart alone at 4rem tall, with the total sitting on the same line as its label and the period select and the metric footer both gone.',
+        guidance:
+          'Use where the week is a glance and not the subject: a card in a summary grid, a sidebar rail, or a row of four charts that must keep the same height. Do not use it as the only revenue chart on a page, because the period select and the three metrics under the hairline are the context that makes the total mean something. The columns lose no data: the sr-only table still carries all seven values and Friday still carries aria-current, so a screen reader reads the same week the compact drawing shows. The height comes from h-16 on bar-cols, which is a utility overriding the component default, so no new class is needed for a shorter chart.',
+        html: `<div class="card max-w-sm">
+  <div class="card-body flex flex-col gap-4">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <span class="kpi-label">Pro revenue this week</span>
+      <span class="kpi-value text-lg tabular">$1,134</span>
+    </div>
+
+    <figure>
+      <figcaption class="sr-only">Pro revenue by day, Monday to Sunday, peaking on Friday at $234. Every value is in the table below.</figcaption>
+      <div class="bar-cols h-16" data-ai-tone="1" aria-hidden="true">
+        <div class="bar-col">
+          <div class="bar-col-fill h-var" style="--ai-h: 54%"></div>
+          <span class="text-xs text-muted">M</span>
+        </div>
+        <div class="bar-col">
+          <div class="bar-col-fill h-var" style="--ai-h: 65%"></div>
+          <span class="text-xs text-muted">T</span>
+        </div>
+        <div class="bar-col">
+          <div class="bar-col-fill h-var" style="--ai-h: 62%"></div>
+          <span class="text-xs text-muted">W</span>
+        </div>
+        <div class="bar-col">
+          <div class="bar-col-fill h-var" style="--ai-h: 73%"></div>
+          <span class="text-xs text-muted">T</span>
+        </div>
+        <div class="bar-col is-active" aria-current="true">
+          <div class="bar-col-fill h-var" style="--ai-h: 100%"></div>
+          <span class="text-xs">F</span>
+        </div>
+        <div class="bar-col">
+          <div class="bar-col-fill h-var" style="--ai-h: 69%"></div>
+          <span class="text-xs text-muted">S</span>
+        </div>
+        <div class="bar-col">
+          <div class="bar-col-fill h-var" style="--ai-h: 62%"></div>
+          <span class="text-xs text-muted">S</span>
+        </div>
+      </div>
+      <table class="sr-only">
+        <caption>Revenue by day</caption>
+        <thead>
+          <tr><th scope="col">Day</th><th scope="col">Revenue</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Monday</td><td>$126</td></tr>
+          <tr><td>Tuesday</td><td>$153</td></tr>
+          <tr><td>Wednesday</td><td>$144</td></tr>
+          <tr><td>Thursday</td><td>$171</td></tr>
+          <tr><td>Friday</td><td>$234, the highest day this week</td></tr>
+          <tr><td>Saturday</td><td>$162</td></tr>
+          <tr><td>Sunday</td><td>$144</td></tr>
+        </tbody>
+      </table>
+    </figure>
+  </div>
+</div>`,
+      },
+    ],
+  },
 ];

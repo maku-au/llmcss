@@ -314,6 +314,29 @@ function guardDemoLinks() {
   });
 }
 
+// The Styler drawer opts out of the scroll lock so the page behind it is the
+// live preview. Chart slot 1 is var(--ai-accent), so one toned bar inside the
+// drawer shows an accent or skin swap recolouring a chart without needing a
+// chart on the page. Library classes only. The tone sits on the fill, not on
+// the track: a toned track is an 18 percent mix and reads as a rail, while the
+// fill is the slot at full strength.
+function mountStylerPreview() {
+  const body = document.querySelector('#core-styler-drawer .drawer-body');
+  if (!body || document.getElementById('styler-tone-preview')) return;
+  const section = document.createElement('div');
+  section.id = 'styler-tone-preview';
+  section.className = 'styler-section';
+  section.innerHTML = `<div class="styler-section-header">
+      <span class="styler-section-title">Chart preview</span>
+    </div>
+    <div class="bar-track"><div class="bar-fill w-3/5" data-ai-tone="1"></div></div>
+    <p class="text-xs text-muted">Chart slot 1 follows the accent</p>`;
+  // Above the token export block, which is the last section in the drawer.
+  const exportSection = body.querySelector('.styler-section-divided');
+  if (exportSection) body.insertBefore(section, exportSection);
+  else body.appendChild(section);
+}
+
 export async function mountChrome() {
   const licensed = !!getBrowserToken() && (await validateToken(getBrowserToken())).valid;
 
@@ -345,6 +368,8 @@ export async function mountChrome() {
   // in the DOM when the pass below runs.
   const offer = document.getElementById('pro-offer');
   if (offer) offer.innerHTML = proOfferHtml();
+
+  mountStylerPreview();
 
   // Catalog numbers in page copy come from the registry, never typed by hand.
   // Keys are whatever build-registry.mjs put in stats.json: total, free, pro,

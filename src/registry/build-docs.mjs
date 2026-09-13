@@ -517,6 +517,19 @@ function build() {
     }
     console.log(`[build-docs] ${t.file}: ${after === before ? 'up to date' : 'updated'}`);
   }
+  // public/design-harness.md is the published copy of DESIGN_HARNESS.md. It
+  // used to be a hand-copied file and drifted three laws behind; now it is
+  // written from the rendered source on every run.
+  {
+    const src = fs.readFileSync(path.join(root, 'DESIGN_HARNESS.md'), 'utf8');
+    const dest = path.join(root, 'public/design-harness.md');
+    const current = fs.existsSync(dest) ? fs.readFileSync(dest, 'utf8') : null;
+    if (current !== src) {
+      fs.writeFileSync(dest, src);
+      changed++;
+    }
+    console.log(`[build-docs] public/design-harness.md: ${current === src ? 'up to date' : 'updated'}`);
+  }
   console.log(
     `[build-docs] ${laws.length} laws, ${archetypes.length} archetypes, ` +
       `${classTotal} classes, ${tokenTotal} tokens, ${stateTotal} states, ` +

@@ -9,12 +9,12 @@ Components, section templates and page blueprints are addressable by id.
 An optional one-file runtime adds modal, drawer, dropdown, accordion, tabs, toast and command palette behavior. Everything else is CSS only.
 
 [stats:start]
-Classes: 2301 classes across 40 families, https://llmcss.io/classes.json.
-Tokens: 108 --ai-* custom properties, https://llmcss.io/tokens.json.
+Classes: 2306 classes across 40 families, https://llmcss.io/classes.json.
+Tokens: 112 --ai-* custom properties, https://llmcss.io/tokens.json.
 States: 38 is-* classes, https://llmcss.io/states.json.
-Components: 125, all MIT: 54 primitive, 42 application, 23 marketing, 6 ecommerce.
+Components: 127, all MIT: 54 primitive, 44 application, 23 marketing, 6 ecommerce.
 Motion demos: 8, in the optional addon.
-Layout variants: 188 across 66 components, addressed component:variant.
+Layout variants: 194 across 71 components, addressed component:variant.
 Section templates: 55 (44 free wireframe, 11 themed Pro).
 Page blueprints: 6 (4 free, 2 Pro).
 Motion addon: 64 classes, 2.0KB gzipped, https://llmcss.io/classes.motion.json.
@@ -56,10 +56,10 @@ classes.json, https://llmcss.io/classes.json: every class that exists, no prefix
 
 [classes-json:start]
 ```json
-{ "version": "0.4.0", "generatedAt": "2026-09-13T10:28:08.542Z",
-  "note": "Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the prefixes that exist for the class, written as md:name: responsive (sm 640px, md 768px, lg 1024px, xl 1280px, 2xl 1536px), container-query against the nearest cq or cq-inline ancestor (cq-sm 380px, cq-md 600px, cq-lg 900px), and state (hover, focus, focus-visible, active, disabled, group-hover, dark, print, motion-reduce, first, last, odd, even). A bare cq: prefix no longer exists. Nothing outside this list exists; do not invent classes.",
-  "stats": { "total": 2301, "families": { "spacing": 686, "interaction": 182, "sizing": 175, "agent-extra": 120 } },
-  "classes": [ { "class": "gap-4", "family": "spacing", "file": "utilities.css", "variants": [ "2xl", "cq-lg", "cq-md", "cq-sm", "lg", "md", "sm", "xl" ] } ] }
+{ "version": "0.4.0", "generatedAt": "2026-09-13T11:38:47.958Z",
+  "note": "Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the prefixes that exist for the class, written as md:name: responsive (sm 640px, md 768px, lg 1024px, xl 1280px), container-query against the nearest cq or cq-inline ancestor (cq-sm 380px, cq-md 600px, cq-lg 900px), and state (hover, focus, focus-visible, active, disabled, group-hover, dark, print, motion-safe, motion-reduce, first, last). A bare cq: prefix no longer exists. Nothing outside this list exists; do not invent classes.",
+  "stats": { "total": 2306, "families": { "spacing": 686, "interaction": 182, "sizing": 175, "agent-extra": 120 } },
+  "classes": [ { "class": "gap-4", "family": "spacing", "file": "utilities.css", "variants": [ "cq-lg", "cq-md", "cq-sm", "lg", "md", "sm", "xl" ] } ] }
 ```
 [classes-json:end]
 
@@ -67,7 +67,7 @@ tokens.json, https://llmcss.io/tokens.json: every `--ai-*` custom property with 
 
 [tokens-json:start]
 ```json
-{ "stats": { "total": 108, "componentTokens": 27 },
+{ "stats": { "total": 112, "componentTokens": 28 },
   "tokens": [ { "token": "--ai-accent",
     "values": { "light": "#2563eb", "dark": "#3b82f6", "obsidian": "#18181b", "obsidian:dark": "#f5f5f5", "editorial": "#8c4a27", "editorial:dark": "#c48259" } } ] }
 ```
@@ -86,8 +86,8 @@ registry.json, https://llmcss.io/registry.json: the component catalog. Every ent
 
 [registry-json:start]
 ```json
-{ "stats": { "total": 125, "free": 125, "pro": 0,
-    "categories": { "primitive": 54, "application": 42, "marketing": 23, "ecommerce": 6 } },
+{ "stats": { "total": 127, "free": 127, "pro": 0,
+    "categories": { "primitive": 54, "application": 44, "marketing": 23, "ecommerce": 6 } },
   "components": [ { "id": "btn-variants", "name": "Button Variants", "description": "High-craft buttons across solid primary,...", "category": "primitive", "tier": "free", "tags": [ "button", "action" ], "html": "<div class=\"flex flex-wr..." } ] }
 ```
 [registry-json:end]
@@ -147,7 +147,7 @@ Without the script every component still renders and themes correctly; combobox,
 ### State vocabulary
 
 [states:start]
-38 `is-*` state classes exist across the library; the full list, with the classes each one applies to, is in states.json. The three most widely used: `.is-active` (21 classes, including app-header, btn, btn-ghost), `.is-open` (15 classes, including accordion-chevron, accordion-content, accordion-item), `.is-vertical` (8 classes, including orderline-date, orderline-label, orderline-pip).
+38 `is-*` state classes exist across the library; the full list, with the classes each one applies to, is in states.json. The three most widely used: `.is-active` (23 classes, including app-header, bar-col, bar-col-fill), `.is-open` (15 classes, including accordion-chevron, accordion-content, accordion-item), `.is-vertical` (8 classes, including orderline-date, orderline-label, orderline-pip).
 [states:end]
 
 - Open state is written twice: the `open` attribute and the `.is-open` class. They are interchangeable and the runtime sets and clears both. Author either one in static markup.
@@ -356,7 +356,7 @@ Dark mode activates only when you set `data-ai-theme="dark"`. LLMCSS contains no
 Only the classes in classes.json exist.
 
 [families:start]
-Family sizes, largest first: spacing 686, interaction 182, sizing 175, agent-extra 120, position 114, typography 108, grid 107, flex 81, marketing 74, borders 70, layout 63, effects 55, dashboard 43, extras 39, animations 33, application 32, forms-extra 31, badges 28, commerce-extra 28, navigation 24, chat 19, display 19, cards 13, drawers 13, inputs 13, base 12, buttons 12, toasts 12, modals 11, tables 11, ecommerce 10, command 9, scrollspy 9, utilities 9, themes 7, accordions 6, alerts 6, cart 6, dropdowns 6, tabs 5.
+Family sizes, largest first: spacing 686, interaction 182, sizing 175, agent-extra 120, position 114, typography 108, grid 107, flex 81, marketing 74, borders 70, layout 63, effects 55, dashboard 48, extras 39, animations 33, application 32, forms-extra 31, badges 28, commerce-extra 28, navigation 24, chat 19, display 19, cards 13, drawers 13, inputs 13, base 12, buttons 12, toasts 12, modals 11, tables 11, ecommerce 10, command 9, scrollspy 9, utilities 9, themes 7, accordions 6, alerts 6, cart 6, dropdowns 6, tabs 5.
 [families:end]
 
 - Grid: `grid`, `grid-cols-1` to `grid-cols-12`, `col-span-*`, `grid-auto-fit` with `grid-min-xs|sm|md|lg`, `grid-cols-subgrid`, `grid-rows-subgrid`.
@@ -464,6 +464,7 @@ Generated from src/registry/laws.mjs. `npx llmcss audit <file>` and the MCP tool
 10. Always theme native browser surfaces: An interface is incomplete if native browser affordances revert to un-themed system defaults. Instead: Verify text selection (`::selection`), caret color (`caret-color: var(--ai-accent)`), custom scrollbars (`scrollbar-color`), link underline offset (`text-underline-offset: 0.2em`), and tabular numerals (`font-variant-numeric: tabular-nums`).
 11. Never use square grid backgrounds: Avoid covering backgrounds in repeating 20px to 40px square grid lines, dot grids, or mesh graph paper patterns built from intersecting linear-gradient declarations. This is one of the most overused, robotic hallmarks of AI-generated template kits. Instead: Lead with clean, distraction-free solid surfaces (`var(--ai-surface-0)`, `var(--ai-bg)`, `var(--ai-surface-1)`) structured with subtle 1px hairline architectural borders (`var(--ai-border)`).
 12. Never paint state without announcing it: Do not mark a control as active, open, selected or pressed with a class and a colour alone. A segmented control whose current view carries only `is-active`, an accordion trigger with no `aria-expanded`, a toast that arrives outside any live region: each one looks correct and says nothing. A screen reader reads an undifferentiated list of buttons. Instead: Mirror every `is-*` state on an interactive element with the ARIA attribute that carries it: `aria-pressed` on segmented and filter buttons wrapped in a labelled `role="group"`, `aria-expanded` plus `aria-controls` on disclosure and accordion triggers, `aria-selected` on tabs, `aria-current` on the active nav link, and `role="status" aria-live="polite"` (or `role="alert"` for a failure) on anything that appears unprompted.
+13. Never tint an icon tile that keys nothing: A coloured icon tile is legitimate only where its tint is the series key that also paints that series' bar, segment or meter. Six tinted tiles in a feature grid where the colours map to nothing is the most common generated-template tell: the palette looks like data and encodes none. The audit flags a `feature-icon` whose inline style paints a background that is not an `--ai-surface` token, and a `metric-tile` with no `data-ai-tone` on itself or on an ancestor. Instead: For a marketing grid use `.feature-icon` on a surface token and let the glyph carry the meaning. For a metric row use `.metric-tile` with `data-ai-tone`, and give the bar, segment or meter beside it the same tone so the tint is a legend, not decoration.
 [laws:end]
 
 ## 12. Archetype token blocks

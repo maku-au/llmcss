@@ -24,6 +24,7 @@ import { wireframeTemplates, pageBlueprints, assembleBlueprintHtml } from '../sr
 import { validateMarkup, structuralAudit, classTokens, legacyFix } from '../src/registry/validate.mjs';
 import { resolveRef, refHtml, refId, refSlug } from '../src/registry/resolve.mjs';
 import { selectorClasses } from '../src/registry/css-names.mjs';
+import { laws } from '../src/registry/laws.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -552,18 +553,13 @@ switch (command) {
 
     if (archetype === 'all' || archetype === 'list') {
       console.log('\n✦ LLMCSS Design Direction Harness: A Human-Craft Design OS for AI Agents\n');
-      console.log('\x1b[33m--- The 10 Non-Negotiable Anti-Slop Laws ---\x1b[0m');
-      console.log('1. Never Nest Containers (Eliminate Cardocalypse: use whitespace or hairline rules)');
-      console.log('2. Never Pulse Static Status Pips (Reserve motion for active streaming)');
-      console.log('3. Never Use Colored Left-Stripe Borders (Use 1px architectural borders and status jewels)');
-      console.log('4. Never Use Electric Purple/Cyan Halos (Use multi-stop physical elevation shadows)');
-      console.log('5. Never Stamp Formulaic Eyebrows (Lead directly with confident headlines)');
-      console.log('6. Never Crush Letter-Spacing Below -0.04em or Justify Body Text');
-      console.log('7. Never Place Low-Contrast Gray Text on Colored Backgrounds');
-      console.log('8. Never Create Flat, Identical Metric Grids (Anchor dominant metric)');
-      console.log('9. Never Auto-Scroll Copy (Marquees: render static scannable rails)');
-      console.log('10. Always Theme Native Browser Surfaces (Caret, scrollbars, selection, tabular numerals)');
-      console.log('11. Never Use Square Grid Backgrounds (Graph paper and blueprint grids are robotic AI clichés: lead with solid surfaces and hairline borders)\n');
+      // The laws, their count and their order come from src/registry/laws.mjs,
+      // the same source build-docs.mjs renders into AGENTS.md, README.md and
+      // llms.txt. Typing them here is how the CLI ended up printing "10" over
+      // a list of eleven.
+      console.log(`\x1b[33m--- The ${laws.length} Non-Negotiable Anti-Slop Laws ---\x1b[0m`);
+      for (const law of laws) console.log(`${law.n}. ${law.title}`);
+      console.log('');
       console.log('\x1b[33m--- Available Archetypes ---\x1b[0m');
       for (const [key, arch] of Object.entries(ARCHETYPES)) {
         console.log(`  \x1b[36m${key.padEnd(12)}\x1b[0m \x1b[1m${arch.name}\x1b[0m`);
@@ -609,7 +605,11 @@ switch (command) {
     const lines = content.split('\n');
     const slopFindings = [];
     for (const issue of structuralAudit(content)) {
-      slopFindings.push({ line: 0, category: issue.category, tell: issue.message, fix: issue.category === 'Cardocalypse' ? 'Flatten hierarchy: use whitespace or hairline rules instead of nesting cards.' : 'Reserve motion for .is-streaming only.' });
+      // structuralAudit carries the fix for every finding it raises, including
+      // the Law 13 tile checks. A ternary here can only ever know two of them,
+      // so the issue's own fix wins and the fallback is the last resort.
+      const fix = issue.fix || 'Flatten hierarchy: use whitespace or hairline rules instead of nesting cards.';
+      slopFindings.push({ line: 0, category: issue.category, tell: issue.message, fix });
     }
 
     lines.forEach((line, idx) => {

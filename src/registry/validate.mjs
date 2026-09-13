@@ -320,6 +320,13 @@ export function structuralAudit(html) {
   const stack = [];
   let m;
   let nested = 0;
+  // Law 13 counters, gathered on the same walk. A feature-icon painted with an
+  // inline background that is not a surface token, and a metric-tile with no
+  // tone on itself or on any ancestor: --ai-tone inherits, so an ancestor
+  // anywhere up the row is enough and a bare ancestor check is the whole test.
+  const BG = /\bbackground(?:-color|-image)?\s*:\s*([^;"']+)/i;
+  let tintedIcons = 0;
+  let untonedTiles = 0;
   while ((m = tagRe.exec(html))) {
     const [, closing, name, attrs, selfClose] = m;
     const lower = name.toLowerCase();
@@ -329,14 +336,27 @@ export function structuralAudit(html) {
       }
       continue;
     }
-    if (VOID.has(lower) || selfClose) continue;
     const cls = (attrs.match(/\bclass\s*=\s*["']([^"']*)["']/) || [, ''])[1].split(/\s+/);
+    const style = (attrs.match(/\bstyle\s*=\s*["']([^"']*)["']/) || [, ''])[1];
+    const toned = /\bdata-ai-tone\s*=/.test(attrs);
+    if (cls.includes('feature-icon')) {
+      const bg = style.match(BG);
+      if (bg && !/--ai-surface/.test(bg[1])) tintedIcons++;
+    }
+    if (cls.includes('metric-tile') && !toned && !stack.some((s) => s.tone)) untonedTiles++;
+    if (VOID.has(lower) || selfClose) continue;
     const isCard = cls.some((c) => c === 'card' || c === 'panel' || c === 'kpi-card');
     if (isCard && stack.some((s) => s.card)) nested++;
-    stack.push({ name: lower, card: isCard });
+    stack.push({ name: lower, card: isCard, tone: toned });
   }
   if (nested) {
-    issues.push({ category: 'Cardocalypse', law: 1, count: nested, message: `${nested} card${nested > 1 ? 's are' : ' is'} nested inside another card. Use whitespace, divider, or a surface shift instead.` });
+    issues.push({ category: 'Cardocalypse', law: 1, count: nested, message: `${nested} card${nested > 1 ? 's are' : ' is'} nested inside another card. Use whitespace, divider, or a surface shift instead.`, fix: 'Flatten hierarchy: use whitespace or hairline rules instead of nesting cards.' });
+  }
+  if (tintedIcons) {
+    issues.push({ category: 'Tinted Icon Tiles', law: 13, count: tintedIcons, message: `${tintedIcons} feature-icon${tintedIcons > 1 ? 's are' : ' is'} painted with an inline background that is not an --ai-surface token. A tint that keys nothing is decoration: drop it, or use metric-tile with data-ai-tone where the same tone paints the series.`, fix: 'Put the icon on a surface token, or move to metric-tile with data-ai-tone so the tint keys a real series.' });
+  }
+  if (untonedTiles) {
+    issues.push({ category: 'Tinted Icon Tiles', law: 13, count: untonedTiles, message: `${untonedTiles} metric-tile${untonedTiles > 1 ? 's carry' : ' carries'} no data-ai-tone on itself or an ancestor. A metric tile is a legend swatch: give it the tone of the series it keys, or use feature-icon instead.`, fix: 'Set data-ai-tone on the tile or its row, and paint that series with the same tone.' });
   }
   // Pulsing static indicators: animation by class or inline style on a non-streaming element
   const PULSE = new Set(['animate-pulse', 'pulse', 'animate-ping', 'ping', 'breathe', 'blink', 'animate-bounce']);
@@ -344,7 +364,7 @@ export function structuralAudit(html) {
   const pulseInline = /style\s*=\s*["'][^"']*animation\s*:[^"';]*(pulse|ping|breathe|blink|glow)[^"']*["']/i;
   const hasStreaming = /\bis-streaming\b/.test(html);
   if ((pulseClass.test(html) || pulseInline.test(html)) && !hasStreaming) {
-    issues.push({ category: 'Pulsing Status Dots', law: 2, message: 'A pulsing or breathing animation is applied without a live-data context. Reserve motion for .is-streaming only.' });
+    issues.push({ category: 'Pulsing Status Dots', law: 2, message: 'A pulsing or breathing animation is applied without a live-data context. Reserve motion for .is-streaming only.', fix: 'Reserve motion for .is-streaming only.' });
   }
   return issues;
 }

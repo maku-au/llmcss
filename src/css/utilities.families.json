@@ -1624,7 +1624,6 @@
  },
  "variants": {
   "block": [
-   "2xl",
    "active",
    "cq-lg",
    "cq-md",
@@ -1640,7 +1639,6 @@
    "xl"
   ],
   "inline-block": [
-   "2xl",
    "active",
    "cq-lg",
    "cq-md",
@@ -1656,7 +1654,6 @@
    "xl"
   ],
   "inline": [
-   "2xl",
    "active",
    "cq-lg",
    "cq-md",
@@ -1672,7 +1669,6 @@
    "xl"
   ],
   "flex": [
-   "2xl",
    "active",
    "cq-lg",
    "cq-md",
@@ -1688,7 +1684,6 @@
    "xl"
   ],
   "inline-flex": [
-   "2xl",
    "active",
    "cq-lg",
    "cq-md",
@@ -1704,7 +1699,6 @@
    "xl"
   ],
   "grid": [
-   "2xl",
    "active",
    "cq-lg",
    "cq-md",
@@ -1720,7 +1714,6 @@
    "xl"
   ],
   "inline-grid": [
-   "2xl",
    "active",
    "cq-lg",
    "cq-md",
@@ -1736,7 +1729,6 @@
    "xl"
   ],
   "contents": [
-   "2xl",
    "active",
    "cq-lg",
    "cq-md",
@@ -1752,7 +1744,6 @@
    "xl"
   ],
   "hidden": [
-   "2xl",
    "active",
    "cq-lg",
    "cq-md",
@@ -1782,7 +1773,6 @@
    "xl"
   ],
   "flex-row": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -1792,7 +1782,6 @@
    "xl"
   ],
   "flex-row-reverse": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -1802,7 +1791,6 @@
    "xl"
   ],
   "flex-col": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -1812,7 +1800,6 @@
    "xl"
   ],
   "flex-col-reverse": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -1822,7 +1809,6 @@
    "xl"
   ],
   "flex-wrap": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -1832,7 +1818,6 @@
    "xl"
   ],
   "flex-wrap-reverse": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -1842,7 +1827,6 @@
    "xl"
   ],
   "flex-nowrap": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -1936,7 +1920,6 @@
    "xl"
   ],
   "items-start": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -1946,7 +1929,6 @@
    "xl"
   ],
   "items-center": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -1956,7 +1938,6 @@
    "xl"
   ],
   "items-end": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -1966,7 +1947,6 @@
    "xl"
   ],
   "items-baseline": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -1976,7 +1956,6 @@
    "xl"
   ],
   "items-stretch": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -1986,7 +1965,6 @@
    "xl"
   ],
   "justify-start": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -1996,7 +1974,6 @@
    "xl"
   ],
   "justify-center": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2006,7 +1983,6 @@
    "xl"
   ],
   "justify-end": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2016,7 +1992,6 @@
    "xl"
   ],
   "justify-between": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2026,7 +2001,6 @@
    "xl"
   ],
   "justify-around": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2036,7 +2010,6 @@
    "xl"
   ],
   "justify-evenly": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2046,7 +2019,6 @@
    "xl"
   ],
   "justify-normal": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2056,7 +2028,6 @@
    "xl"
   ],
   "self-auto": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2066,7 +2037,6 @@
    "xl"
   ],
   "self-start": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2076,7 +2046,6 @@
    "xl"
   ],
   "self-center": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2086,7 +2055,6 @@
    "xl"
   ],
   "self-end": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2096,7 +2064,6 @@
    "xl"
   ],
   "self-stretch": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2106,7 +2073,6 @@
    "xl"
   ],
   "self-baseline": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2140,7 +2106,6 @@
    "xl"
   ],
   "place-items-start": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2150,7 +2115,6 @@
    "xl"
   ],
   "place-items-center": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2160,7 +2124,6 @@
    "xl"
   ],
   "place-items-end": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2170,7 +2133,6 @@
    "xl"
   ],
   "place-items-stretch": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2282,7 +2244,6 @@
    "xl"
   ],
   "grid-cols-1": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2292,7 +2253,6 @@
    "xl"
   ],
   "grid-cols-2": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2302,7 +2262,6 @@
    "xl"
   ],
   "grid-cols-3": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2312,7 +2271,6 @@
    "xl"
   ],
   "grid-cols-4": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2322,7 +2280,6 @@
    "xl"
   ],
   "grid-cols-5": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2332,7 +2289,6 @@
    "xl"
   ],
   "grid-cols-6": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2342,7 +2298,6 @@
    "xl"
   ],
   "grid-cols-8": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2352,7 +2307,6 @@
    "xl"
   ],
   "grid-cols-12": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2362,7 +2316,6 @@
    "xl"
   ],
   "grid-cols-none": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2402,7 +2355,6 @@
    "xl"
   ],
   "col-span-1": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2412,7 +2364,6 @@
    "xl"
   ],
   "col-span-2": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2422,7 +2373,6 @@
    "xl"
   ],
   "col-span-3": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2432,7 +2382,6 @@
    "xl"
   ],
   "col-span-4": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2442,7 +2391,6 @@
    "xl"
   ],
   "col-span-5": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2452,7 +2400,6 @@
    "xl"
   ],
   "col-span-6": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2462,7 +2409,6 @@
    "xl"
   ],
   "col-span-7": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2472,7 +2418,6 @@
    "xl"
   ],
   "col-span-8": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2482,7 +2427,6 @@
    "xl"
   ],
   "col-span-9": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2492,7 +2436,6 @@
    "xl"
   ],
   "col-span-10": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2502,7 +2445,6 @@
    "xl"
   ],
   "col-span-11": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2512,7 +2454,6 @@
    "xl"
   ],
   "col-span-12": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2522,7 +2463,6 @@
    "xl"
   ],
   "col-span-full": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2532,7 +2472,6 @@
    "xl"
   ],
   "col-auto": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2656,7 +2595,6 @@
    "xl"
   ],
   "gap-0": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2666,7 +2604,6 @@
    "xl"
   ],
   "gap-1": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2676,7 +2613,6 @@
    "xl"
   ],
   "gap-2": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2686,7 +2622,6 @@
    "xl"
   ],
   "gap-4": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2696,7 +2631,6 @@
    "xl"
   ],
   "gap-6": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2706,7 +2640,6 @@
    "xl"
   ],
   "gap-8": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -2716,7 +2649,6 @@
    "xl"
   ],
   "gap-10": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -3560,7 +3492,6 @@
    "xl"
   ],
   "text-left": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -3570,7 +3501,6 @@
    "xl"
   ],
   "text-center": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -3580,7 +3510,6 @@
    "xl"
   ],
   "text-right": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -3590,7 +3519,6 @@
    "xl"
   ],
   "text-start": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -3600,7 +3528,6 @@
    "xl"
   ],
   "text-end": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -3610,7 +3537,6 @@
    "xl"
   ],
   "text-justify": [
-   "2xl",
    "cq-lg",
    "cq-md",
    "cq-sm",
@@ -3849,46 +3775,38 @@
   "surface-0": [
    "active",
    "dark",
-   "even",
    "first",
    "focus-visible",
    "group-hover",
    "hover",
-   "last",
-   "odd"
+   "last"
   ],
   "surface-1": [
    "active",
    "dark",
-   "even",
    "first",
    "focus-visible",
    "group-hover",
    "hover",
-   "last",
-   "odd"
+   "last"
   ],
   "surface-2": [
    "active",
    "dark",
-   "even",
    "first",
    "focus-visible",
    "group-hover",
    "hover",
-   "last",
-   "odd"
+   "last"
   ],
   "surface-3": [
    "active",
    "dark",
-   "even",
    "first",
    "focus-visible",
    "group-hover",
    "hover",
-   "last",
-   "odd"
+   "last"
   ],
   "bg-transparent": [
    "active",
@@ -3991,101 +3909,83 @@
   "border-transparent": [
    "active",
    "dark",
-   "even",
    "first",
    "focus-visible",
    "group-hover",
    "hover",
-   "last",
-   "odd"
+   "last"
   ],
   "border-current": [
    "active",
    "dark",
-   "even",
    "first",
    "focus-visible",
    "group-hover",
    "hover",
-   "last",
-   "odd"
+   "last"
   ],
   "border-subtle": [
    "active",
    "dark",
-   "even",
    "first",
    "focus-visible",
    "group-hover",
    "hover",
-   "last",
-   "odd"
+   "last"
   ],
   "border-hover": [
    "active",
    "dark",
-   "even",
    "first",
    "focus-visible",
    "group-hover",
    "hover",
-   "last",
-   "odd"
+   "last"
   ],
   "border-strong": [
    "active",
    "dark",
-   "even",
    "first",
    "focus-visible",
    "group-hover",
    "hover",
-   "last",
-   "odd"
+   "last"
   ],
   "border-accent": [
    "active",
    "dark",
-   "even",
    "first",
    "focus-visible",
    "group-hover",
    "hover",
-   "last",
-   "odd"
+   "last"
   ],
   "border-success": [
    "active",
    "dark",
-   "even",
    "first",
    "focus-visible",
    "group-hover",
    "hover",
-   "last",
-   "odd"
+   "last"
   ],
   "border-warning": [
    "active",
    "dark",
-   "even",
    "first",
    "focus-visible",
    "group-hover",
    "hover",
-   "last",
-   "odd"
+   "last"
   ],
   "border-danger": [
    "active",
    "dark",
-   "even",
    "first",
    "focus-visible",
    "group-hover",
    "hover",
-   "last",
-   "odd"
+   "last"
   ],
   "ring": [
    "active",
@@ -4594,94 +4494,64 @@
    "motion-safe"
   ],
   "border": [
-   "even",
    "first",
-   "last",
-   "odd"
+   "last"
   ],
   "border-0": [
-   "even",
    "first",
-   "last",
-   "odd"
+   "last"
   ],
   "border-2": [
-   "even",
    "first",
-   "last",
-   "odd"
+   "last"
   ],
   "border-t": [
-   "even",
    "first",
-   "last",
-   "odd"
+   "last"
   ],
   "border-t-0": [
-   "even",
    "first",
-   "last",
-   "odd"
+   "last"
   ],
   "border-b": [
-   "even",
    "first",
-   "last",
-   "odd"
+   "last"
   ],
   "border-b-0": [
-   "even",
    "first",
-   "last",
-   "odd"
+   "last"
   ],
   "border-l": [
-   "even",
    "first",
-   "last",
-   "odd"
+   "last"
   ],
   "border-l-0": [
-   "even",
    "first",
-   "last",
-   "odd"
+   "last"
   ],
   "border-r": [
-   "even",
    "first",
-   "last",
-   "odd"
+   "last"
   ],
   "border-r-0": [
-   "even",
    "first",
-   "last",
-   "odd"
+   "last"
   ],
   "border-is": [
-   "even",
    "first",
-   "last",
-   "odd"
+   "last"
   ],
   "border-ie": [
-   "even",
    "first",
-   "last",
-   "odd"
+   "last"
   ],
   "border-x": [
-   "even",
    "first",
-   "last",
-   "odd"
+   "last"
   ],
   "border-y": [
-   "even",
    "first",
-   "last",
-   "odd"
+   "last"
   ]
  }
 }

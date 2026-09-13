@@ -7,12 +7,12 @@ Source of truth, in this order: [classes.json](https://llmcss.io/classes.json) f
 ## Where classes live
 
 <!-- stats:start -->
-- **Classes:** 2301 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
-- **Tokens:** 108 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
+- **Classes:** 2306 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Tokens:** 112 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
 - **States:** 38 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
-- **Components:** 125, all MIT: 54 primitive, 42 application, 23 marketing, 6 ecommerce.
+- **Components:** 127, all MIT: 54 primitive, 44 application, 23 marketing, 6 ecommerce.
 - **Motion demos:** 8, in the optional addon.
-- **Layout variants:** 188 across 66 components, addressed `component:variant`.
+- **Layout variants:** 194 across 71 components, addressed `component:variant`.
 - **Section templates:** 55 (44 free wireframe, 11 themed Pro).
 - **Page blueprints:** 6 (4 free, 2 Pro).
 - **Motion addon:** 64 classes, 2.0KB gzipped, listed in [classes.motion.json](https://llmcss.io/classes.motion.json).
@@ -35,7 +35,7 @@ The family a class belongs to tells you which stylesheet file defines it and rou
 | `borders` | 70 | `utilities.css` |
 | `layout` | 63 | `utilities.css` |
 | `effects` | 55 | `utilities.css` |
-| `dashboard` | 43 | `components/dashboard.css` |
+| `dashboard` | 48 | `components/dashboard.css` |
 | `extras` | 39 | `components/extras.css` |
 | `animations` | 33 | `animations.css` |
 | `application` | 32 | `components/application.css` |
@@ -89,7 +89,7 @@ The author writes these in static markup; the runtime sets the same classes at r
 <!-- states:start -->
 | State | Styled on |
 |---|---|
-| `is-active` | `.app-header`, `.btn`, `.btn-ghost`, `.btn-primary`, `.combobox-option`, `.filter-tag`, `.list-group-item`, `.nav-link`, `.pagination-link`, `.scrollspy-link`, `.segmented-btn`, `.sidebar`, `.sidebar-badge`, `.sidebar-item`, `.step-circle`, `.step-item`, `.step-label`, `.tab`, `.tab-panel`, `.tabs-pills`, `.tree-leaf` |
+| `is-active` | `.app-header`, `.bar-col`, `.bar-col-fill`, `.btn`, `.btn-ghost`, `.btn-primary`, `.combobox-option`, `.filter-tag`, `.list-group-item`, `.nav-link`, `.pagination-link`, `.scrollspy-link`, `.segmented-btn`, `.sidebar`, `.sidebar-badge`, `.sidebar-item`, `.step-circle`, `.step-item`, `.step-label`, `.tab`, `.tab-panel`, `.tabs-pills`, `.tree-leaf` |
 | `is-added` | `.diff-gutter`, `.diff-marker`, `.diff-row` |
 | `is-auto` | `.marquee`, `.marquee-track` |
 | `is-centered` | `.hero`, `.hero-actions`, `.hero-lead` |
@@ -343,6 +343,7 @@ Enforced by `npx llmcss audit`. Generated from `src/registry/laws.mjs` by `node 
 10. **Always theme native browser surfaces.** An interface is incomplete if native browser affordances revert to un-themed system defaults. Instead: Verify text selection (`::selection`), caret color (`caret-color: var(--ai-accent)`), custom scrollbars (`scrollbar-color`), link underline offset (`text-underline-offset: 0.2em`), and tabular numerals (`font-variant-numeric: tabular-nums`).
 11. **Never use square grid backgrounds.** Avoid covering backgrounds in repeating 20px to 40px square grid lines, dot grids, or mesh graph paper patterns built from intersecting linear-gradient declarations. This is one of the most overused, robotic hallmarks of AI-generated template kits. Instead: Lead with clean, distraction-free solid surfaces (`var(--ai-surface-0)`, `var(--ai-bg)`, `var(--ai-surface-1)`) structured with subtle 1px hairline architectural borders (`var(--ai-border)`).
 12. **Never paint state without announcing it.** Do not mark a control as active, open, selected or pressed with a class and a colour alone. A segmented control whose current view carries only `is-active`, an accordion trigger with no `aria-expanded`, a toast that arrives outside any live region: each one looks correct and says nothing. A screen reader reads an undifferentiated list of buttons. Instead: Mirror every `is-*` state on an interactive element with the ARIA attribute that carries it: `aria-pressed` on segmented and filter buttons wrapped in a labelled `role="group"`, `aria-expanded` plus `aria-controls` on disclosure and accordion triggers, `aria-selected` on tabs, `aria-current` on the active nav link, and `role="status" aria-live="polite"` (or `role="alert"` for a failure) on anything that appears unprompted.
+13. **Never tint an icon tile that keys nothing.** A coloured icon tile is legitimate only where its tint is the series key that also paints that series' bar, segment or meter. Six tinted tiles in a feature grid where the colours map to nothing is the most common generated-template tell: the palette looks like data and encodes none. The audit flags a `feature-icon` whose inline style paints a background that is not an `--ai-surface` token, and a `metric-tile` with no `data-ai-tone` on itself or on an ancestor. Instead: For a marketing grid use `.feature-icon` on a surface token and let the glyph carry the meaning. For a metric row use `.metric-tile` with `data-ai-tone`, and give the bar, segment or meter beside it the same tone so the tint is a legend, not decoration.
 <!-- laws:end -->
 
 Why these eleven and not more: each names a pattern that is recognisable in static HTML and CSS, and seven of them (1, 2, 3, 4, 5, 9, 11) are detected by `llmcss audit`, so the tool can fail a file rather than merely advise. Laws 1, 3, 8 and 11 are structural: what is nested, what is bordered, what repeats. Laws 2 and 9 are motion applied to states that never change. Laws 5, 6 and 7 are typographic. Law 4 is color physics: a glow with no offset reads as a screen artefact, not as elevation. Law 10 is the one positive obligation: an interface that leaves `::selection`, the caret, and scrollbars at system defaults looks unfinished next to its own themed components.

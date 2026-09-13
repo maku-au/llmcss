@@ -30,12 +30,12 @@ That is the whole install. Everything else in this repo is optional: a CLI, an M
 ## What this is
 
 <!-- stats:start -->
-- **Classes:** 2301 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
-- **Tokens:** 108 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
+- **Classes:** 2306 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Tokens:** 112 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
 - **States:** 38 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
-- **Components:** 125, all MIT: 54 primitive, 42 application, 23 marketing, 6 ecommerce.
+- **Components:** 127, all MIT: 54 primitive, 44 application, 23 marketing, 6 ecommerce.
 - **Motion demos:** 8, in the optional addon.
-- **Layout variants:** 188 across 66 components, addressed `component:variant`.
+- **Layout variants:** 194 across 71 components, addressed `component:variant`.
 - **Section templates:** 55 (44 free wireframe, 11 themed Pro).
 - **Page blueprints:** 6 (4 free, 2 Pro).
 - **Motion addon:** 64 classes, 2.0KB gzipped, listed in [classes.motion.json](https://llmcss.io/classes.motion.json).
@@ -157,6 +157,7 @@ Eleven anti-slop laws, generated from `src/registry/laws.mjs` by `node src/regis
 10. **Always theme native browser surfaces**: An interface is incomplete if native browser affordances revert to un-themed system defaults.
 11. **Never use square grid backgrounds**: Avoid covering backgrounds in repeating 20px to 40px square grid lines, dot grids, or mesh graph paper patterns built from intersecting linear-gradient declarations. This is one of the most overused, robotic hallmarks of AI-generated template kits.
 12. **Never paint state without announcing it**: Do not mark a control as active, open, selected or pressed with a class and a colour alone. A segmented control whose current view carries only `is-active`, an accordion trigger with no `aria-expanded`, a toast that arrives outside any live region: each one looks correct and says nothing. A screen reader reads an undifferentiated list of buttons.
+13. **Never tint an icon tile that keys nothing**: A coloured icon tile is legitimate only where its tint is the series key that also paints that series' bar, segment or meter. Six tinted tiles in a feature grid where the colours map to nothing is the most common generated-template tell: the palette looks like data and encodes none. The audit flags a `feature-icon` whose inline style paints a background that is not an `--ai-surface` token, and a `metric-tile` with no `data-ai-tone` on itself or on an ancestor.
 <!-- laws:end -->
 
 Each law's remedy, plus the four archetypes (Executive Slate, Fintech Titanium, Obsidian Minimal, Editorial Atelier) and their token blocks, live in [DESIGN_HARNESS.md](DESIGN_HARNESS.md). Run `npx llmcss harness` or call the MCP tool `llmcss_get_harness` to get them at runtime. `npx llmcss audit <file>` checks a file against them.

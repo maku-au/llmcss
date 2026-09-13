@@ -2,6 +2,19 @@
 
 All notable changes to the public LLMCSS package. Dates are UTC.
 
+## Unreleased
+
+### Added
+- Chart palette. `--ai-chart-1` through `--ai-chart-6` are live tokens with a value per theme instead of six dead light-only declarations. Slot 1 follows `--ai-accent`, so every skin and every `data-ai-accent` recolours the first series; slots 2 to 6 are teal, amber, pink, violet and an achromatic neutral, each measured at 3:1 as a fill on surface-0 and surface-1 in both themes. Light amber moved from `#f59e0b` to `#b45309` and light pink from `#ec4899` to `#db2777` (both failed the non-text floor), and `#8b5cf6` is gone from the palette because it is on the Law 4 banned-gradient list. Skin overrides where an accent collided with a slot: fintech, executive and enterprise slot 2, editorial slot 3.
+- `data-ai-tone` on `<html>` or any container: names a series colour and sets `--ai-tone` plus `--ai-tone-ink` (60%), `--ai-tone-wash` (12%) and `--ai-tone-track` (18%). Values `1` to `6`, `accent`, `success`, `warning`, `danger`, `info`, `neutral`. Read by `bar-fill`, `bar-track`, `pip`, `donut`, `split-bar`, `metric-tile` and `bar-col`; ignored everywhere else.
+- `split-bar`, `bar-cols` / `bar-col` / `bar-col-fill` and `metric-tile` in the dashboard sheet, plus `--ai-donut-stops` on `donut` for a sequential ramp.
+- A dark value for `data-ai-accent="steel"`. The single light `#475569` measured 1.94:1 on the enterprise dark surface, which failed for buttons and links, not only for charts.
+- Law 13, "Never tint an icon tile that keys nothing", with an audit check for a `feature-icon` painted with a non-surface inline background and for a `metric-tile` with no tone.
+
+### Removed
+- The `2xl` breakpoint (1536px). Zero usages anywhere in the repo, and `xl` at 1280px is the widest layout decision the library makes. Saves about 390 bytes gzipped. `2xl:` still parses in the validator so a stale class gets a suggestion.
+- The `odd` and `even` structural state variants. Zero usages anywhere in the repo; zebra striping is a table concern and `tables.css` already ships it. Saves about 430 bytes gzipped.
+
 ## 0.4.0 (2026-09-13)
 
 ### Breaking

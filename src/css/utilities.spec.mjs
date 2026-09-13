@@ -79,10 +79,14 @@ export const breakpoints = {
   md: { px: 768, tiers: ['A', 'B'] },
   lg: { px: 1024, tiers: ['A', 'B'] },
   xl: { px: 1280, tiers: ['A', 'B'] },
-  // 2xl serves tier A only. A 1536px viewport changes layout decisions, not
-  // padding steps, and giving tier B a fifth copy costs 1.5KB gzipped for
-  // classes the audit found nobody reaching for.
-  '2xl': { px: 1536, tiers: ['A'] },
+  // 2xl (1536px, tier A only) dropped on 2026-09-13 to pay for the chart
+  // palette and the tone attribute. Zero usages anywhere in the repo: no site
+  // page, no registry component, variant, template or blueprint and no doc
+  // wrote a 2xl: class, so the whole tier existed for nobody. xl at 1280px is
+  // the widest decision the library's own layouts make. Note it is also the
+  // only class family whose name starts with a digit, so nothing left needs
+  // the six-hex-digit ident escape; css-names.mjs keeps reading it so an
+  // author's stale 2xl:flex still gets a suggestion from the validator.
 };
 
 /**
@@ -119,15 +123,18 @@ export const stateVariants = [
   'motion-reduce',
   'first',
   'last',
-  'odd',
-  'even',
 ];
 
 /** Named bundles a family opts into, so the tier table stays short. */
 export const stateSets = {
   interactive: ['hover', 'focus-visible', 'active', 'group-hover'],
   focusOnly: ['focus', 'focus-visible'],
-  structural: ['first', 'last', 'odd', 'even'],
+  // odd and even dropped on 2026-09-13 to pay for the chart palette and the
+  // tone attribute, in the same cut as the 2xl breakpoint. Zero usages
+  // anywhere in the repo: zebra striping is a table concern and tables.css
+  // already ships it as a component rule, so no markup ever reached for
+  // odd:bg-surface-1. first and last stay; both are used.
+  structural: ['first', 'last'],
   theme: ['dark'],
   motion: ['motion-safe', 'motion-reduce'],
   print: ['print'],

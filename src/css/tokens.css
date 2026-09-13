@@ -175,13 +175,24 @@
     /* Touch Ergonomics (WCAG 2.5.5 / Apple HIG Standards) */
     --ai-touch-min: 44px;
 
-    /* Color-Blind Accessible Data Visualization Palette */
-    --ai-chart-1: #2563eb;
-    --ai-chart-2: #0d9488;
-    --ai-chart-3: #f59e0b;
-    --ai-chart-4: #8b5cf6;
-    --ai-chart-5: #ec4899;
-    --ai-chart-6: #64748b;
+    /* Data visualisation palette. Fills for bars, segments, strokes and
+       washes; text uses the tone ink, never the raw fill.
+
+       Slot 1 follows --ai-accent, so every skin and every data-ai-accent
+       recolours the first series for free. Slots 2 to 6 are literal per theme
+       and ordered teal, amber, pink, violet, neutral, so no two neighbours sit
+       within 40 degrees of hue and amber never lands beside violet. Slot 6 is
+       achromatic on purpose: it is the one slot that cannot compete with the
+       accent on hue. Test 29 measures every slot in every skin and theme.
+
+       The values are repeated in the explicit light block below for the reason
+       that block documents. */
+    --ai-chart-1: var(--ai-accent);
+    --ai-chart-2: #0d9488;   /* teal */
+    --ai-chart-3: #b45309;   /* amber */
+    --ai-chart-4: #db2777;   /* pink */
+    --ai-chart-5: #7c3aed;   /* violet */
+    --ai-chart-6: #71717a;   /* neutral, achromatic */
   }
 
   /* Light theme as an explicit marker. Only :root carried the light palette,
@@ -229,6 +240,14 @@
     --ai-danger-subtle: rgba(220, 38, 38, 0.1);
     --ai-info: #0284c7;
     --ai-info-subtle: rgba(2, 132, 199, 0.1);
+
+    /* Chart fills, repeated from :root for this block's own reason */
+    --ai-chart-1: var(--ai-accent);
+    --ai-chart-2: #0d9488;
+    --ai-chart-3: #b45309;
+    --ai-chart-4: #db2777;
+    --ai-chart-5: #7c3aed;
+    --ai-chart-6: #71717a;
 
     --ai-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --ai-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
@@ -293,6 +312,14 @@
     --ai-danger-subtle: rgba(239, 68, 68, 0.15);
     --ai-info: #38bdf8;
     --ai-info-subtle: rgba(56, 189, 248, 0.15);
+
+    /* Chart fills, lifted for the dark surfaces. Slot 1 still follows the
+       accent, so only the five literal slots move. */
+    --ai-chart-2: #2dd4bf;
+    --ai-chart-3: #f59e0b;
+    --ai-chart-4: #f472b6;
+    --ai-chart-5: #a78bfa;
+    --ai-chart-6: #a1a1aa;
 
     --ai-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
     --ai-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
@@ -368,6 +395,41 @@
     --ai-radius-2xl: 20px;
     --ai-radius-base: 6px;
   }
+}
+
+@layer tokens {
+  /* Series colour, as one presentational attribute. Set data-ai-tone on a
+     dashboard data element or on any ancestor of one: --ai-tone and the three
+     values derived from it inherit, so a row, a legend item or a whole chart
+     can be toned once. An attribute rather than a class because classes.json
+     is a closed world and the variant matrix would otherwise generate
+     md:tone-3; data-ai-toast-position is the precedent.
+
+     Ink is the only one of the three that carries text, and 60 percent is a
+     ceiling, not a taste setting: it is the largest share of the tone that
+     still clears 4.5:1 on surface-0 and surface-1 in every skin, both themes,
+     every accent and every chart slot, including over its own 12 percent wash.
+     Measured floor 4.65 (editorial light, amber accent, over the wash on
+     surface-1); at 65 percent the enterprise dark violet accent drops to 4.44
+     and fails. Do not move it. Test 29 measures every combination and prints
+     the floors. */
+  [data-ai-tone] {
+    --ai-tone-ink: color-mix(in srgb, var(--ai-tone) 60%, var(--ai-text-primary));
+    --ai-tone-wash: color-mix(in srgb, var(--ai-tone) 12%, transparent);
+    --ai-tone-track: color-mix(in srgb, var(--ai-tone) 18%, var(--ai-surface-2));
+  }
+  [data-ai-tone="1"] { --ai-tone: var(--ai-chart-1); }
+  [data-ai-tone="2"] { --ai-tone: var(--ai-chart-2); }
+  [data-ai-tone="3"] { --ai-tone: var(--ai-chart-3); }
+  [data-ai-tone="4"] { --ai-tone: var(--ai-chart-4); }
+  [data-ai-tone="5"] { --ai-tone: var(--ai-chart-5); }
+  [data-ai-tone="6"] { --ai-tone: var(--ai-chart-6); }
+  [data-ai-tone="accent"] { --ai-tone: var(--ai-accent); }
+  [data-ai-tone="success"] { --ai-tone: var(--ai-success); }
+  [data-ai-tone="warning"] { --ai-tone: var(--ai-warning); }
+  [data-ai-tone="danger"] { --ai-tone: var(--ai-danger); }
+  [data-ai-tone="info"] { --ai-tone: var(--ai-info); }
+  [data-ai-tone="neutral"] { --ai-tone: var(--ai-text-muted); }
 }
 
 @layer tokens {

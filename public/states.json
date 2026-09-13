@@ -1,12 +1,14 @@
 {
  "version": "0.4.0",
- "generatedAt": "2026-09-13T10:28:08.542Z",
+ "generatedAt": "2026-09-13T11:38:47.958Z",
  "note": "State classes are set by the author for static markup or by the runtime for interactive components. usedBy lists the classes that appear in the same selector.",
  "states": [
   {
    "class": "is-active",
    "usedBy": [
     "app-header",
+    "bar-col",
+    "bar-col-fill",
     "btn",
     "btn-ghost",
     "btn-primary",
@@ -410,6 +412,26 @@
    "on": "html",
    "appliedBy": "author",
    "purpose": "Focus ring preset. Absent means the accent ring."
+  },
+  {
+   "attribute": "data-ai-tone",
+   "values": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "accent",
+    "success",
+    "warning",
+    "danger",
+    "info",
+    "neutral"
+   ],
+   "on": "a dashboard data element or any ancestor of one",
+   "appliedBy": "author",
+   "purpose": "Series colour. Sets --ai-tone plus the three values derived from it: --ai-tone-ink (60% of the tone toward the text colour, the only one that carries text), --ai-tone-wash (12%, a fill) and --ai-tone-track (18% over surface-2, a rail). 1 to 6 are the chart slots and slot 1 is the accent, so an accent swap recolours the first series. Accepted by bar-fill, bar-track, pip, donut, split-bar, metric-tile and bar-col; ignored everywhere else, and never put on a card, panel, alert, toast, btn, kpi-trend, status-pip, badge or avatar."
   },
   {
    "attribute": "data-ai-toggle",

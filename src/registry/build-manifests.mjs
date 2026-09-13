@@ -101,12 +101,16 @@ function familyFor(cls, file) {
 const CLASS_RE = classSelectorRe();
 const unescape = unescapeSelectorClass;
 
-// Variant prefixes: five breakpoints, three container tiers and all fourteen
-// state prefixes the spec emits. Every one of the fourteen is reached by at
+// Variant prefixes: four breakpoints, three container tiers and all twelve
+// state prefixes the spec emits. Every one of the twelve is reached by at
 // least one family, motion-safe included (utilities.spec.mjs puts it in the
-// `motion` state set alongside motion-reduce), so VARIANT_RE and stateVariants
-// in the spec must stay the same length. It lives in ./css-names.mjs because
-// validate.mjs needs the same list to suggest a fix for `2xl:flexx`.
+// `motion` state set alongside motion-reduce). It lives in ./css-names.mjs
+// because validate.mjs needs the same list to suggest a fix for `2xl:flexx`.
+//
+// VARIANT_RE is deliberately longer than stateVariants now: 2xl, odd and even
+// were cut from the spec on 2026-09-13, and the regex keeps reading them so a
+// stale `2xl:flexx` still parses as a variant of `flexx` and the validator can
+// still suggest `flex` instead of reporting an unrecognised token with no fix.
 
 function buildClasses(files) {
   const classes = new Map();
@@ -209,13 +213,25 @@ function buildTokens() {
     if (/^:root\s*$/.test(sel) || sel === ':root, .light' || /^:root(,|$)/.test(sel)) return dark(sel) ? 'dark' : 'light';
     if (dark(sel)) return 'dark';
     if (/data-ai-focus="([\w-]+)"/.test(sel)) return 'focus:' + sel.match(/data-ai-focus="([\w-]+)"/)[1];
+    // data-ai-tone gets its own context. Without it the bare [data-ai-tone]
+    // rule falls through as undeclared, and buildComponentTokens then reads
+    // var(--ai-tone, ...) out of dashboard.css and files --ai-tone as a
+    // per-component tunable, which it is not: it is a theming attribute.
+    if (/data-ai-tone/.test(sel)) {
+      const v = (sel.match(/data-ai-tone="([\w-]+)"/) || [])[1];
+      return v ? 'tone:' + v : 'tone';
+    }
     return null;
   });
   parseTokens(path.join(cssDir, 'themes.css'), tokens, (sel) => {
     const labels = [];
     // data-ai-accent contexts; a rule may carry both (the deprecated skin alias).
+    // An accent may also carry a dark block (steel does, and only steel today),
+    // so the dark form takes its own label: parseTokens keeps the first value
+    // it sees per label, and the light block is always first in the file, which
+    // would otherwise have swallowed the dark values silently.
     for (const m of sel.matchAll(/data-ai-accent="([\w-]+)"/g)) {
-      const label = 'accent:' + m[1];
+      const label = 'accent:' + m[1] + (dark(sel) ? ':dark' : '');
       if (!labels.includes(label)) labels.push(label);
     }
     const skin = skinOf(sel);
@@ -238,7 +254,7 @@ function buildManifests() {
       {
         version: PKG_VERSION,
         generatedAt: now,
-        note: 'Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the prefixes that exist for the class, written as md:name: responsive (sm 640px, md 768px, lg 1024px, xl 1280px, 2xl 1536px), container-query against the nearest cq or cq-inline ancestor (cq-sm 380px, cq-md 600px, cq-lg 900px), and state (hover, focus, focus-visible, active, disabled, group-hover, dark, print, motion-reduce, first, last, odd, even). A bare cq: prefix no longer exists. Nothing outside this list exists; do not invent classes.',
+        note: 'Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the prefixes that exist for the class, written as md:name: responsive (sm 640px, md 768px, lg 1024px, xl 1280px), container-query against the nearest cq or cq-inline ancestor (cq-sm 380px, cq-md 600px, cq-lg 900px), and state (hover, focus, focus-visible, active, disabled, group-hover, dark, print, motion-safe, motion-reduce, first, last). A bare cq: prefix no longer exists. Nothing outside this list exists; do not invent classes.',
         stats: { total: list.length, families },
         classes: list,
       },
@@ -255,7 +271,7 @@ function buildManifests() {
       {
         version: PKG_VERSION,
         generatedAt: now,
-        note: 'Every --ai-* custom property with its value per context: light (default), dark (data-ai-theme="dark"), <skin> and <skin>:dark (data-ai-skin), accent:<name> (data-ai-accent), focus:<preset> (data-ai-focus). Override any of them on :root or a container. componentTokens lists the per-component tunables that are not declared anywhere by default: each is read as var(<token>, <default>) by that component, so setting it on the component, a container, or :root changes only that property.',
+        note: 'Every --ai-* custom property with its value per context: light (default), dark (data-ai-theme="dark"), <skin> and <skin>:dark (data-ai-skin), accent:<name> and accent:<name>:dark (data-ai-accent), focus:<preset> (data-ai-focus), tone and tone:<slot> (data-ai-tone). Override any of them on :root or a container. componentTokens lists the per-component tunables that are not declared anywhere by default: each is read as var(<token>, <default>) by that component, so setting it on the component, a container, or :root changes only that property.',
         stats: { total: tokens.length, componentTokens: componentTokens.length },
         tokens,
         componentTokens,
@@ -272,6 +288,7 @@ function buildManifests() {
     { attribute: 'data-ai-density', values: ['compact', 'spacious'], on: 'html or any container', appliedBy: 'author', purpose: 'Scales the spacing steps components use for padding. Absent means standard.' },
     { attribute: 'data-ai-radius', values: ['sharp', 'precision', 'balanced', 'smooth'], on: 'html or any container', appliedBy: 'author', purpose: 'Corner geometry preset: sets --ai-radius-xs through --ai-radius-2xl and --ai-radius-base. Absent means the stock scale, which is what precision sets. --ai-radius-none and --ai-radius-full never move.' },
     { attribute: 'data-ai-focus', values: ['neutral', 'thin', 'none'], on: 'html', appliedBy: 'author', purpose: 'Focus ring preset. Absent means the accent ring.' },
+    { attribute: 'data-ai-tone', values: ['1', '2', '3', '4', '5', '6', 'accent', 'success', 'warning', 'danger', 'info', 'neutral'], on: 'a dashboard data element or any ancestor of one', appliedBy: 'author', purpose: 'Series colour. Sets --ai-tone plus the three values derived from it: --ai-tone-ink (60% of the tone toward the text colour, the only one that carries text), --ai-tone-wash (12%, a fill) and --ai-tone-track (18% over surface-2, a rail). 1 to 6 are the chart slots and slot 1 is the accent, so an accent swap recolours the first series. Accepted by bar-fill, bar-track, pip, donut, split-bar, metric-tile and bar-col; ignored everywhere else, and never put on a card, panel, alert, toast, btn, kpi-trend, status-pip, badge or avatar.' },
     { attribute: 'data-ai-toggle', values: ['modal', 'drawer', 'dropdown', 'accordion', 'segmented'], on: 'button', appliedBy: 'author', purpose: 'Runtime toggle. modal and drawer need data-ai-target="#id"; dropdown needs a .dropdown ancestor; accordion needs a .accordion-item ancestor. segmented marks the clicked button inside its role=group (or its parent) with is-active and aria-pressed, and fires ai-segmented-change.' },
     { attribute: 'data-ai-target', values: ['#id'], on: 'the toggle button', appliedBy: 'author', purpose: 'Selector of the modal or drawer to open.' },
     { attribute: 'data-ai-dismiss', values: ['modal', 'drawer', 'toast'], on: 'button or backdrop inside the overlay', appliedBy: 'author', purpose: 'Closes the nearest overlay of that kind.' },

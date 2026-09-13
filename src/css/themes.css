@@ -107,6 +107,10 @@
     --ai-accent: #8c4a27;
     --ai-accent-hover: #733c1f;
     --ai-accent-subtle: rgba(140, 74, 39, 0.1);
+    /* Chart slot 3 is amber by default and this skin's accent sits 11 degrees
+       from it, so the two series read as one. Sky blue instead: 1.59:1 against
+       the teal in slot 2, 128 degrees from the pink in slot 4. */
+    --ai-chart-3: #0369a1;
   }
 
   /* Editorial Dark Mode */
@@ -128,6 +132,10 @@
     --ai-primary-text: #161412;
     --ai-accent: #c48259;
     --ai-accent-hover: #d4956d;
+    /* As the light block. #38bdf8 was the first choice and measured 26 degrees
+       and 1.15:1 from the dark teal in slot 2, which is not a separation;
+       #0ea5e9 keeps the hue and buys 1.49:1 of lightness. */
+    --ai-chart-3: #0ea5e9;
   }
 
   /* --------------------------------------------------------------------------
@@ -186,6 +194,10 @@
     --ai-accent-hover: #7dd3fc;
     --ai-accent-subtle: rgba(56, 189, 248, 0.12);
     --ai-accent-rgb: 56, 189, 248;
+    /* Sky accent: the same collision fintech has, 26 degrees and 1.15:1 from
+       the dark teal in slot 2. The light block needs no override, its accent
+       is blue and already clears 42 degrees. */
+    --ai-chart-2: #818cf8;
   }
 
   /* --------------------------------------------------------------------------
@@ -219,6 +231,10 @@
     --ai-accent-hover: #115e59;
     --ai-accent-subtle: rgba(15, 118, 110, 0.09);
     --ai-accent-rgb: 15, 118, 110;
+    /* This skin's accent is teal, so chart slot 1 and the default teal slot 2
+       land within a degree of each other. Indigo instead: 43 degrees or more
+       from every sky and teal accent, 147 from the amber in slot 3. */
+    --ai-chart-2: #4f46e5;
   }
 
   :root[data-ai-theme="dark"][data-ai-skin="fintech"],
@@ -244,6 +260,8 @@
     --ai-accent-hover: #5eead4;
     --ai-accent-subtle: rgba(45, 212, 191, 0.14);
     --ai-accent-rgb: 45, 212, 191;
+    /* As the light block */
+    --ai-chart-2: #818cf8;
   }
 
   /* --------------------------------------------------------------------------
@@ -272,6 +290,8 @@
     --ai-primary-text: #ffffff;
     --ai-accent: #0284c7;
     --ai-accent-hover: #0369a1;
+    /* Sky accent, 26 degrees from the teal in slot 2 in both themes */
+    --ai-chart-2: #4f46e5;
   }
 
   :root[data-ai-theme="dark"][data-ai-skin="enterprise"],
@@ -292,6 +312,8 @@
     --ai-accent: #38bdf8;
     --ai-accent-text: #082f49;
     --ai-accent-hover: #7dd3fc;
+    /* As the light block */
+    --ai-chart-2: #818cf8;
   }
 
   /* --------------------------------------------------------------------------
@@ -363,6 +385,26 @@
     --ai-accent-subtle: color-mix(in srgb, #475569 10%, transparent);
     --ai-accent-rgb: 71, 85, 105;
     --ai-accent-text: #ffffff;
+  }
+
+  /* steel in dark mode. The single #475569 above is a light-surface value: on
+     the enterprise dark surface it measures 1.94:1, so a steel button, a steel
+     link and a steel chart slot 1 all failed there today, not only charts
+     (measured against enterprise dark surface-1, #1f2937). #94a3b8 measures
+     5.72:1 on that same surface and 6.76:1 or better on every other dark
+     surface the library ships; white on that fill is 2.56:1 and #09090b is
+     7.76:1, so the label flips to #09090b.
+
+     Dark selectors in the shape the skins above use, with the accent triple
+     kept so the rule still outranks an archetype block. */
+  :root[data-ai-theme="dark"][data-ai-accent="steel"][data-ai-accent][data-ai-accent],
+  [data-ai-theme="dark"] [data-ai-accent="steel"][data-ai-accent][data-ai-accent],
+  .theme-dark [data-ai-accent="steel"][data-ai-accent][data-ai-accent] {
+    --ai-accent: #94a3b8;
+    --ai-accent-hover: #cbd5e1;
+    --ai-accent-subtle: color-mix(in srgb, #94a3b8 15%, transparent);
+    --ai-accent-rgb: 148, 163, 184;
+    --ai-accent-text: #09090b;
   }
 
   /* amber: white 3.19:1 (fails AA), #09090b 6.24:1 -> dark label text */

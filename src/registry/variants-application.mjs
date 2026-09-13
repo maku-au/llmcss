@@ -605,6 +605,49 @@ export const applicationVariants = {
   </div>
 </div>`,
     },
+    {
+      id: 'comparison',
+      name: 'Comparison pair',
+      description:
+        'The four tiles collapse into one card: a single dominant total, the two parts that make it up on a metric row each, and a split bar under them that shows the two shares as one length.',
+      guidance:
+        'Use when a headline number is the sum of exactly two things and the question on the screen is how the split moved, which is the honest shape for reads against searches, mobile against desktop, or new against returning. The tone on each tile is the same tone that paints its segment of the split bar, so the tint is a legend and not decoration: that is the only thing that earns a coloured tile under law 13. The bar carries no text because no single ink clears 4.5 to 1 across two arbitrary tones and at 360px the labels do not fit, so the row above it carries every number and the bar carries a full aria-label. The segment widths are the two real shares handed to w-var through --ai-w, so the bar never rounds the split it is drawing. Do not use it for three or more parts, where the segments stop being comparable at a glance and a distribution bar with a list under it reads better, and do not give the two sub metrics their own trend lines, because then the card has three competing numbers instead of one.',
+      html: `<div class="kpi-card is-primary max-w-md">
+  <span class="kpi-label">Registry requests this week</span>
+  <span class="kpi-value">42,500</span>
+  <span class="kpi-trend is-up">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+    +18.2% vs last week
+  </span>
+  <div class="cq mt-4">
+    <div class="grid grid-cols-1 cq-sm:grid-cols-2 gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="metric-tile" data-ai-tone="1" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </span>
+        <span class="min-w-0">
+          <span class="block text-sm text-secondary">Component reads</span>
+          <span class="block text-sm font-semibold tabular">26,350 <span class="text-muted font-normal">62%</span></span>
+        </span>
+      </div>
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="divider-vertical h-auto self-stretch hidden cq-sm:block" aria-hidden="true"></span>
+        <span class="metric-tile" data-ai-tone="2" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </span>
+        <span class="min-w-0">
+          <span class="block text-sm text-secondary">Searches</span>
+          <span class="block text-sm font-semibold tabular">16,150 <span class="text-muted font-normal">38%</span></span>
+        </span>
+      </div>
+    </div>
+    <div class="split-bar mt-4" role="img" aria-label="Component reads 62 percent, searches 38 percent of 42,500 registry requests">
+      <span class="w-var" data-ai-tone="1" style="--ai-w: 62%"></span>
+      <span class="w-var" data-ai-tone="2" style="--ai-w: 38%"></span>
+    </div>
+  </div>
+</div>`,
+    },
   ],
 
   /* ==========================================================================
@@ -3229,6 +3272,134 @@ export const applicationVariants = {
     <span class="tabular">16 events this month</span>
     <span>Team calendar, Australia/Sydney</span>
   </div>
+</div>`,
+    },
+  ],
+
+  /* ==========================================================================
+     Distribution bars
+     ========================================================================== */
+  'bar-chart': [
+    {
+      id: 'meter-trio',
+      name: 'Meter trio',
+      description:
+        'The three label, bar and percent rows become three stacked blocks side by side, each carrying its own tile, its used of total figure and a hairline meter under it.',
+      guidance:
+        'Use when the three bars are three separate budgets rather than three slices of one whole, because a used of total pair is only readable next to its own label and a shared percent column implies the three add up. Each block is a dt and dd pair so the label and the figure stay associated when the meters are read one after another, and the meter is aria-hidden because the number above it is the same fact in text. The tone on the tile is the tone on the track, which is what makes the tint a legend rather than decoration under law 13. Each fill is the true share handed to w-var through --ai-w, so the meter and the figure above it can never disagree. Do not use it for parts of one total, where the original horizontal rows sort by size and compare honestly, and do not put a border on the blocks: three bordered boxes inside a card is the nesting law 1 exists to stop.',
+      html: `<div class="cq max-w-lg">
+  <dl class="grid grid-cols-1 cq-sm:grid-cols-3 gap-4 m-0">
+    <div>
+      <dt class="flex items-center gap-3 m-0">
+        <span class="metric-tile" data-ai-tone="1" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </span>
+        <span class="text-sm">Build minutes</span>
+      </dt>
+      <dd class="m-0 mt-3">
+        <span class="block font-semibold tabular">1,240 <span class="text-sm text-muted font-normal">of 2,000</span></span>
+        <div class="bar-track h-1 rounded-full mt-2" data-ai-tone="1" aria-hidden="true"><div class="bar-fill w-var" style="--ai-w: 62%"></div></div>
+      </dd>
+    </div>
+    <div>
+      <dt class="flex items-center gap-3 m-0">
+        <span class="metric-tile" data-ai-tone="2" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 12 8 12 10.5 5 13.5 19 16 12 21 12"/></svg>
+        </span>
+        <span class="text-sm">Bandwidth</span>
+      </dt>
+      <dd class="m-0 mt-3">
+        <span class="block font-semibold tabular">84 GB <span class="text-sm text-muted font-normal">of 200 GB</span></span>
+        <div class="bar-track h-1 rounded-full mt-2" data-ai-tone="2" aria-hidden="true"><div class="bar-fill w-var" style="--ai-w: 42%"></div></div>
+      </dd>
+    </div>
+    <div>
+      <dt class="flex items-center gap-3 m-0">
+        <span class="metric-tile" data-ai-tone="6" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 18.5V20"/><circle cx="10" cy="8" r="3.5"/><path d="M20 20v-1.5a3.5 3.5 0 0 0-2.7-3.4"/><path d="M15.5 4.7a3.5 3.5 0 0 1 0 6.6"/></svg>
+        </span>
+        <span class="text-sm">Seats</span>
+      </dt>
+      <dd class="m-0 mt-3">
+        <span class="block font-semibold tabular">12 <span class="text-sm text-muted font-normal">of 25</span></span>
+        <div class="bar-track h-1 rounded-full mt-2" data-ai-tone="6" aria-hidden="true"><div class="bar-fill w-var" style="--ai-w: 48%"></div></div>
+      </dd>
+    </div>
+  </dl>
+</div>`,
+    },
+  ],
+
+  /* ==========================================================================
+     Donut stat
+     ========================================================================== */
+  'donut-stat': [
+    {
+      id: 'breakdown',
+      name: 'Breakdown',
+      description:
+        'The ring stops being a single completion arc and becomes a four wedge ramp of one hue: the count moves into the hole, and a legend beside it names every cause with its count, its share and its wedge colour.',
+      guidance:
+        'Use when the total is only useful once it is split, and when the split has four parts or fewer: past four, a ring reads as a colour wheel and a distribution bar with a list is honest. The legend is the accessibility contract, not a caption. The ring is aria-hidden and carries no text, because no ink clears 4.5 to 1 across a sequential ramp and the wedge labels do not fit at 360px, so every number a reader needs is in the dl, in the same order the wedges are drawn, and screen reader output is the same list a sighted reader sees. The whole ramp is one stop list in --ai-donut-stops, one hue stepped at 100, 72, 48 and 28 percent toward --ai-surface-0, so it recolours with the accent and costs no extra rule; steps three and four fall under 3 to 1 against the surface, which is unavoidable for a sequential ramp and is exactly why the legend carries every count and share. Each pip repeats its wedge colour through bg-var, and the tone sits on the dl so --ai-tone resolves for all four mixes; the first pip also carries the attribute so its ring matches the series. Do not use it for one number, where the parent completion ring is the right component, and never put the counts inside the wedges.',
+      html: `<div class="cq">
+  <div class="donut-wrap flex-col items-start cq-sm:flex-row cq-sm:items-center">
+    <div class="shrink-0">
+      <div class="donut" data-ai-tone="1" style="--ai-donut-stops: var(--ai-tone) 0 41%, color-mix(in srgb, var(--ai-tone) 72%, var(--ai-surface-0)) 41% 68%, color-mix(in srgb, var(--ai-tone) 48%, var(--ai-surface-0)) 68% 87%, color-mix(in srgb, var(--ai-tone) 28%, var(--ai-surface-0)) 87% 100%" aria-hidden="true"><div class="donut-hole">1,300</div></div>
+      <div class="text-sm text-muted text-center mt-2">failed installs</div>
+    </div>
+    <div class="min-w-0">
+      <div class="font-semibold">Four causes, this week</div>
+      <dl class="grid grid-cols-1 gap-2 m-0 mt-3" data-ai-tone="1">
+        <div class="flex items-center justify-between gap-4">
+          <dt class="flex items-center gap-2 m-0 text-sm"><span class="pip bg-var" data-ai-tone="1" style="--ai-bg-color: var(--ai-tone)" aria-hidden="true"></span>Version mismatch</dt>
+          <dd class="m-0 text-sm tabular">533 <span class="text-muted">41%</span></dd>
+        </div>
+        <div class="flex items-center justify-between gap-4">
+          <dt class="flex items-center gap-2 m-0 text-sm"><span class="pip bg-var" style="--ai-bg-color: color-mix(in srgb, var(--ai-tone) 72%, var(--ai-surface-0))" aria-hidden="true"></span>Network timeout</dt>
+          <dd class="m-0 text-sm tabular">351 <span class="text-muted">27%</span></dd>
+        </div>
+        <div class="flex items-center justify-between gap-4">
+          <dt class="flex items-center gap-2 m-0 text-sm"><span class="pip bg-var" style="--ai-bg-color: color-mix(in srgb, var(--ai-tone) 48%, var(--ai-surface-0))" aria-hidden="true"></span>Disk permission</dt>
+          <dd class="m-0 text-sm tabular">247 <span class="text-muted">19%</span></dd>
+        </div>
+        <div class="flex items-center justify-between gap-4">
+          <dt class="flex items-center gap-2 m-0 text-sm"><span class="pip bg-var" style="--ai-bg-color: color-mix(in srgb, var(--ai-tone) 28%, var(--ai-surface-0))" aria-hidden="true"></span>Checksum</dt>
+          <dd class="m-0 text-sm tabular">169 <span class="text-muted">13%</span></dd>
+        </div>
+      </dl>
+      <p class="text-sm text-muted m-0 mt-3">Wedges run darkest to lightest, clockwise from the top.</p>
+    </div>
+  </div>
+</div>`,
+    },
+  ],
+
+  /* ==========================================================================
+     Sparkline stat
+     ========================================================================== */
+  'spark-stat': [
+    {
+      id: 'area',
+      name: 'Area',
+      description:
+        'The number and the chart stop sharing a row: the tile becomes one column, so the sparkline drops under the figure and runs the full width as a filled area with a caption.',
+      guidance:
+        'Use when the shape of the month matters as much as the number, and when the tile has the width to spend: a full width area reads a trend a 8.5rem sparkline cannot. The fill is a linearGradient whose stops are currentColor with alpha only, and data-ai-tone on the svg sets the colour the whole drawing inherits, so the line and the fade are one hue by construction and an accent swap recolours both. The gradient id must be unique in the document, which is why it is named for this variant. The line carries vector-effect non-scaling-stroke so stretching the viewBox to the tile width never thickens it. The chart is aria-hidden and the caption under it carries the period and the total in text, because an area with no axis is a shape and not a reading. Do not stamp four of these across a dashboard: one dominant number per tile is law 8, and four area charts in a row is the generated-template tell. Do not add a second series to the fill, because two overlapping alpha ramps mix into a third colour that keys nothing.',
+      html: `<div class="spark-stat grid-cols-1 max-w-md">
+  <div>
+    <span class="kpi-label">Average daily requests</span>
+    <div class="kpi-value">11.4k</div>
+    <span class="kpi-trend is-up">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      +6.1% vs last month
+    </span>
+  </div>
+  <svg class="spark w-full h-24" viewBox="0 0 320 96" fill="none" preserveAspectRatio="none" data-ai-tone="1" aria-hidden="true">
+    <defs><linearGradient id="spark-fade-area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="currentColor" stop-opacity="0.18"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs>
+    <path d="M0,74 L32,70 L64,76 L96,62 L128,66 L160,54 L192,58 L224,46 L256,44 L288,36 L320,30 L320,96 L0,96 Z" fill="url(#spark-fade-area)" />
+    <polyline points="0,74 32,70 64,76 96,62 128,66 160,54 192,58 224,46 256,44 288,36 320,30" stroke="currentColor" stroke-width="1.75" vector-effect="non-scaling-stroke" />
+  </svg>
+  <p class="text-sm text-muted m-0">342k month to date across 30 days</p>
 </div>`,
     },
   ],

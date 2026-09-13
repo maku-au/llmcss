@@ -1,9 +1,9 @@
 {
  "version": "0.4.0",
- "generatedAt": "2026-09-13T10:28:08.542Z",
- "note": "Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the prefixes that exist for the class, written as md:name: responsive (sm 640px, md 768px, lg 1024px, xl 1280px, 2xl 1536px), container-query against the nearest cq or cq-inline ancestor (cq-sm 380px, cq-md 600px, cq-lg 900px), and state (hover, focus, focus-visible, active, disabled, group-hover, dark, print, motion-reduce, first, last, odd, even). A bare cq: prefix no longer exists. Nothing outside this list exists; do not invent classes.",
+ "generatedAt": "2026-09-13T11:38:47.958Z",
+ "note": "Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the prefixes that exist for the class, written as md:name: responsive (sm 640px, md 768px, lg 1024px, xl 1280px), container-query against the nearest cq or cq-inline ancestor (cq-sm 380px, cq-md 600px, cq-lg 900px), and state (hover, focus, focus-visible, active, disabled, group-hover, dark, print, motion-safe, motion-reduce, first, last). A bare cq: prefix no longer exists. Nothing outside this list exists; do not invent classes.",
  "stats": {
-  "total": 2301,
+  "total": 2306,
   "families": {
    "spacing": 686,
    "interaction": 182,
@@ -20,7 +20,7 @@
    "badges": 28,
    "forms-extra": 31,
    "base": 12,
-   "dashboard": 43,
+   "dashboard": 48,
    "flex": 81,
    "display": 19,
    "borders": 70,
@@ -1665,6 +1665,24 @@
    "variants": []
   },
   {
+   "class": "bar-col",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "bar-col-fill",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "bar-cols",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
    "class": "bar-fill",
    "family": "dashboard",
    "file": "components/dashboard.css",
@@ -1981,7 +1999,6 @@
    "family": "display",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "active",
     "cq-lg",
     "cq-md",
@@ -2026,10 +2043,8 @@
    "family": "borders",
    "file": "utilities.css",
    "variants": [
-    "even",
     "first",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2037,10 +2052,8 @@
    "family": "borders",
    "file": "utilities.css",
    "variants": [
-    "even",
     "first",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2048,10 +2061,8 @@
    "family": "borders",
    "file": "utilities.css",
    "variants": [
-    "even",
     "first",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2061,13 +2072,11 @@
    "variants": [
     "active",
     "dark",
-    "even",
     "first",
     "focus-visible",
     "group-hover",
     "hover",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2075,10 +2084,8 @@
    "family": "borders",
    "file": "utilities.css",
    "variants": [
-    "even",
     "first",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2086,10 +2093,8 @@
    "family": "borders",
    "file": "utilities.css",
    "variants": [
-    "even",
     "first",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2099,13 +2104,11 @@
    "variants": [
     "active",
     "dark",
-    "even",
     "first",
     "focus-visible",
     "group-hover",
     "hover",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2115,13 +2118,11 @@
    "variants": [
     "active",
     "dark",
-    "even",
     "first",
     "focus-visible",
     "group-hover",
     "hover",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2143,13 +2144,11 @@
    "variants": [
     "active",
     "dark",
-    "even",
     "first",
     "focus-visible",
     "group-hover",
     "hover",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2157,10 +2156,8 @@
    "family": "borders",
    "file": "utilities.css",
    "variants": [
-    "even",
     "first",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2168,10 +2165,8 @@
    "family": "borders",
    "file": "utilities.css",
    "variants": [
-    "even",
     "first",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2179,10 +2174,8 @@
    "family": "borders",
    "file": "utilities.css",
    "variants": [
-    "even",
     "first",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2190,10 +2183,8 @@
    "family": "borders",
    "file": "utilities.css",
    "variants": [
-    "even",
     "first",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2201,10 +2192,8 @@
    "family": "borders",
    "file": "utilities.css",
    "variants": [
-    "even",
     "first",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2212,10 +2201,8 @@
    "family": "borders",
    "file": "utilities.css",
    "variants": [
-    "even",
     "first",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2231,13 +2218,11 @@
    "variants": [
     "active",
     "dark",
-    "even",
     "first",
     "focus-visible",
     "group-hover",
     "hover",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2253,13 +2238,11 @@
    "variants": [
     "active",
     "dark",
-    "even",
     "first",
     "focus-visible",
     "group-hover",
     "hover",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2269,13 +2252,11 @@
    "variants": [
     "active",
     "dark",
-    "even",
     "first",
     "focus-visible",
     "group-hover",
     "hover",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2283,10 +2264,8 @@
    "family": "borders",
    "file": "utilities.css",
    "variants": [
-    "even",
     "first",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2294,10 +2273,8 @@
    "family": "borders",
    "file": "utilities.css",
    "variants": [
-    "even",
     "first",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2307,13 +2284,11 @@
    "variants": [
     "active",
     "dark",
-    "even",
     "first",
     "focus-visible",
     "group-hover",
     "hover",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2323,13 +2298,11 @@
    "variants": [
     "active",
     "dark",
-    "even",
     "first",
     "focus-visible",
     "group-hover",
     "hover",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2337,10 +2310,8 @@
    "family": "borders",
    "file": "utilities.css",
    "variants": [
-    "even",
     "first",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -2348,10 +2319,8 @@
    "family": "borders",
    "file": "utilities.css",
    "variants": [
-    "even",
     "first",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -3139,7 +3108,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -3263,7 +3231,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -3278,7 +3245,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -3293,7 +3259,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -3308,7 +3273,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -3323,7 +3287,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -3338,7 +3301,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -3353,7 +3315,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -3368,7 +3329,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -3383,7 +3343,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -3398,7 +3357,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -3413,7 +3371,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -3428,7 +3385,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -3443,7 +3399,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -3971,7 +3926,6 @@
    "family": "display",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "active",
     "cq-lg",
     "cq-md",
@@ -4751,7 +4705,6 @@
    "family": "display",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "active",
     "cq-lg",
     "cq-md",
@@ -4794,7 +4747,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -4809,7 +4761,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -4846,7 +4797,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -4861,7 +4811,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -4876,7 +4825,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -4891,7 +4839,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -4906,7 +4853,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -5119,7 +5065,6 @@
    "family": "spacing",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -5140,7 +5085,6 @@
    "family": "spacing",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -5161,7 +5105,6 @@
    "family": "spacing",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -5200,7 +5143,6 @@
    "family": "spacing",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -5263,7 +5205,6 @@
    "family": "spacing",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -5302,7 +5243,6 @@
    "family": "spacing",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -5335,7 +5275,6 @@
    "family": "spacing",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -5694,7 +5633,6 @@
    "family": "display",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "active",
     "cq-lg",
     "cq-md",
@@ -5721,7 +5659,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -5748,7 +5685,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -5763,7 +5699,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -5778,7 +5713,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -5793,7 +5727,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -5808,7 +5741,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -5823,7 +5755,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -5844,7 +5775,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -5865,7 +5795,6 @@
    "family": "grid",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -6405,7 +6334,6 @@
    "family": "display",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "active",
     "cq-lg",
     "cq-md",
@@ -6438,7 +6366,6 @@
    "family": "display",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "active",
     "cq-lg",
     "cq-md",
@@ -6459,7 +6386,6 @@
    "family": "display",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "active",
     "cq-lg",
     "cq-md",
@@ -6480,7 +6406,6 @@
    "family": "display",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "active",
     "cq-lg",
     "cq-md",
@@ -6501,7 +6426,6 @@
    "family": "display",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "active",
     "cq-lg",
     "cq-md",
@@ -6772,7 +6696,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -6787,7 +6710,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -6802,7 +6724,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -6817,7 +6738,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -6832,7 +6752,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -6853,7 +6772,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -6868,7 +6786,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -6883,7 +6800,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -6898,7 +6814,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -6913,7 +6828,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -6928,7 +6842,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -6943,7 +6856,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -8111,6 +8023,12 @@
    "class": "media-figure",
    "family": "extras",
    "file": "components/extras.css",
+   "variants": []
+  },
+  {
+   "class": "metric-tile",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
    "variants": []
   },
   {
@@ -11064,7 +10982,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -11079,7 +10996,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -11094,7 +11010,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -11109,7 +11024,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -13436,7 +13350,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -13451,7 +13364,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -13466,7 +13378,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -13481,7 +13392,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -13496,7 +13406,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -13511,7 +13420,6 @@
    "family": "flex",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -14150,6 +14058,12 @@
    "variants": []
   },
   {
+   "class": "split-bar",
+   "family": "dashboard",
+   "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
    "class": "split-handle",
    "family": "agent-extra",
    "file": "components/agent-extra.css",
@@ -14382,13 +14296,11 @@
    "variants": [
     "active",
     "dark",
-    "even",
     "first",
     "focus-visible",
     "group-hover",
     "hover",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -14398,13 +14310,11 @@
    "variants": [
     "active",
     "dark",
-    "even",
     "first",
     "focus-visible",
     "group-hover",
     "hover",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -14414,13 +14324,11 @@
    "variants": [
     "active",
     "dark",
-    "even",
     "first",
     "focus-visible",
     "group-hover",
     "hover",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -14430,13 +14338,11 @@
    "variants": [
     "active",
     "dark",
-    "even",
     "first",
     "focus-visible",
     "group-hover",
     "hover",
-    "last",
-    "odd"
+    "last"
    ]
   },
   {
@@ -14703,7 +14609,6 @@
    "family": "typography",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -14742,7 +14647,6 @@
    "family": "typography",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -14793,7 +14697,6 @@
    "family": "typography",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -14808,7 +14711,6 @@
    "family": "typography",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -14870,7 +14772,6 @@
    "family": "typography",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",
@@ -14908,7 +14809,6 @@
    "family": "typography",
    "file": "utilities.css",
    "variants": [
-    "2xl",
     "cq-lg",
     "cq-md",
     "cq-sm",

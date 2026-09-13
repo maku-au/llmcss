@@ -58,6 +58,10 @@
     height: 2.5rem;
     overflow: visible;
   }
+  /* A toned sparkline draws its line and fill in the series colour */
+  .spark[data-ai-tone] {
+    color: var(--ai-tone);
+  }
 
   .donut-wrap {
     display: flex;
@@ -68,7 +72,11 @@
     width: 5.5rem;
     height: 5.5rem;
     border-radius: 50%;
-    background: conic-gradient(var(--ai-text-primary) 0 68%, var(--ai-surface-2) 0);
+    /* Untoned, the donut is one ink arc on the track. A breakdown writes the
+       whole stop list into --ai-donut-stops (color-mix of the tone toward
+       --ai-surface-0 at 100, 72, 48 and 28 percent), so the ramp costs no
+       extra rule and the default stays exactly what it was. */
+    background: conic-gradient(var(--ai-donut-stops, var(--ai-text-primary) 0 68%, var(--ai-surface-2) 0));
     display: grid;
     place-items: center;
     flex-shrink: 0;
@@ -152,6 +160,10 @@
   .pip-ok { background: var(--ai-success); box-shadow: 0 0 0 2px color-mix(in srgb, var(--ai-success) 25%, transparent); }
   .pip-warn { background: var(--ai-warning); box-shadow: 0 0 0 2px color-mix(in srgb, var(--ai-warning) 25%, transparent); }
   .pip-err { background: var(--ai-danger); box-shadow: 0 0 0 2px color-mix(in srgb, var(--ai-danger) 25%, transparent); }
+  /* A tone keys a series, so only the plain pip is a legend swatch. pip-ok,
+     pip-warn, pip-err and status-pip already carry a meaning and never take
+     one; a toned pip belongs beside a chart, not beside a status. */
+  .pip[data-ai-tone] { background: var(--ai-tone); box-shadow: 0 0 0 2px color-mix(in srgb, var(--ai-tone) 25%, transparent); }
 
   .kanban {
     min-width: 16rem;
@@ -203,14 +215,77 @@
   }
   .bar-fill {
     height: 100%;
-    background: var(--ai-text-primary);
+    background: var(--ai-tone, var(--ai-text-primary));
     border-radius: var(--ai-radius-full);
   }
+  .bar-track[data-ai-tone] { background: var(--ai-tone-track); }
   .bar-row span:last-child {
     font-variant-numeric: tabular-nums;
     color: var(--ai-text-muted);
     text-align: right;
   }
+
+  /* Distribution bar. Segments are flex children sized with w-var; the 2px gap
+     shows the surface through, so the parts stay countable without an inset
+     separator, which the Law 3 audit reads as a stripe. No text inside a
+     segment: no single ink clears 4.5:1 across four arbitrary tones and at
+     360px the labels do not fit. The list under the bar carries the numbers. */
+  .split-bar {
+    display: flex;
+    gap: 2px;
+    height: 0.5rem;
+    border-radius: var(--ai-radius-full);
+    overflow: hidden;
+    background: var(--ai-surface-2);
+  }
+  .split-bar > * { background: var(--ai-tone, var(--ai-text-primary)); }
+
+  /* Column chart. Heights come from h-var on the fill, so a week of bars is
+     markup and no CSS. A non-peak column sits at 75 percent of its tone toward
+     surface-0, which is the lowest tint that still clears 3:1 on both
+     surfaces; the peak takes the full tone and carries aria-current. */
+  .bar-cols {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    align-items: end;
+    gap: var(--ai-space-2);
+    height: 6rem;
+  }
+  .bar-col {
+    display: grid;
+    /* A definite first track: a percentage height on the fill resolves
+       against it, which an auto track would never give. */
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: var(--ai-space-2);
+    height: 100%;
+    text-align: center;
+  }
+  .bar-col > .bar-col-fill {
+    align-self: end;
+    min-height: 2px;
+  }
+  .bar-col > .bar-col-fill {
+    background: color-mix(in srgb, var(--ai-tone, var(--ai-accent)) 75%, var(--ai-surface-0));
+    border-radius: var(--ai-radius-sm);
+  }
+  .bar-col.is-active > .bar-col-fill { background: var(--ai-tone, var(--ai-accent)); }
+
+  /* The one place a coloured icon tile is allowed: where the tint keys a
+     series and the same tone paints that series' bar, segment or meter. No
+     border, radius from the token. A tile with no tone is Law 13. */
+  .metric-tile {
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--ai-radius-md);
+    background: var(--ai-tone-wash, var(--ai-surface-1));
+    color: var(--ai-tone-ink, var(--ai-text-secondary));
+    flex-shrink: 0;
+  }
+  .metric-tile > svg { width: 1rem; height: 1rem; }
 
   .detail {
     display: grid;

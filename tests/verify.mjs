@@ -258,7 +258,17 @@ assert(harnessOut.includes('--ai-radius-base: 4px;'), 'CLI harness missing token
 assert(harnessOut.includes('Strict Anti-Slop Rules:'), 'CLI harness missing anti-slop rules');
 
 const fullHarnessOut = execSync('node bin/cssai.mjs harness', { encoding: 'utf-8' });
-assert(fullHarnessOut.includes('The 10 Non-Negotiable Anti-Slop Laws'), 'CLI full harness missing 10 laws');
+// The heading and the list are rendered from src/registry/laws.mjs, so the
+// count follows the source. Pinning the string here is what let the CLI print
+// "10" over a list of eleven.
+const { laws: harnessLaws } = await import('../src/registry/laws.mjs');
+assert(
+  fullHarnessOut.includes(`The ${harnessLaws.length} Non-Negotiable Anti-Slop Laws`),
+  `CLI full harness heading disagrees with laws.mjs (${harnessLaws.length} laws)`
+);
+for (const law of harnessLaws) {
+  assert(fullHarnessOut.includes(`${law.n}. ${law.title}`), `CLI full harness missing law ${law.n}`);
+}
 
 // Audit index.html (must be 0 design quality issues)
 const auditCleanOut = execSync('node bin/cssai.mjs audit index.html', { encoding: 'utf-8' });
@@ -755,8 +765,12 @@ console.log('\n22. Testing Representative Variant Coverage & Selector Escaping..
   const classesJson = JSON.parse(fs.readFileSync('public/classes.json', 'utf-8'));
   const byClass = new Map(classesJson.classes.map((c) => [c.class, c]));
 
+  // xl, not 2xl: the 2xl breakpoint was cut from the spec on 2026-09-13 and
+  // with it the last class name that begins with a digit. The six-hex-digit
+  // ident escape is still the rule, so it is exercised against escapeClass
+  // directly below rather than against a class that no longer ships.
   const flexEntry = byClass.get('flex');
-  assert(flexEntry && flexEntry.variants.includes('2xl'), 'Expected "flex" to carry a 2xl variant in public/classes.json');
+  assert(flexEntry && flexEntry.variants.includes('xl'), 'Expected "flex" to carry an xl variant in public/classes.json');
 
   const gridCols2Entry = byClass.get('grid-cols-2');
   assert(gridCols2Entry && gridCols2Entry.variants.includes('cq-md'), 'Expected "grid-cols-2" to carry a cq-md variant in public/classes.json');
@@ -772,7 +786,7 @@ console.log('\n22. Testing Representative Variant Coverage & Selector Escaping..
     fs.readFileSync('src/css/utilities.css', 'utf-8') +
     fs.readFileSync('src/css/utilities.extra.css', 'utf-8');
   const escapedSelectors = [
-    '.\\000032xl\\:flex',
+    '.xl\\:flex',
     '.cq-md\\:grid-cols-2',
     '.hover\\:opacity-50',
     '.-m-1',
@@ -782,7 +796,11 @@ console.log('\n22. Testing Representative Variant Coverage & Selector Escaping..
   for (const sel of escapedSelectors) {
     assert(utilitiesSample.includes(sel), `Expected escaped selector "${sel}" in utilities.css / utilities.extra.css`);
   }
-  console.log('✓ Verified representative variant coverage (2xl, cq-md, hover) and 6 escaped selector samples in the generated CSS.');
+  assert(
+    (await import('../src/registry/css-names.mjs')).escapeClass('2xl:flex') === '\\000032xl\\:flex',
+    'escapeClass must still write the padded six-hex-digit escape for a leading digit'
+  );
+  console.log('✓ Verified representative variant coverage (xl, cq-md, hover), 6 escaped selector samples and the leading-digit escape rule.');
 }
 
 // Test 23: Wiring Guard (index.css imports, layer order, showcase.css isolation)
@@ -817,11 +835,25 @@ console.log('\n24. Testing Component Layout Variants (refs, strict validation, a
   const { resolveRef, countVariants, listRefs } = await import('../src/registry/resolve.mjs');
 
   const VARIANT_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-  // An id attribute is a document-wide name. A variant and its parent can end
-  // up on the same page (the catalog renders one, a reader pastes the other),
-  // so a variant must not reuse one of the parent's ids.
+  // An id attribute is a document-wide name and the registry is copied into one
+  // document a snippet at a time, so an id must be unique across the whole
+  // registry, not only inside its own component. An SVG gradient id is the case
+  // that bites: two spark demos both defining spark-fade-1 makes the second
+  // area silently take the first one's stops.
   const idAttr = /\sid\s*=\s*"([^"]+)"/g;
   const attrIds = (html) => [...html.matchAll(idAttr)].map((m) => m[1]);
+  const idOwners = new Map();
+  const claimIds = (html, owner) => {
+    for (const id of attrIds(html)) {
+      assert(
+        !idOwners.has(id),
+        `id "${id}" is used by both ${idOwners.get(id)} and ${owner}. Registry ids are globally unique.`
+      );
+      idOwners.set(id, owner);
+    }
+  };
+
+  for (const comp of components) claimIds(comp.html, comp.id);
 
   const seenRefs = new Set();
   let variantCount = 0;
@@ -834,8 +866,6 @@ console.log('\n24. Testing Component Layout Variants (refs, strict validation, a
     // One honest alternative layout is enough to earn the switcher; an empty
     // array is a declaration with nothing behind it.
     assert(comp.variants.length >= 1, `${comp.id} declares variants, so it needs at least one`);
-
-    const parentIds = new Set(attrIds(comp.html));
 
     for (const v of comp.variants) {
       variantCount++;
@@ -871,7 +901,16 @@ console.log('\n24. Testing Component Layout Variants (refs, strict validation, a
       assert(slop.length === 0, `${ref} fails the audit: ${slop.map((s) => s.category || s.type).join(', ')}`);
 
       // Copy HTML output is the library's advertisement: no inline style.
-      assert(!/\sstyle\s*=/.test(v.html), `Inline style attribute in ${ref}. Use utility classes.`);
+      // A style attribute is allowed only when every declaration in it sets a
+      // custom property (w-var, h-var, bg-var, --ai-donut-stops): that is data
+      // handed to a utility, not ad hoc styling. Anything else is a utility gap.
+      for (const m of v.html.matchAll(/\sstyle\s*=\s*"([^"]*)"/g)) {
+        const decls = m[1].split(';').map((d) => d.trim()).filter(Boolean);
+        assert(
+          decls.every((d) => /^--ai-[\w-]+\s*:/.test(d)),
+          `Inline style attribute in ${ref} sets a real property (${m[1].slice(0, 60)}). Use utility classes; only --ai-* custom properties may be inline.`
+        );
+      }
 
       // Zero em-dashes, in copy and in markup.
       assert(
@@ -879,8 +918,9 @@ console.log('\n24. Testing Component Layout Variants (refs, strict validation, a
         `Em-dash or en-dash in ${ref}`
       );
 
-      const clashes = attrIds(v.html).filter((id) => parentIds.has(id));
-      assert(clashes.length === 0, `${ref} reuses the parent's id attribute(s): ${clashes.join(', ')}`);
+      // Against every parent and every variant already walked, its own parent
+      // included.
+      claimIds(v.html, ref);
     }
   }
 
@@ -904,7 +944,9 @@ console.log('\n24. Testing Component Layout Variants (refs, strict validation, a
   const statsJson = JSON.parse(fs.readFileSync('src/registry/stats.json', 'utf-8'));
   assert(statsJson.variants === variantCount, 'src/registry/stats.json is out of step with the registry');
 
-  console.log(`✓ Verified ${variantCount} variants across ${variantParents} components, all gates green.`);
+  console.log(
+    `✓ Verified ${variantCount} variants across ${variantParents} components, ${idOwners.size} globally unique ids, all gates green.`
+  );
 }
 
 // Test 25: Motion addon budget, keyframe naming, and the Law 2 ban
@@ -1155,7 +1197,272 @@ console.log('\n28. Testing Demo Links Stay On The Page...');
   console.log(`✓ Verified every demo, variant, template and blueprint link is a fragment, mailto: or tel:.`);
 }
 
-console.log('\n🎉 ALL 28 TESTS PASSED SUCCESSFULLY!\n');
+/* --------------------------------------------------------------------------
+   Shared helpers for Tests 29 and 30: a minimal CSS rule walker and the sRGB
+   colour maths. color-mix(in srgb, ...) interpolates the gamma-encoded sRGB
+   coordinates, so a plain per-channel lerp is the right model, and mixing with
+   `transparent` is an alpha, which composites over whatever sits behind it.
+   -------------------------------------------------------------------------- */
+function cssRules(css) {
+  const out = [];
+  css = css.replace(/\/\*[\s\S]*?\*\//g, '');
+  const walk = (text) => {
+    let i = 0;
+    while (i < text.length) {
+      const open = text.indexOf('{', i);
+      if (open < 0) break;
+      const head = text.slice(i, open).trim();
+      let depth = 1;
+      let j = open + 1;
+      while (j < text.length && depth > 0) {
+        if (text[j] === '{') depth++;
+        else if (text[j] === '}') depth--;
+        j++;
+      }
+      const body = text.slice(open + 1, j - 1);
+      if (head.startsWith('@')) walk(body);
+      else out.push({ selector: head, body });
+      i = j;
+    }
+  };
+  walk(css);
+  return out;
+}
+const toRgb = (h) => {
+  let s = h.trim().replace('#', '');
+  if (s.length === 3) s = s.split('').map((c) => c + c).join('');
+  return [0, 2, 4].map((i) => parseInt(s.slice(i, i + 2), 16));
+};
+const relLum = (c) =>
+  c
+    .map((v) => {
+      v /= 255;
+      return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    })
+    .reduce((a, v, i) => a + [0.2126, 0.7152, 0.0722][i] * v, 0);
+const contrast = (a, b) => {
+  const [hi, lo] = [relLum(a), relLum(b)].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
+};
+/** color-mix(in srgb, a p%, b) */
+const srgbMix = (a, b, p) => a.map((v, i) => v * p + b[i] * (1 - p));
+/** a at `alpha` composited over bg, which is what the 12% wash does. */
+const overlay = (a, bg, alpha) => a.map((v, i) => v * alpha + bg[i] * (1 - alpha));
+const toHsl = (c) => {
+  const [r, g, b] = c.map((v) => v / 255);
+  const mx = Math.max(r, g, b);
+  const mn = Math.min(r, g, b);
+  const d = mx - mn;
+  let h = 0;
+  if (d) {
+    if (mx === r) h = 60 * (((g - b) / d) % 6);
+    else if (mx === g) h = 60 * ((b - r) / d + 2);
+    else h = 60 * ((r - g) / d + 4);
+  }
+  if (h < 0) h += 360;
+  const l = (mx + mn) / 2;
+  return { h, s: d === 0 ? 0 : d / (1 - Math.abs(2 * l - 1)), l };
+};
+const hueGap = (a, b) => {
+  const d = Math.abs(a - b) % 360;
+  return d > 180 ? 360 - d : d;
+};
+
+// Test 29: Chart palette and tone contrast
+// Resolves every tone the tone attribute can name, in every skin and theme,
+// with every accent the themes file declares, and measures:
+//   - the 60% ink against surface-0 and surface-1, bare and over its own 12%
+//     wash, at the 4.5:1 body-text floor
+//   - every fixed chart slot as a fill against both surfaces, at the 3:1
+//     non-text floor
+//   - adjacent slots around the ring (slot 1 is the accent, so 6 wraps to 1):
+//     40 degrees of hue, or 1.25:1 of lightness when the hues are close. The
+//     hue test is skipped when exactly one of the pair is achromatic, because
+//     chroma alone already separates a grey from a colour; when both are
+//     achromatic only lightness is left and 1.25:1 is required.
+//   - no chart hex on the Law 4 banned-gradient list in bin/cssai.mjs
+console.log('\n29. Testing Chart Palette & Tone Contrast (tokens.css, themes.css)...');
+{
+  const tokensCss = fs.readFileSync('src/css/tokens.css', 'utf-8');
+  const themesCss = fs.readFileSync('src/css/themes.css', 'utf-8');
+  const WANT = /^--ai-(surface-0|surface-1|text-primary|text-muted|accent|chart-[1-6]|success|warning|danger|info)$/;
+
+  const decls = (body) => {
+    const out = {};
+    for (const m of body.matchAll(/(--ai-[\w-]+)\s*:\s*([^;]+);/g)) {
+      if (WANT.test(m[1])) out[m[1]] = m[2].trim();
+    }
+    return out;
+  };
+  const isDark = (sel) => /(?<!:not\()\[data-ai-theme="dark"\]|\.theme-dark/.test(sel);
+  const isLight = (sel) => /\[data-ai-theme="light"\]|\.theme-light|:not\(\[data-ai-theme="dark"\]\)/.test(sel);
+
+  // Base palette from tokens.css: :root plus the explicit light block, then dark.
+  const base = { light: {}, dark: {} };
+  for (const r of cssRules(tokensCss)) {
+    if (/data-ai-(focus|radius|density|tone)/.test(r.selector)) continue;
+    const d = decls(r.body);
+    if (!Object.keys(d).length) continue;
+    if (isDark(r.selector)) Object.assign(base.dark, d);
+    else if (/^:root\b/.test(r.selector) || isLight(r.selector)) Object.assign(base.light, d);
+  }
+  assert(base.light['--ai-chart-2'] && base.dark['--ai-chart-2'], 'tokens.css must declare --ai-chart-2 in both themes');
+  assert(base.light['--ai-chart-1'] === 'var(--ai-accent)', '--ai-chart-1 must follow var(--ai-accent)');
+
+  // Skin and accent overrides from themes.css.
+  const skins = {};
+  const accentValues = {};
+  for (const r of cssRules(themesCss)) {
+    const d = decls(r.body);
+    if (!Object.keys(d).length) continue;
+    const skin = (r.selector.match(/data-ai-skin="([\w-]+)"/) || [])[1];
+    const accent = (r.selector.match(/data-ai-accent="([\w-]+)"/) || [])[1];
+    const theme = isDark(r.selector) ? 'dark' : 'light';
+    if (accent) {
+      accentValues[accent] = accentValues[accent] || {};
+      if (d['--ai-accent']) accentValues[accent][theme] = d['--ai-accent'];
+    } else if (skin) {
+      skins[skin] = skins[skin] || { light: {}, dark: {} };
+      Object.assign(skins[skin][theme], d);
+    }
+  }
+  assert(Object.keys(skins).length >= 5, `Expected at least 5 skins in themes.css, found ${Object.keys(skins).length}`);
+  assert(accentValues.steel && accentValues.steel.dark, 'data-ai-accent="steel" must declare a dark --ai-accent');
+
+  const failures = [];
+  let inkFloor = { r: Infinity, where: '' };
+  let fillFloor = { r: Infinity, where: '' };
+  let hueFloor = { d: Infinity, where: '' };
+  let adjFloor = { r: Infinity, where: '' };
+
+  for (const skinName of ['(none)', ...Object.keys(skins)]) {
+    for (const theme of ['light', 'dark']) {
+      const over = skinName === '(none)' ? {} : skins[skinName][theme];
+      const ctx = { ...base[theme], ...over };
+      const surfaces = { 'surface-0': toRgb(ctx['--ai-surface-0']), 'surface-1': toRgb(ctx['--ai-surface-1']) };
+      const textPrimary = toRgb(ctx['--ai-text-primary']);
+      const fixed = {};
+      for (const n of [2, 3, 4, 5, 6]) fixed[n] = ctx[`--ai-chart-${n}`];
+
+      // Every accent this context can carry: the skin's own, plus each
+      // data-ai-accent value (its dark form where one exists).
+      const accents = { '(skin)': ctx['--ai-accent'] };
+      for (const [name, byTheme] of Object.entries(accentValues)) {
+        accents[name] = byTheme[theme] || byTheme.light;
+      }
+
+      const tones = {};
+      for (const n of [2, 3, 4, 5, 6]) tones[`chart-${n}`] = fixed[n];
+      for (const k of ['success', 'warning', 'danger', 'info']) tones[k] = ctx[`--ai-${k}`];
+      tones.neutral = ctx['--ai-text-muted'];
+      for (const [name, v] of Object.entries(accents)) tones[`chart-1 @ ${name}`] = v;
+
+      // Ink: 4.5:1 on both surfaces, bare and over its own wash.
+      for (const [toneName, toneHex] of Object.entries(tones)) {
+        const tone = toRgb(toneHex);
+        const ink = srgbMix(tone, textPrimary, 0.6);
+        for (const [sName, surf] of Object.entries(surfaces)) {
+          const probes = [
+            [sName, contrast(ink, surf)],
+            [`${sName} + wash`, contrast(ink, overlay(tone, surf, 0.12))],
+          ];
+          for (const [label, r] of probes) {
+            if (r < inkFloor.r) inkFloor = { r, where: `${skinName}/${theme} ${toneName} on ${label}` };
+            if (r < 4.5) failures.push(`ink ${skinName}/${theme} ${toneName} on ${label} = ${r.toFixed(2)} (need 4.5)`);
+          }
+        }
+      }
+
+      // Fills: 3:1 on both surfaces for every fixed slot.
+      for (const n of [2, 3, 4, 5, 6]) {
+        for (const [sName, surf] of Object.entries(surfaces)) {
+          const r = contrast(toRgb(fixed[n]), surf);
+          if (r < fillFloor.r) fillFloor = { r, where: `${skinName}/${theme} chart-${n} on ${sName}` };
+          if (r < 3) failures.push(`fill ${skinName}/${theme} chart-${n} on ${sName} = ${r.toFixed(2)} (need 3.0)`);
+        }
+      }
+
+      // Adjacency around the ring, with the skin's own accent in slot 1.
+      const ring = { 1: ctx['--ai-accent'], ...fixed };
+      for (let i = 1; i <= 6; i++) {
+        const j = i === 6 ? 1 : i + 1;
+        const a = toRgb(ring[i]);
+        const b = toRgb(ring[j]);
+        const ha = toHsl(a);
+        const hb = toHsl(b);
+        const aAch = ha.s < 0.12;
+        const bAch = hb.s < 0.12;
+        const r = contrast(a, b);
+        const d = hueGap(ha.h, hb.h);
+        const where = `${skinName}/${theme} slot ${i} (${ring[i]}) vs ${j} (${ring[j]})`;
+        if (aAch !== bAch) continue; // grey beside a colour: chroma separates them
+        if (aAch && bAch) {
+          if (r < adjFloor.r) adjFloor = { r, where };
+          if (r < 1.25) failures.push(`adjacency ${where}: both achromatic, ${r.toFixed(2)} (need 1.25)`);
+          continue;
+        }
+        if (d >= 40) {
+          if (d < hueFloor.d) hueFloor = { d, where };
+          continue;
+        }
+        if (r < adjFloor.r) adjFloor = { r, where };
+        if (r < 1.25) failures.push(`adjacency ${where}: ${d.toFixed(1)} degrees and ${r.toFixed(2)} (need 40 degrees or 1.25)`);
+      }
+    }
+  }
+
+  assert(failures.length === 0, `Chart palette contrast failures:\n  ${failures.slice(0, 30).join('\n  ')}`);
+
+  // No chart hex on the Law 4 banned-gradient list.
+  const cli = fs.readFileSync('bin/cssai.mjs', 'utf-8');
+  const bannedLine = cli.match(/linear-gradient[^\n]*?\(([^)]*#[0-9a-f]{6}[^)]*)\)/i);
+  assert(bannedLine, 'Could not find the Law 4 banned-hex list in bin/cssai.mjs');
+  const banned = new Set((bannedLine[1].match(/#[0-9a-f]{6}/gi) || []).map((h) => h.toLowerCase()));
+  assert(banned.size >= 3, `Expected the Law 4 list to hold at least 3 hexes, found ${banned.size}`);
+  const chartHexes = new Set();
+  for (const css of [tokensCss, themesCss]) {
+    for (const m of css.matchAll(/--ai-chart-[1-6]\s*:\s*(#[0-9a-f]{3,6})/gi)) chartHexes.add(m[1].toLowerCase());
+  }
+  const onList = [...chartHexes].filter((h) => banned.has(h));
+  assert(onList.length === 0, `Chart slots use a Law 4 banned hex: ${onList.join(', ')}`);
+
+  console.log(
+    `✓ Verified the base palette plus ${Object.keys(skins).length} skins, x 2 themes, x ${Object.keys(accentValues).length + 1} accents. ` +
+      `Ink floor ${inkFloor.r.toFixed(2)}:1 (${inkFloor.where}), fill floor ${fillFloor.r.toFixed(2)}:1 (${fillFloor.where}), ` +
+      `adjacency floor ${hueFloor.d.toFixed(1)} degrees (${hueFloor.where}) / ${adjFloor.r.toFixed(2)}:1 (${adjFloor.where}), ` +
+      `${chartHexes.size} chart hexes, none on the Law 4 list.`
+  );
+}
+
+// Test 30: The tone attribute stays on data elements
+// data-ai-tone names a series colour. A card, a panel, an alert, a toast, a
+// button, a kpi-trend, a status-pip, a badge or an avatar is not a series, and
+// a tone on one of them is the pastel-kit tell the palette exists to avoid. No
+// component rule whose selector names any of them may read --ai-tone or match
+// data-ai-tone.
+console.log('\n30. Testing data-ai-tone Never Lands On A Non-Data Component...');
+{
+  const FORBIDDEN = /(^|[.\s>+~[])(card|panel|alert|toast|btn|kpi-trend|status-pip|badge|avatar)\b/;
+  const dir = 'src/css/components';
+  const files = fs.readdirSync(dir).filter((f) => f.endsWith('.css'));
+  const bad = [];
+  let toneRules = 0;
+  for (const file of files) {
+    for (const r of cssRules(fs.readFileSync(path.join(dir, file), 'utf-8'))) {
+      const usesTone = /--ai-tone\b|data-ai-tone/.test(r.selector + r.body);
+      if (!usesTone) continue;
+      toneRules++;
+      for (const sel of r.selector.split(',')) {
+        if (FORBIDDEN.test(sel.trim())) bad.push(`${file}: ${sel.trim()}`);
+      }
+    }
+  }
+  assert(bad.length === 0, `data-ai-tone or --ai-tone on a component that never takes a tone:\n  ${bad.join('\n  ')}`);
+  assert(toneRules > 0, 'Expected at least one component rule to read --ai-tone');
+  console.log(`✓ Verified ${toneRules} toned rules across ${files.length} component stylesheets: none on card, panel, alert, toast, btn, kpi-trend, status-pip, badge or avatar.`);
+}
+
+console.log('\n🎉 ALL 30 TESTS PASSED SUCCESSFULLY!\n');
 
 
 

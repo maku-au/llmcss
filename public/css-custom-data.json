@@ -5,7 +5,7 @@
    "name": "--ai-accent",
    "description": {
     "kind": "markdown",
-    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#2563eb`\n- `dark`: `#3b82f6`\n- `obsidian`: `#18181b`\n- `obsidian:dark`: `#f5f5f5`\n- `editorial`: `#8c4a27`\n- `editorial:dark`: `#c48259`\n- `executive`: `#2563eb`\n- `executive:dark`: `#38bdf8`\n- `fintech`: `#0f766e`\n- `fintech:dark`: `#2dd4bf`\n- `enterprise`: `#0284c7`\n- `enterprise:dark`: `#38bdf8`\n- `accent:emerald`: `#059669`\n- `emerald`: `#059669`\n- `accent:violet`: `#7c3aed`\n- `violet`: `#7c3aed`\n- `accent:rose`: `#e11d48`\n- `rose`: `#e11d48`\n- `accent:teal`: `#0f766e`\n- `accent:steel`: `#475569`\n- `accent:amber`: `#d97706`"
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#2563eb`\n- `dark`: `#3b82f6`\n- `obsidian`: `#18181b`\n- `obsidian:dark`: `#f5f5f5`\n- `editorial`: `#8c4a27`\n- `editorial:dark`: `#c48259`\n- `executive`: `#2563eb`\n- `executive:dark`: `#38bdf8`\n- `fintech`: `#0f766e`\n- `fintech:dark`: `#2dd4bf`\n- `enterprise`: `#0284c7`\n- `enterprise:dark`: `#38bdf8`\n- `accent:emerald`: `#059669`\n- `emerald`: `#059669`\n- `accent:violet`: `#7c3aed`\n- `violet`: `#7c3aed`\n- `accent:rose`: `#e11d48`\n- `rose`: `#e11d48`\n- `accent:teal`: `#0f766e`\n- `accent:steel`: `#475569`\n- `accent:steel:dark`: `#94a3b8`\n- `accent:amber`: `#d97706`"
    },
    "values": [
     {
@@ -23,7 +23,7 @@
    "name": "--ai-accent-hover",
    "description": {
     "kind": "markdown",
-    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#1d4ed8`\n- `dark`: `#60a5fa`\n- `obsidian`: `#09090b`\n- `obsidian:dark`: `#ffffff`\n- `editorial`: `#733c1f`\n- `editorial:dark`: `#d4956d`\n- `executive`: `#1d4ed8`\n- `executive:dark`: `#7dd3fc`\n- `fintech`: `#115e59`\n- `fintech:dark`: `#5eead4`\n- `enterprise`: `#0369a1`\n- `enterprise:dark`: `#7dd3fc`\n- `accent:emerald`: `#047857`\n- `emerald`: `#047857`\n- `accent:violet`: `#6d28d9`\n- `violet`: `#6d28d9`\n- `accent:rose`: `#be123c`\n- `rose`: `#be123c`\n- `accent:teal`: `#115e59`\n- `accent:steel`: `#334155`\n- `accent:amber`: `#b45309`"
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#1d4ed8`\n- `dark`: `#60a5fa`\n- `obsidian`: `#09090b`\n- `obsidian:dark`: `#ffffff`\n- `editorial`: `#733c1f`\n- `editorial:dark`: `#d4956d`\n- `executive`: `#1d4ed8`\n- `executive:dark`: `#7dd3fc`\n- `fintech`: `#115e59`\n- `fintech:dark`: `#5eead4`\n- `enterprise`: `#0369a1`\n- `enterprise:dark`: `#7dd3fc`\n- `accent:emerald`: `#047857`\n- `emerald`: `#047857`\n- `accent:violet`: `#6d28d9`\n- `violet`: `#6d28d9`\n- `accent:rose`: `#be123c`\n- `rose`: `#be123c`\n- `accent:teal`: `#115e59`\n- `accent:steel`: `#334155`\n- `accent:steel:dark`: `#cbd5e1`\n- `accent:amber`: `#b45309`"
    },
    "values": [
     {
@@ -41,7 +41,7 @@
    "name": "--ai-accent-rgb",
    "description": {
     "kind": "markdown",
-    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `37, 99, 235`\n- `dark`: `59, 130, 246`\n- `executive`: `37, 99, 235`\n- `executive:dark`: `56, 189, 248`\n- `fintech`: `15, 118, 110`\n- `fintech:dark`: `45, 212, 191`\n- `accent:emerald`: `5, 150, 105`\n- `emerald`: `5, 150, 105`\n- `accent:violet`: `124, 58, 237`\n- `violet`: `124, 58, 237`\n- `accent:rose`: `225, 29, 72`\n- `rose`: `225, 29, 72`\n- `accent:teal`: `15, 118, 110`\n- `accent:steel`: `71, 85, 105`\n- `accent:amber`: `217, 119, 6`"
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `37, 99, 235`\n- `dark`: `59, 130, 246`\n- `executive`: `37, 99, 235`\n- `executive:dark`: `56, 189, 248`\n- `fintech`: `15, 118, 110`\n- `fintech:dark`: `45, 212, 191`\n- `accent:emerald`: `5, 150, 105`\n- `emerald`: `5, 150, 105`\n- `accent:violet`: `124, 58, 237`\n- `violet`: `124, 58, 237`\n- `accent:rose`: `225, 29, 72`\n- `rose`: `225, 29, 72`\n- `accent:teal`: `15, 118, 110`\n- `accent:steel`: `71, 85, 105`\n- `accent:steel:dark`: `148, 163, 184`\n- `accent:amber`: `217, 119, 6`"
    },
    "values": [
     {
@@ -59,7 +59,7 @@
    "name": "--ai-accent-subtle",
    "description": {
     "kind": "markdown",
-    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `rgba(37, 99, 235, 0.08)`\n- `dark`: `rgba(59, 130, 246, 0.15)`\n- `editorial`: `rgba(140, 74, 39, 0.1)`\n- `executive`: `rgba(37, 99, 235, 0.08)`\n- `executive:dark`: `rgba(56, 189, 248, 0.12)`\n- `fintech`: `rgba(15, 118, 110, 0.09)`\n- `fintech:dark`: `rgba(45, 212, 191, 0.14)`\n- `accent:emerald`: `color-mix(in srgb, #059669 10%, transparent)`\n- `emerald`: `color-mix(in srgb, #059669 10%, transparent)`\n- `accent:violet`: `color-mix(in srgb, #7c3aed 10%, transparent)`\n- `violet`: `color-mix(in srgb, #7c3aed 10%, transparent)`\n- `accent:rose`: `color-mix(in srgb, #e11d48 10%, transparent)`\n- `rose`: `color-mix(in srgb, #e11d48 10%, transparent)`\n- `accent:teal`: `color-mix(in srgb, #0f766e 10%, transparent)`\n- `accent:steel`: `color-mix(in srgb, #475569 10%, transparent)`\n- `accent:amber`: `color-mix(in srgb, #d97706 10%, transparent)`"
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `rgba(37, 99, 235, 0.08)`\n- `dark`: `rgba(59, 130, 246, 0.15)`\n- `editorial`: `rgba(140, 74, 39, 0.1)`\n- `executive`: `rgba(37, 99, 235, 0.08)`\n- `executive:dark`: `rgba(56, 189, 248, 0.12)`\n- `fintech`: `rgba(15, 118, 110, 0.09)`\n- `fintech:dark`: `rgba(45, 212, 191, 0.14)`\n- `accent:emerald`: `color-mix(in srgb, #059669 10%, transparent)`\n- `emerald`: `color-mix(in srgb, #059669 10%, transparent)`\n- `accent:violet`: `color-mix(in srgb, #7c3aed 10%, transparent)`\n- `violet`: `color-mix(in srgb, #7c3aed 10%, transparent)`\n- `accent:rose`: `color-mix(in srgb, #e11d48 10%, transparent)`\n- `rose`: `color-mix(in srgb, #e11d48 10%, transparent)`\n- `accent:teal`: `color-mix(in srgb, #0f766e 10%, transparent)`\n- `accent:steel`: `color-mix(in srgb, #475569 10%, transparent)`\n- `accent:steel:dark`: `color-mix(in srgb, #94a3b8 15%, transparent)`\n- `accent:amber`: `color-mix(in srgb, #d97706 10%, transparent)`"
    },
    "values": [
     {
@@ -77,7 +77,7 @@
    "name": "--ai-accent-text",
    "description": {
     "kind": "markdown",
-    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#ffffff`\n- `dark`: `#ffffff`\n- `obsidian:dark`: `#09090b`\n- `executive:dark`: `#082f49`\n- `fintech:dark`: `#042f2e`\n- `enterprise:dark`: `#082f49`\n- `accent:emerald`: `#09090b`\n- `emerald`: `#09090b`\n- `accent:violet`: `#ffffff`\n- `violet`: `#ffffff`\n- `accent:rose`: `#ffffff`\n- `rose`: `#ffffff`\n- `accent:teal`: `#ffffff`\n- `accent:steel`: `#ffffff`\n- `accent:amber`: `#09090b`"
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#ffffff`\n- `dark`: `#ffffff`\n- `obsidian:dark`: `#09090b`\n- `executive:dark`: `#082f49`\n- `fintech:dark`: `#042f2e`\n- `enterprise:dark`: `#082f49`\n- `accent:emerald`: `#09090b`\n- `emerald`: `#09090b`\n- `accent:violet`: `#ffffff`\n- `violet`: `#ffffff`\n- `accent:rose`: `#ffffff`\n- `rose`: `#ffffff`\n- `accent:teal`: `#ffffff`\n- `accent:steel`: `#ffffff`\n- `accent:steel:dark`: `#09090b`\n- `accent:amber`: `#09090b`"
    },
    "values": [
     {
@@ -185,11 +185,11 @@
    "name": "--ai-chart-1",
    "description": {
     "kind": "markdown",
-    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#2563eb`"
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `var(--ai-accent)`"
    },
    "values": [
     {
-     "name": "#2563eb"
+     "name": "var(--ai-accent)"
     }
    ],
    "references": [
@@ -203,7 +203,7 @@
    "name": "--ai-chart-2",
    "description": {
     "kind": "markdown",
-    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#0d9488`"
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#0d9488`\n- `dark`: `#2dd4bf`\n- `executive:dark`: `#818cf8`\n- `fintech`: `#4f46e5`\n- `fintech:dark`: `#818cf8`\n- `enterprise`: `#4f46e5`\n- `enterprise:dark`: `#818cf8`"
    },
    "values": [
     {
@@ -221,11 +221,11 @@
    "name": "--ai-chart-3",
    "description": {
     "kind": "markdown",
-    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#f59e0b`"
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#b45309`\n- `dark`: `#f59e0b`\n- `editorial`: `#0369a1`\n- `editorial:dark`: `#0ea5e9`"
    },
    "values": [
     {
-     "name": "#f59e0b"
+     "name": "#b45309"
     }
    ],
    "references": [
@@ -239,11 +239,11 @@
    "name": "--ai-chart-4",
    "description": {
     "kind": "markdown",
-    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#8b5cf6`"
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#db2777`\n- `dark`: `#f472b6`"
    },
    "values": [
     {
-     "name": "#8b5cf6"
+     "name": "#db2777"
     }
    ],
    "references": [
@@ -257,11 +257,11 @@
    "name": "--ai-chart-5",
    "description": {
     "kind": "markdown",
-    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#ec4899`"
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#7c3aed`\n- `dark`: `#a78bfa`"
    },
    "values": [
     {
-     "name": "#ec4899"
+     "name": "#7c3aed"
     }
    ],
    "references": [
@@ -275,11 +275,11 @@
    "name": "--ai-chart-6",
    "description": {
     "kind": "markdown",
-    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#64748b`"
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#71717a`\n- `dark`: `#a1a1aa`"
    },
    "values": [
     {
-     "name": "#64748b"
+     "name": "#71717a"
     }
    ],
    "references": [
@@ -1756,6 +1756,78 @@
    "values": [
     {
      "name": "#52525b"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-tone",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `tone:1`: `var(--ai-chart-1)`\n- `tone:2`: `var(--ai-chart-2)`\n- `tone:3`: `var(--ai-chart-3)`\n- `tone:4`: `var(--ai-chart-4)`\n- `tone:5`: `var(--ai-chart-5)`\n- `tone:6`: `var(--ai-chart-6)`\n- `tone:accent`: `var(--ai-accent)`\n- `tone:success`: `var(--ai-success)`\n- `tone:warning`: `var(--ai-warning)`\n- `tone:danger`: `var(--ai-danger)`\n- `tone:info`: `var(--ai-info)`\n- `tone:neutral`: `var(--ai-text-muted)`"
+   },
+   "values": [
+    {
+     "name": "var(--ai-chart-1)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-tone-ink",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `tone`: `color-mix(in srgb, var(--ai-tone) 60%, var(--ai-text-primary))`"
+   },
+   "values": [
+    {
+     "name": "color-mix(in srgb, var(--ai-tone) 60%, var(--ai-text-primary))"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-tone-track",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `tone`: `color-mix(in srgb, var(--ai-tone) 18%, var(--ai-surface-2))`"
+   },
+   "values": [
+    {
+     "name": "color-mix(in srgb, var(--ai-tone) 18%, var(--ai-surface-2))"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-tone-wash",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `tone`: `color-mix(in srgb, var(--ai-tone) 12%, transparent)`"
+   },
+   "values": [
+    {
+     "name": "color-mix(in srgb, var(--ai-tone) 12%, transparent)"
     }
    ],
    "references": [

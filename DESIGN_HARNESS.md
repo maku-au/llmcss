@@ -10,12 +10,12 @@ The LLMCSS Design Direction Harness eliminates the generic "AI look" (puffy grad
 Library totals, generated from the manifests in public/:
 
 <!-- stats:start -->
-- **Classes:** 2301 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
-- **Tokens:** 108 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
+- **Classes:** 2306 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Tokens:** 112 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
 - **States:** 38 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
-- **Components:** 125, all MIT: 54 primitive, 42 application, 23 marketing, 6 ecommerce.
+- **Components:** 127, all MIT: 54 primitive, 44 application, 23 marketing, 6 ecommerce.
 - **Motion demos:** 8, in the optional addon.
-- **Layout variants:** 188 across 66 components, addressed `component:variant`.
+- **Layout variants:** 194 across 71 components, addressed `component:variant`.
 - **Section templates:** 55 (44 free wireframe, 11 themed Pro).
 - **Page blueprints:** 6 (4 free, 2 Pro).
 - **Motion addon:** 64 classes, 2.0KB gzipped, listed in [classes.motion.json](https://llmcss.io/classes.motion.json).
@@ -75,6 +75,10 @@ Avoid covering backgrounds in repeating 20px to 40px square grid lines, dot grid
 ### Law 12: Never paint state without announcing it
 Do not mark a control as active, open, selected or pressed with a class and a colour alone. A segmented control whose current view carries only `is-active`, an accordion trigger with no `aria-expanded`, a toast that arrives outside any live region: each one looks correct and says nothing. A screen reader reads an undifferentiated list of buttons.
 - Instead: Mirror every `is-*` state on an interactive element with the ARIA attribute that carries it: `aria-pressed` on segmented and filter buttons wrapped in a labelled `role="group"`, `aria-expanded` plus `aria-controls` on disclosure and accordion triggers, `aria-selected` on tabs, `aria-current` on the active nav link, and `role="status" aria-live="polite"` (or `role="alert"` for a failure) on anything that appears unprompted.
+
+### Law 13: Never tint an icon tile that keys nothing
+A coloured icon tile is legitimate only where its tint is the series key that also paints that series' bar, segment or meter. Six tinted tiles in a feature grid where the colours map to nothing is the most common generated-template tell: the palette looks like data and encodes none. The audit flags a `feature-icon` whose inline style paints a background that is not an `--ai-surface` token, and a `metric-tile` with no `data-ai-tone` on itself or on an ancestor.
+- Instead: For a marketing grid use `.feature-icon` on a surface token and let the glyph carry the meaning. For a metric row use `.metric-tile` with `data-ai-tone`, and give the bar, segment or meter beside it the same tone so the tint is a legend, not decoration.
 <!-- laws:end -->
 
 ---

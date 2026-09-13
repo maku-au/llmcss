@@ -139,6 +139,7 @@
               <span class="docs-nav-label">Build</span>
               <div class="docs-nav-stack">
                 <a class="docs-nav-btn scrollspy-link" href="#layout"><span>Layout and utilities</span></a>
+                <a class="docs-nav-btn scrollspy-link" href="#chart-tones"><span>Chart tokens and tones</span></a>
                 <a class="docs-nav-btn scrollspy-link" href="#components"><span>Components</span></a>
                 <a class="docs-nav-btn scrollspy-link" href="#runtime"><span>Runtime and states</span></a>
                 <a class="docs-nav-btn scrollspy-link" href="#templates"><span>Templates and recipes</span></a>
@@ -254,6 +255,46 @@
   &lt;/div&gt;
 &lt;/section&gt;</code></pre>
             <p class="text-sm text-muted mt-3">A variant exists for a class only when <a href="/classes.json">classes.json</a> lists it in that class's <code>variants</code> array. If a class is not in that file, it does not exist.</p>
+          </section>
+
+          <section class="scroll-mt-24 docs-step" id="chart-tones">
+            <h2>Chart tokens and tones</h2>
+            <p class="text-secondary mt-2">Charts read their colour from the chart slots, and <code>data-ai-tone</code> is how you point an element at one. The attribute inherits, so a row, a legend item or a whole chart can be toned once.</p>
+            <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-4 text-sm">
+              <span class="flex items-center gap-2"><span class="pip" data-ai-tone="1"></span><code>--ai-chart-1</code></span>
+              <span class="flex items-center gap-2"><span class="pip" data-ai-tone="2"></span><code>--ai-chart-2</code></span>
+              <span class="flex items-center gap-2"><span class="pip" data-ai-tone="3"></span><code>--ai-chart-3</code></span>
+              <span class="flex items-center gap-2"><span class="pip" data-ai-tone="4"></span><code>--ai-chart-4</code></span>
+              <span class="flex items-center gap-2"><span class="pip" data-ai-tone="5"></span><code>--ai-chart-5</code></span>
+              <span class="flex items-center gap-2"><span class="pip" data-ai-tone="6"></span><code>--ai-chart-6</code></span>
+            </div>
+            <p class="text-secondary mt-4">Slot 1 is <code>var(--ai-accent)</code>, so the first series follows the accent and the skin without any work from you; the other slots hold their hue across every theme.</p>
+            <div class="table-container mt-4">
+              <table class="table table-compact">
+                <thead>
+                  <tr><th>Set</th><th>Resolves to</th><th>Use for</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><code>data-ai-tone="1"</code> to <code>"6"</code></td><td><code>--ai-chart-1</code> to <code>--ai-chart-6</code></td><td>One series in a chart, and the legend swatch that names it.</td></tr>
+                  <tr><td><code>"accent"</code>, <code>"success"</code>, <code>"warning"</code>, <code>"danger"</code>, <code>"info"</code>, <code>"neutral"</code></td><td>The matching theme token</td><td>A bar or pip that carries a status rather than a series.</td></tr>
+                  <tr><td><code>--ai-tone-ink</code></td><td>60 percent of the tone toward the text colour</td><td>Text and glyphs. It is the only derived value that clears 4.5:1, so it is the only one that carries type.</td></tr>
+                  <tr><td><code>--ai-tone-wash</code></td><td>12 percent of the tone</td><td>The background of a tile or a legend chip.</td></tr>
+                  <tr><td><code>--ai-tone-track</code></td><td>18 percent of the tone over <code>--ai-surface-2</code></td><td>The unfilled part of a meter or bar rail.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <pre class="code-block"><code>&lt;div class="bar-row"&gt;
+  &lt;span&gt;CLI&lt;/span&gt;
+  &lt;div class="bar-track" data-ai-tone="2"&gt;
+    &lt;div class="bar-fill w-3/5" data-ai-tone="2"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;span&gt;5,741&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- The legend swatch beside the number takes the same tone --&gt;
+&lt;span class="flex items-center gap-2"&gt;&lt;span class="pip" data-ai-tone="2"&gt;&lt;/span&gt;CLI&lt;/span&gt;</code></pre>
+            <p class="text-secondary mt-4">A tone keys data, so it goes on <code>bar-fill</code>, <code>bar-track</code>, a plain <code>pip</code>, <code>donut</code>, <code>split-bar</code>, <code>metric-tile</code> and <code>bar-col</code>. A card, an alert, a button, a badge and the <code>kpi-trend</code> indicator never take one: those already carry a meaning, and a second colour on top of it encodes nothing.</p>
+            <p class="text-sm text-muted mt-3">Accent and series can collide: <code>data-ai-accent="teal"</code> and <code>data-ai-accent="emerald"</code> both sit close to chart slot 2, and <code>data-ai-accent="rose"</code> sits close to slot 4; slot 1 is already the accent. On a page using one of those accents, skip the slot it collides with.</p>
           </section>
 
           <section class="scroll-mt-24 docs-step" id="motion">

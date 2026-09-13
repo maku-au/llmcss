@@ -8,7 +8,7 @@
  * Edit the law text here, then run `node src/registry/build-docs.mjs`.
  *
  * Law shape:
- *   n          law number, 1 to 12
+ *   n          law number, 1 to 13
  *   title      sentence-case short name
  *   rule       what not to do, and why
  *   instead    what to do in its place
@@ -127,6 +127,15 @@ export const laws = [
       'Mirror every `is-*` state on an interactive element with the ARIA attribute that carries it: `aria-pressed` on segmented and filter buttons wrapped in a labelled `role="group"`, `aria-expanded` plus `aria-controls` on disclosure and accordion triggers, `aria-selected` on tabs, `aria-current` on the active nav link, and `role="status" aria-live="polite"` (or `role="alert"` for a failure) on anything that appears unprompted.',
     classes: ['filter-tag', 'btn-group', 'accordion-trigger', 'accordion-content', 'toast'],
     automated: false,
+  },
+  {
+    n: 13,
+    title: 'Never tint an icon tile that keys nothing',
+    rule: 'A coloured icon tile is legitimate only where its tint is the series key that also paints that series\' bar, segment or meter. Six tinted tiles in a feature grid where the colours map to nothing is the most common generated-template tell: the palette looks like data and encodes none. The audit flags a `feature-icon` whose inline style paints a background that is not an `--ai-surface` token, and a `metric-tile` with no `data-ai-tone` on itself or on an ancestor.',
+    instead:
+      'For a marketing grid use `.feature-icon` on a surface token and let the glyph carry the meaning. For a metric row use `.metric-tile` with `data-ai-tone`, and give the bar, segment or meter beside it the same tone so the tint is a legend, not decoration.',
+    classes: ['feature-icon', 'metric-tile', 'bar-fill', 'split-bar'],
+    automated: true,
   },
 ];
 
