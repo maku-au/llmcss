@@ -10,5 +10,5 @@
     "status",
     "tag"
   ],
-  "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-2 ai-items-center\">\n  <span class=\"ai-badge ai-badge-solid\">RECOMMENDED</span>\n  <span class=\"ai-badge ai-badge-neutral\">Default</span>\n  <span class=\"ai-badge ai-badge-pro\">PRO ACCESS</span>\n  <span class=\"ai-badge ai-badge-success ai-badge-dot\">Operational</span>\n  <span class=\"ai-badge ai-badge-warning ai-badge-dot\">Degraded</span>\n  <span class=\"ai-badge ai-badge-danger ai-badge-dot\">Offline</span>\n  <span class=\"ai-badge ai-badge-outline\">Outline Tag</span>\n  <span class=\"ai-badge ai-badge-mono\">128 tok/s</span>\n</div>"
+  "html": "<div class=\"flex flex-wrap gap-2 items-center\">\n  <span class=\"badge badge-solid\">RECOMMENDED</span>\n  <span class=\"badge badge-neutral\">Default</span>\n  <span class=\"badge badge-pro\">PRO ACCESS</span>\n  <span class=\"badge badge-success badge-dot\">Operational</span>\n  <span class=\"badge badge-warning badge-dot\">Degraded</span>\n  <span class=\"badge badge-danger badge-dot\">Offline</span>\n  <span class=\"badge badge-outline\">Outline Tag</span>\n  <span class=\"badge badge-mono\">128 tok/s</span>\n</div>"
 }

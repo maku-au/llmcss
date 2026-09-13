@@ -29,35 +29,35 @@
   </script>
 </head>
 <body>
-  <a class="ai-skip-link" href="#main">Skip to content</a>
-  <header id="site-header" class="ai-navbar"></header>
-  <main id="main" class="ai-container ai-max-w-2xl ai-pt-16 ai-px-4 ai-pb-24">
-    <h1 class="ai-text-2xl ai-leading-tight ai-tracking-tight">Your license</h1>
-    <p class="ai-text-secondary ai-mt-2">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="site-header" class="navbar"></header>
+  <main id="main" class="container max-w-2xl pt-16 px-4 pb-24">
+    <h1 class="text-2xl leading-tight tracking-tight">Your license</h1>
+    <p class="text-secondary mt-2">
       Pro is a <strong>$9/month</strong> Polar subscription for themed templates and kits. The key is shown once after payment. Refunds follow
       <a href="https://polar.sh">Polar</a> policy. Questions: webmaster@llmcss.io
     </p>
 
-    <div id="status-box" class="ai-card ai-p-6 ai-mt-8" hidden></div>
-    <div id="reveal-box" class="ai-card ai-p-6 ai-mt-6" hidden></div>
+    <div id="status-box" class="card p-6 mt-8" hidden></div>
+    <div id="reveal-box" class="card p-6 mt-6" hidden></div>
 
-    <div class="ai-card ai-p-6 ai-mt-6">
-      <h2 class="ai-card-title">Paste a token</h2>
-      <form id="validate-form" class="ai-flex ai-flex-col ai-gap-3 ai-mt-4">
-        <input id="token-input" class="ai-input" type="text" autocomplete="off" placeholder="llmcss_live_..." />
-        <button class="ai-btn ai-btn-primary" type="submit" id="validate-btn">Validate</button>
+    <div class="card p-6 mt-6">
+      <h2 class="card-title">Paste a token</h2>
+      <form id="validate-form" class="flex flex-col gap-3 mt-4">
+        <input id="token-input" class="input" type="text" autocomplete="off" placeholder="llmcss_live_..." />
+        <button class="btn btn-primary" type="submit" id="validate-btn">Validate</button>
       </form>
-      <p id="validate-out" class="ai-text-sm ai-mt-3"></p>
+      <p id="validate-out" class="text-sm mt-3"></p>
     </div>
 
-    <div class="ai-card ai-p-6 ai-mt-6">
-      <h2 class="ai-card-title">Use it</h2>
-      <p class="ai-text-sm ai-text-secondary ai-mt-2">Unlock themed templates in the <a href="/templates">gallery</a>, or in the CLI:</p>
-      <pre class="ai-mt-3"><code>npx llmcss login &lt;token&gt;
+    <div class="card p-6 mt-6">
+      <h2 class="card-title">Use it</h2>
+      <p class="text-sm text-secondary mt-2">Unlock themed templates in the <a href="/templates">gallery</a>, or in the CLI:</p>
+      <pre class="mt-3"><code>npx llmcss login &lt;token&gt;
 npx llmcss add tool-trace</code></pre>
     </div>
   </main>
-  <footer id="site-footer" class="ai-footer ai-footer-compact"></footer>
+  <footer id="site-footer" class="footer footer-compact"></footer>
   <script type="module" src="/src/showcase/account.ts"></script>
 </body>
 </html>

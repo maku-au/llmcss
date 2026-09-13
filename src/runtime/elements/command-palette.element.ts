@@ -7,7 +7,7 @@ export class AiCommandPaletteElement extends HTMLElement {
     if (value) {
       this.classList.add('is-open');
       this.setAttribute('open', '');
-      const input = this.querySelector<HTMLInputElement>('.ai-command-input');
+      const input = this.querySelector<HTMLInputElement>('.command-input');
       if (input) setTimeout(() => input.focus(), 50);
     } else {
       this.classList.remove('is-open');
@@ -37,17 +37,17 @@ export class AiCommandPaletteElement extends HTMLElement {
     // Backdrop click
     this.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
-      if (target === this || target.classList.contains('ai-modal-backdrop')) {
+      if (target === this || target.classList.contains('modal-backdrop')) {
         this.close();
       }
     });
 
     // Real-time item filtering
-    const input = this.querySelector<HTMLInputElement>('.ai-command-input');
+    const input = this.querySelector<HTMLInputElement>('.command-input');
     if (input) {
       input.addEventListener('input', () => {
         const query = input.value.toLowerCase().trim();
-        const items = this.querySelectorAll<HTMLElement>('.ai-command-item');
+        const items = this.querySelectorAll<HTMLElement>('.command-item');
         items.forEach((item) => {
           const text = item.textContent?.toLowerCase() || '';
           if (text.includes(query)) {

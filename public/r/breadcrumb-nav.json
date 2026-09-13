@@ -10,5 +10,5 @@
     "trail",
     "path"
   ],
-  "html": "<nav aria-label=\"Breadcrumb\">\n  <ol class=\"ai-breadcrumb\">\n    <li class=\"ai-breadcrumb-item\"><a href=\"#\">Dashboard</a></li>\n    <li class=\"ai-breadcrumb-item\"><a href=\"#\">Projects</a></li>\n    <li class=\"ai-breadcrumb-item\"><a href=\"#\">Design System</a></li>\n    <li class=\"ai-breadcrumb-item is-current\" aria-current=\"page\">Components</li>\n  </ol>\n</nav>"
+  "html": "<nav aria-label=\"Breadcrumb\">\n  <ol class=\"breadcrumb\">\n    <li class=\"breadcrumb-item\"><a href=\"#\">Dashboard</a></li>\n    <li class=\"breadcrumb-item\"><a href=\"#\">Projects</a></li>\n    <li class=\"breadcrumb-item\"><a href=\"#\">Design System</a></li>\n    <li class=\"breadcrumb-item is-current\" aria-current=\"page\">Components</li>\n  </ol>\n</nav>"
 }

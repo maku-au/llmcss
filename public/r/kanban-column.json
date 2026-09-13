@@ -11,5 +11,5 @@
     "tasks",
     "workflow"
   ],
-  "html": "<div class=\"ai-kanban\">\n  <div class=\"ai-kanban-head\"><span>In review</span><span class=\"ai-text-muted\">3</span></div>\n  <div class=\"ai-kanban-item\">Quota meter CSS <span class=\"ai-text-xs ai-text-muted\">#184</span></div>\n  <div class=\"ai-kanban-item\">Polar zip download <span class=\"ai-text-xs ai-text-muted\">#191</span></div>\n  <div class=\"ai-kanban-item\">Account dark flash <span class=\"ai-text-xs ai-text-muted\">#203</span></div>\n</div>"
+  "html": "<div class=\"kanban\">\n  <div class=\"kanban-head\"><span>In review</span><span class=\"text-muted\">3</span></div>\n  <div class=\"kanban-item\">Quota meter CSS <span class=\"text-xs text-muted\">#184</span></div>\n  <div class=\"kanban-item\">Polar zip download <span class=\"text-xs text-muted\">#191</span></div>\n  <div class=\"kanban-item\">Account dark flash <span class=\"text-xs text-muted\">#203</span></div>\n</div>"
 }

@@ -8,16 +8,19 @@
  * Idempotent via `data-split-ready` on each root. Safe to call repeatedly.
  */
 
+import { CLASS_PREFIX as c } from '../config/prefix';
+
+
 function setupSplit(root: HTMLElement, prefix: string): void {
   if (root.hasAttribute('data-split-ready')) return;
 
-  const found = root.querySelector<HTMLElement>(`.${prefix}-split-handle`);
+  const found = root.querySelector<HTMLElement>(`.${c}split-handle`);
   if (!found) return;
   const handle: HTMLElement = found;
 
   root.setAttribute('data-split-ready', '');
 
-  const down = root.classList.contains(`${prefix}-split-vertical`);
+  const down = root.classList.contains(`${c}split-vertical`);
   const min = Number(handle.getAttribute('aria-valuemin')) || 20;
   const max = Number(handle.getAttribute('aria-valuemax')) || 80;
 
@@ -56,7 +59,7 @@ function setupSplit(root: HTMLElement, prefix: string): void {
 }
 
 /**
- * Wire every `.{prefix}-split` on the page. Safe to call repeatedly: each
+ * Wire every `.split` on the page. Safe to call repeatedly: each
  * root is marked `data-split-ready` so listeners are never doubled.
  */
 export function initSplit(prefix = 'ai'): void {
@@ -64,7 +67,7 @@ export function initSplit(prefix = 'ai'): void {
 
   const scan = () =>
     document
-      .querySelectorAll<HTMLElement>(`.${prefix}-split:not([data-split-ready])`)
+      .querySelectorAll<HTMLElement>(`.${c}split:not([data-split-ready])`)
       .forEach((root) => setupSplit(root, prefix));
 
   scan();

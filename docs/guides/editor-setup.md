@@ -5,7 +5,7 @@
 - Install: `npm install llmcss`
 - Include: `<link rel="stylesheet" href="https://llmcss.io/llmcss.css" />`
 - Regenerate editor data: `npm run build:vscode`
-- Sample completion: type `--ai-` inside a `:root` block, or `ai-btn-variants` to expand a component
+- Sample completion: type `--ai-` inside a `:root` block, or `btn-variants` to expand a component
 - Validate: `npx llmcss validate <file>`
 
 LLMCSS generates three editor artifacts from the manifests, so completions can
@@ -83,7 +83,7 @@ Snippets are picked up automatically from any `*.code-snippets` file inside
 Typing `--ai-` inside a `:root` block lists all 82 tokens, and hovering one
 shows its value per theme and skin. Typing `data-ai-` on an element offers the
 nine attributes, and the value sets mean `data-ai-skin="` offers the eight real
-skins rather than free text. Typing `ai-btn-variants` expands the full component
+skins rather than free text. Typing `btn-variants` expands the full component
 markup from the registry. Typing `ai-family-flex` inserts a picker you can
 arrow through to choose any flex utility.
 
@@ -117,10 +117,10 @@ If you want it locally, the shape is:
 {
   "$schema": "https://json.schemastore.org/web-types",
   "name": "llmcss",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "contributions": {
     "html": {
-      "elements": [{ "name": "ai-modal", "description": "..." }],
+      "elements": [{ "name": "modal", "description": "..." }],
       "attributes": [{ "name": "data-ai-toggle", "value": { "kind": "plain" } }]
     }
   }

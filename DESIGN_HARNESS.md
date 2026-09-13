@@ -3,14 +3,14 @@
 
 The LLMCSS Design Direction Harness eliminates the generic "AI look" (puffy gradients, nested card bento bloat, continuous pulsing dots, and formulaic uppercase eyebrows). It equips AI agents with opinionated, production-grade design directions and eleven deterministic quality laws.
 
-- Class prefix and the class universe: [AGENTS.md](AGENTS.md). Every class carries the `ai-` prefix, and a class that is not in [classes.json](https://llmcss.io/classes.json) does not exist.
+- The class universe: [AGENTS.md](AGENTS.md). Classes carry no prefix (`btn`, not `ai-btn`); a class that is not in [classes.json](https://llmcss.io/classes.json) does not exist.
 - Theming attributes (`data-ai-theme`, `data-ai-skin`, `data-ai-density`, `data-ai-focus`) are tabled in [AGENTS.md](AGENTS.md). Accent is a separate axis: `data-ai-accent="emerald|violet|rose|teal|steel|amber"` sets only the accent tokens and composes with any skin, while `data-ai-skin="emerald|violet|rose"` is a deprecated alias of the accent of the same name and goes away in 1.0.
 - Self-check commands: `npx llmcss validate <file>` and `npx llmcss audit <file>`, both documented in [AGENTS.md](AGENTS.md). Each exits 1 on any finding.
 
 Library totals, generated from the manifests in public/:
 
 <!-- stats:start -->
-- **Classes:** 1407 `ai-*` classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Classes:** 1407 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
 - **Tokens:** 82 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
 - **States:** 36 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
 - **Components:** 125 (122 free, 3 themed Pro): 54 primitive, 44 application, 22 marketing, 5 ecommerce.
@@ -26,12 +26,12 @@ Every AI coding agent generating interfaces with LLMCSS must comply with all ele
 
 <!-- laws:start -->
 ### Law 1: Never nest containers
-Do not put a bordered container inside another bordered container. The audit walks the tag stack and flags every `.ai-card`, `.ai-panel` or `.ai-kpi-card` that sits inside another `.ai-card`, `.ai-panel` or `.ai-kpi-card`. Nested boxes waste screen real estate and create dizzying visual layers.
-- Instead: Use generous whitespace (`--ai-space-6`), subtle hairline rules (`<hr class="ai-divider">`), or distinct background shifts (`var(--ai-surface-1)`).
+Do not put a bordered container inside another bordered container. The audit walks the tag stack and flags every `.card`, `.panel` or `.kpi-card` that sits inside another `.card`, `.panel` or `.kpi-card`. Nested boxes waste screen real estate and create dizzying visual layers.
+- Instead: Use generous whitespace (`--ai-space-6`), subtle hairline rules (`<hr class="divider">`), or distinct background shifts (`var(--ai-surface-1)`).
 
 ### Law 2: Never pulse static status pips
 Never attach continuous breathing or pulsing animations to steady states like "System Normal", "Online", or "Completed". The audit flags the class tokens `animate-pulse`, `pulse`, `animate-ping`, `ping`, `breathe`, `blink` and `animate-bounce`, and any inline `animation:` value containing `pulse`, `ping`, `breathe`, `blink` or `glow`, unless the document also carries `is-streaming`. Flashing elements demand attention when nothing has changed.
-- Instead: Render a calm, static jewel pip with `.ai-status-pip` and `box-shadow: 0 0 0 2px color-mix(...)`. Reserve `.ai-status-pip.is-streaming` strictly for ongoing inference or active data transmission.
+- Instead: Render a calm, static jewel pip with `.status-pip` and `box-shadow: 0 0 0 2px color-mix(...)`. Reserve `.status-pip.is-streaming` strictly for ongoing inference or active data transmission.
 
 ### Law 3: Never use colored left-stripe borders
 Do not place thick 3px to 5px colored vertical stripes on the left edge of cards, toasts, or dialogs. This 2012-era alert tell makes every element scream for attention.
@@ -42,7 +42,7 @@ Avoid murky dark backgrounds flooded with saturated purple-to-blue gradients or 
 - Instead: Build depth using multi-stop physical elevation with a slight vertical offset: `box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 8px 16px -4px rgba(0, 0, 0, 0.04);`.
 
 ### Law 5: Never stamp formulaic eyebrows above headlines
-Do not stamp a badge or a pill above a heading as an eyebrow, and do not repeat an uppercase monospace overline (`01 // FEATURES`, `OVERVIEW`) over every section. The audit flags a `span` or `div` carrying `.ai-badge` or `.ai-hero-badge` that is followed by an `h1` to `h4` within the next few lines, with `.ai-product-badge-float` the only exemption. Repeated eyebrows become visual noise that delays reading the headline.
+Do not stamp a badge or a pill above a heading as an eyebrow, and do not repeat an uppercase monospace overline (`01 // FEATURES`, `OVERVIEW`) over every section. The audit flags a `span` or `div` carrying `.badge` or `.hero-badge` that is followed by an `h1` to `h4` within the next few lines, with `.product-badge-float` the only exemption. Repeated eyebrows become visual noise that delays reading the headline.
 - Instead: Lead directly with a confident, well-typeset headline (`h1` or `h2`). If context is needed, fold it into the heading or the supporting sentence.
 
 ### Law 6: Never crush letter-spacing below -0.04em or justify body text
@@ -59,7 +59,7 @@ Do not display 4 identical KPI cards with identical weights and icons.
 
 ### Law 9: Never auto-scroll copy
 Do not force readers to wait for auto-scrolling tickers or animated marquee loops to read supported integrations or technologies.
-- Instead: Render a clean, static, responsive badge rail (`.ai-badge-neutral`) or a balanced grid that users can scan at their own speed.
+- Instead: Render a clean, static, responsive badge rail (`.badge-neutral`) or a balanced grid that users can scan at their own speed.
 
 ### Law 10: Always theme native browser surfaces
 An interface is incomplete if native browser affordances revert to un-themed system defaults.
@@ -293,5 +293,5 @@ One rule only matters at prompt time: choose a deliberate archetype before writi
 
 ## 4. Component composition guidelines
 
-- **Buttons:** Use `.ai-btn .ai-btn-primary` for the single primary call to action. Use `.ai-btn .ai-btn-outline` or `.ai-btn .ai-btn-ghost` for secondary actions. Use decisive action verbs ("Export Telemetry", "Deploy Service", not "Continue" or "Click here").
-- **Metrics:** Always wrap numbers in `<span class="ai-kpi-value">` with `font-variant-numeric: tabular-nums`.
+- **Buttons:** Use `.btn .btn-primary` for the single primary call to action. Use `.btn .btn-outline` or `.btn .btn-ghost` for secondary actions. Use decisive action verbs ("Export Telemetry", "Deploy Service", not "Continue" or "Click here").
+- **Metrics:** Always wrap numbers in `<span class="kpi-value">` with `font-variant-numeric: tabular-nums`.

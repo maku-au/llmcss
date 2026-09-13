@@ -47,10 +47,10 @@ const proCssCache = new Map<string, string>();
 // ============================================================================
 function showToast(message: string, type: 'success' | 'info' | 'error' = 'success') {
   const toast = document.createElement('div');
-  toast.className = `ai-toast ai-toast-${type}`;
+  toast.className = `toast toast-${type}`;
   toast.innerHTML = `
-    <span class="ai-toast-message">${message}</span>
-    <button class="ai-toast-close">&times;</button>
+    <span class="toast-message">${message}</span>
+    <button class="toast-close">&times;</button>
   `;
   toastContainer?.appendChild(toast);
   setTimeout(() => {
@@ -108,7 +108,7 @@ function syncModeButtons() {
   const themedCount = document.getElementById('count-mode-themed');
   if (wireframeCount) wireframeCount.textContent = String(templatesInMode('wireframe').length);
   if (themedCount) themedCount.textContent = String(templatesInMode('themed').length);
-  document.querySelectorAll('.preview-mode-btn').forEach((btn) => {
+  document.querySelectorAll('.js-preview-mode-btn').forEach((btn) => {
     btn.classList.toggle('is-active', btn.getAttribute('data-mode') === previewMode);
     btn.toggleAttribute('disabled', !!activeBlueprintId);
   });
@@ -146,15 +146,15 @@ function renderBlueprintNav() {
   const free = pageBlueprints.filter((bp) => blueprintKind(bp) === 'wireframe');
   const pro = pageBlueprints.filter((bp) => blueprintKind(bp) === 'themed');
   const row = (bp: PageBlueprint) => `
-    <button type="button" class="ai-docs-nav-btn blueprint-nav-btn${activeBlueprintId === bp.id ? ' is-active' : ''}" data-blueprint="${bp.id}">
+    <button type="button" class="docs-nav-btn blueprint-nav-btn${activeBlueprintId === bp.id ? ' is-active' : ''}" data-blueprint="${bp.id}">
       <span>${bp.name}</span>
-      <span class="ai-docs-count">${bp.sections.length}</span>
-      ${bp.tier === 'pro' ? '<span class="ai-docs-pro-tag">PRO</span>' : ''}
+      <span class="docs-count">${bp.sections.length}</span>
+      ${bp.tier === 'pro' ? '<span class="docs-pro-tag">PRO</span>' : ''}
     </button>`;
   blueprintNav.innerHTML = `
-    <button type="button" class="ai-docs-nav-btn blueprint-nav-btn${activeBlueprintId ? '' : ' is-active'}" data-blueprint="all">
+    <button type="button" class="docs-nav-btn blueprint-nav-btn${activeBlueprintId ? '' : ' is-active'}" data-blueprint="all">
       <span>All sections</span>
-      <span class="ai-docs-count">${templatesInMode().length}</span>
+      <span class="docs-count">${templatesInMode().length}</span>
     </button>
     ${free.map(row).join('')}
     ${pro.map(row).join('')}
@@ -177,21 +177,21 @@ function renderBlueprintBanner() {
   const locked = bp.tier === 'pro' && !getBrowserToken();
   const cli = `npx llmcss template blueprint ${bp.id}`;
   blueprintBanner.innerHTML = `
-    <div class="ai-blueprint-strip">
-      <div class="ai-blueprint-strip-main">
-        <h2 class="ai-blueprint-strip-title">${bp.name}</h2>
-        <p class="ai-blueprint-strip-desc">${bp.recommendedFor} ${bp.sections.length} section${bp.sections.length === 1 ? '' : 's'}, in order.</p>
-        <ol class="ai-blueprint-flow">
+    <div class="blueprint-strip">
+      <div class="blueprint-strip-main">
+        <h2 class="blueprint-strip-title">${bp.name}</h2>
+        <p class="blueprint-strip-desc">${bp.recommendedFor} ${bp.sections.length} section${bp.sections.length === 1 ? '' : 's'}, in order.</p>
+        <ol class="blueprint-flow">
           ${bp.sections.map((secId, idx) => {
             const sec = wireframeTemplates.find((t) => t.id === secId);
-            return `<li><button type="button" class="ai-blueprint-flow-step jump-to-pair" data-jump="${secId}"><span class="ai-blueprint-flow-num">${idx + 1}</span>${sec ? sec.name : secId}</button></li>`;
+            return `<li><button type="button" class="blueprint-flow-step jump-to-pair" data-jump="${secId}"><span class="blueprint-flow-num">${idx + 1}</span>${sec ? sec.name : secId}</button></li>`;
           }).join('')}
         </ol>
       </div>
-      <div class="ai-btn-group ai-blueprint-strip-actions">
-        <button type="button" class="ai-btn ai-btn-primary ai-btn-sm" id="preview-blueprint-full-btn">Preview page</button>
-        <button type="button" class="ai-btn ai-btn-outline ai-btn-sm" id="copy-blueprint-html-btn">${locked ? 'Unlock Pro kit' : 'Copy HTML'}</button>
-        <button type="button" class="ai-btn ai-btn-outline ai-btn-sm" id="copy-blueprint-cli-btn" title="${cli}">Copy CLI</button>
+      <div class="btn-group blueprint-strip-actions">
+        <button type="button" class="btn btn-primary btn-sm" id="preview-blueprint-full-btn">Preview page</button>
+        <button type="button" class="btn btn-outline btn-sm" id="copy-blueprint-html-btn">${locked ? 'Unlock Pro kit' : 'Copy HTML'}</button>
+        <button type="button" class="btn btn-outline btn-sm" id="copy-blueprint-cli-btn" title="${cli}">Copy CLI</button>
       </div>
     </div>
   `;
@@ -240,7 +240,7 @@ async function openFullPreview(bp: PageBlueprint) {
   const fullHtml = await blueprintHtml(bp);
 
   fullPreviewContent.innerHTML = `
-    <div class="ai-template-assembled ${blueprintKind(bp) === 'wireframe' ? 'is-wireframe-mode' : ''}">
+    <div class="template-assembled ${blueprintKind(bp) === 'wireframe' ? 'is-wireframe-mode' : ''}">
       ${fullHtml}
     </div>
   `;
@@ -311,10 +311,10 @@ function renderTemplates() {
 
   if (items.length === 0) {
     templatesStream.innerHTML = `
-      <div class="ai-empty-state" style="padding: 4rem 1rem; text-align: center; background: var(--ai-surface-0); border: 1px dashed var(--ai-border); border-radius: var(--ai-radius-lg);">
+      <div class="empty-state" style="padding: 4rem 1rem; text-align: center; background: var(--ai-surface-0); border: 1px dashed var(--ai-border); border-radius: var(--ai-radius-lg);">
         <h3 style="font-family: var(--ai-font-display); font-size: 1.125rem; font-weight: 700;">No templates match</h3>
         <p style="font-size: 0.875rem; color: var(--ai-text-secondary); margin-top: 0.25rem;">Clear search or choose All.</p>
-        <button class="ai-btn ai-btn-outline ai-btn-sm ai-mt-4" id="reset-filter-btn">Reset Filters</button>
+        <button class="btn btn-outline btn-sm mt-4" id="reset-filter-btn">Reset Filters</button>
       </div>
     `;
     document.getElementById('reset-filter-btn')?.addEventListener('click', () => {
@@ -334,10 +334,10 @@ function renderTemplates() {
   const recipeTotal = items.filter((i) => i.recipeIndex).length;
   templatesStream.innerHTML = items.map(({ template, recipeIndex }) => {
     const isPro = template.tier === 'pro';
-    const tierBadge = isPro ? `<span class="ai-docs-pro-tag">PRO</span>` : '';
+    const tierBadge = isPro ? `<span class="docs-pro-tag">PRO</span>` : '';
     const copyBtn = isPro
-      ? `<button class="ai-btn ai-btn-primary ai-btn-xs unlock-pro-btn" data-id="${template.id}">Unlock Pro</button>`
-      : `<button class="ai-btn ai-btn-outline ai-btn-xs copy-html-btn" data-id="${template.id}">
+      ? `<button class="btn btn-primary btn-xs unlock-pro-btn" data-id="${template.id}">Unlock Pro</button>`
+      : `<button class="btn btn-outline btn-xs copy-html-btn" data-id="${template.id}">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             <span>Copy HTML</span>
           </button>`;
@@ -347,58 +347,58 @@ npx llmcss login &lt;token&gt;
 npx llmcss template get ${template.id}</code></pre>`
       : `<pre><code>${escapeHtml(template.html)}</code></pre>`;
     return `
-    <article class="ai-template-card" id="card-${template.id}">
-      <div class="ai-template-header">
-        <div class="ai-flex ai-items-center ai-gap-2">
-          ${recipeIndex ? `<span class="ai-text-xs ai-text-muted">${recipeIndex} of ${recipeTotal}</span>` : ''}
-          <h3 class="ai-template-title">${template.name}</h3>
+    <article class="template-card" id="card-${template.id}">
+      <div class="template-header">
+        <div class="flex items-center gap-2">
+          ${recipeIndex ? `<span class="text-xs text-muted">${recipeIndex} of ${recipeTotal}</span>` : ''}
+          <h3 class="template-title">${template.name}</h3>
           ${tierBadge}
         </div>
-        <div class="ai-flex ai-items-center ai-gap-2">
-          <button class="ai-btn ai-btn-ghost ai-btn-xs ai-template-guidance-toggle" data-target="guidance-${template.id}" aria-expanded="false">
+        <div class="flex items-center gap-2">
+          <button class="btn btn-ghost btn-xs template-guidance-toggle" data-target="guidance-${template.id}" aria-expanded="false">
             <span>Guidance</span>
           </button>
           ${copyBtn}
-          <button class="ai-btn ai-btn-ghost ai-btn-xs ai-template-code-toggle" data-target="code-${template.id}">
+          <button class="btn btn-ghost btn-xs template-code-toggle" data-target="code-${template.id}">
             <span>&lt;/&gt;</span>
           </button>
         </div>
       </div>
 
       <!-- Architectural Placement & Usage Guidance Box -->
-      <div class="ai-template-guidance" id="guidance-${template.id}">
-        <div class="ai-guidance-grid">
-          <div class="ai-guidance-col">
-            <div class="ai-guidance-label">
+      <div class="template-guidance" id="guidance-${template.id}">
+        <div class="guidance-grid">
+          <div class="guidance-col">
+            <div class="guidance-label">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
               <span>Placement</span>
             </div>
-            <div class="ai-guidance-text">${template.placement ? template.placement + '. ' : ''}${template.guidance.placement}</div>
+            <div class="guidance-text">${template.placement ? template.placement + '. ' : ''}${template.guidance.placement}</div>
           </div>
-          <div class="ai-guidance-col">
-            <div class="ai-guidance-label">
+          <div class="guidance-col">
+            <div class="guidance-label">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
               <span>Use for</span>
             </div>
-            <div class="ai-guidance-text">${template.guidance.bestUsedFor}</div>
+            <div class="guidance-text">${template.guidance.bestUsedFor}</div>
           </div>
-          <div class="ai-guidance-col">
-            <div class="ai-guidance-label">
+          <div class="guidance-col">
+            <div class="guidance-label">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
               <span>Avoid</span>
             </div>
-            <div class="ai-guidance-text">${template.guidance.avoidWhen}</div>
+            <div class="guidance-text">${template.guidance.avoidWhen}</div>
           </div>
           ${template.guidance.pairsWith.length > 0 ? `
-            <div class="ai-guidance-col">
-              <div class="ai-guidance-label">
+            <div class="guidance-col">
+              <div class="guidance-label">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
                 <span>Pairs with</span>
               </div>
-              <div class="ai-guidance-pairs">
+              <div class="guidance-pairs">
                 ${template.guidance.pairsWith.map((pairId) => {
                   const pair = wireframeTemplates.find((t) => t.id === pairId);
-                  return `<button class="ai-guidance-pair-tag jump-to-pair" data-jump="${pairId}">${pair ? pair.name : pairId}</button>`;
+                  return `<button class="guidance-pair-tag jump-to-pair" data-jump="${pairId}">${pair ? pair.name : pairId}</button>`;
                 }).join('')}
               </div>
             </div>
@@ -407,19 +407,19 @@ npx llmcss template get ${template.id}</code></pre>`
       </div>
 
       <!-- Live Preview Canvas -->
-      <div class="ai-template-canvas" data-vw="${currentViewport}">
-        <div class="ai-template-frame ${templateKind(template) === 'wireframe' ? 'is-wireframe-mode' : ''}">
+      <div class="template-canvas" data-vw="${currentViewport}">
+        <div class="template-frame ${templateKind(template) === 'wireframe' ? 'is-wireframe-mode' : ''}">
           ${template.html}
         </div>
       </div>
 
       <!-- Expandable Code Panel -->
-      <div class="ai-template-code" id="code-${template.id}">
-        <div class="ai-flex ai-justify-between ai-items-center ai-mb-2">
+      <div class="template-code" id="code-${template.id}">
+        <div class="flex justify-between items-center mb-2">
           <span style="font-family: var(--ai-font-mono); font-size: 0.75rem; color: var(--ai-text-muted);">
             npx llmcss template get ${template.id}
           </span>
-          <button class="ai-btn ai-btn-ghost ai-btn-xs copy-snippet-btn" data-id="${template.id}">Copy</button>
+          <button class="btn btn-ghost btn-xs copy-snippet-btn" data-id="${template.id}">Copy</button>
         </div>
         ${codeBlock}
       </div>
@@ -463,15 +463,15 @@ async function hydrateProTemplates() {
       style.textContent = css;
       document.head.appendChild(style);
     }
-    const frame = card.querySelector('.ai-template-frame');
+    const frame = card.querySelector('.template-frame');
     if (frame) frame.innerHTML = html;
     const panel = card.querySelector(`#code-${t.id}`);
     if (panel) {
-      panel.innerHTML = `<div class="ai-flex ai-justify-between ai-items-center ai-mb-2">
+      panel.innerHTML = `<div class="flex justify-between items-center mb-2">
           <span style="font-family: var(--ai-font-mono); font-size: 0.75rem; color: var(--ai-text-muted);">
             npx llmcss template get ${t.id}
           </span>
-          <button class="ai-btn ai-btn-ghost ai-btn-xs copy-snippet-btn" data-id="${t.id}">Copy</button>
+          <button class="btn btn-ghost btn-xs copy-snippet-btn" data-id="${t.id}">Copy</button>
         </div>
         <pre><code>${escapeHtml(html)}</code></pre>`;
     }
@@ -488,7 +488,7 @@ async function hydrateProTemplates() {
 
 function attachTemplateCardHandlers() {
   // Guidance toggles
-  document.querySelectorAll('.ai-template-guidance-toggle').forEach((btn) => {
+  document.querySelectorAll('.template-guidance-toggle').forEach((btn) => {
     btn.addEventListener('click', () => {
       const targetId = btn.getAttribute('data-target');
       if (targetId) {
@@ -500,7 +500,7 @@ function attachTemplateCardHandlers() {
   });
 
   // Code toggles
-  document.querySelectorAll('.ai-template-code-toggle').forEach((btn) => {
+  document.querySelectorAll('.template-code-toggle').forEach((btn) => {
     btn.addEventListener('click', () => {
       const targetId = btn.getAttribute('data-target');
       if (targetId) {
@@ -601,10 +601,10 @@ function attachTemplateCardHandlers() {
 
 function updateCategoryButtons() {
   const pool = templatesInMode();
-  categoryNav?.querySelectorAll('.ai-docs-nav-btn').forEach((btn) => {
+  categoryNav?.querySelectorAll('.docs-nav-btn').forEach((btn) => {
     const cat = btn.getAttribute('data-category');
     const count = cat === 'all' ? pool.length : pool.filter((t) => t.section === cat).length;
-    const countEl = btn.querySelector('.ai-docs-count');
+    const countEl = btn.querySelector('.docs-count');
     if (countEl) countEl.textContent = String(count);
     // A category with nothing in this mode is dropped rather than shown as a dead row
     (btn as HTMLElement).hidden = count === 0;
@@ -646,8 +646,8 @@ async function init() {
     const data = await validateToken(token);
     if (status) {
       status.innerHTML = data.valid
-        ? '<span class="ai-badge ai-badge-success">Active</span>'
-        : '<span class="ai-badge ai-badge-danger">Not valid</span>';
+        ? '<span class="badge badge-success">Active</span>'
+        : '<span class="badge badge-danger">Not valid</span>';
     }
     if (data.valid) {
       setBrowserToken(token);
@@ -657,7 +657,7 @@ async function init() {
   });
 
   // 3. Category Nav Handlers
-  categoryNav?.querySelectorAll('.ai-docs-nav-btn').forEach((btn) => {
+  categoryNav?.querySelectorAll('.docs-nav-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       const cat = btn.getAttribute('data-category');
       if (cat) {
@@ -696,7 +696,7 @@ async function init() {
   });
 
   // 5. Gallery Mode Toggle (Wireframe sections vs Themed sections)
-  const modeButtons = document.querySelectorAll('.preview-mode-btn');
+  const modeButtons = document.querySelectorAll('.js-preview-mode-btn');
   modeButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       if (activeBlueprintId) return;
@@ -716,13 +716,13 @@ async function init() {
   });
 
   // 6. Viewport Controls
-  const viewportButtons = document.querySelectorAll('.viewport-btn');
+  const viewportButtons = document.querySelectorAll('.js-viewport-btn');
   viewportButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       currentViewport = btn.getAttribute('data-viewport') || 'full';
       viewportButtons.forEach((b) => b.classList.remove('is-active'));
       btn.classList.add('is-active');
-      document.querySelectorAll('.ai-template-canvas').forEach((c) => {
+      document.querySelectorAll('.template-canvas').forEach((c) => {
         c.setAttribute('data-vw', currentViewport);
       });
     });

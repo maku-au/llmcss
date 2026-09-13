@@ -5,7 +5,7 @@
 - Install: `npm install llmcss`
 - Include: `<link rel="stylesheet" href="https://llmcss.io/llmcss.css" />`
 - Runtime (optional, for modal/drawer/dropdown/accordion/tabs/toast/command palette): `<script src="https://llmcss.io/llmcss.js" defer></script>`
-- Sample: `<button class="ai-btn ai-btn-primary">Save</button>`
+- Sample: `<button class="btn btn-primary">Save</button>`
 - Validate: `npx llmcss validate <file>`
 
 ## 1. Add the tags
@@ -30,7 +30,7 @@ The script is optional and only powers modal, drawer, dropdown, accordion, tabs,
 toast and command palette behavior; `<Script src="..." strategy="beforeInteractive" />`
 from `next/script` is an equivalent way to load it. For npm, `npm install llmcss`
 and `import "llmcss/dist/llmcss.css"` in the layout (pinned CDN copy:
-`https://cdn.jsdelivr.net/npm/llmcss@0.3.0/dist/llmcss.css`). In JSX write
+`https://cdn.jsdelivr.net/npm/llmcss@0.4.0/dist/llmcss.css`). In JSX write
 `className`, not `class`; `data-ai-*` attributes pass through unchanged.
 
 ## 2. React re-renders
@@ -52,14 +52,14 @@ Drop the script and keep the `<link>`. Everything except those seven interactive
 ```tsx
 export default function ProjectCard({ project }) {
   return (
-    <article className="ai-card">
-      <div className="ai-card-header ai-flex ai-items-center ai-justify-between">
-        <h3 className="ai-card-title">{project.name}</h3>
-        <span className="ai-badge ai-badge-success">{project.status}</span>
+    <article className="card">
+      <div className="card-header flex items-center justify-between">
+        <h3 className="card-title">{project.name}</h3>
+        <span className="badge badge-success">{project.status}</span>
       </div>
-      <div className="ai-card-body">
-        <p className="ai-text-secondary">{project.summary}</p>
-        <a className="ai-btn ai-btn-primary" href={`/projects/${project.id}`}>Open</a>
+      <div className="card-body">
+        <p className="text-secondary">{project.summary}</p>
+        <a className="btn btn-primary" href={`/projects/${project.id}`}>Open</a>
       </div>
     </article>
   );

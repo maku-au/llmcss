@@ -9,7 +9,7 @@
      One flat surface. Line items, then a hairline, then the totals ledger,
      the promo field and the order action. Never wrap this in another card.
      -------------------------------------------------------------------------- */
-  .ai-checkout {
+  .checkout {
     display: flex;
     flex-direction: column;
     gap: var(--ai-space-5);
@@ -19,14 +19,14 @@
     border-radius: var(--ai-radius-lg);
   }
 
-  .ai-checkout-title {
+  .checkout-title {
     margin: 0;
     font-size: 1.0625rem;
     font-weight: 600;
     color: var(--ai-text-primary);
   }
 
-  .ai-checkout-items {
+  .checkout-items {
     display: flex;
     flex-direction: column;
     gap: var(--ai-space-4);
@@ -35,13 +35,13 @@
     list-style: none;
   }
 
-  .ai-checkout-item {
+  .checkout-item {
     display: flex;
     align-items: flex-start;
     gap: var(--ai-space-3);
   }
 
-  .ai-checkout-thumb {
+  .checkout-thumb {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -58,32 +58,32 @@
     letter-spacing: 0.02em;
     color: var(--ai-text-secondary);
   }
-  .ai-checkout-thumb img {
+  .checkout-thumb img {
     inline-size: 100%;
     block-size: 100%;
     object-fit: cover;
   }
 
-  .ai-checkout-body {
+  .checkout-body {
     flex: 1 1 auto;
     min-inline-size: 0;
   }
 
-  .ai-checkout-name {
+  .checkout-name {
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.45;
     color: var(--ai-text-primary);
   }
 
-  .ai-checkout-meta {
+  .checkout-meta {
     margin-block-start: 0.15rem;
     font-size: 0.75rem;
     color: var(--ai-text-muted);
     font-variant-numeric: tabular-nums;
   }
 
-  .ai-checkout-price {
+  .checkout-price {
     flex: 0 0 auto;
     font-size: 0.875rem;
     font-weight: 600;
@@ -92,7 +92,7 @@
     font-variant-numeric: tabular-nums;
   }
 
-  .ai-checkout-totals {
+  .checkout-totals {
     display: flex;
     flex-direction: column;
     gap: var(--ai-space-2);
@@ -101,61 +101,61 @@
     border-block-start: 1px solid var(--ai-border);
   }
 
-  .ai-checkout-row {
+  .checkout-row {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: var(--ai-space-4);
   }
 
-  .ai-checkout-label {
+  .checkout-label {
     font-size: 0.875rem;
     color: var(--ai-text-secondary);
   }
 
-  .ai-checkout-value {
+  .checkout-value {
     margin: 0;
     font-size: 0.875rem;
     color: var(--ai-text-primary);
     text-align: end;
     font-variant-numeric: tabular-nums;
   }
-  .ai-checkout-value.is-credit {
+  .checkout-value.is-credit {
     color: var(--ai-success);
   }
 
-  .ai-checkout-row.is-total {
+  .checkout-row.is-total {
     margin-block-start: var(--ai-space-2);
     padding-block-start: var(--ai-space-3);
     border-block-start: 1px solid var(--ai-border);
   }
-  .ai-checkout-row.is-total .ai-checkout-label {
+  .checkout-row.is-total .checkout-label {
     font-size: 0.9375rem;
     font-weight: 600;
     color: var(--ai-text-primary);
   }
-  .ai-checkout-row.is-total .ai-checkout-value {
+  .checkout-row.is-total .checkout-value {
     font-size: 1.25rem;
     font-weight: 700;
     letter-spacing: -0.01em;
   }
 
-  .ai-checkout-promo {
+  .checkout-promo {
     display: flex;
     flex-direction: column;
     gap: var(--ai-space-2);
   }
-  .ai-checkout-promo > .ai-input-group > .ai-input {
+  .checkout-promo > .input-group > .input {
     min-inline-size: 0;
   }
 
-  .ai-checkout-actions {
+  .checkout-actions {
     display: flex;
     flex-direction: column;
     gap: var(--ai-space-2);
   }
 
-  .ai-checkout-note {
+  .checkout-note {
     font-size: 0.75rem;
     line-height: 1.5;
     color: var(--ai-text-muted);
@@ -167,7 +167,7 @@
      Four steps, three states. The current step is a calm filled pip with a
      ring: it never pulses, because nothing about it is changing.
      -------------------------------------------------------------------------- */
-  .ai-order {
+  .order {
     display: flex;
     flex-direction: column;
     gap: var(--ai-space-5);
@@ -177,7 +177,7 @@
     border-radius: var(--ai-radius-lg);
   }
 
-  .ai-order-head {
+  .order-head {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -185,26 +185,26 @@
     flex-wrap: wrap;
   }
 
-  .ai-order-title {
+  .order-title {
     margin: 0;
     font-size: 1.0625rem;
     font-weight: 600;
     color: var(--ai-text-primary);
   }
 
-  .ai-order-eta {
+  .order-eta {
     font-size: 0.8125rem;
     color: var(--ai-text-secondary);
     text-align: end;
     font-variant-numeric: tabular-nums;
   }
-  .ai-order-eta strong {
+  .order-eta strong {
     display: block;
     font-size: 0.9375rem;
     color: var(--ai-text-primary);
   }
 
-  .ai-order-track {
+  .order-track {
     --ai-order-pip: 0.75rem;
     --ai-order-rail: 2px;
     display: flex;
@@ -217,7 +217,7 @@
   /* The pip sits in its own fixed-height row so the rail can be pinned to that
      row's centre. Left as an inline box it rides the baseline of the inherited
      line box and drifts with font metrics. */
-  .ai-order-step {
+  .order-step {
     position: relative;
     flex: 1 1 0;
     min-inline-size: 0;
@@ -228,7 +228,7 @@
   }
 
   /* Connector from this pip's centre to the next pip's centre, behind the pip */
-  .ai-order-step:not(:last-child)::after {
+  .order-step:not(:last-child)::after {
     content: "";
     position: absolute;
     inset-block-start: calc((var(--ai-order-pip) - var(--ai-order-rail)) / 2);
@@ -237,11 +237,11 @@
     block-size: var(--ai-order-rail);
     background-color: var(--ai-border);
   }
-  .ai-order-step.is-completed:not(:last-child)::after {
+  .order-step.is-completed:not(:last-child)::after {
     background-color: var(--ai-success);
   }
 
-  .ai-order-pip {
+  .order-pip {
     position: relative;
     z-index: 1;
     justify-self: center;
@@ -256,20 +256,20 @@
     box-shadow: inset 0 0 0 2px var(--ai-border-strong);
   }
 
-  .ai-order-step.is-completed .ai-order-pip {
+  .order-step.is-completed .order-pip {
     background-color: var(--ai-success);
     box-shadow: inset 0 0 0 1px var(--ai-success);
   }
-  .ai-order-step.is-current .ai-order-pip {
+  .order-step.is-current .order-pip {
     background-color: var(--ai-accent);
     box-shadow: 0 0 0 3px var(--ai-accent-subtle), inset 0 0 0 1px var(--ai-accent);
   }
-  .ai-order-step.is-upcoming .ai-order-pip {
+  .order-step.is-upcoming .order-pip {
     background-color: var(--ai-surface-0);
     box-shadow: inset 0 0 0 2px var(--ai-border-strong);
   }
 
-  .ai-order-label {
+  .order-label {
     display: block;
     margin-block-start: var(--ai-space-2);
     font-size: 0.8125rem;
@@ -277,15 +277,15 @@
     line-height: 1.35;
     color: var(--ai-text-secondary);
   }
-  .ai-order-step.is-current .ai-order-label {
+  .order-step.is-current .order-label {
     font-weight: 600;
     color: var(--ai-text-primary);
   }
-  .ai-order-step.is-upcoming .ai-order-label {
+  .order-step.is-upcoming .order-label {
     color: var(--ai-text-muted);
   }
 
-  .ai-order-date {
+  .order-date {
     display: block;
     margin-block-start: 0.15rem;
     font-size: 0.6875rem;
@@ -293,7 +293,7 @@
     font-variant-numeric: tabular-nums;
   }
 
-  .ai-order-meta {
+  .order-meta {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -305,7 +305,7 @@
     color: var(--ai-text-secondary);
   }
 
-  .ai-order-id {
+  .order-id {
     font-family: var(--ai-font-mono);
     font-size: 0.8125rem;
     color: var(--ai-text-primary);
@@ -316,29 +316,29 @@
 
   /* Narrow containers: stack the tracker and run the connector down the block */
   @media (max-width: 30rem) {
-    .ai-order-track {
+    .order-track {
       flex-direction: column;
       gap: var(--ai-space-4);
     }
-    .ai-order-step {
+    .order-step {
       display: flex;
       align-items: flex-start;
       gap: var(--ai-space-3);
       padding-inline: 0;
       text-align: start;
     }
-    .ai-order-step:not(:last-child)::after {
+    .order-step:not(:last-child)::after {
       inset-block-start: calc(0.2rem + var(--ai-order-pip) / 2);
       inset-inline-start: calc((var(--ai-order-pip) - var(--ai-order-rail)) / 2);
       inline-size: var(--ai-order-rail);
       block-size: calc(100% + var(--ai-space-4));
     }
-    .ai-order-pip {
+    .order-pip {
       margin-block-start: 0.2rem;
       align-self: flex-start;
       flex: 0 0 auto;
     }
-    .ai-order-label {
+    .order-label {
       margin-block-start: 0;
     }
   }

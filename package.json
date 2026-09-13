@@ -1,6 +1,6 @@
 {
   "name": "llmcss",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Native CSS for agents and humans. MIT core; Pro is themed templates and kits.",
   "type": "module",
   "style": "dist/llmcss.css",

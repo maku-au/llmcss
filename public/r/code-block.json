@@ -10,5 +10,5 @@
     "snippet",
     "docs"
   ],
-  "html": "<pre class=\"ai-code-block\"><code>npx llmcss add quote-pull\nnpx llmcss add kbd-shortcuts</code></pre>"
+  "html": "<pre class=\"code-block\"><code>npx llmcss add quote-pull\nnpx llmcss add kbd-shortcuts</code></pre>"
 }

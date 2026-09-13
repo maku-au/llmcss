@@ -1,21 +1,21 @@
 export class AiAccordionElement extends HTMLElement {
   connectedCallback() {
     this.addEventListener('click', (e) => {
-      const trigger = (e.target as HTMLElement).closest('.ai-accordion-trigger');
+      const trigger = (e.target as HTMLElement).closest('.accordion-trigger');
       if (!trigger || !this.contains(trigger)) return;
 
-      const item = trigger.closest('.ai-accordion-item');
+      const item = trigger.closest('.accordion-item');
       if (!item) return;
 
       const isOpen = item.classList.contains('is-open') || item.hasAttribute('open');
 
       // If single-open mode, close other items
       if (this.hasAttribute('single')) {
-        this.querySelectorAll('.ai-accordion-item').forEach((i) => {
+        this.querySelectorAll('.accordion-item').forEach((i) => {
           if (i !== item) {
             i.classList.remove('is-open');
             i.removeAttribute('open');
-            i.querySelector('.ai-accordion-trigger')?.setAttribute('aria-expanded', 'false');
+            i.querySelector('.accordion-trigger')?.setAttribute('aria-expanded', 'false');
           }
         });
       }

@@ -1,7 +1,7 @@
 /**
  * Machine-readable manifests for agents, generated from the CSS itself so they
  * cannot drift from the stylesheet:
- *   public/classes.json  every ai-* class, its family, and which prefixes exist
+ *   public/classes.json  every class, its family, and which variants exist
  *   public/tokens.json   every --ai-* token with base, dark, and per-skin values
  *   public/states.json   every is-* state class and data-ai-* attribute
  */
@@ -53,28 +53,34 @@ function rules(css, ctx = '') {
 }
 
 const FAMILY_BY_PREFIX = [
-  ["ai-(p|px|py|pt|pr|pb|pl|ps|pe|m|mx|my|mt|mr|mb|ml|ms|me)-", "spacing"],
-  ["ai--(m|mx|my|mt|mr|mb|ml|ms|me)-", "spacing"],
-  ['ai-(gap|gap-x|gap-y)-', 'spacing'],
-  ['ai-(w|h|min-w|max-w|min-h|max-h|size)-', 'sizing'],
-  ['ai-(text|font|leading|tracking|truncate|line-clamp|uppercase|lowercase|capitalize|italic|underline|whitespace|break)', 'typography'],
-  ['ai-(flex|items|justify|self|content|place|order|grow|shrink|basis)', 'flex'],
-  ['ai-(grid|col|row|auto-cols|auto-rows)', 'grid'],
-  ['ai-(block|inline|hidden|table|contents|sr-only|not-sr-only)', 'display'],
-  ['ai-(static|fixed|absolute|relative|sticky|inset|top|right|bottom|left|start|end|z)-?', 'position'],
-  ['ai-(border|rounded|ring|outline|divide)', 'borders'],
-  ['ai-(bg|shadow|opacity|backdrop|blur|filter|mix)', 'effects'],
-  ['ai-(overflow|scroll|snap|touch|select|pointer|cursor|resize|will-change|transition|duration|ease|delay|animate|transform|rotate|scale|translate|skew|origin)', 'interaction'],
-  ['ai-(container|cq|section|aspect|columns|object)', 'layout'],
+  ['-(m|mx|my|mt|mr|mb|ml|ms|me)-', 'spacing'],
+  ['(p|px|py|pt|pr|pb|pl|ps|pe|m|mx|my|mt|mr|mb|ml|ms|me)-', 'spacing'],
+  ['(gap|gap-x|gap-y)-', 'spacing'],
+  ['(w|h|min-w|max-w|min-h|max-h|size)-', 'sizing'],
+  ['(text|font|leading|tracking|truncate|line-clamp|uppercase|lowercase|capitalize|italic|underline|whitespace|break)', 'typography'],
+  ['(flex|items|justify|self|content|place|order|grow|shrink|basis)', 'flex'],
+  ['(grid|col|row|auto-cols|auto-rows)', 'grid'],
+  ['(block|inline|hidden|table|contents|sr-only|not-sr-only)', 'display'],
+  ['(static|fixed|absolute|relative|sticky|inset|top|right|bottom|left|start|end|z)-?', 'position'],
+  ['(border|rounded|ring|outline|divide)', 'borders'],
+  ['(bg|shadow|opacity|backdrop|blur|filter|mix)', 'effects'],
+  ['(overflow|scroll|snap|touch|select|pointer|cursor|resize|will-change|transition|duration|ease|delay|animate|transform|rotate|scale|translate|skew|origin)', 'interaction'],
+  ['(container|cq|section|aspect|columns|object)', 'layout'],
 ];
 
 function familyFor(cls, file) {
   const base = path.basename(file, '.css');
   if (base !== 'utilities') return base === 'animations' ? 'animations' : base;
-  const bare = cls.replace(/^ai-(sm|md|lg|xl|cq)\\?:/, 'ai-');
+  const bare = cls.replace(/^(sm|md|lg|xl|cq)\\?:/, '');
   for (const [re, fam] of FAMILY_BY_PREFIX) if (new RegExp('^' + re).test(bare)) return fam;
   return 'utilities';
 }
+
+// Every class selector in the stylesheet, prefix-free since 0.4.0. A name may
+// start with a hyphen (the negative margins, .-m-1) and may carry CSS escapes
+// for the variant colon (.md\:flex) and for a slash (.w-1\/2).
+const CLASS_RE = /\.((?:\\.|[A-Za-z0-9_-])+)/g;
+const unescape = (name) => name.replace(/\\(.)/g, '$1');
 
 function buildClasses(files) {
   const classes = new Map();
@@ -83,17 +89,20 @@ function buildClasses(files) {
     const css = fs.readFileSync(file, 'utf8');
     for (const r of rules(css)) {
       const sel = r.selector;
-      for (const m of sel.matchAll(/\.((?:ai-)?(?:sm|md|lg|xl|cq)\\:[\w-]+(?:\\\/[\w-]+)?|ai--?[\w-]+(?:\\\/[\w-]+)?|is-[\w-]+)/g)) {
-        const raw = m[1].replace('\\:', ':').replace('\\/', '/');
+      for (const m of sel.matchAll(CLASS_RE)) {
+        const raw = unescape(m[1]);
         if (raw.startsWith('is-')) {
           const entry = states.get(raw) || { class: raw, components: new Set() };
-          for (const c of sel.matchAll(/\.(ai-[a-z][\w-]*)/g)) entry.components.add(c[1]);
+          for (const c of sel.matchAll(CLASS_RE)) {
+            const name = unescape(c[1]);
+            if (!name.startsWith('is-')) entry.components.add(name);
+          }
           states.set(raw, entry);
           continue;
         }
-        const pm = raw.match(/^ai-(sm|md|lg|xl|cq):(.+)$/);
+        const pm = raw.match(/^(sm|md|lg|xl|cq):(.+)$/);
         if (pm) {
-          const key = 'ai-' + pm[2];
+          const key = pm[2];
           const entry = classes.get(key) || { class: key, family: familyFor(key, file), file: path.relative(cssDir, file), variants: new Set() };
           entry.variants.add(pm[1]);
           classes.set(key, entry);
@@ -171,7 +180,7 @@ function buildTokens() {
   const skinOf = (sel) => (sel.match(/data-ai-skin="([\w-]+)"/) || [])[1];
   const dark = (sel) => /(?<!:not\()\[data-ai-theme="dark"\]/.test(sel);
   parseTokens(path.join(cssDir, 'tokens.css'), tokens, (sel) => {
-    if (/^:root\s*$/.test(sel) || sel === ':root, .ai-light' || /^:root(,|$)/.test(sel)) return dark(sel) ? 'dark' : 'light';
+    if (/^:root\s*$/.test(sel) || sel === ':root, .light' || /^:root(,|$)/.test(sel)) return dark(sel) ? 'dark' : 'light';
     if (dark(sel)) return 'dark';
     if (/data-ai-focus="([\w-]+)"/.test(sel)) return 'focus:' + sel.match(/data-ai-focus="([\w-]+)"/)[1];
     return null;
@@ -203,7 +212,7 @@ function buildManifests() {
       {
         version: '0.1.0',
         generatedAt: now,
-        note: 'Every ai-* class in llmcss.css. variants lists the responsive (sm 640px, md 768px, lg 1024px, xl 1280px) and container-query (cq) prefixes that exist for the class, written as ai-md:name. Nothing outside this list exists; do not invent classes.',
+        note: 'Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the responsive (sm 640px, md 768px, lg 1024px, xl 1280px) and container-query (cq) prefixes that exist for the class, written as md:name. Nothing outside this list exists; do not invent classes.',
         stats: { total: list.length, families },
         classes: list,
       },
@@ -236,16 +245,16 @@ function buildManifests() {
     { attribute: 'data-ai-accent', values: ['emerald', 'violet', 'rose', 'teal', 'steel', 'amber'], on: 'html or any container', appliedBy: 'author', purpose: 'Accent only: sets --ai-accent, --ai-accent-hover, --ai-accent-subtle, --ai-accent-rgb and a contrast-checked --ai-accent-text. Composes with any data-ai-skin and outranks the skin accent. Absent means the blue default.' },
     { attribute: 'data-ai-density', values: ['compact', 'spacious'], on: 'html or any container', appliedBy: 'author', purpose: 'Scales the spacing steps components use for padding. Absent means standard.' },
     { attribute: 'data-ai-focus', values: ['neutral', 'thin', 'none'], on: 'html', appliedBy: 'author', purpose: 'Focus ring preset. Absent means the accent ring.' },
-    { attribute: 'data-ai-toggle', values: ['modal', 'drawer', 'dropdown', 'accordion'], on: 'button', appliedBy: 'author', purpose: 'Runtime toggle. modal and drawer need data-ai-target="#id"; dropdown needs a .ai-dropdown ancestor; accordion needs a .ai-accordion-item ancestor.' },
+    { attribute: 'data-ai-toggle', values: ['modal', 'drawer', 'dropdown', 'accordion'], on: 'button', appliedBy: 'author', purpose: 'Runtime toggle. modal and drawer need data-ai-target="#id"; dropdown needs a .dropdown ancestor; accordion needs a .accordion-item ancestor.' },
     { attribute: 'data-ai-target', values: ['#id'], on: 'the toggle button', appliedBy: 'author', purpose: 'Selector of the modal or drawer to open.' },
     { attribute: 'data-ai-dismiss', values: ['modal', 'drawer', 'toast'], on: 'button or backdrop inside the overlay', appliedBy: 'author', purpose: 'Closes the nearest overlay of that kind.' },
-    { attribute: 'data-ai-tab', values: ['#panel-id'], on: 'button.ai-tab inside .ai-tabs', appliedBy: 'author', purpose: 'Activates the panel; the runtime syncs aria-selected and tabindex.' },
-    { attribute: 'data-ai-toast-position', values: ['top-right', 'top-center', 'top-left', 'bottom-left', 'bottom-center'], on: '.ai-toast-container', appliedBy: 'author', purpose: 'Where the toast stack sits. Absent means bottom-right.' },
-    { attribute: 'open', values: [''], on: '.ai-modal, .ai-drawer, .ai-accordion-item, .ai-dropdown', appliedBy: 'runtime or author', purpose: 'Open state. Interchangeable with the is-open class; the runtime sets both.' },
+    { attribute: 'data-ai-tab', values: ['#panel-id'], on: 'button.tab inside .tabs', appliedBy: 'author', purpose: 'Activates the panel; the runtime syncs aria-selected and tabindex.' },
+    { attribute: 'data-ai-toast-position', values: ['top-right', 'top-center', 'top-left', 'bottom-left', 'bottom-center'], on: '.toast-container', appliedBy: 'author', purpose: 'Where the toast stack sits. Absent means bottom-right.' },
+    { attribute: 'open', values: [''], on: '.modal, .drawer, .accordion-item, .dropdown', appliedBy: 'runtime or author', purpose: 'Open state. Interchangeable with the is-open class; the runtime sets both.' },
     { attribute: 'aria-expanded', values: ['true', 'false'], on: 'toggle buttons', appliedBy: 'runtime', purpose: 'Kept in sync for every trigger that points at an overlay, dropdown, or accordion item.' },
-    { attribute: 'aria-sort', values: ['ascending', 'descending'], on: 'th inside .ai-table', appliedBy: 'author', purpose: 'Shows the sort indicator.' },
-    { attribute: 'aria-selected', values: ['true'], on: 'tr inside .ai-table, button.ai-tab', appliedBy: 'runtime or author', purpose: 'Selected row or active tab. Interchangeable with the is-active class on tabs; the runtime sets both.' },
-    { attribute: 'aria-current', values: ['page', 'step', 'true'], on: '.ai-nav-link, .ai-sidebar-item, .ai-pagination-link, .ai-breadcrumb-item', appliedBy: 'author', purpose: 'Marks the current item. Interchangeable with is-active (is-current on breadcrumbs); the selectors match the attribute\'s presence, so remove it rather than setting aria-current="false".' },
+    { attribute: 'aria-sort', values: ['ascending', 'descending'], on: 'th inside .table', appliedBy: 'author', purpose: 'Shows the sort indicator.' },
+    { attribute: 'aria-selected', values: ['true'], on: 'tr inside .table, button.tab', appliedBy: 'runtime or author', purpose: 'Selected row or active tab. Interchangeable with the is-active class on tabs; the runtime sets both.' },
+    { attribute: 'aria-current', values: ['page', 'step', 'true'], on: '.nav-link, .sidebar-item, .pagination-link, .breadcrumb-item', appliedBy: 'author', purpose: 'Marks the current item. Interchangeable with is-active (is-current on breadcrumbs); the selectors match the attribute\'s presence, so remove it rather than setting aria-current="false".' },
   ];
   fs.writeFileSync(
     path.join(publicDir, 'states.json'),

@@ -52,15 +52,15 @@ function renderFreshToken(token: string) {
   if (!revealBox) return;
   show(
     revealBox,
-    `<h2 class="ai-card-title">License token (shown once)</h2>
-     <p class="ai-text-sm ai-text-secondary" style="margin-top: var(--ai-space-2);">Save it now. We will not display the full key again.</p>
+    `<h2 class="card-title">License token (shown once)</h2>
+     <p class="text-sm text-secondary" style="margin-top: var(--ai-space-2);">Save it now. We will not display the full key again.</p>
      <pre style="margin-top: var(--ai-space-4); overflow-x: auto;"><code id="token-once">${token}</code></pre>
-     <div class="ai-flex ai-gap-2" style="margin-top: var(--ai-space-3); flex-wrap: wrap;">
-       <button class="ai-btn ai-btn-outline ai-btn-sm" type="button" id="copy-token">Copy token</button>
-       <button class="ai-btn ai-btn-primary ai-btn-sm" type="button" id="download-zip-btn">Download zip</button>
-       <a href="/components" class="ai-btn ai-btn-ghost ai-btn-sm">Open gallery</a>
+     <div class="flex gap-2" style="margin-top: var(--ai-space-3); flex-wrap: wrap;">
+       <button class="btn btn-outline btn-sm" type="button" id="copy-token">Copy token</button>
+       <button class="btn btn-primary btn-sm" type="button" id="download-zip-btn">Download zip</button>
+       <a href="/components" class="btn btn-ghost btn-sm">Open gallery</a>
      </div>
-     <p id="zip-status" class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-3);"></p>`
+     <p id="zip-status" class="text-xs text-muted" style="margin-top: var(--ai-space-3);"></p>`
   );
   setBrowserToken(token);
   bindCopy(token);
@@ -79,15 +79,15 @@ async function showActive(token: string) {
     : '';
   show(
     statusBox,
-    `<div class="ai-flex ai-justify-between ai-items-center ai-flex-wrap ai-gap-3">
+    `<div class="flex justify-between items-center flex-wrap gap-3">
       <div>
-        <span class="ai-badge ai-badge-success">Active</span>
-        <span class="ai-text-sm" style="margin-left: 0.5rem;">${data.plan || 'Pro'} ${data.prefix || ''}${when ? ' · issued ' + when : ''}</span>
-        <p class="ai-text-xs ai-text-muted" style="margin-top: 0.35rem;">Saved key ${maskToken(token)}</p>
+        <span class="badge badge-success">Active</span>
+        <span class="text-sm" style="margin-left: 0.5rem;">${data.plan || 'Pro'} ${data.prefix || ''}${when ? ' · issued ' + when : ''}</span>
+        <p class="text-xs text-muted" style="margin-top: 0.35rem;">Saved key ${maskToken(token)}</p>
       </div>
-      <button type="button" class="ai-btn ai-btn-outline ai-btn-sm" id="download-zip-btn">Download zip</button>
+      <button type="button" class="btn btn-outline btn-sm" id="download-zip-btn">Download zip</button>
     </div>
-    <p id="zip-status" class="ai-text-xs ai-text-muted" style="margin-top: var(--ai-space-3);"></p>`
+    <p id="zip-status" class="text-xs text-muted" style="margin-top: var(--ai-space-3);"></p>`
   );
   document.getElementById('download-zip-btn')?.addEventListener('click', async () => {
     const ok = await downloadProZip(token);
@@ -102,7 +102,7 @@ async function pollOnce(): Promise<'ok' | 'wait' | 'done'> {
   const data = await res.json().catch(() => ({}));
   if (res.status === 404) return 'wait';
   if (res.status === 403) {
-    show(revealBox, `<p class="ai-text-sm">This checkout is revoked or refunded.</p>`);
+    show(revealBox, `<p class="text-sm">This checkout is revoked or refunded.</p>`);
     return 'ok';
   }
   if (data.token) {
@@ -111,7 +111,7 @@ async function pollOnce(): Promise<'ok' | 'wait' | 'done'> {
     return 'ok';
   }
   if (data.shown_once === false) {
-    show(revealBox, `<p class="ai-text-sm">Token already revealed for this checkout. Paste the saved key below, or email webmaster@llmcss.io.</p>`);
+    show(revealBox, `<p class="text-sm">Token already revealed for this checkout. Paste the saved key below, or email webmaster@llmcss.io.</p>`);
     return 'ok';
   }
   return 'done';
@@ -119,8 +119,8 @@ async function pollOnce(): Promise<'ok' | 'wait' | 'done'> {
 
 async function startPoll() {
   if (!checkoutId || !revealBox) return;
-  show(revealBox, `<p class="ai-text-sm ai-text-secondary">Confirming payment...</p>
-    <div class="ai-progress ai-progress-indeterminate" style="margin-top: var(--ai-space-3);"><div class="ai-progress-bar"></div></div>`);
+  show(revealBox, `<p class="text-sm text-secondary">Confirming payment...</p>
+    <div class="progress progress-indeterminate" style="margin-top: var(--ai-space-3);"><div class="progress-bar"></div></div>`);
   const delays = [1000, 1000, 1500, 1500, 2000, 2000, 2500, 3000, 4000, 5000, 6000, 8000, 8000];
   for (const d of delays) {
     const state = await pollOnce();
@@ -133,10 +133,10 @@ async function startPoll() {
   }
   show(
     revealBox,
-    `<p class="ai-text-sm">Payment may still be settling. Retry, open your Polar receipt, or email webmaster@llmcss.io.</p>
-     <div class="ai-flex ai-gap-2" style="margin-top: var(--ai-space-3); flex-wrap: wrap;">
-       <button type="button" class="ai-btn ai-btn-outline ai-btn-sm" id="retry-reveal">Check again</button>
-       <a class="ai-btn ai-btn-ghost ai-btn-sm" href="https://polar.sh">Polar</a>
+    `<p class="text-sm">Payment may still be settling. Retry, open your Polar receipt, or email webmaster@llmcss.io.</p>
+     <div class="flex gap-2" style="margin-top: var(--ai-space-3); flex-wrap: wrap;">
+       <button type="button" class="btn btn-outline btn-sm" id="retry-reveal">Check again</button>
+       <a class="btn btn-ghost btn-sm" href="https://polar.sh">Polar</a>
      </div>`
   );
   document.getElementById('retry-reveal')?.addEventListener('click', () => startPoll());
@@ -145,15 +145,15 @@ async function startPoll() {
 function paintValidate(data: Awaited<ReturnType<typeof validateToken>>) {
   if (!out) return;
   if (data.error === 'empty') {
-    out.innerHTML = '<span class="ai-badge ai-badge-neutral">Enter a token</span>';
+    out.innerHTML = '<span class="badge badge-neutral">Enter a token</span>';
     return;
   }
   if (data.error === 'offline') {
-    out.innerHTML = '<span class="ai-badge ai-badge-warning">Offline</span>';
+    out.innerHTML = '<span class="badge badge-warning">Offline</span>';
     return;
   }
   if (data.error === 'rate_limited') {
-    out.innerHTML = '<span class="ai-badge ai-badge-warning">Too many tries</span>';
+    out.innerHTML = '<span class="badge badge-warning">Too many tries</span>';
     return;
   }
   if (data.valid) {
@@ -161,10 +161,10 @@ function paintValidate(data: Awaited<ReturnType<typeof validateToken>>) {
     const when = created && !Number.isNaN(created.getTime())
       ? created.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
       : '';
-    out.innerHTML = `<span class="ai-badge ai-badge-success">Active</span>
-      <span class="ai-text-sm" style="margin-left: 0.5rem;">${data.plan || 'Pro'} ${data.prefix || ''}${when ? ' · issued ' + when : ''}</span>`;
+    out.innerHTML = `<span class="badge badge-success">Active</span>
+      <span class="text-sm" style="margin-left: 0.5rem;">${data.plan || 'Pro'} ${data.prefix || ''}${when ? ' · issued ' + when : ''}</span>`;
   } else {
-    out.innerHTML = '<span class="ai-badge ai-badge-danger">Not valid</span>';
+    out.innerHTML = '<span class="badge badge-danger">Not valid</span>';
   }
 }
 
@@ -189,7 +189,7 @@ form?.addEventListener('submit', async (e) => {
     return;
   }
   if (validateBtn) validateBtn.disabled = true;
-  out.innerHTML = '<span class="ai-spinner ai-spinner-sm" aria-hidden="true"></span> Checking...';
+  out.innerHTML = '<span class="spinner spinner-sm" aria-hidden="true"></span> Checking...';
   const data = await validateToken(token);
   if (data.valid) setBrowserToken(token);
   paintValidate(data);

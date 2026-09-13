@@ -10,5 +10,5 @@
     "editorial",
     "testimonial"
   ],
-  "html": "<blockquote class=\"ai-quote\">\n  <p>One title face. Themes change color, not the alphabet.</p>\n  <footer>LLMCSS typesetting note</footer>\n</blockquote>"
+  "html": "<blockquote class=\"quote\">\n  <p>One title face. Themes change color, not the alphabet.</p>\n  <footer>LLMCSS typesetting note</footer>\n</blockquote>"
 }

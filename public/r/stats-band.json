@@ -11,5 +11,5 @@
     "metrics",
     "band"
   ],
-  "html": "<div class=\"ai-stats-band\">\n  <div class=\"ai-stat is-primary\">\n    <div class=\"ai-stat-value\">99.98%</div>\n    <div class=\"ai-stat-label\">Uptime over the last 12 months</div>\n  </div>\n  <div class=\"ai-stat\">\n    <div class=\"ai-stat-value\">38 ms</div>\n    <div class=\"ai-stat-label\">Median time to first byte</div>\n  </div>\n  <div class=\"ai-stat\">\n    <div class=\"ai-stat-value\">34</div>\n    <div class=\"ai-stat-label\">Edge regions</div>\n  </div>\n</div>"
+  "html": "<div class=\"stats-band\">\n  <div class=\"stat is-primary\">\n    <div class=\"stat-value\">99.98%</div>\n    <div class=\"stat-label\">Uptime over the last 12 months</div>\n  </div>\n  <div class=\"stat\">\n    <div class=\"stat-value\">38 ms</div>\n    <div class=\"stat-label\">Median time to first byte</div>\n  </div>\n  <div class=\"stat\">\n    <div class=\"stat-value\">34</div>\n    <div class=\"stat-label\">Edge regions</div>\n  </div>\n</div>"
 }

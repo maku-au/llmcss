@@ -29,27 +29,27 @@
   </script>
 </head>
 <body id="top">
-  <a class="ai-skip-link" href="#main">Skip to content</a>
-  <header id="site-header" class="ai-navbar"></header>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="site-header" class="navbar"></header>
   <main id="main">
   
 
   <!-- ==========================================================================
        PAGE HEADER (matches templates.html)
        ========================================================================== -->
-  <section class="ai-docs-hero-compact">
-    <div class="ai-container ai-container-lg">
-      <div class="ai-flex ai-justify-between ai-items-end ai-flex-wrap ai-gap-4">
-        <div class="ai-min-w-0">
-          <h1 class="ai-text-2xl ai-leading-tight ai-tracking-tight">Component library</h1>
-          <p class="ai-text-sm ai-text-muted ai-mt-1">
-            <span class="ai-docs-meta-figure" id="catalog-result-count"></span>Copy the HTML, or add it with the CLI.
+  <section class="docs-hero-compact">
+    <div class="container container-lg">
+      <div class="flex justify-between items-end flex-wrap gap-4">
+        <div class="min-w-0">
+          <h1 class="text-2xl leading-tight tracking-tight">Component library</h1>
+          <p class="text-sm text-muted mt-1">
+            <span class="docs-meta-figure" id="catalog-result-count"></span>Copy the HTML, or add it with the CLI.
           </p>
         </div>
-        <div class="ai-segmented" role="group" aria-label="Preview width">
-          <button type="button" class="ai-segmented-btn viewport-btn is-active" data-width="100%">Full</button>
-          <button type="button" class="ai-segmented-btn viewport-btn" data-width="768px">768</button>
-          <button type="button" class="ai-segmented-btn viewport-btn" data-width="375px">375</button>
+        <div class="segmented" role="group" aria-label="Preview width">
+          <button type="button" class="segmented-btn js-viewport-btn is-active" data-width="100%">Full</button>
+          <button type="button" class="segmented-btn js-viewport-btn" data-width="768px">768</button>
+          <button type="button" class="segmented-btn js-viewport-btn" data-width="375px">375</button>
         </div>
       </div>
     </div>
@@ -58,72 +58,72 @@
   <!-- ==========================================================================
        COMPONENT CATALOG (#collection)
        ========================================================================== -->
-  <section class="ai-docs-section ai-pt-8" id="collection">
-    <div class="ai-container ai-container-lg">
+  <section class="docs-section pt-8" id="collection">
+    <div class="container container-lg">
       <!-- Main Showcase Layout: Sidebar Filter + Stream -->
-      <div class="ai-docs-layout">
+      <div class="docs-layout">
         <!-- Sidebar Navigation Filter -->
-        <aside class="ai-docs-sidebar">
-          <div class="ai-flex ai-flex-col ai-gap-4">
+        <aside class="docs-sidebar">
+          <div class="flex flex-col gap-4">
             <div>
-              <span class="ai-docs-nav-label">Components</span>
-              <div class="ai-docs-nav-stack">
-                <button class="ai-docs-nav-btn is-active filter-category" data-cat="all">
+              <span class="docs-nav-label">Components</span>
+              <div class="docs-nav-stack">
+                <button class="docs-nav-btn is-active js-filter-category" data-cat="all">
                   <span>All</span>
-                  <span class="ai-docs-count" id="count-all"></span>
+                  <span class="docs-count" id="count-all"></span>
                 </button>
-                <button class="ai-docs-nav-btn filter-category" data-cat="primitive">
+                <button class="docs-nav-btn js-filter-category" data-cat="primitive">
                   <span>Primitives</span>
-                  <span class="ai-docs-count" id="count-primitive"></span>
+                  <span class="docs-count" id="count-primitive"></span>
                 </button>
-                <button class="ai-docs-nav-btn filter-category" data-cat="marketing">
+                <button class="docs-nav-btn js-filter-category" data-cat="marketing">
                   <span>Marketing</span>
-                  <span class="ai-docs-count" id="count-marketing"></span>
+                  <span class="docs-count" id="count-marketing"></span>
                 </button>
-                <button class="ai-docs-nav-btn filter-category" data-cat="application">
+                <button class="docs-nav-btn js-filter-category" data-cat="application">
                   <span>Application</span>
-                  <span class="ai-docs-count" id="count-application"></span>
+                  <span class="docs-count" id="count-application"></span>
                 </button>
-                <button class="ai-docs-nav-btn filter-category" data-cat="ecommerce">
+                <button class="docs-nav-btn js-filter-category" data-cat="ecommerce">
                   <span>E-Commerce</span>
-                  <span class="ai-docs-count" id="count-ecommerce"></span>
+                  <span class="docs-count" id="count-ecommerce"></span>
                 </button>
               </div>
             </div>
 
-            <div class="ai-docs-nav-group">
-              <span class="ai-docs-nav-label">Tiers</span>
-              <div class="ai-docs-nav-stack">
-                <button class="ai-docs-nav-btn filter-tier is-active" data-tier="all">
+            <div class="docs-nav-group">
+              <span class="docs-nav-label">Tiers</span>
+              <div class="docs-nav-stack">
+                <button class="docs-nav-btn js-filter-tier is-active" data-tier="all">
                   <span>All Tiers</span>
-                  <span class="ai-docs-count" id="count-tier-all"></span>
+                  <span class="docs-count" id="count-tier-all"></span>
                 </button>
-                <button class="ai-docs-nav-btn filter-tier" data-tier="free">
+                <button class="docs-nav-btn js-filter-tier" data-tier="free">
                   <span>Free (MIT)</span>
-                  <span class="ai-docs-count" id="count-tier-free"></span>
+                  <span class="docs-count" id="count-tier-free"></span>
                 </button>
-                <button class="ai-docs-nav-btn filter-tier" data-tier="pro">
+                <button class="docs-nav-btn js-filter-tier" data-tier="pro">
                   <span>Pro</span>
-                  <span class="ai-docs-count" id="count-tier-pro">3</span>
-                  <span class="ai-docs-pro-tag">PRO</span>
+                  <span class="docs-count" id="count-tier-pro">3</span>
+                  <span class="docs-pro-tag">PRO</span>
                 </button>
               </div>
             </div>
 
-            <div class="ai-docs-nav-group">
-              <span class="ai-docs-nav-label">Endpoints</span>
-              <div class="ai-docs-nav-stack">
-                <a href="/llms.txt" target="_blank" class="ai-docs-link" title="Open llms.txt">
+            <div class="docs-nav-group">
+              <span class="docs-nav-label">Endpoints</span>
+              <div class="docs-nav-stack">
+                <a href="/llms.txt" target="_blank" class="docs-link" title="Open llms.txt">
                   <span>llms.txt</span>
-                  <span class="ai-docs-link-tag">Index</span>
+                  <span class="docs-link-tag">Index</span>
                 </a>
-                <a href="/llms-full.txt" target="_blank" class="ai-docs-link" title="Open llms-full.txt">
+                <a href="/llms-full.txt" target="_blank" class="docs-link" title="Open llms-full.txt">
                   <span>llms-full.txt</span>
-                  <span class="ai-docs-link-tag">Full</span>
+                  <span class="docs-link-tag">Full</span>
                 </a>
-                <a href="/registry.json" target="_blank" class="ai-docs-link" title="Open registry.json">
+                <a href="/registry.json" target="_blank" class="docs-link" title="Open registry.json">
                   <span>registry.json</span>
-                  <span class="ai-docs-link-tag">JSON</span>
+                  <span class="docs-link-tag">JSON</span>
                 </a>
               </div>
             </div>
@@ -131,7 +131,7 @@
         </aside>
 
         <!-- Components Stream -->
-        <div class="ai-min-w-0">
+        <div class="min-w-0">
           <div id="components-stream">
             <!-- Rendered dynamically by main.ts -->
           </div>
@@ -143,31 +143,31 @@
   <!-- ==========================================================================
        PRICING & FREEMIUM TIERS (#pricing)
        ========================================================================== -->
-  <section id="pricing" class="ai-section ai-section-shift ai-border-t">
-    <div class="ai-container ai-container-md">
-      <div class="ai-text-center ai-max-w-2xl ai-mx-auto ai-mb-12">
-        <h2 class="ai-font-display ai-font-bold">
+  <section id="pricing" class="section section-shift border-t">
+    <div class="container container-md">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="font-display font-bold">
           Free MIT core. Pro is $9/month.
         </h2>
-        <p class="ai-text-secondary ai-mt-2">
+        <p class="text-secondary mt-2">
           You keep the CSS you copy. Pro is a subscription catalog, not a lock-in runtime.
         </p>
       </div>
       <div id="pro-offer"></div>
       <div hidden>
-      <div class="ai-grid ai-grid-cols-1 ai-md:grid-cols-2 ai-gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Free Tier Card -->
-        <div class="ai-card ai-p-8">
-          <div class="ai-flex ai-justify-between ai-items-center">
-            <h3 class="ai-card-title">Community (Free)</h3>
-            <span class="ai-badge ai-badge-neutral">MIT License</span>
+        <div class="card p-8">
+          <div class="flex justify-between items-center">
+            <h3 class="card-title">Community (Free)</h3>
+            <span class="badge badge-neutral">MIT License</span>
           </div>
-          <div class="ai-pricing-amount">
-            <span class="ai-pricing-price ai-text-4xl ai-font-bold">$0</span>
-            <span class="ai-pricing-period ai-text-secondary">/ forever</span>
+          <div class="pricing-amount">
+            <span class="pricing-price text-4xl font-bold">$0</span>
+            <span class="pricing-period text-secondary">/ forever</span>
           </div>
-          <p class="ai-text-sm ai-text-secondary">Everything needed to build production web applications.</p>
-          <ul class="ai-pricing-features ai-my-6">
+          <p class="text-sm text-secondary">Everything needed to build production web applications.</p>
+          <ul class="pricing-features my-6">
             <li>✓ Full Modern CSS Engine (`@layer`)</li>
             <li>✓ 31 Essential Free Primitives &amp; Sections</li>
             <li>✓ Complete Animation &amp; Motion Primitives</li>
@@ -175,33 +175,33 @@
             <li>✓ Free CLI Access (`npx llmcss add`)</li>
             <li>✓ Stdio MCP Server Tooling</li>
           </ul>
-          <a href="#collection" class="ai-btn ai-btn-outline ai-w-full">Start Building Free</a>
+          <a href="#collection" class="btn btn-outline w-full">Start Building Free</a>
         </div>
 
         <!-- Pro Tier Card -->
-        <div class="ai-card ai-card-pro ai-p-8 ai-shadow-md">
-          <div class="ai-flex ai-justify-between ai-items-center">
-            <h3 class="ai-card-title">LLMCSS Pro</h3>
-            <span class="ai-badge ai-badge-solid">RECOMMENDED</span>
+        <div class="card card-pro p-8 shadow-md">
+          <div class="flex justify-between items-center">
+            <h3 class="card-title">LLMCSS Pro</h3>
+            <span class="badge badge-solid">RECOMMENDED</span>
           </div>
-          <div class="ai-pricing-amount">
-            <span class="ai-pricing-price ai-text-4xl ai-font-bold">$9</span>
-            <span class="ai-pricing-period ai-text-secondary">/ month</span>
+          <div class="pricing-amount">
+            <span class="pricing-price text-4xl font-bold">$9</span>
+            <span class="pricing-period text-secondary">/ month</span>
           </div>
-          <p class="ai-text-sm ai-text-secondary">For professional engineers, agencies, and autonomous agent workflows.</p>
-          <ul class="ai-pricing-features ai-my-6">
+          <p class="text-sm text-secondary">For professional engineers, agencies, and autonomous agent workflows.</p>
+          <ul class="pricing-features my-6">
             <li>✓ Everything in Community</li>
             <li>✓ Themed section templates and page kits</li>
             <li>✓ Skin-specific composed blocks</li>
             <li>✓ Private CLI token (`llmcss login`)</li>
             <li>✓ Token-gated registry, MCP, and zip backup</li>
           </ul>
-          <a href="/api/checkout.php" class="ai-btn ai-btn-primary ai-w-full">
+          <a href="/api/checkout.php" class="btn btn-primary w-full">
             Subscribe ($9/mo USD)
           </a>
         </div>
       </div>
-      <p class="ai-text-xs ai-text-muted ai-text-center ai-mt-8 ai-max-w-xl ai-mx-auto">
+      <p class="text-xs text-muted text-center mt-8 max-w-xl mx-auto">
         Digital goods: Pro is a downloadable catalog. Refunds follow Polar’s policy. The MIT core stays free either way.
       </p>
     </div>
@@ -210,57 +210,57 @@
   <!-- ==========================================================================
        FAQ SECTION
        ========================================================================== -->
-  <section class="ai-section ai-surface-0 ai-border-t">
-    <div class="ai-container ai-max-w-4xl">
-      <div class="ai-text-center ai-mb-10">
-        <h2 class="ai-font-display ai-font-bold ai-tracking-tight">
+  <section class="section surface-0 border-t">
+    <div class="container max-w-4xl">
+      <div class="text-center mb-10">
+        <h2 class="font-display font-bold tracking-tight">
           Frequently Asked Questions
         </h2>
       </div>
 
-      <div class="ai-accordion ai-mx-auto">
-        <div class="ai-accordion-item">
-          <button type="button" class="ai-accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-1">
+      <div class="accordion mx-auto">
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-1">
             <span>How does LLMCSS avoid the generic "AI-generated" look?</span>
-            <svg class="ai-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <div class="ai-accordion-content" id="faq-1">
+          <div class="accordion-content" id="faq-1">
             <p>
               Most AI models default to electric blue/purple gradients, huge rounded pill buttons, and arbitrary utility classes. LLMCSS enforces human craftsmanship through crisp architectural radii (2px-10px), subtle physical borders, real elevation physics, and expressive display typography.
             </p>
           </div>
         </div>
 
-        <div class="ai-accordion-item">
-          <button type="button" class="ai-accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-2">
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-2">
             <span>Why is pure CSS with variables better for LLMs than Tailwind?</span>
-            <svg class="ai-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <div class="ai-accordion-content" id="faq-2">
+          <div class="accordion-content" id="faq-2">
             <p>
-              Tailwind requires LLMs to output 40 to 80 class names per card, consuming huge context budgets and causing frequent class name hallucinations. LLMCSS uses semantic class composition (e.g. <code>ai-kpi-card</code>) with CSS variables, reducing prompt token generation by approximately 68%.
+              Tailwind requires LLMs to output 40 to 80 class names per card, consuming huge context budgets and causing frequent class name hallucinations. LLMCSS uses semantic class composition (e.g. <code>kpi-card</code>) with CSS variables, reducing prompt token generation by approximately 68%.
             </p>
           </div>
         </div>
 
-        <div class="ai-accordion-item">
-          <button type="button" class="ai-accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-3">
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-3">
             <span>Do I need a build step or Node.js to use LLMCSS?</span>
-            <svg class="ai-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <div class="ai-accordion-content" id="faq-3">
+          <div class="accordion-content" id="faq-3">
             <p>
               No. LLMCSS is written in standard modern CSS using <code>@layer</code> and CSS variables. You can import it directly via static stylesheet link, CDN, or install it via the CLI.
             </p>
           </div>
         </div>
 
-        <div class="ai-accordion-item">
-          <button type="button" class="ai-accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-4">
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-4">
             <span>How do autonomous agents connect via MCP?</span>
-            <svg class="ai-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <div class="ai-accordion-content" id="faq-4">
+          <div class="accordion-content" id="faq-4">
             <p>
               Configure <code>npx llmcss-mcp</code> in your editor or agent environment. The stdio MCP server gives coding agents direct tools to search components, inspect semantic markup, and validate CSS against design tokens.
             </p>
@@ -274,59 +274,59 @@
        FOOTER
        ========================================================================== -->
   </main>
-  <footer id="site-footer" class="ai-footer ai-footer-compact"></footer>
+  <footer id="site-footer" class="footer footer-compact"></footer>
   <!-- PRO SUBSCRIPTION PAYWALL MODAL -->
-  <div id="license-modal" class="ai-modal">
-    <div class="ai-modal-backdrop" data-ai-dismiss="modal"></div>
-    <div class="ai-modal-box">
-      <div class="ai-modal-header">
-        <h3 class="ai-modal-title">Activate Pro license</h3>
-        <button class="ai-modal-close" data-ai-dismiss="modal" type="button">&times;</button>
+  <div id="license-modal" class="modal">
+    <div class="modal-backdrop" data-ai-dismiss="modal"></div>
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">Activate Pro license</h3>
+        <button class="modal-close" data-ai-dismiss="modal" type="button">&times;</button>
       </div>
-      <div class="ai-modal-body">
-        <p class="ai-text-sm ai-text-secondary">Paste your <code>llmcss_live_</code> token to unlock Pro markup in this gallery.</p>
-        <input id="license-token-input" class="ai-input ai-mt-4" type="text" autocomplete="off" placeholder="llmcss_live_..." />
-        <p id="license-status" class="ai-text-sm ai-mt-3"></p>
-        <div class="ai-flex ai-gap-2 ai-mt-4">
-          <button type="button" class="ai-btn ai-btn-primary" id="license-activate-btn">Activate</button>
-          <a href="/api/checkout.php" class="ai-btn ai-btn-outline">Get Pro</a>
+      <div class="modal-body">
+        <p class="text-sm text-secondary">Paste your <code>llmcss_live_</code> token to unlock Pro markup in this gallery.</p>
+        <input id="license-token-input" class="input mt-4" type="text" autocomplete="off" placeholder="llmcss_live_..." />
+        <p id="license-status" class="text-sm mt-3"></p>
+        <div class="flex gap-2 mt-4">
+          <button type="button" class="btn btn-primary" id="license-activate-btn">Activate</button>
+          <a href="/api/checkout.php" class="btn btn-outline">Get Pro</a>
         </div>
       </div>
     </div>
   </div>
 
-  <div id="pro-pricing-modal" class="ai-modal">
-    <div class="ai-modal-backdrop" data-ai-dismiss="modal"></div>
-    <div class="ai-modal-box ai-modal-box-lg">
-      <div class="ai-modal-header">
-        <h3 class="ai-modal-title">LLMCSS Pro</h3>
-        <button class="ai-modal-close" data-ai-dismiss="modal">&times;</button>
+  <div id="pro-pricing-modal" class="modal">
+    <div class="modal-backdrop" data-ai-dismiss="modal"></div>
+    <div class="modal-box modal-box-lg">
+      <div class="modal-header">
+        <h3 class="modal-title">LLMCSS Pro</h3>
+        <button class="modal-close" data-ai-dismiss="modal">&times;</button>
       </div>
-      <div class="ai-modal-body">
-        <div class="ai-text-center ai-mb-6">
-          <h2 class="ai-text-2xl">Unlock the Pro catalog</h2>
-          <p class="ai-text-secondary ai-mt-1">
+      <div class="modal-body">
+        <div class="text-center mb-6">
+          <h2 class="text-2xl">Unlock the Pro catalog</h2>
+          <p class="text-secondary mt-1">
             License token + zip after Polar checkout. Cancel anytime. Digital goods: see the refund note on this page.
           </p>
         </div>
 
-        <div class="ai-card ai-card-pro ai-p-6 ai-max-w-md ai-mx-auto">
-          <div class="ai-flex ai-justify-between ai-items-center">
-            <h3 class="ai-card-title">Pro</h3>
-            <span class="ai-badge ai-badge-solid">$9 / month</span>
+        <div class="card card-pro p-6 max-w-md mx-auto">
+          <div class="flex justify-between items-center">
+            <h3 class="card-title">Pro</h3>
+            <span class="badge badge-solid">$9 / month</span>
           </div>
-          <div class="ai-pricing-amount ai-my-3">
-            <span class="ai-pricing-price ai-text-4xl">$9</span>
-            <span class="ai-pricing-period">/ month</span>
+          <div class="pricing-amount my-3">
+            <span class="pricing-price text-4xl">$9</span>
+            <span class="pricing-period">/ month</span>
           </div>
-          <p class="ai-text-sm ai-text-secondary">Billed monthly via Polar. Token is shown once on the success page.</p>
-          <ul class="ai-pricing-features ai-my-4 ai-gap-2">
+          <p class="text-sm text-secondary">Billed monthly via Polar. Token is shown once on the success page.</p>
+          <ul class="pricing-features my-4 gap-2">
             <li>✓ Themed section templates and page kits</li>
             <li>✓ Token-gated registry + MCP</li>
             <li>✓ Zip backup of the Pro catalog</li>
           </ul>
-          <a href="/api/checkout.php" class="ai-btn ai-btn-primary ai-w-full">Subscribe with Polar ($9/mo)</a>
-          <p class="ai-text-xs ai-text-muted ai-mt-3">You will return to <a href="/account">/account</a> with a one-time token.</p>
+          <a href="/api/checkout.php" class="btn btn-primary w-full">Subscribe with Polar ($9/mo)</a>
+          <p class="text-xs text-muted mt-3">You will return to <a href="/account">/account</a> with a one-time token.</p>
         </div>
       </div>
     </div>
@@ -335,145 +335,145 @@
   <!-- ==========================================================================
        GLOBAL CORE DESIGN SYSTEM STYLER DRAWER
        ========================================================================== -->
-  <div class="ai-drawer ai-drawer-no-lock" id="core-styler-drawer">
-    <div class="ai-drawer-backdrop" data-ai-dismiss="drawer"></div>
-    <div class="ai-drawer-panel">
-      <div class="ai-drawer-header">
-        <div class="ai-flex ai-items-center ai-gap-2">
-          <span class="ai-styler-title">Theme &amp; Token Canvas</span>
+  <div class="drawer drawer-no-lock" id="core-styler-drawer">
+    <div class="drawer-backdrop" data-ai-dismiss="drawer"></div>
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <div class="flex items-center gap-2">
+          <span class="styler-title">Theme &amp; Token Canvas</span>
         </div>
-        <div class="ai-flex ai-items-center ai-gap-2">
-          <button id="styler-theme-toggle" class="ai-btn ai-btn-ghost ai-btn-icon ai-btn-xs" title="Toggle Light/Dark Mode">
+        <div class="flex items-center gap-2">
+          <button id="styler-theme-toggle" class="btn btn-ghost btn-icon btn-xs" title="Toggle Light/Dark Mode">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
           </button>
-          <button class="ai-btn ai-btn-ghost ai-btn-icon ai-btn-xs ai-text-muted" data-ai-dismiss="drawer" aria-label="Close Styler">
+          <button class="btn btn-ghost btn-icon btn-xs text-muted" data-ai-dismiss="drawer" aria-label="Close Styler">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
           </button>
         </div>
       </div>
 
-      <div class="ai-drawer-body">
+      <div class="drawer-body">
         <!-- 1. Theme Palette -->
-        <div class="ai-styler-section">
-          <div class="ai-styler-section-header">
-            <span class="ai-styler-section-title">Theme Palette</span>
-            <span class="ai-styler-section-val" id="styler-active-theme-label">Minimal</span>
+        <div class="styler-section">
+          <div class="styler-section-header">
+            <span class="styler-section-title">Theme Palette</span>
+            <span class="styler-section-val" id="styler-active-theme-label">Minimal</span>
           </div>
-          <div class="ai-styler-theme-grid" id="styler-theme-grid">
-            <button class="ai-styler-theme-btn is-active" data-skin="modern">
-              <span class="ai-styler-swatch-pip"></span>
-              <span class="ai-styler-theme-name">Minimal</span>
+          <div class="styler-theme-grid" id="styler-theme-grid">
+            <button class="styler-theme-btn is-active" data-skin="modern">
+              <span class="styler-swatch-pip"></span>
+              <span class="styler-theme-name">Minimal</span>
             </button>
-            <button class="ai-styler-theme-btn" data-skin="executive">
-              <span class="ai-styler-swatch-pip"></span>
-              <span class="ai-styler-theme-name">Slate</span>
+            <button class="styler-theme-btn" data-skin="executive">
+              <span class="styler-swatch-pip"></span>
+              <span class="styler-theme-name">Slate</span>
             </button>
-            <button class="ai-styler-theme-btn" data-skin="fintech">
-              <span class="ai-styler-swatch-pip"></span>
-              <span class="ai-styler-theme-name">Titanium</span>
+            <button class="styler-theme-btn" data-skin="fintech">
+              <span class="styler-swatch-pip"></span>
+              <span class="styler-theme-name">Titanium</span>
             </button>
-            <button class="ai-styler-theme-btn" data-skin="obsidian">
-              <span class="ai-styler-swatch-pip"></span>
-              <span class="ai-styler-theme-name">Obsidian</span>
+            <button class="styler-theme-btn" data-skin="obsidian">
+              <span class="styler-swatch-pip"></span>
+              <span class="styler-theme-name">Obsidian</span>
             </button>
-            <button class="ai-styler-theme-btn" data-skin="editorial">
-              <span class="ai-styler-swatch-pip"></span>
-              <span class="ai-styler-theme-name">Editorial</span>
+            <button class="styler-theme-btn" data-skin="editorial">
+              <span class="styler-swatch-pip"></span>
+              <span class="styler-theme-name">Editorial</span>
             </button>
-            <button class="ai-styler-theme-btn" data-skin="enterprise">
-              <span class="ai-styler-swatch-pip"></span>
-              <span class="ai-styler-theme-name">Enterprise</span>
+            <button class="styler-theme-btn" data-skin="enterprise">
+              <span class="styler-swatch-pip"></span>
+              <span class="styler-theme-name">Enterprise</span>
             </button>
           </div>
         </div>
 
-        <div class="ai-styler-section">
-          <div class="ai-styler-section-header">
-            <span class="ai-styler-section-title">Title font</span>
-            <span class="ai-styler-section-val">One face for headings</span>
+        <div class="styler-section">
+          <div class="styler-section-header">
+            <span class="styler-section-title">Title font</span>
+            <span class="styler-section-val">One face for headings</span>
           </div>
-          <div id="styler-font-switcher" class="ai-dropdown ai-font-picker"></div>
+          <div id="styler-font-switcher" class="dropdown font-picker"></div>
         </div>
 
         <!-- 2. Corner Geometry -->
-        <div class="ai-styler-section">
-          <div class="ai-styler-section-header">
-            <span class="ai-styler-section-title">Corner Geometry</span>
-            <span class="ai-styler-section-val" id="styler-radius-label">Balanced (4-8px)</span>
+        <div class="styler-section">
+          <div class="styler-section-header">
+            <span class="styler-section-title">Corner Geometry</span>
+            <span class="styler-section-val" id="styler-radius-label">Balanced (4-8px)</span>
           </div>
-          <div class="ai-styler-segmented-track">
-            <button class="ai-styler-segmented-item ai-styler-radius-btn" data-radius="sharp">Sharp</button>
-            <button class="ai-styler-segmented-item ai-styler-radius-btn" data-radius="precision">Precision</button>
-            <button class="ai-styler-segmented-item ai-styler-radius-btn is-active" data-radius="balanced">Balanced</button>
-            <button class="ai-styler-segmented-item ai-styler-radius-btn" data-radius="smooth">Smooth</button>
+          <div class="styler-segmented-track">
+            <button class="styler-segmented-item js-styler-radius-btn" data-radius="sharp">Sharp</button>
+            <button class="styler-segmented-item js-styler-radius-btn" data-radius="precision">Precision</button>
+            <button class="styler-segmented-item js-styler-radius-btn is-active" data-radius="balanced">Balanced</button>
+            <button class="styler-segmented-item js-styler-radius-btn" data-radius="smooth">Smooth</button>
           </div>
         </div>
 
         <!-- 3. Spacing & Density -->
-        <div class="ai-styler-section">
-          <div class="ai-styler-section-header">
-            <span class="ai-styler-section-title">Interface Density</span>
-            <span class="ai-styler-section-val" id="styler-density-label">Standard (1.0x)</span>
+        <div class="styler-section">
+          <div class="styler-section-header">
+            <span class="styler-section-title">Interface Density</span>
+            <span class="styler-section-val" id="styler-density-label">Standard (1.0x)</span>
           </div>
-          <div class="ai-styler-segmented-track">
-            <button class="ai-styler-segmented-item ai-styler-density-btn" data-density="compact">Compact</button>
-            <button class="ai-styler-segmented-item ai-styler-density-btn is-active" data-density="standard">Standard</button>
-            <button class="ai-styler-segmented-item ai-styler-density-btn" data-density="spacious">Spacious</button>
+          <div class="styler-segmented-track">
+            <button class="styler-segmented-item js-styler-density-btn" data-density="compact">Compact</button>
+            <button class="styler-segmented-item js-styler-density-btn is-active" data-density="standard">Standard</button>
+            <button class="styler-segmented-item js-styler-density-btn" data-density="spacious">Spacious</button>
           </div>
         </div>
 
         <!-- Focus ring -->
-        <div class="ai-styler-section">
-          <div class="ai-styler-section-header">
-            <span class="ai-styler-section-title">Focus ring</span>
-            <span class="ai-styler-section-val" id="styler-focus-label">Accent</span>
+        <div class="styler-section">
+          <div class="styler-section-header">
+            <span class="styler-section-title">Focus ring</span>
+            <span class="styler-section-val" id="styler-focus-label">Accent</span>
           </div>
-          <div class="ai-styler-segmented-track">
-            <button class="ai-styler-segmented-item ai-styler-focus-btn is-active" data-focus="accent">Accent</button>
-            <button class="ai-styler-segmented-item ai-styler-focus-btn" data-focus="neutral">Neutral</button>
-            <button class="ai-styler-segmented-item ai-styler-focus-btn" data-focus="thin">Thin</button>
-            <button class="ai-styler-segmented-item ai-styler-focus-btn" data-focus="none">Off</button>
+          <div class="styler-segmented-track">
+            <button class="styler-segmented-item js-styler-focus-btn is-active" data-focus="accent">Accent</button>
+            <button class="styler-segmented-item js-styler-focus-btn" data-focus="neutral">Neutral</button>
+            <button class="styler-segmented-item js-styler-focus-btn" data-focus="thin">Thin</button>
+            <button class="styler-segmented-item js-styler-focus-btn" data-focus="none">Off</button>
           </div>
         </div>
 
 
         <!-- 4. Accent Color -->
-        <div class="ai-styler-section">
-          <div class="ai-styler-section-header">
-            <span class="ai-styler-section-title">Primary Accent</span>
+        <div class="styler-section">
+          <div class="styler-section-header">
+            <span class="styler-section-title">Primary Accent</span>
           </div>
-          <div class="ai-styler-swatch-row">
-            <button class="ai-styler-accent-swatch is-active" data-accent="default" title="Default Blue"></button>
-            <button class="ai-styler-accent-swatch" data-accent="steel" title="Slate Steel"></button>
-            <button class="ai-styler-accent-swatch" data-accent="teal" title="Fintech Teal"></button>
-            <button class="ai-styler-accent-swatch" data-accent="emerald" title="Emerald"></button>
-            <button class="ai-styler-accent-swatch" data-accent="violet" title="Violet"></button>
-            <button class="ai-styler-accent-swatch" data-accent="rose" title="Rose"></button>
-            <button class="ai-styler-accent-swatch" data-accent="amber" title="Amber"></button>
+          <div class="styler-swatch-row">
+            <button class="styler-accent-swatch is-active" data-accent="default" title="Default Blue"></button>
+            <button class="styler-accent-swatch" data-accent="steel" title="Slate Steel"></button>
+            <button class="styler-accent-swatch" data-accent="teal" title="Fintech Teal"></button>
+            <button class="styler-accent-swatch" data-accent="emerald" title="Emerald"></button>
+            <button class="styler-accent-swatch" data-accent="violet" title="Violet"></button>
+            <button class="styler-accent-swatch" data-accent="rose" title="Rose"></button>
+            <button class="styler-accent-swatch" data-accent="amber" title="Amber"></button>
           </div>
         </div>
 
         <!-- 5. Token Export Blueprint -->
-        <div class="ai-styler-section ai-styler-section-divided">
-          <div class="ai-flex ai-justify-between ai-items-center">
-            <span class="ai-styler-section-title">CSS Blueprint</span>
-            <button class="ai-btn ai-btn-outline ai-btn-xs" id="copy-styler-css-btn">Copy CSS</button>
+        <div class="styler-section styler-section-divided">
+          <div class="flex justify-between items-center">
+            <span class="styler-section-title">CSS Blueprint</span>
+            <button class="btn btn-outline btn-xs" id="copy-styler-css-btn">Copy CSS</button>
           </div>
-          <details class="ai-styler-code-disclosure ai-mt-1">
-            <summary class="ai-text-xs ai-text-muted">
+          <details class="styler-code-disclosure mt-1">
+            <summary class="text-xs text-muted">
               <span>View generated :root tokens</span>
-              <span class="ai-styler-code-caret">▾</span>
+              <span class="styler-code-caret">▾</span>
             </summary>
-            <pre class="ai-styler-code-output"><code id="styler-css-output">:root {
+            <pre class="styler-code-output"><code id="styler-css-output">:root {
   /* Default LLMCSS tokens active */
 }</code></pre>
           </details>
         </div>
       </div>
 
-      <div class="ai-drawer-footer">
-        <button class="ai-btn ai-btn-ghost ai-btn-xs ai-text-muted" id="reset-styler-btn">Reset Defaults</button>
-        <button class="ai-btn ai-btn-primary ai-btn-xs" data-ai-dismiss="drawer">Done</button>
+      <div class="drawer-footer">
+        <button class="btn btn-ghost btn-xs text-muted" id="reset-styler-btn">Reset Defaults</button>
+        <button class="btn btn-primary btn-xs" data-ai-dismiss="drawer">Done</button>
       </div>
     </div>
   </div>
@@ -482,7 +482,7 @@
 
 
   <!-- Toast Notification Container -->
-  <div class="ai-toast-container" id="toast-container"></div>
+  <div class="toast-container" id="toast-container"></div>
 
   <!-- Entry Script -->
   <script type="module" src="/src/showcase/main.ts"></script>

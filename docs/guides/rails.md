@@ -5,7 +5,7 @@
 - Install: `npm install llmcss`
 - Include: `<link rel="stylesheet" href="https://llmcss.io/llmcss.css" />`
 - Runtime (optional, for modal/drawer/dropdown/accordion/tabs/toast/command palette): `<script src="https://llmcss.io/llmcss.js" defer></script>`
-- Sample: `<button class="ai-btn ai-btn-primary">Save</button>`
+- Sample: `<button class="btn btn-primary">Save</button>`
 - Validate: `npx llmcss validate <file>`
 
 ## 1. Add the tags
@@ -22,7 +22,7 @@ In `app/views/layouts/application.html.erb`, inside `<head>`:
 The `<script>` is optional and only powers modal, drawer, dropdown, accordion,
 tabs, toast and command palette behavior. For npm, install `llmcss` and serve
 `dist/llmcss.css` and `dist/llmcss.js`, or pin
-`https://cdn.jsdelivr.net/npm/llmcss@0.3.0/dist/llmcss.css`. On `<html>` set
+`https://cdn.jsdelivr.net/npm/llmcss@0.4.0/dist/llmcss.css`. On `<html>` set
 `data-ai-theme="light|dark"`, `data-ai-skin="obsidian|editorial|executive|fintech|enterprise|emerald|violet|rose"`,
 `data-ai-density="compact|spacious"`.
 
@@ -51,17 +51,17 @@ zero JavaScript on the page.
 `<%= render "shared/card", project: project %>`:
 
 ```erb
-<article class="ai-card">
-  <div class="ai-card-header ai-flex ai-items-center ai-justify-between">
-    <h3 class="ai-card-title"><%= project.name %></h3>
-    <span class="ai-badge ai-badge-success"><%= project.status %></span>
+<article class="card">
+  <div class="card-header flex items-center justify-between">
+    <h3 class="card-title"><%= project.name %></h3>
+    <span class="badge badge-success"><%= project.status %></span>
   </div>
-  <div class="ai-card-body">
-    <p class="ai-text-secondary"><%= project.summary %></p>
+  <div class="card-body">
+    <p class="text-secondary"><%= project.summary %></p>
   </div>
-  <div class="ai-card-footer ai-flex ai-gap-2">
-    <%= link_to "Open", project_path(project), class: "ai-btn ai-btn-primary" %>
-    <%= link_to "Archive", archive_project_path(project), class: "ai-btn ai-btn-outline" %>
+  <div class="card-footer flex gap-2">
+    <%= link_to "Open", project_path(project), class: "btn btn-primary" %>
+    <%= link_to "Archive", archive_project_path(project), class: "btn btn-outline" %>
   </div>
 </article>
 ```

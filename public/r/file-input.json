@@ -11,5 +11,5 @@
     "form",
     "css-only"
   ],
-  "html": "<div class=\"ai-form-group\" style=\"max-width: 24rem;\">\n  <label class=\"ai-form-label\" for=\"report-file\">Import CSV</label>\n  <input id=\"report-file\" type=\"file\" class=\"ai-file-input\" accept=\".csv\" />\n  <p class=\"ai-form-hint\">Up to 25 MB. First row is treated as the header.</p>\n</div>"
+  "html": "<div class=\"form-group\" style=\"max-width: 24rem;\">\n  <label class=\"form-label\" for=\"report-file\">Import CSV</label>\n  <input id=\"report-file\" type=\"file\" class=\"file-input\" accept=\".csv\" />\n  <p class=\"form-hint\">Up to 25 MB. First row is treated as the header.</p>\n</div>"
 }

@@ -46,7 +46,7 @@
   }
 
   /* Optical Tabular Numerals for Precision Data */
-  table, .ai-table, .ai-matrix-table, .ai-kpi-value, .ai-badge-mono, .ai-pagination-link, .ai-step-circle, .ai-pricing-price, .ai-product-price, .ai-stat-value, [data-tabular] {
+  table, .table, .matrix-table, .kpi-value, .badge-mono, .pagination-link, .step-circle, .pricing-price, .product-price, .stat-value, [data-tabular] {
     font-variant-numeric: tabular-nums;
   }
 
@@ -112,7 +112,7 @@
 
 @layer base {
   /* Skip link: hidden until focused */
-  .ai-skip-link {
+  .skip-link {
     position: absolute;
     left: 0.75rem;
     top: -3rem;
@@ -123,7 +123,7 @@
     border-radius: var(--ai-radius-xs);
     font-size: 0.8125rem;
   }
-  .ai-skip-link:focus {
+  .skip-link:focus {
     top: 0.75rem;
   }
 }
@@ -140,20 +140,20 @@
 
 @layer base {
   /* Inline text link */
-  .ai-link {
+  .link {
     color: var(--ai-accent);
     text-decoration: underline;
     text-underline-offset: 0.2em;
     text-decoration-thickness: 1px;
     transition: color var(--ai-duration-fast);
   }
-  .ai-link:hover {
+  .link:hover {
     color: var(--ai-accent-hover);
   }
-  .ai-link-muted {
+  .link-muted {
     color: var(--ai-text-secondary);
   }
-  .ai-link-muted:hover {
+  .link-muted:hover {
     color: var(--ai-text-primary);
   }
 }

@@ -9,5 +9,5 @@
     "status",
     "agent"
   ],
-  "html": "<div class=\"ai-card\" style=\"padding: var(--ai-space-4);\">\n  <div class=\"ai-flex ai-justify-between ai-items-center\">\n    <div class=\"ai-flex ai-items-center ai-gap-2\">\n      <span class=\"ai-spinner ai-spinner-sm\"></span>\n      <span class=\"ai-text-sm ai-font-medium\">Generating</span>\n    </div>\n    <span class=\"ai-font-mono ai-text-xs ai-text-muted\">42 tok/s</span>\n  </div>\n  <div class=\"ai-progress ai-progress-indeterminate\" style=\"margin-top: var(--ai-space-3);\"><div class=\"ai-progress-bar\"></div></div>\n  <p class=\"ai-text-xs ai-text-muted\" style=\"margin-top: var(--ai-space-2);\">Stream only. Do not pulse static dots.</p>\n</div>"
+  "html": "<div class=\"card\" style=\"padding: var(--ai-space-4);\">\n  <div class=\"flex justify-between items-center\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"spinner spinner-sm\"></span>\n      <span class=\"text-sm font-medium\">Generating</span>\n    </div>\n    <span class=\"font-mono text-xs text-muted\">42 tok/s</span>\n  </div>\n  <div class=\"progress progress-indeterminate\" style=\"margin-top: var(--ai-space-3);\"><div class=\"progress-bar\"></div></div>\n  <p class=\"text-xs text-muted\" style=\"margin-top: var(--ai-space-2);\">Stream only. Do not pulse static dots.</p>\n</div>"
 }

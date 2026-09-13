@@ -3,7 +3,7 @@
      --ai-toast-offset  distance from the viewport edges, all four positions
      --ai-toast-gap     space between stacked toasts
      --ai-toast-width   max width of the stack */
-  .ai-toast-container {
+  .toast-container {
     position: fixed;
     bottom: var(--ai-toast-offset, var(--ai-space-6));
     right: var(--ai-toast-offset, var(--ai-space-6));
@@ -15,7 +15,7 @@
     pointer-events: none;
   }
 
-  .ai-toast,
+  .toast,
   ai-toast {
     pointer-events: auto;
     display: flex;
@@ -33,21 +33,21 @@
     box-sizing: border-box;
   }
 
-  .ai-toast-icon {
+  .toast-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
 
-  .ai-toast-message {
+  .toast-message {
     flex: 1;
     line-height: 1.4;
     font-size: 0.8125rem;
     color: var(--ai-text-primary);
   }
 
-  .ai-toast-close {
+  .toast-close {
     background: transparent;
     border: none;
     color: var(--ai-text-muted);
@@ -63,7 +63,7 @@
     line-height: 1;
     transition: all var(--ai-duration-fast) var(--ai-ease-out);
   }
-  .ai-toast-close:hover {
+  .toast-close:hover {
     color: var(--ai-text-primary);
     background-color: var(--ai-surface-1);
   }
@@ -80,12 +80,12 @@
   }
 
   /* Toast with Countdown Progress Bar */
-  .ai-toast-countdown {
+  .toast-countdown {
     position: relative;
     overflow: hidden;
   }
 
-  .ai-toast-progress {
+  .toast-progress {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -96,16 +96,16 @@
     opacity: 0.7;
   }
 
-  .ai-toast-success .ai-toast-progress {
+  .toast-success .toast-progress {
     background: var(--ai-success);
   }
 
-  .ai-toast-error .ai-toast-progress,
-  .ai-toast-danger .ai-toast-progress {
+  .toast-error .toast-progress,
+  .toast-danger .toast-progress {
     background: var(--ai-danger);
   }
 
-  .ai-toast-warning .ai-toast-progress {
+  .toast-warning .toast-progress {
     background: var(--ai-warning);
   }
 
@@ -118,21 +118,21 @@
 @layer components {
   /* Placement: data-ai-toast-position="top-right|top-center|top-left|bottom-left|bottom-center"
      Each edge uses the same --ai-toast-offset as the default bottom-right stack. */
-  .ai-toast-container[data-ai-toast-position^="top"] { top: var(--ai-toast-offset, var(--ai-space-6)); bottom: auto; }
-  .ai-toast-container[data-ai-toast-position$="left"] { left: var(--ai-toast-offset, var(--ai-space-6)); right: auto; }
-  .ai-toast-container[data-ai-toast-position$="center"] { left: 50%; right: auto; transform: translateX(-50%); }
+  .toast-container[data-ai-toast-position^="top"] { top: var(--ai-toast-offset, var(--ai-space-6)); bottom: auto; }
+  .toast-container[data-ai-toast-position$="left"] { left: var(--ai-toast-offset, var(--ai-space-6)); right: auto; }
+  .toast-container[data-ai-toast-position$="center"] { left: 50%; right: auto; transform: translateX(-50%); }
   /* Timing adjustable: the countdown pauses while the pointer or focus is on it */
-  .ai-toast-countdown:hover .ai-toast-progress,
-  .ai-toast-countdown:focus-within .ai-toast-progress {
+  .toast-countdown:hover .toast-progress,
+  .toast-countdown:focus-within .toast-progress {
     animation-play-state: paused;
   }
 }
 
 @layer components {
-  .ai-toast-info {
+  .toast-info {
     border-color: color-mix(in srgb, var(--ai-accent) 35%, var(--ai-border));
   }
-  .ai-toast-info .ai-toast-icon {
+  .toast-info .toast-icon {
     color: var(--ai-accent);
   }
 }

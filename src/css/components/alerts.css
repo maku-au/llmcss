@@ -1,7 +1,7 @@
 @layer components {
   /* Alerts
      --ai-alert-padding  inner padding of the alert box */
-  .ai-alert {
+  .alert {
     display: flex;
     align-items: flex-start;
     gap: var(--ai-space-3);
@@ -14,38 +14,38 @@
     line-height: 1.5;
   }
 
-  .ai-alert-icon {
+  .alert-icon {
     flex-shrink: 0;
     width: 1.25rem;
     height: 1.25rem;
     margin-top: 0.125rem;
   }
 
-  .ai-alert-info {
+  .alert-info {
     background-color: var(--ai-accent-subtle);
     border-color: color-mix(in srgb, var(--ai-accent) 25%, var(--ai-border));
     color: var(--ai-text-primary);
   }
-  .ai-alert-info .ai-alert-icon { color: var(--ai-accent); }
+  .alert-info .alert-icon { color: var(--ai-accent); }
 
-  .ai-alert-success {
+  .alert-success {
     background-color: var(--ai-success-subtle);
     border-color: color-mix(in srgb, var(--ai-success) 25%, var(--ai-border));
     color: var(--ai-text-primary);
   }
-  .ai-alert-success .ai-alert-icon { color: var(--ai-success); }
+  .alert-success .alert-icon { color: var(--ai-success); }
 
-  .ai-alert-warning {
+  .alert-warning {
     background-color: var(--ai-warning-subtle);
     border-color: color-mix(in srgb, var(--ai-warning) 25%, var(--ai-border));
     color: var(--ai-text-primary);
   }
-  .ai-alert-warning .ai-alert-icon { color: var(--ai-warning); }
+  .alert-warning .alert-icon { color: var(--ai-warning); }
 
-  .ai-alert-danger {
+  .alert-danger {
     background-color: var(--ai-danger-subtle);
     border-color: color-mix(in srgb, var(--ai-danger) 25%, var(--ai-border));
     color: var(--ai-text-primary);
   }
-  .ai-alert-danger .ai-alert-icon { color: var(--ai-danger); }
+  .alert-danger .alert-icon { color: var(--ai-danger); }
 }

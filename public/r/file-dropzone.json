@@ -10,5 +10,5 @@
     "dropzone",
     "form"
   ],
-  "html": "<label class=\"ai-dropzone\" for=\"dropzone-file\">\n  <strong style=\"color: var(--ai-text-primary);\">Drop a file</strong>\n  <span class=\"ai-text-xs\">PNG, JSON, or CSV up to 8MB</span>\n  <span class=\"ai-btn ai-btn-outline ai-btn-sm\" style=\"margin-top: var(--ai-space-2);\">Browse</span>\n  <input id=\"dropzone-file\" type=\"file\" class=\"ai-sr-only\" multiple />\n</label>"
+  "html": "<label class=\"dropzone\" for=\"dropzone-file\">\n  <strong style=\"color: var(--ai-text-primary);\">Drop a file</strong>\n  <span class=\"text-xs\">PNG, JSON, or CSV up to 8MB</span>\n  <span class=\"btn btn-outline btn-sm\" style=\"margin-top: var(--ai-space-2);\">Browse</span>\n  <input id=\"dropzone-file\" type=\"file\" class=\"sr-only\" multiple />\n</label>"
 }

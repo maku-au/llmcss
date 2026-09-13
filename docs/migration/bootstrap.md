@@ -5,77 +5,86 @@
 - Install: `npm install llmcss`
 - Include: `<link rel="stylesheet" href="https://llmcss.io/llmcss.css" />`
 - Runtime (optional, for modal/drawer/dropdown/accordion/tabs/toast/command palette): `<script src="https://llmcss.io/llmcss.js" defer></script>`
-- Sample: `<button class="ai-btn ai-btn-primary">Save</button>`
+- Sample: `<button class="btn btn-primary">Save</button>`
 - Validate: `npx llmcss lint --fix <file>` then `npx llmcss validate <file>`
 
 Bootstrap and LLMCSS are the same kind of library: a stylesheet of named components
-with a thin utility layer, not a class generator. That makes most of the move a rename.
-`card` becomes `ai-card`, `alert-danger` becomes `ai-alert-danger`, `modal-header`
-becomes `ai-modal-header`, and the markup structure survives almost intact.
+with a thin utility layer, not a class generator. LLMCSS classes carry no prefix, so for
+most of the table below the move is not a rename at all: `card` is `card`, `alert-danger`
+is `alert-danger`, `modal-header` is `modal-header`, the identical string in both
+frameworks, and the markup structure survives almost intact.
+
+**Never load Bootstrap and LLMCSS on the same page.** Because so many class names are now
+identical (`btn`, `card`, `container`, `modal`, `alert`, `table`, `badge`, `accordion`,
+`dropdown`, `navbar`, and more), whichever stylesheet loads last silently wins for every
+shared name, and `container` in particular resolves to different CSS under either
+framework despite the identical name. Bootstrap's grid classes, `row` most of all, have
+no LLMCSS counterpart at all, so mixing the two leaves you with no way to reason about
+which rule applies where. Pick one framework per page.
 
 Two things do not translate cleanly, and this guide says so plainly. The 12-column
 `row` and `col-*` grid is a different mental model from CSS grid, and Bootstrap's
 JavaScript bundle plus Popper is replaced by a much smaller delegation runtime. Every
-`ai-` class below exists in `public/classes.json`.
+class below exists in `public/classes.json`.
 
 ## Class mapping
 
 | Bootstrap | LLMCSS | Note |
 | --- | --- | --- |
-| `btn` | `ai-btn` | Same base-plus-modifier pattern. Sizes are `ai-btn-xs` through `ai-btn-xl`. |
-| `btn-primary` | `ai-btn-primary` | Colour comes from `var(--ai-accent)`, not a `$primary` Sass variable. |
-| `btn-secondary` | `ai-btn-secondary` | `ai-btn-ghost` covers what you used `btn-link` for. |
-| `btn-outline-primary`, `btn-outline-secondary` | `ai-btn-outline` | One outline variant, not one per colour. Danger is `ai-btn-danger`. |
-| `btn-close` | `ai-close` | Shared by modals, drawers and alerts, not modal-only. |
-| `card` | `ai-card` | `ai-card-interactive` adds the hover treatment. |
-| `card-body` | `ai-card-body` | `ai-card-footer` and `ai-card-title` complete the set. |
-| `card-header` | `ai-card-header` | |
-| `container` | `ai-container` | Width variants `ai-container-sm` through `ai-container-xl`, plus `ai-container-fluid`. |
-| `row` | no direct equivalent | The real conceptual gap. Delete the wrapper and put `ai-grid ai-grid-cols-12 ai-gap-4` on the parent. See the grid note below. |
-| `col-6`, `col-md-4` | `ai-col-span-6`, `ai-md:col-span-4` | Only meaningful inside an `ai-grid` parent that declares its tracks. The breakpoint moves to the front, inside the prefix: sm, md, lg, xl and cq (container query). |
-| `d-flex` | `ai-flex` | `ai-grid`, `ai-block` and `ai-inline-flex` follow the same rename. |
-| `d-none` | `ai-hidden` | `ai-md:hidden` replaces `d-md-none`. |
-| `justify-content-between` | `ai-justify-between` | Shorter, same meaning. `ai-justify-center` likewise. |
-| `align-items-center` | `ai-items-center` | |
-| `form-control` | `ai-input` | `ai-textarea` for multi-line, `ai-select` for selects. |
-| `form-label` | `ai-form-label` | `ai-form-group` wraps label, control, `ai-form-hint` and `ai-form-error` with the spacing decided once. |
-| `table` | `ai-table` | `ai-table-container` is the `table-responsive` scroll wrapper. |
-| `table-striped` | `ai-table-striped` | `ai-table-hover`, `ai-table-compact` and `ai-table-sticky` are extras Bootstrap has no equivalent for. |
-| `badge`, `badge bg-primary` | `ai-badge`, `ai-badge-primary` | Bootstrap 5 reuses background utilities for badge colour. LLMCSS keeps dedicated modifiers such as `ai-badge-danger`, `ai-badge-dot` and `ai-badge-outline`. |
-| `alert` | `ai-alert` | `ai-alert-icon` styles the leading glyph. |
-| `alert-success`, `alert-danger`, `alert-warning`, `alert-info` | `ai-alert-success`, `ai-alert-danger`, `ai-alert-warning`, `ai-alert-info` | A straight rename. |
-| `modal` | `ai-modal` | Also available as the `<ai-modal>` custom element. |
-| `modal-dialog`, `modal-content` | `ai-modal-box` | Two wrappers collapse into one. Sizes are `ai-modal-box-sm` and `ai-modal-box-lg`. |
-| `modal-header`, `modal-body`, `modal-footer` | `ai-modal-header`, `ai-modal-body`, `ai-modal-footer` | With `ai-modal-title` and `ai-modal-close`. The runtime manages `ai-modal-backdrop`. |
-| `nav`, `navbar-nav` | `ai-nav-links` | `ai-tabs-list` is the `nav-tabs` case, inside an `ai-tabs` container. `offcanvas` becomes `ai-drawer` with `ai-drawer-panel`. |
-| `nav-link` | `ai-nav-link` | |
-| `navbar` | `ai-navbar` | `ai-navbar-inner` is the width-constrained row inside it. |
-| `dropdown` | `ai-dropdown` | |
-| `dropdown-menu` | `ai-dropdown-menu` | `ai-dropdown-right` aligns to the far edge. |
-| `dropdown-item` | `ai-dropdown-item` | `ai-dropdown-divider` and `ai-dropdown-header` too. |
-| `accordion` | `ai-accordion` | With `ai-accordion-item`, `ai-accordion-trigger` and `ai-accordion-content`. |
-| `spinner-border` | `ai-spinner` | `ai-spinner-ring` is the ring style. Sizes `ai-spinner-sm` and `ai-spinner-lg`. |
-| `progress`, `progress-bar` | `ai-progress`, `ai-progress-bar` | `ai-progress-indeterminate` and `ai-progress-striped` are built in. |
-| `list-group`, `list-group-item` | `ai-list-group`, `ai-list-group-item` | `ai-list-group-flush` drops the outer border. |
-| `text-center` | `ai-text-center` | `ai-text-muted` replaces `text-muted` and tracks the theme. |
-| `fw-bold` | `ai-font-bold` | Naming follows the CSS property, not Bootstrap's abbreviation. |
-| `p-3`, `mb-3` | `ai-p-3`, `ai-mb-3` | Bootstrap's 0 to 5 spacer scale does not line up with the LLMCSS steps. Every spacing utility shares 0, 1, 2, 3, 4, 5, 6, 8, 10, 12; padding continues to 16, 20, 24, and `ai-gap-*` alone continues to 32. Check the rendered value rather than assuming `p-3` matches `ai-p-3` visually. |
-| `w-100`, `h-100` | `ai-w-full`, `ai-h-full` | `ai-sr-only` covers `visually-hidden`. |
-| `bg-light`, `bg-dark`, `text-bg-primary` | no direct equivalent | Surfaces are tokens, not classes. Use `ai-card` or `ai-panel`, or override the surface tokens on the container. |
+| `btn` | `btn` | Same base-plus-modifier pattern. Sizes are `btn-xs` through `btn-xl`. |
+| `btn-primary` | `btn-primary` | Colour comes from `var(--ai-accent)`, not a `$primary` Sass variable. |
+| `btn-secondary` | `btn-secondary` | `btn-ghost` covers what you used `btn-link` for. |
+| `btn-outline-primary`, `btn-outline-secondary` | `btn-outline` | One outline variant, not one per colour. Danger is `btn-danger`. |
+| `btn-close` | `close` | Shared by modals, drawers and alerts, not modal-only. |
+| `card` | `card` | `card-interactive` adds the hover treatment. |
+| `card-body` | `card-body` | `card-footer` and `card-title` complete the set. |
+| `card-header` | `card-header` | |
+| `container` | `container` | Width variants `container-sm` through `container-xl`, plus `container-fluid`. |
+| `row` | no direct equivalent | The real conceptual gap. Delete the wrapper and put `grid grid-cols-12 gap-4` on the parent. See the grid note below. |
+| `col-6`, `col-md-4` | `col-span-6`, `md:col-span-4` | Only meaningful inside an `grid` parent that declares its tracks. The breakpoint moves to the front, inside the prefix: sm, md, lg, xl and cq (container query). |
+| `d-flex` | `flex` | `grid`, `block` and `inline-flex` follow the same rename. |
+| `d-none` | `hidden` | `md:hidden` replaces `d-md-none`. |
+| `justify-content-between` | `justify-between` | Shorter, same meaning. `justify-center` likewise. |
+| `align-items-center` | `items-center` | |
+| `form-control` | `input` | `textarea` for multi-line, `select` for selects. |
+| `form-label` | `form-label` | `form-group` wraps label, control, `form-hint` and `form-error` with the spacing decided once. |
+| `table` | `table` | `table-container` is the `table-responsive` scroll wrapper. |
+| `table-striped` | `table-striped` | `table-hover`, `table-compact` and `table-sticky` are extras Bootstrap has no equivalent for. |
+| `badge`, `badge bg-primary` | `badge`, `badge-primary` | Bootstrap 5 reuses background utilities for badge colour. LLMCSS keeps dedicated modifiers such as `badge-danger`, `badge-dot` and `badge-outline`. |
+| `alert` | `alert` | `alert-icon` styles the leading glyph. |
+| `alert-success`, `alert-danger`, `alert-warning`, `alert-info` | `alert-success`, `alert-danger`, `alert-warning`, `alert-info` | A straight rename. |
+| `modal` | `modal` | Also available as the `<ai-modal>` custom element. |
+| `modal-dialog`, `modal-content` | `modal-box` | Two wrappers collapse into one. Sizes are `modal-box-sm` and `modal-box-lg`. |
+| `modal-header`, `modal-body`, `modal-footer` | `modal-header`, `modal-body`, `modal-footer` | With `modal-title` and `modal-close`. The runtime manages `modal-backdrop`. |
+| `nav`, `navbar-nav` | `nav-links` | `tabs-list` is the `nav-tabs` case, inside an `tabs` container. `offcanvas` becomes `drawer` with `drawer-panel`. |
+| `nav-link` | `nav-link` | |
+| `navbar` | `navbar` | `navbar-inner` is the width-constrained row inside it. |
+| `dropdown` | `dropdown` | |
+| `dropdown-menu` | `dropdown-menu` | `dropdown-right` aligns to the far edge. |
+| `dropdown-item` | `dropdown-item` | `dropdown-divider` and `dropdown-header` too. |
+| `accordion` | `accordion` | With `accordion-item`, `accordion-trigger` and `accordion-content`. |
+| `spinner-border` | `spinner` | `spinner-ring` is the ring style. Sizes `spinner-sm` and `spinner-lg`. |
+| `progress`, `progress-bar` | `progress`, `progress-bar` | `progress-indeterminate` and `progress-striped` are built in. |
+| `list-group`, `list-group-item` | `list-group`, `list-group-item` | `list-group-flush` drops the outer border. |
+| `text-center` | `text-center` | `text-muted` replaces `text-muted` and tracks the theme. |
+| `fw-bold` | `font-bold` | Naming follows the CSS property, not Bootstrap's abbreviation. |
+| `p-3`, `mb-3` | `p-3`, `mb-3` | Bootstrap's 0 to 5 spacer scale does not line up with the LLMCSS steps. Every spacing utility shares 0, 1, 2, 3, 4, 5, 6, 8, 10, 12; padding continues to 16, 20, 24, and `gap-*` alone continues to 32. Check the rendered value rather than assuming `p-3` matches `p-3` visually, since the identical class name is exactly the trap: same string, different scale. |
+| `w-100`, `h-100` | `w-full`, `h-full` | `sr-only` covers `visually-hidden`. |
+| `bg-light`, `bg-dark`, `text-bg-primary` | no direct equivalent | Surfaces are tokens, not classes. Use `card` or `panel`, or override the surface tokens on the container. |
 
 ## What changes conceptually
 
 ### Semantic components vs utility soup
 
 This is the part you already agree with, since Bootstrap works the same way. LLMCSS
-ships `ai-card`, `ai-btn`, `ai-modal`, `ai-table` and `ai-alert` as real components
+ships `card`, `btn`, `modal`, `table` and `alert` as real components
 with real internal structure, so a card is one class plus its parts rather than twelve
 utilities pasted between files.
 
 The difference in degree is that LLMCSS covers more application chrome out of the box.
 Command palettes, drawers, skeletons, KPI tiles, toasts and dashboards are components
-rather than things you build on top of a starter theme. Utilities like `ai-flex`,
-`ai-gap-4` and `ai-p-6` exist and you will use them constantly, but they are the
+rather than things you build on top of a starter theme. Utilities like `flex`,
+`gap-4` and `p-6` exist and you will use them constantly, but they are the
 seasoning, not the meal. Run `npx llmcss search <name>` before composing one by hand.
 
 ### Tokens vs color scales
@@ -107,8 +116,8 @@ is a JavaScript class you either instantiate or drive through `data-bs-*` attrib
 
 LLMCSS ships one optional script, `dist/llmcss.js`, about 21KB minified (about 6KB gzipped). It does document-level
 event delegation for `data-ai-toggle`, `data-ai-dismiss` and `data-ai-tab`, and
-registers the `ai-modal` style custom elements (`ai-modal`, `ai-drawer`, `ai-dropdown`,
-`ai-accordion`, `ai-tabs`, `ai-toast`, `ai-command-palette`). Focus trapping, inert
+registers the `modal` style custom elements (`modal`, `drawer`, `dropdown`,
+`accordion`, `tabs`, `toast`, `command-palette`). Focus trapping, inert
 backgrounds, Escape closing only the topmost overlay and `aria-expanded` syncing are
 included, so the accessibility work Bootstrap's JS did for you is not lost.
 
@@ -124,42 +133,42 @@ and command palette is still pure CSS.
 
 `row` and `col-*` are a 12-column system built on flex with negative margins and
 per-column padding. LLMCSS has no `row`. You declare the track count on the parent with
-`ai-grid ai-grid-cols-12`, set the gutter with `ai-gap-4`, and children claim tracks
-with `ai-col-span-6` or `ai-md:col-span-4`. There is no gutter-cancelling wrapper, so
+`grid grid-cols-12`, set the gutter with `gap-4`, and children claim tracks
+with `col-span-6` or `md:col-span-4`. There is no gutter-cancelling wrapper, so
 delete the `row` element rather than renaming it.
 
-Two shortcuts remove most of the 12-column arithmetic: `ai-grid-cols-3` for an even
-split, and `ai-grid-auto-fit` (with `ai-grid-min-xs` through `ai-grid-min-lg`) for a
+Two shortcuts remove most of the 12-column arithmetic: `grid-cols-3` for an even
+split, and `grid-auto-fit` (with `grid-min-xs` through `grid-min-lg`) for a
 responsive card wall that needs no breakpoint classes at all.
 
 ## Mechanical first pass
 
-Run the linter before hand-editing:
+Swap the stylesheet first (remove Bootstrap's, add LLMCSS's, drop `bootstrap.bundle.min.js`
+and Popper) and never run the two side by side. Because so many class names are now
+identical strings, a page can look almost right immediately, which hides the rows above
+that share a name but not a meaning (`container`, the spacing scale, `btn-outline-*`).
 
-```
-npx llmcss lint --fix app/views/dashboard.html
-```
-
-It rewrites unprefixed legacy tokens (`btn`, `card`, `flex`, `grid`, `badge`,
-`items-center`, `justify-between`, `rounded-lg` and similar) to their `ai-` form. The
-match is token-exact, so a correct `ai-btn` is never touched and a second run changes
-nothing.
-
-Know its limits before you trust it:
-
-- The fix map in the CLI is small, about 16 entries. It is a starting nudge, not a codemod.
-- It only rewrites whole tokens inside `class` and `className` attributes with quoted values.
-- It does not understand Bootstrap's grid. `row`, `col-6` and `col-md-4` pass through untouched, and that is exactly the part of the migration that needs a human.
-- It will not restructure markup into semantic components, so `modal-dialog` plus `modal-content` will not collapse into `ai-modal-box` on its own.
-- Classes built by string concatenation or template interpolation, which is most of a Rails or Django template helper, are invisible to it.
-
-Afterwards, list what is left:
+Run the validator to see what needs attention:
 
 ```
 npx llmcss validate app/views/dashboard.html
 ```
 
-`validate` recognises a wider legacy map (43 entries) than `lint --fix` can rewrite, and
-it also flags `ai-` classes that do not exist, which is the fastest way to catch a class
-name someone invented. Then run `npx llmcss audit <file>` for design-quality findings
-such as nested cards and decorative motion.
+`validate` warns on any class not in `public/classes.json` (fails the file only under
+`--strict`) and always fails on a hallucinated class or a stray `ai-` prefix. It cannot
+tell you that `row` and `col-6` render as nothing under LLMCSS, since they simply are not
+LLMCSS classes to begin with, nor that a same-named class carries a different scale; that
+is what the mapping table above is for.
+
+```
+npx llmcss lint --fix app/views/dashboard.html
+```
+
+`lint --fix` strips a stray `ai-` prefix back to the bare name. It does not understand
+Bootstrap's grid, so `row`, `col-6` and `col-md-4` pass through untouched, and it will not
+restructure markup into semantic components, so `modal-dialog` plus `modal-content` will
+not collapse into `modal-box` on its own; both are a human read of the table above, which
+is the part of the migration that actually needs one.
+
+Then run `npx llmcss audit <file>` for design-quality findings such as nested cards and
+decorative motion.

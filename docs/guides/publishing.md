@@ -5,10 +5,10 @@
 - Install (what consumers run): `npm install llmcss`
 - Include: `<link rel="stylesheet" href="https://llmcss.io/llmcss.css" />`
 - Publish (what you run): `npm run build && npm publish`
-- Sample: `<button class="ai-btn ai-btn-primary">Save</button>`
+- Sample: `<button class="btn btn-primary">Save</button>`
 - Validate before tagging: `npm pack --dry-run` and `npx llmcss list`
 
-The package is `llmcss`, currently version `0.3.0`, MIT, public.
+The package is `llmcss`, currently version `0.4.0`, MIT, public.
 
 ## Before you publish
 
@@ -65,8 +65,8 @@ npm publish
 the commit that produced the tarball:
 
 ```bash
-git tag v0.3.0
-git push origin v0.3.0
+git tag v0.4.0
+git push origin v0.4.0
 ```
 
 Tag after publishing succeeds, not before, so a failed publish does not leave a
@@ -80,8 +80,8 @@ jsdelivr mirrors npm automatically, with no configuration. Within a few minutes
 of the publish:
 
 ```
-https://cdn.jsdelivr.net/npm/llmcss@0.3.0/dist/llmcss.css
-https://cdn.jsdelivr.net/npm/llmcss@0.3.0/dist/llmcss.js
+https://cdn.jsdelivr.net/npm/llmcss@0.4.0/dist/llmcss.css
+https://cdn.jsdelivr.net/npm/llmcss@0.4.0/dist/llmcss.js
 ```
 
 Pin the exact version in production. These other forms exist and are useful in a
@@ -89,8 +89,8 @@ sandbox, but they change under you:
 
 ```
 https://cdn.jsdelivr.net/npm/llmcss/dist/llmcss.css        latest
-https://cdn.jsdelivr.net/npm/llmcss@0.3/dist/llmcss.css    latest 0.3.x
-https://cdn.jsdelivr.net/npm/llmcss@0.3.0/dist/llmcss.min.css   see note
+https://cdn.jsdelivr.net/npm/llmcss@0.4/dist/llmcss.css    latest 0.4.x
+https://cdn.jsdelivr.net/npm/llmcss@0.4.0/dist/llmcss.min.css   see note
 ```
 
 That last one is a trap worth knowing: jsdelivr will minify on the fly for a
@@ -98,7 +98,7 @@ That last one is a trap worth knowing: jsdelivr will minify on the fly for a
 so ask for `dist/llmcss.css` and skip the round trip.
 
 `package.json` sets `"style": "dist/llmcss.css"`, and jsdelivr honours it, so
-`https://cdn.jsdelivr.net/npm/llmcss@0.3.0` alone resolves to the stylesheet.
+`https://cdn.jsdelivr.net/npm/llmcss@0.4.0` alone resolves to the stylesheet.
 Being explicit is still better.
 
 ## How llmcss.io maps to the same files
@@ -108,9 +108,9 @@ bytes from the same `npm run build`:
 
 | Site URL | Package path | jsdelivr equivalent |
 | --- | --- | --- |
-| `https://llmcss.io/llmcss.css` | `dist/llmcss.css` | `.../npm/llmcss@0.3.0/dist/llmcss.css` |
-| `https://llmcss.io/llmcss.js` | `dist/llmcss.js` | `.../npm/llmcss@0.3.0/dist/llmcss.js` |
-| `https://llmcss.io/classes.json` | `public/classes.json` | `.../npm/llmcss@0.3.0/public/classes.json` |
+| `https://llmcss.io/llmcss.css` | `dist/llmcss.css` | `.../npm/llmcss@0.4.0/dist/llmcss.css` |
+| `https://llmcss.io/llmcss.js` | `dist/llmcss.js` | `.../npm/llmcss@0.4.0/dist/llmcss.js` |
+| `https://llmcss.io/classes.json` | `public/classes.json` | `.../npm/llmcss@0.4.0/public/classes.json` |
 | `https://llmcss.io/registry.json` | `public/registry.json` | not published to npm |
 
 The site URL is unversioned and always the current release, which is what the
@@ -131,7 +131,7 @@ themed Pro id and `llmcss trim` without a local `dist/` both hit
 3. `npm pack --dry-run` matches the expectations above
 4. Bump `version` in `package.json` if this is not a re-run, and update `CHANGELOG.md`
 5. `npm login && npm publish`
-6. `git tag v0.3.0 && git push origin v0.3.0`
+6. `git tag v0.4.0 && git push origin v0.4.0`
 7. Deploy the same `dist/` and `public/` to llmcss.io so the site and the
    registry agree with the tarball
-8. Confirm `https://cdn.jsdelivr.net/npm/llmcss@0.3.0/dist/llmcss.css` returns 200
+8. Confirm `https://cdn.jsdelivr.net/npm/llmcss@0.4.0/dist/llmcss.css` returns 200

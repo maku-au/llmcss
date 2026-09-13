@@ -12,5 +12,5 @@
     "rail",
     "marquee"
   ],
-  "html": "<div class=\"ai-logo-rail\" aria-label=\"Teams using LLMCSS\">\n  <span>Northwind</span>\n  <span>Harbor Ops</span>\n  <span>Lattice Labs</span>\n  <span>Quill</span>\n  <span>Meridian</span>\n  <span>Fieldnote</span>\n</div>"
+  "html": "<div class=\"logo-rail\" aria-label=\"Teams using LLMCSS\">\n  <span>Northwind</span>\n  <span>Harbor Ops</span>\n  <span>Lattice Labs</span>\n  <span>Quill</span>\n  <span>Meridian</span>\n  <span>Fieldnote</span>\n</div>"
 }

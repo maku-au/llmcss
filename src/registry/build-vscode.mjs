@@ -25,12 +25,13 @@ const publicDir = path.resolve(__dirname, '../../public');
 
 const MAX_CHOICES = 60;
 
+// Custom element tag names keep the ai- prefix; only class names lost it.
 const CUSTOM_ELEMENTS = [
   ['ai-modal', 'Dialog overlay. Open it with a button carrying data-ai-toggle="modal" data-ai-target="#id", or with window.LLMCSS.open(). Add the open attribute for the initial state.'],
-  ['ai-tabs', 'Tab set. Each button.ai-tab inside carries data-ai-tab="#panel-id"; the runtime syncs aria-selected and tabindex.'],
+  ['ai-tabs', 'Tab set. Each button.tab inside carries data-ai-tab="#panel-id"; the runtime syncs aria-selected and tabindex.'],
   ['ai-dropdown', 'Menu anchored to a trigger. The trigger carries data-ai-toggle="dropdown". Closes on outside click and on Escape.'],
-  ['ai-accordion', 'Disclosure group. Each item is an .ai-accordion-item whose trigger carries data-ai-toggle="accordion".'],
-  ['ai-drawer', 'Edge panel. Open it with data-ai-toggle="drawer" data-ai-target="#id". Locks page scroll unless .ai-drawer-no-lock is present.'],
+  ['ai-accordion', 'Disclosure group. Each item is an .accordion-item whose trigger carries data-ai-toggle="accordion".'],
+  ['ai-drawer', 'Edge panel. Open it with data-ai-toggle="drawer" data-ai-target="#id". Locks page scroll unless .drawer-no-lock is present.'],
   ['ai-toast', 'Transient notification. A child with data-ai-dismiss="toast" removes it.'],
   ['ai-command-palette', 'Filterable command list. Typing in the inner input filters the items.'],
 ];
@@ -150,7 +151,9 @@ function buildHtmlCustomData(states) {
 function buildSnippets(classes, components) {
   const snippets = {};
 
-  // One snippet per component id: prefix ai-<id>, body is the component markup.
+  // One snippet per component id. The snippet trigger keeps the ai- prefix on
+  // purpose: it namespaces the completion list, and typing a bare class name
+  // like `card` must not expand a whole component.
   for (const comp of components) {
     if (!comp.html || comp.tier === 'pro') continue; // Themed Pro markup is not in this repo
     const key = `LLMCSS ${comp.name}`;
@@ -175,8 +178,8 @@ function buildSnippets(classes, components) {
     chunks.forEach((chunk, idx) => {
       const suffix = chunks.length > 1 ? `-${idx + 1}` : '';
       const key = `LLMCSS ${family} classes${suffix}`;
-      // A choice placeholder must not contain a bare comma or pipe, and ai-*
-      // class names never do, so the list can go in verbatim.
+      // A choice placeholder must not contain a bare comma or pipe, and class
+      // names never do, so the list can go in verbatim.
       const choice = `\${1|${chunk.join(',')}|}`;
       snippets[key] = {
         prefix: `ai-family-${family}${suffix}`,

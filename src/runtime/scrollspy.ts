@@ -1,7 +1,7 @@
 /**
  * LLMCSS Scrollspy runtime.
  *
- * Marks the one `.ai-scrollspy-link` whose section is currently in view with
+ * Marks the one `.scrollspy-link` whose section is currently in view with
  * `.is-active` and `aria-current="location"`.
  *
  * Progressive enhancement only: a link cannot match `:target`, so with this
@@ -12,6 +12,9 @@
  * names the scrolling element to observe inside, for an outline beside a
  * scrolling pane rather than the page itself.
  */
+
+import { CLASS_PREFIX as c } from '../config/prefix';
+
 
 interface SpyEntry {
   link: HTMLAnchorElement;
@@ -33,7 +36,7 @@ function resolveRoot(nav: HTMLElement, prefix: string): Element | null {
 }
 
 function collect(nav: HTMLElement, prefix: string): SpyEntry[] {
-  const links = Array.from(nav.querySelectorAll<HTMLAnchorElement>(`a.${prefix}-scrollspy-link[href*="#"]`));
+  const links = Array.from(nav.querySelectorAll<HTMLAnchorElement>(`a.${c}scrollspy-link[href*="#"]`));
   const entries: SpyEntry[] = [];
 
   for (const link of links) {
@@ -111,17 +114,17 @@ function setupSpy(nav: HTMLElement, prefix: string): void {
 }
 
 /**
- * Wire every `.{prefix}-scrollspy` outline on the page. Safe to call
+ * Wire every `.scrollspy` outline on the page. Safe to call
  * repeatedly: each call rebuilds that nav's observer rather than adding one.
  */
 export function initScrollspy(prefix = 'ai'): void {
   if (typeof document === 'undefined') return;
   if (typeof IntersectionObserver === 'undefined') return;
 
-  document.querySelectorAll<HTMLElement>(`.${prefix}-scrollspy`).forEach((nav) => setupSpy(nav, prefix));
+  document.querySelectorAll<HTMLElement>(`.${c}scrollspy`).forEach((nav) => setupSpy(nav, prefix));
 
   // Navs rendered after load (galleries, SPAs) are picked up as they appear.
-  const scan = () => document.querySelectorAll<HTMLElement>(`.${prefix}-scrollspy`).forEach((nav) => { if (!observers.has(nav)) setupSpy(nav, prefix); });
+  const scan = () => document.querySelectorAll<HTMLElement>(`.${c}scrollspy`).forEach((nav) => { if (!observers.has(nav)) setupSpy(nav, prefix); });
   if (typeof MutationObserver !== 'undefined' && !(document.documentElement as HTMLElement).hasAttribute(`data-${prefix}-scrollspy-watch`)) {
     (document.documentElement as HTMLElement).setAttribute(`data-${prefix}-scrollspy-watch`, '');
     let pending = 0;

@@ -1,38 +1,38 @@
 @layer components {
   /* Form Field Containers */
-  .ai-form-group {
+  .form-group {
     display: flex;
     flex-direction: column;
     gap: var(--ai-space-1);
     margin-bottom: var(--ai-space-4);
   }
 
-  .ai-form-label {
+  .form-label {
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--ai-text-primary);
   }
 
-  .ai-form-label.is-required::after,
-  .ai-form-label[data-required="true"]::after {
+  .form-label.is-required::after,
+  .form-label[data-required="true"]::after {
     content: " *";
     color: var(--ai-danger);
     font-weight: 700;
   }
 
-  .ai-form-hint {
+  .form-hint {
     font-size: 0.75rem;
     color: var(--ai-text-muted);
   }
 
-  .ai-form-error {
+  .form-error {
     font-size: 0.75rem;
     color: var(--ai-danger);
   }
 
   /* Text Inputs & Selects */
-  .ai-input,
-  .ai-textarea {
+  .input,
+  .textarea {
     width: 100%;
     font-family: var(--ai-font-sans);
     font-size: 0.875rem;
@@ -47,7 +47,7 @@
                 background-color var(--ai-duration-fast) var(--ai-ease-out);
   }
 
-  .ai-select {
+  .select {
     width: 100%;
     font-family: var(--ai-font-sans);
     font-size: 0.875rem;
@@ -69,33 +69,33 @@
                 background-color var(--ai-duration-fast) var(--ai-ease-out);
   }
 
-  .ai-textarea {
+  .textarea {
     height: auto;
     min-height: 5rem;
     resize: vertical;
   }
 
-  .ai-input::placeholder,
-  .ai-textarea::placeholder {
+  .input::placeholder,
+  .textarea::placeholder {
     color: var(--ai-text-muted);
   }
 
-  .ai-input:hover,
-  .ai-textarea:hover,
-  .ai-select:hover {
+  .input:hover,
+  .textarea:hover,
+  .select:hover {
     border-color: var(--ai-border-strong);
   }
 
   /* Precision Active & Focus State */
-  .ai-input:focus,
-  .ai-input:focus-visible,
-  .ai-input.is-focused,
-  .ai-textarea:focus,
-  .ai-textarea:focus-visible,
-  .ai-textarea.is-focused,
-  .ai-select:focus,
-  .ai-select:focus-visible,
-  .ai-select.is-focused {
+  .input:focus,
+  .input:focus-visible,
+  .input.is-focused,
+  .textarea:focus,
+  .textarea:focus-visible,
+  .textarea.is-focused,
+  .select:focus,
+  .select:focus-visible,
+  .select.is-focused {
     border-color: var(--ai-accent);
     outline: none;
     box-shadow: 0 0 0 1px var(--ai-accent), 0 0 0 3.5px var(--ai-accent-subtle);
@@ -103,34 +103,34 @@
   }
 
   /* Error & Validation States */
-  .ai-input.is-error,
-  .ai-textarea.is-error,
-  .ai-select.is-error,
-  .ai-input[aria-invalid="true"],
-  .ai-textarea[aria-invalid="true"],
-  .ai-select[aria-invalid="true"] {
+  .input.is-error,
+  .textarea.is-error,
+  .select.is-error,
+  .input[aria-invalid="true"],
+  .textarea[aria-invalid="true"],
+  .select[aria-invalid="true"] {
     border-color: var(--ai-danger);
   }
 
-  .ai-input.is-error:focus,
-  .ai-input.is-error:focus-visible,
-  .ai-textarea.is-error:focus,
-  .ai-textarea.is-error:focus-visible,
-  .ai-select.is-error:focus,
-  .ai-select.is-error:focus-visible,
-  .ai-input[aria-invalid="true"]:focus,
-  .ai-input[aria-invalid="true"]:focus-visible,
-  .ai-textarea[aria-invalid="true"]:focus,
-  .ai-textarea[aria-invalid="true"]:focus-visible,
-  .ai-select[aria-invalid="true"]:focus,
-  .ai-select[aria-invalid="true"]:focus-visible {
+  .input.is-error:focus,
+  .input.is-error:focus-visible,
+  .textarea.is-error:focus,
+  .textarea.is-error:focus-visible,
+  .select.is-error:focus,
+  .select.is-error:focus-visible,
+  .input[aria-invalid="true"]:focus,
+  .input[aria-invalid="true"]:focus-visible,
+  .textarea[aria-invalid="true"]:focus,
+  .textarea[aria-invalid="true"]:focus-visible,
+  .select[aria-invalid="true"]:focus,
+  .select[aria-invalid="true"]:focus-visible {
     border-color: var(--ai-danger);
     box-shadow: 0 0 0 1px var(--ai-danger), 0 0 0 3.5px var(--ai-danger-subtle);
   }
 
-  .ai-input:disabled,
-  .ai-textarea:disabled,
-  .ai-select:disabled {
+  .input:disabled,
+  .textarea:disabled,
+  .select:disabled {
     background-color: var(--ai-surface-1);
     color: var(--ai-text-muted);
     cursor: not-allowed;
@@ -138,24 +138,24 @@
   }
 
   /* Input with prefix/suffix addons */
-  .ai-input-group {
+  .input-group {
     display: flex;
     align-items: stretch;
     width: 100%;
   }
-  .ai-input-group > .ai-input {
+  .input-group > .input {
     flex: 1;
     border-radius: 0;
   }
-  .ai-input-group > :first-child {
+  .input-group > :first-child {
     border-top-left-radius: var(--ai-radius-base);
     border-bottom-left-radius: var(--ai-radius-base);
   }
-  .ai-input-group > :last-child {
+  .input-group > :last-child {
     border-top-right-radius: var(--ai-radius-base);
     border-bottom-right-radius: var(--ai-radius-base);
   }
-  .ai-input-addon {
+  .input-addon {
     display: flex;
     align-items: center;
     padding: 0 var(--ai-space-3);
@@ -164,15 +164,15 @@
     color: var(--ai-text-muted);
     font-size: 0.875rem;
   }
-  .ai-input-group > .ai-input-addon + .ai-input {
+  .input-group > .input-addon + .input {
     border-left: none;
   }
-  .ai-input-group > .ai-input + .ai-input-addon {
+  .input-group > .input + .input-addon {
     border-left: none;
   }
 
   /* Modern Switch Toggle */
-  .ai-switch {
+  .switch {
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -181,14 +181,14 @@
     gap: var(--ai-space-2);
   }
 
-  .ai-switch-input {
+  .switch-input {
     position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
   }
 
-  .ai-switch-track {
+  .switch-track {
     position: relative;
     width: 2.75rem;
     height: 1.5rem;
@@ -199,7 +199,7 @@
                 border-color var(--ai-duration-fast) var(--ai-ease-out);
   }
 
-  .ai-switch-thumb {
+  .switch-thumb {
     position: absolute;
     top: 2px;
     left: 2px;
@@ -211,17 +211,17 @@
     transition: transform var(--ai-duration-fast) var(--ai-ease-out);
   }
 
-  .ai-switch-input:checked + .ai-switch-track {
+  .switch-input:checked + .switch-track {
     background-color: var(--ai-accent);
     border-color: var(--ai-accent);
   }
 
-  .ai-switch-input:checked + .ai-switch-track .ai-switch-thumb {
+  .switch-input:checked + .switch-track .switch-thumb {
     transform: translateX(1.25rem);
   }
 
   /* Custom Checkbox */
-  .ai-checkbox {
+  .checkbox {
     display: inline-flex;
     align-items: center;
     gap: var(--ai-space-2);
@@ -231,7 +231,7 @@
     color: var(--ai-text-primary);
   }
 
-  .ai-checkbox-input {
+  .checkbox-input {
     appearance: none;
     -webkit-appearance: none;
     width: 1.125rem;
@@ -245,7 +245,7 @@
     margin: 0;
   }
 
-  .ai-checkbox-input::before {
+  .checkbox-input::before {
     content: "";
     width: 0.55rem;
     height: 0.35rem;
@@ -257,39 +257,39 @@
     margin-bottom: 2px;
   }
 
-  .ai-checkbox-input:checked {
+  .checkbox-input:checked {
     background-color: var(--ai-accent);
     border-color: var(--ai-accent);
   }
 
-  .ai-checkbox-input:checked::before {
+  .checkbox-input:checked::before {
     transform: rotate(-45deg) scale(1);
   }
 
   /* Keyboard Focus Indicators for Custom Controls */
-  .ai-switch-input:focus-visible + .ai-switch-track {
+  .switch-input:focus-visible + .switch-track {
     outline: none;
     box-shadow: var(--ai-focus-ring);
   }
 
-  .ai-checkbox-input:focus-visible {
+  .checkbox-input:focus-visible {
     outline: none;
     box-shadow: var(--ai-focus-ring);
   }
 
   /* Prevent iOS Safari Viewport Auto-Zoom on Form Inputs */
   @media (max-width: 768px) {
-    .ai-input,
-    .ai-textarea,
-    .ai-select {
+    .input,
+    .textarea,
+    .select {
       font-size: 1rem !important;
     }
   }
 
   /* Coarse Pointer (Touch) Minimum Tap Heights */
   @media (pointer: coarse) {
-    .ai-input,
-    .ai-select {
+    .input,
+    .select {
       min-height: var(--ai-touch-min, 44px);
     }
   }
@@ -297,11 +297,11 @@
 
 @layer components {
   /* Mixed state for "select all" checkboxes */
-  .ai-checkbox-input:indeterminate {
+  .checkbox-input:indeterminate {
     background-color: var(--ai-accent);
     border-color: var(--ai-accent);
   }
-  .ai-checkbox-input:indeterminate::before {
+  .checkbox-input:indeterminate::before {
     content: "";
     display: block;
     width: 0.55rem;
@@ -312,11 +312,11 @@
     transform: none;
   }
 
-  /* Inset icon inside a field: <div class="ai-input-icon-wrap"><svg class="ai-input-icon">..</svg><input class="ai-input"></div> */
-  .ai-input-icon-wrap {
+  /* Inset icon inside a field: <div class="input-icon-wrap"><svg class="input-icon">..</svg><input class="input"></div> */
+  .input-icon-wrap {
     position: relative;
   }
-  .ai-input-icon-wrap > .ai-input-icon {
+  .input-icon-wrap > .input-icon {
     position: absolute;
     inset-inline-start: var(--ai-space-3);
     top: 50%;
@@ -326,21 +326,21 @@
     color: var(--ai-text-muted);
     pointer-events: none;
   }
-  .ai-input-icon-wrap > .ai-input {
+  .input-icon-wrap > .input {
     padding-inline-start: 2.25rem;
   }
-  .ai-input-icon-wrap.is-trailing > .ai-input-icon {
+  .input-icon-wrap.is-trailing > .input-icon {
     inset-inline-start: auto;
     inset-inline-end: var(--ai-space-3);
   }
-  .ai-input-icon-wrap.is-trailing > .ai-input {
+  .input-icon-wrap.is-trailing > .input {
     padding-inline-start: var(--ai-space-3);
     padding-inline-end: 2.25rem;
   }
 
   /* Switch sizes */
-  .ai-switch-sm .ai-switch-track { width: 2.25rem; height: 1.25rem; }
-  .ai-switch-sm .ai-switch-thumb { width: 1rem; height: 1rem; }
-  .ai-switch-sm .ai-switch-input:checked + .ai-switch-track .ai-switch-thumb,
-  .ai-switch-input:checked + .ai-switch-sm .ai-switch-thumb { transform: translateX(1rem); }
+  .switch-sm .switch-track { width: 2.25rem; height: 1.25rem; }
+  .switch-sm .switch-thumb { width: 1rem; height: 1rem; }
+  .switch-sm .switch-input:checked + .switch-track .switch-thumb,
+  .switch-input:checked + .switch-sm .switch-thumb { transform: translateX(1rem); }
 }

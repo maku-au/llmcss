@@ -30,16 +30,16 @@ function pageId(): string {
   return 'home';
 }
 
-function navLink(href: string, id: string, label: string, cls = 'ai-nav-link', extra = ''): string {
+function navLink(href: string, id: string, label: string, cls = 'nav-link', extra = ''): string {
   const active = pageId() === id ? ' is-active' : '';
   return `<a href="${href}" class="${cls}${active}"${extra}>${label}</a>`;
 }
 
 function proCtaHtml(licensed: boolean): string {
   if (licensed) {
-    return `<a href="/account" class="ai-btn ai-btn-outline ai-btn-sm" id="pro-cta">Licensed</a>`;
+    return `<a href="/account" class="btn btn-outline btn-sm" id="pro-cta">Licensed</a>`;
   }
-  return `<a href="/api/checkout.php" class="ai-btn ai-btn-primary ai-btn-sm" id="pro-cta">Get Pro · $9/mo</a>`;
+  return `<a href="/api/checkout.php" class="btn btn-primary btn-sm" id="pro-cta">Get Pro · $9/mo</a>`;
 }
 
 export function applyTheme(theme: 'light' | 'dark') {
@@ -63,9 +63,9 @@ const SEARCH_ICON = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none"
 function searchHtml(): string {
   const id = pageId();
   const field = (inputId: string, placeholder: string, label: string) =>
-    `<div class="ai-input-group">
-      <span class="ai-input-addon">${SEARCH_ICON}</span>
-      <input type="search" id="${inputId}" class="ai-input" placeholder="${placeholder}" aria-label="${label}" />
+    `<div class="input-group">
+      <span class="input-addon">${SEARCH_ICON}</span>
+      <input type="search" id="${inputId}" class="input" placeholder="${placeholder}" aria-label="${label}" />
     </div>`;
   if (id === 'components') return field('catalog-search', `Search ${catalogStats.total} components`, 'Search components');
   if (id === 'templates') return field('template-search', 'Search templates', 'Search templates');
@@ -78,7 +78,7 @@ function hasStyler(): boolean {
 
 function stylerBtn(id: string, extraClass = ''): string {
   if (!hasStyler()) return '';
-  return `<button type="button" id="${id}" class="ai-btn ai-btn-outline ai-btn-sm ${extraClass}" data-ai-toggle="drawer" data-ai-target="#core-styler-drawer">Styler</button>`;
+  return `<button type="button" id="${id}" class="btn btn-outline btn-sm ${extraClass}" data-ai-toggle="drawer" data-ai-target="#core-styler-drawer">Styler</button>`;
 }
 
 const NAV: Array<[string, string, string]> = [
@@ -93,35 +93,35 @@ const VERSION = typeof __LLMCSS_VERSION__ === 'string' ? __LLMCSS_VERSION__ : ''
 const CHANGELOG = 'https://github.com/maku-au/llmcss/blob/main/CHANGELOG.md';
 // Version sits between two vertical dividers as plain mono text, not a badge.
 const VERSION_BADGE = VERSION
-  ? `<span class="ai-hidden ai-md:inline-flex ai-items-center">
-      <span class="ai-divider-vertical"></span>
-      <a href="${CHANGELOG}" class="ai-font-mono ai-text-xs ai-text-muted ai-tabular" title="Changelog">v${VERSION}</a>
-      <span class="ai-divider-vertical"></span>
+  ? `<span class="hidden md:inline-flex items-center">
+      <span class="divider-vertical"></span>
+      <a href="${CHANGELOG}" class="font-mono text-xs text-muted tabular" title="Changelog">v${VERSION}</a>
+      <span class="divider-vertical"></span>
     </span>`
   : '';
 
-const BRAND = `<a href="/" class="ai-brand">
+const BRAND = `<a href="/" class="brand">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="9" y="9" width="12" height="12" rx="2.5" fill="currentColor"/></svg>
       <span>LLMCSS</span>
     </a>`;
 
-// Header: ai-navbar from the catalog. Links and the Pro CTA show from lg;
-// below that a burger opens the ai-drawer menu. Catalog search drops to its
+// Header: navbar from the catalog. Links and the Pro CTA show from lg;
+// below that a burger opens the drawer menu. Catalog search drops to its
 // own row under md.
 function headerHtml(licensed: boolean): string {
   const search = searchHtml();
-  return `<div class="ai-container ai-container-lg ai-navbar-inner">
+  return `<div class="container container-lg navbar-inner">
     ${BRAND}
     ${VERSION_BADGE}
-    <nav class="ai-nav-links ai-hidden ai-lg:flex" id="desktop-nav" aria-label="Primary">
+    <nav class="nav-links hidden lg:flex" id="desktop-nav" aria-label="Primary">
       ${NAV.map(([href, id, label]) => navLink(href, id, label)).join('\n      ')}
     </nav>
-    ${search ? `<div class="ai-navbar-search ai-w-full ai-order-last ai-md:w-auto ai-md:order-none ai-md:ml-auto">${search}</div>` : ''}
-    <div class="ai-flex ai-items-center ai-gap-2 ${search ? 'ai-ml-auto ai-md:ml-0' : 'ai-ml-auto'}">
-      ${stylerBtn('open-styler-btn', 'ai-hidden ai-lg:inline-flex')}
-      <button type="button" id="theme-mode-toggle" class="ai-btn ai-btn-outline ai-btn-sm ai-btn-icon">${currentTheme() === 'dark' ? SUN : MOON}</button>
-      <span class="ai-hidden ai-lg:inline-flex">${proCtaHtml(licensed)}</span>
-      <button type="button" class="ai-btn ai-btn-outline ai-btn-sm ai-btn-icon ai-lg:hidden" id="site-menu-btn" data-ai-toggle="drawer" data-ai-target="#site-menu" aria-controls="site-menu" aria-expanded="false" aria-label="Open menu">${BURGER}</button>
+    ${search ? `<div class="navbar-search w-full order-last md:w-auto md:order-none md:ml-auto">${search}</div>` : ''}
+    <div class="flex items-center gap-2 ${search ? 'ml-auto md:ml-0' : 'ml-auto'}">
+      ${stylerBtn('open-styler-btn', 'hidden lg:inline-flex')}
+      <button type="button" id="theme-mode-toggle" class="btn btn-outline btn-sm btn-icon">${currentTheme() === 'dark' ? SUN : MOON}</button>
+      <span class="hidden lg:inline-flex">${proCtaHtml(licensed)}</span>
+      <button type="button" class="btn btn-outline btn-sm btn-icon lg:hidden" id="site-menu-btn" data-ai-toggle="drawer" data-ai-target="#site-menu" aria-controls="site-menu" aria-expanded="false" aria-label="Open menu">${BURGER}</button>
     </div>
   </div>`;
 }
@@ -129,21 +129,21 @@ function headerHtml(licensed: boolean): string {
 // Mobile menu: the catalog's mobile-nav-drawer component.
 function menuHtml(licensed: boolean): string {
   const cta = licensed
-    ? `<a href="/account" class="ai-btn ai-btn-outline ai-w-full">Licensed</a>`
-    : `<a href="/api/checkout.php" class="ai-btn ai-btn-primary ai-w-full">Get Pro · $9/mo</a>`;
+    ? `<a href="/account" class="btn btn-outline w-full">Licensed</a>`
+    : `<a href="/api/checkout.php" class="btn btn-primary w-full">Get Pro · $9/mo</a>`;
   const styler = hasStyler()
-    ? `<button type="button" id="site-menu-styler-btn" class="ai-btn ai-btn-outline ai-w-full" data-ai-toggle="drawer" data-ai-target="#core-styler-drawer">Styler</button>`
+    ? `<button type="button" id="site-menu-styler-btn" class="btn btn-outline w-full" data-ai-toggle="drawer" data-ai-target="#core-styler-drawer">Styler</button>`
     : '';
-  return `<div class="ai-drawer-backdrop" data-ai-dismiss="drawer"></div>
-    <div class="ai-drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
-      <div class="ai-drawer-header">
+  return `<div class="drawer-backdrop" data-ai-dismiss="drawer"></div>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="drawer-header">
         ${BRAND}
-        <button type="button" class="ai-btn ai-btn-ghost ai-btn-icon ai-btn-sm" data-ai-dismiss="drawer" aria-label="Close menu">${CLOSE}</button>
+        <button type="button" class="btn btn-ghost btn-icon btn-sm" data-ai-dismiss="drawer" aria-label="Close menu">${CLOSE}</button>
       </div>
-      <nav class="ai-drawer-body ai-drawer-nav" aria-label="Primary">
-        ${NAV.map(([href, id, label]) => navLink(href, id, label, 'ai-sidebar-item', ' data-ai-dismiss="drawer"')).join('\n        ')}
+      <nav class="drawer-body drawer-nav" aria-label="Primary">
+        ${NAV.map(([href, id, label]) => navLink(href, id, label, 'sidebar-item', ' data-ai-dismiss="drawer"')).join('\n        ')}
       </nav>
-      <div class="ai-drawer-footer ai-flex ai-gap-2">
+      <div class="drawer-footer flex gap-2">
         ${styler}
         ${cta}
       </div>
@@ -152,26 +152,26 @@ function menuHtml(licensed: boolean): string {
 
 export function footerHtml(): string {
   const s = catalogStats;
-  // Columns collapse into an accordion below 768px (library ai-footer-col pattern).
-  const chevron = `<svg class="ai-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`;
-  const col = (title: string, items: string[]) => `<div class="ai-footer-col ai-accordion-item">
-          <h4 class="ai-footer-heading"><button type="button" class="ai-footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">${title} ${chevron}</button></h4>
-          <ul class="ai-footer-list ai-accordion-content">
+  // Columns collapse into an accordion below 768px (library footer-col pattern).
+  const chevron = `<svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`;
+  const col = (title: string, items: string[]) => `<div class="footer-col accordion-item">
+          <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">${title} ${chevron}</button></h4>
+          <ul class="footer-list accordion-content">
             ${items.map((i) => `<li>${i}</li>`).join('\n            ')}
           </ul>
         </div>`;
   // No colour utility on these links: utilities outrank the components layer,
-  // so ai-text-secondary would freeze the hover state. .ai-footer-list a owns both.
+  // so text-secondary would freeze the hover state. .footer-list a owns both.
   const link = (href: string, label: string) => `<a href="${href}">${label}</a>`;
-  const cmd = (href: string, label: string) => `<a href="${href}" class="ai-footer-cmd">${label}</a>`;
-  return `<div class="ai-container ai-container-lg">
-      <div class="ai-footer-grid">
-        <div class="ai-footer-brand">
+  const cmd = (href: string, label: string) => `<a href="${href}" class="footer-cmd">${label}</a>`;
+  return `<div class="container container-lg">
+      <div class="footer-grid">
+        <div class="footer-brand">
           ${BRAND}
-          <p class="ai-footer-blurb">Native CSS for agents and humans. Pro themed kits are $9 a month.</p>
+          <p class="footer-blurb">Native CSS for agents and humans. Pro themed kits are $9 a month.</p>
         </div>
         ${col('Catalog', [
-          `${link('/components.html', `Components (<span data-ai-stat="total">${s.total}</span>)`)}<span class="ai-footer-stat">Free <span data-ai-stat="free">${s.free}</span> &middot; Pro <span data-ai-stat="pro">${s.pro}</span></span>`,
+          `${link('/components.html', `Components (<span data-ai-stat="total">${s.total}</span>)`)}<span class="footer-stat">Free <span data-ai-stat="free">${s.free}</span> &middot; Pro <span data-ai-stat="pro">${s.pro}</span></span>`,
           link('/templates.html', 'Templates'),
           link('/#pricing', 'Pricing'),
         ])}
@@ -184,52 +184,52 @@ export function footerHtml(): string {
         ${col('CLI', [
           cmd('/quickstart', 'npx llmcss add &lt;id&gt;'),
           cmd('/quickstart', 'npx llmcss-mcp'),
-          `<span class="ai-footer-stat">Add any component, or run the MCP server.</span>`,
+          `<span class="footer-stat">Add any component, or run the MCP server.</span>`,
         ])}
       </div>
-      <div class="ai-footer-bottom">
+      <div class="footer-bottom">
         <p>&copy; 2026 LLMCSS. Core released under the MIT License.</p>
-        ${VERSION ? `<a href="${CHANGELOG}" class="ai-font-mono ai-tabular" title="Changelog">v${VERSION}</a>` : ''}
+        ${VERSION ? `<a href="${CHANGELOG}" class="font-mono tabular" title="Changelog">v${VERSION}</a>` : ''}
       </div>
   </div>`;
 }
 
 export function proOfferHtml(): string {
-  return `<div class="ai-grid ai-grid-cols-1 ai-md:grid-cols-2 ai-gap-6">
-    <div class="ai-card ai-p-8">
-      <div class="ai-flex ai-justify-between ai-items-center">
-        <h3 class="ai-card-title">Community</h3>
-        <span class="ai-badge ai-badge-neutral">MIT</span>
+  return `<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="card p-8">
+      <div class="flex justify-between items-center">
+        <h3 class="card-title">Community</h3>
+        <span class="badge badge-neutral">MIT</span>
       </div>
-      <div class="ai-pricing-amount">
-        <span class="ai-pricing-price">$0</span>
-        <span class="ai-pricing-period">/ forever</span>
+      <div class="pricing-amount">
+        <span class="pricing-price">$0</span>
+        <span class="pricing-period">/ forever</span>
       </div>
-      <ul class="ai-pricing-features">
+      <ul class="pricing-features">
         <li>Full component catalog, wireframes, skins</li>
         <li>Free registry and local MCP</li>
-        <li><code class="ai-text-xs">npx llmcss add btn-variants</code></li>
+        <li><code class="text-xs">npx llmcss add btn-variants</code></li>
       </ul>
-      <a href="/components" class="ai-btn ai-btn-outline ai-w-full ai-mt-6">Browse free components</a>
+      <a href="/components" class="btn btn-outline w-full mt-6">Browse free components</a>
     </div>
-    <div class="ai-card ai-card-pro ai-p-8 ai-shadow-md">
-      <div class="ai-flex ai-justify-between ai-items-center">
-        <h3 class="ai-card-title">Pro</h3>
-        <span class="ai-badge ai-badge-solid">$9/mo</span>
+    <div class="card card-pro p-8 shadow-md">
+      <div class="flex justify-between items-center">
+        <h3 class="card-title">Pro</h3>
+        <span class="badge badge-solid">$9/mo</span>
       </div>
-      <div class="ai-pricing-amount">
-        <span class="ai-pricing-price">$9</span>
-        <span class="ai-pricing-period">/ month</span>
+      <div class="pricing-amount">
+        <span class="pricing-price">$9</span>
+        <span class="pricing-period">/ month</span>
       </div>
-      <ul class="ai-pricing-features">
+      <ul class="pricing-features">
         <li>Themed section templates and page kits</li>
         <li>Themed composed blocks (editorial, fintech, obsidian)</li>
         <li>Token-gated registry, MCP, and zip backup</li>
       </ul>
-      <a href="/api/checkout.php" class="ai-btn ai-btn-primary ai-w-full ai-mt-6">Get Pro · $9/mo</a>
+      <a href="/api/checkout.php" class="btn btn-primary w-full mt-6">Get Pro · $9/mo</a>
     </div>
   </div>
-  <p class="ai-text-xs ai-text-muted ai-mt-8 ai-text-center ai-max-w-xl ai-mx-auto">
+  <p class="text-xs text-muted mt-8 text-center max-w-xl mx-auto">
     Digital goods. Refunds follow Polar policy. MIT core stays free. Checkout via Polar.
   </p>`;
 }
@@ -243,7 +243,7 @@ export function applyFocusPreference(value: string) {
   if (v === 'accent') document.documentElement.removeAttribute('data-ai-focus');
   else document.documentElement.setAttribute('data-ai-focus', v);
   localStorage.setItem('cssai-focus', v);
-  document.querySelectorAll('.ai-styler-focus-btn').forEach((btn) => {
+  document.querySelectorAll('.js-styler-focus-btn').forEach((btn) => {
     btn.classList.toggle('is-active', btn.getAttribute('data-focus') === v);
   });
   const label = document.getElementById('styler-focus-label');
@@ -252,7 +252,7 @@ export function applyFocusPreference(value: string) {
 
 function bindFocusPreference() {
   applyFocusPreference(localStorage.getItem('cssai-focus') || 'accent');
-  document.querySelectorAll('.ai-styler-focus-btn').forEach((btn) => {
+  document.querySelectorAll('.js-styler-focus-btn').forEach((btn) => {
     btn.addEventListener('click', () => applyFocusPreference(btn.getAttribute('data-focus') || 'accent'));
   });
 }
@@ -262,7 +262,7 @@ export async function mountChrome() {
 
   const header = document.getElementById('site-header');
   if (header) {
-    header.classList.add('ai-navbar');
+    header.classList.add('navbar');
     header.innerHTML = headerHtml(licensed);
   }
 
@@ -270,14 +270,14 @@ export async function mountChrome() {
   if (!menu) {
     menu = document.createElement('div');
     menu.id = 'site-menu';
-    menu.className = 'ai-drawer ai-drawer-sm ai-lg:hidden';
+    menu.className = 'drawer drawer-sm lg:hidden';
     header?.after(menu);
   }
   menu.innerHTML = menuHtml(licensed);
 
   const footer = document.getElementById('site-footer');
   if (footer) {
-    footer.classList.add('ai-footer');
+    footer.classList.add('footer');
     footer.innerHTML = footerHtml();
   }
 

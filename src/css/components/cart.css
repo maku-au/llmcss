@@ -4,7 +4,7 @@
      ========================================================================== */
 
 /* Cart drawer line items */
-  .ai-cart-item {
+  .cart-item {
     display: flex;
     align-items: center;
     gap: var(--ai-space-4);
@@ -12,7 +12,7 @@
     border-bottom: 1px solid var(--ai-border-subtle);
   }
 
-  .ai-cart-thumb {
+  .cart-thumb {
     width: 4rem;
     height: 4rem;
     border-radius: var(--ai-radius-md);
@@ -21,32 +21,32 @@
     border: 1px solid var(--ai-border);
   }
 
-  .ai-cart-details {
+  .cart-details {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
   }
 
-  .ai-cart-name {
+  .cart-name {
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--ai-text-primary);
   }
 
-  .ai-cart-subtext {
+  .cart-subtext {
     font-size: 0.75rem;
     color: var(--ai-text-muted);
   }
 
-  .ai-cart-stepper {
+  .cart-stepper {
     display: inline-flex;
     align-items: center;
     border: 1px solid var(--ai-border);
     border-radius: var(--ai-radius-sm);
   }
 
-  .ai-cart-stepper button {
+  .cart-stepper button {
     padding: 0.25rem 0.5rem;
     font-size: 0.75rem;
     color: var(--ai-text-secondary);

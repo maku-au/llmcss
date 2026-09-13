@@ -10,5 +10,5 @@
     "shortcut",
     "docs"
   ],
-  "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-4 ai-items-center\">\n  <span class=\"ai-flex ai-items-center ai-gap-1\"><kbd class=\"ai-kbd\">⌘</kbd><kbd class=\"ai-kbd\">K</kbd><span class=\"ai-text-xs ai-text-muted\">Command palette</span></span>\n  <span class=\"ai-flex ai-items-center ai-gap-1\"><kbd class=\"ai-kbd\">⌘</kbd><kbd class=\"ai-kbd\">Enter</kbd><span class=\"ai-text-xs ai-text-muted\">Submit</span></span>\n  <span class=\"ai-flex ai-items-center ai-gap-1\"><kbd class=\"ai-kbd\">Esc</kbd><span class=\"ai-text-xs ai-text-muted\">Dismiss</span></span>\n</div>"
+  "html": "<div class=\"flex flex-wrap gap-4 items-center\">\n  <span class=\"flex items-center gap-1\"><kbd class=\"kbd\">⌘</kbd><kbd class=\"kbd\">K</kbd><span class=\"text-xs text-muted\">Command palette</span></span>\n  <span class=\"flex items-center gap-1\"><kbd class=\"kbd\">⌘</kbd><kbd class=\"kbd\">Enter</kbd><span class=\"text-xs text-muted\">Submit</span></span>\n  <span class=\"flex items-center gap-1\"><kbd class=\"kbd\">Esc</kbd><span class=\"text-xs text-muted\">Dismiss</span></span>\n</div>"
 }

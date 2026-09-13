@@ -5,7 +5,7 @@
 - Install: `npm install llmcss`
 - Include: `<link rel="stylesheet" href="https://llmcss.io/llmcss.css" />`
 - Runtime (optional, for modal/drawer/dropdown/accordion/tabs/toast/command palette): `<script src="https://llmcss.io/llmcss.js" defer></script>`
-- Sample: `<button class="ai-btn ai-btn-primary">Save</button>`
+- Sample: `<button class="btn btn-primary">Save</button>`
 - Validate: `npx llmcss validate <file>`
 
 ## 1. Add the tags
@@ -24,7 +24,7 @@ The `<script>` is optional and only powers modal, drawer, dropdown, accordion,
 tabs, toast and command palette behavior. To self-host, `npm install llmcss`,
 copy `dist/llmcss.css` and `dist/llmcss.js` into your static files, then use
 `{% load static %}` and `{% static 'llmcss/llmcss.css' %}` (pinned CDN copy:
-`https://cdn.jsdelivr.net/npm/llmcss@0.3.0/dist/llmcss.css`). On `<html>` set `data-ai-theme="light|dark"`,
+`https://cdn.jsdelivr.net/npm/llmcss@0.4.0/dist/llmcss.css`). On `<html>` set `data-ai-theme="light|dark"`,
 `data-ai-skin="obsidian|editorial|executive|fintech|enterprise|emerald|violet|rose"`,
 `data-ai-density="compact|spacious"`.
 
@@ -48,20 +48,20 @@ JavaScript at all.
 ## 4. Example template
 
 ```html
-<div class="ai-grid ai-gap-4">
+<div class="grid gap-4">
   {% for invoice in invoices %}
-    <article class="ai-card">
-      <div class="ai-card-header ai-flex ai-items-center ai-justify-between">
-        <h3 class="ai-card-title">{{ invoice.number }}</h3>
-        <span class="ai-badge ai-badge-success">{{ invoice.get_status_display }}</span>
+    <article class="card">
+      <div class="card-header flex items-center justify-between">
+        <h3 class="card-title">{{ invoice.number }}</h3>
+        <span class="badge badge-success">{{ invoice.get_status_display }}</span>
       </div>
-      <div class="ai-card-body">
-        <p class="ai-text-secondary">{{ invoice.customer.name }}</p>
+      <div class="card-body">
+        <p class="text-secondary">{{ invoice.customer.name }}</p>
       </div>
-      <a class="ai-btn ai-btn-primary" href="{% url 'invoice_detail' invoice.pk %}">View</a>
+      <a class="btn btn-primary" href="{% url 'invoice_detail' invoice.pk %}">View</a>
     </article>
   {% empty %}
-    <p class="ai-text-secondary">No invoices yet.</p>
+    <p class="text-secondary">No invoices yet.</p>
   {% endfor %}
 </div>
 ```

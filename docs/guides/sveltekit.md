@@ -5,7 +5,7 @@
 - Install: `npm install llmcss`
 - Include: `<link rel="stylesheet" href="https://llmcss.io/llmcss.css" />`
 - Runtime (optional, for modal/drawer/dropdown/accordion/tabs/toast/command palette): `<script src="https://llmcss.io/llmcss.js" defer></script>`
-- Sample: `<button class="ai-btn ai-btn-primary">Save</button>`
+- Sample: `<button class="btn btn-primary">Save</button>`
 - Validate: `npx llmcss validate <file>`
 
 ## 1. Add the tags
@@ -25,7 +25,7 @@
 The `<script>` is optional and only powers modal, drawer, dropdown, accordion,
 tabs, toast and command palette behavior. For npm, `npm install llmcss` and
 `import "llmcss/dist/llmcss.css"` in `src/routes/+layout.svelte` (pinned CDN copy:
-`https://cdn.jsdelivr.net/npm/llmcss@0.3.0/dist/llmcss.css`). On `<html>` set
+`https://cdn.jsdelivr.net/npm/llmcss@0.4.0/dist/llmcss.css`). On `<html>` set
 `data-ai-theme="light|dark"`,
 `data-ai-skin="obsidian|editorial|executive|fintech|enterprise|emerald|violet|rose"`,
 `data-ai-density="compact|spacious"`.
@@ -51,15 +51,15 @@ Omit the `<script>` tag. Everything except those seven interactive components is
   export let projects = [];
 </script>
 
-<div class="ai-grid ai-gap-4">
+<div class="grid gap-4">
   {#each projects as project (project.id)}
-    <article class="ai-card">
-      <div class="ai-card-header ai-flex ai-items-center ai-justify-between">
-        <h3 class="ai-card-title">{project.name}</h3>
-        <span class="ai-badge ai-badge-success">{project.status}</span>
+    <article class="card">
+      <div class="card-header flex items-center justify-between">
+        <h3 class="card-title">{project.name}</h3>
+        <span class="badge badge-success">{project.status}</span>
       </div>
-      <div class="ai-card-body">
-        <p class="ai-text-secondary">{project.summary}</p>
+      <div class="card-body">
+        <p class="text-secondary">{project.summary}</p>
       </div>
     </article>
   {/each}

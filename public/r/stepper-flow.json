@@ -11,5 +11,5 @@
     "progress",
     "flow"
   ],
-  "html": "<div class=\"ai-stepper\" style=\"max-width: 32rem;\">\n  <div class=\"ai-step-item is-completed\">\n    <div class=\"ai-step-circle\">✓</div>\n    <span class=\"ai-step-label\">Account</span>\n  </div>\n  <div class=\"ai-step-item is-active\">\n    <div class=\"ai-step-circle\">2</div>\n    <span class=\"ai-step-label\">Workspace</span>\n  </div>\n  <div class=\"ai-step-item\">\n    <div class=\"ai-step-circle\">3</div>\n    <span class=\"ai-step-label\">Billing</span>\n  </div>\n  <div class=\"ai-step-item\">\n    <div class=\"ai-step-circle\">4</div>\n    <span class=\"ai-step-label\">Complete</span>\n  </div>\n</div>"
+  "html": "<div class=\"stepper\" style=\"max-width: 32rem;\">\n  <div class=\"step-item is-completed\">\n    <div class=\"step-circle\">✓</div>\n    <span class=\"step-label\">Account</span>\n  </div>\n  <div class=\"step-item is-active\">\n    <div class=\"step-circle\">2</div>\n    <span class=\"step-label\">Workspace</span>\n  </div>\n  <div class=\"step-item\">\n    <div class=\"step-circle\">3</div>\n    <span class=\"step-label\">Billing</span>\n  </div>\n  <div class=\"step-item\">\n    <div class=\"step-circle\">4</div>\n    <span class=\"step-label\">Complete</span>\n  </div>\n</div>"
 }

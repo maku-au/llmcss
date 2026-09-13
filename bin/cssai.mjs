@@ -19,7 +19,7 @@ import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { components } from '../src/registry/data.mjs';
 import { wireframeTemplates, pageBlueprints, assembleBlueprintHtml } from '../src/registry/templates-data.mjs';
-import { validateMarkup, structuralAudit, classTokens } from '../src/registry/validate.mjs';
+import { validateMarkup, structuralAudit, classTokens, legacyFix } from '../src/registry/validate.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -144,8 +144,8 @@ const ALIAS_MAP = {
   'range': ['interactive-slider'],
   'bento': ['bento-editorial-pro', 'hero-bento-pro'],
   'marquee': ['marquee-ticker'],
-  'chat': ['ai-chat-thread'],
-  'prompt': ['ai-chat-thread'],
+  'chat': ['chat-thread'],
+  'prompt': ['chat-thread'],
 };
 
 const args = process.argv.slice(2);
@@ -287,49 +287,46 @@ switch (command) {
   }
 
   case 'validate': {
-    const file = args[1];
+    // Class names carry no prefix, so an unknown token may simply be the
+    // project's own class. Unknowns are warnings unless --strict is passed.
+    const strict = args.includes('--strict');
+    const file = args.slice(1).find((a) => !a.startsWith('-'));
     if (!file) {
-      console.error('Please specify a file: `llmcss validate <file>`');
+      console.error('Usage: llmcss validate [--strict] <file>');
       process.exit(1);
     }
     if (!fs.existsSync(file)) {
       console.error(`File not found: ${file}`);
       process.exit(1);
     }
-    const LEGACY_MAP = {
-      'btn': 'ai-btn',
-      'btn-primary': 'ai-btn-primary',
-      'btn-secondary': 'ai-btn-secondary',
-      'btn-outline': 'ai-btn-outline',
-      'flex': 'ai-flex',
-      'flex-col': 'ai-flex-col',
-      'flex-row': 'ai-flex-row',
-      'items-center': 'ai-items-center',
-      'justify-between': 'ai-justify-between',
-      'grid': 'ai-grid',
-      'card': 'ai-card',
-      'badge': 'ai-badge',
-      'spinner': 'ai-spinner',
-      'progress': 'ai-progress',
-      'rounded-md': 'ai-rounded-md',
-      'rounded-lg': 'ai-rounded-lg',
-    };
     const content = fs.readFileSync(file, 'utf-8');
     const lines = content.split('\n');
-    let issues = 0;
-    console.log(`\n✦ Validating ${file} for LLMCSS standards...\n`);
+    let errors = 0;
+    let warnings = 0;
+    const LABELS = {
+      'unknown-class': 'Unknown class',
+      'unknown-state': 'Unknown state',
+      'legacy-prefix': 'Removed ai- prefix',
+      'legacy-class': 'Legacy class',
+    };
+    console.log(`\n✦ Validating ${file} for LLMCSS standards${strict ? ' (strict)' : ''}...\n`);
     lines.forEach((line, idx) => {
-      for (const issue of validateMarkup(line).issues) {
-        const label = issue.type === 'unknown-class' ? 'Unknown class' : issue.type === 'unknown-state' ? 'Unknown state' : 'Legacy class';
-        const hint = issue.suggestion ? ` Suggested: "\x1b[32m${issue.suggestion}\x1b[0m"` : ' See https://llmcss.io/classes.json';
-        console.log(`  \x1b[33mLine ${idx + 1}:\x1b[0m ${label} "\x1b[31m${issue.class}\x1b[0m".${hint}`);
-        issues++;
+      for (const issue of validateMarkup(line, { strict }).issues) {
+        const isError = issue.severity === 'error';
+        const tone = isError ? '\x1b[31merror\x1b[0m' : '\x1b[33mwarning\x1b[0m';
+        const label = LABELS[issue.type] || issue.type;
+        const hint = issue.suggestion ? ` Use "\x1b[32m${issue.suggestion}\x1b[0m".` : '';
+        console.log(`  \x1b[2mLine ${idx + 1}:\x1b[0m ${tone} ${label} "\x1b[31m${issue.class}\x1b[0m".${hint}`);
+        if (isError) errors++;
+        else warnings++;
       }
     });
-    if (issues === 0) {
+    if (errors === 0 && warnings === 0) {
       console.log('\x1b[32m✓ 0 issues found! File conforms to LLMCSS standards.\x1b[0m\n');
+    } else if (errors === 0) {
+      console.log(`\n\x1b[33m${warnings} warning${warnings === 1 ? '' : 's'}.\x1b[0m No errors: unknown names are assumed to be your own classes. Pass --strict to fail on them.\n`);
     } else {
-      console.log(`\n\x1b[31m✗ Found ${issues} issues.\x1b[0m Run \`npx llmcss lint --fix ${file}\` to automatically fix.\n`);
+      console.log(`\n\x1b[31m✗ ${errors} error${errors === 1 ? '' : 's'}\x1b[0m, ${warnings} warning${warnings === 1 ? '' : 's'}. Run \`npx llmcss lint --fix ${file}\` to migrate the renamed classes.\n`);
       process.exit(1);
     }
     break;
@@ -346,39 +343,24 @@ switch (command) {
       console.error(`File not found: ${file}`);
       process.exit(1);
     }
-    const LEGACY_MAP = {
-      'btn': 'ai-btn',
-      'btn-primary': 'ai-btn-primary',
-      'btn-secondary': 'ai-btn-secondary',
-      'btn-outline': 'ai-btn-outline',
-      'flex': 'ai-flex',
-      'flex-col': 'ai-flex-col',
-      'flex-row': 'ai-flex-row',
-      'items-center': 'ai-items-center',
-      'justify-between': 'ai-justify-between',
-      'grid': 'ai-grid',
-      'card': 'ai-card',
-      'badge': 'ai-badge',
-      'spinner': 'ai-spinner',
-      'progress': 'ai-progress',
-      'rounded-md': 'ai-rounded-md',
-      'rounded-lg': 'ai-rounded-lg',
-    };
     let content = fs.readFileSync(file, 'utf-8');
     let replacedCount = 0;
-    // Token-exact: only whole, unprefixed class names are rewritten, so a
-    // correct ai-btn is never touched and the command is idempotent.
+    // Token-exact: only a whole class name is rewritten, and legacyFix() only
+    // answers for a token that is stale (a removed ai- prefix on a class that
+    // still exists), so a correct `btn` is never touched, an `<ai-modal>` tag
+    // is never touched, and the command is idempotent.
     content = content.replace(/\b(class(?:Name)?\s*=\s*)(["'])([^"']*)\2/g, (match, attr, quote, value) => {
       const tokens = value.split(/(\s+)/).map((t) => {
         if (/^\s*$/.test(t)) return t;
-        if (Object.prototype.hasOwnProperty.call(LEGACY_MAP, t)) { replacedCount++; return LEGACY_MAP[t]; }
+        const fixed = legacyFix(t);
+        if (fixed) { replacedCount++; return fixed; }
         return t;
       });
       return `${attr}${quote}${tokens.join('')}${quote}`;
     });
     if (isFix) {
       fs.writeFileSync(file, content, 'utf-8');
-      console.log(`\x1b[32m✓ Fixed ${replacedCount} legacy/hallucinated classes in ${file}\x1b[0m\n`);
+      console.log(`\x1b[32m✓ Fixed ${replacedCount} renamed/legacy classes in ${file}\x1b[0m\n`);
     } else {
       console.log(`Found ${replacedCount} potential fixes. Run \`llmcss lint --fix ${file}\` to apply.\n`);
     }
@@ -528,19 +510,19 @@ switch (command) {
       const lineNum = idx + 1;
 
       // Class tokens for every class/className attribute on this line, used by
-      // the checks below so a hyphenated sibling class (ai-card-header,
-      // ai-marquee-track, ai-pulse-dot-danger, ...) can never match a check
+      // the checks below so a hyphenated sibling class (card-header,
+      // marquee-track, pulse-dot-danger, ...) can never match a check
       // meant for its exact base class.
       const lineClassTokens = Array.from(line.matchAll(/\bclass(?:Name)?=["']([^"']+)["']/g))
         .flatMap((m) => m[1].split(/\s+/).filter(Boolean));
 
       // 1. Continuous pulsing dots
-      if (lineClassTokens.includes('ai-pulse-dot') && !lineClassTokens.includes('ai-pulse-dot-streaming') && !/is-streaming/.test(line)) {
+      if (lineClassTokens.includes('pulse-dot') && !lineClassTokens.includes('pulse-dot-streaming') && !/is-streaming/.test(line)) {
         slopFindings.push({
           line: lineNum,
           category: 'Pulsing Status Dots',
           tell: 'Continuous pulsing dot applied to static element',
-          fix: 'Use calm, steady status pips (.ai-status-pip). Reserve motion exclusively for active data transmission.',
+          fix: 'Use calm, steady status pips (.status-pip). Reserve motion exclusively for active data transmission.',
         });
       }
 
@@ -565,7 +547,7 @@ switch (command) {
       }
 
       // 4. Auto-scrolling marquees
-      if (lineClassTokens.includes('ai-marquee')) {
+      if (lineClassTokens.includes('marquee')) {
         slopFindings.push({
           line: lineNum,
           category: 'Auto-Scrolling Marquee',
@@ -574,23 +556,23 @@ switch (command) {
         });
       }
 
-      // 5. Hallucinated legacy classes
-      const legacyClasses = ['btn', 'btn-primary', 'flex', 'grid', 'card', 'badge', 'spinner'];
-      for (const legacy of legacyClasses) {
-        if (lineClassTokens.includes(legacy)) {
-          slopFindings.push({
-            line: lineNum,
-            category: 'Unprefixed / Hallucinated Class',
-            tell: `Class "${legacy}" without "ai-" prefix`,
-            fix: `Use LLMCSS standard ".ai-${legacy}".`,
-          });
-        }
+      // 5. Class names still carrying the ai- prefix removed in 0.4.0. Custom
+      // element tags (<ai-modal>) keep theirs, so only class tokens are read.
+      for (const token of lineClassTokens) {
+        const fixed = legacyFix(token);
+        if (!fixed) continue;
+        slopFindings.push({
+          line: lineNum,
+          category: 'Removed ai- Class Prefix',
+          tell: `Class "${token}" uses the ai- prefix removed in 0.4.0`,
+          fix: `Use ".${fixed}". Run \`llmcss lint --fix\` to migrate the file.`,
+        });
       }
 
       // 6. Badge eyebrows directly above headings
       if (/<(?:span|div)[^>]*\bclass=["'][^"']*["'][^>]*>/i.test(line) &&
-          (lineClassTokens.includes('ai-badge') || lineClassTokens.includes('ai-hero-badge')) &&
-          !lineClassTokens.includes('ai-product-badge-float')) {
+          (lineClassTokens.includes('badge') || lineClassTokens.includes('hero-badge')) &&
+          !lineClassTokens.includes('product-badge-float')) {
         for (let j = idx + 1; j < Math.min(idx + 5, lines.length); j++) {
           if (/<h[1-4]\b/i.test(lines[j])) {
             slopFindings.push({
@@ -618,7 +600,7 @@ switch (command) {
           });
         }
       }
-      if (/class=["'][^"']*\b(?:ai-bg-grid|bg-grid|grid-pattern|hero-grid)\b[^"']*["']/i.test(line)) {
+      if (/class=["'][^"']*\b(?:bg-grid|grid-pattern|hero-grid)\b[^"']*["']/i.test(line)) {
         slopFindings.push({
           line: lineNum,
           category: 'Square Grid Background Class',
@@ -735,7 +717,7 @@ Usage:
   npx llmcss trim "src/**/*.html" "app/views/**/*.erb"
   npx llmcss trim "index.html" "components.html" --out public/llmcss.min.css
 
-Scans the matched markup for ai-* class tokens, then writes a stylesheet that
+Scans the matched markup for class tokens, then writes a stylesheet that
 keeps the reset, tokens and base layers verbatim and keeps only the rules in
 the components and utilities layers whose selector names a class you use.
 
@@ -873,23 +855,32 @@ them first.
       process.exit(1);
     }
 
-    // --- Collect used ai-* tokens ---
+    // --- Collect used class tokens ---
+    // Class names carry no prefix, so there is nothing to filter on: every
+    // token in a class attribute is kept, and a token the stylesheet never
+    // names simply matches no rule.
     const used = new Set();
-    const CE_TAGS = ['ai-modal', 'ai-tabs', 'ai-dropdown', 'ai-accordion', 'ai-drawer', 'ai-toast', 'ai-command-palette'];
+    // Custom element tags keep the ai- prefix; the class they share the rules
+    // with does not. <ai-modal> therefore counts as .modal being in play.
+    const CE_TAGS = {
+      'ai-modal': 'modal',
+      'ai-tabs': 'tabs',
+      'ai-dropdown': 'dropdown',
+      'ai-accordion': 'accordion',
+      'ai-drawer': 'drawer',
+      'ai-toast': 'toast',
+      'ai-command-palette': 'command-palette',
+    };
     for (const f of files) {
       const src = fs.readFileSync(f, 'utf-8');
-      for (const t of classTokens(src)) {
-        if (t.startsWith('ai-')) used.add(t);
-      }
-      // A custom element used as a tag styles itself through the same rules as
-      // its class, so <ai-modal> must count as ai-modal being in play.
-      for (const tag of CE_TAGS) {
-        if (new RegExp('<' + tag + '[\\s/>]', 'i').test(src)) used.add(tag);
+      for (const t of classTokens(src)) used.add(t);
+      for (const [tagName, className] of Object.entries(CE_TAGS)) {
+        if (new RegExp('<' + tagName + '[\\s/>]', 'i').test(src)) used.add(className);
       }
     }
-    // Responsive and container prefixes are written ai-md:gap-4 in markup and
-    // .ai-md\:gap-4 in CSS; both forms end up in the set unescaped.
-    const overlayUsed = [...used].some((c) => /^ai-(modal|drawer)\b/.test(c));
+    // Responsive and container prefixes are written md:gap-4 in markup and
+    // .md\:gap-4 in CSS; both forms end up in the set unescaped.
+    const overlayUsed = [...used].some((c) => /^(modal|drawer)\b/.test(c));
 
     // --- Load the stylesheet ---
     let css = '';
@@ -950,10 +941,10 @@ them first.
       return out;
     }
 
-    // .ai-md\:gap-4 -> ai-md:gap-4 ; .ai-w-1\/2 -> ai-w-1/2
+    // .md\:gap-4 -> md:gap-4 ; .w-1\/2 -> w-1/2 ; .-m-1 -> -m-1
     function selectorClasses(selector) {
       const out = [];
-      for (const m of selector.matchAll(/\.(ai-(?:\\.|[\w-])*)/g)) {
+      for (const m of selector.matchAll(/\.((?:\\.|[A-Za-z0-9_-])+)/g)) {
         out.push(m[1].replace(/\\(.)/g, '$1'));
       }
       return out;
@@ -993,7 +984,7 @@ them first.
         const classes = selectorClasses(head);
         let keep;
         if (classes.length === 0) {
-          // No ai-* class in the selector at all: an element or :has() rule such
+          // No class in the selector at all: an element or :has() rule such
           // as the scroll lock. Keep it only when an overlay is in play.
           keep = overlayUsed;
         } else {
@@ -1057,7 +1048,7 @@ them first.
     const pct = before ? ((1 - after / before) * 100).toFixed(1) : '0.0';
     console.log(`\n✦ llmcss trim`);
     console.log(`  Source:      ${source}`);
-    console.log(`  Scanned:     ${files.length} file${files.length === 1 ? '' : 's'}, ${used.size} distinct ai-* classes in use`);
+    console.log(`  Scanned:     ${files.length} file${files.length === 1 ? '' : 's'}, ${used.size} distinct classes in use`);
     console.log(`  Verbatim:    ${verbatimBlocks} reset/tokens/base blocks kept whole`);
     console.log(`  Rules:       ${keptRules} kept, ${droppedRules} dropped`);
     console.log(`  Bytes:       ${before} before -> ${after} after (${pct}% smaller)`);
@@ -1083,8 +1074,10 @@ Commands:
   llmcss template blueprint <id> Generate full assembled HTML for a page blueprint
   llmcss harness [archetype]     Output Design Direction Harness & agent prompt directives
   llmcss audit <file>            Run automated design quality audit on HTML/CSS file
-  llmcss validate <file>         Check file for non-standard or hallucinated classes
-  llmcss lint --fix <file>       Auto-migrate legacy or hallucinated classes to LLMCSS
+  llmcss validate [--strict] <file>
+                                 Check file for non-standard or hallucinated classes
+                                 (--strict: unknown class names fail instead of warn)
+  llmcss lint --fix <file>       Auto-migrate renamed classes (the ai- prefix removed in 0.4.0)
   llmcss trim <glob...>          Optional: subset llmcss.css to the classes your markup uses
   llmcss init                    Initialize LLMCSS configuration in project
   llmcss login <key>             Authenticate with your Pro license key

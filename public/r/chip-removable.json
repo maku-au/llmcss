@@ -11,5 +11,5 @@
     "filter",
     "remove"
   ],
-  "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-2\">\n  <span class=\"ai-badge ai-badge-neutral ai-badge-removable\">Region: Sydney <button type=\"button\" class=\"ai-badge-remove\" aria-label=\"Remove Region: Sydney\">&times;</button></span>\n  <span class=\"ai-badge ai-badge-neutral ai-badge-removable\">Status: Active <button type=\"button\" class=\"ai-badge-remove\" aria-label=\"Remove Status: Active\">&times;</button></span>\n  <span class=\"ai-badge ai-badge-accent ai-badge-removable\">Owner: me <button type=\"button\" class=\"ai-badge-remove\" aria-label=\"Remove Owner: me\">&times;</button></span>\n</div>"
+  "html": "<div class=\"flex flex-wrap gap-2\">\n  <span class=\"badge badge-neutral badge-removable\">Region: Sydney <button type=\"button\" class=\"badge-remove\" aria-label=\"Remove Region: Sydney\">&times;</button></span>\n  <span class=\"badge badge-neutral badge-removable\">Status: Active <button type=\"button\" class=\"badge-remove\" aria-label=\"Remove Status: Active\">&times;</button></span>\n  <span class=\"badge badge-accent badge-removable\">Owner: me <button type=\"button\" class=\"badge-remove\" aria-label=\"Remove Owner: me\">&times;</button></span>\n</div>"
 }

@@ -10,5 +10,5 @@
     "privacy",
     "bar"
   ],
-  "html": "<div class=\"ai-consent-bar ai-static ai-max-w-2xl\" role=\"region\" aria-label=\"Cookie preferences\">\n  <span>We use one analytics cookie to count visits. No advertising, no cross-site tracking.</span>\n  <div class=\"ai-consent-actions\">\n    <button type=\"button\" class=\"ai-btn ai-btn-ghost ai-btn-sm\">Manage</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-outline ai-btn-sm\">Reject</button>\n    <button type=\"button\" class=\"ai-btn ai-btn-primary ai-btn-sm\">Accept</button>\n  </div>\n</div>"
+  "html": "<div class=\"consent-bar static max-w-2xl\" role=\"region\" aria-label=\"Cookie preferences\">\n  <span>We use one analytics cookie to count visits. No advertising, no cross-site tracking.</span>\n  <div class=\"consent-actions\">\n    <button type=\"button\" class=\"btn btn-ghost btn-sm\">Manage</button>\n    <button type=\"button\" class=\"btn btn-outline btn-sm\">Reject</button>\n    <button type=\"button\" class=\"btn btn-primary btn-sm\">Accept</button>\n  </div>\n</div>"
 }

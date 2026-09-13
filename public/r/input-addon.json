@@ -9,5 +9,5 @@
     "addon",
     "domain"
   ],
-  "html": "<div class=\"ai-form-group\" style=\"max-width: 28rem;\">\n  <label class=\"ai-form-label\">Project URL</label>\n  <div class=\"ai-input-group\">\n    <span class=\"ai-input-addon\">https://</span>\n    <input type=\"text\" class=\"ai-input\" placeholder=\"my-app\" />\n    <span class=\"ai-input-addon\">.llmcss.io</span>\n  </div>\n</div>"
+  "html": "<div class=\"form-group\" style=\"max-width: 28rem;\">\n  <label class=\"form-label\">Project URL</label>\n  <div class=\"input-group\">\n    <span class=\"input-addon\">https://</span>\n    <input type=\"text\" class=\"input\" placeholder=\"my-app\" />\n    <span class=\"input-addon\">.llmcss.io</span>\n  </div>\n</div>"
 }

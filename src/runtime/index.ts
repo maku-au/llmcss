@@ -52,7 +52,7 @@ export function initLLMCSS() {
   if (typeof window === 'undefined') return;
 
   // Lets CSS know the runtime is present (e.g. show controls that need JS)
-  document.documentElement.classList.add(`${activeConfig.prefix}-js`);
+  document.documentElement.classList.add(`${activeConfig.classPrefix}js`);
   registerElements();
   initDataAttributes(activeConfig.prefix);
   initCombobox(activeConfig.prefix);

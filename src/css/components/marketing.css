@@ -4,7 +4,7 @@
      ========================================================================== */
 
   /* Navigation Bar */
-  .ai-navbar {
+  .navbar {
     width: 100%;
     min-height: 4.25rem;
     border-bottom: 1px solid var(--ai-border);
@@ -18,7 +18,7 @@
     z-index: 45;
   }
 
-  .ai-navbar-inner {
+  .navbar-inner {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -28,7 +28,7 @@
     min-height: 4.25rem;
   }
 
-  .ai-brand {
+  .brand {
     display: flex;
     align-items: center;
     gap: var(--ai-space-2);
@@ -38,49 +38,49 @@
     color: var(--ai-text-primary);
     text-decoration: none;
   }
-  .ai-brand > svg {
+  .brand > svg {
     flex-shrink: 0;
   }
 
-  .ai-nav-links {
+  .nav-links {
     display: none;
     align-items: center;
     gap: var(--ai-space-1);
     list-style: none;
   }
   @media (min-width: 768px) {
-    .ai-nav-links { display: flex; }
+    .nav-links { display: flex; }
   }
 
   /* First row stays full height when a search row wraps underneath.
      Inline items such as a version badge keep their own height. */
-  .ai-navbar-inner > :not(.ai-navbar-search):not(.ai-badge) {
+  .navbar-inner > :not(.navbar-search):not(.badge) {
     min-height: 4.25rem;
   }
-  .ai-navbar-search {
+  .navbar-search {
     padding-bottom: var(--ai-space-3);
   }
-  .ai-navbar-search .ai-input-group {
+  .navbar-search .input-group {
     width: 100%;
   }
-  .ai-navbar-search .ai-input {
+  .navbar-search .input {
     height: 2rem;
     font-size: 0.8125rem;
   }
   @media (min-width: 768px) {
-    .ai-navbar-search {
+    .navbar-search {
       padding-bottom: 0;
     }
-    .ai-navbar-search .ai-input-group {
+    .navbar-search .input-group {
       width: 15rem;
     }
   }
   /* Reserve height for chrome that a script fills in after load */
-  .ai-navbar:empty {
+  .navbar:empty {
     min-height: 4.25rem;
   }
 
-  .ai-nav-link {
+  .nav-link {
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--ai-text-secondary);
@@ -90,41 +90,41 @@
     transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
   }
   /* State twin: .is-active mirrors aria-current="page" on the current link. */
-  .ai-nav-link:hover,
-  .ai-nav-link.is-active,
-  .ai-nav-link[aria-current] {
+  .nav-link:hover,
+  .nav-link.is-active,
+  .nav-link[aria-current] {
     color: var(--ai-text-primary);
   }
-  .ai-nav-link.is-active,
-  .ai-nav-link[aria-current] {
+  .nav-link.is-active,
+  .nav-link[aria-current] {
     background-color: var(--ai-surface-1);
   }
 
   /* Hero Section */
-  .ai-hero {
+  .hero {
     padding: var(--ai-space-24) 0 var(--ai-space-24);
     position: relative;
     overflow: hidden;
   }
 
-  .ai-hero-split {
+  .hero-split {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--ai-space-12);
     align-items: center;
   }
   @media (min-width: 1024px) {
-    .ai-hero-split {
+    .hero-split {
       grid-template-columns: 1.1fr 0.9fr;
     }
   }
 
-  .ai-hero-badge {
+  .hero-badge {
     display: inline-flex;
     margin-bottom: var(--ai-space-4);
   }
 
-  .ai-hero-title {
+  .hero-title {
     font-family: var(--ai-font-display);
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 800;
@@ -133,7 +133,7 @@
     margin-bottom: var(--ai-space-6);
   }
 
-  .ai-hero-lead {
+  .hero-lead {
     font-size: clamp(1.125rem, 2vw, 1.25rem);
     color: var(--ai-text-secondary);
     line-height: 1.6;
@@ -141,14 +141,14 @@
     max-width: 36rem;
   }
 
-  .ai-hero-actions {
+  .hero-actions {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: var(--ai-space-4);
   }
 
-  .ai-hero-visual {
+  .hero-visual {
     position: relative;
     border-radius: var(--ai-radius-xl);
     border: 1px solid var(--ai-border);
@@ -158,7 +158,7 @@
   }
 
   /* Pricing Grid & Cards */
-  .ai-pricing-grid {
+  .pricing-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--ai-space-8);
@@ -166,12 +166,12 @@
     margin-top: var(--ai-space-12);
   }
   @media (min-width: 768px) {
-    .ai-pricing-grid {
+    .pricing-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
 
-  .ai-pricing-card {
+  .pricing-card {
     background-color: var(--ai-surface-0);
     border: 1px solid var(--ai-border);
     border-radius: var(--ai-radius-xl);
@@ -183,31 +183,31 @@
     transition: transform var(--ai-duration-normal) var(--ai-ease-out);
   }
 
-  .ai-pricing-featured {
+  .pricing-featured {
     border-color: var(--ai-primary);
     box-shadow: var(--ai-shadow-lg);
     transform: scale(1.03);
     z-index: 2;
   }
 
-  .ai-pricing-header {
+  .pricing-header {
     margin-bottom: var(--ai-space-6);
   }
 
-  .ai-pricing-plan {
+  .pricing-plan {
     font-family: var(--ai-font-display);
     font-size: 1.25rem;
     font-weight: 700;
   }
 
-  .ai-pricing-amount {
+  .pricing-amount {
     display: flex;
     align-items: baseline;
     gap: var(--ai-space-1);
     margin: var(--ai-space-4) 0;
   }
 
-  .ai-pricing-price {
+  .pricing-price {
     font-family: var(--ai-font-display);
     font-size: 3rem;
     font-weight: 800;
@@ -215,12 +215,12 @@
     letter-spacing: -0.03em;
   }
 
-  .ai-pricing-period {
+  .pricing-period {
     font-size: 0.875rem;
     color: var(--ai-text-muted);
   }
 
-  .ai-pricing-features {
+  .pricing-features {
     list-style: none;
     margin: var(--ai-space-6) 0 var(--ai-space-8);
     display: flex;
@@ -230,25 +230,25 @@
     color: var(--ai-text-secondary);
   }
 
-  .ai-pricing-feature-item {
+  .pricing-feature-item {
     display: flex;
     align-items: center;
     gap: var(--ai-space-2);
   }
 
   /* Testimonials */
-  .ai-testimonial-grid {
+  .testimonial-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--ai-space-6);
   }
   @media (min-width: 768px) {
-    .ai-testimonial-grid {
+    .testimonial-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
 
-  .ai-testimonial-card {
+  .testimonial-card {
     background-color: var(--ai-surface-0);
     border: 1px solid var(--ai-border);
     border-radius: var(--ai-radius-lg);
@@ -259,7 +259,7 @@
     gap: var(--ai-space-6);
   }
 
-  .ai-testimonial-quote {
+  .testimonial-quote {
     font-size: 0.9375rem;
     color: var(--ai-text-primary);
     line-height: 1.6;
@@ -267,20 +267,20 @@
   }
 
   /* Name over role: two short lines read faster than one long one. */
-  .ai-testimonial-author {
+  .testimonial-author {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.125rem;
   }
-  .ai-testimonial-author strong {
+  .testimonial-author strong {
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--ai-text-primary);
   }
 
   /* Footers */
-  .ai-footer {
+  .footer {
     border-top: 1px solid var(--ai-border);
     background-color: var(--ai-surface-0);
     padding: var(--ai-space-24) 0 var(--ai-space-12);
@@ -288,7 +288,7 @@
 
   /* Mobile first: one column and the accordion, two columns at md, brand
      column double width at lg. */
-  .ai-footer-grid {
+  .footer-grid {
     display: grid;
     grid-template-columns: 1fr;
     row-gap: var(--ai-space-4);
@@ -296,25 +296,25 @@
     margin-bottom: var(--ai-space-12);
   }
   @media (min-width: 768px) {
-    .ai-footer-grid {
+    .footer-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       row-gap: var(--ai-space-10);
       column-gap: var(--ai-space-10);
     }
   }
   @media (min-width: 1024px) {
-    .ai-footer-grid {
+    .footer-grid {
       grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
     }
   }
 
-  .ai-footer-brand {
+  .footer-brand {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .ai-footer-list {
+  .footer-list {
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -322,29 +322,29 @@
     font-size: 0.875rem;
     line-height: 1.5;
   }
-  .ai-footer-list a {
+  .footer-list a {
     color: var(--ai-text-secondary);
     text-decoration: none;
     transition: color var(--ai-duration-fast) var(--ai-ease-out);
   }
-  .ai-footer-list a:hover {
+  .footer-list a:hover {
     color: var(--ai-text-primary);
   }
 
-  .ai-footer-compact {
+  .footer-compact {
     padding: var(--ai-space-12) 0;
   }
-  .ai-footer-compact .ai-footer-grid {
+  .footer-compact .footer-grid {
     margin-bottom: 0;
   }
-  .ai-footer:empty {
+  .footer:empty {
     min-height: 18rem;
   }
 
   /* Footer columns collapse into an accordion below md. Markup: each column is
-     .ai-footer-col.ai-accordion-item with a .ai-footer-col-toggle button
-     (data-ai-toggle="accordion") and a .ai-footer-list.ai-accordion-content. */
-  .ai-footer-col-toggle {
+     .footer-col.accordion-item with a .footer-col-toggle button
+     (data-ai-toggle="accordion") and a .footer-list.accordion-content. */
+  .footer-col-toggle {
     all: unset;
     display: flex;
     width: 100%;
@@ -355,46 +355,46 @@
     font: inherit;
     color: inherit;
   }
-  .ai-footer-col-toggle:focus-visible {
+  .footer-col-toggle:focus-visible {
     outline: 2px solid var(--ai-accent);
     outline-offset: 2px;
     border-radius: var(--ai-radius-xs);
   }
-  .ai-footer-col.ai-accordion-item {
+  .footer-col.accordion-item {
     border-bottom: 1px solid var(--ai-border-subtle);
     padding: var(--ai-space-3) 0;
   }
   /* The generic accordion body carries its own 0.9375rem type; restate the
      footer list type here so it wins deterministically, not by source order. */
-  .ai-footer-col .ai-accordion-content {
+  .footer-col .accordion-content {
     padding: var(--ai-space-3) 0 var(--ai-space-1);
     font-size: 0.875rem;
     line-height: 1.5;
     color: var(--ai-text-secondary);
   }
   @media (min-width: 768px) {
-    .ai-footer-col.ai-accordion-item {
+    .footer-col.accordion-item {
       border-bottom: none;
       padding: 0;
       grid-template-rows: auto 1fr;
     }
-    .ai-footer-col .ai-accordion-content {
+    .footer-col .accordion-content {
       padding-top: 0;
       opacity: 1;
     }
-    .ai-footer-col-toggle {
+    .footer-col-toggle {
       pointer-events: none;
       cursor: default;
       margin-bottom: var(--ai-space-3);
     }
-    .ai-footer-col .ai-accordion-chevron {
+    .footer-col .accordion-chevron {
       display: none;
     }
   }
 
   /* Footer type scale: 11px caps headings, 14px links, 13px blurb, 12px
      bottom bar. Keeps the footer quiet next to page copy. */
-  .ai-footer-heading {
+  .footer-heading {
     margin: 0;
     font-family: var(--ai-font-sans);
     font-size: 0.6875rem;
@@ -405,7 +405,7 @@
     color: var(--ai-text-muted);
   }
 
-  .ai-footer-blurb {
+  .footer-blurb {
     margin-top: var(--ai-space-3);
     max-width: 22rem;
     font-size: 0.8125rem;
@@ -414,7 +414,7 @@
   }
 
   /* A count or caption that sits under a footer link. Not a link itself. */
-  .ai-footer-stat {
+  .footer-stat {
     display: block;
     margin-top: var(--ai-space-1);
     font-size: 0.75rem;
@@ -424,7 +424,7 @@
   }
 
   /* A CLI line. Mono, but never the boxed inline-code chip. */
-  .ai-footer-cmd {
+  .footer-cmd {
     display: block;
     font-family: var(--ai-font-mono);
     font-size: 0.75rem;
@@ -433,7 +433,7 @@
     white-space: nowrap;
   }
 
-  .ai-footer-bottom {
+  .footer-bottom {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -447,41 +447,41 @@
     color: var(--ai-text-muted);
   }
   /* p and a carry base-layer colours of their own, so restate rather than inherit. */
-  .ai-footer-bottom p {
+  .footer-bottom p {
     margin: 0;
     font-size: inherit;
     line-height: inherit;
     color: inherit;
   }
-  .ai-footer-bottom a {
+  .footer-bottom a {
     color: inherit;
     text-decoration: none;
     transition: color var(--ai-duration-fast) var(--ai-ease-out);
   }
-  .ai-footer-bottom a:hover {
+  .footer-bottom a:hover {
     color: var(--ai-text-primary);
   }
 
   /* --------------------------------------------------------------------------
      Asymmetric Editorial Bento Grid
      -------------------------------------------------------------------------- */
-  .ai-bento-grid {
+  .bento-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: var(--ai-space-4);
   }
 
   @media (min-width: 768px) {
-    .ai-bento-grid {
+    .bento-grid {
       grid-template-columns: repeat(3, 1fr);
       grid-auto-rows: minmax(180px, auto);
     }
-    .ai-bento-span-2,
-    .ai-bento-col-2 { grid-column: span 2; }
-    .ai-bento-row-2 { grid-row: span 2; }
+    .bento-span-2,
+    .bento-col-2 { grid-column: span 2; }
+    .bento-row-2 { grid-row: span 2; }
   }
 
-  .ai-bento-cell {
+  .bento-cell {
     background-color: var(--ai-surface-0);
     border: 1px solid var(--ai-border);
     border-radius: var(--ai-radius-lg);
@@ -494,11 +494,11 @@
     transition: border-color var(--ai-duration-fast) ease;
   }
 
-  .ai-bento-cell:hover {
+  .bento-cell:hover {
     border-color: var(--ai-border-hover);
   }
 
-  .ai-bento-code-pill {
+  .bento-code-pill {
     font-family: var(--ai-font-mono);
     font-size: 0.75rem;
     background-color: var(--ai-surface-2);
@@ -514,7 +514,7 @@
   /* --------------------------------------------------------------------------
      Enterprise Pricing Comparison Matrix
      -------------------------------------------------------------------------- */
-  .ai-matrix-container {
+  .matrix-container {
     width: 100%;
     overflow-x: auto;
     border: 1px solid var(--ai-border);
@@ -522,20 +522,20 @@
     background: var(--ai-surface-0);
   }
 
-  .ai-matrix-table {
+  .matrix-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.875rem;
     text-align: center;
   }
 
-  .ai-matrix-table th,
-  .ai-matrix-table td {
+  .matrix-table th,
+  .matrix-table td {
     padding: var(--ai-space-4);
     border-bottom: 1px solid var(--ai-border);
   }
 
-  .ai-matrix-feature-col {
+  .matrix-feature-col {
     text-align: left;
     font-weight: 500;
     position: sticky;
@@ -548,16 +548,16 @@
 
 @layer components {
   /* Page sections: the Law 1 remedy (whitespace and surface shifts, not cards) */
-  .ai-section {
+  .section {
     padding-block: var(--ai-section-padding, var(--ai-space-24));
   }
-  .ai-section + .ai-section {
+  .section + .section {
     border-top: 1px solid var(--ai-border);
   }
-  .ai-section-shift {
+  .section-shift {
     background-color: var(--ai-surface-1);
   }
-  .ai-section-title {
+  .section-title {
     font-family: var(--ai-font-display);
     font-size: clamp(1.75rem, 3vw, 2.25rem);
     font-weight: 700;
@@ -565,7 +565,7 @@
     line-height: 1.15;
     text-wrap: balance;
   }
-  .ai-section-lead {
+  .section-lead {
     margin-top: var(--ai-space-3);
     max-width: 48ch;
     color: var(--ai-text-secondary);
@@ -573,7 +573,7 @@
     line-height: 1.6;
     text-wrap: pretty;
   }
-  .ai-section-banner {
+  .section-banner {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -586,26 +586,26 @@
   }
 
   /* Hero variants */
-  .ai-hero-split.is-reversed {
+  .hero-split.is-reversed {
     grid-template-columns: 0.9fr 1.1fr;
   }
-  .ai-hero-split.is-reversed > :first-child {
+  .hero-split.is-reversed > :first-child {
     order: 2;
   }
-  .ai-hero.is-centered {
+  .hero.is-centered {
     text-align: center;
   }
-  .ai-hero.is-centered .ai-hero-lead,
-  .ai-hero.is-centered .ai-hero-actions {
+  .hero.is-centered .hero-lead,
+  .hero.is-centered .hero-actions {
     margin-inline: auto;
     justify-content: center;
   }
 
   /* Pricing ribbon on the recommended tier */
-  .ai-pricing-card {
+  .pricing-card {
     position: relative;
   }
-  .ai-pricing-ribbon {
+  .pricing-ribbon {
     position: absolute;
     top: -0.75rem;
     left: 50%;
@@ -621,14 +621,14 @@
   }
 
   /* Static logo rail: the Law 9 answer to a marquee */
-  .ai-logo-rail {
+  .logo-rail {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: var(--ai-space-6) var(--ai-space-10);
   }
-  .ai-logo-rail > * {
+  .logo-rail > * {
     color: var(--ai-text-muted);
     font-weight: 600;
     font-size: 0.9375rem;
@@ -636,23 +636,23 @@
     opacity: 0.85;
     transition: color var(--ai-duration-fast), opacity var(--ai-duration-fast);
   }
-  .ai-logo-rail > :hover {
+  .logo-rail > :hover {
     color: var(--ai-text-primary);
     opacity: 1;
   }
 
   /* Feature grid: uniform cells, one hairline, no icon tiles in colored squares */
-  .ai-feature-grid {
+  .feature-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
     gap: var(--ai-space-8) var(--ai-space-6);
   }
-  .ai-feature-item {
+  .feature-item {
     display: flex;
     flex-direction: column;
     gap: var(--ai-space-3);
   }
-  .ai-feature-icon {
+  .feature-icon {
     width: 2.25rem;
     height: 2.25rem;
     display: inline-flex;
@@ -663,32 +663,32 @@
     color: var(--ai-text-primary);
     background-color: var(--ai-surface-0);
   }
-  .ai-feature-title {
+  .feature-title {
     font-weight: 600;
     font-size: 1rem;
   }
-  .ai-feature-text {
+  .feature-text {
     color: var(--ai-text-secondary);
     font-size: 0.9375rem;
     line-height: 1.6;
   }
 
   /* Feature list: plain checklist with a mark, for when a grid is too heavy */
-  .ai-feature-list {
+  .feature-list {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: var(--ai-space-3);
     font-size: 0.9375rem;
   }
-  .ai-feature-list > li {
+  .feature-list > li {
     display: flex;
     gap: var(--ai-space-3);
     align-items: flex-start;
   }
 
   /* Stats band: one dominant number, supporting stats smaller (Law 8) */
-  .ai-stats-band {
+  .stats-band {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
     gap: var(--ai-space-6) var(--ai-space-8);
@@ -696,16 +696,16 @@
   }
   /* Each stat hangs from a shared hairline; the figure sits on a shared
      baseline at the bottom so mixed sizes still read as one row. */
-  .ai-stat {
+  .stat {
     display: flex;
     flex-direction: column;
     border-top: 1px solid var(--ai-border);
     padding-top: var(--ai-space-4);
   }
-  .ai-stat-value {
+  .stat-value {
     margin-top: auto;
   }
-  .ai-stat-value {
+  .stat-value {
     font-family: var(--ai-font-display);
     font-size: clamp(1.75rem, 3vw, 2.25rem);
     font-weight: 700;
@@ -713,10 +713,10 @@
     line-height: 1;
     font-variant-numeric: tabular-nums;
   }
-  .ai-stat.is-primary .ai-stat-value {
+  .stat.is-primary .stat-value {
     font-size: clamp(2.5rem, 5vw, 3.5rem);
   }
-  .ai-stat-label {
+  .stat-label {
     margin-top: var(--ai-space-2);
     color: var(--ai-text-secondary);
     font-size: 0.8125rem;
@@ -724,14 +724,14 @@
   }
 
   /* CTA band */
-  .ai-cta-band {
+  .cta-band {
     padding: var(--ai-space-12) var(--ai-space-8);
     border: 1px solid var(--ai-border);
     border-radius: var(--ai-radius-xl);
     background-color: var(--ai-surface-1);
     text-align: center;
   }
-  .ai-cta-band .ai-cta-actions {
+  .cta-band .cta-actions {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -740,7 +740,7 @@
   }
 
   /* Editorial callout: hairlines top and bottom, no stripe, no icon */
-  .ai-callout {
+  .callout {
     padding: var(--ai-space-5) 0;
     border-top: 1px solid var(--ai-border);
     border-bottom: 1px solid var(--ai-border);
@@ -748,7 +748,7 @@
     line-height: 1.6;
     color: var(--ai-text-primary);
   }
-  .ai-callout-label {
+  .callout-label {
     display: block;
     margin-bottom: var(--ai-space-2);
     font-size: 0.8125rem;
@@ -757,29 +757,29 @@
   }
 
   /* Team grid */
-  .ai-team-grid {
+  .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     gap: var(--ai-space-8) var(--ai-space-6);
   }
-  .ai-team-member {
+  .team-member {
     display: flex;
     flex-direction: column;
     gap: 0;
   }
-  .ai-team-photo {
+  .team-photo {
     width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
     border-radius: var(--ai-radius-lg);
     background-color: var(--ai-surface-1);
   }
-  .ai-team-name {
+  .team-name {
     margin-top: var(--ai-space-3);
     font-weight: 600;
     line-height: 1.3;
   }
-  .ai-team-role {
+  .team-role {
     margin-top: 0.125rem;
     color: var(--ai-text-secondary);
     font-size: 0.875rem;
@@ -787,7 +787,7 @@
   }
 
   /* Announcement bar and cookie bar */
-  .ai-announcement {
+  .announcement {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -797,12 +797,12 @@
     background-color: var(--ai-primary);
     color: var(--ai-primary-text);
   }
-  .ai-announcement a {
+  .announcement a {
     color: inherit;
     text-decoration: underline;
     text-underline-offset: 0.2em;
   }
-  .ai-consent-bar {
+  .consent-bar {
     position: fixed;
     inset-inline: var(--ai-space-4);
     bottom: var(--ai-space-4);
@@ -821,26 +821,26 @@
     color: var(--ai-text-secondary);
   }
   /* Copy and actions share one row until the copy has less than 18rem */
-  .ai-consent-bar > :first-child {
+  .consent-bar > :first-child {
     flex: 1 1 18rem;
     min-width: 0;
   }
-  .ai-consent-bar .ai-consent-actions {
+  .consent-bar .consent-actions {
     display: flex;
     flex: 0 0 auto;
     gap: var(--ai-space-2);
     margin-inline-start: auto;
   }
   @media (max-width: 479px) {
-    .ai-consent-bar .ai-consent-actions {
+    .consent-bar .consent-actions {
       width: 100%;
     }
-    .ai-consent-bar .ai-consent-actions > .ai-btn {
+    .consent-bar .consent-actions > .btn {
       flex: 1 1 0;
     }
   }
   @media (min-width: 768px) {
-    .ai-consent-bar {
+    .consent-bar {
       inset-inline: auto var(--ai-space-6);
       max-width: 36rem;
     }
@@ -848,7 +848,7 @@
 
 
   /* Pricing matrix category header */
-  .ai-matrix-category-header {
+  .matrix-category-header {
     background-color: var(--ai-surface-1);
     font-weight: 600;
     text-transform: uppercase;

@@ -186,7 +186,7 @@ const statsRenderers = {
   // AGENTS.md, docs/AGENT_RULES.md, README.md, DESIGN_HARNESS.md.
   md: () =>
     [
-      `- **Classes:** ${classTotal} \`ai-*\` classes across ${familyRows.length} families, listed in [classes.json](https://llmcss.io/classes.json).`,
+      `- **Classes:** ${classTotal} classes across ${familyRows.length} families, listed in [classes.json](https://llmcss.io/classes.json).`,
       `- **Tokens:** ${tokenTotal} \`--ai-*\` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).`,
       `- **States:** ${stateTotal} \`is-*\` classes, listed in [states.json](https://llmcss.io/states.json).`,
       `- **Components:** ${componentTotal} (${componentFree} free, ${componentPro} themed Pro): ${categorySplit}.`,
@@ -197,7 +197,7 @@ const statsRenderers = {
   // public/llms.txt and public/llms-full.txt.
   text: () =>
     [
-      `Classes: ${classTotal} ai-* classes across ${familyRows.length} families, https://llmcss.io/classes.json.`,
+      `Classes: ${classTotal} classes across ${familyRows.length} families, https://llmcss.io/classes.json.`,
       `Tokens: ${tokenTotal} --ai-* custom properties, https://llmcss.io/tokens.json.`,
       `States: ${stateTotal} is-* classes, https://llmcss.io/states.json.`,
       `Components: ${componentTotal} (${componentFree} free, ${componentPro} themed Pro): ${categorySplit}.`,
@@ -254,7 +254,7 @@ const clip = (text, n) => (text.length > n ? `${text.slice(0, n)}...` : text);
 const sampleRenderers = {
   'classes-json': () => {
     const top = familyRows.slice(0, 4);
-    const sample = classList.find((c) => c.class === 'ai-gap-4') || classList[0];
+    const sample = classList.find((c) => c.class === 'gap-4') || classList[0];
     return [
       '```json',
       `{ "version": ${JSON.stringify(classesManifest.version)}, "generatedAt": ${JSON.stringify(classesManifest.generatedAt)},`,

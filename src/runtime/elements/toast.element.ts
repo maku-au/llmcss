@@ -10,7 +10,7 @@ export class AiToastElement extends HTMLElement {
     }
 
     this.addEventListener('click', (e) => {
-      const closeBtn = (e.target as HTMLElement).closest('.ai-toast-close');
+      const closeBtn = (e.target as HTMLElement).closest('.toast-close');
       if (closeBtn) {
         this.dismiss();
       }

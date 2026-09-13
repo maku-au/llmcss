@@ -9,5 +9,5 @@
     "user",
     "team"
   ],
-  "html": "<div class=\"ai-flex ai-items-center ai-gap-6\">\n  <div class=\"ai-avatar-group\">\n    <div class=\"ai-avatar ai-avatar-sm\" style=\"background-color: var(--ai-surface-3);\">+4</div>\n    <div class=\"ai-avatar ai-avatar-sm\" style=\"background-color: #3b82f6; color: white;\">JD</div>\n    <div class=\"ai-avatar ai-avatar-sm\" style=\"background-color: #10b981; color: white;\">SK</div>\n    <div class=\"ai-avatar ai-avatar-sm\" style=\"background-color: #f59e0b; color: white;\">AL</div>\n  </div>\n  <div class=\"ai-avatar\">\n    <span class=\"ai-font-bold\">EA</span>\n  </div>\n</div>"
+  "html": "<div class=\"flex items-center gap-6\">\n  <div class=\"avatar-group\">\n    <div class=\"avatar avatar-sm\" style=\"background-color: var(--ai-surface-3);\">+4</div>\n    <div class=\"avatar avatar-sm\" style=\"background-color: #3b82f6; color: white;\">JD</div>\n    <div class=\"avatar avatar-sm\" style=\"background-color: #10b981; color: white;\">SK</div>\n    <div class=\"avatar avatar-sm\" style=\"background-color: #f59e0b; color: white;\">AL</div>\n  </div>\n  <div class=\"avatar\">\n    <span class=\"font-bold\">EA</span>\n  </div>\n</div>"
 }

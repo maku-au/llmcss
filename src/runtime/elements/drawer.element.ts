@@ -34,7 +34,7 @@ export class AiDrawerElement extends HTMLElement {
   connectedCallback() {
     this.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
-      if (target && target.classList.contains('ai-drawer-backdrop')) {
+      if (target && target.classList.contains('drawer-backdrop')) {
         this.close();
       }
     });

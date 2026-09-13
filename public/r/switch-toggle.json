@@ -9,5 +9,5 @@
     "toggle",
     "checkbox"
   ],
-  "html": "<div class=\"ai-flex ai-flex-col ai-gap-4\">\n  <label class=\"ai-switch\">\n    <input type=\"checkbox\" class=\"ai-switch-input\" checked />\n    <span class=\"ai-switch-track\"><span class=\"ai-switch-thumb\"></span></span>\n    <span class=\"ai-text-sm ai-font-medium\">Automatic Backups</span>\n  </label>\n  <label class=\"ai-checkbox\">\n    <input type=\"checkbox\" class=\"ai-checkbox-input\" checked />\n    <span>Notify me when teammates comment</span>\n  </label>\n</div>"
+  "html": "<div class=\"flex flex-col gap-4\">\n  <label class=\"switch\">\n    <input type=\"checkbox\" class=\"switch-input\" checked />\n    <span class=\"switch-track\"><span class=\"switch-thumb\"></span></span>\n    <span class=\"text-sm font-medium\">Automatic Backups</span>\n  </label>\n  <label class=\"checkbox\">\n    <input type=\"checkbox\" class=\"checkbox-input\" checked />\n    <span>Notify me when teammates comment</span>\n  </label>\n</div>"
 }

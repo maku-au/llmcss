@@ -1,313 +1,313 @@
 {
  "version": "0.1.0",
- "generatedAt": "2026-09-13T03:10:22.582Z",
+ "generatedAt": "2026-09-13T03:30:05.800Z",
  "note": "State classes are set by the author for static markup or by the runtime for interactive components. usedBy lists the classes that appear in the same selector.",
  "states": [
   {
    "class": "is-active",
    "usedBy": [
-    "ai-combobox-option",
-    "ai-filter-tag",
-    "ai-list-group-item",
-    "ai-nav-link",
-    "ai-pagination-link",
-    "ai-scrollspy-link",
-    "ai-segmented-btn",
-    "ai-sidebar-badge",
-    "ai-sidebar-item",
-    "ai-step-circle",
-    "ai-step-item",
-    "ai-step-label",
-    "ai-tab",
-    "ai-tab-panel",
-    "ai-tabs-pills",
-    "ai-tree-leaf"
+    "combobox-option",
+    "filter-tag",
+    "list-group-item",
+    "nav-link",
+    "pagination-link",
+    "scrollspy-link",
+    "segmented-btn",
+    "sidebar-badge",
+    "sidebar-item",
+    "step-circle",
+    "step-item",
+    "step-label",
+    "tab",
+    "tab-panel",
+    "tabs-pills",
+    "tree-leaf"
    ]
   },
   {
    "class": "is-added",
    "usedBy": [
-    "ai-diff-gutter",
-    "ai-diff-marker",
-    "ai-diff-row"
+    "diff-gutter",
+    "diff-marker",
+    "diff-row"
    ]
   },
   {
    "class": "is-auto",
    "usedBy": [
-    "ai-marquee",
-    "ai-marquee-track"
+    "marquee",
+    "marquee-track"
    ]
   },
   {
    "class": "is-centered",
    "usedBy": [
-    "ai-hero",
-    "ai-hero-actions",
-    "ai-hero-lead"
+    "hero",
+    "hero-actions",
+    "hero-lead"
    ]
   },
   {
    "class": "is-collapsed",
    "usedBy": [
-    "ai-sidebar",
-    "ai-sidebar-badge",
-    "ai-sidebar-icon",
-    "ai-sidebar-item",
-    "ai-sidebar-section-title"
+    "sidebar",
+    "sidebar-badge",
+    "sidebar-icon",
+    "sidebar-item",
+    "sidebar-section-title"
    ]
   },
   {
    "class": "is-completed",
    "usedBy": [
-    "ai-checklist-item",
-    "ai-checklist-label",
-    "ai-checklist-mark",
-    "ai-order-pip",
-    "ai-order-step",
-    "ai-step-circle",
-    "ai-step-item"
+    "checklist-item",
+    "checklist-label",
+    "checklist-mark",
+    "order-pip",
+    "order-step",
+    "step-circle",
+    "step-item"
    ]
   },
   {
    "class": "is-credit",
    "usedBy": [
-    "ai-checkout-value"
+    "checkout-value"
    ]
   },
   {
    "class": "is-current",
    "usedBy": [
-    "ai-breadcrumb-item",
-    "ai-order-label",
-    "ai-order-pip",
-    "ai-order-step"
+    "breadcrumb-item",
+    "order-label",
+    "order-pip",
+    "order-step"
    ]
   },
   {
    "class": "is-danger",
    "usedBy": [
-    "ai-cost-mark",
-    "ai-dropdown-item"
+    "cost-mark",
+    "dropdown-item"
    ]
   },
   {
    "class": "is-disabled",
    "usedBy": [
-    "ai-list-group-item",
-    "ai-pagination-link"
+    "list-group-item",
+    "pagination-link"
    ]
   },
   {
    "class": "is-done",
    "usedBy": [
-    "ai-approval",
-    "ai-approval-status",
-    "ai-run-header",
-    "ai-run-timer",
-    "ai-status-pip",
-    "ai-trace-row",
-    "ai-trace-status"
+    "approval",
+    "approval-status",
+    "run-header",
+    "run-timer",
+    "status-pip",
+    "trace-row",
+    "trace-status"
    ]
   },
   {
    "class": "is-down",
    "usedBy": [
-    "ai-kpi-trend"
+    "kpi-trend"
    ]
   },
   {
    "class": "is-error",
    "usedBy": [
-    "ai-empty-state",
-    "ai-empty-state-icon",
-    "ai-input",
-    "ai-select",
-    "ai-textarea",
-    "ai-trace-row",
-    "ai-trace-status"
+    "empty-state",
+    "empty-state-icon",
+    "input",
+    "select",
+    "textarea",
+    "trace-row",
+    "trace-status"
    ]
   },
   {
    "class": "is-focused",
    "usedBy": [
-    "ai-input",
-    "ai-select",
-    "ai-textarea"
+    "input",
+    "select",
+    "textarea"
    ]
   },
   {
    "class": "is-increment",
    "usedBy": [
-    "ai-stepper-btn"
+    "stepper-btn"
    ]
   },
   {
    "class": "is-loading",
    "usedBy": [
-    "ai-btn",
-    "ai-kpi-card",
-    "ai-kpi-trend",
-    "ai-kpi-value"
+    "btn",
+    "kpi-card",
+    "kpi-trend",
+    "kpi-value"
    ]
   },
   {
    "class": "is-muted",
    "usedBy": [
-    "ai-calendar-day"
+    "calendar-day"
    ]
   },
   {
    "class": "is-nested",
    "usedBy": [
-    "ai-scrollspy-link"
+    "scrollspy-link"
    ]
   },
   {
    "class": "is-open",
    "usedBy": [
-    "ai-accordion-chevron",
-    "ai-accordion-content",
-    "ai-accordion-item",
-    "ai-accordion-trigger",
-    "ai-combobox",
-    "ai-combobox-list",
-    "ai-command-palette",
-    "ai-drawer",
-    "ai-drawer-no-lock",
-    "ai-dropdown",
-    "ai-dropdown-menu",
-    "ai-modal",
-    "ai-modeless",
-    "ai-popover",
-    "ai-popover-toggle"
+    "accordion-chevron",
+    "accordion-content",
+    "accordion-item",
+    "accordion-trigger",
+    "combobox",
+    "combobox-list",
+    "command-palette",
+    "drawer",
+    "drawer-no-lock",
+    "dropdown",
+    "dropdown-menu",
+    "modal",
+    "modeless",
+    "popover",
+    "popover-toggle"
    ]
   },
   {
    "class": "is-primary",
    "usedBy": [
-    "ai-kpi-card",
-    "ai-stat",
-    "ai-stat-value"
+    "kpi-card",
+    "stat",
+    "stat-value"
    ]
   },
   {
    "class": "is-read",
    "usedBy": [
-    "ai-notification-dot"
+    "notification-dot"
    ]
   },
   {
    "class": "is-ready",
    "usedBy": [
-    "ai-combobox",
-    "ai-combobox-list"
+    "combobox",
+    "combobox-list"
    ]
   },
   {
    "class": "is-removed",
    "usedBy": [
-    "ai-diff-code",
-    "ai-diff-gutter",
-    "ai-diff-marker",
-    "ai-diff-row"
+    "diff-code",
+    "diff-gutter",
+    "diff-marker",
+    "diff-row"
    ]
   },
   {
    "class": "is-required",
    "usedBy": [
-    "ai-form-label"
+    "form-label"
    ]
   },
   {
    "class": "is-reversed",
    "usedBy": [
-    "ai-hero-split"
+    "hero-split"
    ]
   },
   {
    "class": "is-selected",
    "usedBy": [
-    "ai-calendar-day",
-    "ai-command-item"
+    "calendar-day",
+    "command-item"
    ]
   },
   {
    "class": "is-sold-out",
    "usedBy": [
-    "ai-btn",
-    "ai-product-card",
-    "ai-product-img",
-    "ai-product-media"
+    "btn",
+    "product-card",
+    "product-img",
+    "product-media"
    ]
   },
   {
    "class": "is-streaming",
    "usedBy": [
-    "ai-chat-body",
-    "ai-chat-msg",
-    "ai-pulse-dot",
-    "ai-pulse-dot-streaming",
-    "ai-status-pip",
-    "ai-trace-row",
-    "ai-trace-status"
+    "chat-body",
+    "chat-msg",
+    "pulse-dot",
+    "pulse-dot-streaming",
+    "status-pip",
+    "trace-row",
+    "trace-status"
    ]
   },
   {
    "class": "is-today",
    "usedBy": [
-    "ai-calendar-day"
+    "calendar-day"
    ]
   },
   {
    "class": "is-total",
    "usedBy": [
-    "ai-checkout-label",
-    "ai-checkout-row",
-    "ai-checkout-value"
+    "checkout-label",
+    "checkout-row",
+    "checkout-value"
    ]
   },
   {
    "class": "is-trailing",
    "usedBy": [
-    "ai-input",
-    "ai-input-icon",
-    "ai-input-icon-wrap"
+    "input",
+    "input-icon",
+    "input-icon-wrap"
    ]
   },
   {
    "class": "is-unread",
    "usedBy": [
-    "ai-inbox-item",
-    "ai-inbox-title",
-    "ai-notification-item"
+    "inbox-item",
+    "inbox-title",
+    "notification-item"
    ]
   },
   {
    "class": "is-up",
    "usedBy": [
-    "ai-kpi-trend"
+    "kpi-trend"
    ]
   },
   {
    "class": "is-upcoming",
    "usedBy": [
-    "ai-order-label",
-    "ai-order-pip",
-    "ai-order-step"
+    "order-label",
+    "order-pip",
+    "order-step"
    ]
   },
   {
    "class": "is-visible",
    "usedBy": [
-    "ai-password",
-    "ai-password-toggle"
+    "password",
+    "password-toggle"
    ]
   },
   {
    "class": "is-warn",
    "usedBy": [
-    "ai-cost-mark"
+    "cost-mark"
    ]
   }
  ],
@@ -383,7 +383,7 @@
    ],
    "on": "button",
    "appliedBy": "author",
-   "purpose": "Runtime toggle. modal and drawer need data-ai-target=\"#id\"; dropdown needs a .ai-dropdown ancestor; accordion needs a .ai-accordion-item ancestor."
+   "purpose": "Runtime toggle. modal and drawer need data-ai-target=\"#id\"; dropdown needs a .dropdown ancestor; accordion needs a .accordion-item ancestor."
   },
   {
    "attribute": "data-ai-target",
@@ -410,7 +410,7 @@
    "values": [
     "#panel-id"
    ],
-   "on": "button.ai-tab inside .ai-tabs",
+   "on": "button.tab inside .tabs",
    "appliedBy": "author",
    "purpose": "Activates the panel; the runtime syncs aria-selected and tabindex."
   },
@@ -423,7 +423,7 @@
     "bottom-left",
     "bottom-center"
    ],
-   "on": ".ai-toast-container",
+   "on": ".toast-container",
    "appliedBy": "author",
    "purpose": "Where the toast stack sits. Absent means bottom-right."
   },
@@ -432,7 +432,7 @@
    "values": [
     ""
    ],
-   "on": ".ai-modal, .ai-drawer, .ai-accordion-item, .ai-dropdown",
+   "on": ".modal, .drawer, .accordion-item, .dropdown",
    "appliedBy": "runtime or author",
    "purpose": "Open state. Interchangeable with the is-open class; the runtime sets both."
   },
@@ -452,7 +452,7 @@
     "ascending",
     "descending"
    ],
-   "on": "th inside .ai-table",
+   "on": "th inside .table",
    "appliedBy": "author",
    "purpose": "Shows the sort indicator."
   },
@@ -461,7 +461,7 @@
    "values": [
     "true"
    ],
-   "on": "tr inside .ai-table, button.ai-tab",
+   "on": "tr inside .table, button.tab",
    "appliedBy": "runtime or author",
    "purpose": "Selected row or active tab. Interchangeable with the is-active class on tabs; the runtime sets both."
   },
@@ -472,7 +472,7 @@
     "step",
     "true"
    ],
-   "on": ".ai-nav-link, .ai-sidebar-item, .ai-pagination-link, .ai-breadcrumb-item",
+   "on": ".nav-link, .sidebar-item, .pagination-link, .breadcrumb-item",
    "appliedBy": "author",
    "purpose": "Marks the current item. Interchangeable with is-active (is-current on breadcrumbs); the selectors match the attribute's presence, so remove it rather than setting aria-current=\"false\"."
   }

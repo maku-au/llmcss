@@ -4,7 +4,7 @@
      ========================================================================== */
 
   /* Command Palette (⌘K) */
-  .ai-command-palette,
+  .command-palette,
   ai-command-palette {
     display: none;
     position: fixed;
@@ -17,13 +17,13 @@
     padding-right: var(--ai-space-4);
   }
 
-  .ai-command-palette.is-open,
-  .ai-command-palette[open],
+  .command-palette.is-open,
+  .command-palette[open],
   ai-command-palette[open] {
     display: flex;
   }
 
-  .ai-command-box {
+  .command-box {
     position: relative;
     width: 100%;
     max-width: 40rem;
@@ -36,7 +36,7 @@
     animation: ai-scale-up var(--ai-duration-normal) var(--ai-ease-out);
   }
 
-  .ai-command-input-wrapper {
+  .command-input-wrapper {
     display: flex;
     align-items: center;
     padding: 0 var(--ai-space-4);
@@ -45,24 +45,24 @@
     transition: border-color var(--ai-duration-fast), background-color var(--ai-duration-fast);
   }
 
-  .ai-command-input-wrapper:focus-within {
+  .command-input-wrapper:focus-within {
     border-bottom-color: var(--ai-border-strong);
     background-color: var(--ai-surface-0);
   }
 
-  .ai-command-input-wrapper svg {
+  .command-input-wrapper svg {
     color: var(--ai-text-muted);
     transition: color var(--ai-duration-fast);
     flex-shrink: 0;
   }
 
-  .ai-command-input-wrapper:focus-within svg {
+  .command-input-wrapper:focus-within svg {
     color: var(--ai-text-primary);
   }
 
-  .ai-command-input,
-  .ai-command-input:focus,
-  .ai-command-input:focus-visible {
+  .command-input,
+  .command-input:focus,
+  .command-input:focus-visible {
     width: 100%;
     height: 3.5rem;
     background: transparent !important;
@@ -74,19 +74,19 @@
     color: var(--ai-text-primary);
   }
 
-  .ai-command-input::placeholder {
+  .command-input::placeholder {
     color: var(--ai-text-muted);
     font-size: 0.9375rem;
   }
 
-  .ai-command-list {
+  .command-list {
     max-height: 20rem;
     overflow-y: auto;
     padding: var(--ai-space-2);
     list-style: none;
   }
 
-  .ai-command-group-heading {
+  .command-group-heading {
     padding: var(--ai-space-2) var(--ai-space-3);
     font-size: 0.6875rem;
     font-weight: 600;
@@ -95,7 +95,7 @@
     letter-spacing: 0.05em;
   }
 
-  .ai-command-item {
+  .command-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -107,18 +107,18 @@
     transition: background-color var(--ai-duration-fast);
   }
 
-  .ai-command-item:hover,
-  .ai-command-item.is-selected {
+  .command-item:hover,
+  .command-item.is-selected {
     background-color: var(--ai-surface-1);
   }
 
-  .ai-command-item-left {
+  .command-item-left {
     display: flex;
     align-items: center;
     gap: var(--ai-space-3);
   }
 
-  .ai-command-kbd {
+  .command-kbd {
     display: inline-flex;
     align-items: center;
     gap: 0.125rem;

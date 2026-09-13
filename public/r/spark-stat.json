@@ -11,5 +11,5 @@
     "chart",
     "metric"
   ],
-  "html": "<div class=\"ai-spark-stat\" style=\"max-width: 28rem;\">\n  <div>\n    <span class=\"ai-kpi-label\">Requests</span>\n    <div class=\"ai-kpi-value\">128k</div>\n    <span class=\"ai-kpi-trend is-up\">+9.4% vs last week</span>\n  </div>\n  <svg class=\"ai-spark\" viewBox=\"0 0 120 40\" fill=\"none\" aria-hidden=\"true\">\n    <polyline points=\"0,28 17,24 34,26 51,18 68,20 85,12 102,14 120,8\" stroke=\"currentColor\" stroke-width=\"1.75\" />\n  </svg>\n</div>"
+  "html": "<div class=\"spark-stat\" style=\"max-width: 28rem;\">\n  <div>\n    <span class=\"kpi-label\">Requests</span>\n    <div class=\"kpi-value\">128k</div>\n    <span class=\"kpi-trend is-up\">+9.4% vs last week</span>\n  </div>\n  <svg class=\"spark\" viewBox=\"0 0 120 40\" fill=\"none\" aria-hidden=\"true\">\n    <polyline points=\"0,28 17,24 34,26 51,18 68,20 85,12 102,14 120,8\" stroke=\"currentColor\" stroke-width=\"1.75\" />\n  </svg>\n</div>"
 }

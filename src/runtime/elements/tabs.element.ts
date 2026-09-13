@@ -1,7 +1,7 @@
 export class AiTabsElement extends HTMLElement {
   connectedCallback() {
     this.addEventListener('click', (e) => {
-      const target = (e.target as HTMLElement).closest('.ai-tab') as HTMLElement | null;
+      const target = (e.target as HTMLElement).closest('.tab') as HTMLElement | null;
       if (!target || !this.contains(target)) return;
 
       const targetId = target.getAttribute('data-ai-tab') || target.getAttribute('href');
@@ -14,14 +14,14 @@ export class AiTabsElement extends HTMLElement {
 
   selectTab(tabBtn: HTMLElement, panelSelector: string) {
     // Unset all tabs
-    this.querySelectorAll('.ai-tab').forEach((t) => {
+    this.querySelectorAll('.tab').forEach((t) => {
       t.classList.remove('is-active');
       t.setAttribute('aria-selected', 'false');
       t.setAttribute('tabindex', '-1');
     });
 
     // Hide all panels
-    this.querySelectorAll('.ai-tab-panel').forEach((p) => {
+    this.querySelectorAll('.tab-panel').forEach((p) => {
       p.classList.remove('is-active');
       p.removeAttribute('data-active');
     });

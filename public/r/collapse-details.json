@@ -11,5 +11,5 @@
     "toggle",
     "css-only"
   ],
-  "html": "<details class=\"ai-collapse\" style=\"max-width: 32rem;\">\n  <summary>Advanced deployment options</summary>\n  <div class=\"ai-collapse-body\">\n    Region pinning, canary percentage, and rollback window. These apply to this service only and do not change organisation defaults.\n  </div>\n</details>"
+  "html": "<details class=\"collapse\" style=\"max-width: 32rem;\">\n  <summary>Advanced deployment options</summary>\n  <div class=\"collapse-body\">\n    Region pinning, canary percentage, and rollback window. These apply to this service only and do not change organisation defaults.\n  </div>\n</details>"
 }

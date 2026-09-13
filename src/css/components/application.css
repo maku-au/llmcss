@@ -4,14 +4,14 @@
      ========================================================================== */
 
   /* App Shell & Sidebar */
-  .ai-app-shell {
+  .app-shell {
     display: flex;
     min-height: 100dvh;
     background-color: var(--ai-bg);
   }
 
   /* --ai-sidebar-width  rail width; .is-collapsed sets it to the icon rail */
-  .ai-sidebar {
+  .sidebar {
     width: var(--ai-sidebar-width, 16rem);
     background-color: var(--ai-surface-0);
     border-inline-end: 1px solid var(--ai-border);
@@ -22,17 +22,17 @@
 
   /* Below md the shell stacks and the sidebar becomes a full-width rail */
   @media (max-width: 767px) {
-    .ai-app-shell {
+    .app-shell {
       flex-direction: column;
     }
-    .ai-sidebar {
+    .sidebar {
       width: 100%;
       border-right: none;
       border-bottom: 1px solid var(--ai-border);
     }
   }
 
-  .ai-sidebar-header {
+  .sidebar-header {
     height: 4rem;
     display: flex;
     align-items: center;
@@ -40,7 +40,7 @@
     border-bottom: 1px solid var(--ai-border-subtle);
   }
 
-  .ai-sidebar-nav {
+  .sidebar-nav {
     padding: var(--ai-space-4);
     display: flex;
     flex-direction: column;
@@ -49,7 +49,7 @@
     flex: 1;
   }
 
-  .ai-sidebar-item {
+  .sidebar-item {
     display: flex;
     align-items: center;
     gap: var(--ai-space-3);
@@ -62,27 +62,27 @@
     transition: all var(--ai-duration-fast);
   }
 
-  .ai-sidebar-item:hover {
+  .sidebar-item:hover {
     background-color: var(--ai-surface-1);
     color: var(--ai-text-primary);
   }
 
   /* State twin: .is-active mirrors aria-current="page" on the current item. */
-  .ai-sidebar-item.is-active,
-  .ai-sidebar-item[aria-current] {
+  .sidebar-item.is-active,
+  .sidebar-item[aria-current] {
     background-color: var(--ai-surface-2);
     color: var(--ai-text-primary);
     font-weight: 600;
   }
 
-  .ai-app-main {
+  .app-main {
     flex: 1;
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
   }
 
-  .ai-app-header {
+  .app-header {
     height: 4rem;
     background-color: var(--ai-surface-0);
     border-bottom: 1px solid var(--ai-border);
@@ -92,13 +92,13 @@
     padding: 0 var(--ai-space-8);
   }
 
-  .ai-app-content {
+  .app-content {
     padding: var(--ai-space-8);
     flex: 1;
   }
 
   /* KPI / Metric Cards */
-  .ai-kpi-card {
+  .kpi-card {
     background-color: var(--ai-surface-0);
     border: 1px solid var(--ai-border);
     border-radius: var(--ai-radius-lg);
@@ -109,7 +109,7 @@
     box-shadow: var(--ai-shadow-sm);
   }
 
-  .ai-kpi-label {
+  .kpi-label {
     font-size: 0.8125rem;
     font-weight: 500;
     color: var(--ai-text-muted);
@@ -118,9 +118,9 @@
   }
 
   /* --ai-kpi-value-size is the metric's type size. Set it on a wrapper to
-     rescale every value inside it; .ai-spark-stat and .ai-kpi-card.is-primary
+     rescale every value inside it; .spark-stat and .kpi-card.is-primary
      (dashboard.css) do exactly that. */
-  .ai-kpi-value {
+  .kpi-value {
     font-family: var(--ai-font-display);
     font-size: var(--ai-kpi-value-size, 2rem);
     font-weight: 700;
@@ -128,7 +128,7 @@
     line-height: 1.1;
   }
 
-  .ai-kpi-trend {
+  .kpi-trend {
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
@@ -136,11 +136,11 @@
     font-weight: 600;
   }
 
-  .ai-kpi-trend.is-up { color: var(--ai-success); }
-  .ai-kpi-trend.is-down { color: var(--ai-danger); }
+  .kpi-trend.is-up { color: var(--ai-success); }
+  .kpi-trend.is-down { color: var(--ai-danger); }
 
   /* Auth Screens */
-  .ai-auth-wrap {
+  .auth-wrap {
     min-height: 100dvh;
     display: flex;
     align-items: center;
@@ -148,7 +148,7 @@
     padding: var(--ai-space-4);
   }
 
-  .ai-auth-card {
+  .auth-card {
     width: 100%;
     max-width: 28rem;
     background-color: var(--ai-surface-0);
@@ -161,7 +161,7 @@
   /* --------------------------------------------------------------------------
      Stepper Progress Indicator
      -------------------------------------------------------------------------- */
-  .ai-stepper {
+  .stepper {
     --ai-step-size: 2rem;
     --ai-step-rail: 2px;
     display: flex;
@@ -170,7 +170,7 @@
     position: relative;
   }
 
-  .ai-step-item {
+  .step-item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -179,7 +179,7 @@
     position: relative;
   }
 
-  .ai-step-item:not(:last-child)::after {
+  .step-item:not(:last-child)::after {
     content: '';
     position: absolute;
     top: calc((var(--ai-step-size) - var(--ai-step-rail)) / 2);
@@ -190,11 +190,11 @@
     z-index: 1;
   }
 
-  .ai-step-item.is-completed:not(:last-child)::after {
+  .step-item.is-completed:not(:last-child)::after {
     background-color: var(--ai-success);
   }
 
-  .ai-step-circle {
+  .step-circle {
     width: var(--ai-step-size);
     height: var(--ai-step-size);
     flex: 0 0 auto;
@@ -210,20 +210,20 @@
     transition: all var(--ai-duration-normal) var(--ai-ease-smooth);
   }
 
-  .ai-step-item.is-active .ai-step-circle {
+  .step-item.is-active .step-circle {
     border-color: var(--ai-accent);
     background-color: var(--ai-surface-0);
     color: var(--ai-accent);
     box-shadow: 0 0 0 4px color-mix(in srgb, var(--ai-accent) 15%, transparent);
   }
 
-  .ai-step-item.is-completed .ai-step-circle {
+  .step-item.is-completed .step-circle {
     border-color: var(--ai-success);
     background-color: var(--ai-success);
     color: var(--ai-success-text);
   }
 
-  .ai-step-label {
+  .step-label {
     font-size: 0.75rem;
     font-weight: 500;
     color: var(--ai-text-secondary);
@@ -231,7 +231,7 @@
     text-align: center;
   }
 
-  .ai-step-item.is-active .ai-step-label {
+  .step-item.is-active .step-label {
     color: var(--ai-text-primary);
     font-weight: 600;
   }
@@ -239,7 +239,7 @@
   /* --------------------------------------------------------------------------
      Segmented Control Toggle
      -------------------------------------------------------------------------- */
-  .ai-segmented {
+  .segmented {
     display: inline-flex;
     background-color: var(--ai-surface-2);
     padding: 3px;
@@ -248,7 +248,7 @@
     user-select: none;
   }
 
-  .ai-segmented-btn {
+  .segmented-btn {
     padding: 0.375rem 0.875rem;
     font-size: 0.8125rem;
     font-weight: 500;
@@ -260,11 +260,11 @@
     transition: all var(--ai-duration-fast) var(--ai-ease-smooth);
   }
 
-  .ai-segmented-btn:hover {
+  .segmented-btn:hover {
     color: var(--ai-text-primary);
   }
 
-  .ai-segmented-btn.is-active {
+  .segmented-btn.is-active {
     background-color: var(--ai-surface-0);
     color: var(--ai-text-primary);
     box-shadow: var(--ai-shadow-sm);
@@ -274,7 +274,7 @@
   /* --------------------------------------------------------------------------
      Filter Toolbar with Tags
      -------------------------------------------------------------------------- */
-  .ai-filter-toolbar {
+  .filter-toolbar {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -286,14 +286,14 @@
     border-radius: var(--ai-radius-lg);
   }
 
-  .ai-filter-tags {
+  .filter-tags {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: var(--ai-space-2);
   }
 
-  .ai-filter-tag {
+  .filter-tag {
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
@@ -308,8 +308,8 @@
     transition: all var(--ai-duration-fast) ease;
   }
 
-  .ai-filter-tag:hover,
-  .ai-filter-tag.is-active {
+  .filter-tag:hover,
+  .filter-tag.is-active {
     background-color: var(--ai-surface-0);
     border-color: var(--ai-border-hover);
     color: var(--ai-text-primary);
@@ -317,47 +317,47 @@
 }
 
 @layer components {
-  /* Collapsed rail: icons only. Toggle .is-collapsed on .ai-sidebar. */
-  .ai-sidebar.is-collapsed {
+  /* Collapsed rail: icons only. Toggle .is-collapsed on .sidebar. */
+  .sidebar.is-collapsed {
     --ai-sidebar-width: 4.25rem;
   }
-  .ai-sidebar.is-collapsed .ai-sidebar-item {
+  .sidebar.is-collapsed .sidebar-item {
     justify-content: center;
     padding-inline: 0;
   }
-  .ai-sidebar.is-collapsed .ai-sidebar-item > :not(svg):not(.ai-sidebar-icon),
-  .ai-sidebar.is-collapsed .ai-sidebar-section-title,
-  .ai-sidebar.is-collapsed .ai-sidebar-badge {
+  .sidebar.is-collapsed .sidebar-item > :not(svg):not(.sidebar-icon),
+  .sidebar.is-collapsed .sidebar-section-title,
+  .sidebar.is-collapsed .sidebar-badge {
     display: none;
   }
 
   /* Segmented control as a radio group: works with no JavaScript.
-     <label class="ai-segmented-btn"><input type="radio" name="view" class="ai-segmented-input" checked> Day</label> */
-  .ai-segmented-input {
+     <label class="segmented-btn"><input type="radio" name="view" class="segmented-input" checked> Day</label> */
+  .segmented-input {
     position: absolute;
     width: 1px;
     height: 1px;
     opacity: 0;
     pointer-events: none;
   }
-  .ai-segmented-btn:has(.ai-segmented-input:checked) {
+  .segmented-btn:has(.segmented-input:checked) {
     background-color: var(--ai-surface-0);
     color: var(--ai-text-primary);
     box-shadow: var(--ai-shadow-sm);
     font-weight: 600;
   }
-  .ai-segmented-btn:has(.ai-segmented-input:focus-visible) {
+  .segmented-btn:has(.segmented-input:focus-visible) {
     box-shadow: var(--ai-focus-ring);
   }
 
   /* Density scope for dashboard rows */
-  .ai-density-compact .ai-health-row,
-  .ai-density-compact .ai-settings-row,
-  .ai-density-compact .ai-inbox-item,
-  .ai-density-compact .ai-sidebar-item {
+  .density-compact .health-row,
+  .density-compact .settings-row,
+  .density-compact .inbox-item,
+  .density-compact .sidebar-item {
     padding-block: var(--ai-space-2);
   }
-  .ai-density-compact .ai-table {
+  .density-compact .table {
     --ai-table-cell-padding: var(--ai-space-2) var(--ai-space-3);
   }
 }

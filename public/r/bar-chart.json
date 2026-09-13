@@ -10,5 +10,5 @@
     "bars",
     "analytics"
   ],
-  "html": "<div class=\"ai-bars\" style=\"max-width: 28rem;\">\n  <div class=\"ai-bar-row\"><span>Free CLI</span><div class=\"ai-bar-track\"><div class=\"ai-bar-fill\" style=\"width: 62%;\"></div></div><span>62%</span></div>\n  <div class=\"ai-bar-row\"><span>Gallery</span><div class=\"ai-bar-track\"><div class=\"ai-bar-fill\" style=\"width: 24%;\"></div></div><span>24%</span></div>\n  <div class=\"ai-bar-row\"><span>MCP</span><div class=\"ai-bar-track\"><div class=\"ai-bar-fill\" style=\"width: 14%;\"></div></div><span>14%</span></div>\n</div>"
+  "html": "<div class=\"bars\" style=\"max-width: 28rem;\">\n  <div class=\"bar-row\"><span>Free CLI</span><div class=\"bar-track\"><div class=\"bar-fill\" style=\"width: 62%;\"></div></div><span>62%</span></div>\n  <div class=\"bar-row\"><span>Gallery</span><div class=\"bar-track\"><div class=\"bar-fill\" style=\"width: 24%;\"></div></div><span>24%</span></div>\n  <div class=\"bar-row\"><span>MCP</span><div class=\"bar-track\"><div class=\"bar-fill\" style=\"width: 14%;\"></div></div><span>14%</span></div>\n</div>"
 }

@@ -28,7 +28,7 @@
    "name": "ai-tabs",
    "description": {
     "kind": "markdown",
-    "value": "Tab set. Each button.ai-tab inside carries data-ai-tab=\"#panel-id\"; the runtime syncs aria-selected and tabindex."
+    "value": "Tab set. Each button.tab inside carries data-ai-tab=\"#panel-id\"; the runtime syncs aria-selected and tabindex."
    },
    "attributes": [
     {
@@ -74,7 +74,7 @@
    "name": "ai-accordion",
    "description": {
     "kind": "markdown",
-    "value": "Disclosure group. Each item is an .ai-accordion-item whose trigger carries data-ai-toggle=\"accordion\"."
+    "value": "Disclosure group. Each item is an .accordion-item whose trigger carries data-ai-toggle=\"accordion\"."
    },
    "attributes": [
     {
@@ -97,7 +97,7 @@
    "name": "ai-drawer",
    "description": {
     "kind": "markdown",
-    "value": "Edge panel. Open it with data-ai-toggle=\"drawer\" data-ai-target=\"#id\". Locks page scroll unless .ai-drawer-no-lock is present."
+    "value": "Edge panel. Open it with data-ai-toggle=\"drawer\" data-ai-target=\"#id\". Locks page scroll unless .drawer-no-lock is present."
    },
    "attributes": [
     {
@@ -168,7 +168,7 @@
    "name": "data-ai-toggle",
    "description": {
     "kind": "markdown",
-    "value": "Runtime toggle. modal and drawer need data-ai-target=\"#id\"; dropdown needs a .ai-dropdown ancestor; accordion needs a .ai-accordion-item ancestor.\n\nGoes on: button. Set by: author."
+    "value": "Runtime toggle. modal and drawer need data-ai-target=\"#id\"; dropdown needs a .dropdown ancestor; accordion needs a .accordion-item ancestor.\n\nGoes on: button. Set by: author."
    },
    "values": [
     {
@@ -232,7 +232,7 @@
    "name": "data-ai-tab",
    "description": {
     "kind": "markdown",
-    "value": "Activates the panel; the runtime syncs aria-selected and tabindex.\n\nGoes on: button.ai-tab inside .ai-tabs. Set by: author."
+    "value": "Activates the panel; the runtime syncs aria-selected and tabindex.\n\nGoes on: button.tab inside .tabs. Set by: author."
    },
    "references": [
     {
@@ -350,7 +350,7 @@
    "name": "data-ai-toast-position",
    "description": {
     "kind": "markdown",
-    "value": "Where the toast stack sits. Absent means bottom-right.\n\nGoes on: .ai-toast-container. Set by: author."
+    "value": "Where the toast stack sits. Absent means bottom-right.\n\nGoes on: .toast-container. Set by: author."
    },
    "values": [
     {

@@ -10,5 +10,5 @@
     "menu",
     "action"
   ],
-  "html": "<div class=\"ai-btn-group\">\n  <button class=\"ai-btn ai-btn-primary\" type=\"button\">Deploy</button>\n  <button class=\"ai-btn ai-btn-primary ai-btn-icon\" type=\"button\" aria-label=\"More deploy options\" aria-haspopup=\"true\" aria-expanded=\"false\">\n    <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"m6 9 6 6 6-6\"/></svg>\n  </button>\n</div>"
+  "html": "<div class=\"btn-group\">\n  <button class=\"btn btn-primary\" type=\"button\">Deploy</button>\n  <button class=\"btn btn-primary btn-icon\" type=\"button\" aria-label=\"More deploy options\" aria-haspopup=\"true\" aria-expanded=\"false\">\n    <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><path d=\"m6 9 6 6 6-6\"/></svg>\n  </button>\n</div>"
 }

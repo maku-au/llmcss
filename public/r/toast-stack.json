@@ -11,5 +11,5 @@
     "stack",
     "animation"
   ],
-  "html": "<div class=\"ai-grid ai-gap-3\" style=\"max-width: 24rem;\">\n  <div class=\"ai-toast ai-toast-success ai-toast-countdown\">\n    <span class=\"ai-toast-message\">Deployment completed to edge servers.</span>\n    <button class=\"ai-toast-close\">&times;</button>\n    <div class=\"ai-toast-progress\"></div>\n  </div>\n  <div class=\"ai-toast ai-toast-info ai-toast-countdown\">\n    <span class=\"ai-toast-message\">New API Key created: <code>llmcss_live_8f...</code></span>\n    <button class=\"ai-toast-close\">&times;</button>\n    <div class=\"ai-toast-progress\"></div>\n  </div>\n</div>"
+  "html": "<div class=\"grid gap-3\" style=\"max-width: 24rem;\">\n  <div class=\"toast toast-success toast-countdown\">\n    <span class=\"toast-message\">Deployment completed to edge servers.</span>\n    <button class=\"toast-close\">&times;</button>\n    <div class=\"toast-progress\"></div>\n  </div>\n  <div class=\"toast toast-info toast-countdown\">\n    <span class=\"toast-message\">New API Key created: <code>llmcss_live_8f...</code></span>\n    <button class=\"toast-close\">&times;</button>\n    <div class=\"toast-progress\"></div>\n  </div>\n</div>"
 }

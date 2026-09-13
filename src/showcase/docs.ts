@@ -9,7 +9,7 @@ function addCopyButtons() {
     wrap.appendChild(pre);
     const btn = document.createElement('button');
     btn.type = 'button';
-    btn.className = 'ai-btn ai-btn-ghost ai-btn-xs copy-pre-btn';
+    btn.className = 'btn btn-ghost btn-xs copy-pre-btn';
     btn.textContent = 'Copy';
     btn.style.position = 'absolute';
     btn.style.top = '0.5rem';

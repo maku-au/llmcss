@@ -5,7 +5,7 @@
    ========================================================================== */
 @layer components {
 /* Micro Badges */
-.ai-docs-nav-count {
+.docs-nav-count {
   font-family: var(--ai-font-sans);
   font-variant-numeric: tabular-nums;
   font-size: 0.6875rem;
@@ -13,7 +13,7 @@
   color: var(--ai-text-muted);
   margin-left: auto;
 }
-.ai-docs-pro-tag {
+.docs-pro-tag {
   font-family: var(--ai-font-sans);
   font-size: 0.5625rem;
   font-weight: 700;
@@ -30,7 +30,7 @@
 /* --------------------------------------------------------------------------
    Homepage Layout & Hero Preview Dock
    -------------------------------------------------------------------------- */
-.ai-docs-hero {
+.docs-hero {
   padding: var(--ai-space-24) 0 var(--ai-space-24);
   position: relative;
   overflow: hidden;
@@ -41,12 +41,12 @@
 /* --------------------------------------------------------------------------
    STUDIO STYLER (UNBLURRED LIVE INSPECTOR)
    -------------------------------------------------------------------------- */
-#core-styler-drawer .ai-drawer-backdrop {
+#core-styler-drawer .drawer-backdrop {
   background-color: transparent !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
-#core-styler-drawer .ai-drawer-panel {
+#core-styler-drawer .drawer-panel {
   width: 100%;
   max-width: 25rem;
   border-left: 1px solid var(--ai-border-strong);
@@ -54,17 +54,17 @@
   background-color: var(--ai-surface-0);
 }
 /* The styler body stacks its sections; the base drawer body only scrolls. */
-#core-styler-drawer .ai-drawer-body {
+#core-styler-drawer .drawer-body {
   display: flex;
   flex-direction: column;
   gap: var(--ai-space-5);
 }
-#core-styler-drawer .ai-drawer-footer {
+#core-styler-drawer .drawer-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.ai-styler-title {
+.styler-title {
   font-family: var(--ai-font-display);
   font-size: 0.9375rem;
   font-weight: 700;
@@ -72,35 +72,35 @@
   color: var(--ai-text-primary);
   margin: 0;
 }
-.ai-styler-section {
+.styler-section {
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
 }
-.ai-styler-section-header {
+.styler-section-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.ai-styler-section-title {
+.styler-section-title {
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--ai-text-secondary);
   letter-spacing: 0.02em;
   font-family: var(--ai-font-sans);
 }
-.ai-styler-section-val {
+.styler-section-val {
   font-size: 0.6875rem;
   font-weight: 500;
   color: var(--ai-text-muted);
   font-family: var(--ai-font-mono);
 }
-.ai-styler-theme-grid {
+.styler-theme-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.375rem;
 }
-.ai-styler-theme-btn {
+.styler-theme-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -112,15 +112,15 @@
   transition: all var(--ai-duration-fast);
   text-align: left;
 }
-.ai-styler-theme-btn:hover {
+.styler-theme-btn:hover {
   border-color: var(--ai-border-strong);
   background: var(--ai-surface-1);
 }
-.ai-styler-theme-btn.is-active {
+.styler-theme-btn.is-active {
   border-color: var(--ai-text-primary);
   background: var(--ai-surface-1);
 }
-.ai-styler-swatch-pip {
+.styler-swatch-pip {
   width: 0.625rem;
   height: 0.625rem;
   border-radius: 50%;
@@ -130,29 +130,29 @@
    the button markup carries nothing but data-skin. modern is the default
    accent in tokens.css; executive and obsidian show --ai-primary, which is
    what separates them on screen, the rest show --ai-accent (light mode). */
-.ai-styler-theme-btn[data-skin="modern"] .ai-styler-swatch-pip { background: #2563eb; }
-.ai-styler-theme-btn[data-skin="executive"] .ai-styler-swatch-pip { background: #0f172a; }
-.ai-styler-theme-btn[data-skin="fintech"] .ai-styler-swatch-pip { background: #0f766e; }
-.ai-styler-theme-btn[data-skin="obsidian"] .ai-styler-swatch-pip {
+.styler-theme-btn[data-skin="modern"] .styler-swatch-pip { background: #2563eb; }
+.styler-theme-btn[data-skin="executive"] .styler-swatch-pip { background: #0f172a; }
+.styler-theme-btn[data-skin="fintech"] .styler-swatch-pip { background: #0f766e; }
+.styler-theme-btn[data-skin="obsidian"] .styler-swatch-pip {
   background: #09090b;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
 }
-.ai-styler-theme-btn[data-skin="editorial"] .ai-styler-swatch-pip { background: #8c4a27; }
-.ai-styler-theme-btn[data-skin="enterprise"] .ai-styler-swatch-pip { background: #0284c7; }
-.ai-styler-theme-btn[data-skin="emerald"] .ai-styler-swatch-pip { background: #059669; }
-.ai-styler-theme-btn[data-skin="violet"] .ai-styler-swatch-pip { background: #7c3aed; }
-.ai-styler-theme-btn[data-skin="rose"] .ai-styler-swatch-pip { background: #e11d48; }
-.ai-styler-theme-name {
+.styler-theme-btn[data-skin="editorial"] .styler-swatch-pip { background: #8c4a27; }
+.styler-theme-btn[data-skin="enterprise"] .styler-swatch-pip { background: #0284c7; }
+.styler-theme-btn[data-skin="emerald"] .styler-swatch-pip { background: #059669; }
+.styler-theme-btn[data-skin="violet"] .styler-swatch-pip { background: #7c3aed; }
+.styler-theme-btn[data-skin="rose"] .styler-swatch-pip { background: #e11d48; }
+.styler-theme-name {
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--ai-text-secondary);
   line-height: 1.2;
 }
-.ai-styler-theme-btn.is-active .ai-styler-theme-name {
+.styler-theme-btn.is-active .styler-theme-name {
   font-weight: 600;
   color: var(--ai-text-primary);
 }
-.ai-styler-segmented-track {
+.styler-segmented-track {
   display: flex;
   background: var(--ai-surface-1);
   padding: 2px;
@@ -160,7 +160,7 @@
   border: 1px solid var(--ai-border-subtle);
   gap: 1px;
 }
-.ai-styler-segmented-item {
+.styler-segmented-item {
   flex: 1;
   padding: 0.3rem 0.4rem;
   font-size: 0.75rem;
@@ -174,21 +174,21 @@
   transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
   text-align: center;
 }
-.ai-styler-segmented-item:hover {
+.styler-segmented-item:hover {
   color: var(--ai-text-primary);
 }
-.ai-styler-segmented-item.is-active {
+.styler-segmented-item.is-active {
   background: var(--ai-surface-0);
   color: var(--ai-text-primary);
   font-weight: 600;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
-.ai-styler-swatch-row {
+.styler-swatch-row {
   display: flex;
   align-items: center;
   gap: 0.625rem;
 }
-.ai-styler-accent-swatch {
+.styler-accent-swatch {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
@@ -197,41 +197,41 @@
   cursor: pointer;
   transition: transform var(--ai-duration-fast), box-shadow var(--ai-duration-fast);
 }
-.ai-styler-accent-swatch:hover {
+.styler-accent-swatch:hover {
   transform: scale(1.15);
 }
-.ai-styler-accent-swatch.is-active {
+.styler-accent-swatch.is-active {
   box-shadow: 0 0 0 2px var(--ai-surface-0), 0 0 0 4px var(--ai-text-primary);
 }
 /* Accent chips mirror the --ai-accent of each [data-ai-accent] block in
    themes.css; default is the base accent in tokens.css. */
-.ai-styler-accent-swatch[data-accent="default"] { background: #2563eb; }
-.ai-styler-accent-swatch[data-accent="steel"] { background: #475569; }
-.ai-styler-accent-swatch[data-accent="teal"] { background: #0f766e; }
-.ai-styler-accent-swatch[data-accent="emerald"] { background: #059669; }
-.ai-styler-accent-swatch[data-accent="violet"] { background: #7c3aed; }
-.ai-styler-accent-swatch[data-accent="rose"] { background: #e11d48; }
-.ai-styler-accent-swatch[data-accent="amber"] { background: #d97706; }
+.styler-accent-swatch[data-accent="default"] { background: #2563eb; }
+.styler-accent-swatch[data-accent="steel"] { background: #475569; }
+.styler-accent-swatch[data-accent="teal"] { background: #0f766e; }
+.styler-accent-swatch[data-accent="emerald"] { background: #059669; }
+.styler-accent-swatch[data-accent="violet"] { background: #7c3aed; }
+.styler-accent-swatch[data-accent="rose"] { background: #e11d48; }
+.styler-accent-swatch[data-accent="amber"] { background: #d97706; }
 
 /* Section that opens a new block below a rule */
-.ai-styler-section-divided {
+.styler-section-divided {
   border-top: 1px solid var(--ai-border-subtle);
   padding-top: var(--ai-space-4);
 }
-.ai-styler-code-disclosure summary {
+.styler-code-disclosure summary {
   display: flex;
   align-items: center;
   gap: 0.25rem;
   cursor: pointer;
   user-select: none;
 }
-.ai-styler-code-disclosure summary::-webkit-details-marker {
+.styler-code-disclosure summary::-webkit-details-marker {
   display: none;
 }
-.ai-styler-code-caret {
+.styler-code-caret {
   font-size: 0.75rem;
 }
-.ai-styler-code-output {
+.styler-code-output {
   margin-top: 0.5rem;
   padding: 0.75rem;
   border-radius: var(--ai-radius-xs);
@@ -242,7 +242,7 @@
 }
 
 /* Per-Component Customizer Bar */
-.ai-demo-toolbar {
+.demo-toolbar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -252,19 +252,19 @@
   padding: var(--ai-space-3) var(--ai-space-5);
   font-size: 0.75rem;
 }
-.ai-demo-toolbar-group {
+.demo-toolbar-group {
   display: flex;
   align-items: center;
   gap: var(--ai-space-2);
 }
-.ai-demo-toolbar-label {
+.demo-toolbar-label {
   font-family: var(--ai-font-sans);
   font-size: 0.6875rem;
   font-weight: 600;
   color: var(--ai-text-muted);
   letter-spacing: 0.02em;
 }
-.ai-demo-pills {
+.demo-pills {
   display: flex;
   gap: 0.25rem;
   background: var(--ai-surface-0);
@@ -272,7 +272,7 @@
   border: 1px solid var(--ai-border);
   border-radius: var(--ai-radius-xs);
 }
-.ai-demo-pill {
+.demo-pill {
   padding: 0.15rem 0.5rem;
   font-size: 0.6875rem;
   font-family: var(--ai-font-sans);
@@ -284,15 +284,15 @@
   cursor: pointer;
   transition: all var(--ai-duration-fast);
 }
-.ai-demo-pill:hover {
+.demo-pill:hover {
   color: var(--ai-text-primary);
 }
-.ai-demo-pill.is-active {
+.demo-pill.is-active {
   background: var(--ai-surface-2);
   color: var(--ai-text-primary);
   font-weight: 600;
 }
-.ai-docs-hero-dock {
+.docs-hero-dock {
   margin-top: var(--ai-space-12);
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -304,11 +304,11 @@
   box-shadow: var(--ai-shadow-lg);
 }
 @media (min-width: 900px) {
-  .ai-docs-hero-dock {
+  .docs-hero-dock {
     grid-template-columns: 1fr 1.1fr 1fr;
   }
 }
-.ai-docs-hero-dock-card {
+.docs-hero-dock-card {
   background: var(--ai-surface-0);
   border: 1px solid var(--ai-border);
   border-radius: var(--ai-radius-md);
@@ -318,16 +318,16 @@
   justify-content: space-between;
   gap: var(--ai-space-4);
 }
-.ai-docs-hero-dock-card {
+.docs-hero-dock-card {
   min-width: 0;
   max-width: 100%;
 }
-.ai-docs-hero-dock-card pre {
+.docs-hero-dock-card pre {
   max-width: 100%;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
-.ai-docs-hero-dock-title {
+.docs-hero-dock-title {
   font-family: var(--ai-font-sans);
   font-size: 0.8125rem;
   font-weight: 600;
@@ -338,43 +338,43 @@
 /* --------------------------------------------------------------------------
    Component Collection Explorer Layout
    -------------------------------------------------------------------------- */
-.ai-docs-section {
+.docs-section {
   padding: var(--ai-space-24) 0;
   scroll-margin-top: 4rem;
 }
 /* Result figure in a docs page header meta line. Collapses when empty so the
    sentence still reads before the catalog renders. */
-.ai-docs-meta-figure {
+.docs-meta-figure {
   font-family: var(--ai-font-mono);
   font-size: 0.8125rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   color: var(--ai-text-primary);
 }
-.ai-docs-meta-figure:empty {
+.docs-meta-figure:empty {
   display: none;
 }
-.ai-docs-meta-figure:not(:empty)::after {
+.docs-meta-figure:not(:empty)::after {
   content: " · ";
   font-weight: 400;
   color: var(--ai-text-muted);
 }
-.ai-docs-layout {
+.docs-layout {
   display: grid;
   grid-template-columns: 240px 1fr;
   gap: var(--ai-space-8);
   align-items: start;
 }
 @media (max-width: 960px) {
-  .ai-docs-layout {
+  .docs-layout {
     grid-template-columns: 1fr;
   }
-  .ai-docs-sidebar {
+  .docs-sidebar {
     position: static !important;
     height: auto !important;
   }
 }
-.ai-docs-sidebar {
+.docs-sidebar {
   position: sticky;
   top: 5.5rem;
   background: transparent;
@@ -382,7 +382,7 @@
   padding: 0;
   box-shadow: none;
 }
-.ai-docs-nav-label {
+.docs-nav-label {
   display: block;
   margin-bottom: 0.35rem;
   padding: 0 0.5rem;
@@ -395,7 +395,7 @@
 }
 /* Plain-language note under a nav group whose row labels are not
    self-explanatory. Aligns with the rows, never reads as a paragraph. */
-.ai-docs-nav-note {
+.docs-nav-note {
   margin: 0.4rem 0 0;
   padding: 0 0.5rem;
   font-size: 0.75rem;
@@ -403,18 +403,18 @@
   color: var(--ai-text-muted);
 }
 /* One rule-separated block of sidebar nav (Tiers, Endpoints) */
-.ai-docs-nav-group {
+.docs-nav-group {
   border-top: 1px solid var(--ai-border-subtle);
   padding-top: var(--ai-space-3);
 }
 /* Nav rows sit almost flush: a hairline gap keeps the active pill from
    touching its neighbour without reading as a list. */
-.ai-docs-nav-stack {
+.docs-nav-stack {
   display: flex;
   flex-direction: column;
   gap: 1px;
 }
-.ai-docs-nav-btn {
+.docs-nav-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -431,27 +431,27 @@
   transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
   text-align: left;
 }
-.ai-docs-nav-btn:hover {
+.docs-nav-btn:hover {
   color: var(--ai-text-primary);
   background-color: var(--ai-surface-1);
 }
-.ai-docs-nav-btn.is-active {
+.docs-nav-btn.is-active {
   color: var(--ai-text-primary);
   background-color: var(--ai-surface-1);
   font-weight: 600;
 }
-.ai-docs-nav-btn:disabled {
+.docs-nav-btn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
 }
-.ai-docs-nav-btn:disabled:not(.is-active):hover {
+.docs-nav-btn:disabled:not(.is-active):hover {
   background-color: transparent;
   color: var(--ai-text-secondary);
 }
-.ai-docs-nav-btn[hidden] {
+.docs-nav-btn[hidden] {
   display: none;
 }
-.ai-docs-count {
+.docs-count {
   font-family: var(--ai-font-sans);
   font-size: 0.75rem;
   font-weight: 500;
@@ -462,11 +462,11 @@
   padding: 0;
   line-height: 1;
 }
-.ai-docs-nav-btn.is-active .ai-docs-count {
+.docs-nav-btn.is-active .docs-count {
   color: var(--ai-text-secondary);
   font-weight: 600;
 }
-.ai-docs-link {
+.docs-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -481,24 +481,24 @@
   text-decoration: none;
   transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
 }
-.ai-docs-link:hover {
+.docs-link:hover {
   color: var(--ai-text-primary);
   background-color: var(--ai-surface-1);
 }
 /* Trailing format hint on an endpoint row: llms.txt -> Index */
-.ai-docs-link-tag {
+.docs-link-tag {
   font-family: var(--ai-font-sans);
   font-size: 0.6875rem;
   color: var(--ai-text-muted);
 }
-.ai-docs-link svg {
+.docs-link svg {
   opacity: 0.4;
   transition: opacity var(--ai-duration-fast);
 }
-.ai-docs-link:hover svg {
+.docs-link:hover svg {
   opacity: 0.9;
 }
-.ai-demo-card {
+.demo-card {
   border: 1px solid var(--ai-border);
   border-radius: var(--ai-radius-md);
   background-color: var(--ai-surface-0);
@@ -506,10 +506,10 @@
   overflow: hidden;
   transition: border-color var(--ai-duration-fast);
 }
-.ai-demo-card:hover {
+.demo-card:hover {
   border-color: var(--ai-border-strong);
 }
-.ai-demo-header {
+.demo-header {
   padding: var(--ai-space-3) var(--ai-space-5);
   border-bottom: 1px solid var(--ai-border-subtle);
   background-color: var(--ai-surface-1);
@@ -519,7 +519,7 @@
   flex-wrap: wrap;
   gap: var(--ai-space-3);
 }
-.ai-demo-canvas {
+.demo-canvas {
   padding: var(--ai-space-8) var(--ai-space-6);
   background-color: var(--ai-bg);
   display: flex;
@@ -531,28 +531,28 @@
   margin: 0 auto;
 }
 /* Sticky demo headers stay inside their card */
-.ai-demo-canvas .ai-navbar {
+.demo-canvas .navbar {
   position: relative;
   top: auto;
   z-index: 1;
 }
-.ai-demo-canvas.preview-has-dropdown,
-.ai-demo-canvas:has(.ai-dropdown) {
+.demo-canvas.preview-has-dropdown,
+.demo-canvas:has(.dropdown) {
   min-height: 16rem;
   align-items: flex-start;
   padding-top: var(--ai-space-6);
   padding-bottom: var(--ai-space-6);
 }
-.ai-demo-code {
+.demo-code {
   border-top: 1px solid var(--ai-border);
   background-color: var(--ai-surface-0);
   padding: var(--ai-space-4) var(--ai-space-6);
   display: none;
 }
-.ai-demo-code.is-expanded {
+.demo-code.is-expanded {
   display: block;
 }
-.ai-demo-code pre {
+.demo-code pre {
   margin: 0;
   font-size: 0.8125rem;
   max-height: 20rem;
@@ -561,23 +561,23 @@
 }
 
 /* Philosophy / Value Cards */
-.ai-docs-philosophy-grid {
+.docs-philosophy-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: var(--ai-space-6);
   margin-top: var(--ai-space-8);
 }
 @media (min-width: 640px) {
-  .ai-docs-philosophy-grid {
+  .docs-philosophy-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (min-width: 1024px) {
-  .ai-docs-philosophy-grid {
+  .docs-philosophy-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
-.ai-docs-philosophy-card {
+.docs-philosophy-card {
   background: var(--ai-surface-0);
   border: 1px solid var(--ai-border);
   border-radius: var(--ai-radius-md);
@@ -587,41 +587,41 @@
   gap: var(--ai-space-3);
   transition: all var(--ai-duration-fast);
 }
-.ai-docs-philosophy-card:hover {
+.docs-philosophy-card:hover {
   border-color: var(--ai-border-hover);
   transform: translateY(-2px);
 }
 
 /* Comparison Table Container */
-.ai-docs-matrix {
+.docs-matrix {
   border: 1px solid var(--ai-border);
   border-radius: var(--ai-radius-md);
 }
 /* Fixed column rhythm: the feature column is widest, the LLMCSS column is
    slightly wider than the three rival columns, which share what is left. */
-.ai-docs-matrix .ai-matrix-table {
+.docs-matrix .matrix-table {
   table-layout: fixed;
 }
-.ai-docs-matrix .ai-matrix-table th:first-child,
-.ai-docs-matrix .ai-matrix-table td:first-child {
+.docs-matrix .matrix-table th:first-child,
+.docs-matrix .matrix-table td:first-child {
   width: 25%;
 }
-.ai-docs-matrix .ai-matrix-table th:last-child,
-.ai-docs-matrix .ai-matrix-table td:last-child {
+.docs-matrix .matrix-table th:last-child,
+.docs-matrix .matrix-table td:last-child {
   width: 21%;
 }
 /* The LLMCSS column in a comparison matrix */
-.ai-docs-matrix-win {
+.docs-matrix-win {
   background-color: var(--ai-surface-1);
   font-weight: 600;
 }
-th.ai-docs-matrix-win {
+th.docs-matrix-win {
   color: var(--ai-accent);
   font-weight: 700;
 }
 
 /* Framework Compatibility Rail (Unboxed, High-Craft) */
-.ai-docs-ecosystem-item {
+.docs-ecosystem-item {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -631,15 +631,15 @@ th.ai-docs-matrix-win {
   transition: color var(--ai-duration-fast);
   cursor: default;
 }
-.ai-docs-ecosystem-item:hover {
+.docs-ecosystem-item:hover {
   color: var(--ai-text-primary);
 }
-.ai-docs-ecosystem-item svg {
+.docs-ecosystem-item svg {
   opacity: 0.6;
   transition: opacity var(--ai-duration-fast), stroke var(--ai-duration-fast);
   flex-shrink: 0;
 }
-.ai-docs-ecosystem-item:hover svg {
+.docs-ecosystem-item:hover svg {
   opacity: 1;
 }
 
@@ -647,7 +647,7 @@ th.ai-docs-matrix-win {
 /* --------------------------------------------------------------------------
    Hero Section & Blueprint Controls
    -------------------------------------------------------------------------- */
-.ai-docs-hero-compact {
+.docs-hero-compact {
   padding: var(--ai-space-8) 0 var(--ai-space-6);
   border-bottom: 1px solid var(--ai-border);
   background-color: var(--ai-surface-0);
@@ -657,7 +657,7 @@ th.ai-docs-matrix-win {
    Active blueprint strip: one line of identity, one line of purpose, a
    wrapping breadcrumb of sections, and the three actions as a group.
    -------------------------------------------------------------------------- */
-.ai-blueprint-strip {
+.blueprint-strip {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -665,30 +665,30 @@ th.ai-docs-matrix-win {
   padding: var(--ai-space-4) 0;
   border-bottom: 1px solid var(--ai-border-subtle);
 }
-.ai-blueprint-strip-main {
+.blueprint-strip-main {
   flex: 1 1 auto;
   min-width: 0;
 }
-.ai-blueprint-strip-title {
+.blueprint-strip-title {
   margin: 0;
   font-family: var(--ai-font-display);
   font-size: 1rem;
   font-weight: 700;
   color: var(--ai-text-primary);
 }
-.ai-blueprint-strip-desc {
+.blueprint-strip-desc {
   max-width: 62ch;
   margin: 0.2rem 0 0;
   font-size: 0.8125rem;
   line-height: 1.5;
   color: var(--ai-text-secondary);
 }
-.ai-blueprint-strip-actions {
+.blueprint-strip-actions {
   flex: 0 0 auto;
   margin-top: 0.15rem;
 }
 
-.ai-blueprint-flow {
+.blueprint-flow {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -698,18 +698,18 @@ th.ai-docs-matrix-win {
   padding: 0;
   list-style: none;
 }
-.ai-blueprint-flow > li {
+.blueprint-flow > li {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
   flex: 0 0 auto;
 }
-.ai-blueprint-flow > li + li::before {
+.blueprint-flow > li + li::before {
   content: "/";
   font-size: 0.75rem;
   color: var(--ai-text-muted);
 }
-.ai-blueprint-flow-step {
+.blueprint-flow-step {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -725,11 +725,11 @@ th.ai-docs-matrix-win {
   cursor: pointer;
   transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
 }
-.ai-blueprint-flow-step:hover {
+.blueprint-flow-step:hover {
   color: var(--ai-text-primary);
   background: var(--ai-surface-2);
 }
-.ai-blueprint-flow-num {
+.blueprint-flow-num {
   font-family: var(--ai-font-mono);
   font-variant-numeric: tabular-nums;
   font-size: 0.6875rem;
@@ -737,15 +737,15 @@ th.ai-docs-matrix-win {
 }
 
 @media (max-width: 719px) {
-  .ai-blueprint-strip {
+  .blueprint-strip {
     flex-direction: column;
     align-items: stretch;
     gap: var(--ai-space-3);
   }
-  .ai-blueprint-strip-actions {
+  .blueprint-strip-actions {
     width: 100%;
   }
-  .ai-blueprint-strip-actions > .ai-btn {
+  .blueprint-strip-actions > .btn {
     flex: 1 1 0;
   }
 }
@@ -753,7 +753,7 @@ th.ai-docs-matrix-win {
 /* --------------------------------------------------------------------------
    Template Section Item Cards
    -------------------------------------------------------------------------- */
-.ai-template-card {
+.template-card {
   margin-bottom: var(--ai-space-12);
   scroll-margin-top: 7.5rem;
   background: var(--ai-surface-0);
@@ -763,12 +763,12 @@ th.ai-docs-matrix-win {
   overflow: hidden;
   transition: border-color var(--ai-duration-fast), box-shadow var(--ai-duration-fast);
 }
-.ai-template-card.is-highlighted {
+.template-card.is-highlighted {
   border-color: var(--ai-primary);
   box-shadow: 0 0 0 2px var(--ai-primary);
 }
 
-.ai-template-header {
+.template-header {
   padding: 0.875rem 1.25rem;
   background: var(--ai-surface-1);
   border-bottom: 1px solid var(--ai-border);
@@ -779,7 +779,7 @@ th.ai-docs-matrix-win {
   flex-wrap: wrap;
 }
 
-.ai-template-title {
+.template-title {
   font-family: var(--ai-font-display);
   font-size: 1.0625rem;
   font-weight: 700;
@@ -788,35 +788,35 @@ th.ai-docs-matrix-win {
 }
 
 /* Structured Guidance Callout Drawer */
-.ai-template-guidance {
+.template-guidance {
   display: none;
   background: var(--ai-surface-0);
   border-bottom: 1px solid var(--ai-border);
   padding: 1rem 1.25rem;
 }
-.ai-template-guidance.is-open {
+.template-guidance.is-open {
   display: block;
 }
 
-.ai-template-guidance-toggle.is-active,
-.ai-template-code-toggle.is-active {
+.template-guidance-toggle.is-active,
+.template-code-toggle.is-active {
   background: var(--ai-surface-2) !important;
   color: var(--ai-text-primary) !important;
 }
 
-.ai-guidance-grid {
+.guidance-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.25rem;
 }
 
-.ai-guidance-col {
+.guidance-col {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
 }
 
-.ai-guidance-label {
+.guidance-label {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -827,19 +827,19 @@ th.ai-docs-matrix-win {
   color: var(--ai-text-muted);
 }
 
-.ai-guidance-text {
+.guidance-text {
   font-size: 0.8125rem;
   line-height: 1.5;
   color: var(--ai-text-secondary);
 }
 
-.ai-guidance-pairs {
+.guidance-pairs {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
   margin-top: 0.25rem;
 }
-.ai-guidance-pair-tag {
+.guidance-pair-tag {
   font-family: var(--ai-font-mono);
   font-size: 0.6875rem;
   background: var(--ai-surface-1);
@@ -850,13 +850,13 @@ th.ai-docs-matrix-win {
   cursor: pointer;
   transition: all var(--ai-duration-fast);
 }
-.ai-guidance-pair-tag:hover {
+.guidance-pair-tag:hover {
   background: var(--ai-surface-2);
   border-color: var(--ai-primary);
 }
 
 /* Canvas Frame & Wireframe Mode */
-.ai-template-canvas {
+.template-canvas {
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
@@ -864,46 +864,46 @@ th.ai-docs-matrix-win {
   background: var(--ai-bg);
   overflow-x: auto;
 }
-.ai-template-canvas[data-vw="768"] { width: 768px; }
-.ai-template-canvas[data-vw="375"] { width: 375px; }
+.template-canvas[data-vw="768"] { width: 768px; }
+.template-canvas[data-vw="375"] { width: 375px; }
 
-.ai-template-frame {
+.template-frame {
   min-height: 160px;
   transition: all var(--ai-duration-normal);
   position: relative;
 }
-.ai-template-frame.is-wireframe-mode {
+.template-frame.is-wireframe-mode {
   filter: grayscale(1);
 }
-.ai-template-frame.is-wireframe-mode,
-.ai-template-frame.is-wireframe-mode * {
+.template-frame.is-wireframe-mode,
+.template-frame.is-wireframe-mode * {
   box-shadow: none !important;
 }
 
 /* Wireframe Mode Aesthetics: Clean solid surfaces without artificial grid clutter */
-.ai-template-frame.is-wireframe-mode {
+.template-frame.is-wireframe-mode {
   background-color: var(--ai-surface-0);
 }
-.ai-template-frame.is-wireframe-mode section,
-.ai-template-frame.is-wireframe-mode header,
-.ai-template-frame.is-wireframe-mode footer,
-.ai-template-frame.is-wireframe-mode .ai-hero,
-.ai-template-frame.is-wireframe-mode .ai-card,
-.ai-template-frame.is-wireframe-mode .ai-app-shell {
+.template-frame.is-wireframe-mode section,
+.template-frame.is-wireframe-mode header,
+.template-frame.is-wireframe-mode footer,
+.template-frame.is-wireframe-mode .hero,
+.template-frame.is-wireframe-mode .card,
+.template-frame.is-wireframe-mode .app-shell {
   border: 1px solid var(--ai-border) !important;
 }
 
 /* Code Panel */
-.ai-template-code {
+.template-code {
   display: none;
   background: var(--ai-surface-0);
   border-top: 1px solid var(--ai-border);
   padding: 1rem 1.25rem;
 }
-.ai-template-code.is-open {
+.template-code.is-open {
   display: block;
 }
-.ai-template-code pre {
+.template-code pre {
   margin: 0;
   font-family: var(--ai-font-mono);
   font-size: 0.75rem;
@@ -920,7 +920,7 @@ th.ai-docs-matrix-win {
 /* --------------------------------------------------------------------------
    Full Blueprint Assembled Preview Modal
    -------------------------------------------------------------------------- */
-.ai-blueprint-modal {
+.blueprint-modal {
   position: fixed;
   inset: 0;
   z-index: 60;
@@ -932,10 +932,10 @@ th.ai-docs-matrix-win {
   justify-content: center;
   padding: 1.5rem;
 }
-.ai-blueprint-modal.is-open {
+.blueprint-modal.is-open {
   display: flex;
 }
-.ai-blueprint-modal-dialog {
+.blueprint-modal-dialog {
   background: var(--ai-bg);
   border: 1px solid var(--ai-border);
   border-radius: var(--ai-radius-lg);
@@ -947,7 +947,7 @@ th.ai-docs-matrix-win {
   box-shadow: var(--ai-shadow-2xl);
   overflow: hidden;
 }
-.ai-blueprint-modal-header {
+.blueprint-modal-header {
   padding: 1rem 1.5rem;
   border-bottom: 1px solid var(--ai-border);
   background: var(--ai-surface-0);
@@ -955,34 +955,34 @@ th.ai-docs-matrix-win {
   justify-content: space-between;
   align-items: center;
 }
-.ai-blueprint-modal-title {
+.blueprint-modal-title {
   font-family: var(--ai-font-display);
   font-size: 1.0625rem;
   font-weight: 700;
   margin: 0;
 }
-.ai-blueprint-modal-body {
+.blueprint-modal-body {
   flex: 1;
   overflow-y: auto;
   padding: 0;
   background: var(--ai-bg);
 }
-.ai-template-assembled {
+.template-assembled {
   min-height: 100%;
   background: var(--ai-bg);
 }
-.ai-template-assembled.is-wireframe-mode section,
-.ai-template-assembled.is-wireframe-mode header,
-.ai-template-assembled.is-wireframe-mode footer,
-.ai-template-assembled.is-wireframe-mode .ai-hero,
-.ai-template-assembled.is-wireframe-mode .ai-card,
-.ai-template-assembled.is-wireframe-mode .ai-app-shell {
+.template-assembled.is-wireframe-mode section,
+.template-assembled.is-wireframe-mode header,
+.template-assembled.is-wireframe-mode footer,
+.template-assembled.is-wireframe-mode .hero,
+.template-assembled.is-wireframe-mode .card,
+.template-assembled.is-wireframe-mode .app-shell {
   border: 1px solid var(--ai-border) !important;
 }
 
   /* Docs steps */
-.ai-docs-step { margin-top: var(--ai-space-12); }
-.ai-docs-step pre {
+.docs-step { margin-top: var(--ai-space-12); }
+.docs-step pre {
   margin-top: var(--ai-space-3);
   padding: var(--ai-space-4);
   background: var(--ai-surface-1);
@@ -991,30 +991,30 @@ th.ai-docs-matrix-win {
   overflow-x: auto;
   font-size: 0.8125rem;
 }
-.ai-docs-step code { font-family: var(--ai-font-mono); }
+.docs-step code { font-family: var(--ai-font-mono); }
 
 }
 
 @layer components {
   /* Styler font picker: a dropdown whose options render in their own face */
-  .ai-font-picker {
+  .font-picker {
     display: block;
     width: 100%;
   }
-  .ai-font-picker .ai-font-trigger {
+  .font-picker .font-trigger {
     height: 2.25rem;
     font-weight: 500;
   }
-  .ai-font-picker .ai-font-trigger-label {
+  .font-picker .font-trigger-label {
     font-size: 0.9375rem;
   }
-  .ai-font-picker .ai-font-menu {
+  .font-picker .font-menu {
     width: 100%;
     max-height: 18rem;
     overflow-y: auto;
     padding-block: var(--ai-space-1);
   }
-  .ai-font-option {
+  .font-option {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1023,15 +1023,15 @@ th.ai-docs-matrix-win {
     line-height: 1.2;
     padding-block: 0.55rem;
   }
-  .ai-font-option .ai-font-option-check {
+  .font-option .font-option-check {
     display: none;
     color: var(--ai-accent);
   }
-  .ai-font-option.is-active .ai-font-option-check,
-  .ai-font-option[aria-selected="true"] .ai-font-option-check {
+  .font-option.is-active .font-option-check,
+  .font-option[aria-selected="true"] .font-option-check {
     display: inline-flex;
   }
-  .ai-font-option.is-active {
+  .font-option.is-active {
     background-color: var(--ai-surface-1);
   }
 }

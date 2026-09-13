@@ -11,5 +11,5 @@
     "toolbar",
     "app"
   ],
-  "html": "<div class=\"ai-page-header\">\n  <div>\n    <h1>Overview</h1>\n    <p class=\"ai-page-header-meta\">Workspace production · last deploy 14m ago</p>\n  </div>\n  <div class=\"ai-flex ai-gap-2\">\n    <button class=\"ai-btn ai-btn-outline ai-btn-sm\" type=\"button\">Export</button>\n    <button class=\"ai-btn ai-btn-primary ai-btn-sm\" type=\"button\">New report</button>\n  </div>\n</div>"
+  "html": "<div class=\"page-header\">\n  <div>\n    <h1>Overview</h1>\n    <p class=\"page-header-meta\">Workspace production · last deploy 14m ago</p>\n  </div>\n  <div class=\"flex gap-2\">\n    <button class=\"btn btn-outline btn-sm\" type=\"button\">Export</button>\n    <button class=\"btn btn-primary btn-sm\" type=\"button\">New report</button>\n  </div>\n</div>"
 }

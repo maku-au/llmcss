@@ -1,6 +1,6 @@
 @layer components {
   /* Dropdowns */
-  .ai-dropdown,
+  .dropdown,
   ai-dropdown {
     position: relative;
     display: inline-block;
@@ -8,7 +8,7 @@
 
   /* --ai-dropdown-offset  gap between the trigger and the menu
      --ai-dropdown-width   floor for the menu width */
-  .ai-dropdown-menu {
+  .dropdown-menu {
     display: none;
     position: absolute;
     top: calc(100% + var(--ai-dropdown-offset, var(--ai-space-1)));
@@ -24,18 +24,18 @@
     animation: ai-scale-up var(--ai-duration-fast) var(--ai-ease-out);
   }
 
-  .ai-dropdown-menu.ai-dropdown-right {
+  .dropdown-menu.dropdown-right {
     left: auto;
     right: 0;
   }
 
-  .ai-dropdown.is-open > .ai-dropdown-menu,
-  .ai-dropdown[open] > .ai-dropdown-menu,
-  ai-dropdown[open] > .ai-dropdown-menu {
+  .dropdown.is-open > .dropdown-menu,
+  .dropdown[open] > .dropdown-menu,
+  ai-dropdown[open] > .dropdown-menu {
     display: block;
   }
 
-  .ai-dropdown-item {
+  .dropdown-item {
     display: flex;
     align-items: center;
     gap: var(--ai-space-2);
@@ -52,25 +52,25 @@
     transition: background-color var(--ai-duration-fast);
   }
 
-  .ai-dropdown-item:hover,
-  .ai-dropdown-item:focus {
+  .dropdown-item:hover,
+  .dropdown-item:focus {
     background-color: var(--ai-surface-1);
   }
 
-  .ai-dropdown-item.is-danger {
+  .dropdown-item.is-danger {
     color: var(--ai-danger);
   }
-  .ai-dropdown-item.is-danger:hover {
+  .dropdown-item.is-danger:hover {
     background-color: var(--ai-danger-subtle);
   }
 
-  .ai-dropdown-divider {
+  .dropdown-divider {
     height: 1px;
     background-color: var(--ai-border);
     margin: var(--ai-space-1) 0;
   }
 
-  .ai-dropdown-header {
+  .dropdown-header {
     padding: var(--ai-space-2) var(--ai-space-3);
     font-size: 0.75rem;
     font-weight: 600;

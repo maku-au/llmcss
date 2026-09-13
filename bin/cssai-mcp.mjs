@@ -13,7 +13,7 @@ import { execFileSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { components } from '../src/registry/data.mjs';
 import { wireframeTemplates, pageBlueprints, assembleBlueprintHtml } from '../src/registry/templates-data.mjs';
-import { validateMarkup, structuralAudit, LEGACY_MAP as SHARED_LEGACY_MAP } from '../src/registry/validate.mjs';
+import { validateMarkup, structuralAudit } from '../src/registry/validate.mjs';
 
 // Manifests generated at build time from the CSS (public/*.json). When running
 // from a checkout they are read from disk; otherwise fetched from the origin.
@@ -113,11 +113,12 @@ const TOOLS = [
   },
   {
     name: 'validate_markup',
-    description: 'Validate HTML markup to verify it conforms to LLMCSS standards and catch hallucinated classes.',
+    description: 'Validate HTML markup to verify it conforms to LLMCSS standards and catch hallucinated classes. Class names carry no prefix, so a class the library does not define is reported as a warning (it may be the project\'s own); renamed classes still carrying the removed ai- prefix are errors.',
     inputSchema: {
       type: 'object',
       properties: {
         html: { type: 'string', description: 'HTML code snippet to validate' },
+        strict: { type: 'boolean', description: 'Treat unknown class names as errors instead of warnings (default false)' },
       },
       required: ['html'],
     },
@@ -135,12 +136,12 @@ const TOOLS = [
   },
   {
     name: 'list_classes',
-    description: 'List every ai-* class that exists in llmcss.css, with its family (spacing, sizing, typography, flex, grid, buttons, cards, ...) and which responsive (sm/md/lg/xl) and container-query (cq) prefixes exist for it. Use this instead of guessing class names.',
+    description: 'List every class that exists in llmcss.css, with its family (spacing, sizing, typography, flex, grid, buttons, cards, ...) and which responsive (sm/md/lg/xl) and container-query (cq) prefixes exist for it. Use this instead of guessing class names.',
     inputSchema: {
       type: 'object',
       properties: {
         family: { type: 'string', description: 'Filter by family, e.g. spacing, sizing, typography, flex, grid, display, position, borders, effects, interaction, layout, buttons, inputs, cards, badges, tables, marketing, dashboard' },
-        prefix: { type: 'string', description: 'Filter classes starting with this text, e.g. ai-btn or ai-text-' },
+        prefix: { type: 'string', description: 'Filter classes starting with this text, e.g. btn or text-' },
       },
     },
   },
@@ -286,20 +287,8 @@ const ALIAS_MAP = {
   'range': ['interactive-slider'],
   'bento': ['bento-editorial-pro', 'hero-bento-pro'],
   'marquee': ['marquee-ticker'],
-  'chat': ['ai-chat-thread'],
-  'prompt': ['ai-chat-thread'],
-};
-
-const LEGACY_MAP = {
-  'btn': 'ai-btn',
-  'btn-primary': 'ai-btn-primary',
-  'flex': 'ai-flex',
-  'grid': 'ai-grid',
-  'card': 'ai-card',
-  'badge': 'ai-badge',
-  'spinner': 'ai-spinner',
-  'progress': 'ai-progress',
-  'rounded-md': 'ai-rounded-md',
+  'chat': ['chat-thread'],
+  'prompt': ['chat-thread'],
 };
 
 function handleToolCall(name, args = {}) {
@@ -363,15 +352,22 @@ function handleToolCall(name, args = {}) {
 
     case 'validate_markup': {
       const html = args.html || '';
-      // Token-exact checks: unknown ai-* classes, unknown is-* states, unprefixed legacy names
-      const issues = validateMarkup(html).issues.map((i) => ({ ...i, legacyClass: i.type === 'legacy-class' ? i.class : undefined, suggestedClass: i.suggestion }));
-      if (/<(?:span|div)[^>]*\bclass=["'][^"']*\b(?:ai-badge|ai-hero-badge)\b[^"']*["'][^>]*>[\s\S]{0,250}<h[1-4]\b/i.test(html) && !html.includes('ai-product-badge-float')) {
+      const strict = args.strict === true;
+      // Token-exact checks: every class token against classes.json, is-* states
+      // against states.json, and any stale ai- prefix on a renamed class.
+      const result = validateMarkup(html, { strict });
+      const issues = result.issues.map((i) => ({
+        ...i,
+        legacyClass: i.type === 'legacy-class' || i.type === 'legacy-prefix' ? i.class : undefined,
+        suggestedClass: i.suggestion,
+      }));
+      if (/<(?:span|div)[^>]*\bclass=["'][^"']*\b(?:badge|hero-badge)\b[^"']*["'][^>]*>[\s\S]{0,250}<h[1-4]\b/i.test(html) && !html.includes('product-badge-float')) {
         issues.push({
           rule: 'Anti-Eyebrow Law',
           message: 'Pill or badge eyebrow positioned directly above a title or heading. Remove the badge eyebrow and lead directly with confident typography.',
         });
       }
-      if (/(?:linear-gradient\([^)]*(?:to right|90deg)[^)]*1px[\s\S]{0,100}linear-gradient\([^)]*(?:to bottom|0deg|180deg)[^)]*1px|\b(?:ai-bg-grid|bg-grid|grid-pattern|hero-grid)\b)/i.test(html)) {
+      if (/(?:linear-gradient\([^)]*(?:to right|90deg)[^)]*1px[\s\S]{0,100}linear-gradient\([^)]*(?:to bottom|0deg|180deg)[^)]*1px|\b(?:bg-grid|grid-pattern|hero-grid)\b)/i.test(html)) {
         issues.push({
           rule: 'Anti-Grid-Pattern Law',
           message: 'Square grid background pattern or class detected. Eliminate graph paper grids; use clean solid surfaces.',
@@ -382,8 +378,10 @@ function handleToolCall(name, args = {}) {
           {
             type: 'text',
             text: JSON.stringify({
-              valid: issues.length === 0,
+              valid: issues.every((i) => i.severity !== 'error'),
               issuesCount: issues.length,
+              errors: issues.filter((i) => i.severity === 'error').length,
+              warnings: issues.filter((i) => i.severity === 'warning').length,
               issues,
             }, null, 2),
           },
@@ -512,16 +510,16 @@ function handleToolCall(name, args = {}) {
     case 'cssai_slop_audit': {
       const code = args.code || args.html || '';
       const lines = code.split('\n');
-      const issues = structuralAudit(code).map((i) => ({ line: 0, category: i.category, tell: i.message, fix: i.category === 'Cardocalypse' ? 'Flatten hierarchy: use whitespace (--ai-space-6) or hairline rules instead of nesting cards.' : 'Use calm, steady status pips (.ai-status-pip). Reserve motion for .is-streaming.' }));
+      const issues = structuralAudit(code).map((i) => ({ line: 0, category: i.category, tell: i.message, fix: i.category === 'Cardocalypse' ? 'Flatten hierarchy: use whitespace (--ai-space-6) or hairline rules instead of nesting cards.' : 'Use calm, steady status pips (.status-pip). Reserve motion for .is-streaming.' }));
 
       lines.forEach((line, idx) => {
         const lineNum = idx + 1;
-        if (/ai-pulse-dot\b/.test(line) && !/is-streaming|ai-pulse-dot-streaming/.test(line)) {
+        if (/(?<![\w-])pulse-dot(?![\w-])/.test(line) && !/is-streaming|pulse-dot-streaming/.test(line)) {
           issues.push({
             line: lineNum,
             category: 'Pulsing Status Dots',
             tell: 'Pulsing dot on static element',
-            fix: 'Use calm, steady status pips (.ai-status-pip). Reserve motion for active streaming.',
+            fix: 'Use calm, steady status pips (.status-pip). Reserve motion for active streaming.',
           });
         }
         if (/border-left:\s*[2-9]px\s+solid/i.test(line)) {
@@ -540,7 +538,7 @@ function handleToolCall(name, args = {}) {
             fix: 'Use a solid neutral surface with multi-stop elevation shadows.',
           });
         }
-        if (/ai-marquee\b/.test(line)) {
+        if (/(?<![\w-])marquee(?![\w-])/.test(line)) {
           issues.push({
             line: lineNum,
             category: 'Auto-Scrolling Marquee',
@@ -548,7 +546,7 @@ function handleToolCall(name, args = {}) {
             fix: 'Replace marquee with a clean, static, responsive framework badge rail.',
           });
         }
-        if (/<(?:span|div)[^>]*class=["'][^"']*\b(?:ai-badge|ai-hero-badge)\b[^"']*["'][^>]*>/i.test(line) && !line.includes('ai-product-badge-float')) {
+        if (/<(?:span|div)[^>]*class=["'][^"']*\b(?:badge|hero-badge)\b[^"']*["'][^>]*>/i.test(line) && !line.includes('product-badge-float')) {
           const nextLines = lines.slice(idx + 1, idx + 5).join(' ');
           if (/<h[1-4]\b/i.test(nextLines)) {
             issues.push({
@@ -572,7 +570,7 @@ function handleToolCall(name, args = {}) {
             });
           }
         }
-        if (/class=["'][^"']*\b(?:ai-bg-grid|bg-grid|grid-pattern|hero-grid)\b[^"']*["']/i.test(line)) {
+        if (/class=["'][^"']*\b(?:bg-grid|grid-pattern|hero-grid)\b[^"']*["']/i.test(line)) {
           issues.push({
             line: lineNum,
             category: 'Square Grid Background Class',

@@ -12,7 +12,7 @@
  *   title      sentence-case short name
  *   rule       what not to do, and why
  *   instead    what to do in its place
- *   classes    ai-* classes the law names (all verified in public/classes.json)
+ *   classes    class names the law names (no prefix; all verified in public/classes.json)
  *   automated  true when `llmcss validate` or `llmcss audit` checks the law in
  *              code (src/registry/validate.mjs structuralAudit, or the `audit`
  *              case in bin/cssai.mjs), false when the law is guidance a human
@@ -23,10 +23,10 @@ export const laws = [
   {
     n: 1,
     title: 'Never nest containers',
-    rule: 'Do not put a bordered container inside another bordered container. The audit walks the tag stack and flags every `.ai-card`, `.ai-panel` or `.ai-kpi-card` that sits inside another `.ai-card`, `.ai-panel` or `.ai-kpi-card`. Nested boxes waste screen real estate and create dizzying visual layers.',
+    rule: 'Do not put a bordered container inside another bordered container. The audit walks the tag stack and flags every `.card`, `.panel` or `.kpi-card` that sits inside another `.card`, `.panel` or `.kpi-card`. Nested boxes waste screen real estate and create dizzying visual layers.',
     instead:
-      'Use generous whitespace (`--ai-space-6`), subtle hairline rules (`<hr class="ai-divider">`), or distinct background shifts (`var(--ai-surface-1)`).',
-    classes: ['ai-card', 'ai-panel', 'ai-kpi-card', 'ai-divider'],
+      'Use generous whitespace (`--ai-space-6`), subtle hairline rules (`<hr class="divider">`), or distinct background shifts (`var(--ai-surface-1)`).',
+    classes: ['card', 'panel', 'kpi-card', 'divider'],
     automated: true,
   },
   {
@@ -34,8 +34,8 @@ export const laws = [
     title: 'Never pulse static status pips',
     rule: 'Never attach continuous breathing or pulsing animations to steady states like "System Normal", "Online", or "Completed". The audit flags the class tokens `animate-pulse`, `pulse`, `animate-ping`, `ping`, `breathe`, `blink` and `animate-bounce`, and any inline `animation:` value containing `pulse`, `ping`, `breathe`, `blink` or `glow`, unless the document also carries `is-streaming`. Flashing elements demand attention when nothing has changed.',
     instead:
-      'Render a calm, static jewel pip with `.ai-status-pip` and `box-shadow: 0 0 0 2px color-mix(...)`. Reserve `.ai-status-pip.is-streaming` strictly for ongoing inference or active data transmission.',
-    classes: ['ai-status-pip'],
+      'Render a calm, static jewel pip with `.status-pip` and `box-shadow: 0 0 0 2px color-mix(...)`. Reserve `.status-pip.is-streaming` strictly for ongoing inference or active data transmission.',
+    classes: ['status-pip'],
     automated: true,
   },
   {
@@ -44,7 +44,7 @@ export const laws = [
     rule: 'Do not place thick 3px to 5px colored vertical stripes on the left edge of cards, toasts, or dialogs. This 2012-era alert tell makes every element scream for attention.',
     instead:
       'Use a 1px uniform architectural border (`border: 1px solid var(--ai-border)`), accompanied by a subtle 6px status jewel pip or an inline icon.',
-    classes: ['ai-status-pip'],
+    classes: ['status-pip'],
     automated: true,
   },
   {
@@ -59,10 +59,10 @@ export const laws = [
   {
     n: 5,
     title: 'Never stamp formulaic eyebrows above headlines',
-    rule: 'Do not stamp a badge or a pill above a heading as an eyebrow, and do not repeat an uppercase monospace overline (`01 // FEATURES`, `OVERVIEW`) over every section. The audit flags a `span` or `div` carrying `.ai-badge` or `.ai-hero-badge` that is followed by an `h1` to `h4` within the next few lines, with `.ai-product-badge-float` the only exemption. Repeated eyebrows become visual noise that delays reading the headline.',
+    rule: 'Do not stamp a badge or a pill above a heading as an eyebrow, and do not repeat an uppercase monospace overline (`01 // FEATURES`, `OVERVIEW`) over every section. The audit flags a `span` or `div` carrying `.badge` or `.hero-badge` that is followed by an `h1` to `h4` within the next few lines, with `.product-badge-float` the only exemption. Repeated eyebrows become visual noise that delays reading the headline.',
     instead:
       'Lead directly with a confident, well-typeset headline (`h1` or `h2`). If context is needed, fold it into the heading or the supporting sentence.',
-    classes: ['ai-badge', 'ai-hero-badge', 'ai-product-badge-float'],
+    classes: ['badge', 'hero-badge', 'product-badge-float'],
     automated: true,
   },
   {
@@ -89,7 +89,7 @@ export const laws = [
     rule: 'Do not display 4 identical KPI cards with identical weights and icons.',
     instead:
       'Establish clear hierarchy. Make the primary metric anchor dominant in size (`font-size: 2.5rem; font-weight: 700;`), with supporting secondary metrics grouped in tighter rows or tables below.',
-    classes: ['ai-kpi-card'],
+    classes: ['kpi-card'],
     automated: false,
   },
   {
@@ -97,8 +97,8 @@ export const laws = [
     title: 'Never auto-scroll copy',
     rule: 'Do not force readers to wait for auto-scrolling tickers or animated marquee loops to read supported integrations or technologies.',
     instead:
-      'Render a clean, static, responsive badge rail (`.ai-badge-neutral`) or a balanced grid that users can scan at their own speed.',
-    classes: ['ai-badge-neutral'],
+      'Render a clean, static, responsive badge rail (`.badge-neutral`) or a balanced grid that users can scan at their own speed.',
+    classes: ['badge-neutral'],
     automated: true,
   },
   {

@@ -2,7 +2,7 @@
   /* ==========================================================================
      BREADCRUMBS - Navigation trail with separator chevrons
      ========================================================================== */
-  .ai-breadcrumb {
+  .breadcrumb {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -11,34 +11,34 @@
     font-size: 0.875rem;
   }
 
-  .ai-breadcrumb-item {
+  .breadcrumb-item {
     display: inline-flex;
     align-items: center;
     gap: var(--ai-space-1);
   }
 
-  .ai-breadcrumb-item + .ai-breadcrumb-item::before {
+  .breadcrumb-item + .breadcrumb-item::before {
     content: "/";
     color: var(--ai-text-muted);
     font-size: 0.75rem;
     margin-inline-end: var(--ai-space-1);
   }
 
-  .ai-breadcrumb-item a {
+  .breadcrumb-item a {
     color: var(--ai-text-secondary);
     text-decoration: none;
     font-weight: 500;
     transition: color var(--ai-duration-fast);
   }
 
-  .ai-breadcrumb-item a:hover {
+  .breadcrumb-item a:hover {
     color: var(--ai-text-primary);
   }
 
   /* State twin: .is-current mirrors aria-current on the trail's last crumb. */
-  .ai-breadcrumb-item.is-current,
-  .ai-breadcrumb-item[aria-current],
-  .ai-breadcrumb-item:has(> [aria-current]) {
+  .breadcrumb-item.is-current,
+  .breadcrumb-item[aria-current],
+  .breadcrumb-item:has(> [aria-current]) {
     color: var(--ai-text-primary);
     font-weight: 600;
   }
@@ -46,7 +46,7 @@
   /* ==========================================================================
      TOOLTIP - CSS-only tooltip on hover/focus
      ========================================================================== */
-  .ai-tooltip {
+  .tooltip {
     position: relative;
     display: inline-flex;
   }
@@ -55,7 +55,7 @@
      --ai-tooltip-max-width  none keeps the bubble on one line (width is
                              max-content); give it a length and long copy wraps
                              inside that cap. */
-  .ai-tooltip::after {
+  .tooltip::after {
     content: attr(data-tooltip);
     position: absolute;
     bottom: calc(100% + var(--ai-tooltip-offset, 6px));
@@ -77,13 +77,13 @@
     z-index: 50;
   }
 
-  .ai-tooltip:hover::after,
-  .ai-tooltip:focus-within::after {
+  .tooltip:hover::after,
+  .tooltip:focus-within::after {
     opacity: 1;
     transform: translateX(-50%) scale(1);
   }
 
-  .ai-tooltip.ai-tooltip-bottom::after {
+  .tooltip.tooltip-bottom::after {
     bottom: auto;
     top: calc(100% + var(--ai-tooltip-offset, 6px));
   }
@@ -91,18 +91,18 @@
   /* ==========================================================================
      PAGINATION - Page navigation with active state and ellipsis
      ========================================================================== */
-  .ai-pagination {
+  .pagination {
     display: flex;
     align-items: center;
     gap: var(--ai-space-1);
     list-style: none;
   }
 
-  .ai-pagination-item {
+  .pagination-item {
     display: inline-flex;
   }
 
-  .ai-pagination-link {
+  .pagination-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -120,27 +120,27 @@
     transition: all var(--ai-duration-fast) var(--ai-ease-out);
   }
 
-  .ai-pagination-link:hover {
+  .pagination-link:hover {
     background-color: var(--ai-surface-1);
     border-color: var(--ai-border);
     color: var(--ai-text-primary);
   }
 
   /* State twin: .is-active mirrors aria-current="page" on the current page. */
-  .ai-pagination-link.is-active,
-  .ai-pagination-link[aria-current] {
+  .pagination-link.is-active,
+  .pagination-link[aria-current] {
     background-color: var(--ai-primary);
     color: var(--ai-primary-text);
     border-color: var(--ai-primary);
     font-weight: 600;
   }
 
-  .ai-pagination-link.is-disabled {
+  .pagination-link.is-disabled {
     opacity: 0.4;
     pointer-events: none;
   }
 
-  .ai-pagination-ellipsis {
+  .pagination-ellipsis {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -154,7 +154,7 @@
   /* ==========================================================================
      DIVIDER - Horizontal/vertical dividers with optional label
      ========================================================================== */
-  .ai-divider {
+  .divider {
     display: flex;
     align-items: center;
     width: 100%;
@@ -168,19 +168,19 @@
     letter-spacing: 0.05em;
   }
 
-  .ai-divider::before,
-  .ai-divider::after {
+  .divider::before,
+  .divider::after {
     content: "";
     flex: 1;
     height: 1px;
     background-color: var(--ai-border);
   }
 
-  .ai-divider:empty::after {
+  .divider:empty::after {
     display: none;
   }
 
-  .ai-divider-vertical {
+  .divider-vertical {
     display: inline-block;
     width: 1px;
     height: 1.25em;
@@ -192,7 +192,7 @@
   /* ==========================================================================
      EMPTY STATE - Placeholder for no-data sections
      ========================================================================== */
-  .ai-empty-state {
+  .empty-state {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -202,7 +202,7 @@
     color: var(--ai-text-muted);
   }
 
-  .ai-empty-state-icon {
+  .empty-state-icon {
     width: 3rem;
     height: 3rem;
     margin-bottom: var(--ai-space-4);
@@ -210,14 +210,14 @@
     opacity: 0.5;
   }
 
-  .ai-empty-state-title {
+  .empty-state-title {
     font-size: 1rem;
     font-weight: 600;
     color: var(--ai-text-primary);
     margin-bottom: var(--ai-space-1);
   }
 
-  .ai-empty-state-description {
+  .empty-state-description {
     font-size: 0.875rem;
     color: var(--ai-text-secondary);
     max-width: 24rem;
@@ -228,13 +228,13 @@
   /* ==========================================================================
      TEXTAREA WITH CHARACTER COUNTER
      ========================================================================== */
-  .ai-textarea-group {
+  .textarea-group {
     display: flex;
     flex-direction: column;
     gap: var(--ai-space-1);
   }
 
-  .ai-textarea-footer {
+  .textarea-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -245,7 +245,7 @@
   /* ==========================================================================
      RADIO BUTTON GROUP
      ========================================================================== */
-  .ai-radio {
+  .radio {
     display: inline-flex;
     align-items: center;
     gap: var(--ai-space-2);
@@ -255,7 +255,7 @@
     color: var(--ai-text-primary);
   }
 
-  .ai-radio-input {
+  .radio-input {
     appearance: none;
     -webkit-appearance: none;
     width: 1.125rem;
@@ -269,7 +269,7 @@
     margin: 0;
   }
 
-  .ai-radio-input::before {
+  .radio-input::before {
     content: "";
     width: 0.5rem;
     height: 0.5rem;
@@ -279,27 +279,27 @@
     transition: transform var(--ai-duration-fast) var(--ai-ease-out);
   }
 
-  .ai-radio-input:checked {
+  .radio-input:checked {
     background-color: var(--ai-accent);
     border-color: var(--ai-accent);
   }
 
-  .ai-radio-input:checked::before {
+  .radio-input:checked::before {
     transform: scale(1);
   }
 
-  .ai-radio-input:focus-visible {
+  .radio-input:focus-visible {
     outline: none;
     box-shadow: var(--ai-focus-ring);
   }
 
-  .ai-radio-group {
+  .radio-group {
     display: flex;
     flex-direction: column;
     gap: var(--ai-space-3);
   }
 
-  .ai-radio-group.ai-radio-group-horizontal {
+  .radio-group.radio-group-horizontal {
     flex-direction: row;
     gap: var(--ai-space-6);
   }
@@ -307,15 +307,15 @@
   /* ==========================================================================
      SIDEBAR NAVIGATION (Collapsible with sections)
      ========================================================================== */
-  .ai-sidebar-section {
+  .sidebar-section {
     padding: var(--ai-space-2) 0;
   }
 
-  .ai-sidebar-section + .ai-sidebar-section {
+  .sidebar-section + .sidebar-section {
     border-top: 1px solid var(--ai-border-subtle);
   }
 
-  .ai-sidebar-section-title {
+  .sidebar-section-title {
     font-size: 0.6875rem;
     font-weight: 600;
     color: var(--ai-text-muted);
@@ -324,7 +324,7 @@
     padding: var(--ai-space-2) var(--ai-space-3) var(--ai-space-1);
   }
 
-  .ai-sidebar-badge {
+  .sidebar-badge {
     margin-inline-start: auto;
     font-size: 0.625rem;
     font-weight: 600;
@@ -334,9 +334,9 @@
     color: var(--ai-text-muted);
   }
 
-  /* State twin: matches the .is-active / [aria-current] pair on .ai-sidebar-item. */
-  .ai-sidebar-item.is-active .ai-sidebar-badge,
-  .ai-sidebar-item[aria-current] .ai-sidebar-badge {
+  /* State twin: matches the .is-active / [aria-current] pair on .sidebar-item. */
+  .sidebar-item.is-active .sidebar-badge,
+  .sidebar-item[aria-current] .sidebar-badge {
     background-color: var(--ai-accent);
     color: var(--ai-primary-text);
   }
@@ -344,7 +344,7 @@
   /* ==========================================================================
      NOTIFICATION LIST
      ========================================================================== */
-  .ai-notification-list {
+  .notification-list {
     display: flex;
     flex-direction: column;
     border: 1px solid var(--ai-border);
@@ -353,7 +353,7 @@
     overflow: hidden;
   }
 
-  .ai-notification-item {
+  .notification-item {
     display: flex;
     align-items: flex-start;
     gap: var(--ai-space-3);
@@ -362,19 +362,19 @@
     transition: background-color var(--ai-duration-fast);
   }
 
-  .ai-notification-item:last-child {
+  .notification-item:last-child {
     border-bottom: none;
   }
 
-  .ai-notification-item:hover {
+  .notification-item:hover {
     background-color: var(--ai-surface-1);
   }
 
-  .ai-notification-item.is-unread {
+  .notification-item.is-unread {
     background-color: color-mix(in srgb, var(--ai-accent) 5%, transparent);
   }
 
-  .ai-notification-dot {
+  .notification-dot {
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
@@ -382,23 +382,23 @@
     flex-shrink: 0;
     margin-top: 0.375rem;
   }
-  .ai-notification-dot.is-read {
+  .notification-dot.is-read {
     background-color: transparent;
   }
 
-  .ai-notification-content {
+  .notification-content {
     flex: 1;
     min-width: 0;
   }
 
-  .ai-notification-title {
+  .notification-title {
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--ai-text-primary);
     line-height: 1.4;
   }
 
-  .ai-notification-meta {
+  .notification-meta {
     font-size: 0.75rem;
     color: var(--ai-text-muted);
     margin-top: var(--ai-space-1);

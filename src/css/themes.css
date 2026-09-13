@@ -9,7 +9,7 @@
      1. Obsidian Theme (High-Craft Monochrome / Swiss Minimal)
      -------------------------------------------------------------------------- */
   [data-ai-skin="obsidian"],
-  .ai-skin-obsidian {
+  .skin-obsidian {
     --ai-radius-base: var(--ai-radius-xs);
   }
 
@@ -17,7 +17,7 @@
   :root[data-ai-theme="light"][data-ai-skin="obsidian"],
   :root:not([data-ai-theme="dark"])[data-ai-skin="obsidian"],
   [data-ai-theme="light"] [data-ai-skin="obsidian"],
-  .ai-light [data-ai-skin="obsidian"] {
+  .light [data-ai-skin="obsidian"] {
     --ai-bg: #fbfbfb;
     --ai-surface-0: #ffffff;
     --ai-surface-1: #f4f4f5;
@@ -39,7 +39,7 @@
   /* Obsidian in Dark Mode (Pitch Black / High-Contrast Precision Aesthetic) */
   :root[data-ai-theme="dark"][data-ai-skin="obsidian"],
   [data-ai-theme="dark"] [data-ai-skin="obsidian"],
-  .ai-dark [data-ai-skin="obsidian"] {
+  .dark [data-ai-skin="obsidian"] {
     --ai-bg: #000000;
     --ai-surface-0: #0a0a0a;
     --ai-surface-1: #141414;
@@ -63,7 +63,7 @@
      2. Editorial Theme (Warm Ivory / Serif Heritage)
      -------------------------------------------------------------------------- */
   [data-ai-skin="editorial"],
-  .ai-skin-editorial {
+  .skin-editorial {
     --ai-radius-base: var(--ai-radius-xs);
   }
 
@@ -114,7 +114,7 @@
      3. Executive Slate Theme (B2B SaaS / Enterprise Authority)
      -------------------------------------------------------------------------- */
   [data-ai-skin="executive"],
-  .ai-skin-executive {
+  .skin-executive {
     --ai-radius-base: var(--ai-radius-sm);
   }
 
@@ -170,7 +170,7 @@
      4. Fintech Titanium Theme (Monetary-Grade Precision & Baselined Surfaces)
      -------------------------------------------------------------------------- */
   [data-ai-skin="fintech"],
-  .ai-skin-fintech {
+  .skin-fintech {
     --ai-radius-base: var(--ai-radius-xs);
   }
 
@@ -226,7 +226,7 @@
      5. Enterprise Clean Theme (B2B SaaS Feel)
      -------------------------------------------------------------------------- */
   [data-ai-skin="enterprise"],
-  .ai-skin-enterprise {
+  .skin-enterprise {
     --ai-radius-base: var(--ai-radius-xs);
   }
 

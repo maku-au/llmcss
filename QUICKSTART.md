@@ -1,6 +1,6 @@
 # LLMCSS quickstart
 
-LLMCSS is a CSS library. Class prefix is `ai-*`. Copy CSS, use the CLI, or point an agent at the MCP server.
+LLMCSS is a CSS library. Every class name is listed in classes.json; classes carry no prefix. Copy CSS, use the CLI, or point an agent at the MCP server.
 
 This page also lives at [llmcss.io/quickstart](https://llmcss.io/quickstart). Gallery: [llmcss.io/components](https://llmcss.io/components).
 
@@ -13,7 +13,7 @@ This page also lives at [llmcss.io/quickstart](https://llmcss.io/quickstart). Ga
     <link rel="stylesheet" href="https://llmcss.io/llmcss.css" />
   </head>
   <body>
-    <button class="ai-btn ai-btn-primary">Save</button>
+    <button class="btn btn-primary">Save</button>
   </body>
 </html>
 ```
@@ -37,7 +37,7 @@ Focus: `data-ai-focus="neutral|thin|none"` on `<html>` swaps the focus ring pres
 Pin a release instead of tracking latest:
 
 ```html
-<link rel="stylesheet" href="https://llmcss.io/v/0.3.0/llmcss.css" />
+<link rel="stylesheet" href="https://llmcss.io/v/0.4.0/llmcss.css" />
 ```
 
 Optional fonts (body, display, mono):
@@ -65,12 +65,12 @@ curl https://llmcss.io/r/btn-variants.json
 ## 3. A first layout
 
 ```html
-<div class="ai-container-sm ai-p-8">
+<div class="container-sm p-8">
   <h1>Hello</h1>
-  <p class="ai-text-secondary">Body uses the sans token. Titles use the display token.</p>
-  <div class="ai-flex ai-gap-2 ai-mt-4">
-    <button class="ai-btn ai-btn-primary">Continue</button>
-    <button class="ai-btn ai-btn-outline">Cancel</button>
+  <p class="text-secondary">Body uses the sans token. Titles use the display token.</p>
+  <div class="flex gap-2 mt-4">
+    <button class="btn btn-primary">Continue</button>
+    <button class="btn btn-outline">Cancel</button>
   </div>
 </div>
 ```
@@ -82,10 +82,10 @@ Rules of thumb: no nested cards, no pulsing dots on static status, no purple gra
 Two ways to get modal, drawer, dropdown, accordion, tabs, toast, and command palette behavior:
 
 ```html
-<button class="ai-btn" data-ai-toggle="modal" data-ai-target="#example">Open</button>
-<div id="example" class="ai-modal">
-  <div class="ai-modal-backdrop" data-ai-dismiss="modal"></div>
-  <div class="ai-modal-box">…</div>
+<button class="btn" data-ai-toggle="modal" data-ai-target="#example">Open</button>
+<div id="example" class="modal">
+  <div class="modal-backdrop" data-ai-dismiss="modal"></div>
+  <div class="modal-box">…</div>
 </div>
 ```
 
@@ -98,9 +98,9 @@ The nesting matters:
 | Component | Toggle needs | Target needs |
 |---|---|---|
 | Modal / drawer | `data-ai-target="#id"` | A backdrop plus a box or panel |
-| Dropdown | An `.ai-dropdown` ancestor | |
-| Accordion | An `.ai-accordion-item` ancestor | |
-| Tabs | `data-ai-tab="#panel"` | An `.ai-tabs` ancestor |
+| Dropdown | An `.dropdown` ancestor | |
+| Accordion | An `.accordion-item` ancestor | |
+| Tabs | `data-ai-tab="#panel"` | An `.tabs` ancestor |
 
 Open state is the `open` attribute and the `.is-open` class interchangeably.
 
@@ -150,8 +150,8 @@ Or paste the token under License at [llmcss.io/account](https://llmcss.io/accoun
 | `npx llmcss list` | Free + Pro ids |
 | `npx llmcss search <query>` | Search by keyword, tag, or alias |
 | `npx llmcss add <id>` | Write component HTML into `components/` |
-| `npx llmcss validate <file>` | Flag non-`ai-` classes |
-| `npx llmcss lint --fix <file>` | Auto-prefix common legacy classes |
+| `npx llmcss validate <file>` | Warn on unknown classes (fail with `--strict`), fail on a stray `ai-` prefix |
+| `npx llmcss lint --fix <file>` | Strip a stray `ai-` prefix |
 | `npx llmcss audit <file>` | Anti-slop design checks |
 | `npx llmcss templates` | List wireframe section templates |
 | `npx llmcss template blueprint <id>` | Assemble a full page |

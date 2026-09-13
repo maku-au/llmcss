@@ -48,10 +48,10 @@ const toastContainer = document.getElementById('toast-container');
 // ============================================================================
 function showToast(message: string, type: 'success' | 'info' | 'error' = 'success') {
   const toast = document.createElement('div');
-  toast.className = `ai-toast ai-toast-${type}`;
+  toast.className = `toast toast-${type}`;
   toast.innerHTML = `
-    <span class="ai-toast-message">${message}</span>
-    <button class="ai-toast-close">&times;</button>
+    <span class="toast-message">${message}</span>
+    <button class="toast-close">&times;</button>
   `;
   toastContainer?.appendChild(toast);
   setTimeout(() => {
@@ -215,7 +215,7 @@ function applyGlobalTokens() {
 
 function updateCoreStylerUI() {
   // Theme Grid
-  document.querySelectorAll('#styler-theme-grid .ai-styler-theme-btn').forEach((btn) => {
+  document.querySelectorAll('#styler-theme-grid .styler-theme-btn').forEach((btn) => {
     const skin = btn.getAttribute('data-skin');
     btn.classList.toggle('is-active', skin === activeSkin);
   });
@@ -237,7 +237,7 @@ function updateCoreStylerUI() {
   }
 
   // Radius Pills
-  document.querySelectorAll('.ai-styler-radius-btn').forEach((btn) => {
+  document.querySelectorAll('.js-styler-radius-btn').forEach((btn) => {
     const rad = btn.getAttribute('data-radius');
     btn.classList.toggle('is-active', rad === activeRadius);
   });
@@ -254,7 +254,7 @@ function updateCoreStylerUI() {
   }
 
   // Density Pills
-  document.querySelectorAll('.ai-styler-density-btn').forEach((btn) => {
+  document.querySelectorAll('.js-styler-density-btn').forEach((btn) => {
     const den = btn.getAttribute('data-density');
     btn.classList.toggle('is-active', den === activeDensity);
   });
@@ -269,7 +269,7 @@ function updateCoreStylerUI() {
   }
 
   // Accent Swatches
-  document.querySelectorAll('.ai-styler-accent-swatch').forEach((btn) => {
+  document.querySelectorAll('.styler-accent-swatch').forEach((btn) => {
     const acc = btn.getAttribute('data-accent');
     btn.classList.toggle('is-active', acc === activeAccent);
   });
@@ -545,21 +545,21 @@ function renderCustomizerBar(comp: (typeof components)[0]): string {
   const current = componentCustomizations[comp.id] || {};
 
   return `
-    <div class="ai-demo-toolbar" id="customize-${comp.id}" style="display: none;">
-      <div class="ai-flex ai-items-center ai-gap-2" style="margin-right: var(--ai-space-2);">
-        <span class="ai-badge ai-badge-neutral ai-font-mono" style="font-size: 0.625rem;">Customizer</span>
+    <div class="demo-toolbar" id="customize-${comp.id}" style="display: none;">
+      <div class="flex items-center gap-2" style="margin-right: var(--ai-space-2);">
+        <span class="badge badge-neutral font-mono" style="font-size: 0.625rem;">Customizer</span>
       </div>
       ${groups
         .map((g) => {
           const activeVal = current[g.prop] || g.options[0].value;
           return `
-          <div class="ai-demo-toolbar-group">
-            <span class="ai-demo-toolbar-label">${g.name}:</span>
-            <div class="ai-demo-pills">
+          <div class="demo-toolbar-group">
+            <span class="demo-toolbar-label">${g.name}:</span>
+            <div class="demo-pills">
               ${g.options
                 .map(
                   (opt) => `
-                <button class="ai-demo-pill ${opt.value === activeVal ? 'is-active' : ''}" 
+                <button class="demo-pill ${opt.value === activeVal ? 'is-active' : ''}" 
                         data-id="${comp.id}" 
                         data-prop="${g.prop}" 
                         data-val="${opt.value}">
@@ -573,7 +573,7 @@ function renderCustomizerBar(comp: (typeof components)[0]): string {
         `;
         })
         .join('')}
-      <button class="ai-btn ai-btn-ghost ai-btn-xs reset-customizer-btn" data-id="${comp.id}" style="margin-left: auto; font-size: 0.6875rem;">Reset</button>
+      <button class="btn btn-ghost btn-xs reset-customizer-btn" data-id="${comp.id}" style="margin-left: auto; font-size: 0.6875rem;">Reset</button>
     </div>
   `;
 }
@@ -586,17 +586,17 @@ function generateCustomizedHtml(comp: (typeof components)[0]): string {
 
   // 1. Button modifications
   if (comp.id === 'btn-variants' || comp.id === 'btn-sizes') {
-    const variantClass = custom.variant ? `ai-btn-${custom.variant}` : 'ai-btn-primary';
-    const sizeClass = custom.size && custom.size !== 'base' ? `ai-btn-${custom.size}` : '';
+    const variantClass = custom.variant ? `btn-${custom.variant}` : 'btn-primary';
+    const sizeClass = custom.size && custom.size !== 'base' ? `btn-${custom.size}` : '';
     const stateClass = custom.state === 'loading' ? 'is-loading' : '';
     const disabledAttr = custom.state === 'disabled' ? 'disabled' : '';
 
-    return `<div class="ai-flex ai-flex-wrap ai-gap-3 ai-items-center">
-  <button class="ai-btn ${variantClass} ${sizeClass} ${stateClass}" ${disabledAttr} ${custom.state === 'loading' ? 'aria-busy="true"' : ''}>
+    return `<div class="flex flex-wrap gap-3 items-center">
+  <button class="btn ${variantClass} ${sizeClass} ${stateClass}" ${disabledAttr} ${custom.state === 'loading' ? 'aria-busy="true"' : ''}>
     ${custom.variant ? custom.variant.toUpperCase() : 'CUSTOMIZED'} BUTTON
   </button>
-  <button class="ai-btn ai-btn-outline ${sizeClass}">Secondary Action</button>
-  <button class="ai-btn ai-btn-ghost ${sizeClass}">Ghost Subtle</button>
+  <button class="btn btn-outline ${sizeClass}">Secondary Action</button>
+  <button class="btn btn-ghost ${sizeClass}">Ghost Subtle</button>
 </div>`;
   }
 
@@ -606,18 +606,18 @@ function generateCustomizedHtml(comp: (typeof components)[0]): string {
     const disabledAttr = custom.state === 'disabled' ? 'disabled' : '';
     const errorMarkup =
       custom.state === 'error'
-        ? '<span class="ai-form-error" style="margin-top: 0.25rem;">Please enter a valid engineering email.</span>'
-        : '<span class="ai-form-hint">We\'ll send your workspace invite here.</span>';
+        ? '<span class="form-error" style="margin-top: 0.25rem;">Please enter a valid engineering email.</span>'
+        : '<span class="form-hint">We\'ll send your workspace invite here.</span>';
 
-    return `<div class="ai-grid ai-gap-4" style="max-width: 24rem;">
-  <div class="ai-form-group">
-    <label class="ai-form-label" for="user-email">Email Address</label>
-    <input type="email" id="user-email" class="ai-input ${stateClass}" placeholder="name@company.com" value="${custom.state === 'focused' ? 'alex.chen@acme.dev' : ''}" ${disabledAttr} />
+    return `<div class="grid gap-4" style="max-width: 24rem;">
+  <div class="form-group">
+    <label class="form-label" for="user-email">Email Address</label>
+    <input type="email" id="user-email" class="input ${stateClass}" placeholder="name@company.com" value="${custom.state === 'focused' ? 'alex.chen@acme.dev' : ''}" ${disabledAttr} />
     ${errorMarkup}
   </div>
-  <div class="ai-form-group">
-    <label class="ai-form-label" for="user-bio">Description</label>
-    <textarea id="user-bio" class="ai-textarea ${stateClass}" placeholder="Tell us about your project..." ${disabledAttr}></textarea>
+  <div class="form-group">
+    <label class="form-label" for="user-bio">Description</label>
+    <textarea id="user-bio" class="textarea ${stateClass}" placeholder="Tell us about your project..." ${disabledAttr}></textarea>
   </div>
 </div>`;
   }
@@ -626,14 +626,14 @@ function generateCustomizedHtml(comp: (typeof components)[0]): string {
     const stateClass = custom.state === 'focused' ? 'is-focused' : custom.state === 'error' ? 'is-error' : '';
     const disabledAttr = custom.state === 'disabled' ? 'disabled' : '';
 
-    return `<div class="ai-form-group" style="max-width: 28rem;">
-  <label class="ai-form-label">Project URL</label>
-  <div class="ai-input-group">
-    <span class="ai-input-addon">https://</span>
-    <input type="text" class="ai-input ${stateClass}" placeholder="your-domain" value="${custom.state === 'focused' ? 'llmcss-preview' : ''}" ${disabledAttr} />
-    <span class="ai-input-addon">.dev</span>
+    return `<div class="form-group" style="max-width: 28rem;">
+  <label class="form-label">Project URL</label>
+  <div class="input-group">
+    <span class="input-addon">https://</span>
+    <input type="text" class="input ${stateClass}" placeholder="your-domain" value="${custom.state === 'focused' ? 'llmcss-preview' : ''}" ${disabledAttr} />
+    <span class="input-addon">.dev</span>
   </div>
-  <span class="ai-form-hint">Production DNS routing will point to this hostname.</span>
+  <span class="form-hint">Production DNS routing will point to this hostname.</span>
 </div>`;
   }
 
@@ -641,16 +641,16 @@ function generateCustomizedHtml(comp: (typeof components)[0]): string {
     const checkedAttr = custom.state === 'focused' ? 'checked' : '';
     const disabledAttr = custom.state === 'disabled' ? 'disabled' : '';
 
-    return `<div class="ai-flex ai-flex-col ai-gap-4">
-  <label class="ai-switch">
-    <input type="checkbox" class="ai-switch-input" checked ${disabledAttr} />
-    <span class="ai-switch-track"><span class="ai-switch-thumb"></span></span>
-    <span class="ai-text-sm ai-font-medium">Strict Type Checking</span>
+    return `<div class="flex flex-col gap-4">
+  <label class="switch">
+    <input type="checkbox" class="switch-input" checked ${disabledAttr} />
+    <span class="switch-track"><span class="switch-thumb"></span></span>
+    <span class="text-sm font-medium">Strict Type Checking</span>
   </label>
-  <label class="ai-switch">
-    <input type="checkbox" class="ai-switch-input" ${checkedAttr} ${disabledAttr} />
-    <span class="ai-switch-track"><span class="ai-switch-thumb"></span></span>
-    <span class="ai-text-sm ai-font-medium">Automated Rollback on Error</span>
+  <label class="switch">
+    <input type="checkbox" class="switch-input" ${checkedAttr} ${disabledAttr} />
+    <span class="switch-track"><span class="switch-thumb"></span></span>
+    <span class="text-sm font-medium">Automated Rollback on Error</span>
   </label>
 </div>`;
   }
@@ -668,20 +668,20 @@ function generateCustomizedHtml(comp: (typeof components)[0]): string {
     const accentColor = colorMap[custom.accent || 'blue'] || 'var(--ai-accent)';
 
     if (v === 'ring') {
-      return `<div class="ai-flex ai-items-center ai-gap-4">
-  <div class="ai-spinner-ring" style="border-top-color: ${accentColor}; ${speedStyle}"></div>
-  <span class="ai-text-xs ai-font-mono ai-text-secondary">Dual Orbit Loader (${custom.speed || 'normal'})</span>
+      return `<div class="flex items-center gap-4">
+  <div class="spinner-ring" style="border-top-color: ${accentColor}; ${speedStyle}"></div>
+  <span class="text-xs font-mono text-secondary">Dual Orbit Loader (${custom.speed || 'normal'})</span>
 </div>`;
     }
     if (v === 'pulse') {
-      return `<div class="ai-flex ai-items-center ai-gap-3">
-  <span class="ai-pulse-dot ai-status-pip is-streaming" style="background-color: ${accentColor}; ${speedStyle}"></span>
-  <span class="ai-text-xs ai-font-mono ai-text-secondary">Status Pip (Breathing LED)</span>
+      return `<div class="flex items-center gap-3">
+  <span class="pulse-dot status-pip is-streaming" style="background-color: ${accentColor}; ${speedStyle}"></span>
+  <span class="text-xs font-mono text-secondary">Status Pip (Breathing LED)</span>
 </div>`;
     }
-    return `<div class="ai-flex ai-items-center ai-gap-4">
-  <span class="ai-spinner" style="border-color: ${accentColor}; border-top-color: transparent; ${speedStyle}"></span>
-  <span class="ai-text-xs ai-font-mono ai-text-secondary">Arc Motion Spinner</span>
+    return `<div class="flex items-center gap-4">
+  <span class="spinner" style="border-color: ${accentColor}; border-top-color: transparent; ${speedStyle}"></span>
+  <span class="text-xs font-mono text-secondary">Arc Motion Spinner</span>
 </div>`;
   }
 
@@ -696,17 +696,17 @@ function generateCustomizedHtml(comp: (typeof components)[0]): string {
     const barBg = colorMap[custom.accent || 'blue'] || 'var(--ai-accent)';
 
     if (v === 'indeterminate') {
-      return `<div class="ai-progress ai-progress-indeterminate" style="max-width: 24rem;">
-  <div class="ai-progress-bar" style="background-color: ${barBg};"></div>
+      return `<div class="progress progress-indeterminate" style="max-width: 24rem;">
+  <div class="progress-bar" style="background-color: ${barBg};"></div>
 </div>`;
     }
     if (v === 'striped') {
-      return `<div class="ai-progress ai-progress-striped" style="max-width: 24rem;">
-  <div class="ai-progress-bar" style="width: 75%; background-color: ${barBg};"></div>
+      return `<div class="progress progress-striped" style="max-width: 24rem;">
+  <div class="progress-bar" style="width: 75%; background-color: ${barBg};"></div>
 </div>`;
     }
-    return `<div class="ai-progress" style="max-width: 24rem;">
-  <div class="ai-progress-bar" style="width: 68%; background-color: ${barBg};"></div>
+    return `<div class="progress" style="max-width: 24rem;">
+  <div class="progress-bar" style="width: 68%; background-color: ${barBg};"></div>
 </div>`;
   }
 
@@ -737,7 +737,7 @@ function applyComponentCustomization(id: string) {
   const customizedHtml = generateCustomizedHtml(comp);
 
   // Update Preview DOM
-  const previewContainer = document.querySelector(`#comp-${id} .ai-demo-canvas > div`);
+  const previewContainer = document.querySelector(`#comp-${id} .demo-canvas > div`);
   if (previewContainer) {
     previewContainer.innerHTML = customizedHtml;
   }
@@ -749,14 +749,14 @@ function applyComponentCustomization(id: string) {
 }
 
 function rebindPreviewControls(id: string) {
-  const preview = document.querySelector(`#comp-${id} .ai-demo-canvas`);
+  const preview = document.querySelector(`#comp-${id} .demo-canvas`);
   if (!preview) return;
 
   preview.querySelectorAll<HTMLInputElement>('input[type="range"]').forEach((slider) => {
     slider.addEventListener('input', () => {
-      const wrapper = slider.closest('.ai-slider-wrapper');
+      const wrapper = slider.closest('.slider-wrapper');
       if (wrapper) {
-        const valEl = wrapper.querySelector('.ai-slider-value');
+        const valEl = wrapper.querySelector('.slider-value');
         if (valEl) valEl.textContent = slider.value;
       }
     });
@@ -820,18 +820,18 @@ function renderComponents() {
   }
 
   if (filtered.length === 0) {
-    streamEl.innerHTML = `<div class="ai-empty-state" style="padding: 3rem 1rem; text-align: center; border: 1px dashed var(--ai-border); border-radius: var(--ai-radius-md);">
-      <h3 class="ai-font-display" style="font-size: 1.125rem;">No matches${searchQuery ? ` for “${escapeHtml(searchQuery)}”` : ''}</h3>
-      <p class="ai-text-sm ai-text-secondary" style="margin-top: 0.35rem;">Try another query or reset filters.</p>
-      <button type="button" class="ai-btn ai-btn-outline ai-btn-sm" id="reset-catalog-btn" style="margin-top: 1rem;">Reset</button>
+    streamEl.innerHTML = `<div class="empty-state" style="padding: 3rem 1rem; text-align: center; border: 1px dashed var(--ai-border); border-radius: var(--ai-radius-md);">
+      <h3 class="font-display" style="font-size: 1.125rem;">No matches${searchQuery ? ` for “${escapeHtml(searchQuery)}”` : ''}</h3>
+      <p class="text-sm text-secondary" style="margin-top: 0.35rem;">Try another query or reset filters.</p>
+      <button type="button" class="btn btn-outline btn-sm" id="reset-catalog-btn" style="margin-top: 1rem;">Reset</button>
     </div>`;
     document.getElementById('reset-catalog-btn')?.addEventListener('click', () => {
       activeCategory = 'all';
       activeTier = 'all';
       searchQuery = '';
       if (searchInput) searchInput.value = '';
-      document.querySelectorAll('.filter-category').forEach((b) => b.classList.toggle('is-active', b.getAttribute('data-cat') === 'all'));
-      document.querySelectorAll('.filter-tier').forEach((b) => b.classList.toggle('is-active', b.getAttribute('data-tier') === 'all'));
+      document.querySelectorAll('.js-filter-category').forEach((b) => b.classList.toggle('is-active', b.getAttribute('data-cat') === 'all'));
+      document.querySelectorAll('.js-filter-tier').forEach((b) => b.classList.toggle('is-active', b.getAttribute('data-tier') === 'all'));
       renderComponents();
     });
     return;
@@ -840,60 +840,60 @@ function renderComponents() {
   streamEl.innerHTML = filtered
     .map((comp) => {
       const isPro = comp.tier === 'pro';
-      const tierBadge = isPro ? `<span class="ai-docs-pro-tag">PRO</span>` : ``;
+      const tierBadge = isPro ? `<span class="docs-pro-tag">PRO</span>` : ``;
       const currentHtml = generateCustomizedHtml(comp);
 
       return `
-      <article class="ai-demo-card" id="comp-${comp.id}">
-        <div class="ai-demo-header">
-          <div class="ai-flex ai-items-center ai-gap-3">
+      <article class="demo-card" id="comp-${comp.id}">
+        <div class="demo-header">
+          <div class="flex items-center gap-3">
             <div>
-              <div class="ai-flex ai-items-center ai-gap-2">
-                <h3 class="ai-font-semibold" style="font-size: 0.9375rem; color: var(--ai-text-primary);">${comp.name}</h3>
+              <div class="flex items-center gap-2">
+                <h3 class="font-semibold" style="font-size: 0.9375rem; color: var(--ai-text-primary);">${comp.name}</h3>
                 ${tierBadge}
               </div>
-              <p class="ai-text-xs ai-text-secondary" style="margin-top: 0.15rem;">${comp.description}</p>
+              <p class="text-xs text-secondary" style="margin-top: 0.15rem;">${comp.description}</p>
             </div>
           </div>
-          <div class="ai-flex ai-items-center ai-gap-2">
-            <button class="ai-btn ai-btn-outline ai-btn-xs toggle-customize-btn" data-id="${comp.id}" title="Toggle Component Styling Options">
+          <div class="flex items-center gap-2">
+            <button class="btn btn-outline btn-xs toggle-customize-btn" data-id="${comp.id}" title="Toggle Component Styling Options">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
               <span>Customize</span>
             </button>
-            <button class="ai-btn ai-btn-outline ai-btn-xs ai-template-code-toggle" data-id="${comp.id}">
+            <button class="btn btn-outline btn-xs template-code-toggle" data-id="${comp.id}">
               Code
             </button>
-            <button class="ai-btn ai-btn-outline ai-btn-xs copy-cli-btn" data-id="${comp.id}">
+            <button class="btn btn-outline btn-xs copy-cli-btn" data-id="${comp.id}">
               CLI
             </button>
             ${
               isPro
-                ? `<button class="ai-btn ai-btn-primary ai-btn-xs unlock-pro-btn" data-id="${comp.id}">
+                ? `<button class="btn btn-primary btn-xs unlock-pro-btn" data-id="${comp.id}">
                      Unlock Pro
                    </button>`
-                : `<button class="ai-btn ai-btn-primary ai-btn-xs copy-html-btn" data-id="${comp.id}">
+                : `<button class="btn btn-primary btn-xs copy-html-btn" data-id="${comp.id}">
                      Copy HTML
                    </button>`
             }
           </div>
         </div>
         ${isPro ? '' : renderCustomizerBar(comp)}
-        <div class="ai-demo-canvas ${comp.id === 'dropdown-menu' ? 'preview-has-dropdown' : ''}" style="width: ${currentViewport};">
+        <div class="demo-canvas ${comp.id === 'dropdown-menu' ? 'preview-has-dropdown' : ''}" style="width: ${currentViewport};">
           <div style="width: 100%; max-width: 100%;">
             ${currentHtml}
           </div>
         </div>
-        <div class="ai-demo-code" id="code-${comp.id}">
+        <div class="demo-code" id="code-${comp.id}">
           ${
             isPro
-              ? `<div class="ai-flex ai-justify-between ai-items-center" style="margin-bottom: var(--ai-space-2);">
-            <span class="ai-text-xs ai-font-mono ai-text-muted">Pro source is not public</span>
+              ? `<div class="flex justify-between items-center" style="margin-bottom: var(--ai-space-2);">
+            <span class="text-xs font-mono text-muted">Pro source is not public</span>
           </div>
           <pre><code>Subscribe at https://llmcss.io then:
 npx llmcss login &lt;token&gt;
 npx llmcss add ${comp.id}</code></pre>`
-              : `<div class="ai-flex ai-justify-between ai-items-center" style="margin-bottom: var(--ai-space-2);">
-            <span class="ai-text-xs ai-font-mono ai-text-muted">HTML</span>
+              : `<div class="flex justify-between items-center" style="margin-bottom: var(--ai-space-2);">
+            <span class="text-xs font-mono text-muted">HTML</span>
           </div>
           <pre><code>${escapeHtml(comp.html)}</code></pre>`
           }
@@ -921,7 +921,7 @@ function bindComponentEvents() {
   });
 
   // Customizer Pill Options
-  document.querySelectorAll('.ai-demo-pill').forEach((btn) => {
+  document.querySelectorAll('.demo-pill').forEach((btn) => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-id')!;
       const prop = btn.getAttribute('data-prop') as keyof ComponentCustomization;
@@ -933,9 +933,9 @@ function bindComponentEvents() {
       componentCustomizations[id][prop] = val;
 
       // Update active state among siblings
-      const parentGroup = btn.closest('.ai-demo-pills');
+      const parentGroup = btn.closest('.demo-pills');
       if (parentGroup) {
-        parentGroup.querySelectorAll('.ai-demo-pill').forEach((b) => b.classList.remove('is-active'));
+        parentGroup.querySelectorAll('.demo-pill').forEach((b) => b.classList.remove('is-active'));
         btn.classList.add('is-active');
       }
 
@@ -953,9 +953,9 @@ function bindComponentEvents() {
 
       const bar = document.getElementById(`customize-${id}`);
       if (bar) {
-        bar.querySelectorAll('.ai-demo-toolbar-group').forEach((g) => {
-          const firstPill = g.querySelector('.ai-demo-pill');
-          g.querySelectorAll('.ai-demo-pill').forEach((b) => b.classList.remove('is-active'));
+        bar.querySelectorAll('.demo-toolbar-group').forEach((g) => {
+          const firstPill = g.querySelector('.demo-pill');
+          g.querySelectorAll('.demo-pill').forEach((b) => b.classList.remove('is-active'));
           firstPill?.classList.add('is-active');
         });
       }
@@ -964,7 +964,7 @@ function bindComponentEvents() {
   });
 
   // Toggle code visibility
-  document.querySelectorAll('.ai-template-code-toggle').forEach((btn) => {
+  document.querySelectorAll('.template-code-toggle').forEach((btn) => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-id');
       const panel = document.getElementById(`code-${id}`);
@@ -1015,11 +1015,11 @@ function bindComponentEvents() {
   });
 
   // Range sliders inside previews
-  document.querySelectorAll<HTMLInputElement>('.ai-demo-canvas input[type="range"]').forEach((slider) => {
+  document.querySelectorAll<HTMLInputElement>('.demo-canvas input[type="range"]').forEach((slider) => {
     slider.addEventListener('input', () => {
-      const wrapper = slider.closest('.ai-slider-wrapper');
+      const wrapper = slider.closest('.slider-wrapper');
       if (wrapper) {
-        const valEl = wrapper.querySelector('.ai-slider-value');
+        const valEl = wrapper.querySelector('.slider-value');
         if (valEl) valEl.textContent = slider.value;
       }
     });
@@ -1031,9 +1031,9 @@ function bindComponentEvents() {
 // ============================================================================
 
 // Category filter handlers
-document.querySelectorAll('.filter-category').forEach((btn) => {
+document.querySelectorAll('.js-filter-category').forEach((btn) => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-category').forEach((b) => b.classList.remove('is-active'));
+    document.querySelectorAll('.js-filter-category').forEach((b) => b.classList.remove('is-active'));
     btn.classList.add('is-active');
     activeCategory = btn.getAttribute('data-cat') || 'all';
     renderComponents();
@@ -1042,9 +1042,9 @@ document.querySelectorAll('.filter-category').forEach((btn) => {
 });
 
 // Tier filter handlers
-document.querySelectorAll('.filter-tier').forEach((btn) => {
+document.querySelectorAll('.js-filter-tier').forEach((btn) => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-tier').forEach((b) => b.classList.remove('is-active'));
+    document.querySelectorAll('.js-filter-tier').forEach((b) => b.classList.remove('is-active'));
     btn.classList.add('is-active');
     activeTier = btn.getAttribute('data-tier') || 'all';
     renderComponents();
@@ -1119,19 +1119,19 @@ window.addEventListener('keydown', (e) => {
 });
 
 // Viewport width switcher
-document.querySelectorAll('.viewport-btn').forEach((btn) => {
+document.querySelectorAll('.js-viewport-btn').forEach((btn) => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.viewport-btn').forEach((b) => b.classList.remove('is-active'));
+    document.querySelectorAll('.js-viewport-btn').forEach((b) => b.classList.remove('is-active'));
     btn.classList.add('is-active');
     currentViewport = btn.getAttribute('data-width') || '100%';
-    document.querySelectorAll<HTMLElement>('.ai-demo-canvas').forEach((canvas) => {
+    document.querySelectorAll<HTMLElement>('.demo-canvas').forEach((canvas) => {
       canvas.style.width = currentViewport;
     });
   });
 });
 
 // Core Styler Drawer Event Handlers
-document.querySelectorAll('#styler-theme-grid .ai-styler-theme-btn').forEach((btn) => {
+document.querySelectorAll('#styler-theme-grid .styler-theme-btn').forEach((btn) => {
   btn.addEventListener('click', () => {
     activeSkin = btn.getAttribute('data-skin') || 'modern';
     applyGlobalTokens();
@@ -1139,7 +1139,7 @@ document.querySelectorAll('#styler-theme-grid .ai-styler-theme-btn').forEach((bt
   });
 });
 
-document.querySelectorAll('.ai-styler-radius-btn').forEach((btn) => {
+document.querySelectorAll('.js-styler-radius-btn').forEach((btn) => {
   btn.addEventListener('click', () => {
     activeRadius = btn.getAttribute('data-radius') || 'balanced';
     applyGlobalTokens();
@@ -1147,7 +1147,7 @@ document.querySelectorAll('.ai-styler-radius-btn').forEach((btn) => {
   });
 });
 
-document.querySelectorAll('.ai-styler-density-btn').forEach((btn) => {
+document.querySelectorAll('.js-styler-density-btn').forEach((btn) => {
   btn.addEventListener('click', () => {
     activeDensity = btn.getAttribute('data-density') || 'standard';
     applyGlobalTokens();
@@ -1155,7 +1155,7 @@ document.querySelectorAll('.ai-styler-density-btn').forEach((btn) => {
   });
 });
 
-document.querySelectorAll('.ai-styler-accent-swatch').forEach((btn) => {
+document.querySelectorAll('.styler-accent-swatch').forEach((btn) => {
   btn.addEventListener('click', () => {
     activeAccent = btn.getAttribute('data-accent') || 'default';
     applyGlobalTokens();
@@ -1186,18 +1186,18 @@ document.getElementById('hero-copy-pill')?.addEventListener('click', () => {
 });
 
 // Hero Interactive Slider
-const heroSlider = document.querySelector<HTMLInputElement>('.ai-docs-hero-dock input[type="range"]');
+const heroSlider = document.querySelector<HTMLInputElement>('.docs-hero-dock input[type="range"]');
 if (heroSlider) {
   heroSlider.addEventListener('input', () => {
-    const valEl = document.querySelector('.ai-docs-hero-dock .ai-slider-value');
+    const valEl = document.querySelector('.docs-hero-dock .slider-value');
     if (valEl) valEl.textContent = heroSlider.value;
   });
 }
 
 // Hero Segmented Switcher
-document.querySelectorAll('.ai-docs-hero-dock .ai-segmented-btn').forEach((btn) => {
+document.querySelectorAll('.docs-hero-dock .segmented-btn').forEach((btn) => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.ai-docs-hero-dock .ai-segmented-btn').forEach((b) => b.classList.remove('is-active'));
+    document.querySelectorAll('.docs-hero-dock .segmented-btn').forEach((b) => b.classList.remove('is-active'));
     btn.classList.add('is-active');
   });
 });
@@ -1245,17 +1245,17 @@ async function hydrateProCards() {
       style.textContent = css;
       document.head.appendChild(style);
     }
-    const canvas = card.querySelector('.ai-demo-canvas > div');
+    const canvas = card.querySelector('.demo-canvas > div');
     if (canvas) canvas.innerHTML = html;
     const panel = card.querySelector(`#code-${comp.id}`);
     if (panel) {
-      panel.innerHTML = `<div class="ai-flex ai-justify-between ai-items-center" style="margin-bottom: var(--ai-space-2);">
-            <span class="ai-text-xs ai-font-mono ai-text-muted">HTML</span>
+      panel.innerHTML = `<div class="flex justify-between items-center" style="margin-bottom: var(--ai-space-2);">
+            <span class="text-xs font-mono text-muted">HTML</span>
           </div>
           <pre><code>${escapeHtml(html)}</code></pre>${
             css
-              ? `<div class="ai-flex ai-justify-between ai-items-center" style="margin: var(--ai-space-3) 0 var(--ai-space-2);">
-            <span class="ai-text-xs ai-font-mono ai-text-muted">CSS</span>
+              ? `<div class="flex justify-between items-center" style="margin: var(--ai-space-3) 0 var(--ai-space-2);">
+            <span class="text-xs font-mono text-muted">CSS</span>
           </div>
           <pre><code>${escapeHtml(css)}</code></pre>`
               : ''
@@ -1289,8 +1289,8 @@ document.getElementById('license-activate-btn')?.addEventListener('click', async
   const ok = await activateBrowserLicense(token);
   if (status) {
     status.innerHTML = ok
-      ? '<span class="ai-badge ai-badge-success">Active</span>'
-      : '<span class="ai-badge ai-badge-danger">Not valid</span>';
+      ? '<span class="badge badge-success">Active</span>'
+      : '<span class="badge badge-danger">Not valid</span>';
   }
   if (ok) {
     await hydrateProCards();

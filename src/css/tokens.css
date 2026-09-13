@@ -138,9 +138,9 @@
     --ai-chart-6: #64748b;
   }
 
-  /* Dark Theme (Automatic via System or explicit .ai-dark / [data-ai-theme="dark"]) */
+  /* Dark Theme (Automatic via System or explicit .dark / [data-ai-theme="dark"]) */
   :root[data-ai-theme="dark"],
-  .ai-dark {
+  .dark {
     --ai-bg: #09090b;
     --ai-surface-0: #121215;
     --ai-surface-1: #18181b;

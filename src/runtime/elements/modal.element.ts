@@ -21,7 +21,7 @@ export class AiModalElement extends HTMLElement {
     // Ensure backdrop click closes modal
     this.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
-      if (target && target.classList.contains('ai-modal-backdrop')) {
+      if (target && target.classList.contains('modal-backdrop')) {
         this.close();
       }
     });

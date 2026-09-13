@@ -1,10 +1,21 @@
 /**
  * Markup validation shared by the CLI (`llmcss validate`) and the MCP tool
- * `validate_markup`. Tokenizes every class attribute and checks each token:
- *   - an ai-* token must exist in the generated manifest (public/classes.json)
- *   - an is-* token must exist in public/states.json
- *   - an unprefixed token from the legacy map gets the ai-* suggestion
- * Substring matches are never used, so `ai-flex` cannot trip the `flex` check.
+ * `validate_markup`.
+ *
+ * Class names lost the ai- prefix in 0.4.0, so there is no longer a namespace
+ * that says "this token is ours". Every class token is therefore checked
+ * against the generated manifest (public/classes.json), with these rules:
+ *   - a token in classes.json passes, variants (md:flex) included
+ *   - an is-* token is a state: checked against public/states.json, never an
+ *     error against classes.json
+ *   - a js-* token, a HOOK_CLASSES entry and a custom element tag name are
+ *     exempt: they are runtime hooks with no CSS of their own
+ *   - a token that is a known class with a stray ai- prefix (ai-btn), or a
+ *     legacy-map name that no longer resolves, is an ERROR with the fix
+ *   - anything else is unknown. Real projects mix their own classes into the
+ *     same attribute, so an unknown token is a WARNING by default and only
+ *     becomes an error under strict mode (`--strict` / `{ strict: true }`).
+ * Substring matches are never used, so `flex` cannot trip the `flex` check.
  */
 import fs from 'fs';
 import path from 'path';
@@ -13,54 +24,67 @@ import { fileURLToPath } from 'url';
 const here = path.dirname(fileURLToPath(import.meta.url));
 const publicDir = path.resolve(here, '../../public');
 
+// Names that used to need the ai- prefix. Since 0.4.0 the target is the name
+// itself, so the map is read the other way round: it is the near-miss list
+// used to turn a stale "ai-btn" back into "btn".
 export const LEGACY_MAP = {
-  btn: 'ai-btn',
-  'btn-primary': 'ai-btn-primary',
-  'btn-secondary': 'ai-btn-secondary',
-  'btn-outline': 'ai-btn-outline',
-  'btn-ghost': 'ai-btn-ghost',
-  'btn-danger': 'ai-btn-danger',
-  flex: 'ai-flex',
-  'flex-col': 'ai-flex-col',
-  'flex-row': 'ai-flex-row',
-  'flex-wrap': 'ai-flex-wrap',
-  'items-center': 'ai-items-center',
-  'items-start': 'ai-items-start',
-  'justify-between': 'ai-justify-between',
-  'justify-center': 'ai-justify-center',
-  grid: 'ai-grid',
-  card: 'ai-card',
-  badge: 'ai-badge',
-  spinner: 'ai-spinner',
-  progress: 'ai-progress',
-  'rounded-md': 'ai-rounded-md',
-  'rounded-lg': 'ai-rounded-lg',
-  container: 'ai-container',
-  hidden: 'ai-hidden',
-  'sr-only': 'ai-sr-only',
-  'text-center': 'ai-text-center',
-  'font-bold': 'ai-font-bold',
-  'w-full': 'ai-w-full',
-  input: 'ai-input',
-  table: 'ai-table',
-  modal: 'ai-modal',
-  alert: 'ai-alert',
-  tooltip: 'ai-tooltip',
-  dropdown: 'ai-dropdown',
-  accordion: 'ai-accordion',
-  tabs: 'ai-tabs',
-  navbar: 'ai-navbar',
-  footer: 'ai-footer',
-  'gap-2': 'ai-gap-2',
-  'gap-4': 'ai-gap-4',
-  'p-4': 'ai-p-4',
-  'p-6': 'ai-p-6',
-  'mt-4': 'ai-mt-4',
-  'mb-4': 'ai-mb-4',
+  btn: 'btn',
+  'btn-primary': 'btn-primary',
+  'btn-secondary': 'btn-secondary',
+  'btn-outline': 'btn-outline',
+  'btn-ghost': 'btn-ghost',
+  'btn-danger': 'btn-danger',
+  flex: 'flex',
+  'flex-col': 'flex-col',
+  'flex-row': 'flex-row',
+  'flex-wrap': 'flex-wrap',
+  'items-center': 'items-center',
+  'items-start': 'items-start',
+  'justify-between': 'justify-between',
+  'justify-center': 'justify-center',
+  grid: 'grid',
+  card: 'card',
+  badge: 'badge',
+  spinner: 'spinner',
+  progress: 'progress',
+  'rounded-md': 'rounded-md',
+  'rounded-lg': 'rounded-lg',
+  container: 'container',
+  hidden: 'hidden',
+  'sr-only': 'sr-only',
+  'text-center': 'text-center',
+  'font-bold': 'font-bold',
+  'w-full': 'w-full',
+  input: 'input',
+  table: 'table',
+  modal: 'modal',
+  alert: 'alert',
+  tooltip: 'tooltip',
+  dropdown: 'dropdown',
+  accordion: 'accordion',
+  tabs: 'tabs',
+  navbar: 'navbar',
+  footer: 'footer',
+  'gap-2': 'gap-2',
+  'gap-4': 'gap-4',
+  'p-4': 'p-4',
+  'p-6': 'p-6',
+  'mt-4': 'mt-4',
+  'mb-4': 'mb-4',
 };
 
 // Classes that are JavaScript hooks or runtime targets with no CSS of their own
-const HOOK_CLASSES = new Set(['ai-dropdown-trigger', 'ai-tab', 'ai-tab-panel', 'ai-segmented-input', 'ai-carousel-controls']);
+const HOOK_CLASSES = new Set(['dropdown-trigger', 'tab', 'tab-panel', 'segmented-input', 'carousel-controls']);
+
+// Custom element tag names keep the ai- prefix. They are legal class tokens
+// too (the element and the class share a rule), so never flag them as a stale
+// prefix on a known class.
+export const CUSTOM_ELEMENT_TAGS = new Set([
+  'ai-modal', 'ai-tabs', 'ai-dropdown', 'ai-accordion', 'ai-drawer', 'ai-toast', 'ai-command-palette',
+]);
+
+// A project's own hook classes: never styled by the library, never flagged.
+const HOOK_PREFIX = /^js-/;
 
 let cache = null;
 function knownSets() {
@@ -71,7 +95,7 @@ function knownSets() {
     const c = JSON.parse(fs.readFileSync(path.join(publicDir, 'classes.json'), 'utf8'));
     for (const entry of c.classes) {
       classes.add(entry.class);
-      for (const v of entry.variants) classes.add(`ai-${v}:${entry.class.slice(3)}`);
+      for (const v of entry.variants) classes.add(`${v}:${entry.class}`);
     }
   } catch { /* manifest missing: skip unknown-class checks */ }
   try {
@@ -95,10 +119,26 @@ export function classTokens(html) {
   return out;
 }
 
+// The class this stale ai-* token was renamed to in 0.4.0, or null.
+function strippedTarget(token, classes) {
+  if (!token.startsWith('ai-')) return null;
+  const bare = token.slice(3);
+  if (!bare) return null;
+  if (classes.has(bare)) return bare;
+  if (Object.prototype.hasOwnProperty.call(LEGACY_MAP, bare)) return LEGACY_MAP[bare];
+  // ai-md:flex -> md:flex, even when only the base class is in the manifest.
+  const vm = bare.match(/^(sm|md|lg|xl|cq):(.+)$/);
+  if (vm && classes.has(vm[2])) return bare;
+  return null;
+}
+
 /**
- * @returns {{ issues: Array<{type:string, class:string, suggestion?:string, message:string}>, tokens: number }}
+ * @param {string} html
+ * @param {{ strict?: boolean }} [options] strict upgrades unknown classes from warning to error.
+ * @returns {{ issues: Array<{type:string, severity:'error'|'warning', class:string, suggestion?:string, message:string}>, tokens: number, errors: number, warnings: number }}
  */
-export function validateMarkup(html) {
+export function validateMarkup(html, options = {}) {
+  const strict = options === true || options.strict === true;
   const { classes, states } = knownSets();
   const tokens = classTokens(html);
   const seen = new Set();
@@ -106,36 +146,73 @@ export function validateMarkup(html) {
   for (const t of tokens) {
     if (seen.has(t)) continue;
     seen.add(t);
-    if (t.startsWith('ai-')) {
-      if (classes.size && !classes.has(t) && !HOOK_CLASSES.has(t)) {
-        const near = nearest(t, classes);
+
+    // Exempt: runtime hooks and custom element tag names.
+    if (HOOK_CLASSES.has(t) || CUSTOM_ELEMENT_TAGS.has(t) || HOOK_PREFIX.test(t)) continue;
+
+    // State classes are checked against states.json, never against classes.json.
+    if (t.startsWith('is-')) {
+      if (states.size && !states.has(t)) {
         issues.push({
-          type: 'unknown-class',
+          type: 'unknown-state',
+          severity: strict ? 'error' : 'warning',
           class: t,
-          suggestion: near || undefined,
-          message: near ? `"${t}" does not exist in llmcss.css. Did you mean "${near}"?` : `"${t}" does not exist in llmcss.css. Check https://llmcss.io/classes.json.`,
+          message: `"${t}" is not a state the library styles. Known states are in https://llmcss.io/states.json.`,
         });
       }
       continue;
     }
-    if (t.startsWith('is-')) {
-      if (states.size && !states.has(t)) {
-        issues.push({ type: 'unknown-state', class: t, message: `"${t}" is not a state the library styles. Known states are in https://llmcss.io/states.json.` });
-      }
+
+    // No manifest on disk: skip the unknown-class checks entirely.
+    if (!classes.size) continue;
+    if (classes.has(t)) continue;
+
+    // Near miss 1: a known class still carrying the removed ai- prefix.
+    const stripped = strippedTarget(t, classes);
+    if (stripped) {
+      issues.push({
+        type: 'legacy-prefix',
+        severity: 'error',
+        class: t,
+        suggestion: stripped,
+        message: `"${t}" no longer exists: the ai- class prefix was removed in 0.4.0. Use "${stripped}".`,
+      });
       continue;
     }
-    if (Object.prototype.hasOwnProperty.call(LEGACY_MAP, t)) {
-      issues.push({ type: 'legacy-class', class: t, suggestion: LEGACY_MAP[t], message: `Replace unprefixed "${t}" with "${LEGACY_MAP[t]}".` });
+
+    // Near miss 2: a legacy name that maps somewhere else.
+    if (Object.prototype.hasOwnProperty.call(LEGACY_MAP, t) && LEGACY_MAP[t] !== t) {
+      issues.push({
+        type: 'legacy-class',
+        severity: 'error',
+        class: t,
+        suggestion: LEGACY_MAP[t],
+        message: `Replace legacy "${t}" with "${LEGACY_MAP[t]}".`,
+      });
+      continue;
     }
+
+    // Everything else: not ours as far as the manifest knows.
+    const near = nearest(t, classes);
+    issues.push({
+      type: 'unknown-class',
+      severity: strict ? 'error' : 'warning',
+      class: t,
+      suggestion: near || undefined,
+      message: near
+        ? `"${t}" is not a class in llmcss.css. Did you mean "${near}"? If it is your own class, ignore this.`
+        : `"${t}" is not a class in llmcss.css. If it is your own class, ignore this; otherwise check https://llmcss.io/classes.json.`,
+    });
   }
-  return { issues, tokens: tokens.length };
+  const errors = issues.filter((i) => i.severity === 'error').length;
+  return { issues, tokens: tokens.length, errors, warnings: issues.length - errors };
 }
 
 // Closest known class by a cheap edit-distance on the part after the last hyphen group
 function nearest(token, classes) {
   let best = null;
   let bestScore = 4;
-  const base = token.replace(/^ai-(?:sm|md|lg|xl|cq):/, 'ai-');
+  const base = token.replace(/^(?:sm|md|lg|xl|cq):/, '');
   for (const c of classes) {
     if (c.includes(':')) continue;
     const d = distance(base, c);
@@ -185,12 +262,12 @@ export function structuralAudit(html) {
     }
     if (VOID.has(lower) || selfClose) continue;
     const cls = (attrs.match(/\bclass\s*=\s*["']([^"']*)["']/) || [, ''])[1].split(/\s+/);
-    const isCard = cls.some((c) => c === 'ai-card' || c === 'ai-panel' || c === 'ai-kpi-card');
+    const isCard = cls.some((c) => c === 'card' || c === 'panel' || c === 'kpi-card');
     if (isCard && stack.some((s) => s.card)) nested++;
     stack.push({ name: lower, card: isCard });
   }
   if (nested) {
-    issues.push({ category: 'Cardocalypse', law: 1, count: nested, message: `${nested} card${nested > 1 ? 's are' : ' is'} nested inside another card. Use whitespace, ai-divider, or a surface shift instead.` });
+    issues.push({ category: 'Cardocalypse', law: 1, count: nested, message: `${nested} card${nested > 1 ? 's are' : ' is'} nested inside another card. Use whitespace, divider, or a surface shift instead.` });
   }
   // Pulsing static indicators: animation by class or inline style on a non-streaming element
   const PULSE = new Set(['animate-pulse', 'pulse', 'animate-ping', 'ping', 'breathe', 'blink', 'animate-bounce']);
@@ -201,4 +278,19 @@ export function structuralAudit(html) {
     issues.push({ category: 'Pulsing Status Dots', law: 2, message: 'A pulsing or breathing animation is applied without a live-data context. Reserve motion for .is-streaming only.' });
   }
   return issues;
+}
+
+/**
+ * The 0.4.0 replacement for a single stale class token, or null when the token
+ * is already correct (or is not ours to touch). Used by `llmcss lint --fix`.
+ */
+export function legacyFix(token) {
+  if (!token || HOOK_CLASSES.has(token) || CUSTOM_ELEMENT_TAGS.has(token) || HOOK_PREFIX.test(token)) return null;
+  if (token.startsWith('is-')) return null;
+  const { classes } = knownSets();
+  if (classes.has(token)) return null;
+  const stripped = strippedTarget(token, classes);
+  if (stripped) return stripped;
+  if (Object.prototype.hasOwnProperty.call(LEGACY_MAP, token) && LEGACY_MAP[token] !== token) return LEGACY_MAP[token];
+  return null;
 }

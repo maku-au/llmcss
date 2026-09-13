@@ -8,7 +8,7 @@ Entry point. Load this as a system prompt to generate LLMCSS markup. Exhaustive 
 ```
 
 <!-- stats:start -->
-- **Classes:** 1407 `ai-*` classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Classes:** 1407 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
 - **Tokens:** 82 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
 - **States:** 36 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
 - **Components:** 125 (122 free, 3 themed Pro): 54 primitive, 44 application, 22 marketing, 5 ecommerce.
@@ -18,32 +18,32 @@ Entry point. Load this as a system prompt to generate LLMCSS markup. Exhaustive 
 
 | Fact | Value |
 |---|---|
-| Class prefix | `ai-` on every class. Write `ai-btn`, never `btn`. |
+| Class prefix | None. Removed in 0.4.0. Every class name is listed in [classes.json](https://llmcss.io/classes.json); write `btn`, never `ai-btn`. |
 | Class universe | Every class is listed in [classes.json](https://llmcss.io/classes.json). Not in that list means it does not exist. |
 | Tokens | The `--ai-*` custom properties are listed in [tokens.json](https://llmcss.io/tokens.json). |
 | State classes | `is-*`, listed in [states.json](https://llmcss.io/states.json). `is-active`, `is-open`, `is-loading`, `is-selected`, `is-disabled`, `is-error`, `is-streaming` and more. |
-| Responsive | Variant prefixes `ai-sm:` 640px, `ai-md:` 768px, `ai-lg:` 1024px, `ai-xl:` 1280px, `ai-cq:` container query. Written `ai-md:grid-cols-2`. Only the variants classes.json lists for that class exist. |
+| Responsive | Variant prefixes `sm:` 640px, `md:` 768px, `lg:` 1024px, `xl:` 1280px, `cq:` container query. Written `md:grid-cols-2`. Only the variants classes.json lists for that class exist. |
 | Theme | `data-ai-theme="light"` or `"dark"` on `<html>` or any container. Dark never activates from the OS setting. |
 | Skin | `data-ai-skin="obsidian\|editorial\|executive\|fintech\|enterprise"` on `<html>` or any container. Changes surfaces, radius and type. |
 | Accent | `data-ai-accent="emerald\|violet\|rose\|teal\|steel\|amber"`. Composes with any skin and outranks it. Absent means the blue default. |
 | Density | `data-ai-density="compact"` or `"spacious"`. Absent means standard. |
 | Focus ring | `data-ai-focus="neutral\|thin\|none"` on `<html>`. Absent means the accent ring. |
 | Runtime needed for | `data-ai-toggle`, `data-ai-dismiss`, `data-ai-tab`, `data-ai-step`, `data-ai-password-toggle`, combobox, scrollspy, split pane, and the `<ai-*>` custom elements. Everything else is CSS-only. |
-| The one validation rule | Every token in a `class` attribute must be an `ai-*` class in classes.json or an `is-*` class in states.json. Nothing else passes. |
+| The one validation rule | Every token in a `class` attribute is checked against classes.json. `is-*` states, `js-*` hook classes, and custom element tags (`<ai-modal>` and friends) are exempt. An unknown class is a warning unless you pass `--strict`; a stray `ai-` prefix is always flagged, with a fix. |
 
 ## Runtime attributes
 
 | Attribute | Goes on | Values | Contract |
 |---|---|---|---|
-| `data-ai-toggle` | `button` | `modal`, `drawer`, `dropdown`, `accordion` | `modal` and `drawer` also need `data-ai-target`. `dropdown` needs a `.ai-dropdown` ancestor. `accordion` needs an `.ai-accordion-item` ancestor. |
-| `data-ai-target` | the toggle button | `#id` | Id of the `.ai-modal` or `.ai-drawer` to open. |
+| `data-ai-toggle` | `button` | `modal`, `drawer`, `dropdown`, `accordion` | `modal` and `drawer` also need `data-ai-target`. `dropdown` needs a `.dropdown` ancestor. `accordion` needs an `.accordion-item` ancestor. |
+| `data-ai-target` | the toggle button | `#id` | Id of the `.modal` or `.drawer` to open. |
 | `data-ai-dismiss` | a button or the backdrop inside the overlay | `modal`, `drawer`, `toast` | Closes the nearest overlay of that kind. |
-| `data-ai-tab` | `button.ai-tab` inside `.ai-tabs` | `#panel-id` | Activates that `.ai-tab-panel`. |
-| `data-ai-toast-position` | `.ai-toast-container` | `top-right`, `top-center`, `top-left`, `bottom-left`, `bottom-center` | Absent means bottom-right. |
-| `data-ai-step` | `button.ai-stepper-btn` | `-1`, `1` | Also needs `aria-controls="#numberInputId"`. |
-| `data-ai-password-toggle` | `button.ai-password-toggle` | `#inputId` | Inside `.ai-password`. |
-| `data-ai-scrollspy-root` | `nav.ai-scrollspy` | `#selector` | Optional scroll container. |
-| `open` | `.ai-modal`, `.ai-drawer`, `.ai-accordion-item`, `.ai-dropdown` | present or absent | Interchangeable with `.is-open`. The runtime sets both. |
+| `data-ai-tab` | `button.tab` inside `.tabs` | `#panel-id` | Activates that `.tab-panel`. |
+| `data-ai-toast-position` | `.toast-container` | `top-right`, `top-center`, `top-left`, `bottom-left`, `bottom-center` | Absent means bottom-right. |
+| `data-ai-step` | `button.stepper-btn` | `-1`, `1` | Also needs `aria-controls="#numberInputId"`. |
+| `data-ai-password-toggle` | `button.password-toggle` | `#inputId` | Inside `.password`. |
+| `data-ai-scrollspy-root` | `nav.scrollspy` | `#selector` | Optional scroll container. |
+| `open` | `.modal`, `.drawer`, `.accordion-item`, `.dropdown` | present or absent | Interchangeable with `.is-open`. The runtime sets both. |
 
 The runtime also syncs `aria-expanded` on every trigger and `aria-selected` on tabs. Do not hand-maintain those after load; do set them in the static markup you emit.
 
@@ -51,13 +51,13 @@ The runtime also syncs `aria-expanded` on every trigger and `aria-selected` on t
 
 | Write this class | On | Mirror attribute you also write |
 |---|---|---|
-| `is-open` | `.ai-modal`, `.ai-drawer`, `.ai-dropdown`, `.ai-accordion-item`, `.ai-popover`, `.ai-combobox`, `.ai-command-palette` | `open` on the container, `aria-expanded="true"` on the trigger |
-| `is-active` | `.ai-tab`, `.ai-tab-panel`, `.ai-nav-link`, `.ai-sidebar-item`, `.ai-pagination-link`, `.ai-step-item`, `.ai-scrollspy-link` | `aria-selected="true"` on a tab, `aria-current="page"` on a nav or sidebar link |
-| `is-current` | `.ai-breadcrumb-item`, `.ai-order-step` | `aria-current="page"` |
-| `is-disabled` | `.ai-list-group-item`, `.ai-pagination-link` | `aria-disabled="true"` |
-| `is-error` | `.ai-input`, `.ai-select`, `.ai-textarea`, `.ai-empty-state` | `aria-invalid="true"` |
-| `is-loading` | `.ai-btn`, `.ai-kpi-card`, `.ai-kpi-value` | `aria-busy="true"` |
-| `is-streaming` | `.ai-status-pip`, `.ai-pulse-dot` | none. This is the only class allowed to animate a status indicator. |
+| `is-open` | `.modal`, `.drawer`, `.dropdown`, `.accordion-item`, `.popover`, `.combobox`, `.command-palette` | `open` on the container, `aria-expanded="true"` on the trigger |
+| `is-active` | `.tab`, `.tab-panel`, `.nav-link`, `.sidebar-item`, `.pagination-link`, `.step-item`, `.scrollspy-link` | `aria-selected="true"` on a tab, `aria-current="page"` on a nav or sidebar link |
+| `is-current` | `.breadcrumb-item`, `.order-step` | `aria-current="page"` |
+| `is-disabled` | `.list-group-item`, `.pagination-link` | `aria-disabled="true"` |
+| `is-error` | `.input`, `.select`, `.textarea`, `.empty-state` | `aria-invalid="true"` |
+| `is-loading` | `.btn`, `.kpi-card`, `.kpi-value` | `aria-busy="true"` |
+| `is-streaming` | `.status-pip`, `.pulse-dot` | none. This is the only class allowed to animate a status indicator. |
 
 `aria-current` selectors match the attribute's presence, so remove the attribute rather than writing `aria-current="false"`.
 
@@ -68,17 +68,17 @@ Each block below is the shipped markup from `src/registry/data.mjs`. Classes are
 Card:
 
 ```html
-<div class="ai-card ai-max-w-sm">
-  <div class="ai-card-header">
-    <h3 class="ai-card-title">Project Deployment</h3>
-    <p class="ai-card-description">Production deployment configured for edge nodes.</p>
+<div class="card max-w-sm">
+  <div class="card-header">
+    <h3 class="card-title">Project Deployment</h3>
+    <p class="card-description">Production deployment configured for edge nodes.</p>
   </div>
-  <div class="ai-card-body">
-    <p class="ai-text-sm">Last deployed 14 minutes ago.</p>
+  <div class="card-body">
+    <p class="text-sm">Last deployed 14 minutes ago.</p>
   </div>
-  <div class="ai-card-footer">
-    <span class="ai-badge ai-badge-success ai-badge-dot">Online</span>
-    <button class="ai-btn ai-btn-outline ai-btn-xs">View Logs</button>
+  <div class="card-footer">
+    <span class="badge badge-success badge-dot">Online</span>
+    <button class="btn btn-outline btn-xs">View Logs</button>
   </div>
 </div>
 ```
@@ -86,39 +86,39 @@ Card:
 Modal:
 
 ```html
-<button class="ai-btn ai-btn-primary" data-ai-toggle="modal" data-ai-target="#demo-modal" aria-haspopup="dialog" aria-expanded="false">Open</button>
+<button class="btn btn-primary" data-ai-toggle="modal" data-ai-target="#demo-modal" aria-haspopup="dialog" aria-expanded="false">Open</button>
 
-<div id="demo-modal" class="ai-modal">
-  <div class="ai-modal-backdrop" data-ai-dismiss="modal"></div>
-  <div class="ai-modal-box" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
-    <div class="ai-modal-header">
-      <h3 class="ai-modal-title" id="demo-modal-title">Confirm Database Reset</h3>
-      <button class="ai-modal-close" data-ai-dismiss="modal" aria-label="Close">&times;</button>
+<div id="demo-modal" class="modal">
+  <div class="modal-backdrop" data-ai-dismiss="modal"></div>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
+    <div class="modal-header">
+      <h3 class="modal-title" id="demo-modal-title">Confirm Database Reset</h3>
+      <button class="modal-close" data-ai-dismiss="modal" aria-label="Close">&times;</button>
     </div>
-    <div class="ai-modal-body"><p>All mock records revert to initial seed.</p></div>
-    <div class="ai-modal-footer">
-      <button class="ai-btn ai-btn-outline" data-ai-dismiss="modal">Cancel</button>
-      <button class="ai-btn ai-btn-danger" data-ai-dismiss="modal">Reset</button>
+    <div class="modal-body"><p>All mock records revert to initial seed.</p></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" data-ai-dismiss="modal">Cancel</button>
+      <button class="btn btn-danger" data-ai-dismiss="modal">Reset</button>
     </div>
   </div>
 </div>
 ```
 
-Drawer: identical shape with `.ai-drawer` plus a side class (`ai-drawer-left`, `ai-drawer-top`, `ai-drawer-bottom`), `.ai-drawer-backdrop`, `.ai-drawer-panel`, `.ai-drawer-header`, `.ai-drawer-body`, `.ai-drawer-footer`, and `data-ai-toggle="drawer"`.
+Drawer: identical shape with `.drawer` plus a side class (`drawer-left`, `drawer-top`, `drawer-bottom`), `.drawer-backdrop`, `.drawer-panel`, `.drawer-header`, `.drawer-body`, `.drawer-footer`, and `data-ai-toggle="drawer"`.
 
 Tabs:
 
 ```html
-<div class="ai-tabs">
-  <div class="ai-tabs-list" role="tablist" aria-label="Workspace">
-    <button class="ai-tab is-active" role="tab" id="tab-a-tab" aria-controls="tab-a" aria-selected="true" data-ai-tab="#tab-a">Overview</button>
-    <button class="ai-tab" role="tab" id="tab-b-tab" aria-controls="tab-b" aria-selected="false" tabindex="-1" data-ai-tab="#tab-b">Analytics</button>
+<div class="tabs">
+  <div class="tabs-list" role="tablist" aria-label="Workspace">
+    <button class="tab is-active" role="tab" id="tab-a-tab" aria-controls="tab-a" aria-selected="true" data-ai-tab="#tab-a">Overview</button>
+    <button class="tab" role="tab" id="tab-b-tab" aria-controls="tab-b" aria-selected="false" tabindex="-1" data-ai-tab="#tab-b">Analytics</button>
   </div>
-  <div id="tab-a" class="ai-tab-panel is-active" role="tabpanel" aria-labelledby="tab-a-tab">
-    <p class="ai-text-secondary">Overview content.</p>
+  <div id="tab-a" class="tab-panel is-active" role="tabpanel" aria-labelledby="tab-a-tab">
+    <p class="text-secondary">Overview content.</p>
   </div>
-  <div id="tab-b" class="ai-tab-panel" role="tabpanel" aria-labelledby="tab-b-tab">
-    <p class="ai-text-secondary">Analytics content.</p>
+  <div id="tab-b" class="tab-panel" role="tabpanel" aria-labelledby="tab-b-tab">
+    <p class="text-secondary">Analytics content.</p>
   </div>
 </div>
 ```
@@ -126,13 +126,13 @@ Tabs:
 Dropdown:
 
 ```html
-<div class="ai-dropdown">
-  <button class="ai-btn ai-btn-outline ai-dropdown-trigger" data-ai-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="menu-1">Options</button>
-  <ul class="ai-dropdown-menu" id="menu-1">
-    <li class="ai-dropdown-header">Workspace</li>
-    <li><button class="ai-dropdown-item">View Team</button></li>
-    <li class="ai-dropdown-divider"></li>
-    <li><button class="ai-dropdown-item is-danger">Sign Out</button></li>
+<div class="dropdown">
+  <button class="btn btn-outline dropdown-trigger" data-ai-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="menu-1">Options</button>
+  <ul class="dropdown-menu" id="menu-1">
+    <li class="dropdown-header">Workspace</li>
+    <li><button class="dropdown-item">View Team</button></li>
+    <li class="dropdown-divider"></li>
+    <li><button class="dropdown-item is-danger">Sign Out</button></li>
   </ul>
 </div>
 ```
@@ -140,75 +140,75 @@ Dropdown:
 Accordion:
 
 ```html
-<div class="ai-accordion">
-  <div class="ai-accordion-item is-open" open>
-    <button type="button" class="ai-accordion-trigger" data-ai-toggle="accordion" aria-expanded="true" aria-controls="faq-1">
+<div class="accordion">
+  <div class="accordion-item is-open" open>
+    <button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="true" aria-controls="faq-1">
       <span>First question</span>
-      <svg class="ai-accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
     </button>
-    <div class="ai-accordion-content" id="faq-1">Answer body.</div>
+    <div class="accordion-content" id="faq-1">Answer body.</div>
   </div>
 </div>
 ```
 
-Flush by default. Add `ai-accordion-boxed` on the root for the bordered card variant.
+Flush by default. Add `accordion-boxed` on the root for the bordered card variant.
 
 Form field:
 
 ```html
-<div class="ai-form-group">
-  <label class="ai-form-label" for="user-email">Email Address</label>
-  <input type="email" id="user-email" class="ai-input" placeholder="name@company.com" />
-  <span class="ai-form-hint">We will send your workspace invite here.</span>
+<div class="form-group">
+  <label class="form-label" for="user-email">Email Address</label>
+  <input type="email" id="user-email" class="input" placeholder="name@company.com" />
+  <span class="form-hint">We will send your workspace invite here.</span>
 </div>
 ```
 
-Use `.ai-form-error` in place of `.ai-form-hint` and add `is-error` to the input for the invalid state. `.ai-textarea` and `.ai-select` take the same wrapper.
+Use `.form-error` in place of `.form-hint` and add `is-error` to the input for the invalid state. `.textarea` and `.select` take the same wrapper.
 
 Alert:
 
 ```html
-<div class="ai-alert ai-alert-info" role="status">
-  <svg class="ai-alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-  <div><strong class="ai-font-semibold">Maintenance scheduled:</strong> Edge servers restart at 02:00 UTC.</div>
+<div class="alert alert-info" role="status">
+  <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+  <div><strong class="font-semibold">Maintenance scheduled:</strong> Edge servers restart at 02:00 UTC.</div>
 </div>
 ```
 
-Variants: `ai-alert-info`, `ai-alert-success`, `ai-alert-warning`, `ai-alert-danger`.
+Variants: `alert-info`, `alert-success`, `alert-warning`, `alert-danger`.
 
 Table:
 
 ```html
-<div class="ai-table-container">
-  <table class="ai-table ai-table-hover ai-table-sticky">
+<div class="table-container">
+  <table class="table table-hover table-sticky">
     <thead><tr><th aria-sort="ascending">Repository</th><th>Status</th></tr></thead>
     <tbody>
       <tr>
-        <td class="ai-font-semibold">llmcss-core</td>
-        <td><span class="ai-badge ai-badge-success ai-badge-dot">Active</span></td>
+        <td class="font-semibold">llmcss-core</td>
+        <td><span class="badge badge-success badge-dot">Active</span></td>
       </tr>
     </tbody>
   </table>
 </div>
 ```
 
-Buttons: `ai-btn` plus one of `ai-btn-primary`, `ai-btn-secondary`, `ai-btn-outline`, `ai-btn-ghost`, `ai-btn-accent`, `ai-btn-danger`, plus an optional size `ai-btn-xs`, `ai-btn-sm`, `ai-btn-lg`, `ai-btn-xl`, or `ai-btn-icon`.
+Buttons: `btn` plus one of `btn-primary`, `btn-secondary`, `btn-outline`, `btn-ghost`, `btn-accent`, `btn-danger`, plus an optional size `btn-xs`, `btn-sm`, `btn-lg`, `btn-xl`, or `btn-icon`.
 
-Layout: `ai-container` or `ai-container-sm|md|lg|xl` for page width, `ai-grid` with `ai-grid-cols-2|3|4` or `ai-grid-auto-fit` plus `ai-grid-min-xs|sm|md|lg`, `ai-flex` with `ai-flex-col`, `ai-items-center`, `ai-justify-between`, and `ai-gap-1` through `ai-gap-12`.
+Layout: `container` or `container-sm|md|lg|xl` for page width, `grid` with `grid-cols-2|3|4` or `grid-auto-fit` plus `grid-min-xs|sm|md|lg`, `flex` with `flex-col`, `items-center`, `justify-between`, and `gap-1` through `gap-12`.
 
 ## Never do this
 
 Flat prohibitions. Each one fails `validate` or `audit`, or breaks theming.
 
-- Never write an unprefixed class. No `btn`, `flex`, `grid`, `card`, `badge`, `container`, `hidden`, `input`, `table`, `modal`, `p-4`, `gap-4`, `rounded-lg`.
-- Never invent an `ai-*` class. If it is not in classes.json it does not exist, and the validator fails the file.
+- Never prefix a class with `ai-`. Classes carry no prefix; write `btn`, `flex`, `grid`, `card`, not `ai-btn`, `ai-flex`, `ai-grid`, `ai-card`. The validator flags a stray `ai-` prefix and fixes it.
+- Never invent a class. If it is not in classes.json it does not exist. Unknown classes are a warning by default and a failure under `--strict`.
 - Never invent an `is-*` class. Only the ones in states.json are styled.
 - Never write a `style` attribute. Use a class, or a `--ai-*` variable on a class-bearing element if you truly need a one-off.
 - Never write a `<style>` block, a page-level stylesheet, or a bespoke class of your own.
 - Never import a Tailwind, Bootstrap, or shadcn class alongside LLMCSS.
-- Never nest an `.ai-card`, `.ai-panel`, or `.ai-kpi-card` inside another one. The audit counts these.
+- Never nest an `.card`, `.panel`, or `.kpi-card` inside another one. The audit counts these.
 - Never put an uppercase badge or pill eyebrow above a heading.
-- Never animate a status dot. `.ai-pulse-dot` and `.ai-status-pip` only animate with `is-streaming`.
+- Never animate a status dot. `.pulse-dot` and `.status-pip` only animate with `is-streaming`.
 - Never apply a colored 3px to 5px left-stripe border to a card, toast, or dialog.
 - Never emit a square grid, dot grid, or graph paper background.
 - Never rely on `prefers-color-scheme` for dark mode. Set `data-ai-theme` yourself.
@@ -218,29 +218,29 @@ Flat prohibitions. Each one fails `validate` or `audit`, or breaks theming.
 ## Self-check before you return markup
 
 ```bash
-npx llmcss validate <file>     # unknown ai-* class, unknown is-* state, unprefixed legacy class. Exits 1 on any issue.
-npx llmcss lint --fix <file>   # rewrites the legacy unprefixed classes it knows
+npx llmcss validate <file>     # unknown class (warning, or fail with --strict), unknown is-* state, stray ai- prefix. Exits 1 on a state issue, a stray prefix, or any warning under --strict.
+npx llmcss lint --fix <file>   # strips a stray ai- prefix in place
 npx llmcss audit <file>        # the anti-slop laws below
 ```
 
 MCP equivalents: `validate_markup` and `llmcss_slop_audit`. Class, token and state lists: `list_classes`, `list_tokens`, `list_states`.
 
-`audit` flags eight patterns: nested cards, pulsing static dots, colored left-stripe borders, electric purple or cyan gradients, auto-scrolling marquees, unprefixed or hallucinated classes, badge eyebrows directly above a heading, and square grid backgrounds. Both commands exit 1 on any finding, so both fail a build.
+`audit` flags eight patterns: nested cards, pulsing static dots, colored left-stripe borders, electric purple or cyan gradients, auto-scrolling marquees, stray `ai-` prefixes or hallucinated classes, badge eyebrows directly above a heading, and square grid backgrounds. Both commands exit 1 on any finding, so both fail a build.
 
 ## Anti-slop laws
 
 Generated from `src/registry/laws.mjs`. Do not edit this list by hand.
 
 <!-- laws:start -->
-1. **Never nest containers.** Do not put a bordered container inside another bordered container. The audit walks the tag stack and flags every `.ai-card`, `.ai-panel` or `.ai-kpi-card` that sits inside another `.ai-card`, `.ai-panel` or `.ai-kpi-card`. Nested boxes waste screen real estate and create dizzying visual layers. Instead: Use generous whitespace (`--ai-space-6`), subtle hairline rules (`<hr class="ai-divider">`), or distinct background shifts (`var(--ai-surface-1)`).
-2. **Never pulse static status pips.** Never attach continuous breathing or pulsing animations to steady states like "System Normal", "Online", or "Completed". The audit flags the class tokens `animate-pulse`, `pulse`, `animate-ping`, `ping`, `breathe`, `blink` and `animate-bounce`, and any inline `animation:` value containing `pulse`, `ping`, `breathe`, `blink` or `glow`, unless the document also carries `is-streaming`. Flashing elements demand attention when nothing has changed. Instead: Render a calm, static jewel pip with `.ai-status-pip` and `box-shadow: 0 0 0 2px color-mix(...)`. Reserve `.ai-status-pip.is-streaming` strictly for ongoing inference or active data transmission.
+1. **Never nest containers.** Do not put a bordered container inside another bordered container. The audit walks the tag stack and flags every `.card`, `.panel` or `.kpi-card` that sits inside another `.card`, `.panel` or `.kpi-card`. Nested boxes waste screen real estate and create dizzying visual layers. Instead: Use generous whitespace (`--ai-space-6`), subtle hairline rules (`<hr class="divider">`), or distinct background shifts (`var(--ai-surface-1)`).
+2. **Never pulse static status pips.** Never attach continuous breathing or pulsing animations to steady states like "System Normal", "Online", or "Completed". The audit flags the class tokens `animate-pulse`, `pulse`, `animate-ping`, `ping`, `breathe`, `blink` and `animate-bounce`, and any inline `animation:` value containing `pulse`, `ping`, `breathe`, `blink` or `glow`, unless the document also carries `is-streaming`. Flashing elements demand attention when nothing has changed. Instead: Render a calm, static jewel pip with `.status-pip` and `box-shadow: 0 0 0 2px color-mix(...)`. Reserve `.status-pip.is-streaming` strictly for ongoing inference or active data transmission.
 3. **Never use colored left-stripe borders.** Do not place thick 3px to 5px colored vertical stripes on the left edge of cards, toasts, or dialogs. This 2012-era alert tell makes every element scream for attention. Instead: Use a 1px uniform architectural border (`border: 1px solid var(--ai-border)`), accompanied by a subtle 6px status jewel pip or an inline icon.
 4. **Never use electric purple or cyan halos and radial glows.** Avoid murky dark backgrounds flooded with saturated purple-to-blue gradients or zero-offset neon drop shadows. Instead: Build depth using multi-stop physical elevation with a slight vertical offset: `box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 8px 16px -4px rgba(0, 0, 0, 0.04);`.
-5. **Never stamp formulaic eyebrows above headlines.** Do not stamp a badge or a pill above a heading as an eyebrow, and do not repeat an uppercase monospace overline (`01 // FEATURES`, `OVERVIEW`) over every section. The audit flags a `span` or `div` carrying `.ai-badge` or `.ai-hero-badge` that is followed by an `h1` to `h4` within the next few lines, with `.ai-product-badge-float` the only exemption. Repeated eyebrows become visual noise that delays reading the headline. Instead: Lead directly with a confident, well-typeset headline (`h1` or `h2`). If context is needed, fold it into the heading or the supporting sentence.
+5. **Never stamp formulaic eyebrows above headlines.** Do not stamp a badge or a pill above a heading as an eyebrow, and do not repeat an uppercase monospace overline (`01 // FEATURES`, `OVERVIEW`) over every section. The audit flags a `span` or `div` carrying `.badge` or `.hero-badge` that is followed by an `h1` to `h4` within the next few lines, with `.product-badge-float` the only exemption. Repeated eyebrows become visual noise that delays reading the headline. Instead: Lead directly with a confident, well-typeset headline (`h1` or `h2`). If context is needed, fold it into the heading or the supporting sentence.
 6. **Never crush letter-spacing below -0.04em or justify body text.** Do not apply extreme negative letter-spacing that makes characters collide, and never use `text-align: justify`, which causes distracting typographic rivers. Instead: Keep body text at tracking `0` with `line-height: 1.6`. Restrict negative tracking to large display headings (`-0.02em` to `-0.035em`).
 7. **Never place low-contrast gray text on colored backgrounds.** Never render neutral `#71717a` gray text over an accent surface or a tinted banner. Instead: Ensure WCAG AA compliance (minimum 4.5:1 for body copy, 3:1 for large display). When the background is tinted, tint the secondary text from the same hue.
 8. **Never create flat, identical metric grids.** Do not display 4 identical KPI cards with identical weights and icons. Instead: Establish clear hierarchy. Make the primary metric anchor dominant in size (`font-size: 2.5rem; font-weight: 700;`), with supporting secondary metrics grouped in tighter rows or tables below.
-9. **Never auto-scroll copy.** Do not force readers to wait for auto-scrolling tickers or animated marquee loops to read supported integrations or technologies. Instead: Render a clean, static, responsive badge rail (`.ai-badge-neutral`) or a balanced grid that users can scan at their own speed.
+9. **Never auto-scroll copy.** Do not force readers to wait for auto-scrolling tickers or animated marquee loops to read supported integrations or technologies. Instead: Render a clean, static, responsive badge rail (`.badge-neutral`) or a balanced grid that users can scan at their own speed.
 10. **Always theme native browser surfaces.** An interface is incomplete if native browser affordances revert to un-themed system defaults. Instead: Verify text selection (`::selection`), caret color (`caret-color: var(--ai-accent)`), custom scrollbars (`scrollbar-color`), link underline offset (`text-underline-offset: 0.2em`), and tabular numerals (`font-variant-numeric: tabular-nums`).
 11. **Never use square grid backgrounds.** Avoid covering backgrounds in repeating 20px to 40px square grid lines, dot grids, or mesh graph paper patterns built from intersecting linear-gradient declarations. This is one of the most overused, robotic hallmarks of AI-generated template kits. Instead: Lead with clean, distraction-free solid surfaces (`var(--ai-surface-0)`, `var(--ai-bg)`, `var(--ai-surface-1)`) structured with subtle 1px hairline architectural borders (`var(--ai-border)`).
 <!-- laws:end -->

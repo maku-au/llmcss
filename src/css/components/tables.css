@@ -1,6 +1,6 @@
 @layer components {
   /* Tables */
-  .ai-table-container {
+  .table-container {
     width: 100%;
     overflow-x: auto;
     border: 1px solid var(--ai-border);
@@ -8,7 +8,7 @@
     background-color: var(--ai-surface-0);
   }
 
-  .ai-table {
+  .table {
     width: 100%;
     text-align: left;
     font-size: 0.875rem;
@@ -17,8 +17,8 @@
 
   /* --ai-table-cell-padding is the padding shorthand for every th and td. Set
      it on the table (or a container) to re-space the grid in one place; that is
-     how .ai-table-compact and .ai-density-compact do it. */
-  .ai-table th {
+     how .table-compact and .density-compact do it. */
+  .table th {
     background-color: var(--ai-surface-1);
     color: var(--ai-text-primary);
     font-weight: 600;
@@ -30,22 +30,22 @@
     white-space: nowrap;
   }
 
-  .ai-table td {
+  .table td {
     padding: var(--ai-table-cell-padding, var(--ai-space-3) var(--ai-space-4));
     border-bottom: 1px solid var(--ai-border-subtle);
     vertical-align: middle;
   }
 
-  .ai-table tr:last-child td {
+  .table tr:last-child td {
     border-bottom: none;
   }
 
   /* A tint, not a fill: surface-2 reads as a selection on warm skins. */
-  .ai-table-hover tbody tr:hover {
+  .table-hover tbody tr:hover {
     background-color: var(--ai-border-subtle);
   }
 
-  .ai-table-striped tbody tr:nth-child(even) {
+  .table-striped tbody tr:nth-child(even) {
     background-color: var(--ai-surface-1);
   }
 }
@@ -54,10 +54,10 @@
   /* Horizontal scroll with edge shadows so a clipped table reads as scrollable.
      The cover gradients scroll with the content (attachment: local) and reveal
      the shadow gradients at whichever edge still has more to show. */
-  .ai-scroll-x,
-  .ai-table-container,
-  .ai-matrix-container,
-  .ai-docs-matrix {
+  .scroll-x,
+  .table-container,
+  .matrix-container,
+  .docs-matrix {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     background-color: var(--ai-surface-0);
@@ -71,15 +71,15 @@
     background-size: 3rem 100%, 3rem 100%, 1.25rem 100%, 1.25rem 100%;
     background-attachment: local, local, scroll, scroll;
   }
-  .ai-scroll-x > table,
-  .ai-table-container > table,
-  .ai-matrix-container > table,
-  .ai-docs-matrix > table {
+  .scroll-x > table,
+  .table-container > table,
+  .matrix-container > table,
+  .docs-matrix > table {
     background: transparent;
   }
 
   /* Cell marks: yes / warn / no, drawn from currentColor so they theme. */
-  .ai-mark {
+  .mark {
     display: inline-block;
     width: 1em;
     height: 1em;
@@ -89,15 +89,15 @@
     -webkit-mask: var(--ai-mark-icon) center / contain no-repeat;
     mask: var(--ai-mark-icon) center / contain no-repeat;
   }
-  .ai-mark-yes {
+  .mark-yes {
     color: var(--ai-success);
     --ai-mark-icon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
   }
-  .ai-mark-warn {
+  .mark-warn {
     color: var(--ai-warning);
     --ai-mark-icon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m10.3 3.9-8.4 14A2 2 0 0 0 3.6 21h16.8a2 2 0 0 0 1.7-3.1l-8.4-14a2 2 0 0 0-3.4 0Z'/%3E%3Cpath d='M12 9v4'/%3E%3Cpath d='M12 17h.01'/%3E%3C/svg%3E");
   }
-  .ai-mark-no {
+  .mark-no {
     color: var(--ai-danger);
     --ai-mark-icon: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18'/%3E%3Cpath d='m6 6 12 12'/%3E%3C/svg%3E");
   }
@@ -119,10 +119,10 @@
 }
 @layer components {
   @supports (animation-timeline: scroll()) {
-    .ai-scroll-x,
-    .ai-table-container,
-    .ai-matrix-container,
-    .ai-docs-matrix {
+    .scroll-x,
+    .table-container,
+    .matrix-container,
+    .docs-matrix {
       -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--ai-scroll-fade-l), #000 calc(100% - var(--ai-scroll-fade-r)), transparent);
       mask-image: linear-gradient(to right, transparent, #000 var(--ai-scroll-fade-l), #000 calc(100% - var(--ai-scroll-fade-r)), transparent);
       animation: ai-scroll-fade linear both;
@@ -137,22 +137,22 @@
 
 @layer components {
   /* Density, sticky header, selection, and sort affordances */
-  .ai-table-compact {
+  .table-compact {
     --ai-table-cell-padding: var(--ai-space-2) var(--ai-space-3);
   }
-  .ai-table-sticky thead th {
+  .table-sticky thead th {
     position: sticky;
     top: 0;
     z-index: 1;
   }
-  .ai-table tbody tr[aria-selected="true"] {
+  .table tbody tr[aria-selected="true"] {
     background-color: var(--ai-accent-subtle);
   }
-  .ai-table th[aria-sort] {
+  .table th[aria-sort] {
     cursor: pointer;
     user-select: none;
   }
-  .ai-table th[aria-sort]::after {
+  .table th[aria-sort]::after {
     content: "";
     display: inline-block;
     width: 0.5em;
@@ -164,15 +164,15 @@
     -webkit-mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 4l7 8H5z'/%3E%3C/svg%3E") center / contain no-repeat;
     mask: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 4l7 8H5z'/%3E%3C/svg%3E") center / contain no-repeat;
   }
-  .ai-table th[aria-sort="ascending"]::after {
+  .table th[aria-sort="ascending"]::after {
     opacity: 1;
   }
-  .ai-table th[aria-sort="descending"]::after {
+  .table th[aria-sort="descending"]::after {
     opacity: 1;
     transform: rotate(180deg);
   }
-  .ai-table td.ai-cell-num,
-  .ai-table th.ai-cell-num {
+  .table td.cell-num,
+  .table th.cell-num {
     text-align: end;
     font-variant-numeric: tabular-nums;
   }

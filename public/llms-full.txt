@@ -2,14 +2,14 @@
 
 ## 1. What LLMCSS is
 
-LLMCSS is a pure native CSS UI framework for AI coding agents and human developers. One prefix: `ai-*`.
+LLMCSS is a pure native CSS UI framework for AI coding agents and human developers. Every class name is listed in classes.json; classes carry no prefix.
 One stylesheet ships every class and token under `@layer reset, tokens, base, components, utilities`.
 Generated JSON manifests state exactly which classes, tokens, states and components exist, so an agent never has to guess.
 Components, section templates and page blueprints are addressable by id.
 An optional one-file runtime adds modal, drawer, dropdown, accordion, tabs, toast and command palette behavior. Everything else is CSS only.
 
 [stats:start]
-Classes: 1407 ai-* classes across 40 families, https://llmcss.io/classes.json.
+Classes: 1407 classes across 40 families, https://llmcss.io/classes.json.
 Tokens: 82 --ai-* custom properties, https://llmcss.io/tokens.json.
 States: 36 is-* classes, https://llmcss.io/states.json.
 Components: 125 (122 free, 3 themed Pro): 54 primitive, 44 application, 22 marketing, 5 ecommerce.
@@ -29,8 +29,8 @@ The stylesheet is the whole install for every CSS-only component. Add the runtim
 Pin a release with the versioned path. Versioned files are served immutable; the unversioned paths always track the latest release.
 
 ```html
-<link rel="stylesheet" href="https://llmcss.io/v/0.3.0/llmcss.css" />
-<script src="https://llmcss.io/v/0.3.0/llmcss.js" defer></script>
+<link rel="stylesheet" href="https://llmcss.io/v/0.4.0/llmcss.css" />
+<script src="https://llmcss.io/v/0.4.0/llmcss.js" defer></script>
 ```
 
 From npm: `npm install llmcss`, then import `llmcss/llmcss.css` and, if needed, `llmcss/llmcss.js`.
@@ -39,8 +39,8 @@ From npm: `npm install llmcss`, then import `llmcss/llmcss.css` and, if needed, 
 
 Run these before handing markup back:
 
-- `npx llmcss validate <file>`: flags non-`ai-*` and hallucinated classes.
-- `npx llmcss lint --fix <file>`: auto-migrates legacy or hallucinated classes to their `ai-*` equivalents.
+- `npx llmcss validate <file>`: warns on unknown classes (fails under `--strict`) and always fails on a stray `ai-` prefix or hallucinated class.
+- `npx llmcss lint --fix <file>`: strips a stray `ai-` prefix. It cannot fix a hallucinated class.
 - `npx llmcss audit <file>`: checks markup against the eleven anti-slop laws in section 11.
 
 `validate` and `audit` both exit 1 when they find issues; `lint --fix` does not, it only rewrites and reports.
@@ -49,14 +49,14 @@ Run these before handing markup back:
 
 Generated from the CSS and the registry at build time, so they cannot drift from the shipped stylesheet.
 
-classes.json, https://llmcss.io/classes.json: every `ai-*` class that exists. If a class is not in this file, it does not exist.
+classes.json, https://llmcss.io/classes.json: every class that exists, no prefix. If a class is not in this file, it does not exist.
 
 [classes-json:start]
 ```json
-{ "version": "0.1.0", "generatedAt": "2026-09-13T03:10:22.582Z",
-  "note": "Every ai-* class in llmcss.css. variants lists the responsive (sm 640px, md 768px, lg 1024px, xl 1280px) and container-query (cq) prefixes that exist for the class, written as ai-md:name. Nothing outside this list exists; do not invent classes.",
+{ "version": "0.1.0", "generatedAt": "2026-09-13T03:30:05.800Z",
+  "note": "Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the responsive (sm 640px, md 768px, lg 1024px, xl 1280px) and container-query (cq) prefixes that exist for the class, written as md:name. Nothing outside this list exists; do not invent classes.",
   "stats": { "total": 1407, "families": { "spacing": 240, "agent-extra": 120, "interaction": 102, "sizing": 94 } },
-  "classes": [ { "class": "ai-gap-4", "family": "spacing", "file": "utilities.css", "variants": [ "cq", "md", "sm" ] } ] }
+  "classes": [ { "class": "gap-4", "family": "spacing", "file": "utilities.css", "variants": [ "cq", "md", "sm" ] } ] }
 ```
 [classes-json:end]
 
@@ -74,7 +74,7 @@ states.json, https://llmcss.io/states.json: every `is-*` state class with the co
 
 ```json
 { "states": [ { "class": "is-open",
-    "usedBy": ["ai-accordion-item", "ai-drawer", "ai-dropdown", "ai-modal", "ai-popover"] } ],
+    "usedBy": ["accordion-item", "drawer", "dropdown", "modal", "popover"] } ],
   "attributes": [ { "attribute": "data-ai-toggle", "values": ["modal", "drawer", "dropdown", "accordion"],
     "on": "button", "appliedBy": "author", "purpose": "Runtime toggle. modal and drawer need data-ai-target." } ] }
 ```
@@ -85,7 +85,7 @@ registry.json, https://llmcss.io/registry.json: the component catalog. Free entr
 ```json
 { "stats": { "total": 125, "free": 122, "pro": 3,
     "categories": { "primitive": 54, "application": 44, "marketing": 22, "ecommerce": 5 } },
-  "components": [ { "id": "btn-variants", "name": "Button Variants", "description": "High-craft buttons across solid primary,...", "category": "primitive", "tier": "free", "tags": [ "button", "action" ], "html": "<div class=\"ai-flex ai-f..." } ] }
+  "components": [ { "id": "btn-variants", "name": "Button Variants", "description": "High-craft buttons across solid primary,...", "category": "primitive", "tier": "free", "tags": [ "button", "action" ], "html": "<div class=\"flex flex-wr..." } ] }
 ```
 [registry-json:end]
 
@@ -94,7 +94,7 @@ r/{id}.json, https://llmcss.io/r/btn-variants.json: one free component, the same
 ```json
 { "id": "btn-variants", "name": "Button Variants", "description": "High-craft buttons.",
   "category": "primitive", "tier": "free", "tags": ["button", "cta"],
-  "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-3\">...</div>" }
+  "html": "<div class=\"flex flex-wrap gap-3\">...</div>" }
 ```
 
 r/pro/{id}.json, https://llmcss.io/r/pro/themed-hero-obsidian.json: themed Pro markup (section, kit, or composed block), gated by a subscription token sent as a Bearer header. On success the body has the same shape as a free entry plus an optional `css` string to link after `llmcss.css`.
@@ -109,7 +109,7 @@ templates.json, https://llmcss.io/templates.json: the wireframe section template
 ```json
 { "stats": { "totalTemplates": 26, "freeTemplates": 18, "proTemplates": 8, "totalBlueprints": 6,
     "sections": { "header": 4, "hero": 4, "social-proof": 2, "features": 4, "comparison": 1, "pricing": 2, "faq": 1, "cta": 2, "footer": 2, "app-shell": 4 } },
-  "wireframeTemplates": [ { "id": "wireframe-nav-minimal", "name": "Minimal Navigation Bar", "section": "header", "tier": "free", "tags": [ "nav" ], "placement": "Top of Page (Above Fold)", "guidance": { "placement": "...", "bestUsedFor": "...", "avoidWhen": "...", "pairsWith": [ "..." ] }, "html": "<header class=\"ai-navbar..." } ],
+  "wireframeTemplates": [ { "id": "wireframe-nav-minimal", "name": "Minimal Navigation Bar", "section": "header", "tier": "free", "tags": [ "nav" ], "placement": "Top of Page (Above Fold)", "guidance": { "placement": "...", "bestUsedFor": "...", "avoidWhen": "...", "pairsWith": [ "..." ] }, "html": "<header class=\"navbar\" r..." } ],
   "pageBlueprints": [ { "id": "saas-landing", "name": "High-Conversion SaaS Landing Page", "description": "...", "recommendedFor": "...", "sections": [ "wireframe-nav-minimal", "wireframe-hero-split" ] } ] }
 ```
 [templates-json:end]
@@ -126,30 +126,30 @@ Load `https://llmcss.io/llmcss.js` once per page when the markup uses any of:
 - `data-ai-dismiss="modal|drawer|toast"`
 - `data-ai-tab="#panel-id"`
 - the custom elements `<ai-modal> <ai-drawer> <ai-dropdown> <ai-accordion> <ai-tabs> <ai-toast> <ai-command-palette>`
-- `.ai-combobox` (filtering, keyboard nav), `data-ai-step="-1|1"` (number stepper buttons), or `data-ai-password-toggle` (password visibility toggle)
-- `.ai-scrollspy-link` inside a nav, optionally with `data-ai-scrollspy-root="#selector"` to spy inside a scrolling pane instead of the page
-- `.ai-split` with an `.ai-split-handle` (draggable split pane)
+- `.combobox` (filtering, keyboard nav), `data-ai-step="-1|1"` (number stepper buttons), or `data-ai-password-toggle` (password visibility toggle)
+- `.scrollspy-link` inside a nav, optionally with `data-ai-scrollspy-root="#selector"` to spy inside a scrolling pane instead of the page
+- `.split` with an `.split-handle` (draggable split pane)
 
-Without the script every component still renders and themes correctly; combobox, scrollspy and split markup also degrades to working, unenhanced controls. Only interaction needs JavaScript, or a native `<details class="ai-collapse">`.
+Without the script every component still renders and themes correctly; combobox, scrollspy and split markup also degrades to working, unenhanced controls. Only interaction needs JavaScript, or a native `<details class="collapse">`.
 
 ### DOM nesting rules
 
-- Modal: the toggle carries `data-ai-target="#id"`. The target `.ai-modal` contains an `.ai-modal-backdrop` and an `.ai-modal-box`. Focus moves to the box.
-- Drawer: same pattern with `.ai-drawer`, `.ai-drawer-backdrop` and `.ai-drawer-panel`.
-- Dropdown: the toggle has `data-ai-toggle="dropdown"` and sits inside `.ai-dropdown` next to `.ai-dropdown-menu`. No target attribute.
-- Accordion: the toggle has `data-ai-toggle="accordion"` and sits inside `.ai-accordion-item` above `.ai-accordion-content`.
-- Tabs: `button.ai-tab[data-ai-tab="#panel-id"]` inside `.ai-tabs-list` inside `.ai-tabs`; panels are `.ai-tab-panel` with matching ids in the same `.ai-tabs`.
-- Toast: `.ai-toast` inside `.ai-toast-container`; a close button with `data-ai-dismiss="toast"` removes the toast node. `data-ai-toast-position="top-right|top-center|top-left|bottom-left|bottom-center"` on the container places the stack; absent means bottom-right.
+- Modal: the toggle carries `data-ai-target="#id"`. The target `.modal` contains an `.modal-backdrop` and an `.modal-box`. Focus moves to the box.
+- Drawer: same pattern with `.drawer`, `.drawer-backdrop` and `.drawer-panel`.
+- Dropdown: the toggle has `data-ai-toggle="dropdown"` and sits inside `.dropdown` next to `.dropdown-menu`. No target attribute.
+- Accordion: the toggle has `data-ai-toggle="accordion"` and sits inside `.accordion-item` above `.accordion-content`.
+- Tabs: `button.tab[data-ai-tab="#panel-id"]` inside `.tabs-list` inside `.tabs`; panels are `.tab-panel` with matching ids in the same `.tabs`.
+- Toast: `.toast` inside `.toast-container`; a close button with `data-ai-dismiss="toast"` removes the toast node. `data-ai-toast-position="top-right|top-center|top-left|bottom-left|bottom-center"` on the container places the stack; absent means bottom-right.
 
 ### State vocabulary
 
 [states:start]
-36 `is-*` state classes exist across the library; the full list, with the classes each one applies to, is in states.json. The three most widely used: `.is-active` (16 classes, including ai-combobox-option, ai-filter-tag, ai-list-group-item), `.is-open` (15 classes, including ai-accordion-chevron, ai-accordion-content, ai-accordion-item), `.is-completed` (7 classes, including ai-checklist-item, ai-checklist-label, ai-checklist-mark).
+36 `is-*` state classes exist across the library; the full list, with the classes each one applies to, is in states.json. The three most widely used: `.is-active` (16 classes, including combobox-option, filter-tag, list-group-item), `.is-open` (15 classes, including accordion-chevron, accordion-content, accordion-item), `.is-completed` (7 classes, including checklist-item, checklist-label, checklist-mark).
 [states:end]
 
 - Open state is written twice: the `open` attribute and the `.is-open` class. They are interchangeable and the runtime sets and clears both. Author either one in static markup.
 - Tabs use `.is-active` on the tab and its panel, plus `aria-selected="true"` on the tab. The runtime also manages `tabindex` for roving focus.
-- `aria-expanded` on a trigger is owned by the runtime. `aria-invalid="true"` on `.ai-input`, `.ai-textarea` or `.ai-select` is owned by the author.
+- `aria-expanded` on a trigger is owned by the runtime. `aria-invalid="true"` on `.input`, `.textarea` or `.select` is owned by the author.
 
 ### Guarantees
 
@@ -161,7 +161,7 @@ For modal, drawer and command palette the runtime guarantees:
 - Escape closes only the topmost overlay, then falls through to open dropdowns.
 - `aria-expanded` stays in sync on every trigger pointing at the overlay.
 - Arrow keys, Home and End move between tabs and activate them.
-- `.ai-drawer-no-lock` or `.ai-modeless` opts an overlay out of the inert behavior, for a panel the user works alongside.
+- `.drawer-no-lock` or `.modeless` opts an overlay out of the inert behavior, for a panel the user works alongside.
 - `window.LLMCSS.open(el)` and `window.LLMCSS.close(el)` drive the same code path from your own script.
 
 ### Pro contract
@@ -186,19 +186,19 @@ Theme and skin go on `<html>`; the runtime tag goes last.
     <link rel="stylesheet" href="https://llmcss.io/llmcss.css" />
   </head>
   <body>
-    <div class="ai-container">
-      <section class="ai-section">
-        <h1 class="ai-section-title">Fleet console</h1>
-        <p class="ai-section-lead">Every deployed agent, its current task, and the queue behind it.</p>
-        <div class="ai-grid ai-grid-cols-1 ai-md:grid-cols-3 ai-gap-6 ai-mt-8">
-          <article class="ai-card">
-            <div class="ai-card-header">
-              <h2 class="ai-card-title">Throughput</h2>
-              <p class="ai-card-description">Requests completed in the last hour.</p>
+    <div class="container">
+      <section class="section">
+        <h1 class="section-title">Fleet console</h1>
+        <p class="section-lead">Every deployed agent, its current task, and the queue behind it.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+          <article class="card">
+            <div class="card-header">
+              <h2 class="card-title">Throughput</h2>
+              <p class="card-description">Requests completed in the last hour.</p>
             </div>
-            <div class="ai-card-body"><p class="ai-kpi-value">18,402</p></div>
-            <div class="ai-card-footer">
-              <button class="ai-btn ai-btn-primary ai-btn-sm">Export telemetry</button>
+            <div class="card-body"><p class="kpi-value">18,402</p></div>
+            <div class="card-footer">
+              <button class="btn btn-primary btn-sm">Export telemetry</button>
             </div>
           </article>
         </div>
@@ -215,71 +215,71 @@ Every class below is in classes.json. These are body fragments; drop them inside
 
 ### 6.1 Form with an error state
 
-`aria-invalid="true"` drives the error styling. `.ai-form-hint` is the neutral hint, `.ai-form-error` the message.
+`aria-invalid="true"` drives the error styling. `.form-hint` is the neutral hint, `.form-error` the message.
 
 ```html
-<form class="ai-max-w-md">
-  <div class="ai-form-group">
-    <label class="ai-form-label is-required" for="workspace">Workspace name</label>
-    <input class="ai-input" id="workspace" name="workspace" type="text" value="fleet-eu-west" />
-    <p class="ai-form-hint">Lowercase letters, numbers and hyphens. Used in the workspace URL.</p>
+<form class="max-w-md">
+  <div class="form-group">
+    <label class="form-label is-required" for="workspace">Workspace name</label>
+    <input class="input" id="workspace" name="workspace" type="text" value="fleet-eu-west" />
+    <p class="form-hint">Lowercase letters, numbers and hyphens. Used in the workspace URL.</p>
   </div>
-  <div class="ai-form-group">
-    <label class="ai-form-label is-required" for="email">Billing email</label>
-    <input class="ai-input" id="email" name="email" type="email" value="ops@"
+  <div class="form-group">
+    <label class="form-label is-required" for="email">Billing email</label>
+    <input class="input" id="email" name="email" type="email" value="ops@"
            aria-invalid="true" aria-describedby="email-error" />
-    <p class="ai-form-error" id="email-error">Enter a complete address, for example ops@example.com.</p>
+    <p class="form-error" id="email-error">Enter a complete address, for example ops@example.com.</p>
   </div>
-  <div class="ai-form-group">
-    <label class="ai-form-label" for="region">Primary region</label>
-    <select class="ai-select" id="region" name="region">
+  <div class="form-group">
+    <label class="form-label" for="region">Primary region</label>
+    <select class="select" id="region" name="region">
       <option>eu-west-1</option>
       <option>us-east-1</option>
     </select>
-    <p class="ai-form-hint">Data stays in this region. Changing it later triggers a migration.</p>
+    <p class="form-hint">Data stays in this region. Changing it later triggers a migration.</p>
   </div>
-  <div class="ai-flex ai-gap-3 ai-mt-6">
-    <button class="ai-btn ai-btn-primary" type="submit">Create workspace</button>
-    <button class="ai-btn ai-btn-ghost" type="button">Discard</button>
+  <div class="flex gap-3 mt-6">
+    <button class="btn btn-primary" type="submit">Create workspace</button>
+    <button class="btn btn-ghost" type="button">Discard</button>
   </div>
 </form>
 ```
 
 ### 6.2 Dashboard row with one dominant KPI
 
-Law 8 in practice: `.ai-kpi-card.is-primary` anchors the row, and the supporting numbers sit in a table rather than in three more equal tiles.
+Law 8 in practice: `.kpi-card.is-primary` anchors the row, and the supporting numbers sit in a table rather than in three more equal tiles.
 
 ```html
-<section class="ai-section">
-  <div class="ai-page-header">
-    <h2 class="ai-section-title">Inference spend</h2>
-    <p class="ai-page-header-meta">Rolling 30 days, all projects.</p>
+<section class="section">
+  <div class="page-header">
+    <h2 class="section-title">Inference spend</h2>
+    <p class="page-header-meta">Rolling 30 days, all projects.</p>
   </div>
-  <div class="ai-grid ai-grid-cols-1 ai-md:grid-cols-3 ai-gap-4">
-    <div class="ai-kpi-card is-primary">
-      <p class="ai-kpi-label">Total spend</p>
-      <p class="ai-kpi-value">$412,860</p>
-      <p class="ai-kpi-trend is-up">+12.4% vs previous 30 days</p>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="kpi-card is-primary">
+      <p class="kpi-label">Total spend</p>
+      <p class="kpi-value">$412,860</p>
+      <p class="kpi-trend is-up">+12.4% vs previous 30 days</p>
     </div>
-    <div class="ai-kpi-card">
-      <p class="ai-kpi-label">Cost per 1k requests</p>
-      <p class="ai-kpi-value">$0.94</p>
+    <div class="kpi-card">
+      <p class="kpi-label">Cost per 1k requests</p>
+      <p class="kpi-value">$0.94</p>
     </div>
-    <div class="ai-kpi-card">
-      <p class="ai-kpi-label">Cache hit rate</p>
-      <p class="ai-kpi-value">71.2%</p>
+    <div class="kpi-card">
+      <p class="kpi-label">Cache hit rate</p>
+      <p class="kpi-value">71.2%</p>
     </div>
   </div>
-  <div class="ai-table-container ai-mt-6">
-    <table class="ai-table ai-table-hover">
+  <div class="table-container mt-6">
+    <table class="table table-hover">
       <thead>
         <tr><th scope="col">Project</th><th scope="col">Requests</th><th scope="col">Spend</th><th scope="col">Status</th></tr>
       </thead>
       <tbody>
-        <tr><td>atlas-router</td><td class="ai-cell-num">4,210,883</td><td class="ai-cell-num">$188,204</td>
-            <td><span class="ai-status-pip ai-status-pip-success"></span> Healthy</td></tr>
-        <tr><td>ingest-worker</td><td class="ai-cell-num">2,904,117</td><td class="ai-cell-num">$121,455</td>
-            <td><span class="ai-status-pip ai-status-pip-warning"></span> Throttled</td></tr>
+        <tr><td>atlas-router</td><td class="cell-num">4,210,883</td><td class="cell-num">$188,204</td>
+            <td><span class="status-pip status-pip-success"></span> Healthy</td></tr>
+        <tr><td>ingest-worker</td><td class="cell-num">2,904,117</td><td class="cell-num">$121,455</td>
+            <td><span class="status-pip status-pip-warning"></span> Throttled</td></tr>
       </tbody>
     </table>
   </div>
@@ -291,23 +291,23 @@ Law 8 in practice: `.ai-kpi-card.is-primary` anchors the row, and the supporting
 The trigger points at the modal id. Backdrop and close button both dismiss. This example needs the runtime script.
 
 ```html
-<button class="ai-btn ai-btn-danger" data-ai-toggle="modal" data-ai-target="#revoke-modal"
+<button class="btn btn-danger" data-ai-toggle="modal" data-ai-target="#revoke-modal"
         aria-expanded="false">Revoke API key</button>
 
-<div class="ai-modal" id="revoke-modal">
-  <div class="ai-modal-backdrop" data-ai-dismiss="modal"></div>
-  <div class="ai-modal-box" role="dialog" aria-modal="true" aria-labelledby="revoke-title">
-    <div class="ai-modal-header">
-      <h2 class="ai-modal-title" id="revoke-title">Revoke API key</h2>
-      <button class="ai-modal-close" data-ai-dismiss="modal" aria-label="Close">&times;</button>
+<div class="modal" id="revoke-modal">
+  <div class="modal-backdrop" data-ai-dismiss="modal"></div>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="revoke-title">
+    <div class="modal-header">
+      <h2 class="modal-title" id="revoke-title">Revoke API key</h2>
+      <button class="modal-close" data-ai-dismiss="modal" aria-label="Close">&times;</button>
     </div>
-    <div class="ai-modal-body">
+    <div class="modal-body">
       <p>Key <code>sk_live_9f21</code> stops working immediately. Requests signed with it return 401.</p>
-      <p class="ai-text-secondary ai-text-sm ai-mt-2">Four services still use this key. Rotate them first.</p>
+      <p class="text-secondary text-sm mt-2">Four services still use this key. Rotate them first.</p>
     </div>
-    <div class="ai-modal-footer">
-      <button class="ai-btn ai-btn-outline" data-ai-dismiss="modal">Cancel</button>
-      <button class="ai-btn ai-btn-danger">Revoke key</button>
+    <div class="modal-footer">
+      <button class="btn btn-outline" data-ai-dismiss="modal">Cancel</button>
+      <button class="btn btn-danger">Revoke key</button>
     </div>
   </div>
 </div>
@@ -356,23 +356,23 @@ Only the classes in classes.json exist.
 Family sizes, largest first: spacing 240, agent-extra 120, interaction 102, sizing 94, grid 87, marketing 75, flex 65, typography 50, utilities 44, dashboard 43, extras 40, animations 33, forms-extra 31, application 29, badges 28, commerce-extra 28, position 26, navigation 24, borders 22, effects 22, chat 19, layout 16, cards 13, drawers 13, inputs 13, base 12, tables 12, toasts 12, buttons 11, modals 11, ecommerce 10, command 9, scrollspy 9, display 8, themes 7, accordions 6, alerts 6, cart 6, dropdowns 6, tabs 5.
 [families:end]
 
-- Grid: `ai-grid`, `ai-grid-cols-1` to `ai-grid-cols-12`, `ai-col-span-*`, `ai-grid-auto-fit` with `ai-grid-min-xs|sm|md|lg`, `ai-subgrid-rows`, `ai-subgrid-cols`.
-- Flex: `ai-flex`, `ai-flex-col`, `ai-flex-wrap`, `ai-items-*`, `ai-justify-*`, `ai-self-*`, `ai-order-*`, `ai-grow`, `ai-shrink`.
-- Spacing: `ai-p-*`, `ai-px-*`, `ai-m-*`, `ai-mx-*`, `ai-gap-*` on the token scale above, plus negative margins `ai--m-1` to `ai--m-4` and logical mirrors `ai-ps-*`, `ai-ms-*`.
-- Sizing: `ai-w-*` and `ai-h-*` on the same numeric scale, fractions such as `ai-w-1/2`, plus `ai-size-*`, `ai-max-w-xs` to `ai-max-w-6xl`, `ai-max-w-prose`.
-- Typography: `ai-text-xs` to `ai-text-7xl`, `ai-font-light` to `ai-font-bold`, `ai-leading-*`, `ai-tracking-*`, `ai-truncate`, `ai-line-clamp-1|2|3`, `ai-text-balance`, `ai-text-pretty`.
-- Position, effects, interaction: `ai-relative`, `ai-absolute`, `ai-sticky`, `ai-inset-0`, `ai-z-0` to `ai-z-50`, `ai-shadow-*`, `ai-opacity-*`, `ai-overflow-*`, `ai-transition`, `ai-cursor-*`, `ai-select-none`, `ai-sr-only`.
+- Grid: `grid`, `grid-cols-1` to `grid-cols-12`, `col-span-*`, `grid-auto-fit` with `grid-min-xs|sm|md|lg`, `subgrid-rows`, `subgrid-cols`.
+- Flex: `flex`, `flex-col`, `flex-wrap`, `items-*`, `justify-*`, `self-*`, `order-*`, `grow`, `shrink`.
+- Spacing: `p-*`, `px-*`, `m-*`, `mx-*`, `gap-*` on the token scale above, plus negative margins `-m-1` to `-m-4` and logical mirrors `ps-*`, `ms-*`.
+- Sizing: `w-*` and `h-*` on the same numeric scale, fractions such as `w-1/2`, plus `size-*`, `max-w-xs` to `max-w-6xl`, `max-w-prose`.
+- Typography: `text-xs` to `text-7xl`, `font-light` to `font-bold`, `leading-*`, `tracking-*`, `truncate`, `line-clamp-1|2|3`, `text-balance`, `text-pretty`.
+- Position, effects, interaction: `relative`, `absolute`, `sticky`, `inset-0`, `z-0` to `z-50`, `shadow-*`, `opacity-*`, `overflow-*`, `transition`, `cursor-*`, `select-none`, `sr-only`.
 
-Responsive prefixes: exactly five exist, `ai-sm:` (640px), `ai-md:` (768px), `ai-lg:` (1024px), `ai-xl:` (1280px) and `ai-cq:` (container query, needs a `.ai-cq` ancestor). They are not generated for every class. Each classes.json entry lists the prefixes that exist for that class in its `variants` array, and nothing else resolves: `ai-gap-4` has `["cq", "md", "sm"]`, so `ai-md:gap-4` works while the `xl` form of that same class does not exist.
+Responsive prefixes: exactly five exist, `sm:` (640px), `md:` (768px), `lg:` (1024px), `xl:` (1280px) and `cq:` (container query, needs a `.cq` ancestor). They are not generated for every class. Each classes.json entry lists the variants that exist for that class in its `variants` array, and nothing else resolves: `gap-4` has `["cq", "md", "sm"]`, so `md:gap-4` works while the `xl` form of that same class does not exist.
 
 Variable escape hatches: eleven utilities read a local variable instead of a fixed value, for the cases the scale does not cover. Set the variable inline.
 
 ```html
-<div class="ai-w-var" style="--ai-w: 37%;">Off-scale width</div>
-<div class="ai-grid ai-grid-cols-var" style="--ai-cols: 2fr 1fr;">Asymmetric columns</div>
+<div class="w-var" style="--ai-w: 37%;">Off-scale width</div>
+<div class="grid grid-cols-var" style="--ai-cols: 2fr 1fr;">Asymmetric columns</div>
 ```
 
-The full set: `ai-w-var` (`--ai-w`), `ai-h-var` (`--ai-h`), `ai-min-w-var` (`--ai-min-w`), `ai-max-w-var` (`--ai-max-w`), `ai-p-var` (`--ai-p`), `ai-m-var` (`--ai-m`), `ai-gap-var` (`--ai-gap`), `ai-grid-cols-var` (`--ai-cols`), `ai-transform-var` (`--ai-transform`), `ai-bg-var` (`--ai-bg-color`), `ai-text-var` (`--ai-text-color`).
+The full set: `w-var` (`--ai-w`), `h-var` (`--ai-h`), `min-w-var` (`--ai-min-w`), `max-w-var` (`--ai-max-w`), `p-var` (`--ai-p`), `m-var` (`--ai-m`), `gap-var` (`--ai-gap`), `grid-cols-var` (`--ai-cols`), `transform-var` (`--ai-transform`), `bg-var` (`--ai-bg-color`), `text-var` (`--ai-text-color`).
 
 ## 10. CLI and MCP
 
@@ -389,8 +389,8 @@ template blueprints       List the full-page blueprints
 template blueprint <id>   Assemble and print a full page
 harness [archetype]       Print the archetypes and the anti-slop laws
 audit <file>              Run the anti-slop checks against a file
-validate <file>           Flag non ai- and hallucinated classes
-lint --fix <file>         Auto-migrate legacy classes to ai- equivalents
+validate <file>           Warn on unknown classes (--strict to fail); always flag a stray ai- prefix or hallucinated class
+lint --fix <file>         Strip a stray ai- prefix
 trim <glob...>            Optional: subset llmcss.css to the classes your markup uses
 init                      Write llmcss.config.json
 login <token>             Store a Pro license token
@@ -402,8 +402,8 @@ MCP, `npx llmcss-mcp`, a stdio JSON-RPC server. `cssai_get_harness` and `cssai_s
 ```
 search_components         Search the catalog by keyword, tag, or category
 get_component_markup      Return one component's HTML, or the locked payload for Pro
-validate_markup           Check a snippet for hallucinated or unprefixed classes
-list_classes              Every ai-* class, filterable by family or prefix
+validate_markup           Check a snippet for unknown, hallucinated, or ai-prefixed classes
+list_classes              Every class, filterable by family or variant
 list_tokens               Every --ai-* token, filterable by group and context
 list_states               Every is-* state class and data-ai-* attribute
 llmcss_get_harness        The archetype tokens and the anti-slop laws
@@ -418,15 +418,15 @@ get_page_blueprint        One assembled multi-section page recipe
 Generated from src/registry/laws.mjs. `npx llmcss audit <file>` and the MCP tool `llmcss_slop_audit` check markup against them.
 
 [laws:start]
-1. Never nest containers: Do not put a bordered container inside another bordered container. The audit walks the tag stack and flags every `.ai-card`, `.ai-panel` or `.ai-kpi-card` that sits inside another `.ai-card`, `.ai-panel` or `.ai-kpi-card`. Nested boxes waste screen real estate and create dizzying visual layers. Instead: Use generous whitespace (`--ai-space-6`), subtle hairline rules (`<hr class="ai-divider">`), or distinct background shifts (`var(--ai-surface-1)`).
-2. Never pulse static status pips: Never attach continuous breathing or pulsing animations to steady states like "System Normal", "Online", or "Completed". The audit flags the class tokens `animate-pulse`, `pulse`, `animate-ping`, `ping`, `breathe`, `blink` and `animate-bounce`, and any inline `animation:` value containing `pulse`, `ping`, `breathe`, `blink` or `glow`, unless the document also carries `is-streaming`. Flashing elements demand attention when nothing has changed. Instead: Render a calm, static jewel pip with `.ai-status-pip` and `box-shadow: 0 0 0 2px color-mix(...)`. Reserve `.ai-status-pip.is-streaming` strictly for ongoing inference or active data transmission.
+1. Never nest containers: Do not put a bordered container inside another bordered container. The audit walks the tag stack and flags every `.card`, `.panel` or `.kpi-card` that sits inside another `.card`, `.panel` or `.kpi-card`. Nested boxes waste screen real estate and create dizzying visual layers. Instead: Use generous whitespace (`--ai-space-6`), subtle hairline rules (`<hr class="divider">`), or distinct background shifts (`var(--ai-surface-1)`).
+2. Never pulse static status pips: Never attach continuous breathing or pulsing animations to steady states like "System Normal", "Online", or "Completed". The audit flags the class tokens `animate-pulse`, `pulse`, `animate-ping`, `ping`, `breathe`, `blink` and `animate-bounce`, and any inline `animation:` value containing `pulse`, `ping`, `breathe`, `blink` or `glow`, unless the document also carries `is-streaming`. Flashing elements demand attention when nothing has changed. Instead: Render a calm, static jewel pip with `.status-pip` and `box-shadow: 0 0 0 2px color-mix(...)`. Reserve `.status-pip.is-streaming` strictly for ongoing inference or active data transmission.
 3. Never use colored left-stripe borders: Do not place thick 3px to 5px colored vertical stripes on the left edge of cards, toasts, or dialogs. This 2012-era alert tell makes every element scream for attention. Instead: Use a 1px uniform architectural border (`border: 1px solid var(--ai-border)`), accompanied by a subtle 6px status jewel pip or an inline icon.
 4. Never use electric purple or cyan halos and radial glows: Avoid murky dark backgrounds flooded with saturated purple-to-blue gradients or zero-offset neon drop shadows. Instead: Build depth using multi-stop physical elevation with a slight vertical offset: `box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 8px 16px -4px rgba(0, 0, 0, 0.04);`.
-5. Never stamp formulaic eyebrows above headlines: Do not stamp a badge or a pill above a heading as an eyebrow, and do not repeat an uppercase monospace overline (`01 // FEATURES`, `OVERVIEW`) over every section. The audit flags a `span` or `div` carrying `.ai-badge` or `.ai-hero-badge` that is followed by an `h1` to `h4` within the next few lines, with `.ai-product-badge-float` the only exemption. Repeated eyebrows become visual noise that delays reading the headline. Instead: Lead directly with a confident, well-typeset headline (`h1` or `h2`). If context is needed, fold it into the heading or the supporting sentence.
+5. Never stamp formulaic eyebrows above headlines: Do not stamp a badge or a pill above a heading as an eyebrow, and do not repeat an uppercase monospace overline (`01 // FEATURES`, `OVERVIEW`) over every section. The audit flags a `span` or `div` carrying `.badge` or `.hero-badge` that is followed by an `h1` to `h4` within the next few lines, with `.product-badge-float` the only exemption. Repeated eyebrows become visual noise that delays reading the headline. Instead: Lead directly with a confident, well-typeset headline (`h1` or `h2`). If context is needed, fold it into the heading or the supporting sentence.
 6. Never crush letter-spacing below -0.04em or justify body text: Do not apply extreme negative letter-spacing that makes characters collide, and never use `text-align: justify`, which causes distracting typographic rivers. Instead: Keep body text at tracking `0` with `line-height: 1.6`. Restrict negative tracking to large display headings (`-0.02em` to `-0.035em`).
 7. Never place low-contrast gray text on colored backgrounds: Never render neutral `#71717a` gray text over an accent surface or a tinted banner. Instead: Ensure WCAG AA compliance (minimum 4.5:1 for body copy, 3:1 for large display). When the background is tinted, tint the secondary text from the same hue.
 8. Never create flat, identical metric grids: Do not display 4 identical KPI cards with identical weights and icons. Instead: Establish clear hierarchy. Make the primary metric anchor dominant in size (`font-size: 2.5rem; font-weight: 700;`), with supporting secondary metrics grouped in tighter rows or tables below.
-9. Never auto-scroll copy: Do not force readers to wait for auto-scrolling tickers or animated marquee loops to read supported integrations or technologies. Instead: Render a clean, static, responsive badge rail (`.ai-badge-neutral`) or a balanced grid that users can scan at their own speed.
+9. Never auto-scroll copy: Do not force readers to wait for auto-scrolling tickers or animated marquee loops to read supported integrations or technologies. Instead: Render a clean, static, responsive badge rail (`.badge-neutral`) or a balanced grid that users can scan at their own speed.
 10. Always theme native browser surfaces: An interface is incomplete if native browser affordances revert to un-themed system defaults. Instead: Verify text selection (`::selection`), caret color (`caret-color: var(--ai-accent)`), custom scrollbars (`scrollbar-color`), link underline offset (`text-underline-offset: 0.2em`), and tabular numerals (`font-variant-numeric: tabular-nums`).
 11. Never use square grid backgrounds: Avoid covering backgrounds in repeating 20px to 40px square grid lines, dot grids, or mesh graph paper patterns built from intersecting linear-gradient declarations. This is one of the most overused, robotic hallmarks of AI-generated template kits. Instead: Lead with clean, distraction-free solid surfaces (`var(--ai-surface-0)`, `var(--ai-bg)`, `var(--ai-surface-1)`) structured with subtle 1px hairline architectural borders (`var(--ai-border)`).
 [laws:end]

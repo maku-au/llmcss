@@ -3,15 +3,18 @@
  *
  * Progressive enhancement only. Every component in this file renders and stays
  * usable with the script absent:
- *   - `.ai-combobox` opens its listbox on :focus-within and filters nothing.
- *   - `.ai-stepper-input` wraps a native number input, so the arrow keys and
+ *   - `.combobox` opens its listbox on :focus-within and filters nothing.
+ *   - `.stepper-input` wraps a native number input, so the arrow keys and
  *     the form still work; only the two buttons need wiring.
- *   - `.ai-password` is a plain password field; the toggle button stays hidden
+ *   - `.password` is a plain password field; the toggle button stays hidden
  *     until this script marks the wrapper `.is-ready`.
  *
  * Every exported function is idempotent: calling it twice never doubles a
  * listener, and calling it on a page with no matching element does nothing.
  */
+
+import { CLASS_PREFIX as c } from '../config/prefix';
+
 
 /** Comboboxes already wired, so a second init pass skips them. */
 const wiredComboboxes = new WeakSet<HTMLElement>();
@@ -49,7 +52,7 @@ interface ComboboxParts {
 function findParts(box: HTMLElement, prefix: string): ComboboxParts | null {
   const input =
     box.querySelector<HTMLInputElement>('input[role="combobox"]') ||
-    box.querySelector<HTMLInputElement>(`input.${prefix}-input`);
+    box.querySelector<HTMLInputElement>(`input.${c}input`);
   if (!input) return null;
 
   // Native fallback: the author wired a <datalist>, so leave the field alone.
@@ -61,7 +64,7 @@ function findParts(box: HTMLElement, prefix: string): ComboboxParts | null {
     const byId = document.getElementById(controls);
     if (byId instanceof HTMLElement) list = byId;
   }
-  if (!list) list = box.querySelector<HTMLElement>(`.${prefix}-combobox-list`);
+  if (!list) list = box.querySelector<HTMLElement>(`.${c}combobox-list`);
   if (!list) return null;
 
   return { input, list };
@@ -74,7 +77,7 @@ function setupCombobox(box: HTMLElement, prefix: string): void {
   wiredComboboxes.add(box);
 
   const { input, list } = parts;
-  const empty = list.querySelector<HTMLElement>(`.${prefix}-combobox-empty`);
+  const empty = list.querySelector<HTMLElement>(`.${c}combobox-empty`);
 
   if (!list.id) list.id = `${prefix}-combobox-list-${++optionSeq}`;
   if (!input.getAttribute('aria-controls')) input.setAttribute('aria-controls', list.id);
@@ -236,14 +239,14 @@ function setupCombobox(box: HTMLElement, prefix: string): void {
 }
 
 /**
- * Wire every `.{prefix}-combobox` on the page, plus the number steppers and
+ * Wire every `.combobox` on the page, plus the number steppers and
  * password toggles that share this module. Safe to call repeatedly.
  */
 export function initCombobox(prefix = 'ai'): void {
   if (typeof document === 'undefined') return;
 
   document
-    .querySelectorAll<HTMLElement>(`.${prefix}-combobox`)
+    .querySelectorAll<HTMLElement>(`.${c}combobox`)
     .forEach((box) => setupCombobox(box, prefix));
 
   // Markup rendered after load (galleries, SPAs) is wired the first time it
@@ -251,7 +254,7 @@ export function initCombobox(prefix = 'ai'): void {
   if (bindOnce(`combobox-lazy:${prefix}`)) {
     document.addEventListener('focusin', (event) => {
       const origin = elementFromEvent(event);
-      const box = origin ? origin.closest<HTMLElement>(`.${prefix}-combobox`) : null;
+      const box = origin ? origin.closest<HTMLElement>(`.${c}combobox`) : null;
       if (box && !box.classList.contains('is-ready')) {
         setupCombobox(box, prefix);
         box.classList.add('is-open');
@@ -264,7 +267,7 @@ export function initCombobox(prefix = 'ai'): void {
   if (bindOnce(`combobox:${prefix}`)) {
     document.addEventListener('click', (event) => {
       const origin = elementFromEvent(event);
-      document.querySelectorAll<HTMLElement>(`.${prefix}-combobox.is-open`).forEach((box) => {
+      document.querySelectorAll<HTMLElement>(`.${c}combobox.is-open`).forEach((box) => {
         if (origin && box.contains(origin)) return;
         box.classList.remove('is-open');
         const input = box.querySelector<HTMLInputElement>('input[role="combobox"]');
@@ -291,7 +294,7 @@ function stepperInput(button: HTMLElement, prefix: string): HTMLInputElement | n
     const byId = document.getElementById(controls);
     if (byId instanceof HTMLInputElement) return byId;
   }
-  const group = button.closest(`.${prefix}-stepper-input`);
+  const group = button.closest(`.${c}stepper-input`);
   const found = group ? group.querySelector('input') : null;
   return found instanceof HTMLInputElement ? found : null;
 }
@@ -356,7 +359,7 @@ function passwordField(button: HTMLElement, prefix: string, attribute: string): 
       // An author typo in the selector must not break the page.
     }
   }
-  const wrapper = button.closest(`.${prefix}-password`);
+  const wrapper = button.closest(`.${c}password`);
   const found = wrapper ? wrapper.querySelector('input') : null;
   return found instanceof HTMLInputElement ? found : null;
 }
@@ -372,7 +375,7 @@ export function initPasswordToggles(prefix = 'ai'): void {
   const attribute = `data-${prefix}-password-toggle`;
 
   // Runs on every call so wrappers added later are revealed too.
-  document.querySelectorAll<HTMLElement>(`.${prefix}-password`).forEach((wrapper) => {
+  document.querySelectorAll<HTMLElement>(`.${c}password`).forEach((wrapper) => {
     if (wrapper.querySelector(`[${attribute}]`)) wrapper.classList.add('is-ready');
   });
 
@@ -395,7 +398,7 @@ export function initPasswordToggles(prefix = 'ai'): void {
     button.setAttribute('aria-pressed', reveal ? 'true' : 'false');
     button.setAttribute('aria-label', reveal ? 'Hide password' : 'Show password');
 
-    const wrapper = button.closest(`.${prefix}-password`);
+    const wrapper = button.closest(`.${c}password`);
     if (wrapper) wrapper.classList.toggle('is-visible', reveal);
 
     input.focus();

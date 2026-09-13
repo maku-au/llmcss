@@ -10,5 +10,5 @@
     "rows",
     "navigation"
   ],
-  "html": "<ul class=\"ai-list-group\" style=\"max-width: 24rem;\">\n  <li><a href=\"#\" class=\"ai-list-group-item is-active\">Overview <span class=\"ai-badge ai-badge-counter ai-ml-auto\">3</span></a></li>\n  <li><a href=\"#\" class=\"ai-list-group-item\">Deployments</a></li>\n  <li><a href=\"#\" class=\"ai-list-group-item\">Environment variables</a></li>\n  <li><a href=\"#\" class=\"ai-list-group-item is-disabled\" aria-disabled=\"true\">Billing (owner only)</a></li>\n</ul>"
+  "html": "<ul class=\"list-group\" style=\"max-width: 24rem;\">\n  <li><a href=\"#\" class=\"list-group-item is-active\">Overview <span class=\"badge badge-counter ml-auto\">3</span></a></li>\n  <li><a href=\"#\" class=\"list-group-item\">Deployments</a></li>\n  <li><a href=\"#\" class=\"list-group-item\">Environment variables</a></li>\n  <li><a href=\"#\" class=\"list-group-item is-disabled\" aria-disabled=\"true\">Billing (owner only)</a></li>\n</ul>"
 }

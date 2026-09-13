@@ -1,6 +1,6 @@
 @layer components {
   /* Modal / Dialog */
-  .ai-modal,
+  .modal,
   ai-modal {
     display: none;
     position: fixed;
@@ -11,13 +11,13 @@
     padding: var(--ai-space-4);
   }
 
-  .ai-modal.is-open,
-  .ai-modal[open],
+  .modal.is-open,
+  .modal[open],
   ai-modal[open] {
     display: flex;
   }
 
-  .ai-modal-backdrop {
+  .modal-backdrop {
     position: fixed;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.6);
@@ -26,7 +26,7 @@
     animation: ai-fade-in var(--ai-duration-normal) var(--ai-ease-out);
   }
 
-  .ai-modal-box {
+  .modal-box {
     position: relative;
     background-color: var(--ai-surface-0);
     border: 1px solid var(--ai-border);
@@ -42,18 +42,18 @@
     animation: ai-scale-up var(--ai-duration-normal) var(--ai-ease-out);
   }
 
-  /* Lock page scroll while a modal is open. Opt out with .ai-modeless. */
-  html:has(.ai-modal.is-open:not(.ai-modeless), .ai-modal[open]:not(.ai-modeless), ai-modal[open]:not(.ai-modeless)) {
+  /* Lock page scroll while a modal is open. Opt out with .modeless. */
+  html:has(.modal.is-open:not(.modeless), .modal[open]:not(.modeless), ai-modal[open]:not(.modeless)) {
     overflow: hidden;
   }
 
-  .ai-modal-box-lg { max-width: 48rem; }
-  .ai-modal-box-sm { max-width: 24rem; }
+  .modal-box-lg { max-width: 48rem; }
+  .modal-box-sm { max-width: 24rem; }
 
   /* --ai-modal-padding sets the dialog's inline rhythm: the full padding of the
      body and the inline padding of the header and footer, so all three stay
      optically aligned. (--ai-modal-width caps the box, above.) */
-  .ai-modal-header {
+  .modal-header {
     padding: var(--ai-space-5) var(--ai-modal-padding, var(--ai-space-6));
     display: flex;
     align-items: center;
@@ -61,23 +61,23 @@
     border-bottom: 1px solid var(--ai-border-subtle);
   }
 
-  .ai-modal-title {
+  .modal-title {
     font-family: var(--ai-font-display);
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--ai-text-primary);
   }
 
-  /* Full padding from --ai-modal-padding; see .ai-modal-header above. */
-  .ai-modal-body {
+  /* Full padding from --ai-modal-padding; see .modal-header above. */
+  .modal-body {
     padding: var(--ai-modal-padding, var(--ai-space-6));
     color: var(--ai-text-secondary);
     font-size: 0.9375rem;
     line-height: 1.6;
   }
 
-  /* Inline padding from --ai-modal-padding; see .ai-modal-header above. */
-  .ai-modal-footer {
+  /* Inline padding from --ai-modal-padding; see .modal-header above. */
+  .modal-footer {
     padding: var(--ai-space-4) var(--ai-modal-padding, var(--ai-space-6));
     background-color: var(--ai-surface-1);
     border-top: 1px solid var(--ai-border-subtle);
@@ -87,7 +87,7 @@
     gap: var(--ai-space-3);
   }
 
-  .ai-modal-close {
+  .modal-close {
     background: transparent;
     border: none;
     color: var(--ai-text-muted);
@@ -98,7 +98,7 @@
     border-radius: var(--ai-radius-sm);
     transition: color var(--ai-duration-fast);
   }
-  .ai-modal-close:hover {
+  .modal-close:hover {
     color: var(--ai-text-primary);
   }
 

@@ -1,10 +1,10 @@
 # LLMCSS
 
-Native CSS component library for humans and AI coding agents. No build step, no runtime dependency, one prefix: `ai-*`.
+Native CSS component library for humans and AI coding agents. No build step, no runtime dependency, every class name listed in one file.
 
 ```html
 <link rel="stylesheet" href="https://llmcss.io/llmcss.css" />
-<button class="ai-btn ai-btn-primary">Save</button>
+<button class="btn btn-primary">Save</button>
 ```
 
 Add the runtime only if you use modal, drawer, dropdown, accordion, tabs, or toasts:
@@ -15,8 +15,8 @@ Add the runtime only if you use modal, drawer, dropdown, accordion, tabs, or toa
 
 That is the whole install. Everything else in this repo is optional: a CLI, an MCP server, and a JSON registry for agents that would rather fetch markup than guess it.
 
-- Class prefix is `ai-*`. Nothing else styles the page.
-- [classes.json](https://llmcss.io/classes.json) is the universe of allowed classes; if a class is not listed there, it does not exist.
+- Every class name is listed in [classes.json](https://llmcss.io/classes.json); nothing else styles the page. Classes carry no prefix (`btn`, not `ai-btn`).
+- If a class is not listed there, it does not exist.
 - Theming lives in `data-ai-theme`, `data-ai-skin`, `data-ai-accent`, `data-ai-density`, and `data-ai-focus` attributes on `<html>`.
 - Run `npx llmcss validate <file>` before you ship markup.
 
@@ -30,7 +30,7 @@ That is the whole install. Everything else in this repo is optional: a CLI, an M
 ## What this is
 
 <!-- stats:start -->
-- **Classes:** 1407 `ai-*` classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Classes:** 1407 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
 - **Tokens:** 82 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
 - **States:** 36 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
 - **Components:** 125 (122 free, 3 themed Pro): 54 primitive, 44 application, 22 marketing, 5 ecommerce.
@@ -60,7 +60,7 @@ curl https://llmcss.io/r/btn-variants.json
 
 Generated from the CSS at build time, so they cannot drift from the stylesheet. An agent should read these instead of guessing class names.
 
-- [classes.json](https://llmcss.io/classes.json): every `ai-*` class, each with its family and the `ai-sm:` / `ai-md:` / `ai-lg:` / `ai-xl:` / `ai-cq:` prefixes that exist for it. If a class is not here, it does not exist.
+- [classes.json](https://llmcss.io/classes.json): every class, each with its family and the `sm:` / `md:` / `lg:` / `xl:` / `cq:` variants that exist for it. If a class is not here, it does not exist.
 - [tokens.json](https://llmcss.io/tokens.json): every `--ai-*` token with its value in light, dark, each skin, and each focus preset.
 - [states.json](https://llmcss.io/states.json): every `is-*` state class and every `data-ai-*` attribute, with allowed values and whether the author or the runtime applies it.
 - [registry.json](https://llmcss.io/registry.json), [templates.json](https://llmcss.io/templates.json): component catalog and wireframe templates.
@@ -74,8 +74,8 @@ npx llmcss list                    # all components, free and pro
 npx llmcss search <query>          # search by keyword, tag, or alias
 npx llmcss info <id>               # raw component metadata
 npx llmcss add <id>                # write component HTML into components/
-npx llmcss validate <file>         # flag non ai- classes
-npx llmcss lint --fix <file>       # auto-prefix common legacy classes
+npx llmcss validate <file>         # warn on unknown classes, fail on a stray ai- prefix (--strict fails on warnings too)
+npx llmcss lint --fix <file>       # strip a stray ai- prefix
 npx llmcss audit <file>            # anti-slop design checks
 npx llmcss templates                     # list wireframe section templates
 npx llmcss template get <id>             # output one section's HTML
@@ -129,7 +129,7 @@ The runtime (`https://llmcss.io/llmcss.js`, not required for CSS-only use) guara
 
 - Focus moves into the panel on open and back to the trigger on close.
 - Tab is trapped inside the topmost overlay; Escape closes only that overlay.
-- The rest of the page is marked `inert` while an overlay is open, except overlays opted into `.ai-drawer-no-lock` (modeless panels).
+- The rest of the page is marked `inert` while an overlay is open, except overlays opted into `.drawer-no-lock` (modeless panels).
 - `aria-expanded` stays in sync on every trigger pointing at the overlay.
 - Tabs follow the WAI-ARIA tabs pattern (arrow keys, Home, End) and sync `aria-selected`.
 - Motion respects `prefers-reduced-motion: reduce`.
@@ -142,11 +142,11 @@ CSS-only usage (no runtime JS) still gets themed focus rings, WCAG AA contrast t
 Eleven anti-slop laws, generated from `src/registry/laws.mjs` by `node src/registry/build-docs.mjs`:
 
 <!-- laws:start -->
-1. **Never nest containers**: Do not put a bordered container inside another bordered container. The audit walks the tag stack and flags every `.ai-card`, `.ai-panel` or `.ai-kpi-card` that sits inside another `.ai-card`, `.ai-panel` or `.ai-kpi-card`. Nested boxes waste screen real estate and create dizzying visual layers.
+1. **Never nest containers**: Do not put a bordered container inside another bordered container. The audit walks the tag stack and flags every `.card`, `.panel` or `.kpi-card` that sits inside another `.card`, `.panel` or `.kpi-card`. Nested boxes waste screen real estate and create dizzying visual layers.
 2. **Never pulse static status pips**: Never attach continuous breathing or pulsing animations to steady states like "System Normal", "Online", or "Completed". The audit flags the class tokens `animate-pulse`, `pulse`, `animate-ping`, `ping`, `breathe`, `blink` and `animate-bounce`, and any inline `animation:` value containing `pulse`, `ping`, `breathe`, `blink` or `glow`, unless the document also carries `is-streaming`. Flashing elements demand attention when nothing has changed.
 3. **Never use colored left-stripe borders**: Do not place thick 3px to 5px colored vertical stripes on the left edge of cards, toasts, or dialogs. This 2012-era alert tell makes every element scream for attention.
 4. **Never use electric purple or cyan halos and radial glows**: Avoid murky dark backgrounds flooded with saturated purple-to-blue gradients or zero-offset neon drop shadows.
-5. **Never stamp formulaic eyebrows above headlines**: Do not stamp a badge or a pill above a heading as an eyebrow, and do not repeat an uppercase monospace overline (`01 // FEATURES`, `OVERVIEW`) over every section. The audit flags a `span` or `div` carrying `.ai-badge` or `.ai-hero-badge` that is followed by an `h1` to `h4` within the next few lines, with `.ai-product-badge-float` the only exemption. Repeated eyebrows become visual noise that delays reading the headline.
+5. **Never stamp formulaic eyebrows above headlines**: Do not stamp a badge or a pill above a heading as an eyebrow, and do not repeat an uppercase monospace overline (`01 // FEATURES`, `OVERVIEW`) over every section. The audit flags a `span` or `div` carrying `.badge` or `.hero-badge` that is followed by an `h1` to `h4` within the next few lines, with `.product-badge-float` the only exemption. Repeated eyebrows become visual noise that delays reading the headline.
 6. **Never crush letter-spacing below -0.04em or justify body text**: Do not apply extreme negative letter-spacing that makes characters collide, and never use `text-align: justify`, which causes distracting typographic rivers.
 7. **Never place low-contrast gray text on colored backgrounds**: Never render neutral `#71717a` gray text over an accent surface or a tinted banner.
 8. **Never create flat, identical metric grids**: Do not display 4 identical KPI cards with identical weights and icons.

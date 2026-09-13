@@ -11,5 +11,5 @@
     "header",
     "app"
   ],
-  "html": "<div class=\"ai-topbar\">\n  <input class=\"ai-input\" type=\"search\" placeholder=\"Search resources...\" aria-label=\"Search\" />\n  <span class=\"ai-text-xs ai-text-muted\" style=\"white-space: nowrap;\">12 unread</span>\n  <span class=\"ai-avatar ai-avatar-sm\" aria-hidden=\"true\">AC</span>\n</div>"
+  "html": "<div class=\"topbar\">\n  <input class=\"input\" type=\"search\" placeholder=\"Search resources...\" aria-label=\"Search\" />\n  <span class=\"text-xs text-muted\" style=\"white-space: nowrap;\">12 unread</span>\n  <span class=\"avatar avatar-sm\" aria-hidden=\"true\">AC</span>\n</div>"
 }

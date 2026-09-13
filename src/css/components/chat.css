@@ -5,7 +5,7 @@
 
   /* AI Conversational Thread. The shell owns the only frame on screen, so
      message rows sit flush inside it and never nest a second box. */
-  .ai-chat-container {
+  .chat-container {
     display: flex;
     flex-direction: column;
     border: 1px solid var(--ai-border);
@@ -16,7 +16,7 @@
     max-height: 34rem;
   }
 
-  .ai-chat-header {
+  .chat-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -26,7 +26,7 @@
     background-color: var(--ai-surface-1);
   }
 
-  .ai-chat-messages {
+  .chat-messages {
     flex: 1;
     min-height: 0;
     overflow-y: auto;
@@ -38,14 +38,14 @@
 
   /* Transcript row. Fixed avatar gutter plus a content column. Every role
      shares one left edge, which scans faster than left and right ping-pong. */
-  .ai-chat-msg {
+  .chat-msg {
     display: grid;
     grid-template-columns: 1.5rem minmax(0, 1fr);
     column-gap: var(--ai-space-3);
     align-items: start;
   }
 
-  .ai-chat-avatar {
+  .chat-avatar {
     grid-row: 1 / span 2;
     width: 1.5rem;
     height: 1.5rem;
@@ -62,12 +62,12 @@
     user-select: none;
   }
 
-  .ai-chat-avatar-assistant {
+  .chat-avatar-assistant {
     background-color: var(--ai-primary);
     color: var(--ai-primary-text);
   }
 
-  .ai-chat-meta {
+  .chat-meta {
     display: flex;
     align-items: baseline;
     flex-wrap: wrap;
@@ -75,19 +75,19 @@
     min-height: 1.5rem;
   }
 
-  .ai-chat-role {
+  .chat-role {
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--ai-text-primary);
   }
 
-  .ai-chat-time {
+  .chat-time {
     font-family: var(--ai-font-mono);
     font-size: 0.6875rem;
     color: var(--ai-text-muted);
   }
 
-  .ai-chat-body {
+  .chat-body {
     display: flex;
     flex-direction: column;
     gap: var(--ai-space-2);
@@ -97,19 +97,19 @@
     color: var(--ai-text-primary);
   }
 
-  .ai-chat-body > p {
+  .chat-body > p {
     margin: 0;
   }
 
   /* User turns carry a quiet palette fill. Assistant turns stay flush, so the
      reply reads as page copy instead of a card inside a card. */
-  .ai-chat-msg-user .ai-chat-body {
+  .chat-msg-user .chat-body {
     background-color: var(--ai-surface-1);
     border-radius: var(--ai-radius-lg);
     padding: var(--ai-space-3) var(--ai-space-4);
   }
 
-  .ai-chat-note {
+  .chat-note {
     font-size: 0.75rem;
     line-height: 1.5;
     color: var(--ai-text-muted);
@@ -117,7 +117,7 @@
 
   /* Inline tool call. Same grammar as the tool trace rows: mono name on the
      left, status badge on the right. */
-  .ai-chat-tool {
+  .chat-tool {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -132,7 +132,7 @@
   }
 
   /* Motion is reserved for a turn that is still generating. */
-  .ai-chat-msg.is-streaming .ai-chat-body > p:last-of-type::after {
+  .chat-msg.is-streaming .chat-body > p:last-of-type::after {
     content: "";
     display: inline-block;
     width: 0.4rem;
@@ -146,7 +146,7 @@
 
   /* Legacy standalone bubbles, kept for consumers that compose their own
      thread. Palette only, no off-token accent fill. */
-  .ai-chat-bubble {
+  .chat-bubble {
     max-width: 80%;
     padding: var(--ai-space-3) var(--ai-space-4);
     border-radius: var(--ai-radius-lg);
@@ -154,14 +154,14 @@
     line-height: 1.5;
   }
 
-  .ai-chat-bubble-user {
+  .chat-bubble-user {
     align-self: flex-end;
     background-color: var(--ai-surface-2);
     color: var(--ai-text-primary);
     border-bottom-right-radius: var(--ai-radius-xs);
   }
 
-  .ai-chat-bubble-assistant {
+  .chat-bubble-assistant {
     align-self: flex-start;
     background-color: var(--ai-surface-1);
     border: 1px solid var(--ai-border);
@@ -169,7 +169,7 @@
     border-bottom-left-radius: var(--ai-radius-xs);
   }
 
-  .ai-chat-input-bar {
+  .chat-input-bar {
     display: flex;
     align-items: center;
     gap: var(--ai-space-2);
@@ -178,22 +178,22 @@
     background-color: var(--ai-surface-0);
   }
 
-  /* Composer sits on .ai-input-group. The send button drops its fixed height
+  /* Composer sits on .input-group. The send button drops its fixed height
      so it stretches to the input rather than floating short beside it. */
-  .ai-chat-composer {
+  .chat-composer {
     flex: 1;
   }
 
-  .ai-chat-composer > .ai-input {
+  .chat-composer > .input {
     min-inline-size: 0;
   }
 
-  .ai-chat-composer > .ai-btn {
+  .chat-composer > .btn {
     height: auto;
   }
 
   @media (max-width: 480px) {
-    .ai-chat-messages {
+    .chat-messages {
       padding: var(--ai-space-4);
       gap: var(--ai-space-4);
     }
