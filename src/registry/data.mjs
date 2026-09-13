@@ -1,5 +1,10 @@
 import { extraComponents } from './data-extra.mjs';
 import { ungatedById } from './data-ungated.mjs';
+import { marketingVariants } from './variants-marketing.mjs';
+import { applicationVariants } from './variants-application.mjs';
+import { ecommerceVariants } from './variants-ecommerce.mjs';
+import { agentVariants } from './variants-agent.mjs';
+import { motionComponents } from './data-motion.mjs';
 
 const baseComponents = [
   /* ==========================================================================
@@ -141,10 +146,10 @@ const baseComponents = [
     tags: ['avatar', 'user', 'team'],
     html: `<div class="flex items-center gap-6">
   <div class="avatar-group">
-    <div class="avatar avatar-sm" style="background-color: var(--ai-surface-3);">+4</div>
-    <div class="avatar avatar-sm" style="background-color: #3b82f6; color: white;">JD</div>
-    <div class="avatar avatar-sm" style="background-color: #10b981; color: white;">SK</div>
-    <div class="avatar avatar-sm" style="background-color: #f59e0b; color: white;">AL</div>
+    <div class="avatar avatar-sm" aria-label="4 more members">+4</div>
+    <div class="avatar avatar-sm bg-primary text-inverted" aria-label="Jonas Berg">JB</div>
+    <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1770396529113-ba031cbf0cfa?w=96&h=96&auto=format&fit=crop&q=80" alt="Amara Osei" /></div>
+    <div class="avatar avatar-sm"><img src="https://images.unsplash.com/photo-1582639849680-e2e89674e57b?w=96&h=96&auto=format&fit=crop&q=80" alt="Hana Sato" /></div>
   </div>
   <div class="avatar">
     <span class="font-bold">EA</span>
@@ -386,7 +391,7 @@ const baseComponents = [
       <a href="#" class="brand" style="font-size: 1rem;">
         <span>LLMCSS</span>
       </a>
-      <button class="modal-close" data-ai-dismiss="drawer">&times;</button>
+      <button type="button" class="modal-close" data-ai-dismiss="drawer" aria-label="Close menu">&times;</button>
     </div>
     <div class="drawer-body">
       <nav class="flex flex-col gap-2">
@@ -416,7 +421,7 @@ const baseComponents = [
       <span>Northwind</span>
     </a>
     <nav class="hidden md:flex items-center gap-1" aria-label="Primary">
-      <a href="#" class="nav-link is-active">Product</a>
+      <a href="#" class="nav-link is-active" aria-current="page">Product</a>
       <a href="#" class="nav-link">Pricing</a>
       <a href="#" class="nav-link">Docs</a>
       <a href="#" class="nav-link">Changelog</a>
@@ -438,7 +443,7 @@ const baseComponents = [
       <button type="button" class="btn btn-ghost btn-icon btn-xs" data-ai-dismiss="drawer" aria-label="Close menu"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button>
     </div>
     <nav class="drawer-body drawer-nav" aria-label="Primary">
-      <a href="#" class="sidebar-item is-active" data-ai-dismiss="drawer">Product</a>
+      <a href="#" class="sidebar-item is-active" data-ai-dismiss="drawer" aria-current="page">Product</a>
       <a href="#" class="sidebar-item" data-ai-dismiss="drawer">Pricing</a>
       <a href="#" class="sidebar-item" data-ai-dismiss="drawer">Docs</a>
       <a href="#" class="sidebar-item" data-ai-dismiss="drawer">Changelog</a>
@@ -463,7 +468,7 @@ const baseComponents = [
       <span>Northwind</span>
     </a>
     <nav class="hidden md:flex items-center gap-1" aria-label="Primary">
-      <a href="#" class="nav-link is-active">Product</a>
+      <a href="#" class="nav-link is-active" aria-current="page">Product</a>
       <a href="#" class="nav-link">Pricing</a>
       <a href="#" class="nav-link">Docs</a>
       <a href="#" class="nav-link">Changelog</a>
@@ -481,7 +486,7 @@ const baseComponents = [
   <div class="drawer-backdrop" data-ai-dismiss="drawer"></div>
   <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
     <nav class="drawer-body drawer-nav" aria-label="Primary">
-      <a href="#" class="sidebar-item is-active" data-ai-dismiss="drawer">Product</a>
+      <a href="#" class="sidebar-item is-active" data-ai-dismiss="drawer" aria-current="page">Product</a>
       <a href="#" class="sidebar-item" data-ai-dismiss="drawer">Pricing</a>
       <a href="#" class="sidebar-item" data-ai-dismiss="drawer">Docs</a>
       <a href="#" class="sidebar-item" data-ai-dismiss="drawer">Changelog</a>
@@ -637,8 +642,8 @@ const baseComponents = [
         </p>
       </div>
       <div class="footer-col accordion-item">
-        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Product <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
-        <ul class="footer-list accordion-content">
+        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false" aria-controls="footer-col-product">Product <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <ul class="footer-list accordion-content" id="footer-col-product">
           <li><a href="#">Components</a></li>
           <li><a href="#">Marketing Sections</a></li>
           <li><a href="#">SaaS Dashboard</a></li>
@@ -646,8 +651,8 @@ const baseComponents = [
         </ul>
       </div>
       <div class="footer-col accordion-item">
-        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Agentic Tools <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
-        <ul class="footer-list accordion-content">
+        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false" aria-controls="footer-col-tools">Agentic Tools <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <ul class="footer-list accordion-content" id="footer-col-tools">
           <li><a href="#">MCP Server</a></li>
           <li><a href="#">CLI Reference</a></li>
           <li><a href="#">llms.txt Specification</a></li>
@@ -655,8 +660,8 @@ const baseComponents = [
         </ul>
       </div>
       <div class="footer-col accordion-item">
-        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Company <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
-        <ul class="footer-list accordion-content">
+        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false" aria-controls="footer-col-company">Company <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <ul class="footer-list accordion-content" id="footer-col-company">
           <li><a href="#">About</a></li>
           <li><a href="#">Pricing</a></li>
           <li><a href="#">Privacy</a></li>
@@ -891,7 +896,7 @@ const baseComponents = [
     tags: ['stepper', 'wizard', 'navigation', 'progress', 'flow'],
     html: `<div class="stepper" style="max-width: 32rem;">
   <div class="step-item is-completed">
-    <div class="step-circle">✓</div>
+    <div class="step-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="sr-only">Completed</span></div>
     <span class="step-label">Account</span>
   </div>
   <div class="step-item is-active">
@@ -959,15 +964,15 @@ const baseComponents = [
     category: 'primitive',
     tier: 'free',
     tags: ['toast', 'notification', 'alert', 'stack', 'animation'],
-    html: `<div class="grid gap-3" style="max-width: 24rem;">
+    html: `<div class="grid gap-3" role="status" aria-live="polite" style="max-width: 24rem;">
   <div class="toast toast-success toast-countdown">
     <span class="toast-message">Deployment completed to edge servers.</span>
-    <button class="toast-close">&times;</button>
+    <button type="button" class="toast-close" aria-label="Dismiss deployment notification">&times;</button>
     <div class="toast-progress"></div>
   </div>
   <div class="toast toast-info toast-countdown">
     <span class="toast-message">New API Key created: <code>llmcss_live_8f...</code></span>
-    <button class="toast-close">&times;</button>
+    <button type="button" class="toast-close" aria-label="Dismiss API key notification">&times;</button>
     <div class="toast-progress"></div>
   </div>
 </div>`,
@@ -996,12 +1001,12 @@ const baseComponents = [
     tier: 'free',
     tags: ['filter', 'toolbar', 'tags', 'search', 'application'],
     html: `<div class="filter-toolbar">
-  <div class="filter-tags">
+  <div class="filter-tags" role="group" aria-label="Filter jobs">
     <span class="text-xs font-medium text-muted" style="margin-right: 0.25rem;">Filter:</span>
-    <button class="filter-tag is-active">All (48)</button>
-    <button class="filter-tag">Production</button>
-    <button class="filter-tag">Staging</button>
-    <button class="filter-tag">Failed</button>
+    <button type="button" class="filter-tag is-active" aria-pressed="true">All (48)</button>
+    <button type="button" class="filter-tag" aria-pressed="false">Production</button>
+    <button type="button" class="filter-tag" aria-pressed="false">Staging</button>
+    <button type="button" class="filter-tag" aria-pressed="false">Failed</button>
   </div>
   <div class="flex items-center gap-2">
     <input type="text" class="input" placeholder="Filter jobs..." style="height: 1.875rem; font-size: 0.75rem; width: 10rem;" />
@@ -1731,7 +1736,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     tier: 'free',
     tags: ['list', 'group', 'rows', 'navigation'],
     html: `<ul class="list-group" style="max-width: 24rem;">
-  <li><a href="#" class="list-group-item is-active">Overview <span class="badge badge-counter ml-auto">3</span></a></li>
+  <li><a href="#" class="list-group-item is-active" aria-current="page">Overview <span class="badge badge-counter ml-auto">3</span></a></li>
   <li><a href="#" class="list-group-item">Deployments</a></li>
   <li><a href="#" class="list-group-item">Environment variables</a></li>
   <li><a href="#" class="list-group-item is-disabled" aria-disabled="true">Billing (owner only)</a></li>
@@ -1746,9 +1751,9 @@ npx llmcss add kbd-shortcuts</code></pre>`,
     tags: ['button', 'group', 'toolbar', 'segmented'],
     html: `<div class="flex flex-wrap gap-6 items-center">
   <div class="btn-group" role="group" aria-label="View">
-    <button type="button" class="btn btn-outline btn-sm">Day</button>
-    <button type="button" class="btn btn-outline btn-sm">Week</button>
-    <button type="button" class="btn btn-outline btn-sm">Month</button>
+    <button type="button" class="btn btn-outline btn-sm is-active" aria-pressed="true">Day</button>
+    <button type="button" class="btn btn-outline btn-sm" aria-pressed="false">Week</button>
+    <button type="button" class="btn btn-outline btn-sm" aria-pressed="false">Month</button>
   </div>
   <div class="btn-group" role="group" aria-label="Deploy">
     <button type="button" class="btn btn-primary">Deploy</button>
@@ -2235,7 +2240,7 @@ npx llmcss add kbd-shortcuts</code></pre>`,
           <details open>
             <summary>components</summary>
             <ul>
-              <li><a href="#" class="tree-leaf is-active">navbar.html</a></li>
+              <li><a href="#" class="tree-leaf is-active" aria-current="true">navbar.html</a></li>
               <li><a href="#" class="tree-leaf">footer.html</a></li>
             </ul>
           </details>
@@ -2300,4 +2305,32 @@ npx llmcss add kbd-shortcuts</code></pre>`,
   ungatedById['run-status-header'],
 ];
 
-export const components = [...baseComponents, ...extraComponents];
+// Variants live in their own modules, keyed by parent component id, so the
+// four batches could be written in parallel without anyone opening this file.
+// A component id that is not a key simply has one layout.
+const VARIANTS = {
+  ...marketingVariants,
+  ...applicationVariants,
+  ...ecommerceVariants,
+  ...agentVariants,
+};
+
+// The motion demos ship with the catalog but their classes live in the opt-in
+// addon stylesheet; each carries addon: 'motion' so the site loads it.
+const allComponents = [...baseComponents, ...extraComponents, ...motionComponents];
+
+// A key that matches no component is a typo that would otherwise vanish: the
+// variants would never be attached and nothing would ever say so. Fail here.
+{
+  const known = new Set(allComponents.map((c) => c.id));
+  const orphans = Object.keys(VARIANTS).filter((id) => !known.has(id));
+  if (orphans.length > 0) {
+    throw new Error(
+      `[registry] variant modules name ${orphans.length} component id(s) that do not exist: ${orphans.join(', ')}`
+    );
+  }
+}
+
+export const components = allComponents.map((c) =>
+  VARIANTS[c.id] ? { ...c, variants: VARIANTS[c.id] } : c
+);

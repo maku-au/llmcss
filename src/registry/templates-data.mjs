@@ -5,6 +5,10 @@
  */
 
 import { themedSectionTemplates, themedPageKits } from './templates-themed.mjs';
+import { headerTemplates } from './templates-headers.mjs';
+import { heroTemplates } from './templates-heroes.mjs';
+import { faqCtaTemplates } from './templates-faq-cta.mjs';
+import { footerTemplates } from './templates-footers.mjs';
 
 export const wireframeTemplates = [
   {
@@ -77,12 +81,12 @@ export const wireframeTemplates = [
       pairsWith: ['wireframe-hero-centered', 'wireframe-hero-split']
     },
     html: `<div class="section-banner" role="region" aria-label="Announcement">
-  <div class="container flex items-center justify-between py-2" style="font-size: 0.8125rem;">
+  <div class="container flex flex-wrap items-center justify-between gap-2 py-2">
     <div class="flex items-center gap-2">
       <span class="badge badge-solid badge-sm">NEW</span>
       <span>LLMCSS v2.4 is released: Zero runtime JS, pure semantic CSS wireframes.</span>
     </div>
-    <a href="#release-notes" class="link" style="font-size: 0.8125rem; font-weight: 600;">Read Notes &rarr;</a>
+    <a href="#release-notes" class="link font-semibold whitespace-nowrap">Read Notes &rarr;</a>
   </div>
 </div>
 <header class="navbar" role="banner">
@@ -134,28 +138,24 @@ export const wireframeTemplates = [
           <a href="#get-started" class="btn btn-primary btn-lg">Start Building Free</a>
           <a href="#templates" class="btn btn-outline btn-lg">Explore Templates</a>
         </div>
-        <div class="flex items-center gap-6 mt-8" style="font-size: 0.8125rem; color: var(--ai-text-muted);">
+        <div class="flex flex-wrap items-center gap-6 mt-8 text-sm text-muted">
           <span>&bull; Pure Native CSS</span>
           <span>&bull; Zero Dependencies</span>
           <span>&bull; Agent-Optimized</span>
         </div>
       </div>
       <div class="hero-visual">
-        <div style="padding: 1.5rem; border-bottom: 1px solid var(--ai-border); background: var(--ai-surface-0); display: flex; align-items: center; justify-content: space-between;">
-          <div style="display: flex; gap: 0.5rem;">
-            <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--ai-border);"></div>
-            <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--ai-border);"></div>
-            <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--ai-border);"></div>
-          </div>
-          <span style="font-family: var(--ai-font-mono); font-size: 0.75rem; color: var(--ai-text-muted);">preview-dock.css</span>
+        <div class="flex items-center justify-between gap-4 p-6 surface-0 border-b">
+          <span class="font-mono text-xs text-muted">preview-dock.css</span>
+          <span class="badge badge-mono badge-sm">0 errors</span>
         </div>
-        <div style="padding: 2rem; background: var(--ai-surface-1); min-height: 280px; display: flex; flex-direction: column; justify-content: center; gap: 1rem;">
-          <div style="height: 14px; width: 45%; background: var(--ai-border); border-radius: var(--ai-radius-xs);"></div>
-          <div style="height: 36px; width: 85%; background: var(--ai-border-hover); border-radius: var(--ai-radius-sm);"></div>
-          <div style="height: 12px; width: 70%; background: var(--ai-border); border-radius: var(--ai-radius-xs);"></div>
-          <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
-            <div style="height: 36px; width: 110px; background: var(--ai-primary); border-radius: var(--ai-radius-md); opacity: 0.85;"></div>
-            <div style="height: 36px; width: 110px; background: var(--ai-surface-2); border: 1px solid var(--ai-border); border-radius: var(--ai-radius-md);"></div>
+        <div class="flex flex-col justify-center gap-4 p-8 surface-1">
+          <span class="font-mono text-xs uppercase tracking-wider text-muted">Section preview</span>
+          <span class="title title-sm">Deploy previews on every commit</span>
+          <p class="text-sm text-secondary leading-relaxed">One semantic block, two class names, no build step between the editor and the browser.</p>
+          <div class="flex flex-wrap gap-3 mt-4">
+            <a href="#templates" class="btn btn-primary btn-sm">Copy section</a>
+            <a href="#cli" class="btn btn-outline btn-sm">Open in CLI</a>
           </div>
         </div>
       </div>
@@ -176,22 +176,24 @@ export const wireframeTemplates = [
       avoidWhen: 'Multi-persona enterprise portals requiring complex segment navigation.',
       pairsWith: ['wireframe-nav-banner', 'wireframe-social-proof-bar', 'wireframe-features-alternating']
     },
-    html: `<section class="hero" style="text-align: center;" aria-labelledby="hero-centered-heading">
-  <div class="container" style="max-width: 52rem;">
-    <h1 id="hero-centered-heading" class="hero-title">
-      The Layout Engine for Deterministic Interfaces
-    </h1>
-    <p class="hero-lead" style="margin-left: auto; margin-right: auto;">
-      Extract and insert production-grade wireframe sections in seconds. Drop semantic layout blocks directly into your codebase with zero CSS friction.
-    </p>
-    <div class="hero-actions" style="justify-content: center; margin-bottom: 2.5rem;">
-      <a href="#quickstart" class="btn btn-primary btn-lg">Get Started</a>
-      <a href="#docs" class="btn btn-outline btn-lg">View Components</a>
-    </div>
-    <div style="background: var(--ai-surface-0); border: 1px solid var(--ai-border); border-radius: var(--ai-radius-lg); padding: 1rem 1.5rem; display: inline-flex; align-items: center; gap: 1rem; box-shadow: var(--ai-shadow-md);">
-      <span style="color: var(--ai-text-muted); font-family: var(--ai-font-mono); font-size: 0.8125rem;">$</span>
-      <code style="font-family: var(--ai-font-mono); font-size: 0.875rem; color: var(--ai-text-primary);">npx llmcss template get hero-split</code>
-      <button class="btn btn-ghost btn-sm" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" aria-label="Copy CLI command">Copy</button>
+    html: `<section class="hero is-centered" aria-labelledby="hero-centered-heading">
+  <div class="container">
+    <div class="max-w-3xl mx-auto">
+      <h1 id="hero-centered-heading" class="hero-title">
+        The Layout Engine for Deterministic Interfaces
+      </h1>
+      <p class="hero-lead">
+        Extract and insert production-grade wireframe sections in seconds. Drop semantic layout blocks directly into your codebase with zero CSS friction.
+      </p>
+      <div class="hero-actions mb-10">
+        <a href="#quickstart" class="btn btn-primary btn-lg">Get Started</a>
+        <a href="#docs" class="btn btn-outline btn-lg">View Components</a>
+      </div>
+      <div class="inline-flex flex-wrap items-center gap-4 py-4 px-6 surface-0 border rounded-lg shadow-md">
+        <span class="font-mono text-sm text-muted">$</span>
+        <code class="font-mono text-sm text-primary">npx llmcss template get hero-split</code>
+        <button type="button" class="btn btn-ghost btn-xs" aria-label="Copy CLI command">Copy</button>
+      </div>
     </div>
   </div>
 </section>`
@@ -211,23 +213,23 @@ export const wireframeTemplates = [
     },
     html: `<section class="hero" aria-labelledby="hero-editorial-heading">
   <div class="container">
-    <div style="border-bottom: 1px solid var(--ai-border); padding-bottom: 3.5rem;">
-      <h1 id="hero-editorial-heading" style="font-family: var(--ai-font-display); font-size: clamp(2.75rem, 6vw, 4.75rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.035em; max-width: 56rem; margin-bottom: 2rem;">
+    <div class="border-b pb-14">
+      <h1 id="hero-editorial-heading" class="hero-title max-w-4xl mb-8">
         Pure Structure. Zero Bloat. The Anti-Framework.
       </h1>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; align-items: start;">
-        <p style="font-size: 1.125rem; line-height: 1.6; color: var(--ai-text-secondary); margin: 0;">
+      <div class="grid-auto-fit grid-min-md gap-10 items-start">
+        <p class="text-lg leading-relaxed text-secondary">
           Modern web applications do not require thousands of unmaintainable utility strings or heavy JavaScript runtimes just to paint a button. We return to semantic HTML and native cascade layers.
         </p>
         <div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-            <div>
-              <div style="font-family: var(--ai-font-display); font-size: 2rem; font-weight: 700;">0 kb</div>
-              <div style="font-size: 0.8125rem; color: var(--ai-text-muted);">Runtime JavaScript</div>
+          <div class="stats-band mb-6">
+            <div class="stat">
+              <div class="stat-value">0 kb</div>
+              <div class="stat-label">Runtime JavaScript</div>
             </div>
-            <div>
-              <div style="font-family: var(--ai-font-display); font-size: 2rem; font-weight: 700;">100%</div>
-              <div style="font-size: 0.8125rem; color: var(--ai-text-muted);">Native Cascade</div>
+            <div class="stat">
+              <div class="stat-value">100%</div>
+              <div class="stat-label">Native Cascade</div>
             </div>
           </div>
           <a href="#manifesto" class="btn btn-primary">Read the Manifesto</a>
@@ -250,36 +252,36 @@ export const wireframeTemplates = [
       avoidWhen: 'Internal tools or private enterprise dashboards with no external public visitors.',
       pairsWith: ['wireframe-hero-split', 'wireframe-hero-centered', 'wireframe-features-bento']
     },
-    html: `<section class="section" style="padding: 3rem 0; border-top: 1px solid var(--ai-border); border-bottom: 1px solid var(--ai-border); background: var(--ai-surface-0);" aria-label="Social Proof and Trust Telemetry">
+    html: `<section class="section py-12 border-y surface-0" aria-label="Social Proof and Trust Telemetry">
   <div class="container">
-    <div style="text-align: center; margin-bottom: 2rem;">
-      <p style="font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; color: var(--ai-text-muted); margin: 0;">
+    <div class="text-center mb-8">
+      <p class="text-sm uppercase tracking-widest font-semibold text-muted">
         Powering production interfaces across modern engineering teams
       </p>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2rem; align-items: center; justify-items: center; opacity: 0.75; margin-bottom: 2.5rem;">
-      <span style="font-family: var(--ai-font-mono); font-size: 0.9375rem; font-weight: 700; letter-spacing: 0.05em;">SYNAPSE</span>
-      <span style="font-family: var(--ai-font-mono); font-size: 0.9375rem; font-weight: 700; letter-spacing: 0.05em;">HEXA.CORP</span>
-      <span style="font-family: var(--ai-font-mono); font-size: 0.9375rem; font-weight: 700; letter-spacing: 0.05em;">KINETIC.UI</span>
-      <span style="font-family: var(--ai-font-mono); font-size: 0.9375rem; font-weight: 700; letter-spacing: 0.05em;">POLARIS</span>
-      <span style="font-family: var(--ai-font-mono); font-size: 0.9375rem; font-weight: 700; letter-spacing: 0.05em;">VECTOR.AI</span>
+    <div class="logo-rail mb-10">
+      <span class="font-mono tracking-wider">SYNAPSE</span>
+      <span class="font-mono tracking-wider">HEXA.CORP</span>
+      <span class="font-mono tracking-wider">KINETIC.UI</span>
+      <span class="font-mono tracking-wider">POLARIS</span>
+      <span class="font-mono tracking-wider">VECTOR.AI</span>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; padding-top: 1.5rem; border-top: 1px dashed var(--ai-border); text-align: center;">
-      <div>
-        <div style="font-family: var(--ai-font-display); font-size: 1.5rem; font-weight: 700; color: var(--ai-text-primary);">99.9%</div>
-        <div style="font-size: 0.75rem; color: var(--ai-text-muted);">AI Prompt Accuracy</div>
+    <div class="stats-band pt-6">
+      <div class="stat is-primary">
+        <div class="stat-value">99.9%</div>
+        <div class="stat-label">AI Prompt Accuracy</div>
       </div>
-      <div>
-        <div style="font-family: var(--ai-font-display); font-size: 1.5rem; font-weight: 700; color: var(--ai-text-primary);">&lt; 0.4kb</div>
-        <div style="font-size: 0.75rem; color: var(--ai-text-muted);">Median Element Size</div>
+      <div class="stat">
+        <div class="stat-value">&lt; 0.4kb</div>
+        <div class="stat-label">Median Element Size</div>
       </div>
-      <div>
-        <div style="font-family: var(--ai-font-display); font-size: 1.5rem; font-weight: 700; color: var(--ai-text-primary);">100%</div>
-        <div style="font-size: 0.75rem; color: var(--ai-text-muted);">Standard Web APIs</div>
+      <div class="stat">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">Standard Web APIs</div>
       </div>
-      <div>
-        <div style="font-family: var(--ai-font-display); font-size: 1.5rem; font-weight: 700; color: var(--ai-text-primary);">0 ms</div>
-        <div style="font-size: 0.75rem; color: var(--ai-text-muted);">JS Hydration Latency</div>
+      <div class="stat">
+        <div class="stat-value">0 ms</div>
+        <div class="stat-label">JS Hydration Latency</div>
       </div>
     </div>
   </div>
@@ -298,66 +300,66 @@ export const wireframeTemplates = [
       avoidWhen: 'Simple step-by-step onboarding sequences that require sequential, linear flow.',
       pairsWith: ['wireframe-social-proof-bar', 'wireframe-pricing-tiers', 'wireframe-comparison-matrix']
     },
-    html: `<section id="features" class="section" style="padding: 5rem 0;" aria-labelledby="features-bento-heading">
+    html: `<section id="features" class="section py-20" aria-labelledby="features-bento-heading">
   <div class="container">
-    <div style="max-width: 38rem; margin-bottom: 3.5rem;">
-      <h2 id="features-bento-heading" style="font-family: var(--ai-font-display); font-size: clamp(2rem, 3.5vw, 2.75rem); font-weight: 700; line-height: 1.15; margin-bottom: 1rem;">
+    <div class="max-w-xl mb-14">
+      <h2 id="features-bento-heading" class="section-title mb-4">
         Architecture Without Compromise
       </h2>
-      <p style="font-size: 1.0625rem; color: var(--ai-text-secondary); line-height: 1.6; margin: 0;">
+      <p class="section-lead">
         Built on native web platform capabilities to deliver maximum developer ergonomics and zero runtime penalty.
       </p>
     </div>
     <div class="bento-grid">
       <div class="bento-cell bento-span-2">
         <div>
-          <h3 style="font-size: 1.25rem; font-weight: 700; margin: 0 0 0.5rem;">Native Cascade Layer Isolation</h3>
+          <h3 class="text-xl font-bold mb-2">Native Cascade Layer Isolation</h3>
           <span class="bento-code-pill">@layer reset, tokens, base, components, utilities</span>
-          <p style="font-size: 0.875rem; color: var(--ai-text-secondary); line-height: 1.5; margin: 0;">
+          <p class="text-sm text-secondary">
             Never fight specificity wars again. LLMCSS registers its styles across explicit CSS cascade layers so your application styles always override primitives cleanly without important hacks.
           </p>
         </div>
-        <div style="margin-top: 1.5rem; padding: 1rem; background: var(--ai-surface-1); border: 1px solid var(--ai-border); border-radius: var(--ai-radius-md); font-family: var(--ai-font-mono); font-size: 0.75rem; color: var(--ai-text-muted);">
+        <div class="mt-6 p-4 surface-1 border rounded-md font-mono text-xs text-muted">
           /* Deterministic specificity cascade */<br>
           @layer components { .card { border-radius: var(--ai-radius-lg); } }
         </div>
       </div>
       <div class="bento-cell">
         <div>
-          <h3 style="font-size: 1.25rem; font-weight: 700; margin: 0 0 0.5rem;">Semantic Token System</h3>
+          <h3 class="text-xl font-bold mb-2">Semantic Token System</h3>
           <span class="bento-code-pill">Tokens &bull; HSL Scales</span>
-          <p style="font-size: 0.875rem; color: var(--ai-text-secondary); line-height: 1.5; margin: 0;">
+          <p class="text-sm text-secondary">
             Comprehensive color scales, tactile multi-stop elevation, and harmonious typography variables.
           </p>
         </div>
-        <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem;">
-          <div style="flex:1; height: 32px; border-radius: var(--ai-radius-xs); background: var(--ai-surface-2); border: 1px solid var(--ai-border);"></div>
-          <div style="flex:1; height: 32px; border-radius: var(--ai-radius-xs); background: var(--ai-primary);"></div>
-          <div style="flex:1; height: 32px; border-radius: var(--ai-radius-xs); background: var(--ai-surface-3); border: 1px solid var(--ai-border);"></div>
+        <div class="mt-6 flex gap-2" aria-hidden="true">
+          <div class="flex-1 h-8 rounded-xs surface-2 border"></div>
+          <div class="flex-1 h-8 rounded-xs bg-primary"></div>
+          <div class="flex-1 h-8 rounded-xs surface-3 border"></div>
         </div>
       </div>
       <div class="bento-cell">
         <div>
-          <h3 style="font-size: 1.25rem; font-weight: 700; margin: 0 0 0.5rem;">Zero JS Hydration</h3>
+          <h3 class="text-xl font-bold mb-2">Zero JS Hydration</h3>
           <span class="bento-code-pill">0kb Runtime</span>
-          <p style="font-size: 0.875rem; color: var(--ai-text-secondary); line-height: 1.5; margin: 0;">
+          <p class="text-sm text-secondary">
             Pure CSS eliminates cumulative layout shift, client hydration delays, and bundle bloat entirely.
           </p>
         </div>
-        <div style="margin-top: 1.5rem; display: flex; align-items: baseline; gap: 0.5rem;">
-          <span style="font-family: var(--ai-font-display); font-size: 2rem; font-weight: 800;">100</span>
-          <span style="font-size: 0.75rem; color: var(--ai-text-muted);">Lighthouse Performance Score</span>
+        <div class="mt-6 flex items-baseline gap-2">
+          <span class="font-display text-3xl font-extrabold">100</span>
+          <span class="text-xs text-muted">Lighthouse Performance Score</span>
         </div>
       </div>
       <div class="bento-cell bento-span-2">
         <div>
-          <h3 style="font-size: 1.25rem; font-weight: 700; margin: 0 0 0.5rem;">Autonomous Agent Protocol Ready</h3>
+          <h3 class="text-xl font-bold mb-2">Autonomous Agent Protocol Ready</h3>
           <span class="bento-code-pill">MCP Protocol &bull; CLI</span>
-          <p style="font-size: 0.875rem; color: var(--ai-text-secondary); line-height: 1.5; margin: 0;">
+          <p class="text-sm text-secondary">
             Built from day one with structured schemas, llms.txt specifications, and MCP tools so autonomous AI models generate pixel-perfect markup on the first prompt without hallucinating classes.
           </p>
         </div>
-        <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        <div class="mt-6 flex flex-wrap gap-3">
           <span class="badge badge-outline badge-sm">llmcss search &lt;query&gt;</span>
           <span class="badge badge-outline badge-sm">llmcss template blueprint</span>
           <span class="badge badge-outline badge-sm">llmcss validate &lt;file&gt;</span>
@@ -380,52 +382,52 @@ export const wireframeTemplates = [
       avoidWhen: 'Quick summary lists where readers need to scan 10+ items quickly.',
       pairsWith: ['wireframe-features-bento', 'wireframe-comparison-matrix', 'wireframe-pricing-tiers']
     },
-    html: `<section class="section" style="padding: 5rem 0; border-top: 1px solid var(--ai-border);" aria-labelledby="features-alt-heading">
+    html: `<section class="section py-20 border-t" aria-labelledby="features-alt-heading">
   <div class="container">
-    <div style="text-align: center; max-width: 36rem; margin: 0 auto 4rem;">
+    <div class="text-center max-w-xl mx-auto mb-16">
       <h2 id="features-alt-heading" class="section-title">
         Deep-Dive Engineering
       </h2>
-      <p style="color: var(--ai-text-secondary); font-size: 1rem; margin-top: 0.5rem;">
+      <p class="text-secondary text-base mt-2">
         Inspect how LLMCSS separates concerns cleanly between layout, tokens, and behavior.
       </p>
     </div>
-    <div style="display: flex; flex-direction: column; gap: 5rem;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; align-items: center;">
+    <div class="flex flex-col gap-20">
+      <div class="grid-auto-fit grid-min-md gap-12 items-center">
         <div>
-          <h3 style="font-family: var(--ai-font-display); font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem;">
+          <h3 class="title mb-4">
             Deterministic Code Generation
           </h3>
-          <p style="color: var(--ai-text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+          <p class="text-secondary leading-relaxed mb-6">
             Autonomous AI coding assistants frequently hallucinate arbitrary utility strings. LLMCSS provides a finite, predictable component dictionary that eliminates hallucinated classes.
           </p>
-          <ul style="list-style: none; padding: 0; margin: 0 0 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.875rem; color: var(--ai-text-secondary);">
-            <li class="flex items-center gap-2">&bull; Complete llms.txt and llms-full.txt catalogs</li>
-            <li class="flex items-center gap-2">&bull; Built-in AST and RegExp markup validation CLI</li>
-            <li class="flex items-center gap-2">&bull; Standardized HTML tags and aria roles</li>
+          <ul class="list-disc ps-5 space-y-2 mb-6 text-sm text-secondary">
+            <li>Complete llms.txt and llms-full.txt catalogs</li>
+            <li>Built-in AST and RegExp markup validation CLI</li>
+            <li>Standardized HTML tags and aria roles</li>
           </ul>
           <a href="#validation" class="btn btn-outline btn-sm">Learn About Validation</a>
         </div>
-        <div style="background: var(--ai-surface-0); border: 1px solid var(--ai-border); border-radius: var(--ai-radius-lg); padding: 2rem; box-shadow: var(--ai-shadow-md);">
-          <div style="font-family: var(--ai-font-mono); font-size: 0.8125rem; color: var(--ai-text-muted); margin-bottom: 1rem;">// Validation Output</div>
-          <div style="font-family: var(--ai-font-mono); font-size: 0.8125rem; line-height: 1.6;">
-            <div style="color: var(--ai-success);">✓ 0 hallucinated utility classes found</div>
-            <div style="color: var(--ai-success);">✓ All buttons conform to 44px min tap target</div>
-            <div style="color: var(--ai-success);">✓ Verified WCAG 2.1 AA color contrast</div>
-            <div style="color: var(--ai-text-primary); margin-top: 0.5rem;">Status: Production Ready</div>
+        <div class="card p-8 shadow-md">
+          <div class="font-mono text-sm text-muted mb-4">// Validation Output</div>
+          <div class="font-mono text-sm leading-relaxed">
+            <div class="text-success"><span class="mark mark-yes" aria-hidden="true"></span>0 hallucinated utility classes found</div>
+            <div class="text-success"><span class="mark mark-yes" aria-hidden="true"></span>All buttons conform to 44px min tap target</div>
+            <div class="text-success"><span class="mark mark-yes" aria-hidden="true"></span>Verified WCAG 2.1 AA color contrast</div>
+            <div class="text-primary mt-2">Status: Production Ready</div>
           </div>
         </div>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; align-items: center;">
+      <div class="grid-auto-fit grid-min-md gap-12 items-center">
         <div class="order-2 md:order-1">
-          <div style="background: var(--ai-surface-0); border: 1px solid var(--ai-border); border-radius: var(--ai-radius-lg); padding: 2rem; box-shadow: var(--ai-shadow-md);">
-            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+          <div class="card p-8 shadow-md">
+            <div class="flex flex-wrap gap-2 mb-4">
               <span class="badge badge-sm">Obsidian</span>
               <span class="badge badge-sm">Executive</span>
               <span class="badge badge-sm">Fintech</span>
               <span class="badge badge-sm">Editorial</span>
             </div>
-            <div style="font-family: var(--ai-font-mono); font-size: 0.8125rem; color: var(--ai-text-secondary); line-height: 1.6;">
+            <div class="font-mono text-sm text-secondary leading-relaxed">
               &lt;html data-theme="obsidian"&gt;<br>
               &nbsp;&nbsp;/* Instant theme flip via pure CSS variables */<br>
               &lt;/html&gt;
@@ -433,10 +435,10 @@ export const wireframeTemplates = [
           </div>
         </div>
         <div class="order-1 md:order-2">
-          <h3 style="font-family: var(--ai-font-display); font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem;">
+          <h3 class="title mb-4">
             Instant Multi-Theme Switching
           </h3>
-          <p style="color: var(--ai-text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+          <p class="text-secondary leading-relaxed mb-6">
             Switch effortlessly between dark engineering modes and executive boardroom styling. Themes are scoped cleanly in CSS tokens with zero JavaScript re-rendering.
           </p>
           <a href="#themes" class="btn btn-outline btn-sm">Explore Themes</a>
@@ -459,13 +461,13 @@ export const wireframeTemplates = [
       avoidWhen: 'Simple consumer landing pages where feature parity is already obvious.',
       pairsWith: ['wireframe-features-bento', 'wireframe-pricing-tiers', 'wireframe-cta-card']
     },
-    html: `<section id="comparison" class="section" style="padding: 5rem 0; background: var(--ai-surface-0); border-top: 1px solid var(--ai-border);" aria-labelledby="comparison-heading">
+    html: `<section id="comparison" class="section py-20 surface-0 border-t" aria-labelledby="comparison-heading">
   <div class="container">
-    <div style="text-align: center; max-width: 36rem; margin: 0 auto 3rem;">
+    <div class="text-center max-w-xl mx-auto mb-12">
       <h2 id="comparison-heading" class="section-title">
         How LLMCSS Compares
       </h2>
-      <p style="color: var(--ai-text-secondary); font-size: 1rem; margin-top: 0.5rem;">
+      <p class="text-secondary text-base mt-2">
         A technical evaluation across bundle performance, agent reliability, and architectural cleanliness.
       </p>
     </div>
@@ -473,40 +475,40 @@ export const wireframeTemplates = [
       <table class="matrix-table" aria-label="Feature Comparison Table">
         <thead>
           <tr>
-            <th class="matrix-feature-col" style="width: 38%;">Architectural Criteria</th>
-            <th style="width: 20%; color: var(--ai-primary); font-weight: 700;">LLMCSS</th>
-            <th style="width: 21%; color: var(--ai-text-secondary);">Utility Frameworks</th>
-            <th style="width: 21%; color: var(--ai-text-secondary);">Runtime JS Kits</th>
+            <th class="matrix-feature-col">Architectural Criteria</th>
+            <th class="text-accent font-bold">LLMCSS</th>
+            <th class="text-secondary">Utility Frameworks</th>
+            <th class="text-secondary">Runtime JS Kits</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="matrix-feature-col">Runtime JS Bundle Size</td>
-            <td style="color: var(--ai-success); font-weight: 700;">0 kb (Zero JS)</td>
+            <td class="text-success font-bold">0 kb (Zero JS)</td>
             <td>0 kb - 15 kb</td>
             <td>45 kb - 120 kb</td>
           </tr>
           <tr>
             <td class="matrix-feature-col">AI Prompt Hallucination Rate</td>
-            <td style="color: var(--ai-success); font-weight: 700;">&lt; 0.1% Deterministic</td>
+            <td class="text-success font-bold">&lt; 0.1% Deterministic</td>
             <td>12% - 24% Flaky</td>
             <td>18% - 32% High</td>
           </tr>
           <tr>
             <td class="matrix-feature-col">Theme Switch Latency</td>
-            <td style="color: var(--ai-success); font-weight: 700;">0 ms (CSS Vars)</td>
+            <td class="text-success font-bold">0 ms (CSS Vars)</td>
             <td>0 ms</td>
             <td>12 ms - 45 ms (Re-render)</td>
           </tr>
           <tr>
             <td class="matrix-feature-col">Cascade Isolation</td>
-            <td style="color: var(--ai-success); font-weight: 700;">Native @layer</td>
+            <td class="text-success font-bold">Native @layer</td>
             <td>Ad-hoc specificity</td>
             <td>CSS-in-JS injection</td>
           </tr>
           <tr>
             <td class="matrix-feature-col">Framework Lock-in</td>
-            <td style="color: var(--ai-success); font-weight: 700;">None (100% Vanilla)</td>
+            <td class="text-success font-bold">None (100% Vanilla)</td>
             <td>Build-tool dependency</td>
             <td>React / Vue / Svelte locked</td>
           </tr>
@@ -529,13 +531,13 @@ export const wireframeTemplates = [
       avoidWhen: 'Completely free open-source projects with no commercial tiers or paid licenses.',
       pairsWith: ['wireframe-comparison-matrix', 'wireframe-faq-accordion', 'wireframe-cta-card']
     },
-    html: `<section id="pricing" class="section" style="padding: 5rem 0;" aria-labelledby="pricing-heading">
+    html: `<section id="pricing" class="section py-20" aria-labelledby="pricing-heading">
   <div class="container">
-    <div style="text-align: center; max-width: 36rem; margin: 0 auto 3.5rem;">
+    <div class="text-center max-w-xl mx-auto mb-14">
       <h2 id="pricing-heading" class="section-title">
         Simple, Predictable Plans
       </h2>
-      <p style="color: var(--ai-text-secondary); font-size: 1rem; margin-top: 0.5rem;">
+      <p class="text-secondary text-base mt-2">
         Start building immediately with open-source primitives or upgrade for complete enterprise capabilities.
       </p>
     </div>
@@ -543,19 +545,19 @@ export const wireframeTemplates = [
       <div class="pricing-card">
         <div class="pricing-header">
           <div class="pricing-plan">Community</div>
-          <p style="font-size: 0.8125rem; color: var(--ai-text-secondary); margin-top: 0.25rem;">Ideal for independent developers and experiments.</p>
+          <p class="text-sm text-secondary mt-1">Ideal for independent developers and experiments.</p>
           <div class="pricing-amount">
             <span class="pricing-price">$0</span>
             <span class="pricing-period">/ forever</span>
           </div>
         </div>
         <ul class="pricing-features">
-          <li class="pricing-feature-item">&bull; 30+ Core Primitive Components</li>
-          <li class="pricing-feature-item">&bull; Native Cascade Layer Engine</li>
-          <li class="pricing-feature-item">&bull; Obsidian & Executive Themes</li>
-          <li class="pricing-feature-item">&bull; CLI Component Scaffolding</li>
+          <li class="pricing-feature-item">30+ Core Primitive Components</li>
+          <li class="pricing-feature-item">Native Cascade Layer Engine</li>
+          <li class="pricing-feature-item">Obsidian & Executive Themes</li>
+          <li class="pricing-feature-item">CLI Component Scaffolding</li>
         </ul>
-        <a href="#download" class="btn btn-outline" style="width: 100%;">Install Free</a>
+        <a href="#download" class="btn btn-outline w-full">Install Free</a>
       </div>
       <div class="pricing-card pricing-featured">
         <div class="pricing-ribbon">
@@ -563,37 +565,37 @@ export const wireframeTemplates = [
         </div>
         <div class="pricing-header">
           <div class="pricing-plan">Pro Engineer</div>
-          <p style="font-size: 0.8125rem; color: var(--ai-text-secondary); margin-top: 0.25rem;">For founders, startups, and high-velocity teams.</p>
+          <p class="text-sm text-secondary mt-1">For founders, startups, and high-velocity teams.</p>
           <div class="pricing-amount">
             <span class="pricing-price">$19</span>
             <span class="pricing-period">/ month</span>
           </div>
         </div>
         <ul class="pricing-features">
-          <li class="pricing-feature-item">&bull; Everything in Community</li>
-          <li class="pricing-feature-item">&bull; Every wireframe section template</li>
-          <li class="pricing-feature-item">&bull; Stdio MCP Server Protocol Tools</li>
-          <li class="pricing-feature-item">&bull; Commercial Production License</li>
-          <li class="pricing-feature-item">&bull; Every design system skin</li>
+          <li class="pricing-feature-item">Everything in Community</li>
+          <li class="pricing-feature-item">Every wireframe section template</li>
+          <li class="pricing-feature-item">Stdio MCP Server Protocol Tools</li>
+          <li class="pricing-feature-item">Commercial Production License</li>
+          <li class="pricing-feature-item">Every design system skin</li>
         </ul>
-        <a href="#checkout" class="btn btn-primary" style="width: 100%;">Get Pro Access</a>
+        <a href="#checkout" class="btn btn-primary w-full">Get Pro Access</a>
       </div>
       <div class="pricing-card">
         <div class="pricing-header">
           <div class="pricing-plan">Enterprise</div>
-          <p style="font-size: 0.8125rem; color: var(--ai-text-secondary); margin-top: 0.25rem;">Custom token architecture and security guarantees.</p>
+          <p class="text-sm text-secondary mt-1">Custom token architecture and security guarantees.</p>
           <div class="pricing-amount">
             <span class="pricing-price">$99</span>
             <span class="pricing-period">/ month</span>
           </div>
         </div>
         <ul class="pricing-features">
-          <li class="pricing-feature-item">&bull; Everything in Pro</li>
-          <li class="pricing-feature-item">&bull; Custom Brand Token Generation</li>
-          <li class="pricing-feature-item">&bull; Unlimited Team Seats</li>
-          <li class="pricing-feature-item">&bull; Priority Support & SLA</li>
+          <li class="pricing-feature-item">Everything in Pro</li>
+          <li class="pricing-feature-item">Custom Brand Token Generation</li>
+          <li class="pricing-feature-item">Unlimited Team Seats</li>
+          <li class="pricing-feature-item">Priority Support & SLA</li>
         </ul>
-        <a href="#contact" class="btn btn-outline" style="width: 100%;">Talk to Sales</a>
+        <a href="#contact" class="btn btn-outline w-full">Talk to Sales</a>
       </div>
     </div>
   </div>
@@ -612,19 +614,19 @@ export const wireframeTemplates = [
       avoidWhen: 'Simple announcement pages where no complex questions exist.',
       pairsWith: ['wireframe-pricing-tiers', 'wireframe-cta-card', 'wireframe-footer-columns']
     },
-    html: `<section id="faq" class="section" style="padding: 5rem 0; border-top: 1px solid var(--ai-border); background: var(--ai-surface-0);" aria-labelledby="faq-heading">
+    html: `<section id="faq" class="section py-20 border-t surface-0" aria-labelledby="faq-heading">
   <div class="container">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3.5rem; align-items: start;">
+    <div class="grid-auto-fit grid-min-md gap-14 items-start">
       <div>
-        <h2 id="faq-heading" style="font-family: var(--ai-font-display); font-size: 2.25rem; font-weight: 700; line-height: 1.2; margin-bottom: 1rem;">
+        <h2 id="faq-heading" class="section-title mb-4">
           Frequently Asked Questions
         </h2>
-        <p style="color: var(--ai-text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+        <p class="text-secondary leading-relaxed mb-6">
           Everything you need to know about LLMCSS architecture, AI model integration, and license terms.
         </p>
         <a href="mailto:support@llmcss.io" class="btn btn-outline btn-sm">Contact Architecture Team</a>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <div class="flex flex-col gap-4">
         <details class="collapse py-4 border-b">
           <summary>
             <span>Why pure CSS instead of a JavaScript UI component library?</span>
@@ -667,21 +669,21 @@ export const wireframeTemplates = [
       avoidWhen: 'Pages that already conclude with a transactional checkout form.',
       pairsWith: ['wireframe-pricing-tiers', 'wireframe-faq-accordion', 'wireframe-footer-columns']
     },
-    html: `<section class="section" style="padding: 5rem 0;" aria-labelledby="cta-heading">
+    html: `<section class="section py-20" aria-labelledby="cta-heading">
   <div class="container">
-    <div class="card" style="background: var(--ai-surface-1); border: 1px solid var(--ai-border); border-radius: var(--ai-radius-xl); padding: 4rem 2rem; text-align: center; box-shadow: var(--ai-shadow-lg);">
-      <div style="max-width: 36rem; margin: 0 auto;">
-        <h2 id="cta-heading" style="font-family: var(--ai-font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; margin-bottom: 1rem;">
+    <div class="cta-band py-16 shadow-lg">
+      <div class="max-w-xl mx-auto">
+        <h2 id="cta-heading" class="section-title mb-4">
           Start Assembling Your Next Interface
         </h2>
-        <p style="font-size: 1.0625rem; color: var(--ai-text-secondary); line-height: 1.6; margin-bottom: 2rem;">
+        <p class="section-lead mx-auto mb-8">
           No complex build configurations. No runtime JavaScript. Pure semantic CSS layout primitives ready for humans and AI agents.
         </p>
-        <form class="flex gap-3 justify-center" style="max-width: 28rem; margin: 0 auto;" action="#" method="post">
-          <input type="email" class="input" placeholder="Enter your email" aria-label="Work Email" required style="background: var(--ai-surface-0);">
-          <button type="submit" class="btn btn-primary" style="white-space: nowrap;">Get Instant Access</button>
+        <form class="flex flex-wrap gap-3 justify-center max-w-md mx-auto" action="#" method="post">
+          <input type="email" class="input" placeholder="Enter your email" aria-label="Work Email" required>
+          <button type="submit" class="btn btn-primary whitespace-nowrap">Get Instant Access</button>
         </form>
-        <p style="font-size: 0.75rem; color: var(--ai-text-muted); margin-top: 1rem;">
+        <p class="text-xs text-muted mt-4">
           No credit card required &bull; MIT Licensed core primitives &bull; 100% Native
         </p>
       </div>
@@ -720,8 +722,8 @@ export const wireframeTemplates = [
         <span class="footer-stat mt-4"><span class="status-pip status-pip-success" aria-hidden="true"></span> All systems operational</span>
       </div>
       <div class="footer-col accordion-item">
-        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Product <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
-        <ul class="footer-list accordion-content">
+        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false" aria-controls="wf-footer-product">Product <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <ul class="footer-list accordion-content" id="wf-footer-product">
           <li><a href="#components">Components</a></li>
           <li><a href="#templates">Templates</a></li>
           <li><a href="#themes">Themes</a></li>
@@ -729,8 +731,8 @@ export const wireframeTemplates = [
         </ul>
       </div>
       <div class="footer-col accordion-item">
-        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Resources <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
-        <ul class="footer-list accordion-content">
+        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false" aria-controls="wf-footer-resources">Resources <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <ul class="footer-list accordion-content" id="wf-footer-resources">
           <li><a href="#docs">Documentation</a></li>
           <li><a href="#llms-txt">llms.txt Specification</a></li>
           <li><a href="#mcp">MCP Server Protocol</a></li>
@@ -738,8 +740,8 @@ export const wireframeTemplates = [
         </ul>
       </div>
       <div class="footer-col accordion-item">
-        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false">Company <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
-        <ul class="footer-list accordion-content">
+        <h4 class="footer-heading"><button type="button" class="footer-col-toggle" data-ai-toggle="accordion" aria-expanded="false" aria-controls="wf-footer-company">Company <svg class="accordion-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></h4>
+        <ul class="footer-list accordion-content" id="wf-footer-company">
           <li><a href="#about">About LLMCSS</a></li>
           <li><a href="#changelog">Changelog</a></li>
           <li><a href="#privacy">Privacy Policy</a></li>
@@ -767,10 +769,10 @@ export const wireframeTemplates = [
       avoidWhen: 'Public marketing landing pages or SEO blogs.',
       pairsWith: []
     },
-    html: `<div class="app-shell" style="min-height: 520px; border: 1px solid var(--ai-border); border-radius: var(--ai-radius-lg); overflow: hidden;">
+    html: `<div class="app-shell border rounded-lg overflow-hidden">
   <aside class="sidebar" role="navigation" aria-label="Sidebar Navigation">
     <div class="sidebar-header">
-      <a href="#" class="brand" style="font-size: 1.125rem;">
+      <a href="#" class="brand text-lg">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <rect width="18" height="18" x="3" y="3" rx="2"/>
           <path d="M9 3v18"/>
@@ -779,48 +781,48 @@ export const wireframeTemplates = [
       </a>
     </div>
     <ul class="sidebar-nav">
-      <li><a href="#dashboard" class="sidebar-item is-active">Overview</a></li>
+      <li><a href="#dashboard" class="sidebar-item is-active" aria-current="page">Overview</a></li>
       <li><a href="#analytics" class="sidebar-item">Analytics</a></li>
       <li><a href="#deployments" class="sidebar-item">Deployments</a></li>
       <li><a href="#components" class="sidebar-item">Components</a></li>
       <li><a href="#settings" class="sidebar-item">Settings</a></li>
     </ul>
   </aside>
-  <main class="app-main" style="flex: 1; display: flex; flex-direction: column; background: var(--ai-surface-0);" role="main">
-    <header class="topbar" style="height: 4rem; border-bottom: 1px solid var(--ai-border); padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between;">
-      <div style="font-weight: 600; font-size: 0.9375rem;">Workspace Console</div>
+  <main class="app-main surface-0" role="main">
+    <header class="app-header">
+      <div class="font-semibold text-sm">Workspace Console</div>
       <div class="flex items-center gap-3">
-        <input type="search" class="input" placeholder="Search resources..." style="height: 32px; font-size: 0.8125rem; width: 180px;" aria-label="Search Console">
-        <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--ai-surface-2); border: 1px solid var(--ai-border); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">JD</div>
+        <input type="search" class="input h-8 w-48 text-sm" placeholder="Search resources..." aria-label="Search Console">
+        <span class="avatar avatar-sm" aria-hidden="true">JD</span>
       </div>
     </header>
-    <div class="app-content" style="padding: 1.5rem; flex: 1;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-        <div class="card" style="padding: 1rem;">
-          <div style="font-size: 0.75rem; color: var(--ai-text-muted);">Active Requests</div>
-          <div style="font-size: 1.5rem; font-weight: 700; margin-top: 0.25rem;">142.8k</div>
+    <div class="app-content p-6">
+      <div class="grid-auto-fit grid-min-xs gap-4 mb-6">
+        <div class="kpi-card p-4">
+          <div class="kpi-label">Active Requests</div>
+          <div class="kpi-value">142.8k</div>
         </div>
-        <div class="card" style="padding: 1rem;">
-          <div style="font-size: 0.75rem; color: var(--ai-text-muted);">Median Latency</div>
-          <div style="font-size: 1.5rem; font-weight: 700; margin-top: 0.25rem;">18 ms</div>
+        <div class="kpi-card p-4">
+          <div class="kpi-label">Median Latency</div>
+          <div class="kpi-value">18 ms</div>
         </div>
-        <div class="card" style="padding: 1rem;">
-          <div style="font-size: 0.75rem; color: var(--ai-text-muted);">Error Rate</div>
-          <div style="font-size: 1.5rem; font-weight: 700; margin-top: 0.25rem;">0.002%</div>
+        <div class="kpi-card p-4">
+          <div class="kpi-label">Error Rate</div>
+          <div class="kpi-value">0.002%</div>
         </div>
       </div>
-      <div class="card" style="padding: 1rem;">
-        <div style="font-weight: 600; font-size: 0.875rem; margin-bottom: 0.75rem;">Recent Service Events</div>
-        <div style="font-size: 0.8125rem; color: var(--ai-text-secondary); line-height: 1.6;">
-          <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--ai-border-subtle);">
+      <div class="panel">
+        <div class="panel-header">Recent Service Events</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item justify-between text-sm">
             <span>Worker cluster deployed &bull; revision #841</span>
-            <span style="color: var(--ai-text-muted);">2m ago</span>
-          </div>
-          <div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
+            <span class="text-muted">2m ago</span>
+          </li>
+          <li class="list-group-item justify-between text-sm">
             <span>Automated token optimization cycle completed</span>
-            <span style="color: var(--ai-text-muted);">14m ago</span>
-          </div>
-        </div>
+            <span class="text-muted">14m ago</span>
+          </li>
+        </ul>
       </div>
     </div>
   </main>
@@ -839,9 +841,9 @@ export const wireframeTemplates = [
       avoidWhen: 'Dense dashboards or when you already have a logo wall in the same viewport.',
       pairsWith: ['wireframe-hero-editorial', 'wireframe-footer-columns']
     },
-    html: `<section class="section" style="padding: 4rem 0;">
-  <div class="container" style="max-width: 44rem;">
-    <blockquote class="quote">
+    html: `<section class="section py-16">
+  <div class="container">
+    <blockquote class="quote max-w-2xl mx-auto">
       <p>Ship the token layer once. Let agents copy CSS, not invent another type ramp.</p>
       <footer>LLMCSS &middot; Typesetting</footer>
     </blockquote>
@@ -861,23 +863,25 @@ export const wireframeTemplates = [
       avoidWhen: 'Marketing feature grids that need icons and columns.',
       pairsWith: ['wireframe-nav-minimal', 'wireframe-footer-columns']
     },
-    html: `<section class="section" style="padding: 4rem 0;">
-  <div class="container" style="max-width: 40rem;">
-    <h2 style="margin-bottom: 1.5rem;">Recent changes</h2>
-    <ol class="timeline">
-      <li class="timeline-item">
-        <div class="timeline-title">Title font switcher</div>
-        <div class="timeline-meta">16 faces &middot; themes no longer swap type</div>
-      </li>
-      <li class="timeline-item">
-        <div class="timeline-title">Former Pro components are MIT</div>
-        <div class="timeline-meta">Command palette, cart, agent chrome</div>
-      </li>
-      <li class="timeline-item">
-        <div class="timeline-title">Pro is themed kits</div>
-        <div class="timeline-meta">$9/mo Polar · token shown once</div>
-      </li>
-    </ol>
+    html: `<section class="section py-16">
+  <div class="container">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="mb-6">Recent changes</h2>
+      <ol class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-title">Title font switcher</div>
+          <div class="timeline-meta">16 faces &middot; themes no longer swap type</div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-title">Former Pro components are MIT</div>
+          <div class="timeline-meta">Command palette, cart, agent chrome</div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-title">Pro is themed kits</div>
+          <div class="timeline-meta">$9/mo Polar · token shown once</div>
+        </li>
+      </ol>
+    </div>
   </div>
 </section>`
   },
@@ -994,6 +998,10 @@ export const pageBlueprints = [
   }
 ];
 
+wireframeTemplates.push(...headerTemplates);
+wireframeTemplates.push(...heroTemplates);
+wireframeTemplates.push(...faqCtaTemplates);
+wireframeTemplates.push(...footerTemplates);
 wireframeTemplates.push(...themedSectionTemplates);
 pageBlueprints.push(...themedPageKits);
 

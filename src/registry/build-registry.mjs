@@ -4,9 +4,12 @@ import { fileURLToPath } from 'url';
 import { components } from './data.mjs';
 import { wireframeTemplates, pageBlueprints } from './templates-data.mjs';
 import { lockedPreview } from './locked.mjs';
+import { countVariants } from './resolve.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+// Registry files carry the package version so a consumer can tell which release they describe.
+const PKG_VERSION = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../package.json'), 'utf8')).version;
 
 // The component catalog is entirely MIT. Pro lives in themed section
 // templates and page kits, which go through toPublicTemplate below.
@@ -39,6 +42,9 @@ function buildRegistry() {
   const publicComponents = components.map(toPublicComponent);
   const freeCount = publicComponents.filter((c) => c.tier === 'free').length;
   const proCount = publicComponents.filter((c) => c.tier === 'pro').length;
+  // Layout variants ride along inside their parent, so they never inflate the
+  // component count. Counted here, never typed anywhere.
+  const variantCount = countVariants(publicComponents);
 
   const categories = {
     primitive: publicComponents.filter((c) => c.category === 'primitive').length,
@@ -48,12 +54,13 @@ function buildRegistry() {
   };
 
   const registryData = {
-    version: '0.1.0',
+    version: PKG_VERSION,
     generatedAt: new Date().toISOString(),
     stats: {
       total: publicComponents.length,
       free: freeCount,
       pro: proCount,
+      variants: variantCount,
       categories,
     },
     components: publicComponents,
@@ -74,11 +81,12 @@ function buildRegistry() {
   console.log(`  - Total components: ${components.length}`);
   console.log(`  - Free components:  ${freeCount}`);
   console.log(`  - Pro components:   ${proCount}`);
+  console.log(`  - Layout variants:  ${variantCount}`);
   console.log(`  - Categories:`, categories);
 
   const publicTemplates = wireframeTemplates.map(toPublicTemplate);
   const templatesData = {
-    version: '0.1.0',
+    version: PKG_VERSION,
     generatedAt: new Date().toISOString(),
     stats: {
       totalTemplates: publicTemplates.length,
@@ -107,6 +115,26 @@ function buildRegistry() {
   console.log(`[build-registry] Successfully generated public/templates.json:`);
   console.log(`  - Total templates:  ${wireframeTemplates.length}`);
   console.log(`  - Total blueprints: ${pageBlueprints.length}`);
+
+  // Site chrome needs the counts, not the catalog. Emitting them as a tiny JSON
+  // module keeps the whole registry out of every page bundle, and keeps the
+  // numbers generated rather than typed. Committed because it is small.
+  const isKit = (b) => b.kind === 'themed' || b.tier === 'pro';
+  const stats = {
+    total: publicComponents.length,
+    free: freeCount,
+    pro: proCount,
+    variants: variantCount,
+    ...categories,
+    themedSections: publicTemplates.filter((t) => t.kind === 'themed').length,
+    wireframeSections: publicTemplates.filter((t) => t.kind !== 'themed').length,
+    kits: pageBlueprints.filter(isKit).length,
+    freeBlueprints: pageBlueprints.filter((b) => !isKit(b)).length,
+    blueprints: pageBlueprints.length,
+  };
+  const statsOutputPath = path.join(__dirname, 'stats.json');
+  fs.writeFileSync(statsOutputPath, `${JSON.stringify(stats, null, 2)}\n`, 'utf-8');
+  console.log(`[build-registry] Successfully generated src/registry/stats.json:`, stats);
 }
 
 buildRegistry();

@@ -8,7 +8,7 @@
  * Edit the law text here, then run `node src/registry/build-docs.mjs`.
  *
  * Law shape:
- *   n          law number, 1 to 11
+ *   n          law number, 1 to 12
  *   title      sentence-case short name
  *   rule       what not to do, and why
  *   instead    what to do in its place
@@ -118,6 +118,15 @@ export const laws = [
       'Lead with clean, distraction-free solid surfaces (`var(--ai-surface-0)`, `var(--ai-bg)`, `var(--ai-surface-1)`) structured with subtle 1px hairline architectural borders (`var(--ai-border)`).',
     classes: [],
     automated: true,
+  },
+  {
+    n: 12,
+    title: 'Never paint state without announcing it',
+    rule: 'Do not mark a control as active, open, selected or pressed with a class and a colour alone. A segmented control whose current view carries only `is-active`, an accordion trigger with no `aria-expanded`, a toast that arrives outside any live region: each one looks correct and says nothing. A screen reader reads an undifferentiated list of buttons.',
+    instead:
+      'Mirror every `is-*` state on an interactive element with the ARIA attribute that carries it: `aria-pressed` on segmented and filter buttons wrapped in a labelled `role="group"`, `aria-expanded` plus `aria-controls` on disclosure and accordion triggers, `aria-selected` on tabs, `aria-current` on the active nav link, and `role="status" aria-live="polite"` (or `role="alert"` for a failure) on anything that appears unprompted.',
+    classes: ['filter-tag', 'btn-group', 'accordion-trigger', 'accordion-content', 'toast'],
+    automated: false,
   },
 ];
 

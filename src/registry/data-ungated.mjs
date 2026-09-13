@@ -296,7 +296,7 @@ export const ungatedById = {
         <h3 class="drawer-title">Shopping Bag</h3>
         <span class="badge badge-default">2 items</span>
       </div>
-      <button class="modal-close" data-ai-dismiss="drawer">&times;</button>
+      <button type="button" class="modal-close" data-ai-dismiss="drawer" aria-label="Close shopping bag">&times;</button>
     </div>
     <div class="drawer-body">
       <div class="cart-item">
@@ -306,9 +306,9 @@ export const ungatedById = {
           <span class="cart-subtext">Matte Obsidian / Bluetooth 5.4</span>
           <div class="flex justify-between items-center" style="margin-top: 0.5rem;">
             <div class="cart-stepper">
-              <button>-</button>
+              <button type="button" aria-label="Decrease quantity">-</button>
               <span style="padding: 0 0.5rem; font-size: 0.8125rem;">1</span>
-              <button>+</button>
+              <button type="button" aria-label="Increase quantity">+</button>
             </div>
             <span class="font-bold">$349.00</span>
           </div>
@@ -329,7 +329,7 @@ export const ungatedById = {
   <div class="drawer-panel">
     <div class="drawer-header">
       <h3 class="drawer-title">Shopping Bag</h3>
-      <button class="modal-close" data-ai-dismiss="drawer">&times;</button>
+      <button type="button" class="modal-close" data-ai-dismiss="drawer" aria-label="Close shopping bag">&times;</button>
     </div>
     <div class="drawer-body">
       <p>Cart contents here</p>
@@ -991,7 +991,7 @@ Tests: 24 passed, 24 total</code></pre>
     category: 'application',
     tier: 'free',
     tags: ["streaming","status","agent"],
-    html: `<div class="card" style="padding: var(--ai-space-4);">
+    html: `<div class="card" role="status" aria-live="polite" style="padding: var(--ai-space-4);">
   <div class="flex justify-between items-center">
     <div class="flex items-center gap-2">
       <span class="spinner spinner-sm"></span>
@@ -1012,14 +1012,14 @@ Tests: 24 passed, 24 total</code></pre>
     tags: ["agent","reasoning","chain"],
     html: `<div class="accordion">
   <div class="accordion-item is-open" open>
-    <button class="accordion-trigger" type="button">
+    <button class="accordion-trigger" type="button" data-ai-toggle="accordion" aria-expanded="true" aria-controls="thought-chain-steps">
       <span class="flex items-center gap-2">
         <span class="spinner spinner-sm"></span>
         <span>Reasoning</span>
         <span class="badge badge-outline">3 steps</span>
       </span>
     </button>
-    <div class="accordion-content">
+    <div class="accordion-content" id="thought-chain-steps">
       <ol style="margin: var(--ai-space-3) 0 0; padding-left: 1.1rem; font-size: 0.8125rem; color: var(--ai-text-secondary); display:flex; flex-direction:column; gap: 0.5rem;">
         <li>Locate the token layer in <code>src/css/tokens.css</code>.</li>
         <li>Check gallery copy path does not leak Pro markup.</li>

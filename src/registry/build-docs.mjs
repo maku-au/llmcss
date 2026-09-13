@@ -29,8 +29,10 @@
  */
 import fs from 'fs';
 import path from 'path';
+import zlib from 'zlib';
 import { fileURLToPath } from 'url';
 import { laws, archetypes } from './laws.mjs';
+import { minify } from './build-utilities.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '../..');
@@ -123,12 +125,56 @@ const categoryRows = (() => {
 })();
 const categorySplit = categoryRows.map((r) => `${r.count} ${r.category}`).join(', ');
 
+// Layout variants are nested inside their parent, so they never inflate the
+// component count. Counted here so no document ever types the number.
+const variantTotal = componentList.reduce((n, c) => n + (c.variants ? c.variants.length : 0), 0);
+const variantParents = componentList.filter((c) => c.variants && c.variants.length > 0).length;
+
 const sectionTotal = sectionList.length;
 const sectionPro = sectionList.filter((t) => t.tier === 'pro').length;
 const sectionFree = sectionTotal - sectionPro;
 const blueprintTotal = blueprintList.length;
 const blueprintPro = blueprintList.filter((b) => b.tier === 'pro').length;
 const blueprintFree = blueprintTotal - blueprintPro;
+
+/**
+ * Motion addon stats. The addon is a separate opt-in package (see
+ * src/registry/build-motion.mjs), so its manifest is optional: a project
+ * without it renders every doc exactly as it does today.
+ */
+function readOptionalJSON(rel) {
+  const abs = path.join(root, rel);
+  if (!fs.existsSync(abs)) return null;
+  try {
+    return JSON.parse(fs.readFileSync(abs, 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+const motionManifest = readOptionalJSON('public/classes.motion.json');
+const motionClassTotal =
+  motionManifest && Array.isArray(motionManifest.classes) ? motionManifest.classes.length : 0;
+
+/** Gzip bytes for the motion addon stylesheet. Prefers the real built
+ *  artefact; falls back to minifying the generated source with the exact
+ *  helper build-motion.mjs uses for its own budget check, so the number is
+ *  never hand-typed and never stale relative to whichever sheet is on disk. */
+function motionGzipBytes() {
+  const distMotion = path.join(root, 'dist/llmcss-motion.css');
+  if (fs.existsSync(distMotion)) {
+    return zlib.gzipSync(fs.readFileSync(distMotion)).length;
+  }
+  const srcMotion = path.join(root, 'src/css/motion.css');
+  if (fs.existsSync(srcMotion)) {
+    const minified = minify(fs.readFileSync(srcMotion, 'utf8'));
+    return zlib.gzipSync(Buffer.from(minified)).length;
+  }
+  return 0;
+}
+
+const motionGzip = motionManifest ? motionGzipBytes() : 0;
+const motionKB = (motionGzip / 1024).toFixed(1);
 
 /** The states that the most classes opt into, largest first. */
 const topStates = [...stateList]
@@ -190,8 +236,14 @@ const statsRenderers = {
       `- **Tokens:** ${tokenTotal} \`--ai-*\` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).`,
       `- **States:** ${stateTotal} \`is-*\` classes, listed in [states.json](https://llmcss.io/states.json).`,
       `- **Components:** ${componentTotal}, all MIT: ${categorySplit}.`,
+      `- **Layout variants:** ${variantTotal} across ${variantParents} components, addressed \`component:variant\`.`,
       `- **Section templates:** ${sectionTotal} (${sectionFree} free wireframe, ${sectionPro} themed Pro).`,
       `- **Page blueprints:** ${blueprintTotal} (${blueprintFree} free, ${blueprintPro} Pro).`,
+      ...(motionManifest
+        ? [
+            `- **Motion addon:** ${motionClassTotal} classes, ${motionKB}KB gzipped, listed in [classes.motion.json](https://llmcss.io/classes.motion.json).`,
+          ]
+        : []),
     ].join('\n'),
 
   // public/llms.txt and public/llms-full.txt.
@@ -201,8 +253,12 @@ const statsRenderers = {
       `Tokens: ${tokenTotal} --ai-* custom properties, https://llmcss.io/tokens.json.`,
       `States: ${stateTotal} is-* classes, https://llmcss.io/states.json.`,
       `Components: ${componentTotal}, all MIT: ${categorySplit}.`,
+      `Layout variants: ${variantTotal} across ${variantParents} components, addressed component:variant.`,
       `Section templates: ${sectionTotal} (${sectionFree} free wireframe, ${sectionPro} themed Pro).`,
       `Page blueprints: ${blueprintTotal} (${blueprintFree} free, ${blueprintPro} Pro).`,
+      ...(motionManifest
+        ? [`Motion addon: ${motionClassTotal} classes, ${motionKB}KB gzipped, https://llmcss.io/classes.motion.json.`]
+        : []),
     ].join('\n'),
 };
 
@@ -241,6 +297,16 @@ const stateRenderers = {
             .join(', ')})`
       )
       .join(', ')}.`,
+
+  // docs/AGENT_RULES.md: one row per state class, straight from states.json.
+  md: () =>
+    [
+      '| State | Styled on |',
+      '|---|---|',
+      ...[...stateList]
+        .sort((a, b) => a.class.localeCompare(b.class))
+        .map((s) => `| \`${s.class}\` | ${s.usedBy.map((c) => `\`.${c}\``).join(', ')} |`),
+    ].join('\n'),
 };
 
 /* ------------------------------------------------- generated manifest samples */
@@ -375,7 +441,7 @@ const targets = [
   {
     file: 'docs/AGENT_RULES.md',
     syntax: 'md',
-    blocks: { stats: 'md', families: 'table', laws: 'list' },
+    blocks: { stats: 'md', families: 'table', laws: 'list', states: 'md' },
   },
   {
     file: 'DESIGN_HARNESS.md',
