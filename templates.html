@@ -61,6 +61,7 @@
           <p class="text-sm text-muted mt-1">
             <span class="docs-meta-figure" id="templates-result-count"></span>Copy any section as HTML, or pick a page kit to get a whole page in build order.
           </p>
+          <p class="text-sm text-muted mt-1" id="preview-mode-hint">Wireframe sections are the free structure. Themed sections and page kits are the Pro styled set, unlocked with a license.</p>
         </div>
         <div class="segmented" role="group" aria-label="Preview width">
           <button type="button" class="segmented-btn js-viewport-btn is-active" data-viewport="full" aria-pressed="true">Full</button>
@@ -78,11 +79,11 @@
     <div class="container container-w-lg">
       <div class="docs-layout">
         <!-- Sidebar Navigation Filter -->
-        <aside class="docs-sidebar">
+        <aside class="docs-sidebar" aria-label="Template filters">
           <div class="flex flex-col gap-4">
             <div>
               <span class="docs-nav-label" id="preview-mode-label">Sections</span>
-              <div class="docs-nav-stack" role="group" aria-labelledby="preview-mode-label">
+              <div class="docs-nav-stack docs-nav-stack-bar" role="group" aria-labelledby="preview-mode-label">
                 <button type="button" class="docs-nav-btn js-preview-mode-btn" data-mode="wireframe" aria-pressed="false" aria-describedby="preview-mode-hint">
                   <span>Wireframe</span>
                   <span class="docs-count" id="count-mode-wireframe"></span>
@@ -92,12 +93,11 @@
                   <span class="docs-count" id="count-mode-themed"></span>
                 </button>
               </div>
-              <p class="docs-nav-note" id="preview-mode-hint">Wireframe sections are the free structure. Themed sections and page kits are the Pro styled set, unlocked with a license.</p>
             </div>
 
             <div class="docs-nav-group">
               <span class="docs-nav-label" id="category-nav-label">Category</span>
-              <div class="docs-nav-stack" role="group" aria-labelledby="category-nav-label" id="category-nav">
+              <div class="docs-nav-stack docs-nav-stack-bar" role="group" aria-labelledby="category-nav-label" id="category-nav">
                 <button type="button" class="docs-nav-btn is-active" data-category="all" aria-pressed="true">
                   <span>All</span>
                   <span class="docs-count"></span>
@@ -147,7 +147,7 @@
 
             <div class="docs-nav-group">
               <span class="docs-nav-label" id="blueprint-nav-label">Page kits</span>
-              <div class="docs-nav-stack" role="group" aria-labelledby="blueprint-nav-label" id="blueprint-nav">
+              <div class="docs-nav-stack docs-nav-stack-bar" role="group" aria-labelledby="blueprint-nav-label" id="blueprint-nav">
                 <!-- Rendered dynamically by templates.ts -->
               </div>
             </div>

@@ -428,7 +428,8 @@ npx llmcss audit index.html</code></pre>
         'One nav item opens a panel the full width of the bar holding three labelled link columns and a promoted item in the fourth, and below md those same groups move into the drawer.',
       guidance:
         'Sits at the top of a site with more destinations than one row of links can carry. Best when the catalog groups into three families a visitor already thinks in, with one item worth promoting this month. Avoid it when each column would hold two links, because a full width panel over six links reads as an empty room. Pairs with mobile-nav-drawer below md, which is where the three groups land rather than in a third menu shape.',
-      html: `<header class="navbar">
+      html: `<div class="h-96">
+<header class="navbar">
   <div class="container">
     <div class="navbar-inner">
       <a href="#" class="brand">
@@ -516,6 +517,7 @@ npx llmcss audit index.html</code></pre>
       <a href="#start" class="btn btn-primary w-full">Get Started</a>
     </div>
   </div>
+</div>
 </div>`,
     },
   ],
@@ -1103,7 +1105,7 @@ npx llmcss audit index.html</code></pre>
           <p class="text-sm text-secondary">For agencies, AI builders, and fast-moving teams.</p>
           <div class="pricing-amount">
             <span class="pricing-price">$7.50</span>
-            <span class="pricing-period">/ month, billed annually</span>
+            <span class="pricing-period">/ month</span>
           </div>
           <p class="text-sm text-muted">Save $18 a year. Monthly billing is $9 a month.</p>
         </div>

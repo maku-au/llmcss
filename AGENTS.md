@@ -11,9 +11,9 @@ Entry point. Load this as a system prompt to generate LLMCSS markup. Exhaustive 
 - **Classes:** 2301 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
 - **Tokens:** 108 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
 - **States:** 38 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
-- **Components:** 122, all MIT: 54 primitive, 42 application, 21 marketing, 5 ecommerce.
+- **Components:** 125, all MIT: 54 primitive, 42 application, 23 marketing, 6 ecommerce.
 - **Motion demos:** 8, in the optional addon.
-- **Layout variants:** 164 across 52 components, addressed `component:variant`.
+- **Layout variants:** 188 across 66 components, addressed `component:variant`.
 - **Section templates:** 55 (44 free wireframe, 11 themed Pro).
 - **Page blueprints:** 6 (4 free, 2 Pro).
 - **Motion addon:** 64 classes, 2.0KB gzipped, listed in [classes.motion.json](https://llmcss.io/classes.motion.json).

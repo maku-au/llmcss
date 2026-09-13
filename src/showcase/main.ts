@@ -705,6 +705,24 @@ function addRootClass(html: string, cls: string): string {
   });
 }
 
+// A demo can ship a dropdown already open (a mega menu shown in its open
+// state). The runtime closes every open dropdown on any click outside one,
+// and the click that swapped the demo in is exactly that, so the menu would be
+// shut before it was ever seen. Re-assert the authored state once the click
+// has finished dispatching; a visitor's later click still closes it normally.
+function keepAuthoredDropdownsOpen(container: Element | null) {
+  if (!container) return;
+  const open = Array.from(container.querySelectorAll<HTMLElement>('.dropdown.is-open'));
+  if (!open.length) return;
+  setTimeout(() => {
+    open.forEach((d) => {
+      d.classList.add('is-open');
+      d.setAttribute('open', '');
+      d.querySelectorAll('[data-ai-toggle="dropdown"]').forEach((t) => t.setAttribute('aria-expanded', 'true'));
+    });
+  }, 0);
+}
+
 function applyComponentCustomization(id: string) {
   const comp = components.find((c) => c.id === id);
   if (!comp) return;
@@ -715,6 +733,7 @@ function applyComponentCustomization(id: string) {
   const previewContainer = document.querySelector(`#comp-${id} .demo-canvas > div`);
   if (previewContainer) {
     previewContainer.innerHTML = customizedHtml;
+    keepAuthoredDropdownsOpen(previewContainer);
   }
 
   // The code panel and the Copy HTML button both show the customised markup,
@@ -766,6 +785,7 @@ function replayMotion(id: string, btn?: HTMLButtonElement) {
   // so a replay never silently drops a variant or a Styler knob. The code panel
   // is untouched on purpose, because the markup has not changed.
   host.innerHTML = generateCustomizedHtml(comp);
+  keepAuthoredDropdownsOpen(host);
   addCopyButtons(host);
   rebindPreviewControls(id);
 
@@ -906,16 +926,12 @@ function updateSidebarCounts() {
   if (countMotion) countMotion.textContent = String(motionComponents.length);
 
   // Category and tier counts are component counts and stay that way: a variant
-  // is not a component. The layout total gets one muted line of its own, and
-  // the number comes from stats.json through the same data-ai-stat hook the
-  // rest of the site uses, so it is never typed here.
-  const stack = countAll?.closest('.docs-nav-stack');
-  if (stack && !document.getElementById('catalog-variant-note')) {
-    const note = document.createElement('p');
-    note.className = 'docs-nav-note';
-    note.id = 'catalog-variant-note';
+  // is not a component. The layout total gets one muted line in the page
+  // header, out of the nav, and the number comes from stats.json through the
+  // same data-ai-stat hook the rest of the site uses, so it is never typed here.
+  const note = document.getElementById('catalog-variant-note');
+  if (note) {
     note.innerHTML = `<span data-ai-stat="variants">${catalogStats.variants}</span> layout variants, addressed <span class="font-mono">id:variant</span>.`;
-    stack.insertAdjacentElement('afterend', note);
   }
 }
 
@@ -1011,6 +1027,7 @@ function selectVariant(id: string, variantId: string) {
 
   const preview = card.querySelector('.demo-canvas > div');
   if (preview) preview.innerHTML = html;
+  keepAuthoredDropdownsOpen(preview);
 
   const panel = document.getElementById(`code-${id}`);
   if (panel) {

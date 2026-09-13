@@ -449,7 +449,7 @@ function renderBlueprintNav() {
     <button type="button" class="docs-nav-btn blueprint-nav-btn${on ? ' is-active' : ''}" data-blueprint="${bp.id}" aria-pressed="${on}">
       <span>${bp.name}</span>
       <span class="docs-count">${bp.sections.length}</span>
-      ${bp.tier === 'pro' ? '<span class="docs-pro-tag">PRO</span>' : ''}
+      ${bp.tier === 'pro' ? '<span class="docs-pro-tag">Pro</span>' : ''}
     </button>`;
   };
   blueprintNav.innerHTML = `
@@ -671,7 +671,7 @@ function renderTemplates() {
   const recipeTotal = items.filter((i) => i.recipeIndex).length;
   templatesStream.innerHTML = items.map(({ template, recipeIndex }) => {
     const isPro = template.tier === 'pro';
-    const tierBadge = isPro ? `<span class="docs-pro-tag">PRO</span>` : '';
+    const tierBadge = isPro ? `<span class="docs-pro-tag">Pro</span>` : '';
     // With a preview image the Unlock Pro control moves into the overlay bar at
     // the bottom of the frame, so the header keeps only the neutral toggles.
     const preview = previewFor(template.id, template.tier);

@@ -359,8 +359,12 @@
     padding-bottom: 0;
   }
   @media (pointer: coarse) {
-    .sidebar-nav .accordion-trigger {
+    .sidebar-nav .accordion-trigger,
+    .pagination-link {
       min-height: var(--ai-touch-min, 44px);
+    }
+    .pagination-link {
+      min-width: var(--ai-touch-min, 44px);
     }
   }
 

@@ -307,7 +307,7 @@ export const ungatedById = {
           <div class="flex justify-between items-center mt-2">
             <div class="cart-stepper">
               <button type="button" aria-label="Decrease quantity">-</button>
-              <span class="px-2" style="font-size: 0.8125rem;">1</span>
+              <span class="px-2 text-sm">1</span>
               <button type="button" aria-label="Increase quantity">+</button>
             </div>
             <span class="font-bold">$349.00</span>
@@ -631,7 +631,7 @@ export const ungatedById = {
   <fieldset class="model-picker">
     <legend class="model-legend">Model for this workspace</legend>
     <p class="model-note">Applies to new runs. Agents already running keep the model they started with.</p>
-    <div class="model-list">
+    <div class="model-list cq-md:grid-cols-2">
       <label class="model-row">
         <input class="radio-input model-radio" type="radio" name="workspace-model" value="sonnet-4-6" checked>
         <span class="model-body">
@@ -1020,7 +1020,7 @@ Tests: 24 passed, 24 total</code></pre>
       </span>
     </button>
     <div class="accordion-content" id="thought-chain-steps">
-      <ol class="m-0 mt-3 pl-4 text-secondary flex flex-col gap-2" style="font-size: 0.8125rem;">
+      <ol class="m-0 mt-3 pl-4 text-secondary text-sm flex flex-col gap-2">
         <li>Locate the token layer in <code>src/css/tokens.css</code>.</li>
         <li>Check gallery copy path does not leak Pro markup.</li>
         <li class="is-streaming">Draft the PHP gate using SQLite outside the docroot.</li>

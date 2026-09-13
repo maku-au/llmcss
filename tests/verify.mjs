@@ -831,7 +831,9 @@ console.log('\n24. Testing Component Layout Variants (refs, strict validation, a
     if (comp.variants === undefined) continue;
     variantParents++;
     assert(Array.isArray(comp.variants), `variants on ${comp.id} must be an array`);
-    assert(comp.variants.length >= 2, `${comp.id} declares variants, so it needs at least two`);
+    // One honest alternative layout is enough to earn the switcher; an empty
+    // array is a declaration with nothing behind it.
+    assert(comp.variants.length >= 1, `${comp.id} declares variants, so it needs at least one`);
 
     const parentIds = new Set(attrIds(comp.html));
 

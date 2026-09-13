@@ -114,38 +114,8 @@
   }
 }
 
-/* Edge fade for scrollable tables. The mask is fixed to the box, so it reads
-   as "more to the right" and thins out as you scroll. It only engages when the
-   container actually overflows (an inactive scroll timeline leaves the initial
-   0 fade in place), so a table that fits shows no fade at all. */
-@property --ai-scroll-fade-l {
-  syntax: '<length>';
-  inherits: false;
-  initial-value: 0px;
-}
-@property --ai-scroll-fade-r {
-  syntax: '<length>';
-  inherits: false;
-  initial-value: 0px;
-}
-@layer components {
-  @supports (animation-timeline: scroll()) {
-    .scroll-x,
-    .table-container,
-    .matrix-container,
-    .docs-matrix {
-      -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--ai-scroll-fade-l), #000 calc(100% - var(--ai-scroll-fade-r)), transparent);
-      mask-image: linear-gradient(to right, transparent, #000 var(--ai-scroll-fade-l), #000 calc(100% - var(--ai-scroll-fade-r)), transparent);
-      animation: ai-scroll-fade linear both;
-      animation-timeline: scroll(self x);
-    }
-    @keyframes ai-scroll-fade {
-      from { --ai-scroll-fade-l: 0px; --ai-scroll-fade-r: 4rem; }
-      to { --ai-scroll-fade-l: 4rem; --ai-scroll-fade-r: 0px; }
-    }
-  }
-}
-
+/* No scroll-driven edge fades: a mask on a scroll wrapper painted the whole
+   wrapper black under software rendering. The wrapper scrolls; that is the cue. */
 @layer components {
   /* Density, sticky header, selection, and sort affordances */
   .table-compact {

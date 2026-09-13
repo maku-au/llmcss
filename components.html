@@ -53,8 +53,9 @@
         <div class="min-w-0">
           <h1 class="text-2xl leading-tight tracking-tight">Component library</h1>
           <p class="text-sm text-muted mt-1">
-            <span class="docs-meta-figure" id="catalog-result-count"></span>Copy the HTML, or add it with the CLI.
+            <span class="docs-meta-figure" id="catalog-result-count"></span>MIT licensed. Copy the HTML, or add it with the CLI.
           </p>
+          <p class="text-xs text-muted mt-1" id="catalog-variant-note"></p>
         </div>
         <div class="segmented" role="group" aria-label="Preview width">
           <button type="button" class="segmented-btn js-viewport-btn is-active" data-width="100%" aria-pressed="true">Full</button>
@@ -73,62 +74,44 @@
       <!-- Main Showcase Layout: Sidebar Filter + Stream -->
       <div class="docs-layout">
         <!-- Sidebar Navigation Filter -->
-        <aside class="docs-sidebar">
+        <aside class="docs-sidebar" aria-label="Catalog filters">
           <div class="flex flex-col gap-4">
-            <div>
-              <span class="docs-nav-label">Components</span>
-              <p class="docs-nav-note">All <span data-ai-stat="total">122</span> components are MIT. Pro is themed templates, in the <a href="/templates">gallery</a>.</p>
-              <div class="docs-nav-stack" role="group" aria-label="Filter by category">
-                <button type="button" class="docs-nav-btn is-active js-filter-category" data-cat="all" aria-pressed="true">
-                  <span>All</span>
-                  <span class="docs-count" id="count-all"></span>
-                </button>
-                <button type="button" class="docs-nav-btn js-filter-category" data-cat="primitive" aria-pressed="false">
-                  <span>Primitives</span>
-                  <span class="docs-count" id="count-primitive"></span>
-                </button>
-                <button type="button" class="docs-nav-btn js-filter-category" data-cat="marketing" aria-pressed="false">
-                  <span>Marketing</span>
-                  <span class="docs-count" id="count-marketing"></span>
-                </button>
-                <button type="button" class="docs-nav-btn js-filter-category" data-cat="application" aria-pressed="false">
-                  <span>Application</span>
-                  <span class="docs-count" id="count-application"></span>
-                </button>
-                <button type="button" class="docs-nav-btn js-filter-category" data-cat="ecommerce" aria-pressed="false">
-                  <span>E-Commerce</span>
-                  <span class="docs-count" id="count-ecommerce"></span>
-                </button>
-              </div>
+            <div class="docs-nav-stack docs-nav-stack-bar" role="group" aria-label="Filter by category">
+              <button type="button" class="docs-nav-btn is-active js-filter-category" data-cat="all" aria-pressed="true">
+                <span>All</span>
+                <span class="docs-count" id="count-all"></span>
+              </button>
+              <button type="button" class="docs-nav-btn js-filter-category" data-cat="primitive" aria-pressed="false">
+                <span>Primitives</span>
+                <span class="docs-count" id="count-primitive"></span>
+              </button>
+              <button type="button" class="docs-nav-btn js-filter-category" data-cat="marketing" aria-pressed="false">
+                <span>Marketing</span>
+                <span class="docs-count" id="count-marketing"></span>
+              </button>
+              <button type="button" class="docs-nav-btn js-filter-category" data-cat="application" aria-pressed="false">
+                <span>Application</span>
+                <span class="docs-count" id="count-application"></span>
+              </button>
+              <button type="button" class="docs-nav-btn js-filter-category" data-cat="ecommerce" aria-pressed="false">
+                <span>E-commerce</span>
+                <span class="docs-count" id="count-ecommerce"></span>
+              </button>
+              <!-- Addon demos are their own row, one hairline apart: they are not
+                   a sixth category and must never read as one. -->
+              <button type="button" class="docs-nav-btn docs-nav-btn-apart js-filter-category" data-cat="motion" aria-pressed="false">
+                <span>Motion demos</span>
+                <span class="docs-count" id="count-motion"></span>
+              </button>
             </div>
 
-            <div class="docs-nav-group">
-              <span class="docs-nav-label">Motion addon</span>
-              <div class="docs-nav-stack" role="group" aria-label="Filter by motion addon">
-                <button type="button" class="docs-nav-btn js-filter-category" data-cat="motion" aria-pressed="false">
-                  <span>Motion demos</span>
-                  <span class="docs-count" id="count-motion"></span>
-                </button>
-              </div>
-            </div>
-
-            <div class="docs-nav-group">
-              <span class="docs-nav-label">Endpoints</span>
+            <nav class="docs-nav-group" aria-labelledby="agents-nav-label">
+              <span class="docs-nav-label" id="agents-nav-label">For agents</span>
               <div class="docs-nav-stack">
-                <a href="/llms.txt" target="_blank" class="docs-link" title="Open llms.txt">
-                  <span>llms.txt</span>
-                  <span class="docs-link-tag">Index</span>
-                </a>
-                <a href="/llms-full.txt" target="_blank" class="docs-link" title="Open llms-full.txt">
-                  <span>llms-full.txt</span>
-                  <span class="docs-link-tag">Full</span>
-                </a>
-                <a href="/registry.json" target="_blank" class="docs-link" title="Open registry.json">
-                  <span>registry.json</span>
-                  <span class="docs-link-tag">JSON</span>
-                </a>
+                <a class="docs-nav-btn" href="/llms.txt" target="_blank" rel="noopener"><span class="font-mono">llms.txt</span></a>
+                <a class="docs-nav-btn" href="/registry.json" target="_blank" rel="noopener"><span class="font-mono">registry.json</span></a>
               </div>
-            </div>
+            </nav>
           </div>
         </aside>
 

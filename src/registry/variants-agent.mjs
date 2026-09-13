@@ -585,6 +585,73 @@ export const agentVariants = {
     },
   ],
 
+  'thought-chain': [
+    {
+      id: 'summary-line',
+      name: 'Summary line',
+      description:
+        'The chain collapses to one trigger line carrying the label and a plain muted step count, and every step moves inside a closed disclosure.',
+      guidance:
+        'Use where the reasoning is supporting evidence and not the answer: a finished turn in a transcript, a run replay, a panel where three open chains would push the result off screen. The disclosure is the library accordion, so the trigger is a real button with aria-expanded and aria-controls (law 12) and the open state is carried by the shared m6 9 6 6 6-6 chevron rotated 180 degrees, never by a filled background. The trigger clears 44px on its own padding at every type size, so it stays a coarse pointer target without a size override. The count is plain muted text beside the label rather than a badge, because a number is not a status. Render it closed, as here, only once the chain is finished: a chain that is still streaming stays open so the reader can watch it.',
+      html: `<div class="accordion">
+  <div class="accordion-item">
+    <button class="accordion-trigger" type="button" data-ai-toggle="accordion" aria-expanded="false" aria-controls="thought-chain-steps-summary-line">
+      <span class="flex items-baseline gap-2">
+        <span>Reasoning</span>
+        <span class="text-sm text-muted" data-tabular>3 steps, 4.2s</span>
+      </span>
+      <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="accordion-content" id="thought-chain-steps-summary-line">
+      <ol class="m-0 pl-5 text-sm text-secondary">
+        <li class="mt-1">Locate the token layer in <code>src/css/tokens.css</code>.</li>
+        <li class="mt-1">Check the gallery copy path does not leak Pro markup.</li>
+        <li class="mt-1">Draft the PHP gate using SQLite outside the docroot.</li>
+      </ol>
+    </div>
+  </div>
+</div>`,
+    },
+    {
+      id: 'step-status',
+      name: 'Step status',
+      description:
+        'Each step gains a pip on the left and its own elapsed time on the right, and the steps sit on hairline rows instead of a bullet list.',
+      guidance:
+        'Use when the chain is long enough that the reader is looking for the step that is still running rather than reading the reasoning end to end. The rows are hairlines inside the accordion body, not cards, so nothing is boxed inside the surface that already has a border (law 1). Only the running step carries is-streaming, and the settled steps hold a static success pip, which is the whole of law 2 in one list. Durations are mono at 0.75rem, the smallest size the library allows, and carry data-tabular so the column does not shuffle as each step lands.',
+      html: `<div class="accordion">
+  <div class="accordion-item is-open" open>
+    <button class="accordion-trigger" type="button" data-ai-toggle="accordion" aria-expanded="true" aria-controls="thought-chain-steps-step-status">
+      <span class="flex items-baseline gap-2">
+        <span>Reasoning</span>
+        <span class="text-sm text-muted">3 steps, 1 running</span>
+      </span>
+      <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="accordion-content" id="thought-chain-steps-step-status">
+      <ol class="list-none m-0 p-0 text-sm text-secondary">
+        <li class="flex items-baseline gap-2 border-t py-2">
+          <span class="status-pip status-pip-success" aria-hidden="true"></span>
+          <span class="min-w-0">Locate the token layer in <code>src/css/tokens.css</code>.</span>
+          <span class="font-mono text-xs text-muted ml-auto" data-tabular>0.4s</span>
+        </li>
+        <li class="flex items-baseline gap-2 border-t py-2">
+          <span class="status-pip status-pip-success" aria-hidden="true"></span>
+          <span class="min-w-0">Check the gallery copy path does not leak Pro markup.</span>
+          <span class="font-mono text-xs text-muted ml-auto" data-tabular>1.2s</span>
+        </li>
+        <li class="flex items-baseline gap-2 border-t py-2">
+          <span class="status-pip status-pip-warning is-streaming" aria-hidden="true"></span>
+          <span class="min-w-0">Draft the PHP gate using SQLite outside the docroot.</span>
+          <span class="font-mono text-xs text-muted ml-auto" data-tabular>2.6s</span>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>`,
+    },
+  ],
+
   'agent-workspace': [
     {
       id: 'two-pane',
@@ -644,7 +711,7 @@ export const agentVariants = {
       id: 'stacked',
       name: 'Stacked',
       description:
-        'All three panes stack vertically and only open into three columns when the host container is genuinely wide, for an embed in a narrow column.',
+        'The fold moves from the viewport to the host container: the board measures the cq wrapper it sits in and keeps one column until that container clears the lg tier, then opens into three.',
       guidance:
         'Use when the workspace is dropped into something whose width you do not control: a docs page, a side panel, a card in a dashboard you did not build. The default board measures its own width and folds at 48rem; this variant hands the decision to the host container instead, which is why the cq wrapper is mandatory here rather than optional. A cq-lg class with no cq ancestor is a silent no-op and is the single easiest mistake to make in this library.',
       html: `<div class="cq">
@@ -834,9 +901,9 @@ export const agentVariants = {
       id: 'toolbar-top',
       name: 'Toolbar top',
       description:
-        'The tool row moves above the field and takes a bottom hairline, and the counters move to their own row underneath with the send button.',
+        'The tool row and the attachment chips move above the field, the toolbar hairline moves to its bottom edge, and the counters drop to their own row with the send button.',
       guidance:
-        'Use when the model and the attach actions are choices the user makes before writing, not after, which is the case in a workspace where the model changes per prompt. The hairline moves with the toolbar: .composer-toolbar draws its rule on the top edge by default, so border-t-0 plus border-b keeps exactly one rule in the shell and never two. The counters keep tabular numerals so the token figure does not shuffle while the user types.',
+        'Use when the model, the attach actions and the files are choices the user makes before writing, not after, which is the case in a workspace where the model changes per prompt and in a review composer where the files are dropped first and the question is written second. The hairline moves with the toolbar: .composer-toolbar draws its rule on the top edge by default, so border-t-0 plus border-b keeps exactly one rule in the shell and never two. The chip row takes pt-3 because .composer-files is padded for sitting under the field, not above it. Each chip keeps its size in tabular numerals, because a 19.7 kB log and a 4.1 kB source file are different questions, and the row must not grow past two lines: past that it is a file list and belongs in a context rail. The counters keep tabular numerals so the token figure does not shuffle while the user types.',
       html: `<div class="cq">
   <form class="composer" action="#" method="post">
     <div class="composer-toolbar border-t-0 border-b">
@@ -858,28 +925,6 @@ export const agentVariants = {
         </button>
       </div>
     </div>
-    <label class="sr-only" for="composer-input-toolbar-top">Message the agent</label>
-    <textarea class="textarea composer-input" id="composer-input-toolbar-top" name="prompt" rows="2" placeholder="Describe the change you want, or paste a stack trace.">Rounding is off by a cent on EU invoices. Find where the tax is rounded twice and fix it.</textarea>
-    <div class="composer-send justify-between p-3 pt-0">
-      <span class="composer-count">
-        <span class="composer-tokens" data-tabular>1,284 / 8,000 tokens</span>
-        <span class="composer-quota" data-tabular>84% of today's request budget left</span>
-      </span>
-      <button class="btn btn-primary btn-sm" type="submit">Send</button>
-    </div>
-  </form>
-  <p class="composer-hint">Enter to send, Shift+Enter for newline</p>
-</div>`,
-    },
-    {
-      id: 'attachments-first',
-      name: 'Attachments first',
-      description:
-        'File chips move above the field, so the context the prompt is written against is visible while it is being written rather than under it.',
-      guidance:
-        'Use for a review or debug composer where the user drops files first and writes the question second, which is the order they actually work in. Each chip keeps its size in tabular numerals, because a 19.7 kB log and a 4.1 kB source file are different questions. Do not let the chip row grow past two lines: past that it is a file list and belongs in a context rail, not in the composer.',
-      html: `<div class="cq">
-  <form class="composer" action="#" method="post">
     <ul class="composer-files pt-3 pb-2">
       <li class="composer-file">
         <span class="composer-file-name">invoice-total.ts</span>
@@ -894,26 +939,14 @@ export const agentVariants = {
         <span class="composer-file-size" data-tabular>2.3 kB</span>
       </li>
     </ul>
-    <label class="sr-only" for="composer-input-attachments-first">Message the agent</label>
-    <textarea class="textarea composer-input" id="composer-input-attachments-first" name="prompt" rows="2" placeholder="Describe the change you want, or paste a stack trace.">Rounding is off by a cent on EU invoices. Find where the tax is rounded twice and fix it.</textarea>
-    <div class="composer-toolbar">
-      <div class="composer-tools">
-        <span class="composer-model">
-          <span class="status-pip status-pip-success" aria-hidden="true"></span>
-          claude-sonnet-5
-        </span>
-        <button class="btn btn-ghost btn-sm btn-icon" type="button" aria-label="Attach a file">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21.44 11.05l-8.49 8.49a5 5 0 0 1-7.07-7.07l8.49-8.49a3.5 3.5 0 0 1 4.95 4.95l-8.49 8.49a2 2 0 0 1-2.83-2.83l7.78-7.78"/>
-          </svg>
-        </button>
-      </div>
-      <div class="composer-send">
-        <span class="composer-count">
-          <span class="composer-tokens" data-tabular>1,284 / 8,000 tokens</span>
-        </span>
-        <button class="btn btn-primary btn-sm" type="submit">Send</button>
-      </div>
+    <label class="sr-only" for="composer-input-toolbar-top">Message the agent</label>
+    <textarea class="textarea composer-input" id="composer-input-toolbar-top" name="prompt" rows="2" placeholder="Describe the change you want, or paste a stack trace.">Rounding is off by a cent on EU invoices. Find where the tax is rounded twice and fix it.</textarea>
+    <div class="composer-send justify-between p-3 pt-0">
+      <span class="composer-count">
+        <span class="composer-tokens" data-tabular>1,284 / 8,000 tokens</span>
+        <span class="composer-quota" data-tabular>84% of today's request budget left</span>
+      </span>
+      <button class="btn btn-primary btn-sm" type="submit">Send</button>
     </div>
   </form>
   <p class="composer-hint">Enter to send, Shift+Enter for newline</p>
@@ -1279,67 +1312,6 @@ export const agentVariants = {
 </div>`,
     },
     {
-      id: 'two-column',
-      name: 'Two column',
-      description:
-        'The list becomes a two column grid from md, so four models fit in two rows and the whole choice is visible without scrolling.',
-      guidance:
-        'Use when there are four to eight models and the comparison is horizontal: two families side by side, hosted against self hosted. Do not use it past about eight, where a two column grid stops being a comparison and becomes a wall. Each row keeps its radio, provider line and meta block, so the rows stay the same component and only the track count changes. Below md the grid folds to one column and the layout is the default list again.',
-      html: `<div class="cq">
-  <fieldset class="model-picker">
-    <legend class="model-legend">Model for this workspace</legend>
-    <p class="model-note">Applies to new runs. Agents already running keep the model they started with.</p>
-    <div class="model-list grid grid-cols-1 md:grid-cols-2 gap-3">
-      <label class="model-row">
-        <input class="radio-input model-radio" type="radio" name="workspace-model-two-column" value="sonnet-5" checked>
-        <span class="model-body">
-          <span class="model-head">
-            <span class="model-name">claude-sonnet-5</span>
-            <span class="badge badge-neutral model-tag">Default</span>
-          </span>
-          <span class="model-provider">Anthropic, balanced latency and depth</span>
-          <span class="model-price" data-tabular>$3.00 in / $15.00 out per 1M</span>
-        </span>
-      </label>
-
-      <label class="model-row">
-        <input class="radio-input model-radio" type="radio" name="workspace-model-two-column" value="opus-5">
-        <span class="model-body">
-          <span class="model-head">
-            <span class="model-name">claude-opus-5</span>
-          </span>
-          <span class="model-provider">Anthropic, deepest reasoning, slowest</span>
-          <span class="model-price" data-tabular>$15.00 in / $75.00 out per 1M</span>
-        </span>
-      </label>
-
-      <label class="model-row">
-        <input class="radio-input model-radio" type="radio" name="workspace-model-two-column" value="haiku-5">
-        <span class="model-body">
-          <span class="model-head">
-            <span class="model-name">claude-haiku-5</span>
-          </span>
-          <span class="model-provider">Anthropic, fast edits and short tool loops</span>
-          <span class="model-price" data-tabular>$1.00 in / $5.00 out per 1M</span>
-        </span>
-      </label>
-
-      <label class="model-row">
-        <input class="radio-input model-radio" type="radio" name="workspace-model-two-column" value="self-hosted-70b">
-        <span class="model-body">
-          <span class="model-head">
-            <span class="model-name">Llama 3.3 70B</span>
-            <span class="badge badge-neutral model-tag">Self hosted</span>
-          </span>
-          <span class="model-provider">Runs on your own GPU pool, no data leaves the VPC</span>
-          <span class="model-price" data-tabular>$0.40 in / $0.40 out per 1M</span>
-        </span>
-      </label>
-    </div>
-  </fieldset>
-</div>`,
-    },
-    {
       id: 'select-row',
       name: 'Select row',
       description:
@@ -1537,6 +1509,68 @@ export const agentVariants = {
     </div>
   </div>
 </div>`,
+    },
+  ],
+
+  'citation-list': [
+    {
+      id: 'inline-footnotes',
+      name: 'Inline footnotes',
+      description:
+        'The sources leave the answer and become numbered superscripts inside the prose, with the numbered list moved beneath on hairline rows.',
+      guidance:
+        'Use when the answer is a paragraph rather than a list of findings, and the reader needs to know which sentence rests on which source. Each superscript is a fragment link to the matching row, so the claim and the source stay connected without a hover card. The superscript carries text-sm rather than the browser default, which is a relative shrink that lands under the 12px floor inside 14px copy. Keep it to three or four marks in a paragraph: past that the copy is reading as a bibliography and the stacked source cards of the default are the better surface.',
+      html: `<div class="prose">
+  <p>A streamed run holds one HTTP connection open and sends each token as a <code>text/event-stream</code> frame, which is why a dropped connection resumes from <code>Last-Event-ID</code> instead of replaying the whole answer.<sup class="text-sm"><a href="#src-1-inline-footnotes">1</a></sup> The media type, the retry field and the reconnection rules are defined in the HTML Standard, not in a vendor SDK.<sup class="text-sm"><a href="#src-2-inline-footnotes">2</a></sup> A failure leaves the stream and returns as <code>application/problem+json</code>, the shape RFC 9457 defines.<sup class="text-sm"><a href="#src-3-inline-footnotes">3</a></sup></p>
+  <ol class="list-none m-0 p-0 text-sm">
+    <li class="flex flex-wrap items-baseline gap-2 border-t py-2 mt-0" id="src-1-inline-footnotes">
+      <span class="font-mono text-xs text-muted">[1]</span>
+      <span class="min-w-0">Using server sent events, MDN Web Docs</span>
+      <span class="font-mono text-xs text-muted">developer.mozilla.org</span>
+    </li>
+    <li class="flex flex-wrap items-baseline gap-2 border-t py-2 mt-0" id="src-2-inline-footnotes">
+      <span class="font-mono text-xs text-muted">[2]</span>
+      <span class="min-w-0">Server sent events, HTML Standard section 9.2</span>
+      <span class="font-mono text-xs text-muted">html.spec.whatwg.org</span>
+    </li>
+    <li class="flex flex-wrap items-baseline gap-2 border-t py-2 mt-0" id="src-3-inline-footnotes">
+      <span class="font-mono text-xs text-muted">[3]</span>
+      <span class="min-w-0">Problem Details for HTTP APIs, RFC 9457</span>
+      <span class="font-mono text-xs text-muted">datatracker.ietf.org</span>
+    </li>
+  </ol>
+</div>`,
+    },
+    {
+      id: 'flush-rows',
+      name: 'Flush rows',
+      description:
+        'The source cards lose their borders and become flush hairline rows, so the list can sit inside a card that already has one.',
+      guidance:
+        'Use anywhere the citations are rendered inside an existing surface: a chat turn, a result panel, an answer card. Three bordered cards inside a bordered panel is the nested box law 1 exists to stop, and a hairline row carries the same grouping for nothing. The domain stays mono and muted on the first line with the open action beside it, so the row is scannable before the snippet is read, and the snippet keeps text-sm rather than shrinking below the floor.',
+      html: `<ol class="list-none m-0 p-0">
+  <li class="border-t py-3">
+    <div class="flex items-baseline justify-between gap-3">
+      <span class="font-mono text-xs text-muted">[1] polar.sh</span>
+      <a class="btn btn-ghost btn-xs" href="#polar-docs">Open</a>
+    </div>
+    <p class="text-sm mt-1">Webhook signatures use Standard Webhooks headers.</p>
+  </li>
+  <li class="border-t py-3">
+    <div class="flex items-baseline justify-between gap-3">
+      <span class="font-mono text-xs text-muted">[2] llmcss.io</span>
+      <a class="btn btn-ghost btn-xs" href="#llms-txt">Open</a>
+    </div>
+    <p class="text-sm mt-1">Free registry is MIT. Pro is token gated.</p>
+  </li>
+  <li class="border-t py-3">
+    <div class="flex items-baseline justify-between gap-3">
+      <span class="font-mono text-xs text-muted">[3] datatracker.ietf.org</span>
+      <a class="btn btn-ghost btn-xs" href="#rfc-9457">Open</a>
+    </div>
+    <p class="text-sm mt-1">RFC 9457 defines the application/problem+json error body.</p>
+  </li>
+</ol>`,
     },
   ],
 };

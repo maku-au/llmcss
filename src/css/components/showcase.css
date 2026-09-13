@@ -13,18 +13,14 @@
   color: var(--ai-text-muted);
   margin-left: auto;
 }
+/* Tier word on a nav row or a card header. Plain muted text, never a pill:
+   a boxed badge inside a nav row reads as a second control. */
 .docs-pro-tag {
   font-family: var(--ai-font-sans);
   font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ai-text-primary);
-  background: var(--ai-surface-2);
-  border: 1px solid var(--ai-border-strong);
-  padding: 0.1rem 0.35rem;
-  border-radius: var(--ai-radius-xs);
-  margin-left: auto;
+  font-weight: 500;
+  color: var(--ai-text-muted);
+  margin-inline-start: var(--ai-space-2);
 }
 
 /* --------------------------------------------------------------------------
@@ -408,15 +404,6 @@
   gap: var(--ai-space-8);
   align-items: start;
 }
-@media (max-width: 960px) {
-  .docs-layout {
-    grid-template-columns: 1fr;
-  }
-  .docs-sidebar {
-    position: static !important;
-    height: auto !important;
-  }
-}
 .docs-sidebar {
   position: sticky;
   top: 5.5rem;
@@ -425,37 +412,29 @@
   padding: 0;
   box-shadow: none;
 }
+/* Quiet sentence-case group name. Sits in the same register as the counts, so
+   the column carries two type sizes and no tracked caps. */
 .docs-nav-label {
   display: block;
-  margin-bottom: 0.35rem;
-  padding: 0 0.5rem;
+  margin-bottom: 0.375rem;
+  padding: 0 0.625rem;
   font-family: var(--ai-font-sans);
   font-size: 0.75rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
   color: var(--ai-text-muted);
 }
-/* Plain-language note under a nav group whose row labels are not
-   self-explanatory. Aligns with the rows, never reads as a paragraph. */
-.docs-nav-note {
-  margin: 0.4rem 0 0;
-  padding: 0 0.5rem;
-  font-size: 0.75rem;
-  line-height: 1.4;
-  color: var(--ai-text-muted);
-}
-/* One rule-separated block of sidebar nav (Tiers, Endpoints) */
+/* One rule-separated block of sidebar nav (For agents, Endpoints) */
 .docs-nav-group {
   border-top: 1px solid var(--ai-border-subtle);
-  padding-top: var(--ai-space-3);
+  padding-top: var(--ai-space-4);
 }
-/* Nav rows sit almost flush: a hairline gap keeps the active pill from
-   touching its neighbour without reading as a list. */
+/* Rows sit flush on one continuous hairline rail, the scrollspy idiom. The
+   indicator is a segment of that rail, never a filled box. */
 .docs-nav-stack {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 0;
+  border-inline-start: 1px solid var(--ai-border);
 }
 .docs-nav-btn {
   display: flex;
@@ -463,32 +442,55 @@
   justify-content: space-between;
   gap: var(--ai-space-2);
   width: 100%;
-  padding: 0.375rem 0.5rem;
-  border-radius: var(--ai-radius-sm);
-  border: none;
+  min-height: 2.125rem;
+  padding: 0.4375rem 0.625rem;
+  border: 0;
+  margin-inline-start: -1px;
+  border-inline-start: 1px solid transparent;
   background: transparent;
   font-size: 0.8125rem;
   font-weight: 450;
   color: var(--ai-text-secondary);
   cursor: pointer;
-  transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
+  transition: color var(--ai-duration-fast), border-color var(--ai-duration-fast);
   text-align: left;
 }
 .docs-nav-btn:hover {
   color: var(--ai-text-primary);
-  background-color: var(--ai-surface-1);
+  border-inline-start-color: var(--ai-border-strong);
 }
-.docs-nav-btn.is-active {
+.docs-nav-btn.is-active,
+.docs-nav-btn[aria-current="location"] {
   color: var(--ai-text-primary);
-  background-color: var(--ai-surface-1);
+  border-inline-start-color: var(--ai-accent);
   font-weight: 600;
+}
+.docs-nav-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--ai-focus-ring);
+  border-radius: var(--ai-radius-sm);
+}
+/* Link rows in the same stack (endpoints, outline entries) */
+a.docs-nav-btn {
+  text-decoration: none;
+  color: var(--ai-text-muted);
+}
+a.docs-nav-btn:hover {
+  color: var(--ai-text-primary);
+}
+/* A row that belongs to the stack but is not a sibling filter: one hairline
+   above it instead of a second label register. */
+.docs-nav-btn-apart {
+  margin-block-start: var(--ai-space-2);
+  border-block-start: 1px solid var(--ai-border-subtle);
+  padding-block-start: 0.5625rem;
 }
 .docs-nav-btn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
 }
 .docs-nav-btn:disabled:not(.is-active):hover {
-  background-color: transparent;
+  border-inline-start-color: transparent;
   color: var(--ai-text-secondary);
 }
 .docs-nav-btn[hidden] {
@@ -504,29 +506,38 @@
   border: none;
   padding: 0;
   line-height: 1;
+  margin-inline-start: auto;
 }
 .docs-nav-btn.is-active .docs-count {
   color: var(--ai-text-secondary);
   font-weight: 600;
 }
+/* Same row anatomy as .docs-nav-btn so a stack can mix buttons and links */
 .docs-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.35rem 0.5rem;
-  border-radius: var(--ai-radius-sm);
-  border: none;
+  min-height: 2.125rem;
+  padding: 0.4375rem 0.625rem;
+  border: 0;
+  margin-inline-start: -1px;
+  border-inline-start: 1px solid transparent;
   background: transparent;
   color: var(--ai-text-muted);
   font-family: var(--ai-font-sans);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   text-decoration: none;
-  transition: color var(--ai-duration-fast), background-color var(--ai-duration-fast);
+  transition: color var(--ai-duration-fast), border-color var(--ai-duration-fast);
 }
 .docs-link:hover {
   color: var(--ai-text-primary);
-  background-color: var(--ai-surface-1);
+  border-inline-start-color: var(--ai-border-strong);
+}
+.docs-link:focus-visible {
+  outline: none;
+  box-shadow: var(--ai-focus-ring);
+  border-radius: var(--ai-radius-sm);
 }
 /* Trailing format hint on an endpoint row: llms.txt -> Index */
 .docs-link-tag {
@@ -540,6 +551,60 @@
 }
 .docs-link:hover svg {
   opacity: 0.9;
+}
+/* Phone and tablet: the sidebar drops above the stream and the filter stacks
+   that opt in become one scrollable rail bar, the rail moving from the
+   inline-start edge to the block-end edge. The block sits after the rules it
+   overrides, so no declaration needs !important to beat the sticky column. */
+@media (max-width: 960px) {
+  .docs-layout {
+    grid-template-columns: 1fr;
+  }
+  .docs-sidebar {
+    position: static;
+    height: auto;
+    /* A grid item's min-width is auto, so a bar of nowrap rows would widen the
+       column past the viewport instead of scrolling inside it. */
+    min-width: 0;
+    max-width: 100%;
+  }
+  .docs-nav-stack-bar {
+    flex-direction: row;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    border-inline-start: 0;
+    border-block-end: 1px solid var(--ai-border);
+  }
+  .docs-nav-stack-bar .docs-nav-btn {
+    flex: 0 0 auto;
+    width: auto;
+    white-space: nowrap;
+    margin-inline-start: 0;
+    margin-block-end: -1px;
+    border-inline-start: 0;
+    border-block-end: 1px solid transparent;
+    gap: var(--ai-space-2);
+  }
+  .docs-nav-stack-bar .docs-nav-btn:hover {
+    border-block-end-color: var(--ai-border-strong);
+  }
+  .docs-nav-stack-bar .docs-nav-btn.is-active {
+    border-block-end-color: var(--ai-accent);
+  }
+  .docs-nav-stack-bar .docs-count {
+    margin-inline-start: 0;
+  }
+  .docs-nav-stack-bar .docs-nav-btn-apart {
+    margin-block-start: 0;
+    border-block-start: 0;
+    padding-block-start: 0.4375rem;
+    margin-inline-start: var(--ai-space-3);
+    border-inline-start: 1px solid var(--ai-border-subtle);
+    padding-inline-start: var(--ai-space-3);
+  }
 }
 .demo-card {
   border: 1px solid var(--ai-border);
@@ -652,15 +717,6 @@
 /* The feature column is sticky (see .matrix-feature-col), so the container edge
    fade in tables.css would eat it the moment the table scrolls. This matrix
    keeps the right edge cue only and leaves the left column at full contrast. */
-@supports (animation-timeline: scroll()) {
-  .docs-matrix {
-    animation-name: docs-matrix-scroll-fade;
-  }
-}
-@keyframes docs-matrix-scroll-fade {
-  from { --ai-scroll-fade-l: 0px; --ai-scroll-fade-r: 4rem; }
-  to { --ai-scroll-fade-l: 0px; --ai-scroll-fade-r: 0px; }
-}
 .docs-matrix .matrix-table th:first-child,
 .docs-matrix .matrix-table td:first-child {
   width: 25%;

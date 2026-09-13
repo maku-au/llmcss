@@ -970,6 +970,111 @@ export const applicationVariants = {
   </div>
 </div>`,
     },
+    {
+      id: 'expandable-rows',
+      name: 'Expandable rows',
+      description:
+        'A disclosure control leads every row and opens a full width detail row underneath it, so the second level of a record arrives in place instead of on a page of its own.',
+      guidance:
+        'Use when each row has four or five supporting fields that only matter once, which is the case that otherwise grows a sixth and seventh column nobody reads. The detail row is a real tr with a td spanning every column, carrying a dl so each label and value pair announces as a pair; it is not a card, so nothing is nested inside the table container. The trigger is the shared chevron rotated with rotate-180 when the row is open, never a plus glyph beside it, and the open state is mirrored on aria-expanded with aria-controls naming the detail row. Closed detail rows carry the hidden attribute rather than a display utility, so the row is out of the accessibility tree as well as out of sight. The chevron button is a btn-icon, which takes the 44px floor under a coarse pointer.',
+      html: `<div class="table-container">
+  <table class="table table-sticky table-hover">
+    <thead>
+      <tr>
+        <th scope="col" class="w-10"><span class="sr-only">Detail</span></th>
+        <th scope="col">Service</th>
+        <th scope="col">Region</th>
+        <th class="cell-num" scope="col">p95 ms</th>
+        <th class="cell-num" scope="col">Requests, 24h</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <button type="button" class="btn btn-ghost btn-icon btn-sm" aria-expanded="true" aria-controls="data-grid-expandable-rows-detail-gateway">
+            <svg class="rotate-180" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <span class="sr-only">Hide api-gateway detail</span>
+          </button>
+        </td>
+        <td>api-gateway</td>
+        <td>syd-1</td>
+        <td class="cell-num">142</td>
+        <td class="cell-num">1,284,902</td>
+        <td><span class="inline-flex items-center gap-2"><span class="pip pip-ok" aria-hidden="true"></span>Healthy</span></td>
+      </tr>
+      <tr id="data-grid-expandable-rows-detail-gateway">
+        <td colspan="6">
+          <dl class="detail">
+            <dt>Image</dt>
+            <dd>ghcr.io/meridian/api-gateway:2.14.3</dd>
+            <dt>Instances</dt>
+            <dd>12 of 12 ready</dd>
+            <dt>Last deploy</dt>
+            <dd>14 minutes ago, commit 8f42d19</dd>
+            <dt>On call</dt>
+            <dd>Avery Chen, platform</dd>
+          </dl>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="button" class="btn btn-ghost btn-icon btn-sm" aria-expanded="false" aria-controls="data-grid-expandable-rows-detail-auth">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <span class="sr-only">Show auth detail</span>
+          </button>
+        </td>
+        <td>auth</td>
+        <td>syd-1</td>
+        <td class="cell-num">88</td>
+        <td class="cell-num">402,118</td>
+        <td><span class="inline-flex items-center gap-2"><span class="pip pip-ok" aria-hidden="true"></span>Healthy</span></td>
+      </tr>
+      <tr id="data-grid-expandable-rows-detail-auth" hidden>
+        <td colspan="6">
+          <dl class="detail">
+            <dt>Image</dt>
+            <dd>ghcr.io/meridian/auth:5.2.0</dd>
+            <dt>Instances</dt>
+            <dd>6 of 6 ready</dd>
+            <dt>Last deploy</dt>
+            <dd>3 days ago, commit c01b7fa</dd>
+            <dt>On call</dt>
+            <dd>Dana Iversen, identity</dd>
+          </dl>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="button" class="btn btn-ghost btn-icon btn-sm" aria-expanded="false" aria-controls="data-grid-expandable-rows-detail-billing">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <span class="sr-only">Show billing-worker detail</span>
+          </button>
+        </td>
+        <td>billing-worker</td>
+        <td>fra-2</td>
+        <td class="cell-num">1,204</td>
+        <td class="cell-num">18,440</td>
+        <td><span class="inline-flex items-center gap-2"><span class="pip pip-warn" aria-hidden="true"></span>Degraded</span></td>
+      </tr>
+      <tr id="data-grid-expandable-rows-detail-billing" hidden>
+        <td colspan="6">
+          <dl class="detail">
+            <dt>Image</dt>
+            <dd>ghcr.io/meridian/billing-worker:1.9.7</dd>
+            <dt>Instances</dt>
+            <dd>3 of 4 ready</dd>
+            <dt>Last deploy</dt>
+            <dd>26 minutes ago, commit 41d9e02</dd>
+            <dt>On call</dt>
+            <dd>Priya Raman, payments</dd>
+          </dl>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>`,
+    },
   ],
 
   /* ==========================================================================
@@ -1147,6 +1252,105 @@ export const applicationVariants = {
     </tbody>
   </table>
 </div>`,
+    },
+  ],
+
+  /* ==========================================================================
+     Form inputs and groups
+     ========================================================================== */
+  'input-text': [
+    {
+      id: 'two-column-form',
+      name: 'Two column form',
+      description:
+        'The form splits into sections: the heading and its description take the first column and the fields take the other two, with one action row under a hairline at the end.',
+      guidance:
+        'Use for a settings or profile form long enough to need headings, where a single column leaves the reader guessing which fields belong to which idea. The section heading is a plain h3 with its explanation beside it, never a badge eyebrow above it, and the fields keep the form-group, form-label, form-hint and form-error structure so the hint and the error stay attached to their field. There is no card around the sections: the hairline divider carries the separation, because a bordered block per section inside a bordered page is the nesting law. Below md the grid folds to one column and the description sits above its fields. Every control is an input, a select or a textarea, so each one takes the 44px floor under a coarse pointer from the library rather than from a utility here.',
+      html: `<form class="flex flex-col">
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div>
+      <h3 class="section-title text-base">Workspace</h3>
+      <p class="text-sm text-secondary mt-2">The name members see in the switcher, and the slug every deploy URL is built from.</p>
+    </div>
+    <div class="md:col-span-2 grid gap-4">
+      <div class="form-group mb-0">
+        <label class="form-label" for="input-text-two-column-form-name">Workspace name</label>
+        <input type="text" class="input" id="input-text-two-column-form-name" value="Meridian" />
+        <span class="form-hint">Two to forty characters. Members see this in every invite.</span>
+      </div>
+      <div class="form-group mb-0">
+        <label class="form-label" for="input-text-two-column-form-slug">Slug</label>
+        <input type="text" class="input is-error" id="input-text-two-column-form-slug" value="meridian ops" aria-invalid="true" aria-describedby="input-text-two-column-form-slug-error" />
+        <span class="form-error" id="input-text-two-column-form-slug-error">Lowercase letters, digits and hyphens only.</span>
+      </div>
+      <div class="form-group mb-0">
+        <label class="form-label" for="input-text-two-column-form-region">Primary region</label>
+        <select class="select" id="input-text-two-column-form-region">
+          <option>syd-1</option>
+          <option>sin-1</option>
+          <option>fra-2</option>
+        </select>
+        <span class="form-hint">Builds run closest to this region. Changing it redeploys every service.</span>
+      </div>
+    </div>
+  </section>
+  <hr class="divider" />
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div>
+      <h3 class="section-title text-base">Release notes</h3>
+      <p class="text-sm text-secondary mt-2">Sent to the workspace channel with every production deploy.</p>
+    </div>
+    <div class="md:col-span-2 grid gap-4">
+      <div class="form-group mb-0">
+        <label class="form-label" for="input-text-two-column-form-summary">Default summary</label>
+        <textarea class="textarea" id="input-text-two-column-form-summary" rows="4">Ships the new rate limiter and drops p95 on the gateway to 142 ms.</textarea>
+        <span class="form-hint">Markdown is kept. Commit subjects are appended under whatever you write.</span>
+      </div>
+    </div>
+  </section>
+  <hr class="divider" />
+  <div class="level">
+    <p class="text-sm text-muted mb-0">Draft saved 2 minutes ago.</p>
+    <div class="level-right">
+      <button type="button" class="btn btn-ghost">Cancel</button>
+      <button type="submit" class="btn btn-primary">Save changes</button>
+    </div>
+  </div>
+</form>`,
+    },
+    {
+      id: 'inline-row-form',
+      name: 'Inline rows',
+      description:
+        'Every field becomes one row with its label at the inline start and its control on a shared vertical line at the far end, separated by hairlines rather than stacked in blocks.',
+      guidance:
+        'Use for a short settings form of six rows or fewer, where the reader is confirming values rather than composing them: the whole form reads as a list and every control lands on the same line. The rows split on the component container through cq and cq-md:grid-cols-2, not on the viewport, so the form folds to stacked labels inside a narrow card and keeps the two column reading in a wide one. Each hairline is a border-b on the row, which is why there is no box around the group. A row label is a real label with a for attribute, including the switch row, so the row text and the control are one target pair. One save action lives in the footer, because a per row save on a form this short doubles the number of things to click.',
+      html: `<form class="cq">
+  <div class="grid grid-cols-1 cq-md:grid-cols-2 cq-md:items-center gap-2 cq-md:gap-6 py-4 border-b">
+    <label class="form-label" for="input-text-inline-row-form-name">Display name</label>
+    <input type="text" class="input" id="input-text-inline-row-form-name" value="Avery Chen" />
+  </div>
+  <div class="grid grid-cols-1 cq-md:grid-cols-2 cq-md:items-center gap-2 cq-md:gap-6 py-4 border-b">
+    <label class="form-label" for="input-text-inline-row-form-timezone">Time zone</label>
+    <select class="select" id="input-text-inline-row-form-timezone">
+      <option>Australia/Sydney</option>
+      <option>Asia/Singapore</option>
+      <option>Europe/Berlin</option>
+    </select>
+  </div>
+  <div class="grid grid-cols-1 cq-md:grid-cols-2 cq-md:items-center gap-2 cq-md:gap-6 py-4 border-b">
+    <label class="form-label" for="input-text-inline-row-form-alerts">Failure alerts</label>
+    <div class="flex">
+      <label class="switch"><input type="checkbox" class="switch-input" id="input-text-inline-row-form-alerts" checked /><span class="switch-track"><span class="switch-thumb"></span></span><span class="text-sm text-secondary">Email me when a run exits non-zero</span></label>
+    </div>
+  </div>
+  <div class="level pt-4">
+    <p class="text-sm text-muted mb-0">Applies to this workspace only.</p>
+    <div class="level-right">
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </div>
+</form>`,
     },
   ],
 
@@ -2081,6 +2285,950 @@ export const applicationVariants = {
       <button type="submit" class="btn btn-primary btn-sm">Continue to billing</button>
     </div>
   </form>
+</div>`,
+    },
+  ],
+
+  /* ==========================================================================
+     Dropdown action menu
+     ========================================================================== */
+  'dropdown-menu': [
+    {
+      id: 'account-menu',
+      name: 'Account menu',
+      description:
+        'The labelled button becomes an avatar, and the menu opens on an identity block naming who is signed in, followed by two labelled groups and sign out on its own.',
+      guidance:
+        'Use at the end of an application header, where the reader needs to know which account they are in before they pick anything. The identity block is a dropdown-header with the name and address as plain text, so nothing in it looks clickable; normal-case and tracking-normal keep an address readable, because the tracked uppercase styling that suits a one word group label does not suit an address. Each group keeps its own dropdown-header and the groups are separated by dropdown-divider, with sign out alone after the last divider so the destructive item is never adjacent to a routine one. Keyboard hints use kbd, which is 12px, the floor for visible text. The trigger is a btn-icon so the avatar takes the 44px target under a coarse pointer, and it carries aria-expanded plus aria-controls; the menu is rendered with is-open only so the variant can be read at rest. The wrapper reserves height for the open menu in a preview frame; a real header needs neither utility.',
+      html: `<div class="flex justify-center items-start h-72 mb-24">
+  <div class="dropdown is-open">
+    <button type="button" class="btn btn-ghost btn-icon dropdown-trigger" data-ai-toggle="dropdown" aria-haspopup="true" aria-expanded="true" aria-controls="dropdown-menu-account-menu-list">
+      <span class="avatar avatar-sm" aria-hidden="true">AC</span>
+      <span class="sr-only">Account menu, Avery Chen</span>
+    </button>
+    <ul class="dropdown-menu dropdown-right" id="dropdown-menu-account-menu-list">
+      <li class="dropdown-header normal-case tracking-normal">
+        <span class="block text-sm text-primary">Avery Chen</span>
+        <span class="block text-xs font-normal">avery.chen@meridian.dev</span>
+      </li>
+      <li class="dropdown-header">Account</li>
+      <li><a class="dropdown-item" href="#profile">Profile<span class="kbd ml-auto">G P</span></a></li>
+      <li><a class="dropdown-item" href="#preferences">Preferences<span class="kbd ml-auto">G E</span></a></li>
+      <li class="dropdown-divider"></li>
+      <li class="dropdown-header">Workspace</li>
+      <li><a class="dropdown-item" href="#members">Members<span class="text-xs text-muted ml-auto">14</span></a></li>
+      <li><a class="dropdown-item" href="#billing">Billing and plans</a></li>
+      <li class="dropdown-divider"></li>
+      <li><button type="button" class="dropdown-item is-danger">Sign out<span class="kbd ml-auto">Ctrl Q</span></button></li>
+    </ul>
+  </div>
+</div>`,
+    },
+    {
+      id: 'context-menu',
+      name: 'Context menu',
+      description:
+        'The trigger button is gone and the menu opens at the corner of the row the pointer is on, with an icon column down the inline start, a submenu indicator on one item and the destructive action alone at the end.',
+      guidance:
+        'Use for the actions that belong to one row in a list or one object on a canvas, where the pointer is already on the target and a button per row would be five buttons of noise. The anchor is an empty .dropdown at the end of the target row: it has no width of its own, so .dropdown-right lands the menu inside the row rather than past its edge, and no trigger is rendered because the gesture is the trigger. The row that owns the menu carries aria-current as well as the tint, because a tint on its own announces nothing; the tint sits on the row padding so it reads as a band rather than a highlight behind the text. Every item puts a 16px icon in the same column, which is what lets a reader find Delete by shape before they read it. The submenu item says so with aria-haspopup and the shared chevron rotated by -rotate-90, never a unicode triangle. Delete is last, after a dropdown-divider, in is-danger ink, so the destructive action is never adjacent to a routine one. The wrapper reserves height for the open menu in a preview frame; a real list needs neither utility.',
+      html: `<div class="mb-32">
+  <div class="level mb-2">
+    <span class="text-sm font-semibold">Edge config</span>
+    <span class="text-sm text-muted">3 files</span>
+  </div>
+  <div class="border-t border-subtle">
+    <div class="flex items-center gap-3 px-3 py-3 border-b border-subtle">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+      <span class="text-sm truncate flex-1 min-w-0">routes.edge.json</span>
+      <span class="text-xs text-muted tabular">4.2 KB</span>
+    </div>
+    <div class="flex items-center gap-3 px-3 py-3 border-b border-subtle bg-accent-subtle" aria-current="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+      <span class="text-sm font-medium truncate flex-1 min-w-0">headers.edge.json</span>
+      <span class="text-xs text-muted tabular">1.8 KB</span>
+      <span class="dropdown is-open">
+        <ul class="dropdown-menu dropdown-right" role="menu" aria-label="Actions for headers.edge.json">
+          <li role="none">
+            <button type="button" class="dropdown-item" role="menuitem">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+              Open
+              <span class="kbd ml-auto">Enter</span>
+            </button>
+          </li>
+          <li role="none">
+            <button type="button" class="dropdown-item" role="menuitem">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+              Rename
+              <span class="kbd ml-auto">F2</span>
+            </button>
+          </li>
+          <li role="none">
+            <button type="button" class="dropdown-item" role="menuitem">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Duplicate
+            </button>
+          </li>
+          <li role="none">
+            <button type="button" class="dropdown-item" role="menuitem" aria-haspopup="menu" aria-expanded="false">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+              Move to
+              <svg class="-rotate-90 ml-auto" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+          </li>
+          <li class="dropdown-divider" role="none"></li>
+          <li role="none">
+            <button type="button" class="dropdown-item is-danger" role="menuitem">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+              Delete file
+              <span class="kbd ml-auto">Del</span>
+            </button>
+          </li>
+        </ul>
+      </span>
+    </div>
+    <div class="flex items-center gap-3 px-3 py-3 border-b border-subtle">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+      <span class="text-sm truncate flex-1 min-w-0">redirects.edge.json</span>
+      <span class="text-xs text-muted tabular">2.4 KB</span>
+    </div>
+  </div>
+</div>`,
+    },
+  ],
+
+  /* ==========================================================================
+     Contextual alert banners
+     ========================================================================== */
+  'alert-callouts': [
+    {
+      id: 'with-actions',
+      name: 'With actions',
+      description:
+        'Each alert gains a bold title line above its sentence and puts its two actions on a row of their own inside the block, instead of running as one line of text.',
+      guidance:
+        'Use when the alert asks the reader to do something rather than just telling them: a maintenance window to schedule around, a key to copy. The title is a strong element on its own line, so the first three words carry the message and the sentence explains it. Actions sit on their own row under the body, the primary one as btn-outline and the secondary as btn-ghost, so neither competes with a page level primary button. Urgency stays in the icon colour and the tinted surface: the alert keeps one uniform hairline on all four sides and never an edge stripe. Icons come from the shared inline set, the same paths the parent uses, so a missing font can never render a box instead.',
+      html: `<div class="flex flex-col gap-3">
+  <div class="alert alert-info" role="status">
+    <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+    <div class="flex flex-col gap-3 min-w-0">
+      <div>
+        <strong class="font-semibold block">Maintenance scheduled</strong>
+        <p class="mb-0">Edge servers will undergo routine maintenance at 02:00 UTC on 18 September. Requests fail over to syd-1 for about eight minutes.</p>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button type="button" class="btn btn-sm btn-outline">View window</button>
+        <button type="button" class="btn btn-sm btn-ghost">Remind me</button>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-success" role="status">
+    <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01 9 11.01"/></svg>
+    <div class="flex flex-col gap-3 min-w-0">
+      <div>
+        <strong class="font-semibold block">License key verified</strong>
+        <p class="mb-0">Your new API license key has been verified and applied to the Meridian workspace. It covers 14 seats until 30 June 2027.</p>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button type="button" class="btn btn-sm btn-outline">Copy key</button>
+        <button type="button" class="btn btn-sm btn-ghost">Dismiss</button>
+      </div>
+    </div>
+  </div>
+</div>`,
+    },
+    {
+      id: 'inline-banner',
+      name: 'Inline banner',
+      description:
+        'The stacked callout becomes one full width line directly under the section header: icon, a single sentence, a text link and a dismiss control, with no title line and no action row.',
+      guidance:
+        'Use for a notice the reader should see once on the way past, where the whole message fits in a sentence and the next step is a link rather than a decision: an allowance running down, a trial ending, a region degraded. It sits flush under the header hairline with no gap, so it reads as part of that section and not as a floating card in the content. Nothing is truncated: under a narrow container the sentence wraps to a second line rather than hiding half of itself, because a banner that clips its own message is worse than a banner two lines tall. The dismiss control is the shared .close button, whose X is drawn from the same mask every dismiss in the library uses, so a missing font can never leave a stray character in the corner. Urgency lives in the icon colour and the tinted surface, with one uniform hairline on all four sides: no edge stripe, in any property. Keep it to one notice. Two banners stacked under a header is a queue, and a queue belongs in a notification list.',
+      html: `<div>
+  <div class="level pb-3 border-b border-subtle">
+    <h3 class="text-base font-semibold mb-0">Usage and limits</h3>
+    <button type="button" class="btn btn-outline btn-sm">Manage plan</button>
+  </div>
+  <div class="alert alert-warning flex-wrap items-center py-3" role="status">
+    <div class="flex items-start gap-3 flex-1 basis-2/3 min-w-0">
+      <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10.3 3.9-8.4 14A2 2 0 0 0 3.6 21h16.8a2 2 0 0 0 1.7-3.1l-8.4-14a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      <p class="mb-0 min-w-0">This workspace has used 84 percent of its 2 million request allowance for September.</p>
+    </div>
+    <div class="flex items-center gap-3 ml-auto shrink-0">
+      <a class="link shrink-0" href="#usage">See the breakdown</a>
+      <button type="button" class="close shrink-0" data-ai-dismiss="alert" aria-label="Dismiss this notice"></button>
+    </div>
+  </div>
+  <dl class="detail mt-4">
+    <dt>Requests</dt>
+    <dd class="tabular">1,684,220 of 2,000,000</dd>
+    <dt>Allowance resets</dt>
+    <dd>1 October 2026</dd>
+    <dt>Overage rate</dt>
+    <dd class="tabular">0.40 AUD per 10,000 requests</dd>
+  </dl>
+</div>`,
+    },
+  ],
+
+  /* ==========================================================================
+     Pagination
+     ========================================================================== */
+  'pagination-controls': [
+    {
+      id: 'with-summary',
+      name: 'With summary',
+      description:
+        'The numbered list is replaced by a range summary at the inline start and a previous and next pair at the far end, so the reader is told where they are instead of counting pages.',
+      guidance:
+        'Use when the set is too long for a numbered row to mean anything, which is anything past about twenty pages, or when the order is a feed rather than a catalogue and page 7 is not a place anybody returns to. The summary is plain muted text with tabular figures, so the digits do not jump as the reader pages through, and it is the count for the whole set, never a badge. Previous is unavailable on the first page: it keeps its shape and loses contrast, carries aria-disabled and drops out of the tab order, so the state is announced and not painted with a fill. Arrows are the shared chevron rotated with rotate-90 and -rotate-90, never a unicode arrow that a font gap can turn into a box. The row wraps under a narrow container, putting the pair below the summary rather than squeezing both.',
+      html: `<nav class="level" aria-label="Pagination">
+  <p class="text-sm text-muted tabular mb-0">Showing 21 to 40 of 312</p>
+  <ul class="pagination">
+    <li class="pagination-item">
+      <a href="#previous" class="pagination-link gap-1 is-disabled" aria-disabled="true" tabindex="-1">
+        <svg class="rotate-90" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        Previous
+      </a>
+    </li>
+    <li class="pagination-item">
+      <a href="#next" class="pagination-link gap-1">
+        Next
+        <svg class="-rotate-90" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </a>
+    </li>
+  </ul>
+</nav>`,
+    },
+    {
+      id: 'load-more',
+      name: 'Load more',
+      description:
+        'The numbered row is replaced by one centred button that appends the next page in place, under a line saying how much of the set is already loaded and a thin track showing the same thing.',
+      guidance:
+        'Use for a feed the reader scans rather than navigates: activity, search results, a gallery. Nobody returns to page 7 of a feed, and an infinite scroll with no button takes the footer away from them, so the button stays and the reader decides. The count is plain muted text with tabular figures and a polite live region, so the digits do not jump and the new total is announced after each append. The track is progress progress-sm, the thinnest of the three, and it is decoration for the count: the count is the accessible value, which is why the progressbar role and its aria-value attributes sit on the track and never on the button. The fill is the nearest width fraction the utility set carries, because a demo cannot set a percentage without an inline style; a real implementation computes it. The button says what it will load, never just More, so a screen reader that reads it alone still knows the page size.',
+      html: `<nav class="flex flex-col items-center gap-3" aria-label="Results">
+  <p class="text-sm text-muted tabular mb-0" aria-live="polite">40 of 312 loaded</p>
+  <div class="progress progress-sm w-full max-w-sm" role="progressbar" aria-label="Results loaded" aria-valuemin="0" aria-valuemax="312" aria-valuenow="40">
+    <div class="progress-bar w-1/6"></div>
+  </div>
+  <button type="button" class="btn btn-outline">Load 20 more</button>
+</nav>`,
+    },
+  ],
+
+  /* ==========================================================================
+     Command palette
+     ========================================================================== */
+  'command-palette-pro': [
+    {
+      id: 'preview-pane',
+      name: 'Preview pane',
+      description:
+        'The results give up two thirds of the box and the highlighted result renders beside them, so the palette answers what a command will do before it is run.',
+      guidance:
+        'Use when the palette searches things rather than actions: components, documents, records. The split is a container query on the box itself through cq and cq-md:grid-cols-3, so the palette keeps its two columns wherever it is embedded and does not consult the viewport. Under 600px the preview is hidden outright rather than stacked, because a preview under a scrolling result list is a second scroll the reader did not ask for; the results stay whole. The hairline between the columns is a divider-vertical stretched with h-auto and self-stretch, not a border on a nested panel, so the two columns share one surface. The highlighted row is a real option in a listbox with aria-selected, because a tinted row announces nothing on its own. Every hint is command-kbd at 12px, and the shortcut is written out rather than drawn with a unicode command glyph.',
+      html: `<button type="button" class="btn btn-outline" data-ai-toggle="modal" data-ai-target="#command-palette-pro-preview-pane" aria-haspopup="dialog" aria-expanded="false">
+  Search components
+  <span class="command-kbd ml-2">Ctrl K</span>
+</button>
+
+<div id="command-palette-pro-preview-pane" class="command-palette">
+  <div class="modal-backdrop" data-ai-dismiss="modal"></div>
+  <div class="command-box cq">
+    <div class="command-input-wrapper">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" class="command-input" value="table" aria-label="Search components, docs and commands" aria-controls="command-palette-pro-preview-pane-results" />
+      <span class="command-kbd">Esc</span>
+    </div>
+    <div class="grid grid-cols-1 cq-md:grid-cols-3">
+      <ul class="command-list" id="command-palette-pro-preview-pane-results" role="listbox" aria-label="Results">
+        <li class="command-group-heading" role="presentation">Components</li>
+        <li class="command-item is-selected" role="option" aria-selected="true">
+          <div class="command-item-left">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M9 10v10"/></svg>
+            <span>Data grid</span>
+          </div>
+        </li>
+        <li class="command-item" role="option" aria-selected="false">
+          <div class="command-item-left">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/></svg>
+            <span>Data table with striping</span>
+          </div>
+        </li>
+        <li class="command-group-heading" role="presentation">Documentation</li>
+        <li class="command-item" role="option" aria-selected="false">
+          <div class="command-item-left">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <span>Tables that fit a phone</span>
+          </div>
+        </li>
+      </ul>
+      <div class="hidden cq-md:flex cq-md:col-span-2 gap-4 p-4">
+        <span class="divider-vertical h-auto self-stretch" aria-hidden="true"></span>
+        <div class="min-w-0">
+          <h3 class="text-base font-semibold">Data grid</h3>
+          <p class="text-sm text-secondary mt-1">Sortable grid with a sticky header, numeric columns aligned on the decimal, and a status pip per row.</p>
+          <dl class="detail mt-4">
+            <dt>Category</dt>
+            <dd>Application</dd>
+            <dt>Variants</dt>
+            <dd>Dense, card rows, split header, selectable, expandable rows</dd>
+            <dt>Reference</dt>
+            <dd>data-grid</dd>
+          </dl>
+          <div class="flex items-center gap-2 mt-4">
+            <button type="button" class="btn btn-sm btn-primary">Insert component</button>
+            <span class="command-kbd">Enter</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+    },
+    {
+      id: 'recent-first',
+      name: 'Recent first',
+      description:
+        'The palette at rest, before a query is typed: a Recent group of three with their timestamps, a Suggested group under it, no preview pane, and the keyboard hints moved into a footer.',
+      guidance:
+        'Use as the empty query state of any palette. A palette that opens on nothing teaches nothing, and the thing a reader wants most often is the file they had open ten minutes ago. Recent comes first and is ordered by time, Suggested second and ordered by what the app thinks is next; two short groups beat one long list because the group heading is the only thing separating a history from a menu. Timestamps are plain muted text at text-sm, right aligned by the command-item row, never a badge and never smaller than the row they sit in. Shortcuts stay on the Suggested items only, since a recent file has no shortcut, and every hint is command-kbd at 12px with the keys written out, so no unicode command glyph can render as a box. The footer is a hairline row of hints built from utilities: the library has no command-footer class yet. The first row carries is-selected with aria-selected and the list points at it with aria-activedescendant, because the highlight is a colour and the state has to be spoken as well.',
+      html: `<button type="button" class="btn btn-outline" data-ai-toggle="modal" data-ai-target="#command-palette-pro-recent-first" aria-haspopup="dialog" aria-expanded="false">
+  Open command palette
+  <span class="command-kbd ml-2">Ctrl K</span>
+</button>
+
+<div id="command-palette-pro-recent-first" class="command-palette">
+  <div class="modal-backdrop" data-ai-dismiss="modal"></div>
+  <div class="command-box">
+    <div class="command-input-wrapper">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" class="command-input" value="" placeholder="Search files, components and commands" aria-label="Search files, components and commands" aria-controls="command-palette-pro-recent-first-results" />
+      <span class="command-kbd">Esc</span>
+    </div>
+    <ul class="command-list" id="command-palette-pro-recent-first-results" role="listbox" aria-label="Recent and suggested" aria-activedescendant="command-palette-pro-recent-first-option-1">
+      <li class="command-group-heading" role="presentation">Recent</li>
+      <li class="command-item is-selected" id="command-palette-pro-recent-first-option-1" role="option" aria-selected="true">
+        <div class="command-item-left">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          <span>tokens.css</span>
+        </div>
+        <span class="text-sm text-muted">12 minutes ago</span>
+      </li>
+      <li class="command-item" role="option" aria-selected="false">
+        <div class="command-item-left">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          <span>variants-application.mjs</span>
+        </div>
+        <span class="text-sm text-muted">1 hour ago</span>
+      </li>
+      <li class="command-item" role="option" aria-selected="false">
+        <div class="command-item-left">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          <span>forms-extra.css</span>
+        </div>
+        <span class="text-sm text-muted">Yesterday</span>
+      </li>
+      <li class="command-group-heading" role="presentation">Suggested</li>
+      <li class="command-item" role="option" aria-selected="false">
+        <div class="command-item-left">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+          <span>New component from template</span>
+        </div>
+        <span class="command-kbd">Ctrl N</span>
+      </li>
+      <li class="command-item" role="option" aria-selected="false">
+        <div class="command-item-left">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M9 10v10"/></svg>
+          <span>Go to registry catalog</span>
+        </div>
+        <span class="command-kbd">G R</span>
+      </li>
+    </ul>
+    <div class="flex flex-wrap items-center gap-4 px-3 py-2 border-t border-subtle">
+      <span class="flex items-center gap-2 text-sm text-muted"><span class="command-kbd">Up Down</span>to move</span>
+      <span class="flex items-center gap-2 text-sm text-muted"><span class="command-kbd">Enter</span>to open</span>
+      <span class="flex items-center gap-2 text-sm text-muted"><span class="command-kbd">Esc</span>to close</span>
+    </div>
+  </div>
+</div>`,
+    },
+  ],
+
+  /* ==========================================================================
+     Kanban column
+     ========================================================================== */
+  'kanban-column': [
+    {
+      id: 'board',
+      name: 'Three column board',
+      description:
+        'The single column becomes the whole board: three columns side by side on one surface, divided by a hairline instead of by three separate boxes, stacking back to one column under a narrow container.',
+      guidance:
+        'Use when the reader has to move work between states rather than read one state, which is what a board is for. The three columns share one .kanban surface and are separated by a hairline, never by three .kanban boxes side by side: three bordered panels inside a panel is the nested box the first law is about. The split is a container query through cq and cq-md:grid-cols-3, so the board reads its own width and a board in a sidebar stacks while the same markup in a page does not. The hairline changes axis with the layout: a divider-vertical between the columns from cq-md up, a horizontal divider above each column below it, each hidden at the other size. The grid gap is zero on purpose, because the divider carries its own margin and a gap as well would leave the rule floating between two gutters. Counts are plain muted text beside the column name in .kanban-head, never a badge or a pill. Three columns is the ceiling for this shape: at four the columns are narrower than the item titles and the board wants its own horizontal scroll.',
+      html: `<div class="kanban cq">
+  <div class="grid grid-cols-1 cq-md:grid-cols-3 cq-md:gap-0">
+    <section class="min-w-0">
+      <div class="kanban-head"><span>Triage</span><span class="text-muted">4</span></div>
+      <div class="kanban-item">Quota meter CSS <span class="text-xs text-muted">#184</span></div>
+      <div class="kanban-item">Polar zip download <span class="text-xs text-muted">#191</span></div>
+      <div class="kanban-item">Account dark flash <span class="text-xs text-muted">#203</span></div>
+      <div class="kanban-item">Docs search empty state <span class="text-xs text-muted">#207</span></div>
+    </section>
+    <section class="min-w-0">
+      <hr class="divider cq-md:hidden" />
+      <div class="flex gap-2">
+        <span class="divider-vertical h-auto self-stretch hidden cq-md:block" aria-hidden="true"></span>
+        <div class="flex-1 min-w-0">
+          <div class="kanban-head"><span>In progress</span><span class="text-muted">2</span></div>
+          <div class="kanban-item">Range picker, two months <span class="text-xs text-muted">#211</span></div>
+          <div class="kanban-item">Kanban board variant <span class="text-xs text-muted">#212</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="min-w-0">
+      <hr class="divider cq-md:hidden" />
+      <div class="flex gap-2">
+        <span class="divider-vertical h-auto self-stretch hidden cq-md:block" aria-hidden="true"></span>
+        <div class="flex-1 min-w-0">
+          <div class="kanban-head"><span>In review</span><span class="text-muted">3</span></div>
+          <div class="kanban-item">Inbox reading pane <span class="text-xs text-muted">#198</span></div>
+          <div class="kanban-item">Timeline two column <span class="text-xs text-muted">#209</span></div>
+          <div class="kanban-item">Month schedule cells <span class="text-xs text-muted">#210</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>`,
+    },
+    {
+      id: 'swimlane',
+      name: 'Swimlane',
+      description:
+        'The column turns on its side: each team gets a lane whose items run across the board in one horizontal row instead of down a column, with a hairline between the lanes.',
+      guidance:
+        'Use when the board is grouped by who owns the work rather than by what state it is in, and the reader scans one lane at a time. A lane holds as many items as it holds, so the row scrolls sideways inside the board rather than wrapping: a wrapped lane stops being a lane, and a squeezed item that reads one word per line is worse than one the reader drags to. The items keep a real width and never shrink, which is what makes the scroll work; the inner row carries min-w-max so the wrapper has something to scroll. Lanes are separated by a divider on one shared surface, not by a box each. Counts stay plain muted text in the lane head. Two or three lanes is the useful ceiling, because every lane past the fold is a lane nobody scrolls.',
+      html: `<div class="kanban cq">
+  <div class="kanban-head"><span>Payments squad</span><span class="text-muted">4</span></div>
+  <div class="overflow-x-auto">
+    <div class="flex gap-3 min-w-max">
+      <div class="kanban-item w-56 shrink-0 mb-0">Quota meter CSS <span class="text-xs text-muted">#184</span></div>
+      <div class="kanban-item w-56 shrink-0 mb-0">Polar zip download <span class="text-xs text-muted">#191</span></div>
+      <div class="kanban-item w-56 shrink-0 mb-0">Invoice retry backoff <span class="text-xs text-muted">#196</span></div>
+      <div class="kanban-item w-56 shrink-0 mb-0">Seat proration rounding <span class="text-xs text-muted">#199</span></div>
+    </div>
+  </div>
+  <hr class="divider" />
+  <div class="kanban-head"><span>Registry squad</span><span class="text-muted">3</span></div>
+  <div class="overflow-x-auto">
+    <div class="flex gap-3 min-w-max">
+      <div class="kanban-item w-56 shrink-0 mb-0">Range picker, two months <span class="text-xs text-muted">#211</span></div>
+      <div class="kanban-item w-56 shrink-0 mb-0">Month schedule cells <span class="text-xs text-muted">#210</span></div>
+      <div class="kanban-item w-56 shrink-0 mb-0">Timeline two column <span class="text-xs text-muted">#209</span></div>
+    </div>
+  </div>
+</div>`,
+    },
+  ],
+
+  /* ==========================================================================
+     Inbox list
+     ========================================================================== */
+  'inbox-list': [
+    {
+      id: 'split-reading-pane',
+      name: 'Split reading pane',
+      description:
+        'The list gives up two thirds of the width and the selected message opens beside it, so a reader moves down the list without leaving the message they are reading.',
+      guidance:
+        'Use when the rows are things to read rather than things to count: mail, tickets, reviews. The split is a container query through cq and cq-md:grid-cols-3, so the pane appears when the component is wide enough for it and not because the window is. Under 600px the pane is hidden outright rather than stacked under the list, because a message under a scrolling list is a second scroll the reader did not ask for; on a phone the list is the screen and the message is the next screen. The two panes share one surface and are separated by a divider-vertical stretched with h-auto and self-stretch, never by a border on a nested panel. Unread is carried by weight alone through is-unread, with no pip and no tint, so the only other mark in the list, the tint on the open row, means one thing. That row carries aria-current as well, because a tint announces nothing. The message header is the media object: avatar in media-figure, name and address in media-body, so the header keeps its shape when the name wraps.',
+      html: `<div class="cq grid grid-cols-1 cq-md:grid-cols-3">
+  <div class="min-w-0">
+    <div class="level px-3 mb-1">
+      <span class="text-sm font-semibold">Inbox</span>
+      <span class="text-sm text-muted">2 unread</span>
+    </div>
+    <div class="inbox-item px-3 bg-accent-subtle" aria-current="true">
+      <div class="min-w-0">
+        <div class="inbox-title truncate">Build failed on main</div>
+        <div class="text-xs text-muted truncate">Rina Nakamura</div>
+      </div>
+      <span class="text-xs text-muted ml-auto">2m</span>
+    </div>
+    <div class="inbox-item is-unread px-3">
+      <div class="min-w-0">
+        <div class="inbox-title truncate">Seat request from acme</div>
+        <div class="text-xs text-muted truncate">Billing</div>
+      </div>
+      <span class="text-xs text-muted ml-auto">1h</span>
+    </div>
+    <div class="inbox-item is-unread px-3">
+      <div class="min-w-0">
+        <div class="inbox-title truncate">Registry mirror is stale</div>
+        <div class="text-xs text-muted truncate">Sam Okafor</div>
+      </div>
+      <span class="text-xs text-muted ml-auto">4h</span>
+    </div>
+    <div class="inbox-item px-3">
+      <div class="min-w-0">
+        <div class="inbox-title truncate">Certificate renewed</div>
+        <div class="text-xs text-muted truncate">Infrastructure</div>
+      </div>
+      <span class="text-xs text-muted ml-auto">1d</span>
+    </div>
+  </div>
+  <div class="hidden cq-md:flex cq-md:col-span-2 gap-4">
+    <span class="divider-vertical h-auto self-stretch" aria-hidden="true"></span>
+    <div class="min-w-0">
+      <div class="media">
+        <div class="media-figure"><span class="avatar" aria-hidden="true">RN</span></div>
+        <div class="media-body">
+          <h3 class="text-base font-semibold mb-0">Build failed on main</h3>
+          <p class="text-sm text-muted mb-0">Rina Nakamura, rina@llmcss.io<span class="divider-vertical" aria-hidden="true"></span><span class="tabular">09:41</span></p>
+        </div>
+      </div>
+      <p class="text-sm text-secondary mt-4">php -l api/lib.php exited 255 on commit 8f2c1a. The parse error is an unclosed match arm in api/lib.php at line 412, added with the token refresh patch.</p>
+      <p class="text-sm text-secondary">The deploy to production-syd was held and the previous build is still serving traffic. Push a fix and re-run the job, or revert the commit and let the queue drain.</p>
+      <div class="flex flex-wrap gap-2 mt-4">
+        <button type="button" class="btn btn-sm btn-primary">Reply</button>
+        <button type="button" class="btn btn-sm btn-outline">Re-run job</button>
+        <button type="button" class="btn btn-sm btn-ghost">Archive</button>
+      </div>
+    </div>
+  </div>
+</div>`,
+    },
+    {
+      id: 'bulk-select',
+      name: 'Bulk select',
+      description:
+        'A checkbox leads every row and the list header is replaced by a bulk bar carrying the selection count and the actions that apply to it.',
+      guidance:
+        'Use when the reader clears an inbox rather than reads it: archive the twelve deploy notices, mark a morning of alerts read. Each checkbox is labelled with the subject of its own row, because four controls all called Select are four identical announcements. Selected rows carry aria-selected as well as the tint, so the state is spoken and not only painted. The bar is a bulk-bar under the list rather than a floating strip over it, it names the count in plain text, and it puts the destructive action last with a visible gap from the routine ones. Unread stays weight alone: the checkbox column is the only thing added to the row, and a second mark in the same place would compete with it.',
+      html: `<div class="flex flex-col gap-3 max-w-lg">
+  <div class="inbox-item px-3" aria-selected="true">
+    <label class="checkbox"><input type="checkbox" class="checkbox-input" checked /><span class="sr-only">Select Build failed on main</span></label>
+    <div class="min-w-0">
+      <div class="inbox-title truncate">Build failed on main</div>
+      <div class="text-xs text-muted truncate">Rina Nakamura</div>
+    </div>
+    <span class="text-xs text-muted">2m</span>
+  </div>
+  <div class="inbox-item is-unread px-3" aria-selected="true">
+    <label class="checkbox"><input type="checkbox" class="checkbox-input" checked /><span class="sr-only">Select Seat request from acme</span></label>
+    <div class="min-w-0">
+      <div class="inbox-title truncate">Seat request from acme</div>
+      <div class="text-xs text-muted truncate">Billing</div>
+    </div>
+    <span class="text-xs text-muted">1h</span>
+  </div>
+  <div class="inbox-item is-unread px-3">
+    <label class="checkbox"><input type="checkbox" class="checkbox-input" /><span class="sr-only">Select Registry mirror is stale</span></label>
+    <div class="min-w-0">
+      <div class="inbox-title truncate">Registry mirror is stale</div>
+      <div class="text-xs text-muted truncate">Sam Okafor</div>
+    </div>
+    <span class="text-xs text-muted">4h</span>
+  </div>
+  <div class="inbox-item px-3">
+    <label class="checkbox"><input type="checkbox" class="checkbox-input" /><span class="sr-only">Select Certificate renewed</span></label>
+    <div class="min-w-0">
+      <div class="inbox-title truncate">Certificate renewed</div>
+      <div class="text-xs text-muted truncate">Infrastructure</div>
+    </div>
+    <span class="text-xs text-muted">1d</span>
+  </div>
+  <div class="bulk-bar" role="status">
+    <span class="bulk-bar-count">2 selected</span>
+    <button type="button" class="btn btn-ghost btn-xs">Clear</button>
+    <div class="bulk-bar-actions">
+      <button type="button" class="btn btn-outline btn-sm">Mark read</button>
+      <button type="button" class="btn btn-outline btn-sm">Archive</button>
+      <button type="button" class="btn btn-danger btn-sm">Delete</button>
+    </div>
+  </div>
+</div>`,
+    },
+  ],
+
+  /* ==========================================================================
+     Timeline log
+     ========================================================================== */
+  'timeline-log': [
+    {
+      id: 'two-column',
+      name: 'Two column',
+      description:
+        'From cq-md up the rail moves to the centre of the block and events sit on alternating sides of it, two to a row; under that width the same events fall back to one column beside a single left rail.',
+      guidance:
+        'Use when the log is long enough that a single column wastes half the width, and short enough per event that two events fit on a row: releases, milestones, an audit trail with one line each. The rail is a real element, not a border on the item, which is what lets it be the left rail on a phone and the centre rail at width from one set of markup: the left rail is hidden at cq-md and the centre rail, which lives inside each right hand event, is hidden below it. The grid gap is zero so the centre rail segments meet and read as one line. Each event marks itself with a static pip nearest the rail, turned around on the left hand side with cq-md:flex-row-reverse so the pip always touches the rail; a pip in a log is a steady state and never animates. Timestamps are tabular so the column of times does not shuffle as the values change. Below cq-md nothing alternates: order is the point of a log, and one column keeps it.',
+      html: `<div class="cq">
+  <div class="flex gap-4 cq-md:block">
+    <span class="divider-vertical h-auto self-stretch cq-md:hidden" aria-hidden="true"></span>
+    <ol class="timeline flex-1 min-w-0 cq-md:grid cq-md:grid-cols-2 cq-md:gap-0">
+      <li class="py-3 pe-4">
+        <div class="flex items-center gap-2 cq-md:flex-row-reverse">
+          <span class="pip pip-ok" aria-hidden="true"></span>
+          <span class="timeline-title">Registry published</span>
+        </div>
+        <div class="timeline-meta cq-md:text-right">origin<span class="divider-vertical" aria-hidden="true"></span><span class="tabular">09:41</span></div>
+      </li>
+      <li class="py-3 cq-md:flex cq-md:gap-4">
+        <span class="divider-vertical h-auto self-stretch hidden cq-md:block" aria-hidden="true"></span>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2">
+            <span class="pip" aria-hidden="true"></span>
+            <span class="timeline-title">Token issued</span>
+          </div>
+          <div class="timeline-meta">polar webhook<span class="divider-vertical" aria-hidden="true"></span><span class="tabular">09:58</span></div>
+        </div>
+      </li>
+      <li class="py-3 pe-4">
+        <div class="flex items-center gap-2 cq-md:flex-row-reverse">
+          <span class="pip pip-warn" aria-hidden="true"></span>
+          <span class="timeline-title">Cache purge queued</span>
+        </div>
+        <div class="timeline-meta cq-md:text-right">edge-syd<span class="divider-vertical" aria-hidden="true"></span><span class="tabular">10:14</span></div>
+      </li>
+      <li class="py-3 cq-md:flex cq-md:gap-4">
+        <span class="divider-vertical h-auto self-stretch hidden cq-md:block" aria-hidden="true"></span>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2">
+            <span class="pip pip-ok" aria-hidden="true"></span>
+            <span class="timeline-title">Pro component added</span>
+          </div>
+          <div class="timeline-meta">tool-trace<span class="divider-vertical" aria-hidden="true"></span><span class="tabular">11:02</span></div>
+        </div>
+      </li>
+      <li class="py-3 pe-4">
+        <div class="flex items-center gap-2 cq-md:flex-row-reverse">
+          <span class="pip pip-err" aria-hidden="true"></span>
+          <span class="timeline-title">Mirror sync failed</span>
+        </div>
+        <div class="timeline-meta cq-md:text-right">registry mirror<span class="divider-vertical" aria-hidden="true"></span><span class="tabular">11:37</span></div>
+      </li>
+      <li class="py-3 cq-md:flex cq-md:gap-4">
+        <span class="divider-vertical h-auto self-stretch hidden cq-md:block" aria-hidden="true"></span>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2">
+            <span class="pip pip-ok" aria-hidden="true"></span>
+            <span class="timeline-title">Mirror sync recovered</span>
+          </div>
+          <div class="timeline-meta">registry mirror<span class="divider-vertical" aria-hidden="true"></span><span class="tabular">11:52</span></div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</div>`,
+    },
+    {
+      id: 'single-line',
+      name: 'Single line',
+      description:
+        'Each event collapses from two lines to one row: title, source and a right aligned time on the same baseline, so twice as many events fit before the fold.',
+      guidance:
+        'Use for a long audit trail or a deploy log, where the reader is looking for the one line that is different and the meta is two words. The title truncates and the time never does: the time column is fixed at the end with tabular figures so the digits line up down the list and a scan reads the gaps. Keep the row padding tight but not tighter than the rail spacing, or the pips merge into a dotted line. This is the wrong shape when an event needs a sentence: at that point the meta wraps under the title and the single line is a two line row with a ragged right edge, which is what the default layout already does properly.',
+      html: `<ol class="timeline max-w-lg">
+  <li class="timeline-item flex items-baseline gap-3 pb-3">
+    <span class="timeline-title truncate min-w-0">Registry published</span>
+    <span class="timeline-meta shrink-0">origin</span>
+    <span class="timeline-meta ml-auto shrink-0 tabular">09:41</span>
+  </li>
+  <li class="timeline-item flex items-baseline gap-3 pb-3">
+    <span class="timeline-title truncate min-w-0">Token issued</span>
+    <span class="timeline-meta shrink-0">polar webhook</span>
+    <span class="timeline-meta ml-auto shrink-0 tabular">09:58</span>
+  </li>
+  <li class="timeline-item flex items-baseline gap-3 pb-3">
+    <span class="timeline-title truncate min-w-0">Cache purge queued</span>
+    <span class="timeline-meta shrink-0">edge-syd</span>
+    <span class="timeline-meta ml-auto shrink-0 tabular">10:14</span>
+  </li>
+  <li class="timeline-item flex items-baseline gap-3 pb-3">
+    <span class="timeline-title truncate min-w-0">Pro component added</span>
+    <span class="timeline-meta shrink-0">tool-trace</span>
+    <span class="timeline-meta ml-auto shrink-0 tabular">11:02</span>
+  </li>
+  <li class="timeline-item flex items-baseline gap-3 pb-3">
+    <span class="timeline-title truncate min-w-0">Mirror sync failed</span>
+    <span class="timeline-meta shrink-0">registry mirror</span>
+    <span class="timeline-meta ml-auto shrink-0 tabular">11:37</span>
+  </li>
+  <li class="timeline-item flex items-baseline gap-3 pb-3">
+    <span class="timeline-title truncate min-w-0">Mirror sync recovered</span>
+    <span class="timeline-meta shrink-0">registry mirror</span>
+    <span class="timeline-meta ml-auto shrink-0 tabular">11:52</span>
+  </li>
+</ol>`,
+    },
+  ],
+
+  /* ==========================================================================
+     Calendar date picker
+     ========================================================================== */
+  'calendar-datepicker': [
+    {
+      id: 'range-two-month',
+      name: 'Range, two months',
+      description:
+        'One month becomes two side by side and the selection becomes a range: both endpoints are marked, the days between them are tinted, and a footer line resolves the range and its night count.',
+      guidance:
+        'Use for any booking where the two dates are chosen together and the second one is usually in the following month: stays, leave, a maintenance window. Two grids side by side stop the reader paging forward and losing sight of the start date. The pair is a container query through cq and cq-md:grid-cols-2, and under 600px the second month is hidden rather than stacked, because two month grids stacked on a phone is a scroll with no context; the footer still resolves the whole range, so nothing is lost. Each grid names its own month in a caption, which is also its accessible name, so no id is needed and the pair can appear twice on a page. The endpoints use the is-selected state the library already ships and each one says in its label which end it is; the days between carry the accent tint and aria-selected, since the library has no is-in-range state yet. Days outside a grid own month stay muted and unavailable in both grids, so a date is only ever painted once, in its own month. The nav buttons are btn-icon, which takes the 44px target under a coarse pointer.',
+      html: `<div class="calendar-panel cq">
+  <div class="calendar-header">
+    <button type="button" class="btn btn-ghost btn-icon" aria-label="Show August and September 2026">
+      <svg class="rotate-90" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <span class="calendar-title">September and October 2026</span>
+    <button type="button" class="btn btn-ghost btn-icon" aria-label="Show October and November 2026">
+      <svg class="-rotate-90" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+  </div>
+  <div class="grid grid-cols-1 cq-md:grid-cols-2 gap-6">
+    <div class="min-w-0">
+      <table class="calendar" role="grid">
+        <caption class="calendar-title text-center pb-2">September 2026</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="calendar-weekday"><abbr title="Monday">Mon</abbr></th>
+            <th scope="col" class="calendar-weekday"><abbr title="Tuesday">Tue</abbr></th>
+            <th scope="col" class="calendar-weekday"><abbr title="Wednesday">Wed</abbr></th>
+            <th scope="col" class="calendar-weekday"><abbr title="Thursday">Thu</abbr></th>
+            <th scope="col" class="calendar-weekday"><abbr title="Friday">Fri</abbr></th>
+            <th scope="col" class="calendar-weekday"><abbr title="Saturday">Sat</abbr></th>
+            <th scope="col" class="calendar-weekday"><abbr title="Sunday">Sun</abbr></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td role="gridcell"><button type="button" class="calendar-day is-muted" tabindex="-1" disabled>31</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">1</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">2</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">3</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">4</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">5</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">6</button></td>
+          </tr>
+          <tr>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">7</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">8</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">9</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">10</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">11</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">12</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">13</button></td>
+          </tr>
+          <tr>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">14</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">15</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">16</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">17</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">18</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">19</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">20</button></td>
+          </tr>
+          <tr>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">21</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">22</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">23</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">24</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">25</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">26</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">27</button></td>
+          </tr>
+          <tr>
+            <td role="gridcell" aria-selected="true"><button type="button" class="calendar-day is-selected" tabindex="0" aria-label="28 September 2026, start of range">28</button></td>
+            <td role="gridcell" aria-selected="true"><button type="button" class="calendar-day bg-accent-subtle" tabindex="-1">29</button></td>
+            <td role="gridcell" aria-selected="true"><button type="button" class="calendar-day bg-accent-subtle" tabindex="-1">30</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day is-muted" tabindex="-1" disabled>1</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day is-muted" tabindex="-1" disabled>2</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day is-muted" tabindex="-1" disabled>3</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day is-muted" tabindex="-1" disabled>4</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="min-w-0 hidden cq-md:block">
+      <table class="calendar" role="grid">
+        <caption class="calendar-title text-center pb-2">October 2026</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="calendar-weekday"><abbr title="Monday">Mon</abbr></th>
+            <th scope="col" class="calendar-weekday"><abbr title="Tuesday">Tue</abbr></th>
+            <th scope="col" class="calendar-weekday"><abbr title="Wednesday">Wed</abbr></th>
+            <th scope="col" class="calendar-weekday"><abbr title="Thursday">Thu</abbr></th>
+            <th scope="col" class="calendar-weekday"><abbr title="Friday">Fri</abbr></th>
+            <th scope="col" class="calendar-weekday"><abbr title="Saturday">Sat</abbr></th>
+            <th scope="col" class="calendar-weekday"><abbr title="Sunday">Sun</abbr></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td role="gridcell"><button type="button" class="calendar-day is-muted" tabindex="-1" disabled>28</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day is-muted" tabindex="-1" disabled>29</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day is-muted" tabindex="-1" disabled>30</button></td>
+            <td role="gridcell" aria-selected="true"><button type="button" class="calendar-day bg-accent-subtle" tabindex="-1">1</button></td>
+            <td role="gridcell" aria-selected="true"><button type="button" class="calendar-day bg-accent-subtle" tabindex="-1">2</button></td>
+            <td role="gridcell" aria-selected="true"><button type="button" class="calendar-day is-selected" tabindex="-1" aria-label="3 October 2026, end of range">3</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">4</button></td>
+          </tr>
+          <tr>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">5</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">6</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">7</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">8</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">9</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">10</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">11</button></td>
+          </tr>
+          <tr>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">12</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">13</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">14</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">15</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">16</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">17</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">18</button></td>
+          </tr>
+          <tr>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">19</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">20</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">21</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">22</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">23</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">24</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">25</button></td>
+          </tr>
+          <tr>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">26</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">27</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">28</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">29</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">30</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day" tabindex="-1">31</button></td>
+            <td role="gridcell"><button type="button" class="calendar-day is-muted" tabindex="-1" disabled>1</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="calendar-footer">
+    <span class="tabular">28 September to 3 October 2026</span>
+    <span class="tabular">5 nights</span>
+  </div>
+</div>`,
+    },
+    {
+      id: 'month-schedule',
+      name: 'Month schedule',
+      description:
+        'The day buttons become day cells: each one stacks the date over up to two event lines with a leading pip, and says how many more it is not showing.',
+      guidance:
+        'Use when the month is being read rather than picked: a team calendar, a roster, a release schedule. Two lines per cell is the honest ceiling for a month grid, so the third event is counted rather than crammed in: the overflow line is plain muted text, never a badge, and it says how many are hidden instead of ending in an ellipsis. Event text stays at text-sm, the same size as the rest of the body copy, and shrinks in colour rather than in size; nothing in a calendar cell may drop below 12px. Each event leads with a static pip, which is the same status vocabulary the rest of the library uses, and truncates on one line so the row heights stay level. Seven columns of readable text do not fit a phone, so the grid keeps a real column width and the wrapper scrolls horizontally: a squeezed month where every event reads one word per line is worse than a month the reader drags sideways. Days outside the month keep their number in muted ink and carry no events. Nav buttons are btn-icon, which takes the 44px target under a coarse pointer.',
+      html: `<div class="calendar-panel cq">
+  <div class="calendar-header">
+    <button type="button" class="btn btn-ghost btn-icon" aria-label="Previous month, August 2026">
+      <svg class="rotate-90" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <span class="calendar-title">September 2026</span>
+    <button type="button" class="btn btn-ghost btn-icon" aria-label="Next month, October 2026">
+      <svg class="-rotate-90" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+  </div>
+  <div class="scroll-x">
+    <table class="calendar min-w-max">
+      <caption class="sr-only">Team schedule for September 2026</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="calendar-weekday w-24"><abbr title="Monday">Mon</abbr></th>
+          <th scope="col" class="calendar-weekday w-24"><abbr title="Tuesday">Tue</abbr></th>
+          <th scope="col" class="calendar-weekday w-24"><abbr title="Wednesday">Wed</abbr></th>
+          <th scope="col" class="calendar-weekday w-24"><abbr title="Thursday">Thu</abbr></th>
+          <th scope="col" class="calendar-weekday w-24"><abbr title="Friday">Fri</abbr></th>
+          <th scope="col" class="calendar-weekday w-24"><abbr title="Saturday">Sat</abbr></th>
+          <th scope="col" class="calendar-weekday w-24"><abbr title="Sunday">Sun</abbr></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm text-muted tabular">31</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle">
+            <span class="block text-sm font-semibold tabular">1</span>
+            <span class="flex items-center gap-2 text-sm text-muted mt-1"><span class="pip pip-ok" aria-hidden="true"></span><span class="truncate">Sprint planning</span></span>
+            <span class="flex items-center gap-2 text-sm text-muted mt-1"><span class="pip" aria-hidden="true"></span><span class="truncate">Design review</span></span>
+          </td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">2</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle">
+            <span class="block text-sm font-semibold tabular">3</span>
+            <span class="flex items-center gap-2 text-sm text-muted mt-1"><span class="pip pip-warn" aria-hidden="true"></span><span class="truncate">Release 0.4.1</span></span>
+          </td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">4</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">5</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">6</span></td>
+        </tr>
+        <tr>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle">
+            <span class="block text-sm font-semibold tabular">7</span>
+            <span class="flex items-center gap-2 text-sm text-muted mt-1"><span class="pip pip-ok" aria-hidden="true"></span><span class="truncate">Standup</span></span>
+            <span class="flex items-center gap-2 text-sm text-muted mt-1"><span class="pip" aria-hidden="true"></span><span class="truncate">Docs sync</span></span>
+            <span class="block text-sm text-muted mt-1">+3 more</span>
+          </td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">8</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">9</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">10</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle">
+            <span class="block text-sm font-semibold tabular">11</span>
+            <span class="flex items-center gap-2 text-sm text-muted mt-1"><span class="pip" aria-hidden="true"></span><span class="truncate">Retro</span></span>
+          </td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">12</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">13</span></td>
+        </tr>
+        <tr>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">14</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">15</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle">
+            <span class="block text-sm font-semibold tabular">16</span>
+            <span class="flex items-center gap-2 text-sm text-muted mt-1"><span class="pip pip-warn" aria-hidden="true"></span><span class="truncate">Token audit</span></span>
+            <span class="flex items-center gap-2 text-sm text-muted mt-1"><span class="pip" aria-hidden="true"></span><span class="truncate">Pairing</span></span>
+          </td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">17</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">18</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">19</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">20</span></td>
+        </tr>
+        <tr>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">21</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle">
+            <span class="block text-sm font-semibold tabular">22</span>
+            <span class="flex items-center gap-2 text-sm text-muted mt-1"><span class="pip pip-err" aria-hidden="true"></span><span class="truncate">Registry freeze</span></span>
+          </td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">23</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">24</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">25</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">26</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">27</span></td>
+        </tr>
+        <tr>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">28</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle">
+            <span class="block text-sm font-semibold tabular">29</span>
+            <span class="flex items-center gap-2 text-sm text-muted mt-1"><span class="pip" aria-hidden="true"></span><span class="truncate">Board review</span></span>
+            <span class="flex items-center gap-2 text-sm text-muted mt-1"><span class="pip" aria-hidden="true"></span><span class="truncate">Invoices</span></span>
+            <span class="block text-sm text-muted mt-1">+2 more</span>
+          </td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm font-semibold tabular">30</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm text-muted tabular">1</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm text-muted tabular">2</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm text-muted tabular">3</span></td>
+          <td class="align-top text-left p-2 h-20 border-t border-subtle"><span class="block text-sm text-muted tabular">4</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="calendar-footer">
+    <span class="tabular">16 events this month</span>
+    <span>Team calendar, Australia/Sydney</span>
+  </div>
 </div>`,
     },
   ],
