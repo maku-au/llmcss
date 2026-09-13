@@ -293,11 +293,11 @@
    "name": "--ai-danger",
    "description": {
     "kind": "markdown",
-    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#dc2626`\n- `dark`: `#ef4444`"
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#c42020`\n- `dark`: `#ef4444`"
    },
    "values": [
     {
-     "name": "#dc2626"
+     "name": "#c42020"
     }
    ],
    "references": [
@@ -599,11 +599,11 @@
    "name": "--ai-font-serif",
    "description": {
     "kind": "markdown",
-    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `'Newsreader', 'Editorial New', Georgia, Cambria, serif`"
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `'Newsreader', Georgia, Cambria, serif`"
    },
    "values": [
     {
-     "name": "'Newsreader', 'Editorial New', Georgia, Cambria, serif"
+     "name": "'Newsreader', Georgia, Cambria, serif"
     }
    ],
    "references": [
@@ -1535,11 +1535,11 @@
    "name": "--ai-success",
    "description": {
     "kind": "markdown",
-    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#16a34a`\n- `dark`: `#22c55e`"
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#107435`\n- `dark`: `#22c55e`"
    },
    "values": [
     {
-     "name": "#16a34a"
+     "name": "#107435"
     }
    ],
    "references": [
@@ -1769,11 +1769,11 @@
    "name": "--ai-warning",
    "description": {
     "kind": "markdown",
-    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#ea580c`\n- `dark`: `#f97316`"
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `#ae4209`\n- `dark`: `#f97316`"
    },
    "values": [
     {
-     "name": "#ea580c"
+     "name": "#ae4209"
     }
    ],
    "references": [

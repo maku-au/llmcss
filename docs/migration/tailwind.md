@@ -51,7 +51,7 @@ one framework per page; there is no safe way to mix them.
 | `text-center` | `text-center` | |
 | `text-sm`, `text-lg`, `text-xl` | `text-sm`, `text-lg`, `text-xl` | The ramp runs `text-xs` to `text-7xl`. |
 | `font-bold` | `font-bold` | Also light, normal, medium and semibold. `font-display` is the headline face, which Tailwind has no notion of. |
-| `uppercase` | no direct equivalent | No text-transform utility ships. Write the one rule yourself, or reach for a component that already has that treatment. |
+| `uppercase` | `uppercase` | `lowercase` and `capitalize` exist too. |
 | `truncate` | `truncate` | `line-clamp-2` is the multi-line version. `leading-tight` and `tracking-tight` cover the rest of the text metrics. |
 | `rounded-lg`, `rounded-full` | `rounded-lg`, `rounded-full` | Each radius reads a token, so one token override restyles every corner in the app at once. |
 | `border` | `border` | Colour comes from the border token, so there is no `border-gray-200` to carry over. |
@@ -105,8 +105,9 @@ composing five utilities to rebuild something that has a name, check
 
 ### Tokens vs color scales
 
-There are 82 custom properties in `public/tokens.json` covering type, spacing, radius,
-easing, duration, surfaces, text, borders, focus, status colours and chart colours.
+There are custom properties (the live count is `stats.total` in `public/tokens.json`,
+107 as of this writing) covering type, spacing, radius, easing, duration, surfaces,
+text, borders, focus, status colours and chart colours.
 There is no `bg-blue-500`, and there never will be, because a numeric scale hard-codes
 a decision that a token defers.
 

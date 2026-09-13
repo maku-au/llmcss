@@ -1,0 +1,17 @@
+{
+  "id": "motion-disclosure",
+  "name": "Animated Disclosure",
+  "description": "A details and summary disclosure that animates its own height from zero, using the grid-rows technique rather than a fixed max-height guess.",
+  "category": "primitive",
+  "tier": "free",
+  "addon": "motion",
+  "tags": [
+    "motion",
+    "addon",
+    "disclosure",
+    "collapse",
+    "accordion",
+    "details"
+  ],
+  "html": "<details class=\"collapse panel p-5\">\n  <summary class=\"font-semibold\">What happens to my data when a run is cancelled?</summary>\n  <div class=\"animate-collapse-in duration-fast\">\n    <div class=\"prose mt-3\">\n      <p class=\"text-sm\">Partial output is retained for twenty four hours so you can resume, then\n        deleted. Billing stops at the last completed step, not at the point of cancellation.</p>\n    </div>\n  </div>\n</details>"
+}

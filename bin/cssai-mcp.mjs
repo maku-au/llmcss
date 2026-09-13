@@ -14,6 +14,12 @@ import { fileURLToPath } from 'url';
 import { components } from '../src/registry/data.mjs';
 import { wireframeTemplates, pageBlueprints, assembleBlueprintHtml } from '../src/registry/templates-data.mjs';
 import { validateMarkup, structuralAudit } from '../src/registry/validate.mjs';
+import { resolveRef, refHtml, variantSummary } from '../src/registry/resolve.mjs';
+
+// The server reports the package version, never a hand-typed one.
+const PKG_VERSION = JSON.parse(
+  fs.readFileSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../package.json'), 'utf8')
+).version;
 
 // Manifests generated at build time from the CSS (public/*.json). When running
 // from a checkout they are read from disk; otherwise fetched from the origin.
@@ -90,22 +96,23 @@ const rl = readline.createInterface({
 const TOOLS = [
   {
     name: 'search_components',
-    description: 'Search the LLMCSS component catalog by keyword, tag, or category. Every catalog component is free and MIT; Pro is themed section templates and page kits, searched with list_wireframe_templates.',
+    description: 'Search the LLMCSS component catalog by keyword, tag, category, or layout variant name. Every row carries a compact variants array of the layout alternatives that component ships, each addressable as "id:variant" in get_component_markup, so discovery needs no second call. Every catalog component is free and MIT; Pro is themed section templates and page kits, searched with list_wireframe_templates.',
     inputSchema: {
       type: 'object',
       properties: {
-        query: { type: 'string', description: 'Keyword to match against name, tags, or description' },
+        query: { type: 'string', description: 'Keyword to match against name, tags, description, or a layout variant name' },
         category: { type: 'string', enum: ['primitive', 'marketing', 'application', 'ecommerce'], description: 'Optional category filter' },
       },
     },
   },
   {
     name: 'get_component_markup',
-    description: 'Retrieve the semantic HTML markup, metadata, and CSS dependencies for a component. Every component is free and MIT, so no license token is ever needed here.',
+    description: 'Retrieve the semantic HTML markup, metadata, and CSS dependencies for a component. Components with more than one layout expose them as variants: pass id "hero-split:centered", or id "hero-split" with variant "centered". Omit variant for the default layout. The response always lists the sibling variants. Every component is free and MIT, so no license token is ever needed here.',
     inputSchema: {
       type: 'object',
       properties: {
-        id: { type: 'string', description: 'Component ID (e.g. btn-variants, animated-loaders, stepper-flow)' },
+        id: { type: 'string', description: 'Component ID (e.g. btn-variants, animated-loaders, stepper-flow) or a variant reference (hero-split:centered)' },
+        variant: { type: 'string', description: 'Layout variant id, for example centered. Alternative to writing id as "hero-split:centered".' },
       },
       required: ['id'],
     },
@@ -295,8 +302,14 @@ function handleToolCall(name, args = {}) {
     case 'search_components': {
       const q = (args.query || '').toLowerCase();
       const aliasTargets = ALIAS_MAP[q] || [];
+      // A query can name a layout rather than a component, so variants match
+      // too, and every row carries its variants: discovery costs no extra call.
+      const variantMatch = (c) =>
+        (c.variants || []).some(
+          (v) => v.id.includes(q) || v.name.toLowerCase().includes(q) || v.description.toLowerCase().includes(q)
+        );
       const results = components.filter((c) => {
-        const matchesQ = !q || aliasTargets.includes(c.id) || c.id.includes(q) || c.name.toLowerCase().includes(q) || c.tags.some(t => t.toLowerCase().includes(q));
+        const matchesQ = !q || aliasTargets.includes(c.id) || c.id.includes(q) || c.name.toLowerCase().includes(q) || c.tags.some(t => t.toLowerCase().includes(q)) || variantMatch(c);
         const matchesCat = !args.category || c.category === args.category;
         return matchesQ && matchesCat;
       }).map(c => ({
@@ -306,6 +319,7 @@ function handleToolCall(name, args = {}) {
         tier: c.tier,
         description: c.description,
         tags: c.tags,
+        variants: variantSummary(c),
       }));
       return {
         content: [{ type: 'text', text: JSON.stringify(results, null, 2) }],
@@ -313,8 +327,26 @@ function handleToolCall(name, args = {}) {
     }
 
     case 'get_component_markup': {
-      const comp = components.find((c) => c.id === args.id);
-      if (!comp) {
+      // "hero-split:centered" and id "hero-split" plus variant "centered" are
+      // the same request. One resolver, shared with the CLI and the catalog.
+      const ref = args.variant ? `${args.id}:${args.variant}` : args.id;
+      const hit = resolveRef(components, ref);
+      if (!hit) {
+        const cut = typeof ref === 'string' ? ref.lastIndexOf(':') : -1;
+        const parent = cut > 0 ? components.find((c) => c.id === ref.slice(0, cut)) : null;
+        if (parent) {
+          // A model recovers from a list and does not recover from "not found".
+          const list = (parent.variants || []).map((v) => v.id);
+          return {
+            isError: true,
+            content: [{
+              type: 'text',
+              text: list.length
+                ? `Component "${parent.id}" has no variant "${ref.slice(cut + 1)}". Variants: ${list.join(', ')}.`
+                : `Component "${parent.id}" has one layout, so omit the variant argument.`,
+            }],
+          };
+        }
         // Themed ids are section templates, not components. Point the caller
         // at the tool that can actually resolve them.
         const asTemplate = wireframeTemplates.find((t) => t.id === args.id);
@@ -329,18 +361,22 @@ function handleToolCall(name, args = {}) {
           content: [{ type: 'text', text: `Component "${args.id}" not found in the LLMCSS registry.` }],
         };
       }
+      const comp = hit.component;
       return {
         content: [
           {
             type: 'text',
             text: JSON.stringify({
               id: comp.id,
+              variant: hit.variant ? hit.variant.id : null,
               name: comp.name,
               category: comp.category,
               tier: comp.tier,
-              description: comp.description,
-              html: comp.html,
-              webComponentHtml: comp.webComponentHtml || null,
+              description: hit.variant ? hit.variant.description : comp.description,
+              guidance: hit.variant ? hit.variant.guidance : undefined,
+              html: refHtml(hit),
+              webComponentHtml: (hit.variant ? hit.variant.webComponentHtml : comp.webComponentHtml) || null,
+              variants: variantSummary(comp),
             }, null, 2),
           },
         ],
@@ -705,7 +741,7 @@ rl.on('line', (line) => {
         protocolVersion: '2024-11-05',
         serverInfo: {
           name: 'llmcss-mcp-server',
-          version: '0.1.0',
+          version: PKG_VERSION,
         },
         capabilities: {
           tools: {},

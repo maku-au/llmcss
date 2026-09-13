@@ -10,5 +10,28 @@
     "band",
     "signup"
   ],
-  "html": "<div class=\"cta-band\">\n  <h2 class=\"section-title\">Start with the free tier</h2>\n  <p class=\"section-lead\" style=\"margin-inline: auto;\">No card required. Upgrade when you need SSO, audit export, or more than three projects.</p>\n  <div class=\"cta-actions\">\n    <a href=\"#\" class=\"btn btn-primary btn-lg\">Create account</a>\n    <a href=\"#\" class=\"btn btn-outline btn-lg\">Talk to sales</a>\n  </div>\n</div>"
+  "html": "<div class=\"cta-band\">\n  <h2 class=\"section-title\">Start with the free tier</h2>\n  <p class=\"section-lead\" style=\"margin-inline: auto;\">No card required. Upgrade when you need SSO, audit export, or more than three projects.</p>\n  <div class=\"cta-actions\">\n    <a href=\"#\" class=\"btn btn-primary btn-lg\">Create account</a>\n    <a href=\"#\" class=\"btn btn-outline btn-lg\">Talk to sales</a>\n  </div>\n</div>",
+  "variants": [
+    {
+      "id": "split",
+      "name": "Split",
+      "description": "Copy on the left and the actions on the right in one row from md, instead of a centered stack.",
+      "guidance": "Sits immediately above the footer, or between two long sections as a mid-page break. Best when the band is wide and the copy is one heading and one sentence, because a centered stack there wastes both edges. Avoid it when the heading runs past two lines, since the actions then float beside a wall of text. Pairs with footer-multi-col:compact beneath, which repeats the same row shape.",
+      "html": "<div class=\"cta-band flex flex-col md:flex-row md:items-center justify-between gap-6 text-start\">\n  <div>\n    <h2 class=\"section-title\">Start with the free tier</h2>\n    <p class=\"section-lead\">No card required. Upgrade when you need SSO, audit export, or more than three projects.</p>\n  </div>\n  <div class=\"cta-actions justify-start md:justify-end md:mt-0 flex-none\">\n    <a href=\"#\" class=\"btn btn-primary btn-lg\">Create account</a>\n    <a href=\"#\" class=\"btn btn-outline btn-lg\">Talk to sales</a>\n  </div>\n</div>"
+    },
+    {
+      "id": "inline-form",
+      "name": "Inline form",
+      "description": "The two buttons become one email field with a submit button under the copy, so the conversion happens in the band rather than on the next page.",
+      "guidance": "Sits above the footer on a page whose next step is an account or a waitlist. Best when the only thing you need from a visitor is an address and the signup genuinely takes one field. Avoid it when the real form asks for six more fields, because the band then promises a shortcut that does not exist. Pairs with faq-section above it, which answers what happens after the address is given.",
+      "html": "<div class=\"cta-band\">\n  <h2 class=\"section-title\">Start with the free tier</h2>\n  <p class=\"section-lead mx-auto\">No card required. Upgrade when you need SSO, audit export, or more than three projects.</p>\n  <form class=\"max-w-md mx-auto mt-6\">\n    <div class=\"input-group\">\n      <input type=\"email\" class=\"input\" placeholder=\"you@company.com\" aria-label=\"Work email\" />\n      <button type=\"submit\" class=\"btn btn-primary\">Create account</button>\n    </div>\n    <p class=\"form-hint mt-2\">One confirmation email. No card, and no sales call.</p>\n  </form>\n</div>"
+    },
+    {
+      "id": "hairline",
+      "name": "Hairline",
+      "description": "The tinted band is gone entirely: rules above and below, page background between, and the copy centred in the gap.",
+      "guidance": "Sits between sections on a page that already carries several surfaces, or at the end of an article. Best when a tinted block would be the fourth distinct background a reader has passed. Avoid it as the only call to action on a busy page, because a hairline block is easy to scroll past. Pairs with callout-editorial and the editorial skin, where the whole page is made of rules rather than boxes.",
+      "html": "<section class=\"section border-t border-b py-12 text-center\">\n  <div class=\"container\">\n    <h2 class=\"section-title\">Start with the free tier</h2>\n    <p class=\"section-lead mx-auto\">No card required. Upgrade when you need SSO, audit export, or more than three projects.</p>\n    <div class=\"cta-actions flex flex-wrap justify-center gap-3 mt-6\">\n      <a href=\"#\" class=\"btn btn-primary btn-lg\">Create account</a>\n      <a href=\"#\" class=\"btn btn-outline btn-lg\">Talk to sales</a>\n    </div>\n  </div>\n</section>"
+    }
+  ]
 }

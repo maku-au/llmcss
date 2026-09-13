@@ -7,12 +7,14 @@ Source of truth, in this order: [classes.json](https://llmcss.io/classes.json) f
 ## Where classes live
 
 <!-- stats:start -->
-- **Classes:** 2312 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Classes:** 2304 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
 - **Tokens:** 107 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
-- **States:** 36 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
-- **Components:** 122, all MIT: 54 primitive, 42 application, 21 marketing, 5 ecommerce.
-- **Section templates:** 29 (18 free wireframe, 11 themed Pro).
+- **States:** 38 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
+- **Components:** 130, all MIT: 62 primitive, 42 application, 21 marketing, 5 ecommerce.
+- **Layout variants:** 150 across 52 components, addressed `component:variant`.
+- **Section templates:** 55 (44 free wireframe, 11 themed Pro).
 - **Page blueprints:** 6 (4 free, 2 Pro).
+- **Motion addon:** 64 classes, 2.0KB gzipped, listed in [classes.motion.json](https://llmcss.io/classes.motion.json).
 <!-- stats:end -->
 
 The family a class belongs to tells you which stylesheet file defines it and roughly what it does.
@@ -20,8 +22,8 @@ The family a class belongs to tells you which stylesheet file defines it and rou
 <!-- families:start -->
 | Family | Classes | Defined in |
 |---|---:|---|
-| `spacing` | 692 | `utilities.css` |
-| `interaction` | 188 | `utilities.css` |
+| `spacing` | 688 | `utilities.css` |
+| `interaction` | 184 | `utilities.css` |
 | `sizing` | 175 | `utilities.css` |
 | `agent-extra` | 120 | `components/agent-extra.css` |
 | `position` | 114 | `utilities.css` |
@@ -83,9 +85,10 @@ Spacing and sizing steps: `0`, `px`, `0.5`, `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, 
 
 The author writes these in static markup; the runtime sets the same classes at runtime. `usedBy` is the set of classes the library styles alongside each state, so `is-open` on a `.card` does nothing.
 
+<!-- states:start -->
 | State | Styled on |
 |---|---|
-| `is-active` | `.combobox-option`, `.filter-tag`, `.list-group-item`, `.nav-link`, `.pagination-link`, `.scrollspy-link`, `.segmented-btn`, `.sidebar-badge`, `.sidebar-item`, `.step-circle`, `.step-item`, `.step-label`, `.tab`, `.tab-panel`, `.tabs-pills`, `.tree-leaf` |
+| `is-active` | `.btn`, `.btn-ghost`, `.btn-primary`, `.combobox-option`, `.filter-tag`, `.list-group-item`, `.nav-link`, `.pagination-link`, `.scrollspy-link`, `.segmented-btn`, `.sidebar-badge`, `.sidebar-item`, `.step-circle`, `.step-item`, `.step-label`, `.tab`, `.tab-panel`, `.tabs-pills`, `.tree-leaf` |
 | `is-added` | `.diff-gutter`, `.diff-marker`, `.diff-row` |
 | `is-auto` | `.marquee`, `.marquee-track` |
 | `is-centered` | `.hero`, `.hero-actions`, `.hero-lead` |
@@ -95,11 +98,12 @@ The author writes these in static markup; the runtime sets the same classes at r
 | `is-current` | `.breadcrumb-item`, `.orderline-label`, `.orderline-pip`, `.orderline-step` |
 | `is-danger` | `.cost-mark`, `.dropdown-item` |
 | `is-disabled` | `.list-group-item`, `.pagination-link` |
-| `is-done` | `.run-header`, `.run-timer`, `.status-pip` |
+| `is-done` | `.approval`, `.approval-status`, `.run-header`, `.run-timer`, `.status-pip`, `.trace-row`, `.trace-status` |
 | `is-down` | `.kpi-trend` |
-| `is-error` | `.empty-state`, `.empty-state-icon`, `.input`, `.select`, `.textarea` |
+| `is-error` | `.empty-state`, `.empty-state-icon`, `.input`, `.select`, `.textarea`, `.trace-row`, `.trace-status` |
 | `is-focused` | `.input`, `.select`, `.textarea` |
 | `is-increment` | `.stepper-btn` |
+| `is-leaving` | `.toast` |
 | `is-loading` | `.btn`, `.kpi-card`, `.kpi-trend`, `.kpi-value` |
 | `is-muted` | `.calendar-day` |
 | `is-nested` | `.scrollspy-link` |
@@ -112,15 +116,17 @@ The author writes these in static markup; the runtime sets the same classes at r
 | `is-reversed` | `.hero-split` |
 | `is-selected` | `.calendar-day`, `.command-item` |
 | `is-sold-out` | `.btn`, `.product-card`, `.product-img`, `.product-media` |
-| `is-streaming` | `.pulse-dot`, `.pulse-dot-streaming`, `.status-pip` |
+| `is-streaming` | `.chat-body`, `.chat-msg`, `.pulse-dot`, `.pulse-dot-streaming`, `.status-pip`, `.trace-row`, `.trace-status` |
 | `is-today` | `.calendar-day` |
 | `is-total` | `.checkout-label`, `.checkout-row`, `.checkout-value` |
 | `is-trailing` | `.input`, `.input-icon`, `.input-icon-wrap` |
 | `is-unread` | `.inbox-item`, `.inbox-title`, `.notification-item` |
 | `is-up` | `.kpi-trend` |
 | `is-upcoming` | `.orderline-label`, `.orderline-pip`, `.orderline-step` |
+| `is-vertical` | `.orderline-label`, `.orderline-pip`, `.orderline-step`, `.orderline-track`, `.step-item`, `.step-label`, `.stepper` |
 | `is-visible` | `.password`, `.password-toggle` |
 | `is-warn` | `.cost-mark` |
+<!-- states:end -->
 
 Anything else beginning `is-` fails `npx llmcss validate`.
 
@@ -303,7 +309,13 @@ Every token is a CSS variable in `@layer tokens`. Layer order is `reset, tokens,
 
 `npx llmcss lint --fix <file>` strips a stray `ai-` prefix in place. It cannot fix a hallucinated class; only you can.
 
-`npx llmcss audit <file>` and MCP `llmcss_slop_audit` check eight patterns against the laws below: nested `.card`, `.panel` or `.kpi-card` (counted with a real tag stack, not a line heuristic), a pulsing or breathing animation anywhere in a document that contains no `is-streaming`, colored left-stripe borders, saturated purple or cyan gradients, marquees, a stray `ai-` prefix or a hallucinated class, a badge or pill directly above a heading, and square grid or graph paper backgrounds. It exits 1 on any finding, like `validate`. Laws 6, 7, 8 and 10 have no automated check; they are on you.
+`npx llmcss audit <file>` and MCP `llmcss_slop_audit` check eight patterns against the laws below: nested `.card`, `.panel` or `.kpi-card` (counted with a real tag stack, not a line heuristic), a pulsing or breathing animation anywhere in a document that contains no `is-streaming`, colored left-stripe borders, saturated purple or cyan gradients, marquees, a stray `ai-` prefix (via `legacyFix`), a badge or pill directly above a heading, and square grid or graph paper backgrounds. It does not check for hallucinated classes; `npx llmcss validate` reports those, as a warning unless `--strict` is passed, in which case it errors. It exits 1 on any finding, like `validate`. Laws 6, 7, 8 and 10 have no automated check; they are on you.
+
+## Variants of a component
+
+A component variant is a structural alternative to a component's default layout, stored in the component's `variants` array and addressed flat as `component:variant`. `npx llmcss variants <id>` says what each one does, `npx llmcss add hero-split:centered` writes it (the colon flattens to a hyphen in the filename), `npx llmcss info <id>` adds a `variantRefs` list, and `npx llmcss search` matches variant names as well as component names. Over MCP, `get_component_markup` takes `{ "id": "hero-split:centered" }` or `{ "id": "hero-split", "variant": "centered" }`, and its response, like every `search_components` row, carries a `variants` array of `{ id, name, description }`. No `variants` array means one layout. Do not confuse it with a class variant: `md:grid-cols-2` has a class name on the left, `hero-split:centered` has a component id.
+
+The authoring rule, for whoever adds the next variant: a variant changes structure, never colour. Split versus centered, media left versus media top, sidebar versus topbar, dense versus comfortable, one column versus two. If the change can be made by setting `data-ai-skin`, `data-ai-accent` or `data-ai-density`, it is not a variant and it does not go in the registry. Every variant is held to the same gates as a component demo, plus three of its own: strict validation with zero warnings, no `style` attribute at all, and no `id` attribute reused from its parent.
 
 ## Prohibitions
 
@@ -329,6 +341,7 @@ Enforced by `npx llmcss audit`. Generated from `src/registry/laws.mjs` by `node 
 9. **Never auto-scroll copy.** Do not force readers to wait for auto-scrolling tickers or animated marquee loops to read supported integrations or technologies. Instead: Render a clean, static, responsive badge rail (`.badge-neutral`) or a balanced grid that users can scan at their own speed.
 10. **Always theme native browser surfaces.** An interface is incomplete if native browser affordances revert to un-themed system defaults. Instead: Verify text selection (`::selection`), caret color (`caret-color: var(--ai-accent)`), custom scrollbars (`scrollbar-color`), link underline offset (`text-underline-offset: 0.2em`), and tabular numerals (`font-variant-numeric: tabular-nums`).
 11. **Never use square grid backgrounds.** Avoid covering backgrounds in repeating 20px to 40px square grid lines, dot grids, or mesh graph paper patterns built from intersecting linear-gradient declarations. This is one of the most overused, robotic hallmarks of AI-generated template kits. Instead: Lead with clean, distraction-free solid surfaces (`var(--ai-surface-0)`, `var(--ai-bg)`, `var(--ai-surface-1)`) structured with subtle 1px hairline architectural borders (`var(--ai-border)`).
+12. **Never paint state without announcing it.** Do not mark a control as active, open, selected or pressed with a class and a colour alone. A segmented control whose current view carries only `is-active`, an accordion trigger with no `aria-expanded`, a toast that arrives outside any live region: each one looks correct and says nothing. A screen reader reads an undifferentiated list of buttons. Instead: Mirror every `is-*` state on an interactive element with the ARIA attribute that carries it: `aria-pressed` on segmented and filter buttons wrapped in a labelled `role="group"`, `aria-expanded` plus `aria-controls` on disclosure and accordion triggers, `aria-selected` on tabs, `aria-current` on the active nav link, and `role="status" aria-live="polite"` (or `role="alert"` for a failure) on anything that appears unprompted.
 <!-- laws:end -->
 
 Why these eleven and not more: each names a pattern that is recognisable in static HTML and CSS, and seven of them (1, 2, 3, 4, 5, 9, 11) are detected by `llmcss audit`, so the tool can fail a file rather than merely advise. Laws 1, 3, 8 and 11 are structural: what is nested, what is bordered, what repeats. Laws 2 and 9 are motion applied to states that never change. Laws 5, 6 and 7 are typographic. Law 4 is color physics: a glow with no offset reads as a screen artefact, not as elevation. Law 10 is the one positive obligation: an interface that leaves `::selection`, the caret, and scrollbars at system defaults looks unfinished next to its own themed components.

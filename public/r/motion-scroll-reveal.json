@@ -1,0 +1,16 @@
+{
+  "id": "motion-scroll-reveal",
+  "name": "Scroll Reveal Section",
+  "description": "Three blocks that reveal on scroll using a pure CSS view() timeline, and render plainly visible wherever scroll-driven animations are unsupported.",
+  "category": "primitive",
+  "tier": "free",
+  "addon": "motion",
+  "tags": [
+    "motion",
+    "addon",
+    "reveal",
+    "scroll",
+    "scroll-driven"
+  ],
+  "html": "<section class=\"flex flex-col gap-6\">\n  <h2 class=\"reveal-up\">Built to be read, not watched</h2>\n  <p class=\"reveal-up prose\">Each block below is revealed by a scroll-driven animation. There is no\n    observer, no script and no layout thrash. On a browser without scroll-driven animations every\n    block simply renders in place, fully visible.</p>\n  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-4\">\n    <div class=\"panel p-5 reveal-up\">\n      <h3 class=\"font-semibold\">Progress linked</h3>\n      <p class=\"text-sm\">The animation is driven by the element's own entry range, so it stops the\n        instant the reader stops scrolling.</p>\n    </div>\n    <div class=\"panel p-5 reveal-up delay-75\">\n      <h3 class=\"font-semibold\">Reversible</h3>\n      <p class=\"text-sm\">Scrolling back up runs it backwards. That is how a progress timeline\n        works, and it is why the addon documents it rather than faking a once-only.</p>\n    </div>\n    <div class=\"panel p-5 reveal-scale delay-150\">\n      <h3 class=\"font-semibold\">Degrades to visible</h3>\n      <p class=\"text-sm\">No rule outside the support query sets opacity to zero, so a blocked\n        stylesheet cannot hide this paragraph.</p>\n    </div>\n  </div>\n</section>"
+}

@@ -5,16 +5,20 @@
 LLMCSS is a pure-CSS component library plus generated manifests that tell an agent exactly which classes and tokens exist.
 
 [stats:start]
-Classes: 2312 classes across 40 families, https://llmcss.io/classes.json.
+Classes: 2304 classes across 40 families, https://llmcss.io/classes.json.
 Tokens: 107 --ai-* custom properties, https://llmcss.io/tokens.json.
-States: 36 is-* classes, https://llmcss.io/states.json.
-Components: 122, all MIT: 54 primitive, 42 application, 21 marketing, 5 ecommerce.
-Section templates: 29 (18 free wireframe, 11 themed Pro).
+States: 38 is-* classes, https://llmcss.io/states.json.
+Components: 130, all MIT: 62 primitive, 42 application, 21 marketing, 5 ecommerce.
+Layout variants: 150 across 52 components, addressed component:variant.
+Section templates: 55 (44 free wireframe, 11 themed Pro).
 Page blueprints: 6 (4 free, 2 Pro).
+Motion addon: 64 classes, 2.0KB gzipped, https://llmcss.io/classes.motion.json.
 [stats:end]
 
 Everything ships in one stylesheet under `@layer reset, tokens, base, components, utilities`. Components, section templates and page blueprints are addressable by id.
+A component with more than one layout carries a `variants` array; ask for one by reference, `component:variant`, for example `npx llmcss add hero-split:centered` or `get_component_markup {"id": "hero-split:centered"}`.
 An optional 1-file runtime adds modal, drawer, dropdown, accordion, tabs, toast, command palette, combobox, scrollspy, and split behavior.
+An optional motion addon, https://llmcss.io/llmcss-motion.css, adds one-shot animation, stagger, scroll-reveal, view-transition and press classes, listed in https://llmcss.io/classes.motion.json. It is a second link tag, never assumed present, and it contains no looping attention animation.
 State classes follow the `is-*` convention, cataloged with the components each applies to in https://llmcss.io/states.json.
 Eleven anti-slop laws below are the design contract; `npx llmcss audit <file>` enforces them, `npx llmcss validate <file>` is the class-name gate (unknown classes warn, `--strict` fails the file on them), and `npx llmcss lint --fix <file>` strips a stray `ai-` prefix.
 
@@ -35,6 +39,7 @@ Pin a release with the versioned path: https://llmcss.io/v/0.4.0/llmcss.css (ser
 - https://llmcss.io/states.json : every `is-*` state class, plus every `data-ai-*` attribute with allowed values and whether the author or the runtime applies it.
 - https://llmcss.io/registry.json and https://llmcss.io/r/{id}.json : component catalog and free component HTML.
 - https://llmcss.io/templates.json : wireframe section templates and page blueprints.
+- https://llmcss.io/classes.motion.json : the motion addon's classes. Only valid on pages that also load llmcss-motion.css.
 - MCP tools `list_classes`, `list_tokens`, `list_states` return the same data.
 
 ## Variants
@@ -80,6 +85,7 @@ Pro is themed section templates and page kits. The component catalog is entirely
 9. Never auto-scroll copy: Do not force readers to wait for auto-scrolling tickers or animated marquee loops to read supported integrations or technologies. Instead: Render a clean, static, responsive badge rail (`.badge-neutral`) or a balanced grid that users can scan at their own speed.
 10. Always theme native browser surfaces: An interface is incomplete if native browser affordances revert to un-themed system defaults. Instead: Verify text selection (`::selection`), caret color (`caret-color: var(--ai-accent)`), custom scrollbars (`scrollbar-color`), link underline offset (`text-underline-offset: 0.2em`), and tabular numerals (`font-variant-numeric: tabular-nums`).
 11. Never use square grid backgrounds: Avoid covering backgrounds in repeating 20px to 40px square grid lines, dot grids, or mesh graph paper patterns built from intersecting linear-gradient declarations. This is one of the most overused, robotic hallmarks of AI-generated template kits. Instead: Lead with clean, distraction-free solid surfaces (`var(--ai-surface-0)`, `var(--ai-bg)`, `var(--ai-surface-1)`) structured with subtle 1px hairline architectural borders (`var(--ai-border)`).
+12. Never paint state without announcing it: Do not mark a control as active, open, selected or pressed with a class and a colour alone. A segmented control whose current view carries only `is-active`, an accordion trigger with no `aria-expanded`, a toast that arrives outside any live region: each one looks correct and says nothing. A screen reader reads an undifferentiated list of buttons. Instead: Mirror every `is-*` state on an interactive element with the ARIA attribute that carries it: `aria-pressed` on segmented and filter buttons wrapped in a labelled `role="group"`, `aria-expanded` plus `aria-controls` on disclosure and accordion triggers, `aria-selected` on tabs, `aria-current` on the active nav link, and `role="status" aria-live="polite"` (or `role="alert"` for a failure) on anything that appears unprompted.
 [laws:end]
 
 ## More

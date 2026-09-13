@@ -1,0 +1,17 @@
+{
+  "id": "motion-loading-sweep",
+  "name": "Skeleton Sweep",
+  "description": "A placeholder card whose sweep highlight runs only because the sweep sits inside a skeleton, which is the addon rule that keeps Law 2 unbreakable.",
+  "category": "primitive",
+  "tier": "free",
+  "addon": "motion",
+  "tags": [
+    "motion",
+    "addon",
+    "skeleton",
+    "loading",
+    "progress",
+    "placeholder"
+  ],
+  "html": "<div class=\"card p-5 flex flex-col gap-3\" aria-busy=\"true\">\n  <div class=\"flex items-center gap-3\">\n    <div class=\"skeleton skeleton-avatar overflow-hidden\">\n      <div class=\"animate-sweep w-full h-full\"></div>\n    </div>\n    <div class=\"flex flex-col gap-2 w-full\">\n      <div class=\"skeleton skeleton-title\"></div>\n      <div class=\"skeleton skeleton-text\"></div>\n    </div>\n  </div>\n  <div class=\"skeleton skeleton-rect\"></div>\n  <div class=\"flex items-center gap-2\">\n    <span class=\"spinner spinner-sm\"></span>\n    <span class=\"text-sm\">Loading workspace activity</span>\n  </div>\n</div>"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "motion-press-cards",
+  "name": "Press and Lift Cards",
+  "description": "Link cards with a two pixel hover lift and a press compression, both transitions with a completely still idle state.",
+  "category": "primitive",
+  "tier": "free",
+  "addon": "motion",
+  "tags": [
+    "motion",
+    "addon",
+    "hover",
+    "press",
+    "micro-interaction",
+    "card"
+  ],
+  "html": "<div class=\"grid grid-cols-1 md:grid-cols-3 gap-4\">\n  <a class=\"card p-5 lift press flex flex-col gap-2\" href=\"#deployments\">\n    <span class=\"font-semibold\">Deployments</span>\n    <span class=\"text-sm\">Eleven builds shipped this week.</span>\n  </a>\n  <a class=\"card p-5 lift press flex flex-col gap-2\" href=\"#incidents\">\n    <span class=\"font-semibold\">Incidents</span>\n    <span class=\"text-sm\">No open incidents across four regions.</span>\n  </a>\n  <a class=\"card p-5 lift-lg press-firm flex flex-col gap-2\" href=\"#audit\">\n    <span class=\"font-semibold\">Audit log</span>\n    <span class=\"text-sm\">Two thousand events retained for ninety days.</span>\n  </a>\n</div>"
+}

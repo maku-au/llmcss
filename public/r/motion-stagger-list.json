@@ -1,0 +1,16 @@
+{
+  "id": "motion-stagger-list",
+  "name": "Staggered List Entrance",
+  "description": "A settings list whose rows arrive one after another, with the per-child delay handled entirely by nth-child.",
+  "category": "primitive",
+  "tier": "free",
+  "addon": "motion",
+  "tags": [
+    "motion",
+    "addon",
+    "stagger",
+    "list",
+    "entrance"
+  ],
+  "html": "<div class=\"panel p-5\">\n  <h3 class=\"font-semibold mb-4\">Workspace members</h3>\n  <ul class=\"stagger flex flex-col gap-3\">\n    <li class=\"animate-rise flex items-center justify-between\">\n      <span>Dana Whitfield</span>\n      <span class=\"badge badge-neutral\">Owner</span>\n    </li>\n    <li class=\"animate-rise flex items-center justify-between\">\n      <span>Priya Raman</span>\n      <span class=\"badge badge-neutral\">Admin</span>\n    </li>\n    <li class=\"animate-rise flex items-center justify-between\">\n      <span>Tomas Eriksen</span>\n      <span class=\"badge badge-neutral\">Editor</span>\n    </li>\n    <li class=\"animate-rise flex items-center justify-between\">\n      <span>Aiko Nakamura</span>\n      <span class=\"badge badge-neutral\">Viewer</span>\n    </li>\n  </ul>\n</div>"
+}

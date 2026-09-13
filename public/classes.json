@@ -1,12 +1,12 @@
 {
- "version": "0.1.0",
- "generatedAt": "2026-09-13T04:11:58.219Z",
+ "version": "0.4.0",
+ "generatedAt": "2026-09-13T05:32:39.793Z",
  "note": "Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the prefixes that exist for the class, written as md:name: responsive (sm 640px, md 768px, lg 1024px, xl 1280px, 2xl 1536px), container-query against the nearest cq or cq-inline ancestor (cq-sm 380px, cq-md 600px, cq-lg 900px), and state (hover, focus, focus-visible, active, disabled, group-hover, dark, print, motion-reduce, first, last, odd, even). A bare cq: prefix no longer exists. Nothing outside this list exists; do not invent classes.",
  "stats": {
-  "total": 2312,
+  "total": 2304,
   "families": {
-   "spacing": 692,
-   "interaction": 188,
+   "spacing": 688,
+   "interaction": 184,
    "position": 114,
    "effects": 55,
    "accordions": 6,
@@ -5181,16 +5181,7 @@
    "class": "gap-12",
    "family": "spacing",
    "file": "utilities.css",
-   "variants": [
-    "2xl",
-    "cq-lg",
-    "cq-md",
-    "cq-sm",
-    "lg",
-    "md",
-    "sm",
-    "xl"
-   ]
+   "variants": []
   },
   {
    "class": "gap-14",
@@ -5256,16 +5247,7 @@
    "class": "gap-3",
    "family": "spacing",
    "file": "utilities.css",
-   "variants": [
-    "2xl",
-    "cq-lg",
-    "cq-md",
-    "cq-sm",
-    "lg",
-    "md",
-    "sm",
-    "xl"
-   ]
+   "variants": []
   },
   {
    "class": "gap-3.5",
@@ -7357,12 +7339,7 @@
    "class": "m-12",
    "family": "spacing",
    "file": "utilities.css",
-   "variants": [
-    "lg",
-    "md",
-    "sm",
-    "xl"
-   ]
+   "variants": []
   },
   {
    "class": "m-14",
@@ -7420,12 +7397,7 @@
    "class": "m-3",
    "family": "spacing",
    "file": "utilities.css",
-   "variants": [
-    "lg",
-    "md",
-    "sm",
-    "xl"
-   ]
+   "variants": []
   },
   {
    "class": "m-3.5",
@@ -9113,12 +9085,7 @@
    "class": "mx-12",
    "family": "spacing",
    "file": "utilities.css",
-   "variants": [
-    "lg",
-    "md",
-    "sm",
-    "xl"
-   ]
+   "variants": []
   },
   {
    "class": "mx-14",
@@ -9176,12 +9143,7 @@
    "class": "mx-3",
    "family": "spacing",
    "file": "utilities.css",
-   "variants": [
-    "lg",
-    "md",
-    "sm",
-    "xl"
-   ]
+   "variants": []
   },
   {
    "class": "mx-3.5",
@@ -9361,12 +9323,7 @@
    "class": "my-12",
    "family": "spacing",
    "file": "utilities.css",
-   "variants": [
-    "lg",
-    "md",
-    "sm",
-    "xl"
-   ]
+   "variants": []
   },
   {
    "class": "my-14",
@@ -9424,12 +9381,7 @@
    "class": "my-3",
    "family": "spacing",
    "file": "utilities.css",
-   "variants": [
-    "lg",
-    "md",
-    "sm",
-    "xl"
-   ]
+   "variants": []
   },
   {
    "class": "my-3.5",
@@ -10343,12 +10295,7 @@
    "class": "p-12",
    "family": "spacing",
    "file": "utilities.css",
-   "variants": [
-    "lg",
-    "md",
-    "sm",
-    "xl"
-   ]
+   "variants": []
   },
   {
    "class": "p-14",
@@ -10406,12 +10353,7 @@
    "class": "p-3",
    "family": "spacing",
    "file": "utilities.css",
-   "variants": [
-    "lg",
-    "md",
-    "sm",
-    "xl"
-   ]
+   "variants": []
   },
   {
    "class": "p-3.5",
@@ -12042,12 +11984,7 @@
    "class": "px-12",
    "family": "spacing",
    "file": "utilities.css",
-   "variants": [
-    "lg",
-    "md",
-    "sm",
-    "xl"
-   ]
+   "variants": []
   },
   {
    "class": "px-14",
@@ -12105,12 +12042,7 @@
    "class": "px-3",
    "family": "spacing",
    "file": "utilities.css",
-   "variants": [
-    "lg",
-    "md",
-    "sm",
-    "xl"
-   ]
+   "variants": []
   },
   {
    "class": "px-3.5",
@@ -12279,12 +12211,7 @@
    "class": "py-12",
    "family": "spacing",
    "file": "utilities.css",
-   "variants": [
-    "lg",
-    "md",
-    "sm",
-    "xl"
-   ]
+   "variants": []
   },
   {
    "class": "py-14",
@@ -12342,12 +12269,7 @@
    "class": "py-3",
    "family": "spacing",
    "file": "utilities.css",
-   "variants": [
-    "lg",
-    "md",
-    "sm",
-    "xl"
-   ]
+   "variants": []
   },
   {
    "class": "py-3.5",
@@ -13401,12 +13323,6 @@
    "variants": []
   },
   {
-   "class": "scroll-mt-12",
-   "family": "interaction",
-   "file": "utilities.css",
-   "variants": []
-  },
-  {
    "class": "scroll-mt-16",
    "family": "interaction",
    "file": "utilities.css",
@@ -13426,12 +13342,6 @@
   },
   {
    "class": "scroll-mt-24",
-   "family": "interaction",
-   "file": "utilities.css",
-   "variants": []
-  },
-  {
-   "class": "scroll-mt-3",
    "family": "interaction",
    "file": "utilities.css",
    "variants": []
@@ -13467,12 +13377,6 @@
    "variants": []
   },
   {
-   "class": "scroll-pt-12",
-   "family": "interaction",
-   "file": "utilities.css",
-   "variants": []
-  },
-  {
    "class": "scroll-pt-16",
    "family": "interaction",
    "file": "utilities.css",
@@ -13480,12 +13384,6 @@
   },
   {
    "class": "scroll-pt-2",
-   "family": "interaction",
-   "file": "utilities.css",
-   "variants": []
-  },
-  {
-   "class": "scroll-pt-3",
    "family": "interaction",
    "file": "utilities.css",
    "variants": []
@@ -14245,12 +14143,6 @@
    "variants": []
   },
   {
-   "class": "space-x-12",
-   "family": "spacing",
-   "file": "utilities.css",
-   "variants": []
-  },
-  {
    "class": "space-x-16",
    "family": "spacing",
    "file": "utilities.css",
@@ -14258,12 +14150,6 @@
   },
   {
    "class": "space-x-2",
-   "family": "spacing",
-   "file": "utilities.css",
-   "variants": []
-  },
-  {
-   "class": "space-x-3",
    "family": "spacing",
    "file": "utilities.css",
    "variants": []
@@ -14299,12 +14185,6 @@
    "variants": []
   },
   {
-   "class": "space-y-12",
-   "family": "spacing",
-   "file": "utilities.css",
-   "variants": []
-  },
-  {
    "class": "space-y-16",
    "family": "spacing",
    "file": "utilities.css",
@@ -14312,12 +14192,6 @@
   },
   {
    "class": "space-y-2",
-   "family": "spacing",
-   "file": "utilities.css",
-   "variants": []
-  },
-  {
-   "class": "space-y-3",
    "family": "spacing",
    "file": "utilities.css",
    "variants": []

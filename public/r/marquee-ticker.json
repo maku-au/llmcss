@@ -12,5 +12,21 @@
     "rail",
     "marquee"
   ],
-  "html": "<div class=\"logo-rail\" aria-label=\"Teams using LLMCSS\">\n  <span>Northwind</span>\n  <span>Harbor Ops</span>\n  <span>Lattice Labs</span>\n  <span>Quill</span>\n  <span>Meridian</span>\n  <span>Fieldnote</span>\n</div>"
+  "html": "<div class=\"logo-rail\" aria-label=\"Teams using LLMCSS\">\n  <span>Northwind</span>\n  <span>Harbor Ops</span>\n  <span>Lattice Labs</span>\n  <span>Quill</span>\n  <span>Meridian</span>\n  <span>Fieldnote</span>\n</div>",
+  "variants": [
+    {
+      "id": "grid-rail",
+      "name": "Grid rail",
+      "description": "The wrapping rail becomes a fixed grid, two up on a phone and six up from md, with every name on the same baseline.",
+      "guidance": "Sits directly under the hero as the trust line. Best when the number of names divides evenly into the column count, which is what makes a grid look deliberate rather than ragged. Avoid it with a number that leaves one orphan on the last row; use the wrapping rail instead. Pairs with hero-split:media-top above, and it never scrolls on its own, which is law 9.",
+      "html": "<ul class=\"logo-rail list-none grid grid-cols-2 md:grid-cols-6 place-items-center gap-6\" aria-label=\"Teams using LLMCSS\">\n  <li>Northwind</li>\n  <li>Harbor Ops</li>\n  <li>Lattice Labs</li>\n  <li>Quill</li>\n  <li>Meridian</li>\n  <li>Fieldnote</li>\n</ul>"
+    },
+    {
+      "id": "captioned-rail",
+      "name": "Captioned rail",
+      "description": "Each name gains a one line caption stacked beneath it, so the rail carries what each company does as well as who they are.",
+      "guidance": "Sits under the hero on a page aimed at a buyer who will not recognise the names. Best when the customers are known in their own sector but not generally, which is most of them. Avoid it when the logos are household names, because captioning them is condescending. Pairs with testimonial-grid:logo-attributed lower down, which reuses the same names with a quote attached.",
+      "html": "<ul class=\"logo-rail list-none\" aria-label=\"Teams using LLMCSS\">\n  <li class=\"flex flex-col items-center gap-1\">\n    <span>Northwind</span>\n    <span class=\"text-xs text-muted font-normal\">Freight and logistics</span>\n  </li>\n  <li class=\"flex flex-col items-center gap-1\">\n    <span>Harbor Ops</span>\n    <span class=\"text-xs text-muted font-normal\">Fleet telemetry</span>\n  </li>\n  <li class=\"flex flex-col items-center gap-1\">\n    <span>Lattice Labs</span>\n    <span class=\"text-xs text-muted font-normal\">Machine learning platform</span>\n  </li>\n  <li class=\"flex flex-col items-center gap-1\">\n    <span>Quill</span>\n    <span class=\"text-xs text-muted font-normal\">Editorial publishing</span>\n  </li>\n  <li class=\"flex flex-col items-center gap-1\">\n    <span>Meridian</span>\n    <span class=\"text-xs text-muted font-normal\">Deploy and rollback</span>\n  </li>\n  <li class=\"flex flex-col items-center gap-1\">\n    <span>Fieldnote</span>\n    <span class=\"text-xs text-muted font-normal\">Field service scheduling</span>\n  </li>\n</ul>"
+    }
+  ]
 }

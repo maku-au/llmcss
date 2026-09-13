@@ -10,12 +10,14 @@ The LLMCSS Design Direction Harness eliminates the generic "AI look" (puffy grad
 Library totals, generated from the manifests in public/:
 
 <!-- stats:start -->
-- **Classes:** 2312 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Classes:** 2304 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
 - **Tokens:** 107 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
-- **States:** 36 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
-- **Components:** 122, all MIT: 54 primitive, 42 application, 21 marketing, 5 ecommerce.
-- **Section templates:** 29 (18 free wireframe, 11 themed Pro).
+- **States:** 38 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
+- **Components:** 130, all MIT: 62 primitive, 42 application, 21 marketing, 5 ecommerce.
+- **Layout variants:** 150 across 52 components, addressed `component:variant`.
+- **Section templates:** 55 (44 free wireframe, 11 themed Pro).
 - **Page blueprints:** 6 (4 free, 2 Pro).
+- **Motion addon:** 64 classes, 2.0KB gzipped, listed in [classes.motion.json](https://llmcss.io/classes.motion.json).
 <!-- stats:end -->
 
 ---
@@ -68,6 +70,10 @@ An interface is incomplete if native browser affordances revert to un-themed sys
 ### Law 11: Never use square grid backgrounds
 Avoid covering backgrounds in repeating 20px to 40px square grid lines, dot grids, or mesh graph paper patterns built from intersecting linear-gradient declarations. This is one of the most overused, robotic hallmarks of AI-generated template kits.
 - Instead: Lead with clean, distraction-free solid surfaces (`var(--ai-surface-0)`, `var(--ai-bg)`, `var(--ai-surface-1)`) structured with subtle 1px hairline architectural borders (`var(--ai-border)`).
+
+### Law 12: Never paint state without announcing it
+Do not mark a control as active, open, selected or pressed with a class and a colour alone. A segmented control whose current view carries only `is-active`, an accordion trigger with no `aria-expanded`, a toast that arrives outside any live region: each one looks correct and says nothing. A screen reader reads an undifferentiated list of buttons.
+- Instead: Mirror every `is-*` state on an interactive element with the ARIA attribute that carries it: `aria-pressed` on segmented and filter buttons wrapped in a labelled `role="group"`, `aria-expanded` plus `aria-controls` on disclosure and accordion triggers, `aria-selected` on tabs, `aria-current` on the active nav link, and `role="status" aria-live="polite"` (or `role="alert"` for a failure) on anything that appears unprompted.
 <!-- laws:end -->
 
 ---

@@ -30,12 +30,14 @@ That is the whole install. Everything else in this repo is optional: a CLI, an M
 ## What this is
 
 <!-- stats:start -->
-- **Classes:** 2312 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Classes:** 2304 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
 - **Tokens:** 107 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
-- **States:** 36 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
-- **Components:** 122, all MIT: 54 primitive, 42 application, 21 marketing, 5 ecommerce.
-- **Section templates:** 29 (18 free wireframe, 11 themed Pro).
+- **States:** 38 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
+- **Components:** 130, all MIT: 62 primitive, 42 application, 21 marketing, 5 ecommerce.
+- **Layout variants:** 150 across 52 components, addressed `component:variant`.
+- **Section templates:** 55 (44 free wireframe, 11 themed Pro).
 - **Page blueprints:** 6 (4 free, 2 Pro).
+- **Motion addon:** 64 classes, 2.0KB gzipped, listed in [classes.motion.json](https://llmcss.io/classes.motion.json).
 <!-- stats:end -->
 
 All CSS, no JavaScript required. An optional runtime adds modal, drawer, dropdown, accordion, tabs, toast, command palette, and split-pane behavior, either via `data-ai-*` attributes on plain HTML or via light-DOM custom elements (`<ai-modal>`, `<ai-tabs>`, `<ai-dropdown>`, `<ai-accordion>`, `<ai-drawer>`, `<ai-toast>`, `<ai-command-palette>`).
@@ -153,6 +155,7 @@ Eleven anti-slop laws, generated from `src/registry/laws.mjs` by `node src/regis
 9. **Never auto-scroll copy**: Do not force readers to wait for auto-scrolling tickers or animated marquee loops to read supported integrations or technologies.
 10. **Always theme native browser surfaces**: An interface is incomplete if native browser affordances revert to un-themed system defaults.
 11. **Never use square grid backgrounds**: Avoid covering backgrounds in repeating 20px to 40px square grid lines, dot grids, or mesh graph paper patterns built from intersecting linear-gradient declarations. This is one of the most overused, robotic hallmarks of AI-generated template kits.
+12. **Never paint state without announcing it**: Do not mark a control as active, open, selected or pressed with a class and a colour alone. A segmented control whose current view carries only `is-active`, an accordion trigger with no `aria-expanded`, a toast that arrives outside any live region: each one looks correct and says nothing. A screen reader reads an undifferentiated list of buttons.
 <!-- laws:end -->
 
 Each law's remedy, plus the four archetypes (Executive Slate, Fintech Titanium, Obsidian Minimal, Editorial Atelier) and their token blocks, live in [DESIGN_HARNESS.md](DESIGN_HARNESS.md). Run `npx llmcss harness` or call the MCP tool `llmcss_get_harness` to get them at runtime. `npx llmcss audit <file>` checks a file against them.

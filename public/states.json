@@ -1,11 +1,14 @@
 {
- "version": "0.1.0",
- "generatedAt": "2026-09-13T04:11:58.219Z",
+ "version": "0.4.0",
+ "generatedAt": "2026-09-13T05:32:39.793Z",
  "note": "State classes are set by the author for static markup or by the runtime for interactive components. usedBy lists the classes that appear in the same selector.",
  "states": [
   {
    "class": "is-active",
    "usedBy": [
+    "btn",
+    "btn-ghost",
+    "btn-primary",
     "combobox-option",
     "filter-tag",
     "list-group-item",
@@ -140,6 +143,12 @@
    "class": "is-increment",
    "usedBy": [
     "stepper-btn"
+   ]
+  },
+  {
+   "class": "is-leaving",
+   "usedBy": [
+    "toast"
    ]
   },
   {
@@ -298,6 +307,18 @@
    ]
   },
   {
+   "class": "is-vertical",
+   "usedBy": [
+    "orderline-label",
+    "orderline-pip",
+    "orderline-step",
+    "orderline-track",
+    "step-item",
+    "step-label",
+    "stepper"
+   ]
+  },
+  {
    "class": "is-visible",
    "usedBy": [
     "password",
@@ -363,6 +384,18 @@
    "purpose": "Scales the spacing steps components use for padding. Absent means standard."
   },
   {
+   "attribute": "data-ai-radius",
+   "values": [
+    "sharp",
+    "precision",
+    "balanced",
+    "smooth"
+   ],
+   "on": "html or any container",
+   "appliedBy": "author",
+   "purpose": "Corner geometry preset: sets --ai-radius-xs through --ai-radius-2xl and --ai-radius-base. Absent means the stock scale, which is what precision sets. --ai-radius-none and --ai-radius-full never move."
+  },
+  {
    "attribute": "data-ai-focus",
    "values": [
     "neutral",
@@ -379,11 +412,12 @@
     "modal",
     "drawer",
     "dropdown",
-    "accordion"
+    "accordion",
+    "segmented"
    ],
    "on": "button",
    "appliedBy": "author",
-   "purpose": "Runtime toggle. modal and drawer need data-ai-target=\"#id\"; dropdown needs a .dropdown ancestor; accordion needs a .accordion-item ancestor."
+   "purpose": "Runtime toggle. modal and drawer need data-ai-target=\"#id\"; dropdown needs a .dropdown ancestor; accordion needs a .accordion-item ancestor. segmented marks the clicked button inside its role=group (or its parent) with is-active and aria-pressed, and fires ai-segmented-change."
   },
   {
    "attribute": "data-ai-target",

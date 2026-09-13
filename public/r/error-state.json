@@ -10,5 +10,21 @@
     "retry",
     "empty-state"
   ],
-  "html": "<div class=\"empty-state is-error\" style=\"max-width: 28rem;\">\n  <div class=\"empty-state-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 8v4\"/><path d=\"M12 16h.01\"/></svg></div>\n  <h3 class=\"empty-state-title\">Could not load deployments</h3>\n  <p class=\"empty-state-description\">The API returned 503 twice. Nothing was changed. Try again, or send the request id to support.</p>\n  <div class=\"flex gap-2 justify-center\" style=\"margin-top: var(--ai-space-4);\">\n    <button type=\"button\" class=\"btn btn-primary btn-sm\">Retry</button>\n    <button type=\"button\" class=\"btn btn-outline btn-sm\">Copy request id</button>\n  </div>\n</div>"
+  "html": "<div class=\"empty-state is-error\" style=\"max-width: 28rem;\">\n  <div class=\"empty-state-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 8v4\"/><path d=\"M12 16h.01\"/></svg></div>\n  <h3 class=\"empty-state-title\">Could not load deployments</h3>\n  <p class=\"empty-state-description\">The API returned 503 twice. Nothing was changed. Try again, or send the request id to support.</p>\n  <div class=\"flex gap-2 justify-center\" style=\"margin-top: var(--ai-space-4);\">\n    <button type=\"button\" class=\"btn btn-primary btn-sm\">Retry</button>\n    <button type=\"button\" class=\"btn btn-outline btn-sm\">Copy request id</button>\n  </div>\n</div>",
+  "variants": [
+    {
+      "id": "inline-row",
+      "name": "Inline row",
+      "description": "The centred block becomes one alert row, icon then message then retry, sitting directly above the region that failed.",
+      "guidance": "Use when part of the page loaded and part did not: the table is there, the chart is not. The alert carries one uniform hairline border and a tinted surface, never a thick coloured stripe down its left edge, which is the 2012 alert tell law 3 names. It is announced with role alert because it appears without the reader asking, and the retry sits inside the row so the fix is where the failure is.",
+      "html": "<div class=\"alert alert-danger\" role=\"alert\">\n  <svg class=\"alert-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 8v4\"/><path d=\"M12 16h.01\"/></svg>\n  <div class=\"flex-1\">\n    <strong class=\"font-semibold\">Could not load deployments.</strong> The API returned 503 twice. Nothing was changed.\n  </div>\n  <button type=\"button\" class=\"btn btn-outline btn-xs shrink-0\">Retry</button>\n</div>"
+    },
+    {
+      "id": "full-page",
+      "name": "Full page",
+      "description": "The block centres in the full viewport height and gains the request id in mono type between the message and the two actions.",
+      "guidance": "Use when nothing on the route loaded and there is no surviving interface to sit inside, which is the only case that earns a whole screen. The request id is the thing support will ask for, so it belongs on the screen in mono type rather than in a console log the reader cannot reach. Keep both actions: retry for the common case, copy the id for the one where retrying will not help.",
+      "html": "<div class=\"auth-wrap\">\n  <div class=\"empty-state is-error max-w-lg\">\n    <svg class=\"empty-state-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 8v4\"/><path d=\"M12 16h.01\"/></svg>\n    <h1 class=\"empty-state-title text-2xl\">Could not load deployments</h1>\n    <p class=\"empty-state-description mb-4\">The API returned 503 twice. Nothing was changed. Try again, or send the request id to support.</p>\n    <p class=\"text-xs text-muted font-mono\">req_01JF8Q2K3M7X4V</p>\n    <div class=\"flex gap-2 justify-center mt-4\">\n      <button type=\"button\" class=\"btn btn-primary btn-sm\">Retry</button>\n      <button type=\"button\" class=\"btn btn-outline btn-sm\">Copy request id</button>\n    </div>\n  </div>\n</div>"
+    }
+  ]
 }

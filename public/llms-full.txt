@@ -9,12 +9,14 @@ Components, section templates and page blueprints are addressable by id.
 An optional one-file runtime adds modal, drawer, dropdown, accordion, tabs, toast and command palette behavior. Everything else is CSS only.
 
 [stats:start]
-Classes: 2312 classes across 40 families, https://llmcss.io/classes.json.
+Classes: 2304 classes across 40 families, https://llmcss.io/classes.json.
 Tokens: 107 --ai-* custom properties, https://llmcss.io/tokens.json.
-States: 36 is-* classes, https://llmcss.io/states.json.
-Components: 122, all MIT: 54 primitive, 42 application, 21 marketing, 5 ecommerce.
-Section templates: 29 (18 free wireframe, 11 themed Pro).
+States: 38 is-* classes, https://llmcss.io/states.json.
+Components: 130, all MIT: 62 primitive, 42 application, 21 marketing, 5 ecommerce.
+Layout variants: 150 across 52 components, addressed component:variant.
+Section templates: 55 (44 free wireframe, 11 themed Pro).
 Page blueprints: 6 (4 free, 2 Pro).
+Motion addon: 64 classes, 2.0KB gzipped, https://llmcss.io/classes.motion.json.
 [stats:end]
 
 ## 2. Install
@@ -39,7 +41,7 @@ From npm: `npm install llmcss`, then import `llmcss/llmcss.css` and, if needed, 
 
 Run these before handing markup back:
 
-- `npx llmcss validate <file>`: warns on unknown classes (fails under `--strict`) and always fails on a stray `ai-` prefix or hallucinated class.
+- `npx llmcss validate <file>`: warns on unknown classes (errors under `--strict`) and always fails on a stray `ai-` prefix.
 - `npx llmcss lint --fix <file>`: strips a stray `ai-` prefix. It cannot fix a hallucinated class.
 - `npx llmcss audit <file>`: checks markup against the eleven anti-slop laws in section 11.
 
@@ -53,9 +55,9 @@ classes.json, https://llmcss.io/classes.json: every class that exists, no prefix
 
 [classes-json:start]
 ```json
-{ "version": "0.1.0", "generatedAt": "2026-09-13T04:11:58.219Z",
+{ "version": "0.4.0", "generatedAt": "2026-09-13T05:32:39.793Z",
   "note": "Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the prefixes that exist for the class, written as md:name: responsive (sm 640px, md 768px, lg 1024px, xl 1280px, 2xl 1536px), container-query against the nearest cq or cq-inline ancestor (cq-sm 380px, cq-md 600px, cq-lg 900px), and state (hover, focus, focus-visible, active, disabled, group-hover, dark, print, motion-reduce, first, last, odd, even). A bare cq: prefix no longer exists. Nothing outside this list exists; do not invent classes.",
-  "stats": { "total": 2312, "families": { "spacing": 692, "interaction": 188, "sizing": 175, "agent-extra": 120 } },
+  "stats": { "total": 2304, "families": { "spacing": 688, "interaction": 184, "sizing": 175, "agent-extra": 120 } },
   "classes": [ { "class": "gap-4", "family": "spacing", "file": "utilities.css", "variants": [ "2xl", "cq-lg", "cq-md", "cq-sm", "lg", "md", "sm", "xl" ] } ] }
 ```
 [classes-json:end]
@@ -83,8 +85,8 @@ registry.json, https://llmcss.io/registry.json: the component catalog. Every ent
 
 [registry-json:start]
 ```json
-{ "stats": { "total": 122, "free": 122, "pro": 0,
-    "categories": { "primitive": 54, "application": 42, "marketing": 21, "ecommerce": 5 } },
+{ "stats": { "total": 130, "free": 130, "pro": 0,
+    "categories": { "primitive": 62, "application": 42, "marketing": 21, "ecommerce": 5 } },
   "components": [ { "id": "btn-variants", "name": "Button Variants", "description": "High-craft buttons across solid primary,...", "category": "primitive", "tier": "free", "tags": [ "button", "action" ], "html": "<div class=\"flex flex-wr..." } ] }
 ```
 [registry-json:end]
@@ -107,8 +109,8 @@ templates.json, https://llmcss.io/templates.json: the wireframe section template
 
 [templates-json:start]
 ```json
-{ "stats": { "totalTemplates": 29, "freeTemplates": 18, "proTemplates": 11, "totalBlueprints": 6,
-    "sections": { "header": 5, "hero": 4, "social-proof": 2, "features": 4, "comparison": 1, "pricing": 2, "faq": 1, "cta": 2, "footer": 2, "app-shell": 6 } },
+{ "stats": { "totalTemplates": 55, "freeTemplates": 44, "proTemplates": 11, "totalBlueprints": 6,
+    "sections": { "header": 11, "hero": 10, "social-proof": 2, "features": 4, "comparison": 1, "pricing": 2, "faq": 5, "cta": 6, "footer": 8, "app-shell": 6 } },
   "wireframeTemplates": [ { "id": "wireframe-nav-minimal", "name": "Minimal Navigation Bar", "section": "header", "tier": "free", "tags": [ "nav" ], "placement": "Top of Page (Above Fold)", "guidance": { "placement": "...", "bestUsedFor": "...", "avoidWhen": "...", "pairsWith": [ "..." ] }, "html": "<header class=\"navbar\" r..." } ],
   "pageBlueprints": [ { "id": "saas-landing", "name": "High-Conversion SaaS Landing Page", "description": "...", "recommendedFor": "...", "sections": [ "wireframe-nav-minimal", "wireframe-hero-split" ] } ] }
 ```
@@ -144,7 +146,7 @@ Without the script every component still renders and themes correctly; combobox,
 ### State vocabulary
 
 [states:start]
-36 `is-*` state classes exist across the library; the full list, with the classes each one applies to, is in states.json. The three most widely used: `.is-active` (16 classes, including combobox-option, filter-tag, list-group-item), `.is-open` (15 classes, including accordion-chevron, accordion-content, accordion-item), `.is-completed` (7 classes, including checklist-item, checklist-label, checklist-mark).
+38 `is-*` state classes exist across the library; the full list, with the classes each one applies to, is in states.json. The three most widely used: `.is-active` (19 classes, including btn, btn-ghost, btn-primary), `.is-open` (15 classes, including accordion-chevron, accordion-content, accordion-item), `.is-completed` (7 classes, including checklist-item, checklist-label, checklist-mark).
 [states:end]
 
 - Open state is written twice: the `open` attribute and the `.is-open` class. They are interchangeable and the runtime sets and clears both. Author either one in static markup.
@@ -318,7 +320,6 @@ The trigger points at the modal id. Backdrop and close button both dismiss. This
 
 Every value in `llmcss.css` is a `--ai-*` custom property. Override any of them on `:root` or on a container. Exact values per context are in tokens.json.
 
-- Spacing scale, exact steps: `--ai-space-0` 0px, `-1` 0.25rem, `-2` 0.5rem, `-3` 0.75rem, `-4` 1rem, `-5` 1.25rem, `-6` 1.5rem, `-8` 2rem, `-10` 2.5rem, `-12` 3rem, `-16` 4rem, `-20` 5rem, `-24` 6rem, `-32` 8rem. There is no step 7, 9, 11, 14 or 18.
 - Radii, exact values: `--ai-radius-none` 0, `--ai-radius-xs` 2px, `--ai-radius-sm` 3px, `--ai-radius-md` 4px, `--ai-radius-lg` 6px, `--ai-radius-xl` 8px, `--ai-radius-2xl` 10px, `--ai-radius-full` 9999px, plus `--ai-radius-base`, which skins reset.
 - Surfaces: `--ai-bg`, `--ai-surface-0`, `--ai-surface-1`, `--ai-surface-2`, `--ai-surface-3`.
 - Text: `--ai-text-primary`, `--ai-text-secondary`, `--ai-text-muted`, `--ai-text-inverted`.
@@ -354,7 +355,7 @@ Dark mode activates only when you set `data-ai-theme="dark"`. LLMCSS contains no
 Only the classes in classes.json exist.
 
 [families:start]
-Family sizes, largest first: spacing 692, interaction 188, sizing 175, agent-extra 120, position 114, typography 108, grid 107, flex 81, marketing 75, borders 70, layout 63, effects 55, dashboard 43, extras 40, animations 33, forms-extra 31, application 29, badges 28, commerce-extra 28, navigation 24, chat 19, display 19, cards 13, drawers 13, inputs 13, base 12, tables 12, toasts 12, buttons 11, modals 11, ecommerce 10, command 9, scrollspy 9, utilities 9, themes 7, accordions 6, alerts 6, cart 6, dropdowns 6, tabs 5.
+Family sizes, largest first: spacing 688, interaction 184, sizing 175, agent-extra 120, position 114, typography 108, grid 107, flex 81, marketing 75, borders 70, layout 63, effects 55, dashboard 43, extras 40, animations 33, forms-extra 31, application 29, badges 28, commerce-extra 28, navigation 24, chat 19, display 19, cards 13, drawers 13, inputs 13, base 12, tables 12, toasts 12, buttons 11, modals 11, ecommerce 10, command 9, scrollspy 9, utilities 9, themes 7, accordions 6, alerts 6, cart 6, dropdowns 6, tabs 5.
 [families:end]
 
 - Grid: `grid`, `grid-cols-1` to `grid-cols-12`, `col-span-*`, `grid-auto-fit` with `grid-min-xs|sm|md|lg`, `grid-cols-subgrid`, `grid-rows-subgrid`.
@@ -375,6 +376,25 @@ Variants are written `<variant>:<class>`, for example `md:grid-cols-2`, `cq-md:g
 
 They are not generated for every class. Each classes.json entry lists the variants that exist for that class in its `variants` array, and nothing else resolves.
 
+### Component variants, a different thing with the same separator
+
+`md:grid-cols-2` is a class variant, a responsive copy of a class. `hero-split:centered` is a component variant, a different layout for the same component. Same separator, different left hand side: a class name on the left means the first, a component id means the second.
+
+A component variant is structural. The boxes move: split versus centered, media left versus media top, sidebar versus topbar, one column versus two, dense versus comfortable. It is never a recolour, a radius change or a density change, because those are `data-ai-skin`, `data-ai-accent` and `data-ai-density` on an ancestor.
+
+Every surface that takes a component id takes a variant reference. `npx llmcss variants <id>` says what each layout does; `npx llmcss add hero-split:centered` writes it, flattening the colon in the filename; `npx llmcss info <id>` adds a `variantRefs` list; `npx llmcss search` matches variant names. Over MCP, `get_component_markup` takes `{"id": "hero-split:centered"}` or `{"id": "hero-split", "variant": "centered"}`, and its response, like every `search_components` row, carries a `variants` array of `{id, name, description}`, so discovering the alternatives costs no extra call. A component whose registry entry has no `variants` array has exactly one layout. The counts are in the stats block at the top of this file; the full list is in registry.json and in https://llmcss.io/r/{id}.json.
+
+### Motion addon
+
+An opt-in second stylesheet, https://llmcss.io/llmcss-motion.css, listed in https://llmcss.io/classes.motion.json. Load it after the core sheet; nothing in llmcss.css changes, and the components the core already animates (modal, drawer, skeleton) keep working without it.
+
+```html
+<link rel="stylesheet" href="https://llmcss.io/llmcss.css" />
+<link rel="stylesheet" href="https://llmcss.io/llmcss-motion.css" />
+```
+
+Every class is one shot and fires because something changed: `animate-fade-in|fade-out|slide-up|slide-down|slide-left|slide-right|scale-in|scale-out|rise|sink|collapse-in|collapse-out|nudge`, tuned by the same `duration-*`, `delay-*` and `ease-*` words a transition already uses, plus `once` and `repeat-2|3`. `stagger` (with `stagger-fast|slow`) delays each child by position, capped at the twelfth child. `reveal`, `reveal-up` and `reveal-scale` are scroll-driven via `animation-timeline: view()` and degrade to plainly visible content, never hidden, wherever that is unsupported; scrolling back up replays them in reverse. `transition-discrete` and `transition-size` animate `display` and `height: auto`. Six `vt-*` classes set `view-transition-name`; the addon does not ship the document-scoped `@view-transition { navigation: auto; }` opt-in itself. There is no `repeat-infinite`, and the one looping class, `animate-sweep`, is inert unless its element sits in `.progress` or `.skeleton` or carries `is-loading`, `is-streaming` or `aria-busy`, so Law 2 cannot be broken with addon classes. Reduced motion collapses every keyframe to an instant final frame; the reveal family sits inside `prefers-reduced-motion: no-preference` so it never depends on that fallback.
+
 Spacing and sizing steps: `0`, `px`, `0.5`, `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `14`, `16`, `20`, `24`, `28`, `32`, `36`, `40`, `48`, `56`, `64`, `72`, `80`, `96`.
 
 Variable escape hatches: eleven utilities read a local variable instead of a fixed value, for the cases the scale does not cover. Set the variable inline.
@@ -393,15 +413,16 @@ CLI, `npx llmcss <command>`. Binaries are `llmcss` and `llmcss-mcp`, with `cssai
 ```
 list                      List all components, free and Pro
 search <query>            Search by keyword, tag, or alias
-info <id>                 Print raw component metadata
-add <id>                  Write component HTML into components/<category>/
+info <id>                 Print raw component metadata, plus variantRefs. Takes <id>:<variant>
+add <id>                  Write component HTML into components/<category>/. Takes <id>:<variant>
+variants <id>             List a component layout variants, one line each
 templates                 List the wireframe section templates
 template get <id>         Print one section's HTML
 template blueprints       List the full-page blueprints
 template blueprint <id>   Assemble and print a full page
 harness [archetype]       Print the archetypes and the anti-slop laws
 audit <file>              Run the anti-slop checks against a file
-validate <file>           Warn on unknown classes (--strict to fail); always flag a stray ai- prefix or hallucinated class
+validate <file>           Warn on unknown classes (--strict to fail); always flag a stray ai- prefix
 lint --fix <file>         Strip a stray ai- prefix
 trim <glob...>            Optional: subset llmcss.css to the classes your markup uses
 init                      Write llmcss.config.json
@@ -412,8 +433,8 @@ help                      Print this list
 MCP, `npx llmcss-mcp`, a stdio JSON-RPC server. `cssai_get_harness` and `cssai_slop_audit` are aliases of the two `llmcss_` tools.
 
 ```
-search_components         Search the catalog by keyword, tag, or category
-get_component_markup      Return one component's HTML, or the locked payload for Pro
+search_components         Search the catalog by keyword, tag, category, or variant name; rows carry a variants array
+get_component_markup      Return one component's HTML. Optional variant argument, or id written "parent:variant"
 validate_markup           Check a snippet for unknown, hallucinated, or ai-prefixed classes
 list_classes              Every class, filterable by family or variant
 list_tokens               Every --ai-* token, filterable by group and context
@@ -441,6 +462,7 @@ Generated from src/registry/laws.mjs. `npx llmcss audit <file>` and the MCP tool
 9. Never auto-scroll copy: Do not force readers to wait for auto-scrolling tickers or animated marquee loops to read supported integrations or technologies. Instead: Render a clean, static, responsive badge rail (`.badge-neutral`) or a balanced grid that users can scan at their own speed.
 10. Always theme native browser surfaces: An interface is incomplete if native browser affordances revert to un-themed system defaults. Instead: Verify text selection (`::selection`), caret color (`caret-color: var(--ai-accent)`), custom scrollbars (`scrollbar-color`), link underline offset (`text-underline-offset: 0.2em`), and tabular numerals (`font-variant-numeric: tabular-nums`).
 11. Never use square grid backgrounds: Avoid covering backgrounds in repeating 20px to 40px square grid lines, dot grids, or mesh graph paper patterns built from intersecting linear-gradient declarations. This is one of the most overused, robotic hallmarks of AI-generated template kits. Instead: Lead with clean, distraction-free solid surfaces (`var(--ai-surface-0)`, `var(--ai-bg)`, `var(--ai-surface-1)`) structured with subtle 1px hairline architectural borders (`var(--ai-border)`).
+12. Never paint state without announcing it: Do not mark a control as active, open, selected or pressed with a class and a colour alone. A segmented control whose current view carries only `is-active`, an accordion trigger with no `aria-expanded`, a toast that arrives outside any live region: each one looks correct and says nothing. A screen reader reads an undifferentiated list of buttons. Instead: Mirror every `is-*` state on an interactive element with the ARIA attribute that carries it: `aria-pressed` on segmented and filter buttons wrapped in a labelled `role="group"`, `aria-expanded` plus `aria-controls` on disclosure and accordion triggers, `aria-selected` on tabs, `aria-current` on the active nav link, and `role="status" aria-live="polite"` (or `role="alert"` for a failure) on anything that appears unprompted.
 [laws:end]
 
 ## 12. Archetype token blocks

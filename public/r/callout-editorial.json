@@ -10,5 +10,21 @@
     "editorial",
     "aside"
   ],
-  "html": "<aside class=\"callout\" style=\"max-width: 40rem;\">\n  <span class=\"callout-label\">Worth knowing</span>\n  Rollbacks restore the previous build and its environment variables together. Secrets rotated after that build are not reverted.\n</aside>"
+  "html": "<aside class=\"callout\" style=\"max-width: 40rem;\">\n  <span class=\"callout-label\">Worth knowing</span>\n  Rollbacks restore the previous build and its environment variables together. Secrets rotated after that build are not reverted.\n</aside>",
+  "variants": [
+    {
+      "id": "pull-quote",
+      "name": "Pull quote",
+      "description": "The callout moves out of the text flow into a third column beside the body, set larger, so it reads as a pulled line rather than an interruption.",
+      "guidance": "Sits beside the paragraph it belongs to in a long-form article or a docs page. Best when the sentence is worth repeating and the surrounding text is long enough that a reader needs a handhold. Avoid it in a two paragraph page, because there is nothing to pull it out of. Pairs with hero-split:editorial above, and it keeps hairlines top and bottom rather than a coloured edge, which is law 3.",
+      "html": "<div class=\"grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl\">\n  <div class=\"md:col-span-2\">\n    <p>Rollbacks restore the previous build and its environment variables together. The build artefact, the variable set and the routing table are versioned as one record, so restoring any of them restores all three and there is no partial state to reason about.</p>\n    <p class=\"mt-4\">Secrets are the exception. A secret rotated after the build you are rolling back to was never part of that record, so the restored build receives the current value rather than the historical one. That is deliberate: rolling back code should not roll back a credential you revoked on purpose.</p>\n  </div>\n  <aside class=\"callout text-xl self-start\">\n    <span class=\"callout-label\">Worth knowing</span>\n    Secrets rotated after that build are not reverted.\n  </aside>\n</div>"
+    },
+    {
+      "id": "sidenote",
+      "name": "Sidenote",
+      "description": "The callout narrows into a right rail in the fourth column, set at small size and aligned to the top of the paragraph it annotates.",
+      "guidance": "Sits in the margin of a documentation page next to the exact paragraph it qualifies. Best for a caveat that a reader needs only if they hit it, such as an edge case or a version note. Avoid it for anything a reader must not miss, because margin notes are skipped. Pairs with callout-editorial:pull-quote in the same article, one for emphasis and one for caveats, never both on the same paragraph.",
+      "html": "<div class=\"grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl\">\n  <div class=\"md:col-span-3\">\n    <p>Rollbacks restore the previous build and its environment variables together. The build artefact, the variable set and the routing table are versioned as one record, so restoring any of them restores all three and there is no partial state to reason about.</p>\n    <p class=\"mt-4\">A rollback is itself a deployment. It gets its own entry in the audit log, its own preview URL and its own identifier, so the history stays linear and nothing is overwritten in place.</p>\n  </div>\n  <aside class=\"callout text-sm md:col-start-4 self-start\">\n    <span class=\"callout-label\">Worth knowing</span>\n    Secrets rotated after that build are not reverted.\n  </aside>\n</div>"
+    }
+  ]
 }

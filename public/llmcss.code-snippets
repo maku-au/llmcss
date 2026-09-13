@@ -125,10 +125,10 @@
   "body": [
    "<div class=\"flex items-center gap-6\">",
    "  <div class=\"avatar-group\">",
-   "    <div class=\"avatar avatar-sm\" style=\"background-color: var(--ai-surface-3);\">+4</div>",
-   "    <div class=\"avatar avatar-sm\" style=\"background-color: #3b82f6; color: white;\">JD</div>",
-   "    <div class=\"avatar avatar-sm\" style=\"background-color: #10b981; color: white;\">SK</div>",
-   "    <div class=\"avatar avatar-sm\" style=\"background-color: #f59e0b; color: white;\">AL</div>",
+   "    <div class=\"avatar avatar-sm\" aria-label=\"4 more members\">+4</div>",
+   "    <div class=\"avatar avatar-sm bg-primary text-inverted\" aria-label=\"Jonas Berg\">JB</div>",
+   "    <div class=\"avatar avatar-sm\"><img src=\"https://images.unsplash.com/photo-1770396529113-ba031cbf0cfa?w=96&h=96&auto=format&fit=crop&q=80\" alt=\"Amara Osei\" /></div>",
+   "    <div class=\"avatar avatar-sm\"><img src=\"https://images.unsplash.com/photo-1582639849680-e2e89674e57b?w=96&h=96&auto=format&fit=crop&q=80\" alt=\"Hana Sato\" /></div>",
    "  </div>",
    "  <div class=\"avatar\">",
    "    <span class=\"font-bold\">EA</span>",
@@ -336,7 +336,7 @@
    "      <a href=\"#\" class=\"brand\" style=\"font-size: 1rem;\">",
    "        <span>LLMCSS</span>",
    "      </a>",
-   "      <button class=\"modal-close\" data-ai-dismiss=\"drawer\">&times;</button>",
+   "      <button type=\"button\" class=\"modal-close\" data-ai-dismiss=\"drawer\" aria-label=\"Close menu\">&times;</button>",
    "    </div>",
    "    <div class=\"drawer-body\">",
    "      <nav class=\"flex flex-col gap-2\">",
@@ -365,7 +365,7 @@
    "      <span>Northwind</span>",
    "    </a>",
    "    <nav class=\"hidden md:flex items-center gap-1\" aria-label=\"Primary\">",
-   "      <a href=\"#\" class=\"nav-link is-active\">Product</a>",
+   "      <a href=\"#\" class=\"nav-link is-active\" aria-current=\"page\">Product</a>",
    "      <a href=\"#\" class=\"nav-link\">Pricing</a>",
    "      <a href=\"#\" class=\"nav-link\">Docs</a>",
    "      <a href=\"#\" class=\"nav-link\">Changelog</a>",
@@ -387,7 +387,7 @@
    "      <button type=\"button\" class=\"btn btn-ghost btn-icon btn-xs\" data-ai-dismiss=\"drawer\" aria-label=\"Close menu\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\"><path d=\"M6 6l12 12\"/><path d=\"M18 6L6 18\"/></svg></button>",
    "    </div>",
    "    <nav class=\"drawer-body drawer-nav\" aria-label=\"Primary\">",
-   "      <a href=\"#\" class=\"sidebar-item is-active\" data-ai-dismiss=\"drawer\">Product</a>",
+   "      <a href=\"#\" class=\"sidebar-item is-active\" data-ai-dismiss=\"drawer\" aria-current=\"page\">Product</a>",
    "      <a href=\"#\" class=\"sidebar-item\" data-ai-dismiss=\"drawer\">Pricing</a>",
    "      <a href=\"#\" class=\"sidebar-item\" data-ai-dismiss=\"drawer\">Docs</a>",
    "      <a href=\"#\" class=\"sidebar-item\" data-ai-dismiss=\"drawer\">Changelog</a>",
@@ -411,7 +411,7 @@
    "      <span>Northwind</span>",
    "    </a>",
    "    <nav class=\"hidden md:flex items-center gap-1\" aria-label=\"Primary\">",
-   "      <a href=\"#\" class=\"nav-link is-active\">Product</a>",
+   "      <a href=\"#\" class=\"nav-link is-active\" aria-current=\"page\">Product</a>",
    "      <a href=\"#\" class=\"nav-link\">Pricing</a>",
    "      <a href=\"#\" class=\"nav-link\">Docs</a>",
    "      <a href=\"#\" class=\"nav-link\">Changelog</a>",
@@ -429,7 +429,7 @@
    "  <div class=\"drawer-backdrop\" data-ai-dismiss=\"drawer\"></div>",
    "  <div class=\"drawer-panel\" role=\"dialog\" aria-modal=\"true\" aria-label=\"Menu\">",
    "    <nav class=\"drawer-body drawer-nav\" aria-label=\"Primary\">",
-   "      <a href=\"#\" class=\"sidebar-item is-active\" data-ai-dismiss=\"drawer\">Product</a>",
+   "      <a href=\"#\" class=\"sidebar-item is-active\" data-ai-dismiss=\"drawer\" aria-current=\"page\">Product</a>",
    "      <a href=\"#\" class=\"sidebar-item\" data-ai-dismiss=\"drawer\">Pricing</a>",
    "      <a href=\"#\" class=\"sidebar-item\" data-ai-dismiss=\"drawer\">Docs</a>",
    "      <a href=\"#\" class=\"sidebar-item\" data-ai-dismiss=\"drawer\">Changelog</a>",
@@ -621,8 +621,8 @@
    "        </p>",
    "      </div>",
    "      <div class=\"footer-col accordion-item\">",
-   "        <h4 class=\"footer-heading\"><button type=\"button\" class=\"footer-col-toggle\" data-ai-toggle=\"accordion\" aria-expanded=\"false\">Product <svg class=\"accordion-chevron\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button></h4>",
-   "        <ul class=\"footer-list accordion-content\">",
+   "        <h4 class=\"footer-heading\"><button type=\"button\" class=\"footer-col-toggle\" data-ai-toggle=\"accordion\" aria-expanded=\"false\" aria-controls=\"footer-col-product\">Product <svg class=\"accordion-chevron\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button></h4>",
+   "        <ul class=\"footer-list accordion-content\" id=\"footer-col-product\">",
    "          <li><a href=\"#\">Components</a></li>",
    "          <li><a href=\"#\">Marketing Sections</a></li>",
    "          <li><a href=\"#\">SaaS Dashboard</a></li>",
@@ -630,8 +630,8 @@
    "        </ul>",
    "      </div>",
    "      <div class=\"footer-col accordion-item\">",
-   "        <h4 class=\"footer-heading\"><button type=\"button\" class=\"footer-col-toggle\" data-ai-toggle=\"accordion\" aria-expanded=\"false\">Agentic Tools <svg class=\"accordion-chevron\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button></h4>",
-   "        <ul class=\"footer-list accordion-content\">",
+   "        <h4 class=\"footer-heading\"><button type=\"button\" class=\"footer-col-toggle\" data-ai-toggle=\"accordion\" aria-expanded=\"false\" aria-controls=\"footer-col-tools\">Agentic Tools <svg class=\"accordion-chevron\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button></h4>",
+   "        <ul class=\"footer-list accordion-content\" id=\"footer-col-tools\">",
    "          <li><a href=\"#\">MCP Server</a></li>",
    "          <li><a href=\"#\">CLI Reference</a></li>",
    "          <li><a href=\"#\">llms.txt Specification</a></li>",
@@ -639,8 +639,8 @@
    "        </ul>",
    "      </div>",
    "      <div class=\"footer-col accordion-item\">",
-   "        <h4 class=\"footer-heading\"><button type=\"button\" class=\"footer-col-toggle\" data-ai-toggle=\"accordion\" aria-expanded=\"false\">Company <svg class=\"accordion-chevron\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button></h4>",
-   "        <ul class=\"footer-list accordion-content\">",
+   "        <h4 class=\"footer-heading\"><button type=\"button\" class=\"footer-col-toggle\" data-ai-toggle=\"accordion\" aria-expanded=\"false\" aria-controls=\"footer-col-company\">Company <svg class=\"accordion-chevron\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></button></h4>",
+   "        <ul class=\"footer-list accordion-content\" id=\"footer-col-company\">",
    "          <li><a href=\"#\">About</a></li>",
    "          <li><a href=\"#\">Pricing</a></li>",
    "          <li><a href=\"#\">Privacy</a></li>",
@@ -813,7 +813,7 @@
    "        <h3 class=\"drawer-title\">Shopping Bag</h3>",
    "        <span class=\"badge badge-default\">2 items</span>",
    "      </div>",
-   "      <button class=\"modal-close\" data-ai-dismiss=\"drawer\">&times;</button>",
+   "      <button type=\"button\" class=\"modal-close\" data-ai-dismiss=\"drawer\" aria-label=\"Close shopping bag\">&times;</button>",
    "    </div>",
    "    <div class=\"drawer-body\">",
    "      <div class=\"cart-item\">",
@@ -823,9 +823,9 @@
    "          <span class=\"cart-subtext\">Matte Obsidian / Bluetooth 5.4</span>",
    "          <div class=\"flex justify-between items-center\" style=\"margin-top: 0.5rem;\">",
    "            <div class=\"cart-stepper\">",
-   "              <button>-</button>",
+   "              <button type=\"button\" aria-label=\"Decrease quantity\">-</button>",
    "              <span style=\"padding: 0 0.5rem; font-size: 0.8125rem;\">1</span>",
-   "              <button>+</button>",
+   "              <button type=\"button\" aria-label=\"Increase quantity\">+</button>",
    "            </div>",
    "            <span class=\"font-bold\">\\$349.00</span>",
    "          </div>",
@@ -954,7 +954,7 @@
   "body": [
    "<div class=\"stepper\" style=\"max-width: 32rem;\">",
    "  <div class=\"step-item is-completed\">",
-   "    <div class=\"step-circle\">✓</div>",
+   "    <div class=\"step-circle\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 6 9 17l-5-5\"/></svg><span class=\"sr-only\">Completed</span></div>",
    "    <span class=\"step-label\">Account</span>",
    "  </div>",
    "  <div class=\"step-item is-active\">",
@@ -1019,15 +1019,15 @@
   "prefix": "ai-toast-stack",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"grid gap-3\" style=\"max-width: 24rem;\">",
+   "<div class=\"grid gap-3\" role=\"status\" aria-live=\"polite\" style=\"max-width: 24rem;\">",
    "  <div class=\"toast toast-success toast-countdown\">",
    "    <span class=\"toast-message\">Deployment completed to edge servers.</span>",
-   "    <button class=\"toast-close\">&times;</button>",
+   "    <button type=\"button\" class=\"toast-close\" aria-label=\"Dismiss deployment notification\">&times;</button>",
    "    <div class=\"toast-progress\"></div>",
    "  </div>",
    "  <div class=\"toast toast-info toast-countdown\">",
    "    <span class=\"toast-message\">New API Key created: <code>llmcss_live_8f...</code></span>",
-   "    <button class=\"toast-close\">&times;</button>",
+   "    <button type=\"button\" class=\"toast-close\" aria-label=\"Dismiss API key notification\">&times;</button>",
    "    <div class=\"toast-progress\"></div>",
    "  </div>",
    "</div>"
@@ -1054,12 +1054,12 @@
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
    "<div class=\"filter-toolbar\">",
-   "  <div class=\"filter-tags\">",
+   "  <div class=\"filter-tags\" role=\"group\" aria-label=\"Filter jobs\">",
    "    <span class=\"text-xs font-medium text-muted\" style=\"margin-right: 0.25rem;\">Filter:</span>",
-   "    <button class=\"filter-tag is-active\">All (48)</button>",
-   "    <button class=\"filter-tag\">Production</button>",
-   "    <button class=\"filter-tag\">Staging</button>",
-   "    <button class=\"filter-tag\">Failed</button>",
+   "    <button type=\"button\" class=\"filter-tag is-active\" aria-pressed=\"true\">All (48)</button>",
+   "    <button type=\"button\" class=\"filter-tag\" aria-pressed=\"false\">Production</button>",
+   "    <button type=\"button\" class=\"filter-tag\" aria-pressed=\"false\">Staging</button>",
+   "    <button type=\"button\" class=\"filter-tag\" aria-pressed=\"false\">Failed</button>",
    "  </div>",
    "  <div class=\"flex items-center gap-2\">",
    "    <input type=\"text\" class=\"input\" placeholder=\"Filter jobs...\" style=\"height: 1.875rem; font-size: 0.75rem; width: 10rem;\" />",
@@ -1358,14 +1358,14 @@
   "body": [
    "<div class=\"accordion\">",
    "  <div class=\"accordion-item is-open\" open>",
-   "    <button class=\"accordion-trigger\" type=\"button\">",
+   "    <button class=\"accordion-trigger\" type=\"button\" data-ai-toggle=\"accordion\" aria-expanded=\"true\" aria-controls=\"thought-chain-steps\">",
    "      <span class=\"flex items-center gap-2\">",
    "        <span class=\"spinner spinner-sm\"></span>",
    "        <span>Reasoning</span>",
    "        <span class=\"badge badge-outline\">3 steps</span>",
    "      </span>",
    "    </button>",
-   "    <div class=\"accordion-content\">",
+   "    <div class=\"accordion-content\" id=\"thought-chain-steps\">",
    "      <ol style=\"margin: var(--ai-space-3) 0 0; padding-left: 1.1rem; font-size: 0.8125rem; color: var(--ai-text-secondary); display:flex; flex-direction:column; gap: 0.5rem;\">",
    "        <li>Locate the token layer in <code>src/css/tokens.css</code>.</li>",
    "        <li>Check gallery copy path does not leak Pro markup.</li>",
@@ -1513,7 +1513,7 @@
   "prefix": "ai-streaming-status",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"card\" style=\"padding: var(--ai-space-4);\">",
+   "<div class=\"card\" role=\"status\" aria-live=\"polite\" style=\"padding: var(--ai-space-4);\">",
    "  <div class=\"flex justify-between items-center\">",
    "    <div class=\"flex items-center gap-2\">",
    "      <span class=\"spinner spinner-sm\"></span>",
@@ -2217,7 +2217,7 @@
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
    "<ul class=\"list-group\" style=\"max-width: 24rem;\">",
-   "  <li><a href=\"#\" class=\"list-group-item is-active\">Overview <span class=\"badge badge-counter ml-auto\">3</span></a></li>",
+   "  <li><a href=\"#\" class=\"list-group-item is-active\" aria-current=\"page\">Overview <span class=\"badge badge-counter ml-auto\">3</span></a></li>",
    "  <li><a href=\"#\" class=\"list-group-item\">Deployments</a></li>",
    "  <li><a href=\"#\" class=\"list-group-item\">Environment variables</a></li>",
    "  <li><a href=\"#\" class=\"list-group-item is-disabled\" aria-disabled=\"true\">Billing (owner only)</a></li>",
@@ -2231,9 +2231,9 @@
   "body": [
    "<div class=\"flex flex-wrap gap-6 items-center\">",
    "  <div class=\"btn-group\" role=\"group\" aria-label=\"View\">",
-   "    <button type=\"button\" class=\"btn btn-outline btn-sm\">Day</button>",
-   "    <button type=\"button\" class=\"btn btn-outline btn-sm\">Week</button>",
-   "    <button type=\"button\" class=\"btn btn-outline btn-sm\">Month</button>",
+   "    <button type=\"button\" class=\"btn btn-outline btn-sm is-active\" aria-pressed=\"true\">Day</button>",
+   "    <button type=\"button\" class=\"btn btn-outline btn-sm\" aria-pressed=\"false\">Week</button>",
+   "    <button type=\"button\" class=\"btn btn-outline btn-sm\" aria-pressed=\"false\">Month</button>",
    "  </div>",
    "  <div class=\"btn-group\" role=\"group\" aria-label=\"Deploy\">",
    "    <button type=\"button\" class=\"btn btn-primary\">Deploy</button>",
@@ -2696,7 +2696,7 @@
    "          <details open>",
    "            <summary>components</summary>",
    "            <ul>",
-   "              <li><a href=\"#\" class=\"tree-leaf is-active\">navbar.html</a></li>",
+   "              <li><a href=\"#\" class=\"tree-leaf is-active\" aria-current=\"true\">navbar.html</a></li>",
    "              <li><a href=\"#\" class=\"tree-leaf\">footer.html</a></li>",
    "            </ul>",
    "          </details>",
@@ -3570,6 +3570,205 @@
   ],
   "description": "Sticky in-page outline whose active link tracks the section in view, marked with a hairline on the inline-start edge and aria-current=\"location\". A link cannot match :target, so without the runtime the link the author marked .is-active stays marked and every link still jumps to its section. (application, free)"
  },
+ "LLMCSS Entrance Animation Set": {
+  "prefix": "ai-motion-entrances",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"grid grid-cols-2 md:grid-cols-3 gap-3\">",
+   "  <div class=\"panel p-4 animate-fade-in\">",
+   "    <p class=\"font-semibold\">Fade in</p>",
+   "    <code class=\"text-xs\">animate-fade-in</code>",
+   "  </div>",
+   "  <div class=\"panel p-4 animate-slide-up duration-slow\">",
+   "    <p class=\"font-semibold\">Slide up</p>",
+   "    <code class=\"text-xs\">animate-slide-up duration-slow</code>",
+   "  </div>",
+   "  <div class=\"panel p-4 animate-scale-in ease-overshoot\">",
+   "    <p class=\"font-semibold\">Scale in</p>",
+   "    <code class=\"text-xs\">animate-scale-in ease-overshoot</code>",
+   "  </div>",
+   "  <div class=\"panel p-4 animate-rise delay-75\">",
+   "    <p class=\"font-semibold\">Rise</p>",
+   "    <code class=\"text-xs\">animate-rise delay-75</code>",
+   "  </div>",
+   "  <div class=\"panel p-4 animate-slide-right slide-lg\">",
+   "    <p class=\"font-semibold\">Slide right</p>",
+   "    <code class=\"text-xs\">animate-slide-right slide-lg</code>",
+   "  </div>",
+   "  <div class=\"panel p-4 animate-fade-in duration-instant\">",
+   "    <p class=\"font-semibold\">Fade, instant</p>",
+   "    <code class=\"text-xs\">animate-fade-in duration-instant</code>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "The six one-shot entrance animations, each replaying on load with its own duration and easing modifier. (primitive, free)"
+ },
+ "LLMCSS Staggered List Entrance": {
+  "prefix": "ai-motion-stagger-list",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"panel p-5\">",
+   "  <h3 class=\"font-semibold mb-4\">Workspace members</h3>",
+   "  <ul class=\"stagger flex flex-col gap-3\">",
+   "    <li class=\"animate-rise flex items-center justify-between\">",
+   "      <span>Dana Whitfield</span>",
+   "      <span class=\"badge badge-neutral\">Owner</span>",
+   "    </li>",
+   "    <li class=\"animate-rise flex items-center justify-between\">",
+   "      <span>Priya Raman</span>",
+   "      <span class=\"badge badge-neutral\">Admin</span>",
+   "    </li>",
+   "    <li class=\"animate-rise flex items-center justify-between\">",
+   "      <span>Tomas Eriksen</span>",
+   "      <span class=\"badge badge-neutral\">Editor</span>",
+   "    </li>",
+   "    <li class=\"animate-rise flex items-center justify-between\">",
+   "      <span>Aiko Nakamura</span>",
+   "      <span class=\"badge badge-neutral\">Viewer</span>",
+   "    </li>",
+   "  </ul>",
+   "</div>"
+  ],
+  "description": "A settings list whose rows arrive one after another, with the per-child delay handled entirely by nth-child. (primitive, free)"
+ },
+ "LLMCSS Staggered Metric Grid": {
+  "prefix": "ai-motion-stagger-fast-grid",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"stagger stagger-fast grid grid-cols-2 md:grid-cols-4 gap-4\">",
+   "  <div class=\"animate-slide-up\">",
+   "    <p class=\"text-sm\">Monthly recurring revenue</p>",
+   "    <p class=\"text-3xl font-bold\">\\$412,900</p>",
+   "  </div>",
+   "  <div class=\"animate-slide-up\">",
+   "    <p class=\"text-sm\">Active seats</p>",
+   "    <p class=\"text-xl font-semibold\">3,184</p>",
+   "  </div>",
+   "  <div class=\"animate-slide-up\">",
+   "    <p class=\"text-sm\">Net retention</p>",
+   "    <p class=\"text-xl font-semibold\">114%</p>",
+   "  </div>",
+   "  <div class=\"animate-slide-up\">",
+   "    <p class=\"text-sm\">Open incidents</p>",
+   "    <p class=\"text-xl font-semibold\">2</p>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "Four metrics that fade up in a tight 35ms cascade, with the primary figure weighted heavier than the rest. (primitive, free)"
+ },
+ "LLMCSS Scroll Reveal Section": {
+  "prefix": "ai-motion-scroll-reveal",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<section class=\"flex flex-col gap-6\">",
+   "  <h2 class=\"reveal-up\">Built to be read, not watched</h2>",
+   "  <p class=\"reveal-up prose\">Each block below is revealed by a scroll-driven animation. There is no",
+   "    observer, no script and no layout thrash. On a browser without scroll-driven animations every",
+   "    block simply renders in place, fully visible.</p>",
+   "  <div class=\"grid grid-cols-1 md:grid-cols-3 gap-4\">",
+   "    <div class=\"panel p-5 reveal-up\">",
+   "      <h3 class=\"font-semibold\">Progress linked</h3>",
+   "      <p class=\"text-sm\">The animation is driven by the element's own entry range, so it stops the",
+   "        instant the reader stops scrolling.</p>",
+   "    </div>",
+   "    <div class=\"panel p-5 reveal-up delay-75\">",
+   "      <h3 class=\"font-semibold\">Reversible</h3>",
+   "      <p class=\"text-sm\">Scrolling back up runs it backwards. That is how a progress timeline",
+   "        works, and it is why the addon documents it rather than faking a once-only.</p>",
+   "    </div>",
+   "    <div class=\"panel p-5 reveal-scale delay-150\">",
+   "      <h3 class=\"font-semibold\">Degrades to visible</h3>",
+   "      <p class=\"text-sm\">No rule outside the support query sets opacity to zero, so a blocked",
+   "        stylesheet cannot hide this paragraph.</p>",
+   "    </div>",
+   "  </div>",
+   "</section>"
+  ],
+  "description": "Three blocks that reveal on scroll using a pure CSS view() timeline, and render plainly visible wherever scroll-driven animations are unsupported. (primitive, free)"
+ },
+ "LLMCSS Animated Disclosure": {
+  "prefix": "ai-motion-disclosure",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<details class=\"collapse panel p-5\">",
+   "  <summary class=\"font-semibold\">What happens to my data when a run is cancelled?</summary>",
+   "  <div class=\"animate-collapse-in duration-fast\">",
+   "    <div class=\"prose mt-3\">",
+   "      <p class=\"text-sm\">Partial output is retained for twenty four hours so you can resume, then",
+   "        deleted. Billing stops at the last completed step, not at the point of cancellation.</p>",
+   "    </div>",
+   "  </div>",
+   "</details>"
+  ],
+  "description": "A details and summary disclosure that animates its own height from zero, using the grid-rows technique rather than a fixed max-height guess. (primitive, free)"
+ },
+ "LLMCSS Press and Lift Cards": {
+  "prefix": "ai-motion-press-cards",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"grid grid-cols-1 md:grid-cols-3 gap-4\">",
+   "  <a class=\"card p-5 lift press flex flex-col gap-2\" href=\"#deployments\">",
+   "    <span class=\"font-semibold\">Deployments</span>",
+   "    <span class=\"text-sm\">Eleven builds shipped this week.</span>",
+   "  </a>",
+   "  <a class=\"card p-5 lift press flex flex-col gap-2\" href=\"#incidents\">",
+   "    <span class=\"font-semibold\">Incidents</span>",
+   "    <span class=\"text-sm\">No open incidents across four regions.</span>",
+   "  </a>",
+   "  <a class=\"card p-5 lift-lg press-firm flex flex-col gap-2\" href=\"#audit\">",
+   "    <span class=\"font-semibold\">Audit log</span>",
+   "    <span class=\"text-sm\">Two thousand events retained for ninety days.</span>",
+   "  </a>",
+   "</div>"
+  ],
+  "description": "Link cards with a two pixel hover lift and a press compression, both transitions with a completely still idle state. (primitive, free)"
+ },
+ "LLMCSS Skeleton Sweep": {
+  "prefix": "ai-motion-loading-sweep",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"card p-5 flex flex-col gap-3\" aria-busy=\"true\">",
+   "  <div class=\"flex items-center gap-3\">",
+   "    <div class=\"skeleton skeleton-avatar overflow-hidden\">",
+   "      <div class=\"animate-sweep w-full h-full\"></div>",
+   "    </div>",
+   "    <div class=\"flex flex-col gap-2 w-full\">",
+   "      <div class=\"skeleton skeleton-title\"></div>",
+   "      <div class=\"skeleton skeleton-text\"></div>",
+   "    </div>",
+   "  </div>",
+   "  <div class=\"skeleton skeleton-rect\"></div>",
+   "  <div class=\"flex items-center gap-2\">",
+   "    <span class=\"spinner spinner-sm\"></span>",
+   "    <span class=\"text-sm\">Loading workspace activity</span>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "A placeholder card whose sweep highlight runs only because the sweep sits inside a skeleton, which is the addon rule that keeps Law 2 unbreakable. (primitive, free)"
+ },
+ "LLMCSS View Transition Pair": {
+  "prefix": "ai-motion-view-transition",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "<div class=\"grid grid-cols-1 md:grid-cols-2 gap-6\">",
+   "  <a class=\"card p-5 lift flex flex-col gap-3\" href=\"#release-notes\">",
+   "    <div class=\"vt-media skeleton skeleton-rect rounded-md\"></div>",
+   "    <h3 class=\"vt-title font-semibold\">Release 0.4.0</h3>",
+   "    <p class=\"text-sm\">The class prefix is gone and every name is listed in classes.json.</p>",
+   "  </a>",
+   "  <div class=\"panel p-5 flex flex-col gap-3 animate-fade-in\" id=\"release-notes\">",
+   "    <div class=\"vt-media skeleton skeleton-rect rounded-md\"></div>",
+   "    <h3 class=\"vt-title font-semibold\">Release 0.4.0</h3>",
+   "    <p class=\"prose text-sm\">Opening the tile hands the browser two matching names, so the image and",
+   "      the heading travel to their new positions instead of cutting. Add",
+   "      <code>@view-transition { navigation: auto; \\}</code> to your own stylesheet to switch this on",
+   "      across page loads; the addon does not ship that at-rule, because it is document scoped and",
+   "      would change behaviour for every site that merely linked the file.</p>",
+   "  </div>",
+   "</div>"
+  ],
+  "description": "A gallery tile and its detail panel sharing view transition names, so the browser morphs one into the other across a navigation. (primitive, free)"
+ },
  "LLMCSS accordions classes": {
   "prefix": "ai-family-accordions",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
@@ -3808,31 +4007,31 @@
   "body": [
    "${1|-rotate-1,-rotate-12,-rotate-180,-rotate-2,-rotate-3,-rotate-45,-rotate-6,-rotate-90,-translate-x-1,-translate-x-12,-translate-x-2,-translate-x-3,-translate-x-4,-translate-x-6,-translate-x-8,-translate-x-full,-translate-x-half,-translate-x-px,-translate-y-1,-translate-y-12,-translate-y-2,-translate-y-3,-translate-y-4,-translate-y-6,-translate-y-8,-translate-y-full,-translate-y-half,-translate-y-px,appearance-auto,appearance-none,cursor-auto,cursor-default,cursor-grab,cursor-grabbing,cursor-help,cursor-move,cursor-none,cursor-not-allowed,cursor-pointer,cursor-progress,cursor-text,cursor-wait,cursor-zoom-in,cursor-zoom-out,delay-0,delay-150,delay-300,delay-75,duration-0,duration-fast,duration-normal,duration-slow,ease-in-out,ease-linear,ease-out,ease-smooth,ease-spring,group,origin-bottom,origin-bottom-left|}"
   ],
-  "description": "interaction utilities, part 1 of 4 (60 of 188 classes)"
+  "description": "interaction utilities, part 1 of 4 (60 of 184 classes)"
  },
  "LLMCSS interaction classes-2": {
   "prefix": "ai-family-interaction-2",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|origin-bottom-right,origin-center,origin-left,origin-right,origin-top,origin-top-left,origin-top-right,overflow-auto,overflow-clip,overflow-hidden,overflow-scroll,overflow-visible,overflow-x-auto,overflow-x-clip,overflow-x-hidden,overflow-x-scroll,overflow-x-visible,overflow-y-auto,overflow-y-clip,overflow-y-hidden,overflow-y-scroll,overflow-y-visible,overscroll-auto,overscroll-contain,overscroll-none,pointer-events-auto,pointer-events-none,resize,resize-none,resize-x,resize-y,rotate-0,rotate-1,rotate-12,rotate-180,rotate-2,rotate-3,rotate-45,rotate-6,rotate-90,scale-0,scale-100,scale-105,scale-110,scale-125,scale-150,scale-50,scale-75,scale-90,scale-95,scroll-auto,scroll-mt-0,scroll-mt-1,scroll-mt-12,scroll-mt-16,scroll-mt-2,scroll-mt-20,scroll-mt-24,scroll-mt-3,scroll-mt-4|}"
+   "${1|origin-bottom-right,origin-center,origin-left,origin-right,origin-top,origin-top-left,origin-top-right,overflow-auto,overflow-clip,overflow-hidden,overflow-scroll,overflow-visible,overflow-x-auto,overflow-x-clip,overflow-x-hidden,overflow-x-scroll,overflow-x-visible,overflow-y-auto,overflow-y-clip,overflow-y-hidden,overflow-y-scroll,overflow-y-visible,overscroll-auto,overscroll-contain,overscroll-none,pointer-events-auto,pointer-events-none,resize,resize-none,resize-x,resize-y,rotate-0,rotate-1,rotate-12,rotate-180,rotate-2,rotate-3,rotate-45,rotate-6,rotate-90,scale-0,scale-100,scale-105,scale-110,scale-125,scale-150,scale-50,scale-75,scale-90,scale-95,scroll-auto,scroll-mt-0,scroll-mt-1,scroll-mt-16,scroll-mt-2,scroll-mt-20,scroll-mt-24,scroll-mt-4,scroll-mt-6,scroll-mt-8|}"
   ],
-  "description": "interaction utilities, part 2 of 4 (60 of 188 classes)"
+  "description": "interaction utilities, part 2 of 4 (60 of 184 classes)"
  },
  "LLMCSS interaction classes-3": {
   "prefix": "ai-family-interaction-3",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|scroll-mt-6,scroll-mt-8,scroll-pt-0,scroll-pt-1,scroll-pt-12,scroll-pt-16,scroll-pt-2,scroll-pt-3,scroll-pt-4,scroll-pt-6,scroll-pt-8,scroll-smooth,snap-always,snap-both,snap-center,snap-end,snap-none,snap-normal,snap-proximity,snap-start,snap-x,snap-y,touch-auto,touch-manipulation,touch-none,touch-pan-x,touch-pan-y,transform-var,transition,transition-all,transition-colors,transition-none,transition-opacity,transition-shadow,transition-transform,translate-center,translate-x-0,translate-x-1,translate-x-12,translate-x-2,translate-x-3,translate-x-4,translate-x-6,translate-x-8,translate-x-center,translate-x-full,translate-x-half,translate-x-px,translate-y-0,translate-y-1,translate-y-12,translate-y-2,translate-y-3,translate-y-4,translate-y-6,translate-y-8,translate-y-center,translate-y-full,translate-y-half,translate-y-px|}"
+   "${1|scroll-pt-0,scroll-pt-1,scroll-pt-16,scroll-pt-2,scroll-pt-4,scroll-pt-6,scroll-pt-8,scroll-smooth,snap-always,snap-both,snap-center,snap-end,snap-none,snap-normal,snap-proximity,snap-start,snap-x,snap-y,touch-auto,touch-manipulation,touch-none,touch-pan-x,touch-pan-y,transform-var,transition,transition-all,transition-colors,transition-none,transition-opacity,transition-shadow,transition-transform,translate-center,translate-x-0,translate-x-1,translate-x-12,translate-x-2,translate-x-3,translate-x-4,translate-x-6,translate-x-8,translate-x-center,translate-x-full,translate-x-half,translate-x-px,translate-y-0,translate-y-1,translate-y-12,translate-y-2,translate-y-3,translate-y-4,translate-y-6,translate-y-8,translate-y-center,translate-y-full,translate-y-half,translate-y-px,user-select-all,user-select-auto,user-select-none,user-select-text|}"
   ],
-  "description": "interaction utilities, part 3 of 4 (60 of 188 classes)"
+  "description": "interaction utilities, part 3 of 4 (60 of 184 classes)"
  },
  "LLMCSS interaction classes-4": {
   "prefix": "ai-family-interaction-4",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|user-select-all,user-select-auto,user-select-none,user-select-text,will-change-auto,will-change-opacity,will-change-scroll,will-change-transform|}"
+   "${1|will-change-auto,will-change-opacity,will-change-scroll,will-change-transform|}"
   ],
-  "description": "interaction utilities, part 4 of 4 (8 of 188 classes)"
+  "description": "interaction utilities, part 4 of 4 (4 of 184 classes)"
  },
  "LLMCSS layout classes-1": {
   "prefix": "ai-family-layout-1",
@@ -3936,7 +4135,7 @@
   "body": [
    "${1|-m-0.5,-m-1,-m-1.5,-m-10,-m-12,-m-16,-m-2,-m-2.5,-m-20,-m-24,-m-3,-m-4,-m-5,-m-6,-m-8,-m-px,-mb-0.5,-mb-1,-mb-1.5,-mb-10,-mb-12,-mb-16,-mb-2,-mb-2.5,-mb-20,-mb-24,-mb-3,-mb-4,-mb-5,-mb-6,-mb-8,-mb-px,-me-0.5,-me-1,-me-1.5,-me-10,-me-12,-me-16,-me-2,-me-2.5,-me-20,-me-24,-me-3,-me-4,-me-5,-me-6,-me-8,-me-px,-ml-0.5,-ml-1,-ml-1.5,-ml-10,-ml-12,-ml-16,-ml-2,-ml-2.5,-ml-20,-ml-24,-ml-3,-ml-4|}"
   ],
-  "description": "spacing utilities, part 1 of 12 (60 of 692 classes)"
+  "description": "spacing utilities, part 1 of 12 (60 of 688 classes)"
  },
  "LLMCSS spacing classes-2": {
   "prefix": "ai-family-spacing-2",
@@ -3944,7 +4143,7 @@
   "body": [
    "${1|-ml-5,-ml-6,-ml-8,-ml-px,-mr-0.5,-mr-1,-mr-1.5,-mr-10,-mr-12,-mr-16,-mr-2,-mr-2.5,-mr-20,-mr-24,-mr-3,-mr-4,-mr-5,-mr-6,-mr-8,-mr-px,-ms-0.5,-ms-1,-ms-1.5,-ms-10,-ms-12,-ms-16,-ms-2,-ms-2.5,-ms-20,-ms-24,-ms-3,-ms-4,-ms-5,-ms-6,-ms-8,-ms-px,-mt-0.5,-mt-1,-mt-1.5,-mt-10,-mt-12,-mt-16,-mt-2,-mt-2.5,-mt-20,-mt-24,-mt-3,-mt-4,-mt-5,-mt-6,-mt-8,-mt-px,-mx-0.5,-mx-1,-mx-1.5,-mx-10,-mx-12,-mx-16,-mx-2,-mx-2.5|}"
   ],
-  "description": "spacing utilities, part 2 of 12 (60 of 692 classes)"
+  "description": "spacing utilities, part 2 of 12 (60 of 688 classes)"
  },
  "LLMCSS spacing classes-3": {
   "prefix": "ai-family-spacing-3",
@@ -3952,7 +4151,7 @@
   "body": [
    "${1|-mx-20,-mx-24,-mx-3,-mx-4,-mx-5,-mx-6,-mx-8,-mx-px,-my-0.5,-my-1,-my-1.5,-my-10,-my-12,-my-16,-my-2,-my-2.5,-my-20,-my-24,-my-3,-my-4,-my-5,-my-6,-my-8,-my-px,gap-0,gap-0.5,gap-1,gap-1.5,gap-10,gap-11,gap-12,gap-14,gap-16,gap-2,gap-2.5,gap-20,gap-24,gap-28,gap-3,gap-3.5,gap-32,gap-36,gap-4,gap-40,gap-48,gap-5,gap-56,gap-6,gap-64,gap-7,gap-72,gap-8,gap-80,gap-9,gap-96,gap-px,gap-var,gap-x-0,gap-x-0.5,gap-x-1|}"
   ],
-  "description": "spacing utilities, part 3 of 12 (60 of 692 classes)"
+  "description": "spacing utilities, part 3 of 12 (60 of 688 classes)"
  },
  "LLMCSS spacing classes-4": {
   "prefix": "ai-family-spacing-4",
@@ -3960,7 +4159,7 @@
   "body": [
    "${1|gap-x-1.5,gap-x-10,gap-x-12,gap-x-14,gap-x-16,gap-x-2,gap-x-2.5,gap-x-20,gap-x-24,gap-x-3,gap-x-3.5,gap-x-32,gap-x-4,gap-x-5,gap-x-6,gap-x-7,gap-x-8,gap-x-px,gap-y-0,gap-y-0.5,gap-y-1,gap-y-1.5,gap-y-10,gap-y-12,gap-y-14,gap-y-16,gap-y-2,gap-y-2.5,gap-y-20,gap-y-24,gap-y-3,gap-y-3.5,gap-y-32,gap-y-4,gap-y-5,gap-y-6,gap-y-7,gap-y-8,gap-y-px,m-0,m-0.5,m-1,m-1.5,m-10,m-11,m-12,m-14,m-16,m-2,m-2.5,m-20,m-24,m-28,m-3,m-3.5,m-32,m-36,m-4,m-40,m-48|}"
   ],
-  "description": "spacing utilities, part 4 of 12 (60 of 692 classes)"
+  "description": "spacing utilities, part 4 of 12 (60 of 688 classes)"
  },
  "LLMCSS spacing classes-5": {
   "prefix": "ai-family-spacing-5",
@@ -3968,7 +4167,7 @@
   "body": [
    "${1|m-5,m-56,m-6,m-64,m-7,m-72,m-8,m-80,m-9,m-96,m-auto,m-px,m-var,mb-0,mb-0.5,mb-1,mb-1.5,mb-10,mb-12,mb-14,mb-16,mb-2,mb-2.5,mb-20,mb-24,mb-3,mb-3.5,mb-32,mb-4,mb-5,mb-6,mb-7,mb-8,mb-auto,mb-px,me-0,me-0.5,me-1,me-1.5,me-10,me-12,me-14,me-16,me-2,me-2.5,me-20,me-24,me-3,me-3.5,me-32,me-4,me-5,me-6,me-7,me-8,me-auto,me-px,ml-0,ml-0.5,ml-1|}"
   ],
-  "description": "spacing utilities, part 5 of 12 (60 of 692 classes)"
+  "description": "spacing utilities, part 5 of 12 (60 of 688 classes)"
  },
  "LLMCSS spacing classes-6": {
   "prefix": "ai-family-spacing-6",
@@ -3976,7 +4175,7 @@
   "body": [
    "${1|ml-1.5,ml-10,ml-12,ml-14,ml-16,ml-2,ml-2.5,ml-20,ml-24,ml-3,ml-3.5,ml-32,ml-4,ml-5,ml-6,ml-7,ml-8,ml-auto,ml-px,mr-0,mr-0.5,mr-1,mr-1.5,mr-10,mr-12,mr-14,mr-16,mr-2,mr-2.5,mr-20,mr-24,mr-3,mr-3.5,mr-32,mr-4,mr-5,mr-6,mr-7,mr-8,mr-auto,mr-px,ms-0,ms-0.5,ms-1,ms-1.5,ms-10,ms-12,ms-14,ms-16,ms-2,ms-2.5,ms-20,ms-24,ms-3,ms-3.5,ms-32,ms-4,ms-5,ms-6,ms-7|}"
   ],
-  "description": "spacing utilities, part 6 of 12 (60 of 692 classes)"
+  "description": "spacing utilities, part 6 of 12 (60 of 688 classes)"
  },
  "LLMCSS spacing classes-7": {
   "prefix": "ai-family-spacing-7",
@@ -3984,7 +4183,7 @@
   "body": [
    "${1|ms-8,ms-auto,ms-px,mt-0,mt-0.5,mt-1,mt-1.5,mt-10,mt-12,mt-14,mt-16,mt-2,mt-2.5,mt-20,mt-24,mt-3,mt-3.5,mt-32,mt-4,mt-5,mt-6,mt-7,mt-8,mt-auto,mt-px,mx-0,mx-0.5,mx-1,mx-1.5,mx-10,mx-11,mx-12,mx-14,mx-16,mx-2,mx-2.5,mx-20,mx-24,mx-28,mx-3,mx-3.5,mx-32,mx-36,mx-4,mx-40,mx-48,mx-5,mx-56,mx-6,mx-64,mx-7,mx-72,mx-8,mx-80,mx-9,mx-96,mx-auto,mx-px,my-0,my-0.5|}"
   ],
-  "description": "spacing utilities, part 7 of 12 (60 of 692 classes)"
+  "description": "spacing utilities, part 7 of 12 (60 of 688 classes)"
  },
  "LLMCSS spacing classes-8": {
   "prefix": "ai-family-spacing-8",
@@ -3992,7 +4191,7 @@
   "body": [
    "${1|my-1,my-1.5,my-10,my-11,my-12,my-14,my-16,my-2,my-2.5,my-20,my-24,my-28,my-3,my-3.5,my-32,my-36,my-4,my-40,my-48,my-5,my-56,my-6,my-64,my-7,my-72,my-8,my-80,my-9,my-96,my-auto,my-px,p-0,p-0.5,p-1,p-1.5,p-10,p-11,p-12,p-14,p-16,p-2,p-2.5,p-20,p-24,p-28,p-3,p-3.5,p-32,p-36,p-4,p-40,p-48,p-5,p-56,p-6,p-64,p-7,p-72,p-8,p-80|}"
   ],
-  "description": "spacing utilities, part 8 of 12 (60 of 692 classes)"
+  "description": "spacing utilities, part 8 of 12 (60 of 688 classes)"
  },
  "LLMCSS spacing classes-9": {
   "prefix": "ai-family-spacing-9",
@@ -4000,7 +4199,7 @@
   "body": [
    "${1|p-9,p-96,p-px,p-var,pb-0,pb-0.5,pb-1,pb-1.5,pb-10,pb-12,pb-14,pb-16,pb-2,pb-2.5,pb-20,pb-24,pb-3,pb-3.5,pb-32,pb-4,pb-5,pb-6,pb-7,pb-8,pb-px,pe-0,pe-0.5,pe-1,pe-1.5,pe-10,pe-12,pe-14,pe-16,pe-2,pe-2.5,pe-20,pe-24,pe-3,pe-3.5,pe-32,pe-4,pe-5,pe-6,pe-7,pe-8,pe-px,pl-0,pl-0.5,pl-1,pl-1.5,pl-10,pl-12,pl-14,pl-16,pl-2,pl-2.5,pl-20,pl-24,pl-3,pl-3.5|}"
   ],
-  "description": "spacing utilities, part 9 of 12 (60 of 692 classes)"
+  "description": "spacing utilities, part 9 of 12 (60 of 688 classes)"
  },
  "LLMCSS spacing classes-10": {
   "prefix": "ai-family-spacing-10",
@@ -4008,7 +4207,7 @@
   "body": [
    "${1|pl-32,pl-4,pl-5,pl-6,pl-7,pl-8,pl-px,pr-0,pr-0.5,pr-1,pr-1.5,pr-10,pr-12,pr-14,pr-16,pr-2,pr-2.5,pr-20,pr-24,pr-3,pr-3.5,pr-32,pr-4,pr-5,pr-6,pr-7,pr-8,pr-px,ps-0,ps-0.5,ps-1,ps-1.5,ps-10,ps-12,ps-14,ps-16,ps-2,ps-2.5,ps-20,ps-24,ps-3,ps-3.5,ps-32,ps-4,ps-5,ps-6,ps-7,ps-8,ps-px,pt-0,pt-0.5,pt-1,pt-1.5,pt-10,pt-12,pt-14,pt-16,pt-2,pt-2.5,pt-20|}"
   ],
-  "description": "spacing utilities, part 10 of 12 (60 of 692 classes)"
+  "description": "spacing utilities, part 10 of 12 (60 of 688 classes)"
  },
  "LLMCSS spacing classes-11": {
   "prefix": "ai-family-spacing-11",
@@ -4016,15 +4215,15 @@
   "body": [
    "${1|pt-24,pt-3,pt-3.5,pt-32,pt-4,pt-5,pt-6,pt-7,pt-8,pt-px,px-0,px-0.5,px-1,px-1.5,px-10,px-11,px-12,px-14,px-16,px-2,px-2.5,px-20,px-24,px-28,px-3,px-3.5,px-32,px-36,px-4,px-40,px-48,px-5,px-56,px-6,px-64,px-7,px-72,px-8,px-80,px-9,px-96,px-px,py-0,py-0.5,py-1,py-1.5,py-10,py-11,py-12,py-14,py-16,py-2,py-2.5,py-20,py-24,py-28,py-3,py-3.5,py-32,py-36|}"
   ],
-  "description": "spacing utilities, part 11 of 12 (60 of 692 classes)"
+  "description": "spacing utilities, part 11 of 12 (60 of 688 classes)"
  },
  "LLMCSS spacing classes-12": {
   "prefix": "ai-family-spacing-12",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|py-4,py-40,py-48,py-5,py-56,py-6,py-64,py-7,py-72,py-8,py-80,py-9,py-96,py-px,space-x-0,space-x-1,space-x-12,space-x-16,space-x-2,space-x-3,space-x-4,space-x-6,space-x-8,space-y-0,space-y-1,space-y-12,space-y-16,space-y-2,space-y-3,space-y-4,space-y-6,space-y-8|}"
+   "${1|py-4,py-40,py-48,py-5,py-56,py-6,py-64,py-7,py-72,py-8,py-80,py-9,py-96,py-px,space-x-0,space-x-1,space-x-16,space-x-2,space-x-4,space-x-6,space-x-8,space-y-0,space-y-1,space-y-16,space-y-2,space-y-4,space-y-6,space-y-8|}"
   ],
-  "description": "spacing utilities, part 12 of 12 (32 of 692 classes)"
+  "description": "spacing utilities, part 12 of 12 (28 of 688 classes)"
  },
  "LLMCSS tables classes": {
   "prefix": "ai-family-tables",

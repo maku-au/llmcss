@@ -8,6 +8,8 @@
  *   npx llmcss list
  *   npx llmcss search <query>
  *   npx llmcss add <component-id>
+ *   npx llmcss add <component-id>:<variant>
+ *   npx llmcss variants <component-id>
  *   npx llmcss login
  *   npx llmcss init
  */
@@ -20,6 +22,8 @@ import { fileURLToPath } from 'url';
 import { components } from '../src/registry/data.mjs';
 import { wireframeTemplates, pageBlueprints, assembleBlueprintHtml } from '../src/registry/templates-data.mjs';
 import { validateMarkup, structuralAudit, classTokens, legacyFix } from '../src/registry/validate.mjs';
+import { resolveRef, refHtml, refId, refSlug } from '../src/registry/resolve.mjs';
+import { selectorClasses } from '../src/registry/css-names.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -56,7 +60,7 @@ function originBase() {
 function requireProToken() {
   const token = getStoredToken();
   if (!token) {
-    console.log('\n\x1b[33m⚠️  This is an LLMCSS PRO item.\x1b[0m');
+    console.log('\n\x1b[33mThis is an LLMCSS Pro item.\x1b[0m');
     console.log('Themed templates and page kits are not in the public repo. Subscribe, then login.\n');
     console.log('1. Get a license at: \x1b[36mhttps://llmcss.io/#pricing\x1b[0m');
     console.log('2. Run: \x1b[32mnpx llmcss login <token>\x1b[0m\n');
@@ -161,10 +165,16 @@ switch (command) {
       for (const comp of catComps) {
         const tierBadge = comp.tier === 'pro' ? '\x1b[33m[PRO]\x1b[0m' : '\x1b[32m[FREE]\x1b[0m';
         console.log(`  ${tierBadge} \x1b[36m${comp.id.padEnd(22)}\x1b[0m ${comp.name} - ${comp.description}`);
+        // One indented line per component that ships more than one layout, so
+        // the command stays a single screen per category.
+        if (comp.variants && comp.variants.length > 0) {
+          console.log(`         \x1b[2mvariants: ${comp.variants.map((v) => v.id).join(', ')}\x1b[0m`);
+        }
       }
       console.log('');
     }
-    console.log('Run `npx llmcss add <id>` to install a component.\n');
+    console.log('Run `npx llmcss add <id>` to install a component.');
+    console.log('Ask for a layout alternative with `npx llmcss add <id>:<variant>`.\n');
     break;
   }
 
@@ -175,19 +185,33 @@ switch (command) {
       process.exit(1);
     }
     const aliasTargets = ALIAS_MAP[query] || [];
+    // A query can name a layout rather than a component: "topbar" has to find
+    // the app shell whose topbar variant it is.
+    const variantHits = (c) =>
+      (c.variants || []).filter(
+        (v) =>
+          v.id.includes(query) ||
+          v.name.toLowerCase().includes(query) ||
+          v.description.toLowerCase().includes(query)
+      );
     const hit = (c) =>
       aliasTargets.includes(c.id) ||
       c.id.includes(query) ||
       c.name.toLowerCase().includes(query) ||
       (c.tags || []).some((t) => t.toLowerCase().includes(query)) ||
       (typeof c.description === 'string' ? c.description : JSON.stringify(c.guidance || '')).toLowerCase().includes(query) ||
-      (c.section || '').includes(query.replace(/\s+/g, '-'));
+      (c.section || '').includes(query.replace(/\s+/g, '-')) ||
+      variantHits(c).length > 0;
     const matches = components.filter(hit);
     const tplMatches = wireframeTemplates.filter(hit);
     console.log(`\nFound ${matches.length + tplMatches.length} matches for "${query}":\n`);
     for (const comp of matches) {
       const tierBadge = comp.tier === 'pro' ? '\x1b[33m[PRO]\x1b[0m' : '\x1b[32m[FREE]\x1b[0m';
       console.log(`  ${tierBadge} \x1b[36m${comp.id.padEnd(22)}\x1b[0m ${comp.name}`);
+      const vh = variantHits(comp);
+      for (const v of vh) {
+        console.log(`         \x1b[36m${`${comp.id}:${v.id}`.padEnd(30)}\x1b[0m \x1b[2m${v.name}\x1b[0m`);
+      }
     }
     for (const t of tplMatches) {
       console.log(`  \x1b[35m[TPL]\x1b[0m  \x1b[36m${t.id.padEnd(22)}\x1b[0m ${t.name}  (npx llmcss template get ${t.id})`);
@@ -197,13 +221,30 @@ switch (command) {
   }
 
   case 'add': {
-    const compId = args[1];
+    const positional = args.slice(1).filter((a) => !a.startsWith('-'));
+    const flagIdx = args.indexOf('--variant');
+    // `add hero-split --variant centered` and `add hero-split:centered` are the
+    // same request, so neither spelling is a trap.
+    const flagVariant = flagIdx > -1 ? args[flagIdx + 1] : '';
+    let compId = positional[0];
+    if (flagVariant && compId) compId = `${compId}:${flagVariant}`;
     if (!compId) {
-      console.error('Please specify a component id: `llmcss add <component-id>`');
+      console.error('Please specify a component id: `llmcss add <component-id>` or `llmcss add <component-id>:<variant>`');
       process.exit(1);
     }
-    const comp = components.find((c) => c.id === compId);
-    if (!comp) {
+    const hit = resolveRef(components, compId);
+    if (!hit) {
+      // Naming a real component and an unknown variant is the one moment the
+      // caller is definitely confused, so it is the one place to spend words.
+      const cut = compId.lastIndexOf(':');
+      const parent = cut > 0 ? components.find((c) => c.id === compId.slice(0, cut)) : null;
+      if (parent) {
+        const list = (parent.variants || []).map((v) => v.id);
+        console.error(`Component "${parent.id}" has no variant "${compId.slice(cut + 1)}".`);
+        console.error(list.length ? `Variants: ${list.join(', ')}.` : 'It has one layout, so drop the colon.');
+        if (list.length) console.error(`Run \`npx llmcss variants ${parent.id}\` for what each one does.`);
+        process.exit(1);
+      }
       // Every catalog component is MIT. Themed ids are section templates now,
       // so send the caller to the command that can actually fetch them.
       const asTemplate = wireframeTemplates.find((t) => t.id === compId);
@@ -215,26 +256,60 @@ switch (command) {
       process.exit(1);
     }
 
-    const html = comp.html;
+    const comp = hit.component;
+    const html = refHtml(hit);
     const extraCss = comp.css || '';
 
-    // Target Output
+    // Target Output. The colon is flattened to a hyphen: it is hostile in a
+    // Windows filename and awkward in a shell.
+    const slug = refSlug(hit);
     const targetDir = path.resolve(process.cwd(), 'components', comp.category);
     if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir, { recursive: true });
 
-    const htmlFile = path.join(targetDir, `${comp.id}.html`);
+    const htmlFile = path.join(targetDir, `${slug}.html`);
     fs.writeFileSync(htmlFile, html, 'utf-8');
     let cssFile = '';
     if (extraCss) {
-      cssFile = path.join(targetDir, `${comp.id}.css`);
+      cssFile = path.join(targetDir, `${slug}.css`);
       fs.writeFileSync(cssFile, extraCss, 'utf-8');
     }
 
-    console.log(`\x1b[32m✓ Installed ${comp.name}\x1b[0m`);
+    const label = hit.variant ? `${comp.name}, ${hit.variant.name.toLowerCase()} layout` : comp.name;
+    console.log(`\x1b[32m✓ Installed ${label}\x1b[0m`);
     console.log(`  File: ${path.relative(process.cwd(), htmlFile)}`);
     if (cssFile) {
       console.log(`  CSS:  ${path.relative(process.cwd(), cssFile)} (link it after llmcss.css)`);
     }
+    if (!hit.variant && comp.variants && comp.variants.length > 0) {
+      console.log(`  \x1b[2mOther layouts: ${comp.variants.map((v) => `${comp.id}:${v.id}`).join(', ')}\x1b[0m`);
+    }
+    break;
+  }
+
+  case 'variants': {
+    const compId = args[1];
+    if (!compId) {
+      console.error('Please specify a component id: `llmcss variants <component-id>`');
+      process.exit(1);
+    }
+    const hit = resolveRef(components, compId);
+    if (!hit) {
+      console.error(`Component "${compId}" not found. Run \`llmcss list\` to see available components.`);
+      process.exit(1);
+    }
+    const comp = hit.component;
+    const list = comp.variants || [];
+    if (list.length === 0) {
+      console.log(`\n✦ ${comp.name} has one layout. Run \`npx llmcss add ${comp.id}\`.\n`);
+      break;
+    }
+    console.log(`\n✦ ${comp.name}: ${list.length} layout variants\n`);
+    const width = Math.max(...list.map((v) => `${comp.id}:${v.id}`.length)) + 2;
+    for (const v of list) {
+      console.log(`  \x1b[36m${`${comp.id}:${v.id}`.padEnd(width)}\x1b[0m${v.name}`);
+      console.log(`  ${' '.repeat(width)}\x1b[2m${v.description}\x1b[0m`);
+    }
+    console.log(`\nAdd one with \`npx llmcss add ${comp.id}:${list[0].id}\`.\n`);
     break;
   }
 
@@ -274,8 +349,16 @@ switch (command) {
 
   case 'info': {
     const compId = args[1];
-    const comp = components.find((c) => c.id === compId);
-    if (!comp) {
+    const hit = resolveRef(components, compId);
+    if (!hit) {
+      const cut = compId ? compId.lastIndexOf(':') : -1;
+      const parent = cut > 0 ? components.find((c) => c.id === compId.slice(0, cut)) : null;
+      if (parent) {
+        const list = (parent.variants || []).map((v) => v.id);
+        console.error(`Component "${parent.id}" has no variant "${compId.slice(cut + 1)}".`);
+        console.error(list.length ? `Variants: ${list.join(', ')}.` : 'It has one layout, so drop the colon.');
+        process.exit(1);
+      }
       const asTemplate = wireframeTemplates.find((t) => t.id === compId);
       if (asTemplate) {
         console.error(`"${compId}" is a section template, not a component. Run \`llmcss template get ${compId}\`.`);
@@ -284,7 +367,28 @@ switch (command) {
       console.error(`Component "${compId}" not found.`);
       process.exit(1);
     }
-    console.log(JSON.stringify(comp, null, 2));
+    const comp = hit.component;
+    // Output stays one JSON document so it can be piped. variantRefs is the
+    // flat address list, so a reader never has to assemble the colon itself.
+    const variantRefs = (comp.variants || []).map((v) => `${comp.id}:${v.id}`);
+    if (hit.variant) {
+      console.log(
+        JSON.stringify(
+          {
+            ref: refId(hit),
+            parent: comp.id,
+            category: comp.category,
+            tier: comp.tier,
+            ...hit.variant,
+            variantRefs,
+          },
+          null,
+          2
+        )
+      );
+      break;
+    }
+    console.log(JSON.stringify({ ...comp, variantRefs }, null, 2));
     break;
   }
 
@@ -943,14 +1047,16 @@ them first.
       return out;
     }
 
-    // .md\:gap-4 -> md:gap-4 ; .w-1\/2 -> w-1/2 ; .-m-1 -> -m-1
-    function selectorClasses(selector) {
-      const out = [];
-      for (const m of selector.matchAll(/\.((?:\\.|[A-Za-z0-9_-])+)/g)) {
-        out.push(m[1].replace(/\\(.)/g, '$1'));
-      }
-      return out;
-    }
+    // Class names out of a selector: .md\:gap-4 -> md:gap-4, .w-1\/2 -> w-1/2,
+    // .-m-1 -> -m-1, .\000032xl\:flex -> 2xl:flex.
+    //
+    // selectorClasses is imported from src/registry/css-names.mjs, the same
+    // module build-utilities.mjs escapes with and build-manifests.mjs reads
+    // with. This used to be a local copy that knew single-character escapes
+    // only, so `\000032` was decoded a character at a time into the literal
+    // text "000032" and every 2xl: class came back as `000032xl:flex`. Nothing
+    // in the used-class set ever matched it, so `llmcss trim` silently dropped
+    // the whole 2xl breakpoint from the sheet it produced.
 
     const KEEP_AT = /^@(keyframes|-webkit-keyframes|property|font-face|counter-style|charset|namespace|font-feature-values)\b/;
     const NEST_AT = /^@(media|supports|container|layer|scope)\b/;
@@ -1067,9 +1173,13 @@ them first.
 
 Commands:
   llmcss list                    List all available components (every one is MIT)
-  llmcss search <query>          Search components by keyword or tag
+  llmcss search <query>          Search components by keyword, tag, or variant name
   llmcss add <component-id>      Install component markup into your project
+                                 Accepts hero-split, hero-split:centered,
+                                 or hero-split --variant centered
+  llmcss variants <component-id> List the layout variants of a component
   llmcss info <component-id>     Output raw component metadata & schema
+                                 Accepts a variant reference; lists variantRefs
   llmcss templates               List all wireframe section templates
   llmcss template get <id>       Output HTML for a wireframe or themed Pro section
   llmcss template blueprints     List full-page composition blueprints

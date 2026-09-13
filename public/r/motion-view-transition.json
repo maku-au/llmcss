@@ -1,0 +1,16 @@
+{
+  "id": "motion-view-transition",
+  "name": "View Transition Pair",
+  "description": "A gallery tile and its detail panel sharing view transition names, so the browser morphs one into the other across a navigation.",
+  "category": "primitive",
+  "tier": "free",
+  "addon": "motion",
+  "tags": [
+    "motion",
+    "addon",
+    "view-transition",
+    "navigation",
+    "gallery"
+  ],
+  "html": "<div class=\"grid grid-cols-1 md:grid-cols-2 gap-6\">\n  <a class=\"card p-5 lift flex flex-col gap-3\" href=\"#release-notes\">\n    <div class=\"vt-media skeleton skeleton-rect rounded-md\"></div>\n    <h3 class=\"vt-title font-semibold\">Release 0.4.0</h3>\n    <p class=\"text-sm\">The class prefix is gone and every name is listed in classes.json.</p>\n  </a>\n  <div class=\"panel p-5 flex flex-col gap-3 animate-fade-in\" id=\"release-notes\">\n    <div class=\"vt-media skeleton skeleton-rect rounded-md\"></div>\n    <h3 class=\"vt-title font-semibold\">Release 0.4.0</h3>\n    <p class=\"prose text-sm\">Opening the tile hands the browser two matching names, so the image and\n      the heading travel to their new positions instead of cutting. Add\n      <code>@view-transition { navigation: auto; }</code> to your own stylesheet to switch this on\n      across page loads; the addon does not ship that at-rule, because it is document scoped and\n      would change behaviour for every site that merely linked the file.</p>\n  </div>\n</div>"
+}

@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && node src/registry/build-utilities.mjs && GOMAXPROCS=1 vite build && GOMAXPROCS=1 vite build --config vite.runtime.config.ts && npm run build:css && node src/registry/build-registry.mjs && node src/registry/build-manifests.mjs && node src/registry/build-docs.mjs && node src/registry/build-vscode.mjs",
+    "build": "tsc && node src/registry/build-utilities.mjs && GOMAXPROCS=1 vite build && GOMAXPROCS=1 vite build --config vite.runtime.config.ts && npm run build:css && npm run build:motion && node src/registry/build-registry.mjs && node src/registry/build-manifests.mjs && node src/registry/build-docs.mjs && node src/registry/build-vscode.mjs",
     "build:utilities": "node src/registry/build-utilities.mjs",
     "build:manifests": "node src/registry/build-manifests.mjs",
     "build:vscode": "node src/registry/build-vscode.mjs",
@@ -23,7 +23,8 @@
     "mcp": "node bin/cssai-mcp.mjs",
     "build:runtime": "vite build --config vite.runtime.config.ts",
     "build:docs": "node src/registry/build-docs.mjs",
-    "build:css": "esbuild src/css/index.css --bundle --minify --outfile=dist/llmcss.css --log-level=warning"
+    "build:css": "esbuild src/css/index.css --bundle --minify --outfile=dist/llmcss.css --log-level=warning",
+    "build:motion": "node src/registry/build-motion.mjs && esbuild src/css/motion.css --bundle --minify --outfile=dist/llmcss-motion.css --log-level=warning"
   },
   "keywords": [
     "css",

@@ -9,5 +9,5 @@
     "user",
     "team"
   ],
-  "html": "<div class=\"flex items-center gap-6\">\n  <div class=\"avatar-group\">\n    <div class=\"avatar avatar-sm\" style=\"background-color: var(--ai-surface-3);\">+4</div>\n    <div class=\"avatar avatar-sm\" style=\"background-color: #3b82f6; color: white;\">JD</div>\n    <div class=\"avatar avatar-sm\" style=\"background-color: #10b981; color: white;\">SK</div>\n    <div class=\"avatar avatar-sm\" style=\"background-color: #f59e0b; color: white;\">AL</div>\n  </div>\n  <div class=\"avatar\">\n    <span class=\"font-bold\">EA</span>\n  </div>\n</div>"
+  "html": "<div class=\"flex items-center gap-6\">\n  <div class=\"avatar-group\">\n    <div class=\"avatar avatar-sm\" aria-label=\"4 more members\">+4</div>\n    <div class=\"avatar avatar-sm bg-primary text-inverted\" aria-label=\"Jonas Berg\">JB</div>\n    <div class=\"avatar avatar-sm\"><img src=\"https://images.unsplash.com/photo-1770396529113-ba031cbf0cfa?w=96&h=96&auto=format&fit=crop&q=80\" alt=\"Amara Osei\" /></div>\n    <div class=\"avatar avatar-sm\"><img src=\"https://images.unsplash.com/photo-1582639849680-e2e89674e57b?w=96&h=96&auto=format&fit=crop&q=80\" alt=\"Hana Sato\" /></div>\n  </div>\n  <div class=\"avatar\">\n    <span class=\"font-bold\">EA</span>\n  </div>\n</div>"
 }

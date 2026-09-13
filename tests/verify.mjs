@@ -1,5 +1,6 @@
 import assert from 'assert';
 import { components } from '../src/registry/data.mjs';
+import { ungatedById } from '../src/registry/data-ungated.mjs';
 import { wireframeTemplates, pageBlueprints, assembleBlueprintHtml } from '../src/registry/templates-data.mjs';
 import { execSync } from 'child_process';
 import fs from 'fs';
@@ -605,7 +606,328 @@ console.log('\n19. Testing Layout Utilities, Helpers & Ecosystem Rail...');
   console.log('✓ Verified 100+ layout utilities (grid spans, spacing, flex, sizing, insets, clamps) and unboxed ecosystem rail.');
 }
 
-console.log('\n🎉 ALL 19 TESTS PASSED SUCCESSFULLY!\n');
+// Test 20: Registry Demo Accessibility Contracts
+// A state that is painted and not announced is a defect, so these are checked
+// mechanically on every demo the registry ships: components, the former Pro
+// entries, and the wireframe section templates.
+console.log('\n20. Testing Registry Demo Accessibility (state twins, live regions, aria-hidden)...');
+{
+  const seen = new Set();
+  const demos = [];
+  const addDemo = (id, html) => {
+    if (typeof html === 'string' && html.length > 10) demos.push({ id, html });
+  };
+  for (const c of components) {
+    seen.add(c.id);
+    addDemo(c.id, c.html);
+    addDemo(`${c.id} (web component)`, c.webComponentHtml);
+  }
+  for (const c of Object.values(ungatedById)) {
+    if (seen.has(c.id)) continue;
+    addDemo(c.id, c.html);
+    addDemo(`${c.id} (web component)`, c.webComponentHtml);
+  }
+  for (const t of wireframeTemplates) addDemo(t.id, t.html);
+
+  const attrOf = (attrs, name) => {
+    const m = attrs.match(new RegExp(`\\s${name}="([^"]*)"`, 'i'));
+    return m ? m[1] : null;
+  };
+  const classesOf = (attrs) => (attrOf(attrs, 'class') || '').trim().split(/\s+/);
+  const openTags = (html, tagName) => {
+    const re = new RegExp(`<${tagName}\\b([^>]*)>`, 'gi');
+    const out = [];
+    let m;
+    while ((m = re.exec(html))) out.push({ attrs: m[1], end: re.lastIndex });
+    return out;
+  };
+
+  // An aria-hidden subtree is removed from the accessibility tree, so a focusable
+  // control inside one is reachable by Tab and invisible to a screen reader.
+  const hidesInteractive = (html) => {
+    const re = /<([a-zA-Z][\w-]*)\b([^>]*\saria-hidden="true"[^>]*)>/g;
+    let m;
+    while ((m = re.exec(html))) {
+      const tag = m[1];
+      if (m[2].trimEnd().endsWith('/')) continue;
+      const walker = new RegExp(`<${tag}\\b|</${tag}>`, 'gi');
+      walker.lastIndex = re.lastIndex;
+      let depth = 1;
+      let end = html.length;
+      let step;
+      while ((step = walker.exec(html))) {
+        if (step[0][1] === '/') {
+          depth -= 1;
+          if (depth === 0) {
+            end = step.index;
+            break;
+          }
+        } else {
+          depth += 1;
+        }
+      }
+      if (/<(button|input|select|textarea)\b/i.test(html.slice(re.lastIndex, end))) return tag;
+    }
+    return null;
+  };
+
+  let accordionTriggers = 0;
+  let statefulControls = 0;
+  let toastDemos = 0;
+
+  for (const demo of demos) {
+    const { id, html } = demo;
+    const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
+
+    // 1. Every accordion trigger names the panel it opens, and that panel exists.
+    for (const tag of openTags(html, 'button')) {
+      const isTrigger =
+        classesOf(tag.attrs).includes('accordion-trigger') ||
+        attrOf(tag.attrs, 'data-ai-toggle') === 'accordion';
+      if (!isTrigger) continue;
+      accordionTriggers += 1;
+      assert(attrOf(tag.attrs, 'aria-expanded') !== null, `${id}: accordion trigger has no aria-expanded`);
+      const controls = attrOf(tag.attrs, 'aria-controls');
+      assert(controls, `${id}: accordion trigger has no aria-controls`);
+      assert(ids.has(controls), `${id}: aria-controls="${controls}" matches no id in the same demo`);
+    }
+
+    // 2. A toast arrives unprompted, so the demo shows it inside a live region.
+    if (/\bclass="[^"]*\btoast\b/.test(html)) {
+      toastDemos += 1;
+      assert(/\srole="(status|alert)"/.test(html), `${id}: toast demo carries no role="status" or role="alert"`);
+    }
+
+    // 3. An is-active interactive element mirrors its state in ARIA (Law 12).
+    for (const tagName of ['button', 'a']) {
+      for (const tag of openTags(html, tagName)) {
+        if (!classesOf(tag.attrs).includes('is-active')) continue;
+        statefulControls += 1;
+        const announced = ['aria-pressed', 'aria-selected', 'aria-current', 'aria-expanded'].some(
+          (a) => attrOf(tag.attrs, a) !== null
+        );
+        assert(
+          announced,
+          `${id}: <${tagName}> carries is-active but no aria-pressed, aria-selected, aria-current or aria-expanded`
+        );
+      }
+    }
+
+    // 4. Nothing focusable is buried in an aria-hidden subtree.
+    const hidden = hidesInteractive(html);
+    assert(!hidden, `${id}: <${hidden}> is aria-hidden="true" but contains a focusable control`);
+  }
+
+  assert(accordionTriggers >= 6, `Expected at least 6 accordion triggers in the registry, found ${accordionTriggers}`);
+  assert(statefulControls >= 4, `Expected at least 4 is-active controls in the registry, found ${statefulControls}`);
+  assert(toastDemos >= 1, 'Expected at least one toast demo in the registry');
+  console.log(
+    `✓ Verified ${demos.length} registry demos: ${accordionTriggers} accordion triggers wired to real panel ids, ${statefulControls} is-active controls with an ARIA twin, ${toastDemos} toast demo(s) in a live region, 0 aria-hidden subtrees holding a focusable control.`
+  );
+}
+
+// Test 21: Manifest Class-Count Guard
+// BASELINE_TOTAL pins the last confirmed class count. A 5% band is tight
+// enough to catch a dropped family (a missing component file, a bad merge)
+// but loose enough to absorb incremental additions between checks.
+console.log('\n21. Testing Manifest Class-Count Guard (public/classes.json)...');
+{
+  const BASELINE_TOTAL = 2312;
+  const classesJson = JSON.parse(fs.readFileSync('public/classes.json', 'utf-8'));
+  assert(
+    classesJson.stats.total === classesJson.classes.length,
+    `public/classes.json stats.total (${classesJson.stats.total}) must equal classes.length (${classesJson.classes.length})`
+  );
+  const drift = Math.abs(classesJson.stats.total - BASELINE_TOTAL) / BASELINE_TOTAL;
+  assert(
+    drift <= 0.05,
+    `public/classes.json stats.total (${classesJson.stats.total}) drifted more than 5% from BASELINE_TOTAL (${BASELINE_TOTAL}). Regenerate the manifest, confirm the drop or gain is intentional, then update BASELINE_TOTAL.`
+  );
+  console.log(`✓ Verified public/classes.json stats.total (${classesJson.stats.total}) matches classes.length and sits within 5% of baseline ${BASELINE_TOTAL}.`);
+}
+
+// Test 22: Representative Variant & Escaping Sample
+console.log('\n22. Testing Representative Variant Coverage & Selector Escaping...');
+{
+  const classesJson = JSON.parse(fs.readFileSync('public/classes.json', 'utf-8'));
+  const byClass = new Map(classesJson.classes.map((c) => [c.class, c]));
+
+  const flexEntry = byClass.get('flex');
+  assert(flexEntry && flexEntry.variants.includes('2xl'), 'Expected "flex" to carry a 2xl variant in public/classes.json');
+
+  const gridCols2Entry = byClass.get('grid-cols-2');
+  assert(gridCols2Entry && gridCols2Entry.variants.includes('cq-md'), 'Expected "grid-cols-2" to carry a cq-md variant in public/classes.json');
+
+  const opacity50Entry = byClass.get('opacity-50');
+  assert(opacity50Entry && opacity50Entry.variants.includes('hover'), 'Expected "opacity-50" to carry a hover variant in public/classes.json');
+
+  for (const cls of ['-m-1', 'p-0.5', 'w-1/2']) {
+    assert(byClass.has(cls), `Expected "${cls}" to exist as a class in public/classes.json`);
+  }
+
+  const utilitiesSample =
+    fs.readFileSync('src/css/utilities.css', 'utf-8') +
+    fs.readFileSync('src/css/utilities.extra.css', 'utf-8');
+  const escapedSelectors = [
+    '.\\000032xl\\:flex',
+    '.cq-md\\:grid-cols-2',
+    '.hover\\:opacity-50',
+    '.-m-1',
+    '.p-0\\.5',
+    '.w-1\\/2',
+  ];
+  for (const sel of escapedSelectors) {
+    assert(utilitiesSample.includes(sel), `Expected escaped selector "${sel}" in utilities.css / utilities.extra.css`);
+  }
+  console.log('✓ Verified representative variant coverage (2xl, cq-md, hover) and 6 escaped selector samples in the generated CSS.');
+}
+
+// Test 23: Wiring Guard (index.css imports, layer order, showcase.css isolation)
+console.log('\n23. Testing CSS Entry Point Wiring (imports, layer order, showcase isolation)...');
+{
+  const indexCss = fs.readFileSync('src/css/index.css', 'utf-8');
+  assert(indexCss.includes('@import "./utilities.css"'), 'src/css/index.css missing @import "./utilities.css"');
+  assert(indexCss.includes('@import "./utilities.extra.css"'), 'src/css/index.css missing @import "./utilities.extra.css"');
+
+  const layerLine = indexCss.split('\n').find((line) => /^@layer\s/.test(line.trim()));
+  assert(layerLine, 'src/css/index.css missing a top-level @layer declaration line');
+  const layerNames = layerLine
+    .replace('@layer', '')
+    .replace(';', '')
+    .split(',')
+    .map((name) => name.trim())
+    .filter(Boolean);
+  assert(layerNames[layerNames.length - 1] === 'utilities', `Expected "utilities" to be the last layer in ${layerLine.trim()}`);
+
+  assert(!indexCss.includes('showcase.css'), 'src/css/index.css must never import showcase.css (the library file stays showcase-free)');
+
+  const siteCss = fs.readFileSync('src/css/site.css', 'utf-8');
+  assert(siteCss.includes('showcase.css'), 'src/css/site.css must import showcase.css for the llmcss.io chrome');
+
+  console.log('✓ Verified index.css imports the utilities pair, utilities is the last @layer, and showcase.css is wired only into site.css.');
+}
+
+// Test 24: Component Layout Variants (refs, quality gates, id hygiene)
+console.log('\n24. Testing Component Layout Variants (refs, strict validation, anti-slop, id hygiene)...');
+{
+  const { validateMarkup, structuralAudit } = await import('../src/registry/validate.mjs');
+  const { resolveRef, countVariants, listRefs } = await import('../src/registry/resolve.mjs');
+
+  const VARIANT_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+  // An id attribute is a document-wide name. A variant and its parent can end
+  // up on the same page (the catalog renders one, a reader pastes the other),
+  // so a variant must not reuse one of the parent's ids.
+  const idAttr = /\sid\s*=\s*"([^"]+)"/g;
+  const attrIds = (html) => [...html.matchAll(idAttr)].map((m) => m[1]);
+
+  const seenRefs = new Set();
+  let variantCount = 0;
+  let variantParents = 0;
+
+  for (const comp of components) {
+    if (comp.variants === undefined) continue;
+    variantParents++;
+    assert(Array.isArray(comp.variants), `variants on ${comp.id} must be an array`);
+    assert(comp.variants.length >= 2, `${comp.id} declares variants, so it needs at least two`);
+
+    const parentIds = new Set(attrIds(comp.html));
+
+    for (const v of comp.variants) {
+      variantCount++;
+      const ref = `${comp.id}:${v.id}`;
+
+      // Shape and uniqueness. ids is the component id Set built by Test 1.
+      assert(VARIANT_ID.test(v.id), `Variant id "${v.id}" on ${comp.id} must be lowercase and hyphenated`);
+      assert(!seenRefs.has(ref), `Duplicate variant reference ${ref}`);
+      seenRefs.add(ref);
+      assert(!ids.has(ref), `Variant reference ${ref} collides with a component id`);
+      for (const field of ['name', 'description', 'guidance']) {
+        assert(typeof v[field] === 'string' && v[field].length > 0, `Missing ${field} string for ${ref}`);
+      }
+      assert(typeof v.html === 'string' && v.html.length > 20, `Missing HTML for ${ref}`);
+
+      // The parent must exist and the reference must resolve to this variant,
+      // in both the canonical and the hyphen spelling.
+      const hit = resolveRef(components, ref);
+      assert(hit && hit.component === comp && hit.variant === v, `resolveRef failed on ${ref}`);
+      assert(resolveRef(components, `${comp.id}-${v.id}`)?.variant === v, `Hyphen fallback failed on ${ref}`);
+
+      // Strict validation: a snippet the project ships has no excuse for a
+      // class the project does not define.
+      const res = validateMarkup(v.html, { strict: true });
+      assert(
+        res.errors === 0 && res.warnings === 0,
+        `${ref}: ${res.errors} error(s), ${res.warnings} warning(s) -> ${res.issues.map((i) => i.class).join(', ')}`
+      );
+
+      // Structural anti-slop audit: nested cards, badge eyebrows, grid
+      // backgrounds, pulsing pips, left stripes, purple gradients.
+      const slop = structuralAudit(v.html);
+      assert(slop.length === 0, `${ref} fails the audit: ${slop.map((s) => s.category || s.type).join(', ')}`);
+
+      // Copy HTML output is the library's advertisement: no inline style.
+      assert(!/\sstyle\s*=/.test(v.html), `Inline style attribute in ${ref}. Use utility classes.`);
+
+      // Zero em-dashes, in copy and in markup.
+      assert(
+        !/[\u2013\u2014]/.test(`${v.name} ${v.description} ${v.guidance} ${v.html}`),
+        `Em-dash or en-dash in ${ref}`
+      );
+
+      const clashes = attrIds(v.html).filter((id) => parentIds.has(id));
+      assert(clashes.length === 0, `${ref} reuses the parent's id attribute(s): ${clashes.join(', ')}`);
+    }
+  }
+
+  assert(resolveRef(components, components[0].id) !== null, 'resolveRef must still resolve a bare component id');
+  assert(resolveRef(components, 'hero-split:nope') === null, 'resolveRef must reject an unknown variant');
+  assert(countVariants(components) === variantCount, 'countVariants disagrees with the walk');
+  assert(
+    listRefs(components).length === components.length + variantCount,
+    'listRefs must be every component plus every variant'
+  );
+
+  const registryStats = JSON.parse(fs.readFileSync('public/registry.json', 'utf-8')).stats;
+  assert(
+    registryStats.variants === variantCount,
+    `public/registry.json stats.variants is ${registryStats.variants}, the data says ${variantCount}`
+  );
+  assert(
+    registryStats.total === components.length,
+    'A variant is not a component: stats.total must stay the component count'
+  );
+  const statsJson = JSON.parse(fs.readFileSync('src/registry/stats.json', 'utf-8'));
+  assert(statsJson.variants === variantCount, 'src/registry/stats.json is out of step with the registry');
+
+  console.log(`✓ Verified ${variantCount} variants across ${variantParents} components, all gates green.`);
+}
+
+// Test 25: Motion addon budget, keyframe naming, and the Law 2 ban
+console.log('\n25. Testing Motion Addon (gzip budget, ai-m-* keyframes, no attention loops, no !important)...');
+{
+  const zlib = await import('zlib');
+  const { keyframes } = await import('../src/css/motion.spec.mjs');
+  const MOTION_BUDGET = 6144;
+  const distMotion = path.resolve('dist/llmcss-motion.css');
+  const motionSrc = fs.readFileSync(path.resolve('src/css/motion.css'), 'utf-8');
+  // Prefer the shipped artefact; before a build, fall back to a rough minify of the source.
+  const bytes = fs.existsSync(distMotion)
+    ? fs.readFileSync(distMotion)
+    : Buffer.from(motionSrc.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s+/g, ' ').replace(/\s*([{}:;,>])\s*/g, '$1'));
+  const gz = zlib.gzipSync(bytes, { level: 9 }).length;
+  assert(gz < MOTION_BUDGET, `llmcss-motion.css gzips to ${gz} bytes, over the ${MOTION_BUDGET} byte budget`);
+  const names = Object.keys(keyframes);
+  assert(names.length > 0, 'motion.spec.mjs exports no keyframes');
+  for (const name of names) {
+    assert(name.startsWith('ai-m-'), `Motion keyframe ${name} is not ai-m-* and could shadow a core keyframe`);
+    assert(!/pulse|ping|breathe|blink|glow/i.test(name), `Motion keyframe ${name} matches the banned attention-loop pattern (Law 2)`);
+  }
+  assert(!/!important/.test(motionSrc.replace(/\/\*[\s\S]*?\*\//g, '')), 'src/css/motion.css contains !important');
+  assert(/@layer motion\b/.test(motionSrc), 'src/css/motion.css must declare @layer motion');
+  console.log(`✓ Verified motion addon: ${names.length} ai-m-* keyframes, ${gz} bytes gzipped of ${MOTION_BUDGET}, no banned loops, no !important.`);
+}
+
+console.log('\n🎉 ALL 25 TESTS PASSED SUCCESSFULLY!\n');
 
 
 

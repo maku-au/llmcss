@@ -80,7 +80,8 @@ Snippets are picked up automatically from any `*.code-snippets` file inside
 
 ## What you actually get
 
-Typing `--ai-` inside a `:root` block lists all 82 tokens, and hovering one
+Typing `--ai-` inside a `:root` block lists all tokens (the live count is
+`stats.total` in `public/tokens.json`, 107 as of this writing), and hovering one
 shows its value per theme and skin. Typing `data-ai-` on an element offers the
 nine attributes, and the value sets mean `data-ai-skin="` offers the eight real
 skins rather than free text. Typing `btn-variants` expands the full component

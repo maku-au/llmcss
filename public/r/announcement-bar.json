@@ -10,5 +10,21 @@
     "top-bar",
     "notice"
   ],
-  "html": "<div class=\"announcement\" role=\"region\" aria-label=\"Announcement\">\n  <span>LLMCSS 0.2 ships the runtime as one script tag.</span>\n  <a href=\"#\">Read the changelog</a>\n  <button type=\"button\" class=\"close ml-auto\" aria-label=\"Dismiss announcement\" style=\"color: inherit;\"></button>\n</div>"
+  "html": "<div class=\"announcement\" role=\"region\" aria-label=\"Announcement\">\n  <span>LLMCSS 0.2 ships the runtime as one script tag.</span>\n  <a href=\"#\">Read the changelog</a>\n  <button type=\"button\" class=\"close ml-auto\" aria-label=\"Dismiss announcement\" style=\"color: inherit;\"></button>\n</div>",
+  "variants": [
+    {
+      "id": "dismissible",
+      "name": "Dismissible",
+      "description": "Message and link group at the start of the bar and a close control takes the end, so the row is a pair rather than a centred line.",
+      "guidance": "Sits above the header on every page until a visitor closes it. Best for a notice with a real end date, such as a release or an outage, where a reader who has seen it should not see it again. Avoid it for permanent copy, because a dismiss control on something that is always true trains people to close the bar unread. Pairs with navbar-modern below it, never with navbar-modern:two-row, which already spends a row on utility text.",
+      "html": "<div class=\"announcement flex-wrap justify-between\" role=\"region\" aria-label=\"Announcement\">\n  <div class=\"flex flex-wrap items-center gap-3\">\n    <span>LLMCSS 0.2 ships the runtime as one script tag.</span>\n    <a href=\"#changelog\">Read the changelog</a>\n  </div>\n  <button type=\"button\" class=\"close text-inherit\" aria-label=\"Dismiss announcement\"></button>\n</div>"
+    },
+    {
+      "id": "two-action",
+      "name": "Two action",
+      "description": "Message at the start and two small links at the end, wrapping onto a second line rather than truncating on a narrow screen.",
+      "guidance": "Sits above the header when a notice has two genuinely different next steps, such as reading the change and applying it. Best when both routes are short and neither is obviously primary. Avoid a third action, because a bar with three links stops being a notice and becomes navigation. Pairs with footer-multi-col:two-column, whose newsletter field points at the same changelog.",
+      "html": "<div class=\"announcement flex-wrap justify-between\" role=\"region\" aria-label=\"Announcement\">\n  <span>LLMCSS 0.2 ships the runtime as one script tag.</span>\n  <div class=\"flex items-center gap-4 text-xs\">\n    <a href=\"#changelog\">Read the changelog</a>\n    <a href=\"#upgrade\">Upgrade guide</a>\n  </div>\n</div>"
+    }
+  ]
 }

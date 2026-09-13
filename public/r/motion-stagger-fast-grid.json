@@ -1,0 +1,16 @@
+{
+  "id": "motion-stagger-fast-grid",
+  "name": "Staggered Metric Grid",
+  "description": "Four metrics that fade up in a tight 35ms cascade, with the primary figure weighted heavier than the rest.",
+  "category": "primitive",
+  "tier": "free",
+  "addon": "motion",
+  "tags": [
+    "motion",
+    "addon",
+    "stagger",
+    "metrics",
+    "dashboard"
+  ],
+  "html": "<div class=\"stagger stagger-fast grid grid-cols-2 md:grid-cols-4 gap-4\">\n  <div class=\"animate-slide-up\">\n    <p class=\"text-sm\">Monthly recurring revenue</p>\n    <p class=\"text-3xl font-bold\">$412,900</p>\n  </div>\n  <div class=\"animate-slide-up\">\n    <p class=\"text-sm\">Active seats</p>\n    <p class=\"text-xl font-semibold\">3,184</p>\n  </div>\n  <div class=\"animate-slide-up\">\n    <p class=\"text-sm\">Net retention</p>\n    <p class=\"text-xl font-semibold\">114%</p>\n  </div>\n  <div class=\"animate-slide-up\">\n    <p class=\"text-sm\">Open incidents</p>\n    <p class=\"text-xl font-semibold\">2</p>\n  </div>\n</div>"
+}

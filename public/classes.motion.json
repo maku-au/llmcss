@@ -1,0 +1,515 @@
+{
+ "version": "0.4.0",
+ "addon": "motion",
+ "note": "The motion addon. These classes exist only on pages that load https://llmcss.io/llmcss-motion.css in a second link tag after llmcss.css. Every animation here is one shot and fires because something changed. There is no repeat-infinite, and animate-sweep stays inert unless its element sits in .progress or .skeleton or carries is-loading, is-streaming or aria-busy. variants lists the prefixes that exist for the class: motion-safe and motion-reduce only, because an entrance does not change at 768px.",
+ "stylesheet": "https://llmcss.io/llmcss-motion.css",
+ "stats": {
+  "total": 64,
+  "rules": 90,
+  "families": {
+   "motion-animation": 13,
+   "motion-animation-gated": 1,
+   "motion-delay": 6,
+   "motion-duration": 6,
+   "motion-ease": 10,
+   "motion-micro": 4,
+   "motion-control": 3,
+   "motion-repeat": 3,
+   "motion-reveal": 3,
+   "motion-distance": 3,
+   "motion-stagger": 1,
+   "motion-stagger-step": 2,
+   "motion-transition": 3,
+   "motion-vt": 6
+  }
+ },
+ "classes": [
+  {
+   "class": "animate-collapse-in",
+   "family": "motion",
+   "group": "motion-animation",
+   "file": "llmcss-motion.css",
+   "variants": [
+    "motion-reduce",
+    "motion-safe"
+   ]
+  },
+  {
+   "class": "animate-collapse-out",
+   "family": "motion",
+   "group": "motion-animation",
+   "file": "llmcss-motion.css",
+   "variants": [
+    "motion-reduce",
+    "motion-safe"
+   ]
+  },
+  {
+   "class": "animate-fade-in",
+   "family": "motion",
+   "group": "motion-animation",
+   "file": "llmcss-motion.css",
+   "variants": [
+    "motion-reduce",
+    "motion-safe"
+   ]
+  },
+  {
+   "class": "animate-fade-out",
+   "family": "motion",
+   "group": "motion-animation",
+   "file": "llmcss-motion.css",
+   "variants": [
+    "motion-reduce",
+    "motion-safe"
+   ]
+  },
+  {
+   "class": "animate-nudge",
+   "family": "motion",
+   "group": "motion-animation",
+   "file": "llmcss-motion.css",
+   "variants": [
+    "motion-reduce",
+    "motion-safe"
+   ]
+  },
+  {
+   "class": "animate-rise",
+   "family": "motion",
+   "group": "motion-animation",
+   "file": "llmcss-motion.css",
+   "variants": [
+    "motion-reduce",
+    "motion-safe"
+   ]
+  },
+  {
+   "class": "animate-scale-in",
+   "family": "motion",
+   "group": "motion-animation",
+   "file": "llmcss-motion.css",
+   "variants": [
+    "motion-reduce",
+    "motion-safe"
+   ]
+  },
+  {
+   "class": "animate-scale-out",
+   "family": "motion",
+   "group": "motion-animation",
+   "file": "llmcss-motion.css",
+   "variants": [
+    "motion-reduce",
+    "motion-safe"
+   ]
+  },
+  {
+   "class": "animate-sink",
+   "family": "motion",
+   "group": "motion-animation",
+   "file": "llmcss-motion.css",
+   "variants": [
+    "motion-reduce",
+    "motion-safe"
+   ]
+  },
+  {
+   "class": "animate-slide-down",
+   "family": "motion",
+   "group": "motion-animation",
+   "file": "llmcss-motion.css",
+   "variants": [
+    "motion-reduce",
+    "motion-safe"
+   ]
+  },
+  {
+   "class": "animate-slide-left",
+   "family": "motion",
+   "group": "motion-animation",
+   "file": "llmcss-motion.css",
+   "variants": [
+    "motion-reduce",
+    "motion-safe"
+   ]
+  },
+  {
+   "class": "animate-slide-right",
+   "family": "motion",
+   "group": "motion-animation",
+   "file": "llmcss-motion.css",
+   "variants": [
+    "motion-reduce",
+    "motion-safe"
+   ]
+  },
+  {
+   "class": "animate-slide-up",
+   "family": "motion",
+   "group": "motion-animation",
+   "file": "llmcss-motion.css",
+   "variants": [
+    "motion-reduce",
+    "motion-safe"
+   ]
+  },
+  {
+   "class": "animate-sweep",
+   "family": "motion",
+   "group": "motion-animation-gated",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "delay-0",
+   "family": "motion",
+   "group": "motion-delay",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "delay-150",
+   "family": "motion",
+   "group": "motion-delay",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "delay-300",
+   "family": "motion",
+   "group": "motion-delay",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "delay-500",
+   "family": "motion",
+   "group": "motion-delay",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "delay-700",
+   "family": "motion",
+   "group": "motion-delay",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "delay-75",
+   "family": "motion",
+   "group": "motion-delay",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "duration-0",
+   "family": "motion",
+   "group": "motion-duration",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "duration-fast",
+   "family": "motion",
+   "group": "motion-duration",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "duration-instant",
+   "family": "motion",
+   "group": "motion-duration",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "duration-normal",
+   "family": "motion",
+   "group": "motion-duration",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "duration-slow",
+   "family": "motion",
+   "group": "motion-duration",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "duration-slower",
+   "family": "motion",
+   "group": "motion-duration",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "ease-accelerate",
+   "family": "motion",
+   "group": "motion-ease",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "ease-decelerate",
+   "family": "motion",
+   "group": "motion-ease",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "ease-emphasized",
+   "family": "motion",
+   "group": "motion-ease",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "ease-in-out",
+   "family": "motion",
+   "group": "motion-ease",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "ease-linear",
+   "family": "motion",
+   "group": "motion-ease",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "ease-out",
+   "family": "motion",
+   "group": "motion-ease",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "ease-overshoot",
+   "family": "motion",
+   "group": "motion-ease",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "ease-smooth",
+   "family": "motion",
+   "group": "motion-ease",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "ease-spring",
+   "family": "motion",
+   "group": "motion-ease",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "ease-standard",
+   "family": "motion",
+   "group": "motion-ease",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "lift",
+   "family": "motion",
+   "group": "motion-micro",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "lift-lg",
+   "family": "motion",
+   "group": "motion-micro",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "motion-paused",
+   "family": "motion",
+   "group": "motion-control",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "motion-running",
+   "family": "motion",
+   "group": "motion-control",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "once",
+   "family": "motion",
+   "group": "motion-control",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "press",
+   "family": "motion",
+   "group": "motion-micro",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "press-firm",
+   "family": "motion",
+   "group": "motion-micro",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "repeat-1",
+   "family": "motion",
+   "group": "motion-repeat",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "repeat-2",
+   "family": "motion",
+   "group": "motion-repeat",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "repeat-3",
+   "family": "motion",
+   "group": "motion-repeat",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "reveal",
+   "family": "motion",
+   "group": "motion-reveal",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "reveal-scale",
+   "family": "motion",
+   "group": "motion-reveal",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "reveal-up",
+   "family": "motion",
+   "group": "motion-reveal",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "slide-lg",
+   "family": "motion",
+   "group": "motion-distance",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "slide-md",
+   "family": "motion",
+   "group": "motion-distance",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "slide-sm",
+   "family": "motion",
+   "group": "motion-distance",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "stagger",
+   "family": "motion",
+   "group": "motion-stagger",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "stagger-fast",
+   "family": "motion",
+   "group": "motion-stagger-step",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "stagger-slow",
+   "family": "motion",
+   "group": "motion-stagger-step",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "transition-discrete",
+   "family": "motion",
+   "group": "motion-transition",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "transition-filter",
+   "family": "motion",
+   "group": "motion-transition",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "transition-size",
+   "family": "motion",
+   "group": "motion-transition",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "vt-hero",
+   "family": "motion",
+   "group": "motion-vt",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "vt-media",
+   "family": "motion",
+   "group": "motion-vt",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "vt-name",
+   "family": "motion",
+   "group": "motion-vt",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "vt-none",
+   "family": "motion",
+   "group": "motion-vt",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "vt-panel",
+   "family": "motion",
+   "group": "motion-vt",
+   "file": "llmcss-motion.css",
+   "variants": []
+  },
+  {
+   "class": "vt-title",
+   "family": "motion",
+   "group": "motion-vt",
+   "file": "llmcss-motion.css",
+   "variants": []
+  }
+ ]
+}

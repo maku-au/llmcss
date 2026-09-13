@@ -11,5 +11,28 @@
     "toolbar",
     "app"
   ],
-  "html": "<div class=\"page-header\">\n  <div>\n    <h1>Overview</h1>\n    <p class=\"page-header-meta\">Workspace production · last deploy 14m ago</p>\n  </div>\n  <div class=\"flex gap-2\">\n    <button class=\"btn btn-outline btn-sm\" type=\"button\">Export</button>\n    <button class=\"btn btn-primary btn-sm\" type=\"button\">New report</button>\n  </div>\n</div>"
+  "html": "<div class=\"page-header\">\n  <div>\n    <h1>Overview</h1>\n    <p class=\"page-header-meta\">Workspace production · last deploy 14m ago</p>\n  </div>\n  <div class=\"flex gap-2\">\n    <button class=\"btn btn-outline btn-sm\" type=\"button\">Export</button>\n    <button class=\"btn btn-primary btn-sm\" type=\"button\">New report</button>\n  </div>\n</div>",
+  "variants": [
+    {
+      "id": "stacked",
+      "name": "Stacked",
+      "description": "Title and meta sit above a full width action row instead of beside it, so the two buttons share the line rather than crowding the heading.",
+      "guidance": "Use on a narrow content column or a phone first screen, where a title and two buttons on one line wrap into an ugly two row header anyway. The action row takes the full width and both buttons grow, which makes them a real thumb target. Do not use it on a wide dashboard, where the empty space to the right of the title is doing useful work and a full width button pair reads as a form submit.",
+      "html": "<div class=\"page-header flex-col items-start\">\n  <div>\n    <h1>Overview</h1>\n    <p class=\"page-header-meta\">Workspace production, last deploy 14m ago</p>\n  </div>\n  <div class=\"flex gap-2 w-full\">\n    <button class=\"btn btn-outline btn-sm flex-1\" type=\"button\">Export</button>\n    <button class=\"btn btn-primary btn-sm flex-1\" type=\"button\">New report</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "tabs-under",
+      "name": "Tabs under",
+      "description": "The header gives up its own bottom rule and a tab row takes over as the boundary between the header and the page.",
+      "guidance": "Use when the page has two to five sibling views that share one title, which is the common shape for a resource detail screen. The header drops its rule through border-b-0 and pb-0 so the page shows one hairline, not two stacked a few pixels apart. Every tab carries aria-selected and points at a panel through aria-controls, because a coloured underline alone tells a screen reader nothing.",
+      "html": "<div>\n  <div class=\"page-header border-b-0 pb-0\">\n    <div>\n      <h1>Overview</h1>\n      <p class=\"page-header-meta\">Workspace production, last deploy 14m ago</p>\n    </div>\n    <div class=\"flex gap-2\">\n      <button class=\"btn btn-outline btn-sm\" type=\"button\">Export</button>\n      <button class=\"btn btn-primary btn-sm\" type=\"button\">New report</button>\n    </div>\n  </div>\n  <div class=\"tabs mt-4\">\n    <div class=\"tabs-list\" role=\"tablist\" aria-label=\"Overview views\">\n      <button class=\"tab is-active\" role=\"tab\" id=\"page-header-tabs-under-summary-tab\" aria-controls=\"page-header-tabs-under-summary\" aria-selected=\"true\" data-ai-tab=\"#page-header-tabs-under-summary\">Summary</button>\n      <button class=\"tab\" role=\"tab\" id=\"page-header-tabs-under-deploys-tab\" aria-controls=\"page-header-tabs-under-deploys\" aria-selected=\"false\" tabindex=\"-1\" data-ai-tab=\"#page-header-tabs-under-deploys\">Deploys</button>\n      <button class=\"tab\" role=\"tab\" id=\"page-header-tabs-under-usage-tab\" aria-controls=\"page-header-tabs-under-usage\" aria-selected=\"false\" tabindex=\"-1\" data-ai-tab=\"#page-header-tabs-under-usage\">Usage</button>\n    </div>\n    <div id=\"page-header-tabs-under-summary\" class=\"tab-panel is-active\" role=\"tabpanel\" aria-labelledby=\"page-header-tabs-under-summary-tab\">\n      <p class=\"text-secondary\">1,284,902 requests in the last 24 hours, p95 at 184 ms across three regions.</p>\n    </div>\n    <div id=\"page-header-tabs-under-deploys\" class=\"tab-panel\" role=\"tabpanel\" aria-labelledby=\"page-header-tabs-under-deploys-tab\">\n      <p class=\"text-secondary\">Six deploys this week, last one 14 minutes ago from commit 8f42d19.</p>\n    </div>\n    <div id=\"page-header-tabs-under-usage\" class=\"tab-panel\" role=\"tabpanel\" aria-labelledby=\"page-header-tabs-under-usage-tab\">\n      <p class=\"text-secondary\">1,240 of 2,000 build minutes used. The quota resets on the 1st.</p>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "id": "meta-right",
+      "name": "Meta right",
+      "description": "The action buttons give up the end of the row to a three item detail list, so the header states facts instead of offering work.",
+      "guidance": "Use on a read only detail screen, a report or a status page, where the reader arrived to check something rather than to change it. The values are tabular so region, time and count line up under one another rather than dancing as the numbers change. Do not use it when the page has a primary action: a header with no button sends people hunting for one further down.",
+      "html": "<div class=\"page-header\">\n  <div>\n    <h1>Overview</h1>\n    <p class=\"page-header-meta\">Workspace production, last deploy 14m ago</p>\n  </div>\n  <dl class=\"detail tabular\">\n    <dt>Region</dt>\n    <dd>syd-1</dd>\n    <dt>Last deploy</dt>\n    <dd>14m ago</dd>\n    <dt>Open incidents</dt>\n    <dd>0</dd>\n  </dl>\n</div>"
+    }
+  ]
 }

@@ -34,12 +34,13 @@ ls -l dist/llmcss.css dist/llmcss.js
 npm pack --dry-run
 ```
 
-This writes nothing. The `files` allowlist in `package.json` ships 82 files
-once both `dist/llmcss.css` and `dist/llmcss.js` exist:
+This writes nothing. The `files` allowlist in `package.json` ships 88 files
+once both `dist/llmcss.css` and `dist/llmcss.js` exist (verified with
+`npm pack --dry-run`, which also pulls in `README.md` automatically):
 
 - `dist/llmcss.css` and `dist/llmcss.js`
 - `bin/` (2 files: `cssai.mjs`, `cssai-mcp.mjs`)
-- `src/registry/` (18), `src/css/` (33), `src/runtime/` (12)
+- `src/registry/` (20), `src/css/` (37), `src/runtime/` (12)
 - `AGENTS.md`, `DESIGN_HARNESS.md`, `QUICKSTART.md`, `LICENSE`, `CHANGELOG.md`, `package.json`
 - `public/llms.txt`, `public/llms-full.txt`, `public/classes.json`,
   `public/tokens.json`, `public/states.json`, `public/css-custom-data.json`,

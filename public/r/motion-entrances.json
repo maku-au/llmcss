@@ -1,0 +1,18 @@
+{
+  "id": "motion-entrances",
+  "name": "Entrance Animation Set",
+  "description": "The six one-shot entrance animations, each replaying on load with its own duration and easing modifier.",
+  "category": "primitive",
+  "tier": "free",
+  "addon": "motion",
+  "tags": [
+    "motion",
+    "addon",
+    "animation",
+    "entrance",
+    "fade",
+    "slide",
+    "scale"
+  ],
+  "html": "<div class=\"grid grid-cols-2 md:grid-cols-3 gap-3\">\n  <div class=\"panel p-4 animate-fade-in\">\n    <p class=\"font-semibold\">Fade in</p>\n    <code class=\"text-xs\">animate-fade-in</code>\n  </div>\n  <div class=\"panel p-4 animate-slide-up duration-slow\">\n    <p class=\"font-semibold\">Slide up</p>\n    <code class=\"text-xs\">animate-slide-up duration-slow</code>\n  </div>\n  <div class=\"panel p-4 animate-scale-in ease-overshoot\">\n    <p class=\"font-semibold\">Scale in</p>\n    <code class=\"text-xs\">animate-scale-in ease-overshoot</code>\n  </div>\n  <div class=\"panel p-4 animate-rise delay-75\">\n    <p class=\"font-semibold\">Rise</p>\n    <code class=\"text-xs\">animate-rise delay-75</code>\n  </div>\n  <div class=\"panel p-4 animate-slide-right slide-lg\">\n    <p class=\"font-semibold\">Slide right</p>\n    <code class=\"text-xs\">animate-slide-right slide-lg</code>\n  </div>\n  <div class=\"panel p-4 animate-fade-in duration-instant\">\n    <p class=\"font-semibold\">Fade, instant</p>\n    <code class=\"text-xs\">animate-fade-in duration-instant</code>\n  </div>\n</div>"
+}

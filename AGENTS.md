@@ -8,12 +8,14 @@ Entry point. Load this as a system prompt to generate LLMCSS markup. Exhaustive 
 ```
 
 <!-- stats:start -->
-- **Classes:** 2312 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Classes:** 2304 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
 - **Tokens:** 107 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
-- **States:** 36 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
-- **Components:** 122, all MIT: 54 primitive, 42 application, 21 marketing, 5 ecommerce.
-- **Section templates:** 29 (18 free wireframe, 11 themed Pro).
+- **States:** 38 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
+- **Components:** 130, all MIT: 62 primitive, 42 application, 21 marketing, 5 ecommerce.
+- **Layout variants:** 150 across 52 components, addressed `component:variant`.
+- **Section templates:** 55 (44 free wireframe, 11 themed Pro).
 - **Page blueprints:** 6 (4 free, 2 Pro).
+- **Motion addon:** 64 classes, 2.0KB gzipped, listed in [classes.motion.json](https://llmcss.io/classes.motion.json).
 <!-- stats:end -->
 
 | Fact | Value |
@@ -23,6 +25,7 @@ Entry point. Load this as a system prompt to generate LLMCSS markup. Exhaustive 
 | Tokens | The `--ai-*` custom properties are listed in [tokens.json](https://llmcss.io/tokens.json). |
 | State classes | `is-*`, listed in [states.json](https://llmcss.io/states.json). `is-active`, `is-open`, `is-loading`, `is-selected`, `is-disabled`, `is-error`, `is-streaming` and more. |
 | Variants | Written `<variant>:<class>`, for example `md:grid-cols-2`. Breakpoints, container tiers and states are in the Variants section below. Only the variants classes.json lists for that class exist. |
+| Variants of a component | Some components ship more than one layout. Ask for one by reference: `hero-split:centered`. The list is in the component's registry entry and in every `search_components` row. No `variants` array means one layout. |
 | Theme | `data-ai-theme="light"` or `"dark"` on `<html>` or any container. Dark never activates from the OS setting. |
 | Skin | `data-ai-skin="obsidian\|editorial\|executive\|fintech\|enterprise"` on `<html>` or any container. Changes surfaces, radius and type. |
 | Accent | `data-ai-accent="emerald\|violet\|rose\|teal\|steel\|amber"`. Composes with any skin and outranks it. Absent means the blue default. |
@@ -46,13 +49,33 @@ Written `<variant>:<class>`, for example `md:grid-cols-2`, `cq-md:grid-cols-3`, 
 
 A variant exists for a class only when classes.json lists it in that class's `variants` array.
 
+## Motion addon
+
+**Motion addon.** Animation classes are not in `llmcss.css`. They ship in a separate opt-in stylesheet, `https://llmcss.io/llmcss-motion.css`, listed in [classes.motion.json](https://llmcss.io/classes.motion.json); do not emit `animate-*`, `reveal*`, `stagger*`, `vt-*`, `press`, `lift` or the extra `duration-instant|slower`, `delay-500|700` and `ease-standard|emphasized|decelerate|accelerate|overshoot` steps unless the page loads that second link tag. Every animation in the addon is one shot and fires because something changed: an element arrived, left, opened, closed, or the user acted. There is no `repeat-infinite`, and the one looping class, `animate-sweep`, stays inert unless its element sits in `.progress` or `.skeleton` or carries `is-loading`, `is-streaming` or `aria-busy`, so Law 2 cannot be broken with addon classes. Tune an animation with the same `duration-*`, `delay-*` and `ease-*` words that already tune a transition. Reveals (`reveal`, `reveal-up`, `reveal-scale`) are pure CSS scroll-driven animations and degrade to plainly visible content wherever `animation-timeline: view()` is missing, so never pair them with a class or style that hides the element first.
+
+## Variants of a component
+
+`md:grid-cols-2` is a **class** variant, a responsive copy of a class. `hero-split:centered` is a **component** variant, a different layout for the same component. Same separator, different left hand side: a class name on the left means the first, a component id means the second.
+
+A component variant is structural. The boxes move: split versus centered, media left versus media top, sidebar versus topbar, one column versus two, dense versus comfortable. It is never a recolour, a radius change or a density change, because those are `data-ai-skin`, `data-ai-accent` and `data-ai-density` on an ancestor.
+
+Ask for one by reference, `component:variant`, on every surface that takes a component id:
+
+```
+npx llmcss variants hero-split          # what each layout does
+npx llmcss add hero-split:centered      # writes components/marketing/hero-split-centered.html
+npx llmcss info hero-split              # metadata plus variantRefs
+```
+
+Over MCP the same reference goes to the tool you already use. `get_component_markup` takes `{ "id": "hero-split:centered" }`, or `{ "id": "hero-split", "variant": "centered" }`; omit the variant for the default layout. Its response and every `search_components` row carry a `variants` array of `{ id, name, description }`, so discovering the alternatives costs no extra call. A component with no `variants` array has one layout.
+
 Spacing and sizing steps: `0`, `px`, `0.5`, `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `14`, `16`, `20`, `24`, `28`, `32`, `36`, `40`, `48`, `56`, `64`, `72`, `80`, `96`.
 
 ## Runtime attributes
 
 | Attribute | Goes on | Values | Contract |
 |---|---|---|---|
-| `data-ai-toggle` | `button` | `modal`, `drawer`, `dropdown`, `accordion` | `modal` and `drawer` also need `data-ai-target`. `dropdown` needs a `.dropdown` ancestor. `accordion` needs an `.accordion-item` ancestor. |
+| `data-ai-toggle` | `button` | `modal`, `drawer`, `dropdown`, `accordion`, `segmented` | `modal` and `drawer` also need `data-ai-target`. `dropdown` needs a `.dropdown` ancestor. `accordion` needs an `.accordion-item` ancestor. `segmented` sets `is-active` and `aria-pressed` across its `role="group"` (or parent) and fires `ai-segmented-change`. |
 | `data-ai-target` | the toggle button | `#id` | Id of the `.modal` or `.drawer` to open. |
 | `data-ai-dismiss` | a button or the backdrop inside the overlay | `modal`, `drawer`, `toast` | Closes the nearest overlay of that kind. |
 | `data-ai-tab` | `button.tab` inside `.tabs` | `#panel-id` | Activates that `.tab-panel`. |
@@ -242,7 +265,7 @@ npx llmcss audit <file>        # the anti-slop laws below
 
 MCP equivalents: `validate_markup` and `llmcss_slop_audit`. Class, token and state lists: `list_classes`, `list_tokens`, `list_states`.
 
-`audit` flags eight patterns: nested cards, pulsing static dots, colored left-stripe borders, electric purple or cyan gradients, auto-scrolling marquees, stray `ai-` prefixes or hallucinated classes, badge eyebrows directly above a heading, and square grid backgrounds. Both commands exit 1 on any finding, so both fail a build.
+`audit` flags eight patterns: nested cards, pulsing static dots, colored left-stripe borders, electric purple or cyan gradients, auto-scrolling marquees, a stray `ai-` prefix (via `legacyFix`), badge eyebrows directly above a heading, and square grid backgrounds. It does not check for hallucinated classes; `validate` does that, as a warning unless `--strict` is passed. Both commands exit 1 on any finding, so both fail a build.
 
 ## Anti-slop laws
 
@@ -260,6 +283,7 @@ Generated from `src/registry/laws.mjs`. Do not edit this list by hand.
 9. **Never auto-scroll copy.** Do not force readers to wait for auto-scrolling tickers or animated marquee loops to read supported integrations or technologies. Instead: Render a clean, static, responsive badge rail (`.badge-neutral`) or a balanced grid that users can scan at their own speed.
 10. **Always theme native browser surfaces.** An interface is incomplete if native browser affordances revert to un-themed system defaults. Instead: Verify text selection (`::selection`), caret color (`caret-color: var(--ai-accent)`), custom scrollbars (`scrollbar-color`), link underline offset (`text-underline-offset: 0.2em`), and tabular numerals (`font-variant-numeric: tabular-nums`).
 11. **Never use square grid backgrounds.** Avoid covering backgrounds in repeating 20px to 40px square grid lines, dot grids, or mesh graph paper patterns built from intersecting linear-gradient declarations. This is one of the most overused, robotic hallmarks of AI-generated template kits. Instead: Lead with clean, distraction-free solid surfaces (`var(--ai-surface-0)`, `var(--ai-bg)`, `var(--ai-surface-1)`) structured with subtle 1px hairline architectural borders (`var(--ai-border)`).
+12. **Never paint state without announcing it.** Do not mark a control as active, open, selected or pressed with a class and a colour alone. A segmented control whose current view carries only `is-active`, an accordion trigger with no `aria-expanded`, a toast that arrives outside any live region: each one looks correct and says nothing. A screen reader reads an undifferentiated list of buttons. Instead: Mirror every `is-*` state on an interactive element with the ARIA attribute that carries it: `aria-pressed` on segmented and filter buttons wrapped in a labelled `role="group"`, `aria-expanded` plus `aria-controls` on disclosure and accordion triggers, `aria-selected` on tabs, `aria-current` on the active nav link, and `role="status" aria-live="polite"` (or `role="alert"` for a failure) on anything that appears unprompted.
 <!-- laws:end -->
 
 Rationale per law, and the four archetype token blocks: [docs/AGENT_RULES.md](docs/AGENT_RULES.md) and [DESIGN_HARNESS.md](DESIGN_HARNESS.md).

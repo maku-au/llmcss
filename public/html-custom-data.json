@@ -168,7 +168,7 @@
    "name": "data-ai-toggle",
    "description": {
     "kind": "markdown",
-    "value": "Runtime toggle. modal and drawer need data-ai-target=\"#id\"; dropdown needs a .dropdown ancestor; accordion needs a .accordion-item ancestor.\n\nGoes on: button. Set by: author."
+    "value": "Runtime toggle. modal and drawer need data-ai-target=\"#id\"; dropdown needs a .dropdown ancestor; accordion needs a .accordion-item ancestor. segmented marks the clicked button inside its role=group (or its parent) with is-active and aria-pressed, and fires ai-segmented-change.\n\nGoes on: button. Set by: author."
    },
    "values": [
     {
@@ -182,6 +182,9 @@
     },
     {
      "name": "accordion"
+    },
+    {
+     "name": "segmented"
     }
    ],
    "references": [

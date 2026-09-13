@@ -11,5 +11,28 @@
     "metrics",
     "band"
   ],
-  "html": "<div class=\"stats-band\">\n  <div class=\"stat is-primary\">\n    <div class=\"stat-value\">99.98%</div>\n    <div class=\"stat-label\">Uptime over the last 12 months</div>\n  </div>\n  <div class=\"stat\">\n    <div class=\"stat-value\">38 ms</div>\n    <div class=\"stat-label\">Median time to first byte</div>\n  </div>\n  <div class=\"stat\">\n    <div class=\"stat-value\">34</div>\n    <div class=\"stat-label\">Edge regions</div>\n  </div>\n</div>"
+  "html": "<div class=\"stats-band\">\n  <div class=\"stat is-primary\">\n    <div class=\"stat-value\">99.98%</div>\n    <div class=\"stat-label\">Uptime over the last 12 months</div>\n  </div>\n  <div class=\"stat\">\n    <div class=\"stat-value\">38 ms</div>\n    <div class=\"stat-label\">Median time to first byte</div>\n  </div>\n  <div class=\"stat\">\n    <div class=\"stat-value\">34</div>\n    <div class=\"stat-label\">Edge regions</div>\n  </div>\n</div>",
+  "variants": [
+    {
+      "id": "anchored",
+      "name": "Anchored",
+      "description": "Four figures instead of three, with the anchor set at display size across the full row on a phone and the other three kept at half its scale.",
+      "guidance": "Sits under the hero or above the footer as the proof line. Best when one number is the headline claim and the rest qualify it. Avoid flattening it back to four identical figures, because a row of equal numbers with equal weight is the flat metric grid law 8 exists to prevent. Pairs with hero-split:centered above, which has no media and needs the numbers to fill the fold.",
+      "html": "<div class=\"stats-band grid-cols-2 md:grid-cols-4\">\n  <div class=\"stat is-primary col-span-2 md:col-span-1\">\n    <div class=\"stat-value\">99.98%</div>\n    <div class=\"stat-label\">Uptime over the last 12 months</div>\n  </div>\n  <div class=\"stat\">\n    <div class=\"stat-value\">38 ms</div>\n    <div class=\"stat-label\">Median time to first byte</div>\n  </div>\n  <div class=\"stat\">\n    <div class=\"stat-value\">61 ms</div>\n    <div class=\"stat-label\">99th percentile time to first byte</div>\n  </div>\n  <div class=\"stat\">\n    <div class=\"stat-value\">34</div>\n    <div class=\"stat-label\">Edge regions</div>\n  </div>\n</div>"
+    },
+    {
+      "id": "table-rows",
+      "name": "Table rows",
+      "description": "The band becomes a two column table, label on the left and the figure right aligned on tabular numerals, in a scroll container.",
+      "guidance": "Sits on a status, trust or documentation page where the numbers are reference data rather than a claim. Best when there are more than about six figures, which is where a band stops reading as a band. Avoid it on a landing page fold, because a table asks to be read and a band asks to be glanced at. Pairs with faq-section beneath, and the figures line up because every cell uses tabular numerals.",
+      "html": "<div class=\"scroll-x\">\n  <table class=\"table table-compact max-w-xl\">\n    <caption class=\"sr-only\">Service numbers for the last 12 months</caption>\n    <tbody>\n      <tr>\n        <td>Uptime over the last 12 months</td>\n        <td class=\"cell-num tabular\">99.98%</td>\n      </tr>\n      <tr>\n        <td>Median time to first byte</td>\n        <td class=\"cell-num tabular\">38 ms</td>\n      </tr>\n      <tr>\n        <td>99th percentile time to first byte</td>\n        <td class=\"cell-num tabular\">61 ms</td>\n      </tr>\n      <tr>\n        <td>Edge regions</td>\n        <td class=\"cell-num tabular\">34</td>\n      </tr>\n      <tr>\n        <td>Requests served per minute at peak</td>\n        <td class=\"cell-num tabular\">3,100,000</td>\n      </tr>\n      <tr>\n        <td>First response on a Pro support ticket</td>\n        <td class=\"cell-num tabular\">4 h</td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+    },
+    {
+      "id": "two-row",
+      "name": "Two row",
+      "description": "Six figures in two rows of three, each figure hanging from its own hairline so the rows are separated by rule rather than by gap alone.",
+      "guidance": "Sits mid-page when six numbers all earn their place. Best when the figures pair naturally into two groups, such as availability above and volume below. Avoid it when only two or three numbers are real and the rest are padding, because a second row of filler devalues the first. Pairs with pricing-tier-cards beneath, where the numbers become the reason the price is fair.",
+      "html": "<div class=\"stats-band grid-cols-1 md:grid-cols-3\">\n  <div class=\"stat is-primary\">\n    <div class=\"stat-value\">99.98%</div>\n    <div class=\"stat-label\">Uptime over the last 12 months</div>\n  </div>\n  <div class=\"stat\">\n    <div class=\"stat-value\">38 ms</div>\n    <div class=\"stat-label\">Median time to first byte</div>\n  </div>\n  <div class=\"stat\">\n    <div class=\"stat-value\">61 ms</div>\n    <div class=\"stat-label\">99th percentile time to first byte</div>\n  </div>\n  <div class=\"stat border-t pt-6\">\n    <div class=\"stat-value\">34</div>\n    <div class=\"stat-label\">Edge regions</div>\n  </div>\n  <div class=\"stat border-t pt-6\">\n    <div class=\"stat-value\">3.1 M</div>\n    <div class=\"stat-label\">Requests served per minute at peak</div>\n  </div>\n  <div class=\"stat border-t pt-6\">\n    <div class=\"stat-value\">4 h</div>\n    <div class=\"stat-label\">First response on a Pro support ticket</div>\n  </div>\n</div>"
+    }
+  ]
 }

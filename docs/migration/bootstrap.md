@@ -106,8 +106,9 @@ seasoning, not the meal. Run `npx llmcss search <name>` before composing one by 
 
 ### Tokens vs color scales
 
-Restyling Bootstrap means Sass variables and a rebuild. LLMCSS has 82 custom properties
-in `public/tokens.json` covering type, spacing, radius, easing, duration, surfaces,
+Restyling Bootstrap means Sass variables and a rebuild. LLMCSS has custom properties
+(the live count is `stats.total` in `public/tokens.json`, 107 as of this writing)
+covering type, spacing, radius, easing, duration, surfaces,
 text, borders, focus, status colours and chart colours. There is no `bg-blue-500` and no
 `$primary` to recompile. You override tokens at runtime, on `:root` for the whole app or
 on any container for one region:

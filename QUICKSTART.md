@@ -62,6 +62,15 @@ curl https://llmcss.io/registry.json
 curl https://llmcss.io/r/btn-variants.json
 ```
 
+Some components ship more than one layout. Ask for one by reference, `component:variant`:
+
+```bash
+npx llmcss variants hero-split
+npx llmcss add hero-split:centered
+```
+
+That writes `components/marketing/hero-split-centered.html`. A component with no `variants` array has one layout.
+
 ## 3. A first layout
 
 ```html
@@ -115,7 +124,7 @@ npx llmcss template blueprint saas-landing
 ```
 
 <!-- templates:start -->
-- 29 section templates: 18 free wireframe, 11 themed Pro.
+- 55 section templates: 44 free wireframe, 11 themed Pro.
 - 6 page blueprints: 4 free, 2 Pro.
 <!-- templates:end -->
 
@@ -127,7 +136,7 @@ Gallery: [llmcss.io/templates](https://llmcss.io/templates).
 npx llmcss-mcp
 ```
 
-Point your editor at that stdio server. It bundles the public catalog and fetches themed Pro templates and kits from llmcss.io; it exposes `search_components`, `get_component_markup`, `validate_markup`, `list_classes`, `list_tokens`, `list_states`, `llmcss_get_harness`, `llmcss_slop_audit`, `list_wireframe_templates`, `get_wireframe_template`, `get_page_blueprint`.
+Point your editor at that stdio server. It bundles the public catalog and fetches themed Pro templates and kits from llmcss.io; it exposes `search_components`, `get_component_markup`, `validate_markup`, `list_classes`, `list_tokens`, `list_states`, `llmcss_get_harness`, `llmcss_slop_audit`, `list_wireframe_templates`, `get_wireframe_template`, `get_page_blueprint` (plus `cssai_get_harness` and `cssai_slop_audit` as compatibility aliases).
 
 `list_classes`, `list_tokens` and `list_states` return the same data as [llmcss.io/classes.json](https://llmcss.io/classes.json), [tokens.json](https://llmcss.io/tokens.json) and [states.json](https://llmcss.io/states.json). If a class is not in classes.json, it does not exist.
 
@@ -149,7 +158,8 @@ Or paste the token under License at [llmcss.io/account](https://llmcss.io/accoun
 |---|---|
 | `npx llmcss list` | Every component id, all MIT |
 | `npx llmcss search <query>` | Search by keyword, tag, or alias |
-| `npx llmcss add <id>` | Write component HTML into `components/` |
+| `npx llmcss add <id>` | Write component HTML into `components/`. Takes `<id>:<variant>` too |
+| `npx llmcss variants <id>` | List a component's layout variants |
 | `npx llmcss validate <file>` | Warn on unknown classes (fail with `--strict`), fail on a stray `ai-` prefix |
 | `npx llmcss lint --fix <file>` | Strip a stray `ai-` prefix |
 | `npx llmcss audit <file>` | Anti-slop design checks |
