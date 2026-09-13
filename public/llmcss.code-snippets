@@ -1244,7 +1244,7 @@
    "      </div>",
    "      <div class=\"chat-body\">",
    "        <p>Yes. Wrap the card in <code>.cq</code> and let the container query variants size it, with no breakpoint media queries.</p>",
-   "        <pre class=\"code-block\"><code>&lt;div class=\"cq grid cq:grid-cols-2 cq:gap-4\"&gt;",
+   "        <pre class=\"code-block\"><code>&lt;div class=\"cq grid cq-sm:grid-cols-2 cq-sm:gap-4\"&gt;",
    "  &lt;div class=\"kpi-card\"&gt;...&lt;/div&gt;",
    "&lt;/div&gt;</code></pre>",
    "        <p class=\"chat-note\">One column in a narrow rail, two in the main canvas, measured against the card's own width.</p>",
@@ -3495,43 +3495,43 @@
   "prefix": "ai-order-status",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "<div class=\"order\" style=\"max-width: 40rem;\">",
-   "  <div class=\"order-head\">",
+   "<div class=\"order max-w-2xl\">",
+   "  <div class=\"orderline-head\">",
    "    <div>",
-   "      <h3 class=\"order-title\">Order 48210 is on its way</h3>",
+   "      <h3 class=\"orderline-title\">Order 48210 is on its way</h3>",
    "      <p class=\"text-sm text-secondary\">Three items, dispatched from the Alexandria warehouse.</p>",
    "    </div>",
-   "    <div class=\"order-eta\">",
+   "    <div class=\"orderline-eta\">",
    "      Estimated delivery",
    "      <strong>Thursday 17 September</strong>",
    "    </div>",
    "  </div>",
    "",
-   "  <ol class=\"order-track\">",
-   "    <li class=\"order-step is-completed\">",
-   "      <span class=\"order-pip\" aria-hidden=\"true\"></span>",
-   "      <span class=\"order-label\">Ordered</span>",
-   "      <span class=\"order-date\">9 Sep, 10:42</span>",
+   "  <ol class=\"orderline-track\">",
+   "    <li class=\"orderline-step is-completed\">",
+   "      <span class=\"orderline-pip\" aria-hidden=\"true\"></span>",
+   "      <span class=\"orderline-label\">Ordered</span>",
+   "      <span class=\"orderline-date\">9 Sep, 10:42</span>",
    "    </li>",
-   "    <li class=\"order-step is-completed\">",
-   "      <span class=\"order-pip\" aria-hidden=\"true\"></span>",
-   "      <span class=\"order-label\">Packed</span>",
-   "      <span class=\"order-date\">10 Sep, 08:15</span>",
+   "    <li class=\"orderline-step is-completed\">",
+   "      <span class=\"orderline-pip\" aria-hidden=\"true\"></span>",
+   "      <span class=\"orderline-label\">Packed</span>",
+   "      <span class=\"orderline-date\">10 Sep, 08:15</span>",
    "    </li>",
-   "    <li class=\"order-step is-current\" aria-current=\"step\">",
-   "      <span class=\"order-pip\" aria-hidden=\"true\"></span>",
-   "      <span class=\"order-label\">Shipped</span>",
-   "      <span class=\"order-date\">11 Sep, 17:30</span>",
+   "    <li class=\"orderline-step is-current\" aria-current=\"step\">",
+   "      <span class=\"orderline-pip\" aria-hidden=\"true\"></span>",
+   "      <span class=\"orderline-label\">Shipped</span>",
+   "      <span class=\"orderline-date\">11 Sep, 17:30</span>",
    "    </li>",
-   "    <li class=\"order-step is-upcoming\">",
-   "      <span class=\"order-pip\" aria-hidden=\"true\"></span>",
-   "      <span class=\"order-label\">Delivered</span>",
-   "      <span class=\"order-date\">Est. 17 Sep</span>",
+   "    <li class=\"orderline-step is-upcoming\">",
+   "      <span class=\"orderline-pip\" aria-hidden=\"true\"></span>",
+   "      <span class=\"orderline-label\">Delivered</span>",
+   "      <span class=\"orderline-date\">Est. 17 Sep</span>",
    "    </li>",
    "  </ol>",
    "",
-   "  <div class=\"order-meta\">",
-   "    <span>Southbound Freight tracking <span class=\"order-id\">AU7734221905</span></span>",
+   "  <div class=\"orderline-meta\">",
+   "    <span>Southbound Freight tracking <span class=\"orderline-id\">AU7734221905</span></span>",
    "    <a class=\"btn btn-outline btn-sm\" href=\"#order-48210\">Track shipment</a>",
    "  </div>",
    "</div>"
@@ -3634,13 +3634,21 @@
   ],
   "description": "base classes (12)"
  },
- "LLMCSS borders classes": {
-  "prefix": "ai-family-borders",
+ "LLMCSS borders classes-1": {
+  "prefix": "ai-family-borders-1",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|border,border-0,border-b,border-ie,border-is,border-l,border-r,border-t,ring,ring-danger,ring-offset,ring-success,rounded-2xl,rounded-e-md,rounded-full,rounded-lg,rounded-md,rounded-none,rounded-s-md,rounded-sm,rounded-xl,rounded-xs|}"
+   "${1|border,border-0,border-2,border-accent,border-b,border-b-0,border-current,border-danger,border-dashed,border-dotted,border-hover,border-ie,border-is,border-l,border-l-0,border-r,border-r-0,border-solid,border-strong,border-style-none,border-subtle,border-success,border-t,border-t-0,border-transparent,border-warning,border-x,border-y,outline-dashed,outline-none,outline-solid,ring,ring-accent,ring-danger,ring-none,ring-offset,ring-success,rounded-2xl,rounded-b-full,rounded-b-lg,rounded-b-md,rounded-b-none,rounded-b-sm,rounded-b-xl,rounded-base,rounded-e-full,rounded-e-lg,rounded-e-md,rounded-e-none,rounded-e-sm,rounded-e-xl,rounded-full,rounded-lg,rounded-md,rounded-none,rounded-s-full,rounded-s-lg,rounded-s-md,rounded-s-none,rounded-s-sm|}"
   ],
-  "description": "borders classes (22)"
+  "description": "borders utilities, part 1 of 2 (60 of 70 classes)"
+ },
+ "LLMCSS borders classes-2": {
+  "prefix": "ai-family-borders-2",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|rounded-s-xl,rounded-sm,rounded-t-full,rounded-t-lg,rounded-t-md,rounded-t-none,rounded-t-sm,rounded-t-xl,rounded-xl,rounded-xs|}"
+  ],
+  "description": "borders utilities, part 2 of 2 (10 of 70 classes)"
  },
  "LLMCSS buttons classes": {
   "prefix": "ai-family-buttons",
@@ -3686,7 +3694,7 @@
   "prefix": "ai-family-commerce-extra",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|checkout,checkout-actions,checkout-body,checkout-item,checkout-items,checkout-label,checkout-meta,checkout-name,checkout-note,checkout-price,checkout-promo,checkout-row,checkout-thumb,checkout-title,checkout-totals,checkout-value,input-group,order,order-date,order-eta,order-head,order-id,order-label,order-meta,order-pip,order-step,order-title,order-track|}"
+   "${1|checkout,checkout-actions,checkout-body,checkout-item,checkout-items,checkout-label,checkout-meta,checkout-name,checkout-note,checkout-price,checkout-promo,checkout-row,checkout-thumb,checkout-title,checkout-totals,checkout-value,input-group,order,orderline-date,orderline-eta,orderline-head,orderline-id,orderline-label,orderline-meta,orderline-pip,orderline-step,orderline-title,orderline-track|}"
   ],
   "description": "commerce-extra classes (28)"
  },
@@ -3702,9 +3710,9 @@
   "prefix": "ai-family-display",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|block,hidden,inline,inline-block,inline-flex,inline-grid,not-sr-only,sr-only|}"
+   "${1|block,contents,flex,flow-root,grid,hidden,inline,inline-block,inline-flex,inline-grid,inline-table,invisible,list-item,not-sr-only,sr-only,table-caption,table-cell,table-row,visible|}"
   ],
-  "description": "display classes (8)"
+  "description": "display classes (19)"
  },
  "LLMCSS drawers classes": {
   "prefix": "ai-family-drawers",
@@ -3734,9 +3742,9 @@
   "prefix": "ai-family-effects",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|backdrop-blur,backdrop-blur-lg,backdrop-blur-sm,backdrop-none,bg-var,blur,blur-lg,blur-none,blur-sm,opacity-0,opacity-10,opacity-100,opacity-25,opacity-50,opacity-75,opacity-90,shadow-inner,shadow-lg,shadow-md,shadow-none,shadow-sm,shadow-xl|}"
+   "${1|accent-accent,accent-auto,accent-primary,backdrop-blur,backdrop-blur-lg,backdrop-blur-sm,backdrop-none,bg-accent,bg-accent-subtle,bg-bg,bg-current,bg-danger,bg-danger-subtle,bg-info,bg-info-subtle,bg-primary,bg-success,bg-success-subtle,bg-transparent,bg-var,bg-warning,bg-warning-subtle,blur,blur-lg,blur-none,blur-sm,caret-accent,caret-current,caret-transparent,mix-blend-difference,mix-blend-luminosity,mix-blend-multiply,mix-blend-normal,mix-blend-overlay,mix-blend-screen,opacity-0,opacity-10,opacity-100,opacity-25,opacity-40,opacity-5,opacity-50,opacity-60,opacity-75,opacity-90,shadow-inner,shadow-lg,shadow-md,shadow-none,shadow-sm,shadow-xl,surface-0,surface-1,surface-2,surface-3|}"
   ],
-  "description": "effects classes (22)"
+  "description": "effects classes (55)"
  },
  "LLMCSS extras classes": {
   "prefix": "ai-family-extras",
@@ -3750,17 +3758,17 @@
   "prefix": "ai-family-flex-1",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|contents,flex,flex-1,flex-auto,flex-col,flex-col-reverse,flex-initial,flex-none,flex-nowrap,flex-row,flex-row-reverse,flex-wrap,flex-wrap-reverse,grow,grow-0,items-baseline,items-center,items-end,items-start,items-stretch,justify-around,justify-between,justify-center,justify-end,justify-evenly,justify-normal,justify-start,order-1,order-10,order-11,order-12,order-2,order-3,order-4,order-5,order-6,order-7,order-8,order-9,order-first,order-last,order-none,place-content-around,place-content-between,place-content-center,place-content-end,place-content-evenly,place-content-start,place-content-stretch,place-items-center,place-items-end,place-items-start,place-items-stretch,place-self-center,place-self-end,place-self-start,place-self-stretch,self-auto,self-baseline,self-center|}"
+   "${1|basis-0,basis-1/2,basis-1/3,basis-1/4,basis-2/3,basis-3/4,basis-auto,basis-full,content-around,content-baseline,content-between,content-center,content-end,content-evenly,content-start,content-stretch,flex-1,flex-auto,flex-col,flex-col-reverse,flex-initial,flex-none,flex-nowrap,flex-row,flex-row-reverse,flex-wrap,flex-wrap-reverse,grow,grow-0,items-baseline,items-center,items-end,items-start,items-stretch,justify-around,justify-between,justify-center,justify-end,justify-evenly,justify-normal,justify-start,order-1,order-10,order-11,order-12,order-2,order-3,order-4,order-5,order-6,order-7,order-8,order-9,order-first,order-last,order-none,place-content-around,place-content-between,place-content-center,place-content-end|}"
   ],
-  "description": "flex utilities, part 1 of 2 (60 of 65 classes)"
+  "description": "flex utilities, part 1 of 2 (60 of 81 classes)"
  },
  "LLMCSS flex classes-2": {
   "prefix": "ai-family-flex-2",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|self-end,self-start,self-stretch,shrink,shrink-0|}"
+   "${1|place-content-evenly,place-content-start,place-content-stretch,place-items-baseline,place-items-center,place-items-end,place-items-start,place-items-stretch,place-self-auto,place-self-center,place-self-end,place-self-start,place-self-stretch,self-auto,self-baseline,self-center,self-end,self-start,self-stretch,shrink,shrink-0|}"
   ],
-  "description": "flex utilities, part 2 of 2 (5 of 65 classes)"
+  "description": "flex utilities, part 2 of 2 (21 of 81 classes)"
  },
  "LLMCSS forms-extra classes": {
   "prefix": "ai-family-forms-extra",
@@ -3774,17 +3782,17 @@
   "prefix": "ai-family-grid-1",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|col-auto,col-end-1,col-end-10,col-end-11,col-end-12,col-end-13,col-end-2,col-end-3,col-end-4,col-end-5,col-end-6,col-end-7,col-end-8,col-end-9,col-end-auto,col-span-1,col-span-10,col-span-11,col-span-12,col-span-2,col-span-3,col-span-4,col-span-5,col-span-6,col-span-7,col-span-8,col-span-9,col-span-full,col-start-1,col-start-10,col-start-11,col-start-12,col-start-13,col-start-2,col-start-3,col-start-4,col-start-5,col-start-6,col-start-7,col-start-8,col-start-9,col-start-auto,columns-1,columns-2,columns-3,columns-4,columns-auto,grid,grid-auto-fit,grid-cols-1,grid-cols-10,grid-cols-11,grid-cols-12,grid-cols-2,grid-cols-3,grid-cols-4,grid-cols-5,grid-cols-6,grid-cols-7,grid-cols-8|}"
+   "${1|auto-cols-auto,auto-cols-fr,auto-cols-max,auto-cols-min,auto-rows-auto,auto-rows-fr,auto-rows-max,auto-rows-min,col-auto,col-end-1,col-end-10,col-end-11,col-end-12,col-end-13,col-end-2,col-end-3,col-end-4,col-end-5,col-end-6,col-end-7,col-end-8,col-end-9,col-end-auto,col-span-1,col-span-10,col-span-11,col-span-12,col-span-2,col-span-3,col-span-4,col-span-5,col-span-6,col-span-7,col-span-8,col-span-9,col-span-full,col-start-1,col-start-10,col-start-11,col-start-12,col-start-13,col-start-2,col-start-3,col-start-4,col-start-5,col-start-6,col-start-7,col-start-8,col-start-9,col-start-auto,grid-auto-fit,grid-cols-1,grid-cols-10,grid-cols-11,grid-cols-12,grid-cols-2,grid-cols-3,grid-cols-4,grid-cols-5,grid-cols-6|}"
   ],
-  "description": "grid utilities, part 1 of 2 (60 of 87 classes)"
+  "description": "grid utilities, part 1 of 2 (60 of 107 classes)"
  },
  "LLMCSS grid classes-2": {
   "prefix": "ai-family-grid-2",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|grid-cols-9,grid-cols-none,grid-cols-var,grid-flow-col,grid-flow-col-dense,grid-flow-dense,grid-flow-row,grid-flow-row-dense,grid-min-lg,grid-min-md,grid-min-sm,grid-min-xs,grid-rows-1,grid-rows-2,grid-rows-3,grid-rows-4,grid-rows-5,grid-rows-6,grid-rows-none,row-auto,row-span-1,row-span-2,row-span-3,row-span-4,row-span-5,row-span-6,row-span-full|}"
+   "${1|grid-cols-7,grid-cols-8,grid-cols-9,grid-cols-none,grid-cols-subgrid,grid-cols-var,grid-flow-col,grid-flow-col-dense,grid-flow-dense,grid-flow-row,grid-flow-row-dense,grid-min-lg,grid-min-md,grid-min-sm,grid-min-xs,grid-rows-1,grid-rows-2,grid-rows-3,grid-rows-4,grid-rows-5,grid-rows-6,grid-rows-none,grid-rows-subgrid,row-auto,row-end-1,row-end-2,row-end-3,row-end-4,row-end-5,row-end-6,row-end-7,row-end-auto,row-span-1,row-span-2,row-span-3,row-span-4,row-span-5,row-span-6,row-span-full,row-start-1,row-start-2,row-start-3,row-start-4,row-start-5,row-start-6,row-start-7,row-start-auto|}"
   ],
-  "description": "grid utilities, part 2 of 2 (27 of 87 classes)"
+  "description": "grid utilities, part 2 of 2 (47 of 107 classes)"
  },
  "LLMCSS inputs classes": {
   "prefix": "ai-family-inputs",
@@ -3798,25 +3806,49 @@
   "prefix": "ai-family-interaction-1",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|cursor-default,cursor-grab,cursor-grabbing,cursor-move,cursor-not-allowed,cursor-pointer,cursor-text,cursor-wait,cursor-zoom-in,duration-fast,duration-normal,duration-slow,ease-in-out,ease-out,ease-spring,origin-bottom,origin-bottom-left,origin-bottom-right,origin-center,origin-left,origin-right,origin-top,origin-top-left,origin-top-right,overflow-auto,overflow-clip,overflow-hidden,overflow-visible,overflow-x-auto,overflow-x-clip,overflow-x-hidden,overflow-x-scroll,overflow-x-visible,overflow-y-auto,overflow-y-clip,overflow-y-hidden,overflow-y-scroll,overflow-y-visible,pointer-events-auto,pointer-events-none,rotate-0,rotate-1,rotate-12,rotate-180,rotate-2,rotate-3,rotate-45,rotate-6,rotate-90,scale-0,scale-100,scale-105,scale-110,scale-125,scale-150,scale-50,scale-75,scale-90,scale-95,scroll-auto|}"
+   "${1|-rotate-1,-rotate-12,-rotate-180,-rotate-2,-rotate-3,-rotate-45,-rotate-6,-rotate-90,-translate-x-1,-translate-x-12,-translate-x-2,-translate-x-3,-translate-x-4,-translate-x-6,-translate-x-8,-translate-x-full,-translate-x-half,-translate-x-px,-translate-y-1,-translate-y-12,-translate-y-2,-translate-y-3,-translate-y-4,-translate-y-6,-translate-y-8,-translate-y-full,-translate-y-half,-translate-y-px,appearance-auto,appearance-none,cursor-auto,cursor-default,cursor-grab,cursor-grabbing,cursor-help,cursor-move,cursor-none,cursor-not-allowed,cursor-pointer,cursor-progress,cursor-text,cursor-wait,cursor-zoom-in,cursor-zoom-out,delay-0,delay-150,delay-300,delay-75,duration-0,duration-fast,duration-normal,duration-slow,ease-in-out,ease-linear,ease-out,ease-smooth,ease-spring,group,origin-bottom,origin-bottom-left|}"
   ],
-  "description": "interaction utilities, part 1 of 2 (60 of 102 classes)"
+  "description": "interaction utilities, part 1 of 4 (60 of 188 classes)"
  },
  "LLMCSS interaction classes-2": {
   "prefix": "ai-family-interaction-2",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|scroll-mt-12,scroll-mt-16,scroll-mt-20,scroll-mt-24,scroll-mt-4,scroll-mt-8,scroll-smooth,select-all,select-auto,select-none,select-text,snap-always,snap-center,snap-end,snap-proximity,snap-start,snap-x,snap-y,transform-var,transition,transition-all,transition-colors,transition-none,transition-opacity,transition-transform,translate-center,translate-x-1,translate-x-2,translate-x-3,translate-x-4,translate-x-6,translate-x-8,translate-x-center,translate-x-full,translate-y-1,translate-y-2,translate-y-3,translate-y-4,translate-y-6,translate-y-8,translate-y-center,translate-y-full|}"
+   "${1|origin-bottom-right,origin-center,origin-left,origin-right,origin-top,origin-top-left,origin-top-right,overflow-auto,overflow-clip,overflow-hidden,overflow-scroll,overflow-visible,overflow-x-auto,overflow-x-clip,overflow-x-hidden,overflow-x-scroll,overflow-x-visible,overflow-y-auto,overflow-y-clip,overflow-y-hidden,overflow-y-scroll,overflow-y-visible,overscroll-auto,overscroll-contain,overscroll-none,pointer-events-auto,pointer-events-none,resize,resize-none,resize-x,resize-y,rotate-0,rotate-1,rotate-12,rotate-180,rotate-2,rotate-3,rotate-45,rotate-6,rotate-90,scale-0,scale-100,scale-105,scale-110,scale-125,scale-150,scale-50,scale-75,scale-90,scale-95,scroll-auto,scroll-mt-0,scroll-mt-1,scroll-mt-12,scroll-mt-16,scroll-mt-2,scroll-mt-20,scroll-mt-24,scroll-mt-3,scroll-mt-4|}"
   ],
-  "description": "interaction utilities, part 2 of 2 (42 of 102 classes)"
+  "description": "interaction utilities, part 2 of 4 (60 of 188 classes)"
  },
- "LLMCSS layout classes": {
-  "prefix": "ai-family-layout",
+ "LLMCSS interaction classes-3": {
+  "prefix": "ai-family-interaction-3",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|aspect-auto,aspect-square,aspect-video,container,container-fluid,container-inline,container-lg,container-md,container-sm,container-xl,cq,object-contain,object-cover,object-fill,object-none,object-scale-down|}"
+   "${1|scroll-mt-6,scroll-mt-8,scroll-pt-0,scroll-pt-1,scroll-pt-12,scroll-pt-16,scroll-pt-2,scroll-pt-3,scroll-pt-4,scroll-pt-6,scroll-pt-8,scroll-smooth,snap-always,snap-both,snap-center,snap-end,snap-none,snap-normal,snap-proximity,snap-start,snap-x,snap-y,touch-auto,touch-manipulation,touch-none,touch-pan-x,touch-pan-y,transform-var,transition,transition-all,transition-colors,transition-none,transition-opacity,transition-shadow,transition-transform,translate-center,translate-x-0,translate-x-1,translate-x-12,translate-x-2,translate-x-3,translate-x-4,translate-x-6,translate-x-8,translate-x-center,translate-x-full,translate-x-half,translate-x-px,translate-y-0,translate-y-1,translate-y-12,translate-y-2,translate-y-3,translate-y-4,translate-y-6,translate-y-8,translate-y-center,translate-y-full,translate-y-half,translate-y-px|}"
   ],
-  "description": "layout classes (16)"
+  "description": "interaction utilities, part 3 of 4 (60 of 188 classes)"
+ },
+ "LLMCSS interaction classes-4": {
+  "prefix": "ai-family-interaction-4",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|user-select-all,user-select-auto,user-select-none,user-select-text,will-change-auto,will-change-opacity,will-change-scroll,will-change-transform|}"
+  ],
+  "description": "interaction utilities, part 4 of 4 (8 of 188 classes)"
+ },
+ "LLMCSS layout classes-1": {
+  "prefix": "ai-family-layout-1",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|aspect-2/1,aspect-3/2,aspect-4/3,aspect-auto,aspect-portrait,aspect-square,aspect-video,break-after-auto,break-after-avoid,break-after-column,break-after-page,break-before-auto,break-before-avoid,break-before-column,break-before-page,break-inside-auto,break-inside-avoid,break-inside-avoid-page,clear-both,clear-end,clear-left,clear-none,clear-right,clear-start,columns-1,columns-2,columns-3,columns-4,columns-5,columns-6,columns-auto,container,container-2xl,container-fluid,container-lg,container-md,container-sm,container-w-full,container-w-lg,container-w-md,container-w-sm,container-w-xl,container-xl,cq,cq-inline,cq-normal,float-end,float-left,float-none,float-right,float-start,isolate,isolation-auto,object-bottom,object-center,object-contain,object-cover,object-fill,object-left,object-none|}"
+  ],
+  "description": "layout utilities, part 1 of 2 (60 of 63 classes)"
+ },
+ "LLMCSS layout classes-2": {
+  "prefix": "ai-family-layout-2",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|object-right,object-scale-down,object-top|}"
+  ],
+  "description": "layout utilities, part 2 of 2 (3 of 63 classes)"
  },
  "LLMCSS marketing classes-1": {
   "prefix": "ai-family-marketing-1",
@@ -3850,13 +3882,21 @@
   ],
   "description": "navigation classes (24)"
  },
- "LLMCSS position classes": {
-  "prefix": "ai-family-position",
+ "LLMCSS position classes-1": {
+  "prefix": "ai-family-position-1",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|absolute,bottom-0,bottom-auto,end-0,fixed,inset-0,inset-auto,inset-x-0,inset-y-0,left-0,left-auto,relative,right-0,right-auto,start-0,static,sticky,top-0,top-auto,z-0,z-10,z-20,z-30,z-40,z-50,z-auto|}"
+   "${1|absolute,bottom-0,bottom-1,bottom-12,bottom-16,bottom-2,bottom-3,bottom-4,bottom-6,bottom-8,bottom-auto,bottom-full,bottom-half,bottom-px,end-0,end-1,end-2,end-3,end-4,end-6,end-8,end-auto,end-full,end-half,fixed,inset-0,inset-1,inset-2,inset-3,inset-4,inset-6,inset-8,inset-auto,inset-full,inset-px,inset-x-0,inset-x-1,inset-x-2,inset-x-3,inset-x-4,inset-x-6,inset-x-8,inset-x-auto,inset-x-full,inset-y-0,inset-y-1,inset-y-2,inset-y-3,inset-y-4,inset-y-6,inset-y-8,inset-y-auto,inset-y-full,left-0,left-1,left-2,left-3,left-4,left-6,left-8|}"
   ],
-  "description": "position classes (26)"
+  "description": "position utilities, part 1 of 2 (60 of 114 classes)"
+ },
+ "LLMCSS position classes-2": {
+  "prefix": "ai-family-position-2",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|left-auto,left-full,left-half,relative,right-0,right-1,right-2,right-3,right-4,right-6,right-8,right-auto,right-full,right-half,start-0,start-1,start-2,start-3,start-4,start-6,start-8,start-auto,start-full,start-half,static,sticky,sticky-top,top-0,top-1,top-12,top-16,top-2,top-3,top-4,top-6,top-8,top-auto,top-full,top-half,top-px,z-0,z-10,z-20,z-30,z-40,z-50,z-auto,z-base,z-dropdown,z-modal,z-overlay,z-raised,z-sticky,z-toast|}"
+  ],
+  "description": "position utilities, part 2 of 2 (54 of 114 classes)"
  },
  "LLMCSS scrollspy classes": {
   "prefix": "ai-family-scrollspy",
@@ -3870,49 +3910,121 @@
   "prefix": "ai-family-sizing-1",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|h-0,h-1,h-10,h-12,h-16,h-2,h-20,h-24,h-3,h-32,h-4,h-5,h-6,h-8,h-auto,h-full,h-screen,h-var,max-h-full,max-h-screen,max-w-2xl,max-w-3xl,max-w-4xl,max-w-5xl,max-w-6xl,max-w-full,max-w-lg,max-w-md,max-w-none,max-w-prose,max-w-sm,max-w-var,max-w-xl,max-w-xs,min-h-0,min-h-full,min-h-screen,min-w-0,min-w-fit,min-w-full,min-w-max,min-w-min,min-w-var,size-0,size-1,size-10,size-12,size-16,size-2,size-20,size-24,size-3,size-32,size-4,size-5,size-6,size-8,w-0,w-1,w-1/12|}"
+   "${1|h-0,h-0.5,h-1,h-1.5,h-1/2,h-1/3,h-10,h-11,h-12,h-14,h-16,h-2,h-2.5,h-2/3,h-20,h-24,h-28,h-3,h-3.5,h-32,h-36,h-4,h-40,h-48,h-5,h-56,h-6,h-64,h-7,h-72,h-8,h-80,h-9,h-96,h-auto,h-dvh,h-fit,h-full,h-max,h-min,h-px,h-screen,h-var,max-h-dvh,max-h-fit,max-h-full,max-h-max,max-h-min,max-h-none,max-h-screen,max-w-0,max-w-2xl,max-w-3xl,max-w-4xl,max-w-5xl,max-w-6xl,max-w-7xl,max-w-fit,max-w-full,max-w-lg|}"
   ],
-  "description": "sizing utilities, part 1 of 2 (60 of 94 classes)"
+  "description": "sizing utilities, part 1 of 3 (60 of 175 classes)"
  },
  "LLMCSS sizing classes-2": {
   "prefix": "ai-family-sizing-2",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|w-1/2,w-1/3,w-1/4,w-1/5,w-1/6,w-10,w-11/12,w-12,w-16,w-2,w-2/3,w-2/4,w-2/5,w-20,w-24,w-3,w-3/4,w-3/5,w-32,w-4,w-4/5,w-5,w-5/12,w-5/6,w-6,w-7/12,w-8,w-auto,w-fit,w-full,w-max,w-min,w-screen,w-var|}"
+   "${1|max-w-max,max-w-md,max-w-min,max-w-none,max-w-prose,max-w-screen,max-w-sm,max-w-var,max-w-xl,max-w-xs,min-h-0,min-h-dvh,min-h-fit,min-h-full,min-h-max,min-h-min,min-h-screen,min-w-0,min-w-fit,min-w-full,min-w-max,min-w-min,min-w-screen,min-w-var,size-0,size-0.5,size-1,size-1.5,size-10,size-11,size-12,size-14,size-16,size-2,size-2.5,size-20,size-24,size-28,size-3,size-3.5,size-32,size-36,size-4,size-40,size-48,size-5,size-56,size-6,size-64,size-7,size-72,size-8,size-80,size-9,size-96,size-auto,size-fit,size-full,size-px,w-0|}"
   ],
-  "description": "sizing utilities, part 2 of 2 (34 of 94 classes)"
+  "description": "sizing utilities, part 2 of 3 (60 of 175 classes)"
+ },
+ "LLMCSS sizing classes-3": {
+  "prefix": "ai-family-sizing-3",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|w-0.5,w-1,w-1.5,w-1/12,w-1/2,w-1/3,w-1/4,w-1/5,w-1/6,w-10,w-11,w-11/12,w-12,w-14,w-16,w-2,w-2.5,w-2/3,w-2/4,w-2/5,w-20,w-24,w-28,w-3,w-3.5,w-3/4,w-3/5,w-32,w-36,w-4,w-4/5,w-40,w-48,w-5,w-5/12,w-5/6,w-56,w-6,w-64,w-7,w-7/12,w-72,w-8,w-80,w-9,w-96,w-auto,w-dvw,w-fit,w-full,w-max,w-min,w-px,w-screen,w-var|}"
+  ],
+  "description": "sizing utilities, part 3 of 3 (55 of 175 classes)"
  },
  "LLMCSS spacing classes-1": {
   "prefix": "ai-family-spacing-1",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|-m-1,-m-2,-m-3,-m-4,-mb-1,-mb-2,-mb-3,-mb-4,-me-1,-me-2,-me-3,-me-4,-ml-1,-ml-2,-ml-3,-ml-4,-mr-1,-mr-2,-mr-3,-mr-4,-ms-1,-ms-2,-ms-3,-ms-4,-mt-1,-mt-2,-mt-3,-mt-4,-mx-1,-mx-2,-mx-3,-mx-4,-my-1,-my-2,-my-3,-my-4,gap-0,gap-1,gap-10,gap-12,gap-16,gap-2,gap-20,gap-24,gap-3,gap-32,gap-4,gap-5,gap-6,gap-8,gap-var,gap-x-0,gap-x-1,gap-x-12,gap-x-2,gap-x-3,gap-x-4,gap-x-6,gap-x-8,gap-y-0|}"
+   "${1|-m-0.5,-m-1,-m-1.5,-m-10,-m-12,-m-16,-m-2,-m-2.5,-m-20,-m-24,-m-3,-m-4,-m-5,-m-6,-m-8,-m-px,-mb-0.5,-mb-1,-mb-1.5,-mb-10,-mb-12,-mb-16,-mb-2,-mb-2.5,-mb-20,-mb-24,-mb-3,-mb-4,-mb-5,-mb-6,-mb-8,-mb-px,-me-0.5,-me-1,-me-1.5,-me-10,-me-12,-me-16,-me-2,-me-2.5,-me-20,-me-24,-me-3,-me-4,-me-5,-me-6,-me-8,-me-px,-ml-0.5,-ml-1,-ml-1.5,-ml-10,-ml-12,-ml-16,-ml-2,-ml-2.5,-ml-20,-ml-24,-ml-3,-ml-4|}"
   ],
-  "description": "spacing utilities, part 1 of 4 (60 of 240 classes)"
+  "description": "spacing utilities, part 1 of 12 (60 of 692 classes)"
  },
  "LLMCSS spacing classes-2": {
   "prefix": "ai-family-spacing-2",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|gap-y-1,gap-y-12,gap-y-2,gap-y-3,gap-y-4,gap-y-6,gap-y-8,m-0,m-1,m-10,m-12,m-2,m-3,m-4,m-5,m-6,m-8,m-auto,m-var,mb-0,mb-1,mb-10,mb-12,mb-16,mb-2,mb-3,mb-4,mb-5,mb-6,mb-8,mb-auto,me-0,me-1,me-2,me-3,me-4,me-6,me-8,me-auto,ml-0,ml-1,ml-2,ml-3,ml-4,ml-6,ml-8,ml-auto,mr-0,mr-1,mr-2,mr-3,mr-4,mr-6,mr-8,mr-auto,ms-0,ms-1,ms-2,ms-3,ms-4|}"
+   "${1|-ml-5,-ml-6,-ml-8,-ml-px,-mr-0.5,-mr-1,-mr-1.5,-mr-10,-mr-12,-mr-16,-mr-2,-mr-2.5,-mr-20,-mr-24,-mr-3,-mr-4,-mr-5,-mr-6,-mr-8,-mr-px,-ms-0.5,-ms-1,-ms-1.5,-ms-10,-ms-12,-ms-16,-ms-2,-ms-2.5,-ms-20,-ms-24,-ms-3,-ms-4,-ms-5,-ms-6,-ms-8,-ms-px,-mt-0.5,-mt-1,-mt-1.5,-mt-10,-mt-12,-mt-16,-mt-2,-mt-2.5,-mt-20,-mt-24,-mt-3,-mt-4,-mt-5,-mt-6,-mt-8,-mt-px,-mx-0.5,-mx-1,-mx-1.5,-mx-10,-mx-12,-mx-16,-mx-2,-mx-2.5|}"
   ],
-  "description": "spacing utilities, part 2 of 4 (60 of 240 classes)"
+  "description": "spacing utilities, part 2 of 12 (60 of 692 classes)"
  },
  "LLMCSS spacing classes-3": {
   "prefix": "ai-family-spacing-3",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|ms-6,ms-8,ms-auto,mt-0,mt-1,mt-10,mt-12,mt-16,mt-2,mt-20,mt-24,mt-3,mt-4,mt-5,mt-6,mt-8,mt-auto,mx-0,mx-1,mx-12,mx-2,mx-3,mx-4,mx-6,mx-8,mx-auto,my-0,my-1,my-12,my-2,my-3,my-4,my-6,my-8,my-auto,p-0,p-1,p-10,p-12,p-16,p-2,p-20,p-24,p-3,p-4,p-5,p-6,p-8,p-var,pb-0,pb-1,pb-12,pb-16,pb-2,pb-20,pb-24,pb-3,pb-4,pb-6,pb-8|}"
+   "${1|-mx-20,-mx-24,-mx-3,-mx-4,-mx-5,-mx-6,-mx-8,-mx-px,-my-0.5,-my-1,-my-1.5,-my-10,-my-12,-my-16,-my-2,-my-2.5,-my-20,-my-24,-my-3,-my-4,-my-5,-my-6,-my-8,-my-px,gap-0,gap-0.5,gap-1,gap-1.5,gap-10,gap-11,gap-12,gap-14,gap-16,gap-2,gap-2.5,gap-20,gap-24,gap-28,gap-3,gap-3.5,gap-32,gap-36,gap-4,gap-40,gap-48,gap-5,gap-56,gap-6,gap-64,gap-7,gap-72,gap-8,gap-80,gap-9,gap-96,gap-px,gap-var,gap-x-0,gap-x-0.5,gap-x-1|}"
   ],
-  "description": "spacing utilities, part 3 of 4 (60 of 240 classes)"
+  "description": "spacing utilities, part 3 of 12 (60 of 692 classes)"
  },
  "LLMCSS spacing classes-4": {
   "prefix": "ai-family-spacing-4",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|pe-0,pe-1,pe-2,pe-3,pe-4,pe-6,pe-8,pl-0,pl-1,pl-2,pl-3,pl-4,pl-6,pl-8,pr-0,pr-1,pr-2,pr-3,pr-4,pr-6,pr-8,ps-0,ps-1,ps-2,ps-3,ps-4,ps-6,ps-8,pt-0,pt-1,pt-12,pt-16,pt-2,pt-3,pt-4,pt-6,pt-8,px-0,px-1,px-10,px-12,px-2,px-3,px-4,px-5,px-6,px-8,py-0,py-1,py-10,py-12,py-16,py-2,py-20,py-24,py-3,py-4,py-5,py-6,py-8|}"
+   "${1|gap-x-1.5,gap-x-10,gap-x-12,gap-x-14,gap-x-16,gap-x-2,gap-x-2.5,gap-x-20,gap-x-24,gap-x-3,gap-x-3.5,gap-x-32,gap-x-4,gap-x-5,gap-x-6,gap-x-7,gap-x-8,gap-x-px,gap-y-0,gap-y-0.5,gap-y-1,gap-y-1.5,gap-y-10,gap-y-12,gap-y-14,gap-y-16,gap-y-2,gap-y-2.5,gap-y-20,gap-y-24,gap-y-3,gap-y-3.5,gap-y-32,gap-y-4,gap-y-5,gap-y-6,gap-y-7,gap-y-8,gap-y-px,m-0,m-0.5,m-1,m-1.5,m-10,m-11,m-12,m-14,m-16,m-2,m-2.5,m-20,m-24,m-28,m-3,m-3.5,m-32,m-36,m-4,m-40,m-48|}"
   ],
-  "description": "spacing utilities, part 4 of 4 (60 of 240 classes)"
+  "description": "spacing utilities, part 4 of 12 (60 of 692 classes)"
+ },
+ "LLMCSS spacing classes-5": {
+  "prefix": "ai-family-spacing-5",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|m-5,m-56,m-6,m-64,m-7,m-72,m-8,m-80,m-9,m-96,m-auto,m-px,m-var,mb-0,mb-0.5,mb-1,mb-1.5,mb-10,mb-12,mb-14,mb-16,mb-2,mb-2.5,mb-20,mb-24,mb-3,mb-3.5,mb-32,mb-4,mb-5,mb-6,mb-7,mb-8,mb-auto,mb-px,me-0,me-0.5,me-1,me-1.5,me-10,me-12,me-14,me-16,me-2,me-2.5,me-20,me-24,me-3,me-3.5,me-32,me-4,me-5,me-6,me-7,me-8,me-auto,me-px,ml-0,ml-0.5,ml-1|}"
+  ],
+  "description": "spacing utilities, part 5 of 12 (60 of 692 classes)"
+ },
+ "LLMCSS spacing classes-6": {
+  "prefix": "ai-family-spacing-6",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ml-1.5,ml-10,ml-12,ml-14,ml-16,ml-2,ml-2.5,ml-20,ml-24,ml-3,ml-3.5,ml-32,ml-4,ml-5,ml-6,ml-7,ml-8,ml-auto,ml-px,mr-0,mr-0.5,mr-1,mr-1.5,mr-10,mr-12,mr-14,mr-16,mr-2,mr-2.5,mr-20,mr-24,mr-3,mr-3.5,mr-32,mr-4,mr-5,mr-6,mr-7,mr-8,mr-auto,mr-px,ms-0,ms-0.5,ms-1,ms-1.5,ms-10,ms-12,ms-14,ms-16,ms-2,ms-2.5,ms-20,ms-24,ms-3,ms-3.5,ms-32,ms-4,ms-5,ms-6,ms-7|}"
+  ],
+  "description": "spacing utilities, part 6 of 12 (60 of 692 classes)"
+ },
+ "LLMCSS spacing classes-7": {
+  "prefix": "ai-family-spacing-7",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|ms-8,ms-auto,ms-px,mt-0,mt-0.5,mt-1,mt-1.5,mt-10,mt-12,mt-14,mt-16,mt-2,mt-2.5,mt-20,mt-24,mt-3,mt-3.5,mt-32,mt-4,mt-5,mt-6,mt-7,mt-8,mt-auto,mt-px,mx-0,mx-0.5,mx-1,mx-1.5,mx-10,mx-11,mx-12,mx-14,mx-16,mx-2,mx-2.5,mx-20,mx-24,mx-28,mx-3,mx-3.5,mx-32,mx-36,mx-4,mx-40,mx-48,mx-5,mx-56,mx-6,mx-64,mx-7,mx-72,mx-8,mx-80,mx-9,mx-96,mx-auto,mx-px,my-0,my-0.5|}"
+  ],
+  "description": "spacing utilities, part 7 of 12 (60 of 692 classes)"
+ },
+ "LLMCSS spacing classes-8": {
+  "prefix": "ai-family-spacing-8",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|my-1,my-1.5,my-10,my-11,my-12,my-14,my-16,my-2,my-2.5,my-20,my-24,my-28,my-3,my-3.5,my-32,my-36,my-4,my-40,my-48,my-5,my-56,my-6,my-64,my-7,my-72,my-8,my-80,my-9,my-96,my-auto,my-px,p-0,p-0.5,p-1,p-1.5,p-10,p-11,p-12,p-14,p-16,p-2,p-2.5,p-20,p-24,p-28,p-3,p-3.5,p-32,p-36,p-4,p-40,p-48,p-5,p-56,p-6,p-64,p-7,p-72,p-8,p-80|}"
+  ],
+  "description": "spacing utilities, part 8 of 12 (60 of 692 classes)"
+ },
+ "LLMCSS spacing classes-9": {
+  "prefix": "ai-family-spacing-9",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|p-9,p-96,p-px,p-var,pb-0,pb-0.5,pb-1,pb-1.5,pb-10,pb-12,pb-14,pb-16,pb-2,pb-2.5,pb-20,pb-24,pb-3,pb-3.5,pb-32,pb-4,pb-5,pb-6,pb-7,pb-8,pb-px,pe-0,pe-0.5,pe-1,pe-1.5,pe-10,pe-12,pe-14,pe-16,pe-2,pe-2.5,pe-20,pe-24,pe-3,pe-3.5,pe-32,pe-4,pe-5,pe-6,pe-7,pe-8,pe-px,pl-0,pl-0.5,pl-1,pl-1.5,pl-10,pl-12,pl-14,pl-16,pl-2,pl-2.5,pl-20,pl-24,pl-3,pl-3.5|}"
+  ],
+  "description": "spacing utilities, part 9 of 12 (60 of 692 classes)"
+ },
+ "LLMCSS spacing classes-10": {
+  "prefix": "ai-family-spacing-10",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|pl-32,pl-4,pl-5,pl-6,pl-7,pl-8,pl-px,pr-0,pr-0.5,pr-1,pr-1.5,pr-10,pr-12,pr-14,pr-16,pr-2,pr-2.5,pr-20,pr-24,pr-3,pr-3.5,pr-32,pr-4,pr-5,pr-6,pr-7,pr-8,pr-px,ps-0,ps-0.5,ps-1,ps-1.5,ps-10,ps-12,ps-14,ps-16,ps-2,ps-2.5,ps-20,ps-24,ps-3,ps-3.5,ps-32,ps-4,ps-5,ps-6,ps-7,ps-8,ps-px,pt-0,pt-0.5,pt-1,pt-1.5,pt-10,pt-12,pt-14,pt-16,pt-2,pt-2.5,pt-20|}"
+  ],
+  "description": "spacing utilities, part 10 of 12 (60 of 692 classes)"
+ },
+ "LLMCSS spacing classes-11": {
+  "prefix": "ai-family-spacing-11",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|pt-24,pt-3,pt-3.5,pt-32,pt-4,pt-5,pt-6,pt-7,pt-8,pt-px,px-0,px-0.5,px-1,px-1.5,px-10,px-11,px-12,px-14,px-16,px-2,px-2.5,px-20,px-24,px-28,px-3,px-3.5,px-32,px-36,px-4,px-40,px-48,px-5,px-56,px-6,px-64,px-7,px-72,px-8,px-80,px-9,px-96,px-px,py-0,py-0.5,py-1,py-1.5,py-10,py-11,py-12,py-14,py-16,py-2,py-2.5,py-20,py-24,py-28,py-3,py-3.5,py-32,py-36|}"
+  ],
+  "description": "spacing utilities, part 11 of 12 (60 of 692 classes)"
+ },
+ "LLMCSS spacing classes-12": {
+  "prefix": "ai-family-spacing-12",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|py-4,py-40,py-48,py-5,py-56,py-6,py-64,py-7,py-72,py-8,py-80,py-9,py-96,py-px,space-x-0,space-x-1,space-x-12,space-x-16,space-x-2,space-x-3,space-x-4,space-x-6,space-x-8,space-y-0,space-y-1,space-y-12,space-y-16,space-y-2,space-y-3,space-y-4,space-y-6,space-y-8|}"
+  ],
+  "description": "spacing utilities, part 12 of 12 (32 of 692 classes)"
  },
  "LLMCSS tables classes": {
   "prefix": "ai-family-tables",
@@ -3934,7 +4046,7 @@
   "prefix": "ai-family-themes",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|dark,light,skin-editorial,skin-enterprise,skin-executive,skin-fintech,skin-obsidian|}"
+   "${1|skin-editorial,skin-enterprise,skin-executive,skin-fintech,skin-obsidian,theme-dark,theme-light|}"
   ],
   "description": "themes classes (7)"
  },
@@ -3946,20 +4058,28 @@
   ],
   "description": "toasts classes (12)"
  },
- "LLMCSS typography classes": {
-  "prefix": "ai-family-typography",
+ "LLMCSS typography classes-1": {
+  "prefix": "ai-family-typography-1",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|break-inside-avoid,capitalize,font-bold,font-display,font-light,font-medium,font-mono,font-normal,font-sans,font-semibold,leading-loose,leading-none,leading-normal,leading-relaxed,leading-snug,leading-tight,line-clamp-1,line-clamp-2,line-clamp-3,line-clamp-none,lowercase,text-2xl,text-3xl,text-4xl,text-5xl,text-6xl,text-7xl,text-accent,text-balance,text-base,text-center,text-end,text-left,text-lg,text-muted,text-pretty,text-right,text-secondary,text-sm,text-start,text-var,text-xl,text-xs,tracking-normal,tracking-tight,tracking-tighter,tracking-wide,tracking-wider,truncate,uppercase|}"
+   "${1|align-baseline,align-bottom,align-middle,align-sub,align-super,align-text-bottom,align-text-top,align-top,break-all,break-keep,break-normal,break-words,capitalize,decoration-0,decoration-1,decoration-2,decoration-auto,decoration-from,font-bold,font-display,font-extrabold,font-light,font-medium,font-mono,font-normal,font-sans,font-semibold,font-serif,italic,leading-loose,leading-none,leading-normal,leading-relaxed,leading-snug,leading-tight,line-clamp-1,line-clamp-2,line-clamp-3,line-clamp-none,line-through,lining-nums,list-decimal,list-disc,list-inside,list-none,list-outside,lowercase,no-underline,normal-case,normal-nums,not-italic,oldstyle-nums,overline,proportional-nums,tabular,text-2xl,text-3xl,text-4xl,text-5xl,text-6xl|}"
   ],
-  "description": "typography classes (50)"
+  "description": "typography utilities, part 1 of 2 (60 of 108 classes)"
+ },
+ "LLMCSS typography classes-2": {
+  "prefix": "ai-family-typography-2",
+  "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
+  "body": [
+   "${1|text-7xl,text-accent,text-balance,text-base,text-center,text-current,text-danger,text-end,text-info,text-inherit,text-inverted,text-justify,text-left,text-lg,text-muted,text-nowrap,text-pretty,text-primary,text-right,text-secondary,text-sm,text-start,text-success,text-var,text-warning,text-wrap,text-xl,text-xs,tracking-normal,tracking-tight,tracking-tighter,tracking-wide,tracking-wider,tracking-widest,truncate,underline,underline-offset-0,underline-offset-1,underline-offset-2,underline-offset-4,underline-offset-auto,uppercase,whitespace-break-spaces,whitespace-normal,whitespace-nowrap,whitespace-pre,whitespace-pre-line,whitespace-pre-wrap|}"
+  ],
+  "description": "typography utilities, part 2 of 2 (48 of 108 classes)"
  },
  "LLMCSS utilities classes": {
   "prefix": "ai-family-utilities",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|-rotate-1,-rotate-12,-rotate-180,-rotate-2,-rotate-3,-rotate-45,-rotate-6,-rotate-90,-translate-x-1,-translate-x-2,-translate-x-3,-translate-x-4,-translate-x-6,-translate-x-8,-translate-x-full,-translate-y-1,-translate-y-2,-translate-y-3,-translate-y-4,-translate-y-6,-translate-y-8,-translate-y-full,brightness-110,brightness-90,contrast-more,grayscale,grayscale-0,invert,normal-case,overscroll-contain,overscroll-none,print-block,print-break-after,print-break-before,print-hidden,saturate-0,saturate-150,subgrid-cols,subgrid-rows,surface-0,surface-1,surface-2,surface-3,tabular|}"
+   "${1|brightness-110,brightness-90,contrast-more,grayscale,grayscale-0,invert,prose,saturate-0,saturate-150|}"
   ],
-  "description": "utilities classes (44)"
+  "description": "utilities classes (9)"
  }
 }

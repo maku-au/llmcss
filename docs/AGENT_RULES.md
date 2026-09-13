@@ -7,11 +7,11 @@ Source of truth, in this order: [classes.json](https://llmcss.io/classes.json) f
 ## Where classes live
 
 <!-- stats:start -->
-- **Classes:** 1407 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
-- **Tokens:** 82 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
+- **Classes:** 2312 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Tokens:** 107 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
 - **States:** 36 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
-- **Components:** 125 (122 free, 3 themed Pro): 54 primitive, 44 application, 22 marketing, 5 ecommerce.
-- **Section templates:** 26 (18 free wireframe, 8 themed Pro).
+- **Components:** 122, all MIT: 54 primitive, 42 application, 21 marketing, 5 ecommerce.
+- **Section templates:** 29 (18 free wireframe, 11 themed Pro).
 - **Page blueprints:** 6 (4 free, 2 Pro).
 <!-- stats:end -->
 
@@ -20,15 +20,18 @@ The family a class belongs to tells you which stylesheet file defines it and rou
 <!-- families:start -->
 | Family | Classes | Defined in |
 |---|---:|---|
-| `spacing` | 240 | `utilities.css` |
+| `spacing` | 692 | `utilities.css` |
+| `interaction` | 188 | `utilities.css` |
+| `sizing` | 175 | `utilities.css` |
 | `agent-extra` | 120 | `components/agent-extra.css` |
-| `interaction` | 102 | `utilities.css` |
-| `sizing` | 94 | `utilities.css` |
-| `grid` | 87 | `utilities.css` |
+| `position` | 114 | `utilities.css` |
+| `typography` | 108 | `utilities.css` |
+| `grid` | 107 | `utilities.css` |
+| `flex` | 81 | `utilities.css` |
 | `marketing` | 75 | `components/marketing.css` |
-| `flex` | 65 | `utilities.css` |
-| `typography` | 50 | `utilities.css` |
-| `utilities` | 44 | `utilities.css` |
+| `borders` | 70 | `utilities.css` |
+| `layout` | 63 | `utilities.css` |
+| `effects` | 55 | `utilities.css` |
 | `dashboard` | 43 | `components/dashboard.css` |
 | `extras` | 40 | `components/extras.css` |
 | `animations` | 33 | `animations.css` |
@@ -36,12 +39,9 @@ The family a class belongs to tells you which stylesheet file defines it and rou
 | `application` | 29 | `components/application.css` |
 | `badges` | 28 | `components/badges.css` |
 | `commerce-extra` | 28 | `components/commerce-extra.css` |
-| `position` | 26 | `utilities.css` |
 | `navigation` | 24 | `components/navigation.css` |
-| `borders` | 22 | `utilities.css` |
-| `effects` | 22 | `utilities.css` |
 | `chat` | 19 | `components/chat.css` |
-| `layout` | 16 | `utilities.css` |
+| `display` | 19 | `utilities.css` |
 | `cards` | 13 | `components/cards.css` |
 | `drawers` | 13 | `components/drawers.css` |
 | `inputs` | 13 | `components/inputs.css` |
@@ -53,7 +53,7 @@ The family a class belongs to tells you which stylesheet file defines it and rou
 | `ecommerce` | 10 | `components/ecommerce.css` |
 | `command` | 9 | `components/command.css` |
 | `scrollspy` | 9 | `components/scrollspy.css` |
-| `display` | 8 | `utilities.css` |
+| `utilities` | 9 | `utilities.extra.css` |
 | `themes` | 7 | `themes.css` |
 | `accordions` | 6 | `components/accordions.css` |
 | `alerts` | 6 | `components/alerts.css` |
@@ -64,7 +64,20 @@ The family a class belongs to tells you which stylesheet file defines it and rou
 
 Utility names follow the shape you expect from a utility framework, no prefix: `p-6`, `mt-4`, `gap-3`, `w-full`, `max-w-sm`, `text-sm`, `font-semibold`, `rounded-lg`, `items-center`. Component names are `<component>-<part>`: `card-header`, `modal-box`, `drawer-panel`, `toast-message`. Confirm every one in classes.json before you emit it.
 
-Responsive variants are written `<bp>:<name>`, for example `md:grid-cols-2` or `lg:hidden`. Breakpoints: `sm` 640px, `md` 768px, `lg` 1024px, `xl` 1280px, `cq` container query. A variant exists only if classes.json lists it in that class's `variants` array. `flex` has all five. `grid-cols-2` has `sm`, `md`, `lg`, `cq` but not `xl`.
+Variants are written `<variant>:<name>`, for example `md:grid-cols-2`, `cq-md:grid-cols-3` or `hover:surface-1`.
+
+| Variant | Fires when |
+|---|---|
+| `sm:` `md:` `lg:` `xl:` `2xl:` | viewport is at least 640, 768, 1024, 1280, 1536px |
+| `cq-sm:` `cq-md:` `cq-lg:` | nearest `cq` or `cq-inline` ancestor is at least 380, 600, 900px |
+| `hover:` `focus:` `focus-visible:` `active:` `disabled:` | the element is in that interaction state |
+| `group-hover:` | an ancestor carrying `group` is hovered |
+| `dark:` `print:` `motion-safe:` `motion-reduce:` | `data-ai-theme="dark"`, print media, or the motion preference |
+| `first:` `last:` `odd:` `even:` | position among siblings |
+
+A variant exists only if classes.json lists it in that class's `variants` array.
+
+Spacing and sizing steps: `0`, `px`, `0.5`, `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `14`, `16`, `20`, `24`, `28`, `32`, `36`, `40`, `48`, `56`, `64`, `72`, `80`, `96`.
 
 ## Every state class
 
@@ -77,9 +90,9 @@ The author writes these in static markup; the runtime sets the same classes at r
 | `is-auto` | `.marquee`, `.marquee-track` |
 | `is-centered` | `.hero`, `.hero-actions`, `.hero-lead` |
 | `is-collapsed` | `.sidebar`, `.sidebar-badge`, `.sidebar-icon`, `.sidebar-item`, `.sidebar-section-title` |
-| `is-completed` | `.checklist-item`, `.checklist-label`, `.checklist-mark`, `.order-pip`, `.order-step`, `.step-circle`, `.step-item` |
+| `is-completed` | `.checklist-item`, `.checklist-label`, `.checklist-mark`, `.orderline-pip`, `.orderline-step`, `.step-circle`, `.step-item` |
 | `is-credit` | `.checkout-value` |
-| `is-current` | `.breadcrumb-item`, `.order-label`, `.order-pip`, `.order-step` |
+| `is-current` | `.breadcrumb-item`, `.orderline-label`, `.orderline-pip`, `.orderline-step` |
 | `is-danger` | `.cost-mark`, `.dropdown-item` |
 | `is-disabled` | `.list-group-item`, `.pagination-link` |
 | `is-done` | `.run-header`, `.run-timer`, `.status-pip` |
@@ -105,7 +118,7 @@ The author writes these in static markup; the runtime sets the same classes at r
 | `is-trailing` | `.input`, `.input-icon`, `.input-icon-wrap` |
 | `is-unread` | `.inbox-item`, `.inbox-title`, `.notification-item` |
 | `is-up` | `.kpi-trend` |
-| `is-upcoming` | `.order-label`, `.order-pip`, `.order-step` |
+| `is-upcoming` | `.orderline-label`, `.orderline-pip`, `.orderline-step` |
 | `is-visible` | `.password`, `.password-toggle` |
 | `is-warn` | `.cost-mark` |
 
@@ -245,10 +258,10 @@ Scrollspy: `nav.scrollspy` with an optional `data-ai-scrollspy-root="#pane"`, co
 
 ## Container queries over breakpoints
 
-When a component sits inside a sidebar, drawer, or dashboard widget of variable width, make the wrapper a container and use `cq:` variants instead of viewport breakpoints.
+When a component sits inside a sidebar, drawer, or dashboard widget of variable width, make the wrapper a container and use the `cq-sm:`, `cq-md:` and `cq-lg:` variants instead of viewport breakpoints. They fire at 380px, 600px and 900px of the nearest `cq` or `cq-inline` ancestor.
 
 ```html
-<div class="cq grid cq:grid-cols-2 cq:gap-4">
+<div class="cq grid cq-sm:grid-cols-2 cq-sm:gap-4">
   <div class="kpi-card">...</div>
   <div class="kpi-card">...</div>
 </div>
@@ -298,7 +311,7 @@ The full list is in [AGENTS.md](../AGENTS.md). The two that agents break most of
 
 ## Pro
 
-Ids carrying `tier: "pro"` in `registry.json` or `templates.json`, shown as `[PRO]` by `npx llmcss list` and `npx llmcss templates`, need a token: `npx llmcss login <token>`, then `npx llmcss add <id>` or `npx llmcss template get <id>`. Pro covers themed section templates (`themed-*`), page kits (`kit-*`), and three themed composed blocks. Everything else is MIT, including the command palette, cart drawer, agent chrome, bento heroes, and pricing matrix. Never write Pro markup from memory; fetch it.
+Ids carrying `tier: "pro"` in `templates.json`, shown as `[PRO]` by `npx llmcss templates`, need a token: `npx llmcss login <token>`, then `npx llmcss template get <id>` or `npx llmcss template blueprint <id>`. Pro covers themed section templates (`themed-*`) and page kits (`kit-*`) only. `registry.json` carries no Pro ids: every component is MIT, including the command palette, cart drawer, agent chrome, bento heroes, and pricing matrix, so `npx llmcss add` and `npx llmcss list` never need a token. Never write Pro markup from memory; fetch it.
 
 ## Anti-slop laws
 

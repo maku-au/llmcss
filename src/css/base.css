@@ -1,4 +1,9 @@
 @layer base {
+  /* Lets a width-only `border` utility compose with the border-* colour utilities in either order. */
+  *, ::before, ::after {
+    border-color: var(--ai-border);
+  }
+
   html, body {
     max-width: 100vw;
     overflow-x: clip;

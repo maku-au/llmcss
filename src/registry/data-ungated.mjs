@@ -156,7 +156,7 @@ export const ungatedById = {
       </div>
       <div class="chat-body">
         <p>Yes. Wrap the card in <code>.cq</code> and let the container query variants size it, with no breakpoint media queries.</p>
-        <pre class="code-block"><code>&lt;div class="cq grid cq:grid-cols-2 cq:gap-4"&gt;
+        <pre class="code-block"><code>&lt;div class="cq grid cq-sm:grid-cols-2 cq-sm:gap-4"&gt;
   &lt;div class="kpi-card"&gt;...&lt;/div&gt;
 &lt;/div&gt;</code></pre>
         <p class="chat-note">One column in a narrow rail, two in the main canvas, measured against the card's own width.</p>

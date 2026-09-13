@@ -9,11 +9,11 @@ Components, section templates and page blueprints are addressable by id.
 An optional one-file runtime adds modal, drawer, dropdown, accordion, tabs, toast and command palette behavior. Everything else is CSS only.
 
 [stats:start]
-Classes: 1407 classes across 40 families, https://llmcss.io/classes.json.
-Tokens: 82 --ai-* custom properties, https://llmcss.io/tokens.json.
+Classes: 2312 classes across 40 families, https://llmcss.io/classes.json.
+Tokens: 107 --ai-* custom properties, https://llmcss.io/tokens.json.
 States: 36 is-* classes, https://llmcss.io/states.json.
-Components: 125 (122 free, 3 themed Pro): 54 primitive, 44 application, 22 marketing, 5 ecommerce.
-Section templates: 26 (18 free wireframe, 8 themed Pro).
+Components: 122, all MIT: 54 primitive, 42 application, 21 marketing, 5 ecommerce.
+Section templates: 29 (18 free wireframe, 11 themed Pro).
 Page blueprints: 6 (4 free, 2 Pro).
 [stats:end]
 
@@ -53,10 +53,10 @@ classes.json, https://llmcss.io/classes.json: every class that exists, no prefix
 
 [classes-json:start]
 ```json
-{ "version": "0.1.0", "generatedAt": "2026-09-13T03:30:05.800Z",
-  "note": "Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the responsive (sm 640px, md 768px, lg 1024px, xl 1280px) and container-query (cq) prefixes that exist for the class, written as md:name. Nothing outside this list exists; do not invent classes.",
-  "stats": { "total": 1407, "families": { "spacing": 240, "agent-extra": 120, "interaction": 102, "sizing": 94 } },
-  "classes": [ { "class": "gap-4", "family": "spacing", "file": "utilities.css", "variants": [ "cq", "md", "sm" ] } ] }
+{ "version": "0.1.0", "generatedAt": "2026-09-13T04:08:34.688Z",
+  "note": "Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the prefixes that exist for the class, written as md:name: responsive (sm 640px, md 768px, lg 1024px, xl 1280px, 2xl 1536px), container-query against the nearest cq or cq-inline ancestor (cq-sm 380px, cq-md 600px, cq-lg 900px), and state (hover, focus, focus-visible, active, disabled, group-hover, dark, print, motion-reduce, first, last, odd, even). A bare cq: prefix no longer exists. Nothing outside this list exists; do not invent classes.",
+  "stats": { "total": 2312, "families": { "spacing": 692, "interaction": 188, "sizing": 175, "agent-extra": 120 } },
+  "classes": [ { "class": "gap-4", "family": "spacing", "file": "utilities.css", "variants": [ "2xl", "cq-lg", "cq-md", "cq-sm", "lg", "md", "sm", "xl" ] } ] }
 ```
 [classes-json:end]
 
@@ -64,7 +64,7 @@ tokens.json, https://llmcss.io/tokens.json: every `--ai-*` custom property with 
 
 [tokens-json:start]
 ```json
-{ "stats": { "total": 82, "componentTokens": 26 },
+{ "stats": { "total": 107, "componentTokens": 26 },
   "tokens": [ { "token": "--ai-accent",
     "values": { "light": "#2563eb", "dark": "#3b82f6", "obsidian": "#18181b", "obsidian:dark": "#f5f5f5", "editorial": "#8c4a27", "editorial:dark": "#c48259" } } ] }
 ```
@@ -79,17 +79,17 @@ states.json, https://llmcss.io/states.json: every `is-*` state class with the co
     "on": "button", "appliedBy": "author", "purpose": "Runtime toggle. modal and drawer need data-ai-target." } ] }
 ```
 
-registry.json, https://llmcss.io/registry.json: the component catalog. Free entries carry their full `html`; themed Pro entries are locked.
+registry.json, https://llmcss.io/registry.json: the component catalog. Every entry is free and MIT and carries its full `html`; `stats.pro` is 0.
 
 [registry-json:start]
 ```json
-{ "stats": { "total": 125, "free": 122, "pro": 3,
-    "categories": { "primitive": 54, "application": 44, "marketing": 22, "ecommerce": 5 } },
+{ "stats": { "total": 122, "free": 122, "pro": 0,
+    "categories": { "primitive": 54, "application": 42, "marketing": 21, "ecommerce": 5 } },
   "components": [ { "id": "btn-variants", "name": "Button Variants", "description": "High-craft buttons across solid primary,...", "category": "primitive", "tier": "free", "tags": [ "button", "action" ], "html": "<div class=\"flex flex-wr..." } ] }
 ```
 [registry-json:end]
 
-r/{id}.json, https://llmcss.io/r/btn-variants.json: one free component, the same object as its `registry.json` entry. It exists for free ids only.
+r/{id}.json, https://llmcss.io/r/btn-variants.json: one component, the same object as its `registry.json` entry. Every component id has one.
 
 ```json
 { "id": "btn-variants", "name": "Button Variants", "description": "High-craft buttons.",
@@ -97,7 +97,7 @@ r/{id}.json, https://llmcss.io/r/btn-variants.json: one free component, the same
   "html": "<div class=\"flex flex-wrap gap-3\">...</div>" }
 ```
 
-r/pro/{id}.json, https://llmcss.io/r/pro/themed-hero-obsidian.json: themed Pro markup (section, kit, or composed block), gated by a subscription token sent as a Bearer header. On success the body has the same shape as a free entry plus an optional `css` string to link after `llmcss.css`.
+r/pro/{id}.json, https://llmcss.io/r/pro/themed-hero-obsidian.json: themed Pro markup (section template or page kit), gated by a subscription token sent as a Bearer header. On success the body has the same shape as a free entry plus an optional `css` string to link after `llmcss.css`.
 
 ```bash
 curl -H "Authorization: Bearer llmcss_live_..." https://llmcss.io/r/pro/themed-hero-obsidian.json
@@ -107,8 +107,8 @@ templates.json, https://llmcss.io/templates.json: the wireframe section template
 
 [templates-json:start]
 ```json
-{ "stats": { "totalTemplates": 26, "freeTemplates": 18, "proTemplates": 8, "totalBlueprints": 6,
-    "sections": { "header": 4, "hero": 4, "social-proof": 2, "features": 4, "comparison": 1, "pricing": 2, "faq": 1, "cta": 2, "footer": 2, "app-shell": 4 } },
+{ "stats": { "totalTemplates": 29, "freeTemplates": 18, "proTemplates": 11, "totalBlueprints": 6,
+    "sections": { "header": 5, "hero": 4, "social-proof": 2, "features": 4, "comparison": 1, "pricing": 2, "faq": 1, "cta": 2, "footer": 2, "app-shell": 6 } },
   "wireframeTemplates": [ { "id": "wireframe-nav-minimal", "name": "Minimal Navigation Bar", "section": "header", "tier": "free", "tags": [ "nav" ], "placement": "Top of Page (Above Fold)", "guidance": { "placement": "...", "bestUsedFor": "...", "avoidWhen": "...", "pairsWith": [ "..." ] }, "html": "<header class=\"navbar\" r..." } ],
   "pageBlueprints": [ { "id": "saas-landing", "name": "High-Conversion SaaS Landing Page", "description": "...", "recommendedFor": "...", "sections": [ "wireframe-nav-minimal", "wireframe-hero-split" ] } ] }
 ```
@@ -166,10 +166,11 @@ For modal, drawer and command palette the runtime guarantees:
 
 ### Pro contract
 
-- A Pro component's `registry.json` entry has `tier: "pro"`, `locked: true` and `html: null`. Its `previewHtml` is an upsell card, not the component.
-- `npx llmcss add <pro-id>` with no stored token prints a subscribe and login hint, then exits 1.
+- Pro is themed section templates and page kits. The component catalog holds none: no `registry.json` entry carries `tier: "pro"`, and `npx llmcss add` never needs a token.
+- A Pro section or kit has `tier: "pro"`, `locked: true` and `html: null` in `templates.json`. Its `previewHtml` is an upsell card, not the section.
+- `npx llmcss template get <pro-id>` or `npx llmcss template blueprint <pro-kit>` with no stored token prints a subscribe and login hint, then exits 1.
 - After `npx llmcss login <token>` the CLI fetches `GET /r/pro/{id}.json` with `Authorization: Bearer <token>`.
-- The MCP tool `get_component_markup` on a Pro id without a token returns `{ locked: true, html: null, message }`.
+- The MCP tools `get_wireframe_template` and `get_page_blueprint` on a Pro id without a token return `{ locked: true, html: null, message }`.
 - Never write Pro markup from memory. It is not in the public catalog and any guess will be wrong.
 
 ## 5. Page skeleton
@@ -353,17 +354,28 @@ Dark mode activates only when you set `data-ai-theme="dark"`. LLMCSS contains no
 Only the classes in classes.json exist.
 
 [families:start]
-Family sizes, largest first: spacing 240, agent-extra 120, interaction 102, sizing 94, grid 87, marketing 75, flex 65, typography 50, utilities 44, dashboard 43, extras 40, animations 33, forms-extra 31, application 29, badges 28, commerce-extra 28, position 26, navigation 24, borders 22, effects 22, chat 19, layout 16, cards 13, drawers 13, inputs 13, base 12, tables 12, toasts 12, buttons 11, modals 11, ecommerce 10, command 9, scrollspy 9, display 8, themes 7, accordions 6, alerts 6, cart 6, dropdowns 6, tabs 5.
+Family sizes, largest first: spacing 692, interaction 188, sizing 175, agent-extra 120, position 114, typography 108, grid 107, flex 81, marketing 75, borders 70, layout 63, effects 55, dashboard 43, extras 40, animations 33, forms-extra 31, application 29, badges 28, commerce-extra 28, navigation 24, chat 19, display 19, cards 13, drawers 13, inputs 13, base 12, tables 12, toasts 12, buttons 11, modals 11, ecommerce 10, command 9, scrollspy 9, utilities 9, themes 7, accordions 6, alerts 6, cart 6, dropdowns 6, tabs 5.
 [families:end]
 
-- Grid: `grid`, `grid-cols-1` to `grid-cols-12`, `col-span-*`, `grid-auto-fit` with `grid-min-xs|sm|md|lg`, `subgrid-rows`, `subgrid-cols`.
+- Grid: `grid`, `grid-cols-1` to `grid-cols-12`, `col-span-*`, `grid-auto-fit` with `grid-min-xs|sm|md|lg`, `grid-cols-subgrid`, `grid-rows-subgrid`.
 - Flex: `flex`, `flex-col`, `flex-wrap`, `items-*`, `justify-*`, `self-*`, `order-*`, `grow`, `shrink`.
 - Spacing: `p-*`, `px-*`, `m-*`, `mx-*`, `gap-*` on the token scale above, plus negative margins `-m-1` to `-m-4` and logical mirrors `ps-*`, `ms-*`.
 - Sizing: `w-*` and `h-*` on the same numeric scale, fractions such as `w-1/2`, plus `size-*`, `max-w-xs` to `max-w-6xl`, `max-w-prose`.
 - Typography: `text-xs` to `text-7xl`, `font-light` to `font-bold`, `leading-*`, `tracking-*`, `truncate`, `line-clamp-1|2|3`, `text-balance`, `text-pretty`.
-- Position, effects, interaction: `relative`, `absolute`, `sticky`, `inset-0`, `z-0` to `z-50`, `shadow-*`, `opacity-*`, `overflow-*`, `transition`, `cursor-*`, `select-none`, `sr-only`.
+- Position, effects, interaction: `relative`, `absolute`, `sticky`, `inset-0`, `z-0` to `z-50`, `shadow-*`, `opacity-*`, `overflow-*`, `transition`, `cursor-*`, `user-select-none`, `sr-only`.
 
-Responsive prefixes: exactly five exist, `sm:` (640px), `md:` (768px), `lg:` (1024px), `xl:` (1280px) and `cq:` (container query, needs a `.cq` ancestor). They are not generated for every class. Each classes.json entry lists the variants that exist for that class in its `variants` array, and nothing else resolves: `gap-4` has `["cq", "md", "sm"]`, so `md:gap-4` works while the `xl` form of that same class does not exist.
+Variants are written `<variant>:<class>`, for example `md:grid-cols-2`, `cq-md:grid-cols-3`, `hover:surface-1`.
+
+  Breakpoints    `sm:` `md:` `lg:` `xl:` `2xl:`                       viewport >= 640, 768, 1024, 1280, 1536px
+  Container      `cq-sm:` `cq-md:` `cq-lg:`                            nearest `cq` or `cq-inline` ancestor >= 380, 600, 900px
+  Interaction    `hover:` `focus:` `focus-visible:` `active:` `disabled:`  the element is in that state
+  Group          `group-hover:`                                       an ancestor carrying `group` is hovered
+  Media          `dark:` `print:` `motion-safe:` `motion-reduce:`      `data-ai-theme="dark"`, print media, motion preference
+  Structural     `first:` `last:` `odd:` `even:`                       position among siblings
+
+They are not generated for every class. Each classes.json entry lists the variants that exist for that class in its `variants` array, and nothing else resolves.
+
+Spacing and sizing steps: `0`, `px`, `0.5`, `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `14`, `16`, `20`, `24`, `28`, `32`, `36`, `40`, `48`, `56`, `64`, `72`, `80`, `96`.
 
 Variable escape hatches: eleven utilities read a local variable instead of a fixed value, for the cases the scale does not cover. Set the variable inline.
 

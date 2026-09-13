@@ -5,11 +5,11 @@
 LLMCSS is a pure-CSS component library plus generated manifests that tell an agent exactly which classes and tokens exist.
 
 [stats:start]
-Classes: 1407 classes across 40 families, https://llmcss.io/classes.json.
-Tokens: 82 --ai-* custom properties, https://llmcss.io/tokens.json.
+Classes: 2312 classes across 40 families, https://llmcss.io/classes.json.
+Tokens: 107 --ai-* custom properties, https://llmcss.io/tokens.json.
 States: 36 is-* classes, https://llmcss.io/states.json.
-Components: 125 (122 free, 3 themed Pro): 54 primitive, 44 application, 22 marketing, 5 ecommerce.
-Section templates: 26 (18 free wireframe, 8 themed Pro).
+Components: 122, all MIT: 54 primitive, 42 application, 21 marketing, 5 ecommerce.
+Section templates: 29 (18 free wireframe, 11 themed Pro).
 Page blueprints: 6 (4 free, 2 Pro).
 [stats:end]
 
@@ -30,12 +30,26 @@ Pin a release with the versioned path: https://llmcss.io/v/0.4.0/llmcss.css (ser
 
 ## Machine-readable manifests, generated from the CSS
 
-- https://llmcss.io/classes.json : every class, no prefix, with its family and the responsive (`sm:`, `md:`, `lg:`, `xl:`) and container-query (`cq:`) variants that exist for it. If a class is not in this file, it does not exist.
+- https://llmcss.io/classes.json : every class, no prefix, with its family and the variants that exist for it. If a class is not in this file, it does not exist.
 - https://llmcss.io/tokens.json : every `--ai-*` token with its value in light, dark, each skin, and each focus preset.
 - https://llmcss.io/states.json : every `is-*` state class, plus every `data-ai-*` attribute with allowed values and whether the author or the runtime applies it.
 - https://llmcss.io/registry.json and https://llmcss.io/r/{id}.json : component catalog and free component HTML.
 - https://llmcss.io/templates.json : wireframe section templates and page blueprints.
 - MCP tools `list_classes`, `list_tokens`, `list_states` return the same data.
+
+## Variants
+
+Written `<variant>:<class>`, for example `md:grid-cols-2`, `cq-md:grid-cols-3`, `hover:surface-1`.
+
+  Breakpoints    `sm:` `md:` `lg:` `xl:` `2xl:`                          viewport >= 640, 768, 1024, 1280, 1536px
+  Container      `cq-sm:` `cq-md:` `cq-lg:`                               nearest `cq` or `cq-inline` ancestor >= 380, 600, 900px
+  Interaction    `hover:` `focus:` `focus-visible:` `active:` `disabled:`   the element is in that state
+  Group          `group-hover:`                                          an ancestor carrying `group` is hovered
+  Media          `dark:` `print:` `motion-safe:` `motion-reduce:`          `data-ai-theme="dark"`, print media, motion preference
+  Structural     `first:` `last:` `odd:` `even:`                          position among siblings
+
+A variant exists for a class only when classes.json lists it in that class's `variants` array.
+Spacing and sizing steps: `0`, `px`, `0.5`, `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `14`, `16`, `20`, `24`, `28`, `32`, `36`, `40`, `48`, `56`, `64`, `72`, `80`, `96`.
 
 ## Runtime
 
@@ -50,7 +64,7 @@ Load the script once per page when you use `data-ai-toggle="modal|drawer|dropdow
 
 ## Pro
 
-Pro is themed templates, page kits, and a few themed composed blocks. Former Pro components are MIT with full HTML in `registry.json`. Remaining Pro ids have `locked: true` and `html: null`; no file exists at `/r/{id}.json`. Real markup comes from `GET https://llmcss.io/r/pro/{id}.json` with `Authorization: Bearer <token>`. `npx llmcss add <pro-id>` and `npx llmcss template get <pro-id>` exit 1 with a login hint until `npx llmcss login <token>` has stored a token. Never write Pro markup from memory.
+Pro is themed section templates and page kits. The component catalog is entirely MIT with full HTML in `registry.json`; no component carries `tier: "pro"`. Pro ids appear in `templates.json` only, with `locked: true` and `html: null`. Real markup comes from `GET https://llmcss.io/r/pro/{id}.json` with `Authorization: Bearer <token>`. `npx llmcss template get <pro-id>` and `npx llmcss template blueprint <pro-kit>` exit 1 with a login hint until `npx llmcss login <token>` has stored a token. Never write Pro markup from memory.
 
 ## Anti-slop laws
 

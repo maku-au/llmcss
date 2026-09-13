@@ -1,6 +1,5 @@
 import { extraComponents } from './data-extra.mjs';
 import { ungatedById } from './data-ungated.mjs';
-import { themedComponents } from './themed-data.mjs';
 
 const baseComponents = [
   /* ==========================================================================
@@ -2301,4 +2300,4 @@ npx llmcss add kbd-shortcuts</code></pre>`,
   ungatedById['run-status-header'],
 ];
 
-export const components = [...baseComponents, ...extraComponents, ...themedComponents];
+export const components = [...baseComponents, ...extraComponents];

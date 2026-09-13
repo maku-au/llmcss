@@ -974,6 +974,24 @@
    ]
   },
   {
+   "name": "--ai-space-0-5",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `0.125rem`"
+   },
+   "values": [
+    {
+     "name": "0.125rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
    "name": "--ai-space-1",
    "description": {
     "kind": "markdown",
@@ -982,6 +1000,24 @@
    "values": [
     {
      "name": "0.25rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-1-5",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `0.375rem`"
+   },
+   "values": [
+    {
+     "name": "0.375rem"
     }
    ],
    "references": [
@@ -1010,6 +1046,24 @@
    ]
   },
   {
+   "name": "--ai-space-11",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `2.75rem`"
+   },
+   "values": [
+    {
+     "name": "2.75rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
    "name": "--ai-space-12",
    "description": {
     "kind": "markdown",
@@ -1018,6 +1072,24 @@
    "values": [
     {
      "name": "3rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-14",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `3.5rem`"
+   },
+   "values": [
+    {
+     "name": "3.5rem"
     }
    ],
    "references": [
@@ -1064,6 +1136,24 @@
    ]
   },
   {
+   "name": "--ai-space-2-5",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `0.625rem`"
+   },
+   "values": [
+    {
+     "name": "0.625rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
    "name": "--ai-space-20",
    "description": {
     "kind": "markdown",
@@ -1100,6 +1190,24 @@
    ]
   },
   {
+   "name": "--ai-space-28",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `7rem`"
+   },
+   "values": [
+    {
+     "name": "7rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
    "name": "--ai-space-3",
    "description": {
     "kind": "markdown",
@@ -1108,6 +1216,24 @@
    "values": [
     {
      "name": "0.75rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-3-5",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `0.875rem`"
+   },
+   "values": [
+    {
+     "name": "0.875rem"
     }
    ],
    "references": [
@@ -1136,6 +1262,24 @@
    ]
   },
   {
+   "name": "--ai-space-36",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `9rem`"
+   },
+   "values": [
+    {
+     "name": "9rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
    "name": "--ai-space-4",
    "description": {
     "kind": "markdown",
@@ -1144,6 +1288,42 @@
    "values": [
     {
      "name": "1rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-40",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `10rem`"
+   },
+   "values": [
+    {
+     "name": "10rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-48",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `12rem`"
+   },
+   "values": [
+    {
+     "name": "12rem"
     }
    ],
    "references": [
@@ -1172,6 +1352,24 @@
    ]
   },
   {
+   "name": "--ai-space-56",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `14rem`"
+   },
+   "values": [
+    {
+     "name": "14rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
    "name": "--ai-space-6",
    "description": {
     "kind": "markdown",
@@ -1190,6 +1388,60 @@
    ]
   },
   {
+   "name": "--ai-space-64",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `16rem`"
+   },
+   "values": [
+    {
+     "name": "16rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-7",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `1.75rem`"
+   },
+   "values": [
+    {
+     "name": "1.75rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-72",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `18rem`"
+   },
+   "values": [
+    {
+     "name": "18rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
    "name": "--ai-space-8",
    "description": {
     "kind": "markdown",
@@ -1198,6 +1450,78 @@
    "values": [
     {
      "name": "2rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-80",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `20rem`"
+   },
+   "values": [
+    {
+     "name": "20rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-9",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `2.25rem`"
+   },
+   "values": [
+    {
+     "name": "2.25rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-96",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `24rem`"
+   },
+   "values": [
+    {
+     "name": "24rem"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-space-px",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `1px`"
+   },
+   "values": [
+    {
+     "name": "1px"
     }
    ],
    "references": [
@@ -1468,6 +1792,132 @@
    "values": [
     {
      "name": "rgba(234, 88, 12, 0.1)"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-z-base",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `0`"
+   },
+   "values": [
+    {
+     "name": "0"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-z-dropdown",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `20`"
+   },
+   "values": [
+    {
+     "name": "20"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-z-modal",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `50`"
+   },
+   "values": [
+    {
+     "name": "50"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-z-overlay",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `40`"
+   },
+   "values": [
+    {
+     "name": "40"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-z-raised",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `10`"
+   },
+   "values": [
+    {
+     "name": "10"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-z-sticky",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `30`"
+   },
+   "values": [
+    {
+     "name": "30"
+    }
+   ],
+   "references": [
+    {
+     "name": "tokens.json",
+     "url": "https://llmcss.io/tokens.json"
+    }
+   ]
+  },
+  {
+   "name": "--ai-z-toast",
+   "description": {
+    "kind": "markdown",
+    "value": "LLMCSS design token. Override it on `:root` or on any container.\n\n- `light`: `60`"
+   },
+   "values": [
+    {
+     "name": "60"
     }
    ],
    "references": [

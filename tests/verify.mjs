@@ -53,7 +53,7 @@ console.log('\n2. Testing CLI Commands (list, search, info)...');
 const listOut = execSync('node bin/cssai.mjs list', { encoding: 'utf-8' });
 assert(listOut.includes('LLMCSS Component Catalog'), 'CLI list failed');
 assert(listOut.includes('[FREE]'), 'CLI missing FREE tags');
-assert(listOut.includes('[PRO]'), 'CLI missing PRO tags');
+assert(!listOut.includes('[PRO]'), 'CLI component list must carry no PRO tags');
 assert(listOut.includes('animated-loaders'), 'CLI missing animated-loaders');
 assert(listOut.includes('bento-editorial-pro'), 'CLI missing bento-editorial-pro');
 console.log('✓ CLI `llmcss list` passed.');
@@ -127,7 +127,13 @@ assert(mcpOutput.includes('Pulsing Status Dots'), 'MCP cssai_slop_audit failed t
 console.log('✓ Stdio MCP server passed JSON-RPC initialization, tool discovery, harness retrieval, and slop audit.');
 
 // Test 5: Pro Gate Verification
+// The component catalog is entirely MIT: Pro is themed section templates and
+// page kits, so the gate is on `template get`, never on `add`.
 console.log('\n5. Testing Monetization Pro Gate in CLI...');
+assert(
+  components.filter((c) => c.tier === 'pro').length === 0,
+  'The component catalog must contain zero Pro components'
+);
 const tmpAdd = fs.mkdtempSync(path.join(os.tmpdir(), 'llmcss-add-'));
 try {
   execSync(`node ${path.resolve('bin/cssai.mjs')} add bento-editorial-pro`, {
@@ -139,27 +145,51 @@ try {
   assert(fs.existsSync(outFile), 'Expected former Pro component to install without a token');
   const html = fs.readFileSync(outFile, 'utf-8');
   assert(!html.includes('Unlock Pro'), 'Former Pro markup should not be the locked card');
-  console.log('✓ CLI installs former Pro components without a license.');
+  console.log('✓ CLI installs every component without a license.');
 } finally {
   fs.rmSync(tmpAdd, { recursive: true, force: true });
 }
-try {
-  execSync('node bin/cssai.mjs add themed-editorial-article-header', { encoding: 'utf-8', stdio: 'pipe' });
-  assert.fail('Expected themed Pro installation without license to fail');
-} catch (err) {
-  assert(err.status === 1, 'Expected exit code 1 on unlicensed themed Pro install');
-  const msg = String(err.stderr || err.stdout || '');
-  assert(/PRO/i.test(msg), 'Unlicensed themed add should mention Pro');
-  console.log('✓ CLI correctly blocked unlicensed themed Pro installation.');
+// A dedicated empty HOME, so a token stored on the build box cannot make the
+// unlicensed half of this test hit the network and pass for the wrong reason.
+const tmpHome = fs.mkdtempSync(path.join(os.tmpdir(), 'llmcss-home-'));
+const noToken = { ...process.env, HOME: tmpHome, USERPROFILE: tmpHome, LLMCSS_TOKEN: '', CSSAI_API_KEY: '' };
+for (const movedId of [
+  'themed-editorial-article-header',
+  'themed-fintech-ledger-row',
+  'themed-obsidian-status-rail',
+]) {
+  assert(!components.some((c) => c.id === movedId), `${movedId} must not be a component`);
+  const asSection = wireframeTemplates.find((t) => t.id === movedId);
+  assert(asSection && asSection.tier === 'pro' && asSection.kind === 'themed', `${movedId} must be a themed Pro section`);
+  try {
+    execSync(`node bin/cssai.mjs add ${movedId}`, { encoding: 'utf-8', stdio: 'pipe' });
+    assert.fail(`Expected \`add ${movedId}\` to fail`);
+  } catch (err) {
+    assert(err.status === 1, `Expected exit code 1 on \`add ${movedId}\``);
+    assert(/template get/.test(String(err.stderr || err.stdout || '')), `\`add ${movedId}\` should point at \`template get\``);
+  }
+  try {
+    execSync(`node bin/cssai.mjs template get ${movedId}`, { encoding: 'utf-8', stdio: 'pipe', env: noToken });
+    assert.fail(`Expected unlicensed \`template get ${movedId}\` to fail`);
+  } catch (err) {
+    assert(err.status === 1, 'Expected exit code 1 on unlicensed themed template get');
+    assert(/PRO/i.test(String(err.stderr || err.stdout || '')), 'Unlicensed themed template get should mention Pro');
+  }
 }
+fs.rmSync(tmpHome, { recursive: true, force: true });
+console.log('✓ Zero Pro components; CLI routes themed Pro ids to the gated template path.');
 
 // Test 6: CSS Engine Modern Capabilities (Container Queries & Animations)
 console.log('\n6. Testing CSS Architecture (Container Queries & Motion Tokens)...');
-const utilitiesCss = fs.readFileSync('src/css/utilities.css', 'utf-8');
+// The utilities layer is two files now: the generated matrix plus the
+// hand-written keepers in utilities.extra.css. Assert against the pair.
+const utilitiesCss =
+  fs.readFileSync('src/css/utilities.css', 'utf-8') +
+  fs.readFileSync('src/css/utilities.extra.css', 'utf-8');
 assert(utilitiesCss.includes('.cq'), 'Missing .cq in utilities.css');
 assert(utilitiesCss.includes('@container'), 'Missing @container in utilities.css');
 assert(utilitiesCss.includes('.grid-auto-fit'), 'Missing .grid-auto-fit in utilities.css');
-assert(utilitiesCss.includes('.subgrid-rows'), 'Missing .subgrid-rows in utilities.css');
+assert(utilitiesCss.includes('.grid-rows-subgrid'), 'Missing .grid-rows-subgrid in utilities.css');
 
 const animationsCss = fs.readFileSync('src/css/animations.css', 'utf-8');
 assert(animationsCss.includes('.spinner'), 'Missing .spinner in animations.css');
@@ -176,7 +206,7 @@ assert(fs.existsSync('public/registry.json'), 'Missing public/registry.json');
 const registryJson = JSON.parse(fs.readFileSync('public/registry.json', 'utf-8'));
 assert(registryJson.stats.total === components.length, 'Registry JSON total mismatch');
 assert(registryJson.stats.pro === components.filter((c) => c.tier === 'pro').length, 'Registry JSON pro count mismatch');
-assert(registryJson.stats.pro >= 3, 'Registry JSON should list themed Pro components');
+assert(registryJson.stats.pro === 0, 'Registry JSON must list zero Pro components');
 const bento = components.find((c) => c.id === 'bento-editorial-pro');
 assert(bento && bento.tier === 'free', 'bento-editorial-pro should be free');
 const split = components.find((c) => c.id === 'split-pane');
@@ -364,7 +394,7 @@ assert(fs.existsSync(templatesJsonPath), 'Missing public/templates.json');
 const templatesJson = JSON.parse(fs.readFileSync(templatesJsonPath, 'utf-8'));
 assert(templatesJson.wireframeTemplates.length === wireframeTemplates.length, 'templates.json has wrong template count');
 assert(templatesJson.pageBlueprints.length === pageBlueprints.length, 'templates.json has wrong blueprint count');
-assert(templatesJson.stats.proTemplates === 8, 'templates.json should list 8 themed Pro sections');
+assert(templatesJson.stats.proTemplates === 11, 'templates.json should list 11 themed Pro sections');
 const lockedTpl = templatesJson.wireframeTemplates.find((t) => t.id === 'themed-hero-obsidian');
 assert(lockedTpl && lockedTpl.locked === true && lockedTpl.html === null, 'Themed templates must be locked in templates.json');
 console.log(`✓ Verified ${wireframeTemplates.length} section templates, ${pageBlueprints.length} blueprints, placement guidance schema, and public/templates.json.`);
@@ -502,7 +532,9 @@ console.log('✓ Verified 0 square grid background patterns across codebase and 
 // Test 19: Layout Utilities & Bootstrap / Tailwind Parity Verification
 console.log('\n19. Testing Layout Utilities, Helpers & Ecosystem Rail...');
 {
-  const utilitiesCss = fs.readFileSync(path.resolve('src/css/utilities.css'), 'utf-8');
+  const utilitiesCss =
+    fs.readFileSync(path.resolve('src/css/utilities.css'), 'utf-8') +
+    fs.readFileSync(path.resolve('src/css/utilities.extra.css'), 'utf-8');
   const tokensCss = fs.readFileSync(path.resolve('src/css/tokens.css'), 'utf-8');
   const indexHtml = fs.readFileSync(path.resolve('index.html'), 'utf-8');
 
@@ -557,14 +589,14 @@ console.log('\n19. Testing Layout Utilities, Helpers & Ecosystem Rail...');
   assert(utilitiesCss.includes('.truncate'), 'Missing .truncate in utilities.css');
   assert(utilitiesCss.includes('.line-clamp-2'), 'Missing .line-clamp-2 in utilities.css');
   assert(utilitiesCss.includes('.pointer-events-none'), 'Missing .pointer-events-none in utilities.css');
-  assert(utilitiesCss.includes('.select-none'), 'Missing .select-none in utilities.css');
+  assert(utilitiesCss.includes('.user-select-none'), 'Missing .user-select-none in utilities.css');
   assert(utilitiesCss.includes('.contents'), 'Missing .contents in utilities.css');
 
   // 7. Responsive & Container Query column spans
   assert(utilitiesCss.includes('.sm\\:col-span-6'), 'Missing .sm:col-span-6 in utilities.css');
   assert(utilitiesCss.includes('.md\\:col-span-6'), 'Missing .md:col-span-6 in utilities.css');
   assert(utilitiesCss.includes('.lg\\:col-span-4'), 'Missing .lg:col-span-4 in utilities.css');
-  assert(utilitiesCss.includes('.cq\\:col-span-2'), 'Missing .cq:col-span-2 in utilities.css');
+  assert(utilitiesCss.includes('.cq-sm\\:col-span-2'), 'Missing .cq-sm:col-span-2 in utilities.css');
 
   // 8. Ecosystem rail in index.html is unboxed
   assert(indexHtml.includes('class="docs-ecosystem-item"'), 'Missing .docs-ecosystem-item in index.html');

@@ -1,0 +1,309 @@
+/* ==========================================================================
+   Hand-written utilities.
+
+   The generated matrix lives in utilities.css and is produced by
+   src/registry/build-utilities.mjs from src/css/utilities.spec.mjs. Everything
+   here is a rule that matrix cannot express, plus the two additions the design
+   called for (prose, and the transition defaults).
+
+   The machine-readable list of what belongs here is the `keepList` export in
+   utilities.spec.mjs. build-utilities --check fails if a class appears both
+   here and in the generated matrix, so add a class in one place only.
+
+   Imported from index.css immediately after utilities.css. Same layer, later
+   source order, so a rule here wins a tie against the generated copy.
+   ========================================================================== */
+
+@layer utilities {
+  /* --------------------------------------------------------------------------
+     Container Utilities
+
+     `container` is fluid width plus a breakpoint-stepped padding cascade:
+     three rules under one name, not a value map. The `container-{bp}` family is
+     Bootstrap-shaped, full width and then capped at each breakpoint from its
+     own upward. The old hard max-width caps that wore these names are now
+     `container-w-*` in the generated matrix.
+     -------------------------------------------------------------------------- */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--ai-space-4);
+    padding-right: var(--ai-space-4);
+    max-width: 1280px;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: var(--ai-space-6);
+      padding-right: var(--ai-space-6);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: var(--ai-space-8);
+      padding-right: var(--ai-space-8);
+    }
+  }
+
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-2xl,
+  .container-fluid {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--ai-space-4);
+    padding-right: var(--ai-space-4);
+  }
+
+  /* Never capped, at any width, including when paired with `container`. */
+  .container-fluid { max-width: 100%; }
+
+  @media (min-width: 640px) {
+    .container-sm,
+    .container-md,
+    .container-lg,
+    .container-xl,
+    .container-2xl,
+    .container-fluid {
+      padding-left: var(--ai-space-6);
+      padding-right: var(--ai-space-6);
+    }
+    .container-sm { max-width: 600px; }
+  }
+
+  @media (min-width: 768px) {
+    .container-sm,
+    .container-md { max-width: 728px; }
+  }
+
+  @media (min-width: 1024px) {
+    .container-sm,
+    .container-md,
+    .container-lg,
+    .container-xl,
+    .container-2xl,
+    .container-fluid {
+      padding-left: var(--ai-space-8);
+      padding-right: var(--ai-space-8);
+    }
+    .container-sm,
+    .container-md,
+    .container-lg { max-width: 984px; }
+  }
+
+  @media (min-width: 1280px) {
+    .container-sm,
+    .container-md,
+    .container-lg,
+    .container-xl { max-width: 1240px; }
+  }
+
+  @media (min-width: 1536px) {
+    .container-sm,
+    .container-md,
+    .container-lg,
+    .container-xl,
+    .container-2xl { max-width: 1496px; }
+  }
+
+  /* --------------------------------------------------------------------------
+     Intrinsic Auto-Fit Grid (Zero Media Query Breakpoints)
+
+     Sets display and a repeat(auto-fit, minmax(var(), 1fr)) template together;
+     the grid-min-* classes are a knob for it, not a property.
+     -------------------------------------------------------------------------- */
+  .grid-auto-fit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--ai-grid-min, 260px), 1fr));
+  }
+  .grid-min-xs { --ai-grid-min: 160px; }
+  .grid-min-sm { --ai-grid-min: 220px; }
+  .grid-min-md { --ai-grid-min: 280px; }
+  .grid-min-lg { --ai-grid-min: 340px; }
+
+  /* --------------------------------------------------------------------------
+     Centring transforms
+
+     A `transform` shorthand pairing two axes. The translate-x-* and translate-y-*
+     families write the `translate` property and cannot express this.
+     -------------------------------------------------------------------------- */
+  .translate-center { transform: translate(-50%, -50%); }
+  .translate-x-center { transform: translateX(-50%); }
+  .translate-y-center { transform: translateY(-50%); }
+
+  /* --------------------------------------------------------------------------
+     Text overflow
+
+     Three unrelated declarations under one name, and line-clamp-none inverts
+     three of line-clamp-N's four.
+     -------------------------------------------------------------------------- */
+  .truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+  .line-clamp-none {
+    overflow: visible;
+    display: block;
+    -webkit-box-orient: horizontal;
+    -webkit-line-clamp: none;
+  }
+
+  /* --------------------------------------------------------------------------
+     Accessibility
+
+     Nine declarations, and not-sr-only must undo exactly those nine.
+     -------------------------------------------------------------------------- */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  .not-sr-only {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* --------------------------------------------------------------------------
+     Escape hatches
+
+     One property reading one author-supplied custom property. Generatable, but
+     these are the library's documented escape hatch and their names should stay
+     stable independent of the matrix.
+     -------------------------------------------------------------------------- */
+  .w-var { width: var(--ai-w); }
+  .h-var { height: var(--ai-h); }
+  .min-w-var { min-width: var(--ai-min-w); }
+  .max-w-var { max-width: var(--ai-max-w); }
+  .p-var { padding: var(--ai-p); }
+  .m-var { margin: var(--ai-m); }
+  .gap-var { gap: var(--ai-gap); }
+  .grid-cols-var { grid-template-columns: var(--ai-cols); }
+  .transform-var { transform: var(--ai-transform); }
+  .bg-var { background-color: var(--ai-bg-color); }
+  .text-var { color: var(--ai-text-color); }
+
+  /* --------------------------------------------------------------------------
+     Transition defaults
+
+     `transition` and its siblings are a property list now, not a shorthand, so
+     the duration and easing have to be declared once for them. Wrapped in
+     :where() so it contributes zero specificity and any duration-* or ease-*
+     utility wins outright, whatever the source order.
+     -------------------------------------------------------------------------- */
+  :where(.transition, .transition-colors, .transition-opacity, .transition-shadow, .transition-transform, .transition-all) {
+    transition-duration: var(--ai-duration-fast);
+    transition-timing-function: var(--ai-ease-out);
+  }
+
+  /* --------------------------------------------------------------------------
+     Filters
+
+     Every one of these writes `filter`, so `blur-sm grayscale` silently drops
+     one. Generating them would make that footgun uniform; composing them needs
+     a --ai-filter-* variable chain, which is separate work. The backdrop pair
+     additionally needs the -webkit- property emitted alongside the standard one.
+     -------------------------------------------------------------------------- */
+  .blur-sm { filter: blur(4px); }
+  .blur { filter: blur(8px); }
+  .blur-lg { filter: blur(16px); }
+  .blur-none { filter: none; }
+  .grayscale { filter: grayscale(1); }
+  .grayscale-0 { filter: grayscale(0); }
+  .brightness-90 { filter: brightness(0.9); }
+  .brightness-110 { filter: brightness(1.1); }
+  .contrast-more { filter: contrast(1.25); }
+  .invert { filter: invert(1); }
+  .saturate-0 { filter: saturate(0); }
+  .saturate-150 { filter: saturate(1.5); }
+  .backdrop-blur-sm { backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+  .backdrop-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  .backdrop-blur-lg { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+  .backdrop-none { backdrop-filter: none; -webkit-backdrop-filter: none; }
+
+  /* --------------------------------------------------------------------------
+     Prose
+
+     A readable measure and the vertical rhythm that goes with it, for a block of
+     flowing copy the author does not want to class element by element. A
+     descendant block, so it cannot be a value map.
+     -------------------------------------------------------------------------- */
+  .prose {
+    max-width: 65ch;
+  }
+  .prose > * + * {
+    margin-block-start: var(--ai-space-4);
+  }
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    margin-block-start: var(--ai-space-8);
+    margin-block-end: var(--ai-space-3);
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+  .prose > :first-child {
+    margin-block-start: 0;
+  }
+  .prose p,
+  .prose li {
+    line-height: 1.7;
+  }
+  .prose ul,
+  .prose ol {
+    padding-inline-start: var(--ai-space-6);
+  }
+  .prose li + li {
+    margin-block-start: var(--ai-space-2);
+  }
+
+  /* --------------------------------------------------------------------------
+     Print
+
+     Element and component selectors, not utilities. The four print-* classes
+     this block used to carry are now `print:hidden`, `print:block`,
+     `break-before-page` and `break-after-page` in the generated matrix.
+     -------------------------------------------------------------------------- */
+  @media print {
+    .modal, .drawer, .toast-container, .consent-bar, .command-palette { display: none !important; }
+    body { background: #fff; color: #000; }
+    a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; color: #555; }
+  }
+}

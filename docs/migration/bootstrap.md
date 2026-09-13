@@ -39,9 +39,9 @@ class below exists in `public/classes.json`.
 | `card` | `card` | `card-interactive` adds the hover treatment. |
 | `card-body` | `card-body` | `card-footer` and `card-title` complete the set. |
 | `card-header` | `card-header` | |
-| `container` | `container` | Width variants `container-sm` through `container-xl`, plus `container-fluid`. |
+| `container` | `container` | `container-sm` through `container-2xl` are fluid then capped at each breakpoint, like Bootstrap. `container-w-sm` through `container-w-xl` are hard max-width caps instead. `container-fluid` never caps. |
 | `row` | no direct equivalent | The real conceptual gap. Delete the wrapper and put `grid grid-cols-12 gap-4` on the parent. See the grid note below. |
-| `col-6`, `col-md-4` | `col-span-6`, `md:col-span-4` | Only meaningful inside an `grid` parent that declares its tracks. The breakpoint moves to the front, inside the prefix: sm, md, lg, xl and cq (container query). |
+| `col-6`, `col-md-4` | `col-span-6`, `md:col-span-4` | Only meaningful inside an `grid` parent that declares its tracks. The breakpoint moves to the front, inside the prefix. See the Variants table below for the full set. |
 | `d-flex` | `flex` | `grid`, `block` and `inline-flex` follow the same rename. |
 | `d-none` | `hidden` | `md:hidden` replaces `d-md-none`. |
 | `justify-content-between` | `justify-between` | Shorter, same meaning. `justify-center` likewise. |
@@ -68,9 +68,26 @@ class below exists in `public/classes.json`.
 | `list-group`, `list-group-item` | `list-group`, `list-group-item` | `list-group-flush` drops the outer border. |
 | `text-center` | `text-center` | `text-muted` replaces `text-muted` and tracks the theme. |
 | `fw-bold` | `font-bold` | Naming follows the CSS property, not Bootstrap's abbreviation. |
-| `p-3`, `mb-3` | `p-3`, `mb-3` | Bootstrap's 0 to 5 spacer scale does not line up with the LLMCSS steps. Every spacing utility shares 0, 1, 2, 3, 4, 5, 6, 8, 10, 12; padding continues to 16, 20, 24, and `gap-*` alone continues to 32. Check the rendered value rather than assuming `p-3` matches `p-3` visually, since the identical class name is exactly the trap: same string, different scale. |
+| `p-3`, `mb-3` | `p-3`, `mb-3` | Bootstrap's 0 to 5 spacer scale does not line up with the LLMCSS steps. Every spacing utility now shares one scale, from `0` and `px` up to `96`, listed in the Variants section below. Check the rendered value rather than assuming `p-3` matches `p-3` visually, since the identical class name is exactly the trap: same string, different scale. |
 | `w-100`, `h-100` | `w-full`, `h-full` | `sr-only` covers `visually-hidden`. |
 | `bg-light`, `bg-dark`, `text-bg-primary` | no direct equivalent | Surfaces are tokens, not classes. Use `card` or `panel`, or override the surface tokens on the container. |
+
+## Variants
+
+Written `<variant>:<class>`, for example `md:grid-cols-2`, `cq-md:grid-cols-3`, `hover:surface-1`.
+
+| Variant | Fires when |
+|---|---|
+| `sm:` `md:` `lg:` `xl:` `2xl:` | viewport is at least 640, 768, 1024, 1280, 1536px |
+| `cq-sm:` `cq-md:` `cq-lg:` | nearest `cq` or `cq-inline` ancestor is at least 380, 600, 900px |
+| `hover:` `focus:` `focus-visible:` `active:` `disabled:` | the element is in that interaction state |
+| `group-hover:` | an ancestor carrying `group` is hovered |
+| `dark:` `print:` `motion-safe:` `motion-reduce:` | `data-ai-theme="dark"`, print media, or the motion preference |
+| `first:` `last:` `odd:` `even:` | position among siblings |
+
+A variant exists for a class only when `public/classes.json` lists it in that class's `variants` array.
+
+Spacing and sizing steps: `0`, `px`, `0.5`, `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `14`, `16`, `20`, `24`, `28`, `32`, `36`, `40`, `48`, `56`, `64`, `72`, `80`, `96`.
 
 ## What changes conceptually
 

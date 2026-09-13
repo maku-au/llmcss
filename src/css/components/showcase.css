@@ -893,6 +893,34 @@ th.docs-matrix-win {
   border: 1px solid var(--ai-border) !important;
 }
 
+/* Pro preview image: an unlicensed browser gets a screenshot rendered from the
+   private catalog instead of the Pro markup, with the unlock actions overlaid
+   on the bottom edge of the frame. */
+.template-preview {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.template-frame.has-preview {
+  min-height: 0;
+  overflow: hidden;
+}
+.template-preview-bar {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  background: color-mix(in srgb, var(--ai-surface-0) 90%, transparent);
+  border-top: 1px solid var(--ai-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
 /* Code Panel */
 .template-code {
   display: none;
@@ -947,6 +975,12 @@ th.docs-matrix-win {
   box-shadow: var(--ai-shadow-2xl);
   overflow: hidden;
 }
+/* An image preview is as tall as its shot, up to the same 90vh ceiling, so a
+   short section does not sit in a half empty dialog. */
+.blueprint-modal-dialog.is-image {
+  height: auto;
+  max-height: 90vh;
+}
 .blueprint-modal-header {
   padding: 1rem 1.5rem;
   border-bottom: 1px solid var(--ai-border);
@@ -954,6 +988,11 @@ th.docs-matrix-win {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+/* The UA [hidden] rule loses to the .btn display in @layer components, so the
+   header actions that do not apply to an image preview need an explicit hide. */
+.blueprint-modal-header .btn[hidden] {
+  display: none;
 }
 .blueprint-modal-title {
   font-family: var(--ai-font-display);
@@ -970,6 +1009,23 @@ th.docs-matrix-win {
 .template-assembled {
   min-height: 100%;
   background: var(--ai-bg);
+}
+
+/* Full size Pro preview inside the same modal. The modal body already scrolls,
+   so a tall page shot scrolls rather than being squeezed to fit. */
+.preview-modal-image {
+  padding: 1.25rem;
+  background: var(--ai-surface-1);
+}
+.preview-modal-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 1280px;
+  margin: 0 auto;
+  border: 1px solid var(--ai-border);
+  border-radius: var(--ai-radius-sm);
+  background: var(--ai-surface-0);
 }
 .template-assembled.is-wireframe-mode section,
 .template-assembled.is-wireframe-mode header,

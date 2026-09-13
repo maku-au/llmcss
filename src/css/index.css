@@ -39,7 +39,7 @@
 @import "./components/chat.css";
 @import "./components/cart.css";
 @import "./components/agent-extra.css";
-@import "./components/showcase.css";
 
-/* Utilities */
+/* Utilities: the generated matrix, then the hand-written rules it cannot express */
 @import "./utilities.css";
+@import "./utilities.extra.css";

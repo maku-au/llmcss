@@ -65,7 +65,7 @@ curl https://llmcss.io/r/btn-variants.json
 ## 3. A first layout
 
 ```html
-<div class="container-sm p-8">
+<div class="container-w-sm p-8">
   <h1>Hello</h1>
   <p class="text-secondary">Body uses the sans token. Titles use the display token.</p>
   <div class="flex gap-2 mt-4">
@@ -115,7 +115,7 @@ npx llmcss template blueprint saas-landing
 ```
 
 <!-- templates:start -->
-- 26 section templates: 18 free wireframe, 8 themed Pro.
+- 29 section templates: 18 free wireframe, 11 themed Pro.
 - 6 page blueprints: 4 free, 2 Pro.
 <!-- templates:end -->
 
@@ -127,27 +127,27 @@ Gallery: [llmcss.io/templates](https://llmcss.io/templates).
 npx llmcss-mcp
 ```
 
-Point your editor at that stdio server. It bundles the public catalog and fetches Pro entries from llmcss.io; it exposes `search_components`, `get_component_markup`, `validate_markup`, `list_classes`, `list_tokens`, `list_states`, `llmcss_get_harness`, `llmcss_slop_audit`, `list_wireframe_templates`, `get_wireframe_template`, `get_page_blueprint`.
+Point your editor at that stdio server. It bundles the public catalog and fetches themed Pro templates and kits from llmcss.io; it exposes `search_components`, `get_component_markup`, `validate_markup`, `list_classes`, `list_tokens`, `list_states`, `llmcss_get_harness`, `llmcss_slop_audit`, `list_wireframe_templates`, `get_wireframe_template`, `get_page_blueprint`.
 
 `list_classes`, `list_tokens` and `list_states` return the same data as [llmcss.io/classes.json](https://llmcss.io/classes.json), [tokens.json](https://llmcss.io/tokens.json) and [states.json](https://llmcss.io/states.json). If a class is not in classes.json, it does not exist.
 
 ## 7. Pro (optional)
 
-Pro is $9/month via Polar and unlocks themed templates and kits. After checkout you get a token, shown once. The component catalog (including command palette, cart, and agent chrome) is MIT.
+Pro is $9/month via Polar and unlocks themed section templates and page kits. After checkout you get a token, shown once. The whole component catalog, including command palette, cart, and agent chrome, is MIT; there are no Pro components.
 
 ```bash
 npx llmcss login llmcss_live_...
 npx llmcss template get themed-hero-obsidian
-npx llmcss add themed-editorial-article-header
+npx llmcss template get themed-obsidian-status-rail
 ```
 
-Or paste the token under License at [llmcss.io/account](https://llmcss.io/account). Without a token, `npx llmcss add` / `npx llmcss template get` on a Pro id exits 1 with a login hint, and the Pro entry stays `locked: true` with `html: null`. Never write Pro markup from memory.
+Or paste the token under License at [llmcss.io/account](https://llmcss.io/account). Without a token, `npx llmcss template get` on a Pro id exits 1 with a login hint, and the Pro row in templates.json stays `locked: true` with `html: null`. Never write Pro markup from memory.
 
 ## Commands
 
 | Command | What it does |
 |---|---|
-| `npx llmcss list` | Free + Pro ids |
+| `npx llmcss list` | Every component id, all MIT |
 | `npx llmcss search <query>` | Search by keyword, tag, or alias |
 | `npx llmcss add <id>` | Write component HTML into `components/` |
 | `npx llmcss validate <file>` | Warn on unknown classes (fail with `--strict`), fail on a stray `ai-` prefix |

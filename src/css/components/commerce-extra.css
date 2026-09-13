@@ -177,7 +177,7 @@
     border-radius: var(--ai-radius-lg);
   }
 
-  .order-head {
+  .orderline-head {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -185,28 +185,28 @@
     flex-wrap: wrap;
   }
 
-  .order-title {
+  .orderline-title {
     margin: 0;
     font-size: 1.0625rem;
     font-weight: 600;
     color: var(--ai-text-primary);
   }
 
-  .order-eta {
+  .orderline-eta {
     font-size: 0.8125rem;
     color: var(--ai-text-secondary);
     text-align: end;
     font-variant-numeric: tabular-nums;
   }
-  .order-eta strong {
+  .orderline-eta strong {
     display: block;
     font-size: 0.9375rem;
     color: var(--ai-text-primary);
   }
 
-  .order-track {
-    --ai-order-pip: 0.75rem;
-    --ai-order-rail: 2px;
+  .orderline-track {
+    --ai-orderline-pip: 0.75rem;
+    --ai-orderline-rail: 2px;
     display: flex;
     align-items: flex-start;
     margin: 0;
@@ -217,31 +217,31 @@
   /* The pip sits in its own fixed-height row so the rail can be pinned to that
      row's centre. Left as an inline box it rides the baseline of the inherited
      line box and drifts with font metrics. */
-  .order-step {
+  .orderline-step {
     position: relative;
     flex: 1 1 0;
     min-inline-size: 0;
     display: grid;
-    grid-template-rows: var(--ai-order-pip);
+    grid-template-rows: var(--ai-orderline-pip);
     padding-inline: var(--ai-space-1);
     text-align: center;
   }
 
   /* Connector from this pip's centre to the next pip's centre, behind the pip */
-  .order-step:not(:last-child)::after {
+  .orderline-step:not(:last-child)::after {
     content: "";
     position: absolute;
-    inset-block-start: calc((var(--ai-order-pip) - var(--ai-order-rail)) / 2);
+    inset-block-start: calc((var(--ai-orderline-pip) - var(--ai-orderline-rail)) / 2);
     inset-inline-start: 50%;
     inline-size: 100%;
-    block-size: var(--ai-order-rail);
+    block-size: var(--ai-orderline-rail);
     background-color: var(--ai-border);
   }
-  .order-step.is-completed:not(:last-child)::after {
+  .orderline-step.is-completed:not(:last-child)::after {
     background-color: var(--ai-success);
   }
 
-  .order-pip {
+  .orderline-pip {
     position: relative;
     z-index: 1;
     justify-self: center;
@@ -249,27 +249,27 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    inline-size: var(--ai-order-pip);
-    block-size: var(--ai-order-pip);
+    inline-size: var(--ai-orderline-pip);
+    block-size: var(--ai-orderline-pip);
     border-radius: var(--ai-radius-full);
     background-color: var(--ai-surface-0);
     box-shadow: inset 0 0 0 2px var(--ai-border-strong);
   }
 
-  .order-step.is-completed .order-pip {
+  .orderline-step.is-completed .orderline-pip {
     background-color: var(--ai-success);
     box-shadow: inset 0 0 0 1px var(--ai-success);
   }
-  .order-step.is-current .order-pip {
+  .orderline-step.is-current .orderline-pip {
     background-color: var(--ai-accent);
     box-shadow: 0 0 0 3px var(--ai-accent-subtle), inset 0 0 0 1px var(--ai-accent);
   }
-  .order-step.is-upcoming .order-pip {
+  .orderline-step.is-upcoming .orderline-pip {
     background-color: var(--ai-surface-0);
     box-shadow: inset 0 0 0 2px var(--ai-border-strong);
   }
 
-  .order-label {
+  .orderline-label {
     display: block;
     margin-block-start: var(--ai-space-2);
     font-size: 0.8125rem;
@@ -277,15 +277,15 @@
     line-height: 1.35;
     color: var(--ai-text-secondary);
   }
-  .order-step.is-current .order-label {
+  .orderline-step.is-current .orderline-label {
     font-weight: 600;
     color: var(--ai-text-primary);
   }
-  .order-step.is-upcoming .order-label {
+  .orderline-step.is-upcoming .orderline-label {
     color: var(--ai-text-muted);
   }
 
-  .order-date {
+  .orderline-date {
     display: block;
     margin-block-start: 0.15rem;
     font-size: 0.6875rem;
@@ -293,7 +293,7 @@
     font-variant-numeric: tabular-nums;
   }
 
-  .order-meta {
+  .orderline-meta {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -305,7 +305,7 @@
     color: var(--ai-text-secondary);
   }
 
-  .order-id {
+  .orderline-id {
     font-family: var(--ai-font-mono);
     font-size: 0.8125rem;
     color: var(--ai-text-primary);
@@ -316,29 +316,29 @@
 
   /* Narrow containers: stack the tracker and run the connector down the block */
   @media (max-width: 30rem) {
-    .order-track {
+    .orderline-track {
       flex-direction: column;
       gap: var(--ai-space-4);
     }
-    .order-step {
+    .orderline-step {
       display: flex;
       align-items: flex-start;
       gap: var(--ai-space-3);
       padding-inline: 0;
       text-align: start;
     }
-    .order-step:not(:last-child)::after {
-      inset-block-start: calc(0.2rem + var(--ai-order-pip) / 2);
-      inset-inline-start: calc((var(--ai-order-pip) - var(--ai-order-rail)) / 2);
-      inline-size: var(--ai-order-rail);
+    .orderline-step:not(:last-child)::after {
+      inset-block-start: calc(0.2rem + var(--ai-orderline-pip) / 2);
+      inset-inline-start: calc((var(--ai-orderline-pip) - var(--ai-orderline-rail)) / 2);
+      inline-size: var(--ai-orderline-rail);
       block-size: calc(100% + var(--ai-space-4));
     }
-    .order-pip {
+    .orderline-pip {
       margin-block-start: 0.2rem;
       align-self: flex-start;
       flex: 0 0 auto;
     }
-    .order-label {
+    .orderline-label {
       margin-block-start: 0;
     }
   }

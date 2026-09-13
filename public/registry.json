@@ -1,14 +1,14 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-09-13T03:30:05.658Z",
+  "generatedAt": "2026-09-13T04:08:34.523Z",
   "stats": {
-    "total": 125,
+    "total": 122,
     "free": 122,
-    "pro": 3,
+    "pro": 0,
     "categories": {
       "primitive": 54,
-      "marketing": 22,
-      "application": 44,
+      "marketing": 21,
+      "application": 42,
       "ecommerce": 5
     }
   },
@@ -568,7 +568,7 @@
         "thread",
         "assistant"
       ],
-      "html": "<div class=\"chat-container\">\n  <div class=\"chat-header\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"font-semibold text-sm\">Agentic Pair Programmer</span>\n      <span class=\"status-pip status-pip-success\" aria-hidden=\"true\"></span>\n      <span class=\"text-xs text-muted\">Ready</span>\n    </div>\n    <div class=\"flex items-center gap-2\">\n      <span class=\"text-xs font-mono text-muted\">claude-sonnet-5</span>\n      <button class=\"btn btn-ghost btn-xs\" type=\"button\" aria-label=\"Thread options\">&bull;&bull;&bull;</button>\n    </div>\n  </div>\n  <div class=\"chat-messages\">\n    <div class=\"chat-msg chat-msg-user\">\n      <span class=\"chat-avatar\" aria-hidden=\"true\">JD</span>\n      <div class=\"chat-meta\">\n        <span class=\"chat-role\">You</span>\n        <span class=\"chat-time\">09:41</span>\n      </div>\n      <div class=\"chat-body\">\n        <p>Can you build a self-responsive card using LLMCSS container queries?</p>\n      </div>\n    </div>\n    <div class=\"chat-msg\">\n      <span class=\"chat-avatar chat-avatar-assistant\" aria-hidden=\"true\">AP</span>\n      <div class=\"chat-meta\">\n        <span class=\"chat-role\">Agent</span>\n        <span class=\"chat-time\">09:41</span>\n      </div>\n      <div class=\"chat-body\">\n        <p>Yes. Wrap the card in <code>.cq</code> and let the container query variants size it, with no breakpoint media queries.</p>\n        <pre class=\"code-block\"><code>&lt;div class=\"cq grid cq:grid-cols-2 cq:gap-4\"&gt;\n  &lt;div class=\"kpi-card\"&gt;...&lt;/div&gt;\n&lt;/div&gt;</code></pre>\n        <p class=\"chat-note\">One column in a narrow rail, two in the main canvas, measured against the card's own width.</p>\n      </div>\n    </div>\n    <div class=\"chat-msg chat-msg-user\">\n      <span class=\"chat-avatar\" aria-hidden=\"true\">JD</span>\n      <div class=\"chat-meta\">\n        <span class=\"chat-role\">You</span>\n        <span class=\"chat-time\">09:43</span>\n      </div>\n      <div class=\"chat-body\">\n        <p>Ship it. Does it hold up inside the 14rem context rail?</p>\n      </div>\n    </div>\n    <div class=\"chat-msg is-streaming\">\n      <span class=\"chat-avatar chat-avatar-assistant\" aria-hidden=\"true\">AP</span>\n      <div class=\"chat-meta\">\n        <span class=\"chat-role\">Agent</span>\n        <span class=\"chat-time\">09:43</span>\n      </div>\n      <div class=\"chat-body\">\n        <div class=\"chat-tool\">\n          <span>read_file src/css/utilities.css</span>\n          <span class=\"badge badge-success\">ok 38ms</span>\n        </div>\n        <p>Below 20rem the grid folds to a single column, so the rail keeps one readable card per row</p>\n      </div>\n    </div>\n  </div>\n  <div class=\"chat-input-bar\">\n    <div class=\"input-group chat-composer\">\n      <input type=\"text\" class=\"input\" placeholder=\"Send prompt to agent...\" aria-label=\"Prompt\" />\n      <button class=\"btn btn-primary btn-sm\" type=\"button\">Send</button>\n    </div>\n  </div>\n</div>"
+      "html": "<div class=\"chat-container\">\n  <div class=\"chat-header\">\n    <div class=\"flex items-center gap-2\">\n      <span class=\"font-semibold text-sm\">Agentic Pair Programmer</span>\n      <span class=\"status-pip status-pip-success\" aria-hidden=\"true\"></span>\n      <span class=\"text-xs text-muted\">Ready</span>\n    </div>\n    <div class=\"flex items-center gap-2\">\n      <span class=\"text-xs font-mono text-muted\">claude-sonnet-5</span>\n      <button class=\"btn btn-ghost btn-xs\" type=\"button\" aria-label=\"Thread options\">&bull;&bull;&bull;</button>\n    </div>\n  </div>\n  <div class=\"chat-messages\">\n    <div class=\"chat-msg chat-msg-user\">\n      <span class=\"chat-avatar\" aria-hidden=\"true\">JD</span>\n      <div class=\"chat-meta\">\n        <span class=\"chat-role\">You</span>\n        <span class=\"chat-time\">09:41</span>\n      </div>\n      <div class=\"chat-body\">\n        <p>Can you build a self-responsive card using LLMCSS container queries?</p>\n      </div>\n    </div>\n    <div class=\"chat-msg\">\n      <span class=\"chat-avatar chat-avatar-assistant\" aria-hidden=\"true\">AP</span>\n      <div class=\"chat-meta\">\n        <span class=\"chat-role\">Agent</span>\n        <span class=\"chat-time\">09:41</span>\n      </div>\n      <div class=\"chat-body\">\n        <p>Yes. Wrap the card in <code>.cq</code> and let the container query variants size it, with no breakpoint media queries.</p>\n        <pre class=\"code-block\"><code>&lt;div class=\"cq grid cq-sm:grid-cols-2 cq-sm:gap-4\"&gt;\n  &lt;div class=\"kpi-card\"&gt;...&lt;/div&gt;\n&lt;/div&gt;</code></pre>\n        <p class=\"chat-note\">One column in a narrow rail, two in the main canvas, measured against the card's own width.</p>\n      </div>\n    </div>\n    <div class=\"chat-msg chat-msg-user\">\n      <span class=\"chat-avatar\" aria-hidden=\"true\">JD</span>\n      <div class=\"chat-meta\">\n        <span class=\"chat-role\">You</span>\n        <span class=\"chat-time\">09:43</span>\n      </div>\n      <div class=\"chat-body\">\n        <p>Ship it. Does it hold up inside the 14rem context rail?</p>\n      </div>\n    </div>\n    <div class=\"chat-msg is-streaming\">\n      <span class=\"chat-avatar chat-avatar-assistant\" aria-hidden=\"true\">AP</span>\n      <div class=\"chat-meta\">\n        <span class=\"chat-role\">Agent</span>\n        <span class=\"chat-time\">09:43</span>\n      </div>\n      <div class=\"chat-body\">\n        <div class=\"chat-tool\">\n          <span>read_file src/css/utilities.css</span>\n          <span class=\"badge badge-success\">ok 38ms</span>\n        </div>\n        <p>Below 20rem the grid folds to a single column, so the rail keeps one readable card per row</p>\n      </div>\n    </div>\n  </div>\n  <div class=\"chat-input-bar\">\n    <div class=\"input-group chat-composer\">\n      <input type=\"text\" class=\"input\" placeholder=\"Send prompt to agent...\" aria-label=\"Prompt\" />\n      <button class=\"btn btn-primary btn-sm\" type=\"button\">Send</button>\n    </div>\n  </div>\n</div>"
     },
     {
       "id": "tool-trace",
@@ -1763,7 +1763,7 @@
         "steps",
         "ecommerce"
       ],
-      "html": "<div class=\"order\" style=\"max-width: 40rem;\">\n  <div class=\"order-head\">\n    <div>\n      <h3 class=\"order-title\">Order 48210 is on its way</h3>\n      <p class=\"text-sm text-secondary\">Three items, dispatched from the Alexandria warehouse.</p>\n    </div>\n    <div class=\"order-eta\">\n      Estimated delivery\n      <strong>Thursday 17 September</strong>\n    </div>\n  </div>\n\n  <ol class=\"order-track\">\n    <li class=\"order-step is-completed\">\n      <span class=\"order-pip\" aria-hidden=\"true\"></span>\n      <span class=\"order-label\">Ordered</span>\n      <span class=\"order-date\">9 Sep, 10:42</span>\n    </li>\n    <li class=\"order-step is-completed\">\n      <span class=\"order-pip\" aria-hidden=\"true\"></span>\n      <span class=\"order-label\">Packed</span>\n      <span class=\"order-date\">10 Sep, 08:15</span>\n    </li>\n    <li class=\"order-step is-current\" aria-current=\"step\">\n      <span class=\"order-pip\" aria-hidden=\"true\"></span>\n      <span class=\"order-label\">Shipped</span>\n      <span class=\"order-date\">11 Sep, 17:30</span>\n    </li>\n    <li class=\"order-step is-upcoming\">\n      <span class=\"order-pip\" aria-hidden=\"true\"></span>\n      <span class=\"order-label\">Delivered</span>\n      <span class=\"order-date\">Est. 17 Sep</span>\n    </li>\n  </ol>\n\n  <div class=\"order-meta\">\n    <span>Southbound Freight tracking <span class=\"order-id\">AU7734221905</span></span>\n    <a class=\"btn btn-outline btn-sm\" href=\"#order-48210\">Track shipment</a>\n  </div>\n</div>"
+      "html": "<div class=\"order max-w-2xl\">\n  <div class=\"orderline-head\">\n    <div>\n      <h3 class=\"orderline-title\">Order 48210 is on its way</h3>\n      <p class=\"text-sm text-secondary\">Three items, dispatched from the Alexandria warehouse.</p>\n    </div>\n    <div class=\"orderline-eta\">\n      Estimated delivery\n      <strong>Thursday 17 September</strong>\n    </div>\n  </div>\n\n  <ol class=\"orderline-track\">\n    <li class=\"orderline-step is-completed\">\n      <span class=\"orderline-pip\" aria-hidden=\"true\"></span>\n      <span class=\"orderline-label\">Ordered</span>\n      <span class=\"orderline-date\">9 Sep, 10:42</span>\n    </li>\n    <li class=\"orderline-step is-completed\">\n      <span class=\"orderline-pip\" aria-hidden=\"true\"></span>\n      <span class=\"orderline-label\">Packed</span>\n      <span class=\"orderline-date\">10 Sep, 08:15</span>\n    </li>\n    <li class=\"orderline-step is-current\" aria-current=\"step\">\n      <span class=\"orderline-pip\" aria-hidden=\"true\"></span>\n      <span class=\"orderline-label\">Shipped</span>\n      <span class=\"orderline-date\">11 Sep, 17:30</span>\n    </li>\n    <li class=\"orderline-step is-upcoming\">\n      <span class=\"orderline-pip\" aria-hidden=\"true\"></span>\n      <span class=\"orderline-label\">Delivered</span>\n      <span class=\"orderline-date\">Est. 17 Sep</span>\n    </li>\n  </ol>\n\n  <div class=\"orderline-meta\">\n    <span>Southbound Freight tracking <span class=\"orderline-id\">AU7734221905</span></span>\n    <a class=\"btn btn-outline btn-sm\" href=\"#order-48210\">Track shipment</a>\n  </div>\n</div>"
     },
     {
       "id": "scrollspy-nav",
@@ -1780,57 +1780,6 @@
         "anchor"
       ],
       "html": "<div class=\"scrollspy-layout\">\n  <nav class=\"scrollspy\" aria-label=\"On this page\" data-ai-scrollspy-root=\"#spy-pane\">\n    <p class=\"scrollspy-title\">On this page</p>\n    <ul class=\"scrollspy-list\">\n      <li><a class=\"scrollspy-link is-active\" aria-current=\"location\" href=\"#spy-limits\">Rate limits</a></li>\n      <li><a class=\"scrollspy-link\" href=\"#spy-retries\">Retries and backoff</a></li>\n      <li><a class=\"scrollspy-link\" href=\"#spy-webhooks\">Webhook delivery</a></li>\n    </ul>\n  </nav>\n\n  <div class=\"scrollspy-pane\" id=\"spy-pane\">\n    <section class=\"scrollspy-section\" id=\"spy-limits\">\n      <h3 class=\"scrollspy-heading\">Rate limits</h3>\n      <p class=\"scrollspy-body\">Every API token is allowed 600 requests a minute, measured in a sliding window. The response carries the remaining budget in the X-Rate-Remaining header, and a rejected request returns 429 with the number of seconds until the window resets.</p>\n    </section>\n    <section class=\"scrollspy-section\" id=\"spy-retries\">\n      <h3 class=\"scrollspy-heading\">Retries and backoff</h3>\n      <p class=\"scrollspy-body\">Retry a 429 or a 5xx response with exponential backoff, starting at one second and stopping after five attempts. Send the same idempotency key on each attempt so a write is never applied twice.</p>\n    </section>\n    <section class=\"scrollspy-section\" id=\"spy-webhooks\">\n      <h3 class=\"scrollspy-heading\">Webhook delivery</h3>\n      <p class=\"scrollspy-body\">Webhooks are signed with your endpoint secret and delivered at least once, so treat duplicates as normal. Return a 2xx within ten seconds; anything slower is treated as a failure and queued for redelivery over the next six hours.</p>\n    </section>\n  </div>\n</div>"
-    },
-    {
-      "id": "themed-editorial-article-header",
-      "name": "Editorial Article Header",
-      "description": "Magazine article header: display title, byline, date, and a hairline rule. Pin data-ai-skin=\"editorial\".",
-      "category": "marketing",
-      "tier": "pro",
-      "tags": [
-        "themed",
-        "editorial",
-        "article",
-        "header",
-        "byline"
-      ],
-      "locked": true,
-      "html": null,
-      "previewHtml": "<div class=\"card card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Editorial Article Header <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary\" style=\"margin-top: var(--ai-space-2);\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <a class=\"btn btn-primary btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
-    },
-    {
-      "id": "themed-fintech-ledger-row",
-      "name": "Fintech Ledger Row",
-      "description": "Single ledger line with counterparty, tabular amount, and a status pip. Pin data-ai-skin=\"fintech\".",
-      "category": "application",
-      "tier": "pro",
-      "tags": [
-        "themed",
-        "fintech",
-        "ledger",
-        "transaction",
-        "row"
-      ],
-      "locked": true,
-      "html": null,
-      "previewHtml": "<div class=\"card card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Fintech Ledger Row <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary\" style=\"margin-top: var(--ai-space-2);\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <a class=\"btn btn-primary btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
-    },
-    {
-      "id": "themed-obsidian-status-rail",
-      "name": "Obsidian Status Rail",
-      "description": "Vertical service rail with static status pips, monospace ids, and timestamps. Pin data-ai-skin=\"obsidian\".",
-      "category": "application",
-      "tier": "pro",
-      "tags": [
-        "themed",
-        "obsidian",
-        "status",
-        "rail",
-        "ops"
-      ],
-      "locked": true,
-      "html": null,
-      "previewHtml": "<div class=\"card card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Obsidian Status Rail <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary\" style=\"margin-top: var(--ai-space-2);\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <a class=\"btn btn-primary btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     }
   ]
 }

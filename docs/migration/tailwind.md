@@ -33,7 +33,7 @@ one framework per page; there is no safe way to mix them.
 | `flex` | `flex` | Responsive forms exist, for example `md:flex`. `inline-flex` and `inline-grid` too. |
 | `grid` | `grid` | |
 | `grid-cols-3` | `grid-cols-3` | 1 through 12, plus `grid-cols-none`. |
-| `md:grid-cols-2` | `md:grid-cols-2` | The breakpoint goes inside the prefix. Available prefixes are sm, md, lg, xl and cq (container query). |
+| `md:grid-cols-2` | `md:grid-cols-2` | The breakpoint goes inside the prefix. See the Variants table below for the full set. |
 | `col-span-6` | `col-span-6` | `col-start-3`, `col-end-9` and `col-span-full` round it out. |
 | `flex-col` | `flex-col` | |
 | `items-center` | `items-center` | |
@@ -47,7 +47,7 @@ one framework per page; there is no safe way to mix them.
 | `w-full` | `w-full` | Fractions ship as well: `w-1/2`, thirds, quarters, fifths, sixths and twelfths. |
 | `h-full` | `h-full` | `h-screen` and `min-h-screen` too. |
 | `max-w-6xl` | `max-w-6xl` | `max-w-prose` is the reading-measure one. |
-| `container` | `container` | Not the same default. The LLMCSS container is centred and padded out of the box. Width variants are `container-sm` through `container-xl`, plus `container-fluid`. |
+| `container` | `container` | Not the same default. The LLMCSS container is centred and padded out of the box. `container-sm` through `container-2xl` are fluid then capped at each breakpoint; `container-w-sm` through `container-w-xl` are hard max-width caps; `container-fluid` never caps. |
 | `text-center` | `text-center` | |
 | `text-sm`, `text-lg`, `text-xl` | `text-sm`, `text-lg`, `text-xl` | The ramp runs `text-xs` to `text-7xl`. |
 | `font-bold` | `font-bold` | Also light, normal, medium and semibold. `font-display` is the headline face, which Tailwind has no notion of. |
@@ -70,6 +70,23 @@ one framework per page; there is no safe way to mix them.
 | `sr-only` | `sr-only` | `cursor-pointer` and `transition` survive the rename unchanged too. |
 | `divide-y` | no direct equivalent | Use the `divider` element between items, or `border-t` on each child after the first. |
 | `p-6 rounded-lg shadow border bg-white` | no direct equivalent | This is the composition LLMCSS refuses to make you retype. Use `card` with `card-header`, `card-body` and `card-footer`. |
+
+## Variants
+
+Written `<variant>:<class>`, for example `md:grid-cols-2`, `cq-md:grid-cols-3`, `hover:surface-1`.
+
+| Variant | Fires when |
+|---|---|
+| `sm:` `md:` `lg:` `xl:` `2xl:` | viewport is at least 640, 768, 1024, 1280, 1536px |
+| `cq-sm:` `cq-md:` `cq-lg:` | nearest `cq` or `cq-inline` ancestor is at least 380, 600, 900px |
+| `hover:` `focus:` `focus-visible:` `active:` `disabled:` | the element is in that interaction state |
+| `group-hover:` | an ancestor carrying `group` is hovered |
+| `dark:` `print:` `motion-safe:` `motion-reduce:` | `data-ai-theme="dark"`, print media, or the motion preference |
+| `first:` `last:` `odd:` `even:` | position among siblings |
+
+A variant exists for a class only when `public/classes.json` lists it in that class's `variants` array.
+
+Spacing and sizing steps: `0`, `px`, `0.5`, `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `14`, `16`, `20`, `24`, `28`, `32`, `36`, `40`, `48`, `56`, `64`, `72`, `80`, `96`.
 
 ## What changes conceptually
 

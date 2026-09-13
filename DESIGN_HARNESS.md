@@ -10,11 +10,11 @@ The LLMCSS Design Direction Harness eliminates the generic "AI look" (puffy grad
 Library totals, generated from the manifests in public/:
 
 <!-- stats:start -->
-- **Classes:** 1407 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
-- **Tokens:** 82 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
+- **Classes:** 2312 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Tokens:** 107 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
 - **States:** 36 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
-- **Components:** 125 (122 free, 3 themed Pro): 54 primitive, 44 application, 22 marketing, 5 ecommerce.
-- **Section templates:** 26 (18 free wireframe, 8 themed Pro).
+- **Components:** 122, all MIT: 54 primitive, 42 application, 21 marketing, 5 ecommerce.
+- **Section templates:** 29 (18 free wireframe, 11 themed Pro).
 - **Page blueprints:** 6 (4 free, 2 Pro).
 <!-- stats:end -->
 

@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/src/css/index.css" />
+  <link rel="stylesheet" href="/src/css/site.css" />
   <script>
     (function () {
       var t = localStorage.getItem('cssai-theme');
@@ -61,7 +61,7 @@ npx llmcss add btn-variants</code></pre>
 
     <section class="docs-step" id="qs-layout">
       <h2>3. A first layout</h2>
-      <pre><code>&lt;div class="container-sm p-8"&gt;
+      <pre><code>&lt;div class="container-w-sm p-8"&gt;
   &lt;h1&gt;Hello&lt;/h1&gt;
   &lt;p class="text-secondary"&gt;Titles use the display face. Body stays the sans.&lt;/p&gt;
   &lt;div class="flex gap-2 mt-4"&gt;
@@ -88,9 +88,9 @@ npx llmcss template blueprint saas-landing</code></pre>
 
     <section class="docs-step" id="qs-pro">
       <h2>6. Pro</h2>
-      <p class="text-secondary mt-2">$9/month Polar subscription. Token is shown once on <a href="/account">/account</a>.</p>
+      <p class="text-secondary mt-2">$9/month Polar subscription for themed templates and kits. Every component is MIT. Token is shown once on <a href="/account">/account</a>.</p>
       <pre><code>npx llmcss login &lt;token&gt;
-npx llmcss add themed-obsidian-status-rail</code></pre>
+npx llmcss template get themed-obsidian-status-rail</code></pre>
       <p class="text-sm text-secondary mt-3"><a href="/account">Account</a> · <a href="/#pricing">Pricing</a></p>
     </section>
   </main>

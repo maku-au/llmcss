@@ -17,7 +17,7 @@
   :root[data-ai-theme="light"][data-ai-skin="obsidian"],
   :root:not([data-ai-theme="dark"])[data-ai-skin="obsidian"],
   [data-ai-theme="light"] [data-ai-skin="obsidian"],
-  .light [data-ai-skin="obsidian"] {
+  .theme-light [data-ai-skin="obsidian"] {
     --ai-bg: #fbfbfb;
     --ai-surface-0: #ffffff;
     --ai-surface-1: #f4f4f5;
@@ -39,7 +39,7 @@
   /* Obsidian in Dark Mode (Pitch Black / High-Contrast Precision Aesthetic) */
   :root[data-ai-theme="dark"][data-ai-skin="obsidian"],
   [data-ai-theme="dark"] [data-ai-skin="obsidian"],
-  .dark [data-ai-skin="obsidian"] {
+  .theme-dark [data-ai-skin="obsidian"] {
     --ai-bg: #000000;
     --ai-surface-0: #0a0a0a;
     --ai-surface-1: #141414;

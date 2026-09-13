@@ -57,7 +57,7 @@ function requireProToken() {
   const token = getStoredToken();
   if (!token) {
     console.log('\n\x1b[33m⚠️  This is an LLMCSS PRO item.\x1b[0m');
-    console.log('Themed templates and components are not in the public repo. Subscribe, then login.\n');
+    console.log('Themed templates and page kits are not in the public repo. Subscribe, then login.\n');
     console.log('1. Get a license at: \x1b[36mhttps://llmcss.io/#pricing\x1b[0m');
     console.log('2. Run: \x1b[32mnpx llmcss login <token>\x1b[0m\n');
     process.exit(1);
@@ -204,17 +204,19 @@ switch (command) {
     }
     const comp = components.find((c) => c.id === compId);
     if (!comp) {
+      // Every catalog component is MIT. Themed ids are section templates now,
+      // so send the caller to the command that can actually fetch them.
+      const asTemplate = wireframeTemplates.find((t) => t.id === compId);
+      if (asTemplate) {
+        console.error(`"${compId}" is a section template, not a component. Run \`llmcss template get ${compId}\`.`);
+        process.exit(1);
+      }
       console.error(`Component "${compId}" not found in registry. Run \`llmcss list\` to see available components.`);
       process.exit(1);
     }
 
-    let html = comp.html;
-    let extraCss = comp.css || '';
-    if (comp.tier === 'pro') {
-      const fetched = fetchProJson(compId);
-      html = fetched.html;
-      extraCss = fetched.css || '';
-    }
+    const html = comp.html;
+    const extraCss = comp.css || '';
 
     // Target Output
     const targetDir = path.resolve(process.cwd(), 'components', comp.category);
@@ -274,13 +276,13 @@ switch (command) {
     const compId = args[1];
     const comp = components.find((c) => c.id === compId);
     if (!comp) {
+      const asTemplate = wireframeTemplates.find((t) => t.id === compId);
+      if (asTemplate) {
+        console.error(`"${compId}" is a section template, not a component. Run \`llmcss template get ${compId}\`.`);
+        process.exit(1);
+      }
       console.error(`Component "${compId}" not found.`);
       process.exit(1);
-    }
-    if (comp.tier === 'pro') {
-      const { html, ...rest } = comp;
-      console.log(JSON.stringify({ ...rest, html: null, locked: true, message: 'Pro source is not in the public catalog. Run `npx llmcss login <token>` then `npx llmcss add ' + comp.id + '`.' }, null, 2));
-      break;
     }
     console.log(JSON.stringify(comp, null, 2));
     break;
@@ -1064,12 +1066,12 @@ them first.
 ✦ LLMCSS CLI - The AI-First Modern UI Framework
 
 Commands:
-  llmcss list                    List all available components (Free & Pro)
+  llmcss list                    List all available components (every one is MIT)
   llmcss search <query>          Search components by keyword or tag
   llmcss add <component-id>      Install component markup into your project
   llmcss info <component-id>     Output raw component metadata & schema
   llmcss templates               List all wireframe section templates
-  llmcss template get <id>       Output clean semantic HTML for a wireframe section
+  llmcss template get <id>       Output HTML for a wireframe or themed Pro section
   llmcss template blueprints     List full-page composition blueprints
   llmcss template blueprint <id> Generate full assembled HTML for a page blueprint
   llmcss harness [archetype]     Output Design Direction Harness & agent prompt directives

@@ -30,11 +30,11 @@ That is the whole install. Everything else in this repo is optional: a CLI, an M
 ## What this is
 
 <!-- stats:start -->
-- **Classes:** 1407 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
-- **Tokens:** 82 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
+- **Classes:** 2312 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Tokens:** 107 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
 - **States:** 36 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
-- **Components:** 125 (122 free, 3 themed Pro): 54 primitive, 44 application, 22 marketing, 5 ecommerce.
-- **Section templates:** 26 (18 free wireframe, 8 themed Pro).
+- **Components:** 122, all MIT: 54 primitive, 42 application, 21 marketing, 5 ecommerce.
+- **Section templates:** 29 (18 free wireframe, 11 themed Pro).
 - **Page blueprints:** 6 (4 free, 2 Pro).
 <!-- stats:end -->
 
@@ -60,7 +60,7 @@ curl https://llmcss.io/r/btn-variants.json
 
 Generated from the CSS at build time, so they cannot drift from the stylesheet. An agent should read these instead of guessing class names.
 
-- [classes.json](https://llmcss.io/classes.json): every class, each with its family and the `sm:` / `md:` / `lg:` / `xl:` / `cq:` variants that exist for it. If a class is not here, it does not exist.
+- [classes.json](https://llmcss.io/classes.json): every class, each with its family and the variants that exist for it: breakpoints `sm:` `md:` `lg:` `xl:` `2xl:`, container tiers `cq-sm:` `cq-md:` `cq-lg:`, and states such as `hover:`, `focus-visible:`, `group-hover:`, `dark:`, `print:` and `first:`. If a class is not here, it does not exist.
 - [tokens.json](https://llmcss.io/tokens.json): every `--ai-*` token with its value in light, dark, each skin, and each focus preset.
 - [states.json](https://llmcss.io/states.json): every `is-*` state class and every `data-ai-*` attribute, with allowed values and whether the author or the runtime applies it.
 - [registry.json](https://llmcss.io/registry.json), [templates.json](https://llmcss.io/templates.json): component catalog and wireframe templates.
@@ -159,15 +159,15 @@ Each law's remedy, plus the four archetypes (Executive Slate, Fintech Titanium, 
 
 ## Pro
 
-The MIT catalog is the full component set, including command palette, cart drawer, agent chrome, and bento heroes. Pro ($9/month via Polar) is themed section templates, page kits, and a few skin-specific composed blocks. The token is shown once at checkout.
+The MIT catalog is the full component set, including command palette, cart drawer, agent chrome, and bento heroes. There are no Pro components. Pro ($9/month via Polar) is themed section templates and page kits only. The token is shown once at checkout.
 
 ```bash
 npx llmcss login llmcss_live_...
 npx llmcss template get themed-hero-obsidian
-npx llmcss add themed-editorial-article-header
+npx llmcss template get themed-editorial-article-header
 ```
 
-Themed source is not in this repository. `npx llmcss add` / `npx llmcss template get` on a Pro id fetches `GET /r/pro/{id}.json` with `Authorization: Bearer <token>`.
+Themed source is not in this repository. `npx llmcss template get <pro-id>` and `npx llmcss template blueprint <pro-kit>` fetch `GET /r/pro/{id}.json` with `Authorization: Bearer <token>`. `npx llmcss add` never needs a token.
 
 ## License
 

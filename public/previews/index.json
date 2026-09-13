@@ -1,0 +1,505 @@
+{
+  "generatedAt": "2026-09-13T03:57:16.541Z",
+  "format": "png",
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "stylesheet": "llmcss.css",
+  "previews": [
+    {
+      "id": "themed-nav-obsidian",
+      "name": "Obsidian Product Nav",
+      "kind": "section",
+      "skin": "obsidian",
+      "images": {
+        "light": {
+          "src": "/previews/themed-nav-obsidian.png",
+          "width": 1280,
+          "height": 73,
+          "bytes": 6798
+        },
+        "light390": {
+          "src": "/previews/themed-nav-obsidian-390.png",
+          "width": 390,
+          "height": 73,
+          "bytes": 4389
+        },
+        "dark": {
+          "src": "/previews/themed-nav-obsidian-dark.png",
+          "width": 1280,
+          "height": 73,
+          "bytes": 6504
+        },
+        "dark390": {
+          "src": "/previews/themed-nav-obsidian-390-dark.png",
+          "width": 390,
+          "height": 73,
+          "bytes": 4243
+        }
+      },
+      "width": 1280,
+      "height": 73,
+      "src": "/previews/themed-nav-obsidian.png",
+      "width390": 390,
+      "height390": 73,
+      "src390": "/previews/themed-nav-obsidian-390.png"
+    },
+    {
+      "id": "themed-hero-obsidian",
+      "name": "Obsidian Split Hero",
+      "kind": "section",
+      "skin": "obsidian",
+      "images": {
+        "light": {
+          "src": "/previews/themed-hero-obsidian.png",
+          "width": 1280,
+          "height": 576,
+          "bytes": 53439
+        },
+        "light390": {
+          "src": "/previews/themed-hero-obsidian-390.png",
+          "width": 390,
+          "height": 832,
+          "bytes": 39505
+        },
+        "dark": {
+          "src": "/previews/themed-hero-obsidian-dark.png",
+          "width": 1280,
+          "height": 576,
+          "bytes": 49843
+        },
+        "dark390": {
+          "src": "/previews/themed-hero-obsidian-390-dark.png",
+          "width": 390,
+          "height": 832,
+          "bytes": 36003
+        }
+      },
+      "width": 1280,
+      "height": 576,
+      "src": "/previews/themed-hero-obsidian.png",
+      "width390": 390,
+      "height390": 832,
+      "src390": "/previews/themed-hero-obsidian-390.png"
+    },
+    {
+      "id": "themed-features-editorial",
+      "name": "Editorial Feature Spread",
+      "kind": "section",
+      "skin": "editorial",
+      "images": {
+        "light": {
+          "src": "/previews/themed-features-editorial.png",
+          "width": 1280,
+          "height": 426,
+          "bytes": 34826
+        },
+        "light390": {
+          "src": "/previews/themed-features-editorial-390.png",
+          "width": 390,
+          "height": 590,
+          "bytes": 33456
+        },
+        "dark": {
+          "src": "/previews/themed-features-editorial-dark.png",
+          "width": 1280,
+          "height": 426,
+          "bytes": 34794
+        },
+        "dark390": {
+          "src": "/previews/themed-features-editorial-390-dark.png",
+          "width": 390,
+          "height": 590,
+          "bytes": 33634
+        }
+      },
+      "width": 1280,
+      "height": 426,
+      "src": "/previews/themed-features-editorial.png",
+      "width390": 390,
+      "height390": 590,
+      "src390": "/previews/themed-features-editorial-390.png"
+    },
+    {
+      "id": "themed-pricing-fintech",
+      "name": "Fintech Two-Plan Pricing",
+      "kind": "section",
+      "skin": "fintech",
+      "images": {
+        "light": {
+          "src": "/previews/themed-pricing-fintech.png",
+          "width": 1280,
+          "height": 770,
+          "bytes": 52260
+        },
+        "light390": {
+          "src": "/previews/themed-pricing-fintech-390.png",
+          "width": 390,
+          "height": 1162,
+          "bytes": 46003
+        },
+        "dark": {
+          "src": "/previews/themed-pricing-fintech-dark.png",
+          "width": 1280,
+          "height": 770,
+          "bytes": 52130
+        },
+        "dark390": {
+          "src": "/previews/themed-pricing-fintech-390-dark.png",
+          "width": 390,
+          "height": 1162,
+          "bytes": 46173
+        }
+      },
+      "width": 1280,
+      "height": 770,
+      "src": "/previews/themed-pricing-fintech.png",
+      "width390": 390,
+      "height390": 1162,
+      "src390": "/previews/themed-pricing-fintech-390.png"
+    },
+    {
+      "id": "themed-cta-executive",
+      "name": "Executive Closing Band",
+      "kind": "section",
+      "skin": "executive",
+      "images": {
+        "light": {
+          "src": "/previews/themed-cta-executive.png",
+          "width": 1280,
+          "height": 354,
+          "bytes": 22587
+        },
+        "light390": {
+          "src": "/previews/themed-cta-executive-390.png",
+          "width": 390,
+          "height": 362,
+          "bytes": 17834
+        },
+        "dark": {
+          "src": "/previews/themed-cta-executive-dark.png",
+          "width": 1280,
+          "height": 354,
+          "bytes": 22621
+        },
+        "dark390": {
+          "src": "/previews/themed-cta-executive-390-dark.png",
+          "width": 390,
+          "height": 362,
+          "bytes": 17947
+        }
+      },
+      "width": 1280,
+      "height": 354,
+      "src": "/previews/themed-cta-executive.png",
+      "width390": 390,
+      "height390": 362,
+      "src390": "/previews/themed-cta-executive-390.png"
+    },
+    {
+      "id": "themed-footer-obsidian",
+      "name": "Obsidian Sitemap Footer",
+      "kind": "section",
+      "skin": "obsidian",
+      "images": {
+        "light": {
+          "src": "/previews/themed-footer-obsidian.png",
+          "width": 1280,
+          "height": 301,
+          "bytes": 16806
+        },
+        "light390": {
+          "src": "/previews/themed-footer-obsidian-390.png",
+          "width": 390,
+          "height": 545,
+          "bytes": 19180
+        },
+        "dark": {
+          "src": "/previews/themed-footer-obsidian-dark.png",
+          "width": 1280,
+          "height": 301,
+          "bytes": 16262
+        },
+        "dark390": {
+          "src": "/previews/themed-footer-obsidian-390-dark.png",
+          "width": 390,
+          "height": 545,
+          "bytes": 18601
+        }
+      },
+      "width": 1280,
+      "height": 301,
+      "src": "/previews/themed-footer-obsidian.png",
+      "width390": 390,
+      "height390": 545,
+      "src390": "/previews/themed-footer-obsidian-390.png"
+    },
+    {
+      "id": "themed-app-shell-obsidian",
+      "name": "Obsidian App Shell",
+      "kind": "section",
+      "skin": "obsidian",
+      "images": {
+        "light": {
+          "src": "/previews/themed-app-shell-obsidian.png",
+          "width": 1280,
+          "height": 452,
+          "bytes": 31020
+        },
+        "light390": {
+          "src": "/previews/themed-app-shell-obsidian-390.png",
+          "width": 390,
+          "height": 656,
+          "bytes": 27738
+        },
+        "dark": {
+          "src": "/previews/themed-app-shell-obsidian-dark.png",
+          "width": 1280,
+          "height": 452,
+          "bytes": 30322
+        },
+        "dark390": {
+          "src": "/previews/themed-app-shell-obsidian-390-dark.png",
+          "width": 390,
+          "height": 656,
+          "bytes": 27276
+        }
+      },
+      "width": 1280,
+      "height": 452,
+      "src": "/previews/themed-app-shell-obsidian.png",
+      "width390": 390,
+      "height390": 656,
+      "src390": "/previews/themed-app-shell-obsidian-390.png"
+    },
+    {
+      "id": "themed-dash-header-fintech",
+      "name": "Fintech Dashboard Header",
+      "kind": "section",
+      "skin": "fintech",
+      "images": {
+        "light": {
+          "src": "/previews/themed-dash-header-fintech.png",
+          "width": 1280,
+          "height": 79,
+          "bytes": 9782
+        },
+        "light390": {
+          "src": "/previews/themed-dash-header-fintech-390.png",
+          "width": 390,
+          "height": 127,
+          "bytes": 9512
+        },
+        "dark": {
+          "src": "/previews/themed-dash-header-fintech-dark.png",
+          "width": 1280,
+          "height": 79,
+          "bytes": 9772
+        },
+        "dark390": {
+          "src": "/previews/themed-dash-header-fintech-390-dark.png",
+          "width": 390,
+          "height": 127,
+          "bytes": 9427
+        }
+      },
+      "width": 1280,
+      "height": 79,
+      "src": "/previews/themed-dash-header-fintech.png",
+      "width390": 390,
+      "height390": 127,
+      "src390": "/previews/themed-dash-header-fintech-390.png"
+    },
+    {
+      "id": "themed-editorial-article-header",
+      "name": "Editorial Article Header",
+      "kind": "section",
+      "skin": "editorial",
+      "images": {
+        "light": {
+          "src": "/previews/themed-editorial-article-header.png",
+          "width": 1280,
+          "height": 236,
+          "bytes": 18308
+        },
+        "light390": {
+          "src": "/previews/themed-editorial-article-header-390.png",
+          "width": 390,
+          "height": 250,
+          "bytes": 15487
+        },
+        "dark": {
+          "src": "/previews/themed-editorial-article-header-dark.png",
+          "width": 1280,
+          "height": 236,
+          "bytes": 18365
+        },
+        "dark390": {
+          "src": "/previews/themed-editorial-article-header-390-dark.png",
+          "width": 390,
+          "height": 250,
+          "bytes": 15561
+        }
+      },
+      "width": 1280,
+      "height": 236,
+      "src": "/previews/themed-editorial-article-header.png",
+      "width390": 390,
+      "height390": 250,
+      "src390": "/previews/themed-editorial-article-header-390.png"
+    },
+    {
+      "id": "themed-fintech-ledger-row",
+      "name": "Fintech Ledger Row",
+      "kind": "section",
+      "skin": "fintech",
+      "images": {
+        "light": {
+          "src": "/previews/themed-fintech-ledger-row.png",
+          "width": 1280,
+          "height": 130,
+          "bytes": 10893
+        },
+        "light390": {
+          "src": "/previews/themed-fintech-ledger-row-390.png",
+          "width": 390,
+          "height": 130,
+          "bytes": 10074
+        },
+        "dark": {
+          "src": "/previews/themed-fintech-ledger-row-dark.png",
+          "width": 1280,
+          "height": 130,
+          "bytes": 10756
+        },
+        "dark390": {
+          "src": "/previews/themed-fintech-ledger-row-390-dark.png",
+          "width": 390,
+          "height": 130,
+          "bytes": 9962
+        }
+      },
+      "width": 1280,
+      "height": 130,
+      "src": "/previews/themed-fintech-ledger-row.png",
+      "width390": 390,
+      "height390": 130,
+      "src390": "/previews/themed-fintech-ledger-row-390.png"
+    },
+    {
+      "id": "themed-obsidian-status-rail",
+      "name": "Obsidian Status Rail",
+      "kind": "section",
+      "skin": "obsidian",
+      "images": {
+        "light": {
+          "src": "/previews/themed-obsidian-status-rail.png",
+          "width": 1280,
+          "height": 119,
+          "bytes": 8044
+        },
+        "light390": {
+          "src": "/previews/themed-obsidian-status-rail-390.png",
+          "width": 390,
+          "height": 119,
+          "bytes": 7376
+        },
+        "dark": {
+          "src": "/previews/themed-obsidian-status-rail-dark.png",
+          "width": 1280,
+          "height": 119,
+          "bytes": 7688
+        },
+        "dark390": {
+          "src": "/previews/themed-obsidian-status-rail-390-dark.png",
+          "width": 390,
+          "height": 119,
+          "bytes": 7014
+        }
+      },
+      "width": 1280,
+      "height": 119,
+      "src": "/previews/themed-obsidian-status-rail.png",
+      "width390": 390,
+      "height390": 119,
+      "src390": "/previews/themed-obsidian-status-rail-390.png"
+    },
+    {
+      "id": "kit-obsidian-saas",
+      "name": "Obsidian SaaS Landing",
+      "kind": "kit",
+      "skin": "obsidian",
+      "images": {
+        "light": {
+          "src": "/previews/kit-obsidian-saas.png",
+          "width": 1280,
+          "height": 2479,
+          "bytes": 185793
+        },
+        "light390": {
+          "src": "/previews/kit-obsidian-saas-390.png",
+          "width": 390,
+          "height": 3543,
+          "bytes": 158246
+        },
+        "dark": {
+          "src": "/previews/kit-obsidian-saas-dark.png",
+          "width": 1280,
+          "height": 2479,
+          "bytes": 177163
+        },
+        "dark390": {
+          "src": "/previews/kit-obsidian-saas-390-dark.png",
+          "width": 390,
+          "height": 3543,
+          "bytes": 150379
+        }
+      },
+      "width": 1280,
+      "height": 2479,
+      "src": "/previews/kit-obsidian-saas.png",
+      "width390": 390,
+      "height390": 3543,
+      "src390": "/previews/kit-obsidian-saas-390.png"
+    },
+    {
+      "id": "kit-fintech-dashboard",
+      "name": "Fintech Dashboard Kit",
+      "kind": "kit",
+      "skin": "fintech",
+      "images": {
+        "light": {
+          "src": "/previews/kit-fintech-dashboard.png",
+          "width": 1280,
+          "height": 481,
+          "bytes": 40653
+        },
+        "light390": {
+          "src": "/previews/kit-fintech-dashboard-390.png",
+          "width": 390,
+          "height": 779,
+          "bytes": 37377
+        },
+        "dark": {
+          "src": "/previews/kit-fintech-dashboard-dark.png",
+          "width": 1280,
+          "height": 481,
+          "bytes": 39723
+        },
+        "dark390": {
+          "src": "/previews/kit-fintech-dashboard-390-dark.png",
+          "width": 390,
+          "height": 779,
+          "bytes": 36861
+        }
+      },
+      "width": 1280,
+      "height": 481,
+      "src": "/previews/kit-fintech-dashboard.png",
+      "width390": 390,
+      "height390": 779,
+      "src390": "/previews/kit-fintech-dashboard-390.png"
+    }
+  ]
+}

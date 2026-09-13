@@ -365,43 +365,43 @@ export const extraComponents = [
     category: 'ecommerce',
     tier: 'free',
     tags: ['order', 'tracking', 'shipping', 'status', 'steps', 'ecommerce'],
-    html: `<div class="order" style="max-width: 40rem;">
-  <div class="order-head">
+    html: `<div class="order max-w-2xl">
+  <div class="orderline-head">
     <div>
-      <h3 class="order-title">Order 48210 is on its way</h3>
+      <h3 class="orderline-title">Order 48210 is on its way</h3>
       <p class="text-sm text-secondary">Three items, dispatched from the Alexandria warehouse.</p>
     </div>
-    <div class="order-eta">
+    <div class="orderline-eta">
       Estimated delivery
       <strong>Thursday 17 September</strong>
     </div>
   </div>
 
-  <ol class="order-track">
-    <li class="order-step is-completed">
-      <span class="order-pip" aria-hidden="true"></span>
-      <span class="order-label">Ordered</span>
-      <span class="order-date">9 Sep, 10:42</span>
+  <ol class="orderline-track">
+    <li class="orderline-step is-completed">
+      <span class="orderline-pip" aria-hidden="true"></span>
+      <span class="orderline-label">Ordered</span>
+      <span class="orderline-date">9 Sep, 10:42</span>
     </li>
-    <li class="order-step is-completed">
-      <span class="order-pip" aria-hidden="true"></span>
-      <span class="order-label">Packed</span>
-      <span class="order-date">10 Sep, 08:15</span>
+    <li class="orderline-step is-completed">
+      <span class="orderline-pip" aria-hidden="true"></span>
+      <span class="orderline-label">Packed</span>
+      <span class="orderline-date">10 Sep, 08:15</span>
     </li>
-    <li class="order-step is-current" aria-current="step">
-      <span class="order-pip" aria-hidden="true"></span>
-      <span class="order-label">Shipped</span>
-      <span class="order-date">11 Sep, 17:30</span>
+    <li class="orderline-step is-current" aria-current="step">
+      <span class="orderline-pip" aria-hidden="true"></span>
+      <span class="orderline-label">Shipped</span>
+      <span class="orderline-date">11 Sep, 17:30</span>
     </li>
-    <li class="order-step is-upcoming">
-      <span class="order-pip" aria-hidden="true"></span>
-      <span class="order-label">Delivered</span>
-      <span class="order-date">Est. 17 Sep</span>
+    <li class="orderline-step is-upcoming">
+      <span class="orderline-pip" aria-hidden="true"></span>
+      <span class="orderline-label">Delivered</span>
+      <span class="orderline-date">Est. 17 Sep</span>
     </li>
   </ol>
 
-  <div class="order-meta">
-    <span>Southbound Freight tracking <span class="order-id">AU7734221905</span></span>
+  <div class="orderline-meta">
+    <span>Southbound Freight tracking <span class="orderline-id">AU7734221905</span></span>
     <a class="btn btn-outline btn-sm" href="#order-48210">Track shipment</a>
   </div>
 </div>`,

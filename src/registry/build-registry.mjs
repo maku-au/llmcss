@@ -8,22 +8,11 @@ import { lockedPreview } from './locked.mjs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// The component catalog is entirely MIT. Pro lives in themed section
+// templates and page kits, which go through toPublicTemplate below.
 function toPublicComponent(c) {
-  if (c.tier !== 'pro') {
-    const { ts, css, ...rest } = c;
-    return rest;
-  }
-  return {
-    id: c.id,
-    name: c.name,
-    description: c.description,
-    category: c.category,
-    tier: 'pro',
-    tags: c.tags,
-    locked: true,
-    html: null,
-    previewHtml: lockedPreview(c.name.replace(/\s*\(PRO\)\s*$/i, '').replace(/\s*\(Pro\)\s*$/i, '')),
-  };
+  const { ts, css, ...rest } = c;
+  return rest;
 }
 
 function toPublicTemplate(t) {

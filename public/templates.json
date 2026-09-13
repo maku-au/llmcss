@@ -1,13 +1,13 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-09-13T03:30:05.698Z",
+  "generatedAt": "2026-09-13T04:08:34.566Z",
   "stats": {
-    "totalTemplates": 26,
+    "totalTemplates": 29,
     "freeTemplates": 18,
-    "proTemplates": 8,
+    "proTemplates": 11,
     "totalBlueprints": 6,
     "sections": {
-      "header": 4,
+      "header": 5,
       "hero": 4,
       "features": 4,
       "social-proof": 2,
@@ -16,7 +16,7 @@
       "faq": 1,
       "cta": 2,
       "footer": 2,
-      "app-shell": 4
+      "app-shell": 6
     }
   },
   "wireframeTemplates": [
@@ -479,7 +479,36 @@
       },
       "locked": true,
       "html": null,
-      "previewHtml": "<div class=\"card card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Obsidian Product Nav <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary\" style=\"margin-top: var(--ai-space-2);\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <a class=\"btn btn-primary btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "previewHtml": "<div class=\"card card-pro p-8 text-center max-w-md mx-auto\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Obsidian Product Nav <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary mt-2\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <p class=\"text-sm text-secondary mt-2\">Preview available in the gallery.</p>\n  <a class=\"btn btn-primary btn-sm mt-4\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "themed-editorial-article-header",
+      "name": "Editorial Article Header",
+      "description": "Magazine article header: display title, byline, date, and a hairline rule. Pin data-ai-skin=\"editorial\".",
+      "section": "header",
+      "tier": "pro",
+      "kind": "themed",
+      "skin": "editorial",
+      "tags": [
+        "themed",
+        "editorial",
+        "article",
+        "header",
+        "byline"
+      ],
+      "placement": "Top of an Article (Above Fold, under the site chrome)",
+      "guidance": {
+        "placement": "First block inside the article body, below the site nav. Title, byline, date, one hairline rule.",
+        "bestUsedFor": "Long-form essays, editorial posts, and release notes on an Editorial-skinned site.",
+        "avoidWhen": "Marketing landings that need a conversion hero; use the free wireframe hero instead.",
+        "pairsWith": [
+          "themed-features-editorial",
+          "themed-footer-obsidian"
+        ]
+      },
+      "locked": true,
+      "html": null,
+      "previewHtml": "<div class=\"card card-pro p-8 text-center max-w-md mx-auto\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Editorial Article Header <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary mt-2\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <p class=\"text-sm text-secondary mt-2\">Preview available in the gallery.</p>\n  <a class=\"btn btn-primary btn-sm mt-4\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "themed-hero-obsidian",
@@ -506,7 +535,7 @@
       },
       "locked": true,
       "html": null,
-      "previewHtml": "<div class=\"card card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Obsidian Split Hero <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary\" style=\"margin-top: var(--ai-space-2);\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <a class=\"btn btn-primary btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "previewHtml": "<div class=\"card card-pro p-8 text-center max-w-md mx-auto\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Obsidian Split Hero <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary mt-2\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <p class=\"text-sm text-secondary mt-2\">Preview available in the gallery.</p>\n  <a class=\"btn btn-primary btn-sm mt-4\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "themed-features-editorial",
@@ -533,7 +562,7 @@
       },
       "locked": true,
       "html": null,
-      "previewHtml": "<div class=\"card card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Editorial Feature Spread <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary\" style=\"margin-top: var(--ai-space-2);\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <a class=\"btn btn-primary btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "previewHtml": "<div class=\"card card-pro p-8 text-center max-w-md mx-auto\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Editorial Feature Spread <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary mt-2\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <p class=\"text-sm text-secondary mt-2\">Preview available in the gallery.</p>\n  <a class=\"btn btn-primary btn-sm mt-4\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "themed-pricing-fintech",
@@ -560,7 +589,7 @@
       },
       "locked": true,
       "html": null,
-      "previewHtml": "<div class=\"card card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Fintech Two-Plan Pricing <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary\" style=\"margin-top: var(--ai-space-2);\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <a class=\"btn btn-primary btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "previewHtml": "<div class=\"card card-pro p-8 text-center max-w-md mx-auto\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Fintech Two-Plan Pricing <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary mt-2\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <p class=\"text-sm text-secondary mt-2\">Preview available in the gallery.</p>\n  <a class=\"btn btn-primary btn-sm mt-4\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "themed-cta-executive",
@@ -587,7 +616,7 @@
       },
       "locked": true,
       "html": null,
-      "previewHtml": "<div class=\"card card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Executive Closing Band <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary\" style=\"margin-top: var(--ai-space-2);\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <a class=\"btn btn-primary btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "previewHtml": "<div class=\"card card-pro p-8 text-center max-w-md mx-auto\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Executive Closing Band <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary mt-2\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <p class=\"text-sm text-secondary mt-2\">Preview available in the gallery.</p>\n  <a class=\"btn btn-primary btn-sm mt-4\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "themed-footer-obsidian",
@@ -614,7 +643,7 @@
       },
       "locked": true,
       "html": null,
-      "previewHtml": "<div class=\"card card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Obsidian Sitemap Footer <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary\" style=\"margin-top: var(--ai-space-2);\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <a class=\"btn btn-primary btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "previewHtml": "<div class=\"card card-pro p-8 text-center max-w-md mx-auto\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Obsidian Sitemap Footer <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary mt-2\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <p class=\"text-sm text-secondary mt-2\">Preview available in the gallery.</p>\n  <a class=\"btn btn-primary btn-sm mt-4\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "themed-app-shell-obsidian",
@@ -641,7 +670,7 @@
       },
       "locked": true,
       "html": null,
-      "previewHtml": "<div class=\"card card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Obsidian App Shell <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary\" style=\"margin-top: var(--ai-space-2);\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <a class=\"btn btn-primary btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "previewHtml": "<div class=\"card card-pro p-8 text-center max-w-md mx-auto\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Obsidian App Shell <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary mt-2\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <p class=\"text-sm text-secondary mt-2\">Preview available in the gallery.</p>\n  <a class=\"btn btn-primary btn-sm mt-4\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     },
     {
       "id": "themed-dash-header-fintech",
@@ -668,7 +697,65 @@
       },
       "locked": true,
       "html": null,
-      "previewHtml": "<div class=\"card card-pro\" style=\"padding: var(--ai-space-8); text-align: center; max-width: 28rem; margin: 0 auto;\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Fintech Dashboard Header <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary\" style=\"margin-top: var(--ai-space-2);\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <a class=\"btn btn-primary btn-sm\" style=\"margin-top: var(--ai-space-4);\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+      "previewHtml": "<div class=\"card card-pro p-8 text-center max-w-md mx-auto\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Fintech Dashboard Header <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary mt-2\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <p class=\"text-sm text-secondary mt-2\">Preview available in the gallery.</p>\n  <a class=\"btn btn-primary btn-sm mt-4\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "themed-fintech-ledger-row",
+      "name": "Fintech Ledger Row",
+      "description": "Single ledger line with counterparty, tabular amount, and a status pip. Pin data-ai-skin=\"fintech\".",
+      "section": "app-shell",
+      "tier": "pro",
+      "kind": "themed",
+      "skin": "fintech",
+      "tags": [
+        "themed",
+        "fintech",
+        "ledger",
+        "transaction",
+        "row"
+      ],
+      "placement": "Inside the App Content Canvas (repeated once per record)",
+      "guidance": {
+        "placement": "A row in the ledger or transaction table inside the app shell content area. Repeat it per record.",
+        "bestUsedFor": "Treasury, billing, and payment history views that need tabular amounts and a static status pip.",
+        "avoidWhen": "Marketing pages, or overviews that only need a headline figure.",
+        "pairsWith": [
+          "themed-dash-header-fintech",
+          "themed-app-shell-obsidian"
+        ]
+      },
+      "locked": true,
+      "html": null,
+      "previewHtml": "<div class=\"card card-pro p-8 text-center max-w-md mx-auto\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Fintech Ledger Row <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary mt-2\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <p class=\"text-sm text-secondary mt-2\">Preview available in the gallery.</p>\n  <a class=\"btn btn-primary btn-sm mt-4\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
+    },
+    {
+      "id": "themed-obsidian-status-rail",
+      "name": "Obsidian Status Rail",
+      "description": "Vertical service rail with static status pips, monospace ids, and timestamps. Pin data-ai-skin=\"obsidian\".",
+      "section": "app-shell",
+      "tier": "pro",
+      "kind": "themed",
+      "skin": "obsidian",
+      "tags": [
+        "themed",
+        "obsidian",
+        "status",
+        "rail",
+        "ops"
+      ],
+      "placement": "Secondary Column of an Application Viewport",
+      "guidance": {
+        "placement": "Side rail inside the app shell, beside the primary content column. Static pips, never pulsing dots.",
+        "bestUsedFor": "Ops consoles and agent workspaces that surface per-service health at a glance.",
+        "avoidWhen": "Public marketing pages, or anywhere the rail would imply a live feed it does not have.",
+        "pairsWith": [
+          "themed-app-shell-obsidian",
+          "themed-dash-header-fintech"
+        ]
+      },
+      "locked": true,
+      "html": null,
+      "previewHtml": "<div class=\"card card-pro p-8 text-center max-w-md mx-auto\">\n  <h3 class=\"card-title flex items-center justify-center gap-2\">Obsidian Status Rail <span class=\"badge badge-solid badge-sm\">Pro</span></h3>\n  <p class=\"text-sm text-secondary mt-2\">Themed source is not in the public catalog. Subscribe to copy this.</p>\n  <p class=\"text-sm text-secondary mt-2\">Preview available in the gallery.</p>\n  <a class=\"btn btn-primary btn-sm mt-4\" href=\"/api/checkout.php\">Unlock Pro ($9/mo)</a>\n</div>"
     }
   ],
   "pageBlueprints": [

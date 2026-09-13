@@ -52,6 +52,15 @@ function rules(css, ctx = '') {
   return out;
 }
 
+/**
+ * Family attribution for the generated matrix, written by build-utilities.mjs
+ * next to utilities.css. Keyed by the base class name with the variant prefix
+ * stripped, so familyFor is a lookup rather than a prefix guess.
+ */
+const UTIL_FAMILIES = JSON.parse(
+  fs.readFileSync(path.join(cssDir, 'utilities.families.json'), 'utf8')
+).classes;
+
 const FAMILY_BY_PREFIX = [
   ['-(m|mx|my|mt|mr|mb|ml|ms|me)-', 'spacing'],
   ['(p|px|py|pt|pr|pb|pl|ps|pe|m|mx|my|mt|mr|mb|ml|ms|me)-', 'spacing'],
@@ -70,17 +79,31 @@ const FAMILY_BY_PREFIX = [
 
 function familyFor(cls, file) {
   const base = path.basename(file, '.css');
-  if (base !== 'utilities') return base === 'animations' ? 'animations' : base;
-  const bare = cls.replace(/^(sm|md|lg|xl|cq)\\?:/, '');
-  for (const [re, fam] of FAMILY_BY_PREFIX) if (new RegExp('^' + re).test(bare)) return fam;
+  // utilities.extra.css is the hand-written half of the same sheet, so it takes
+  // the same attribution path rather than becoming a family of its own.
+  if (base !== 'utilities' && base !== 'utilities.extra') {
+    return base === 'animations' ? 'animations' : base;
+  }
+  if (UTIL_FAMILIES[cls]) return UTIL_FAMILIES[cls];
+  for (const [re, fam] of FAMILY_BY_PREFIX) if (new RegExp('^' + re).test(cls)) return fam;
   return 'utilities';
 }
 
 // Every class selector in the stylesheet, prefix-free since 0.4.0. A name may
 // start with a hyphen (the negative margins, .-m-1) and may carry CSS escapes
-// for the variant colon (.md\:flex) and for a slash (.w-1\/2).
-const CLASS_RE = /\.((?:\\.|[A-Za-z0-9_-])+)/g;
-const unescape = (name) => name.replace(/\\(.)/g, '$1');
+// for the variant colon (.md\:flex), for a dot (.p-0\.5) and for a slash
+// (.w-1\/2). A leading digit is escaped as six hex digits with no terminating
+// space (.\000032xl\:flex), so the alternation has to try that form first.
+const CLASS_RE = /\.((?:\\[0-9a-fA-F]{6}|\\.|[A-Za-z0-9_-])+)/g;
+const unescape = (name) =>
+  name
+    .replace(/\\([0-9a-fA-F]{6})/g, (_, h) => String.fromCodePoint(parseInt(h, 16)))
+    .replace(/\\(.)/g, '$1');
+
+// Variant prefixes: five breakpoints, three container tiers and the thirteen
+// state prefixes the spec emits. motion-safe is defined but unused today.
+const VARIANT_RE =
+  /^(sm|md|lg|xl|2xl|cq-sm|cq-md|cq-lg|hover|focus-visible|focus|active|disabled|group-hover|dark|print|motion-safe|motion-reduce|first|last|odd|even):(.+)$/;
 
 function buildClasses(files) {
   const classes = new Map();
@@ -100,7 +123,7 @@ function buildClasses(files) {
           states.set(raw, entry);
           continue;
         }
-        const pm = raw.match(/^(sm|md|lg|xl|cq):(.+)$/);
+        const pm = raw.match(VARIANT_RE);
         if (pm) {
           const key = pm[2];
           const entry = classes.get(key) || { class: key, family: familyFor(key, file), file: path.relative(cssDir, file), variants: new Set() };
@@ -212,7 +235,7 @@ function buildManifests() {
       {
         version: '0.1.0',
         generatedAt: now,
-        note: 'Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the responsive (sm 640px, md 768px, lg 1024px, xl 1280px) and container-query (cq) prefixes that exist for the class, written as md:name. Nothing outside this list exists; do not invent classes.',
+        note: 'Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the prefixes that exist for the class, written as md:name: responsive (sm 640px, md 768px, lg 1024px, xl 1280px, 2xl 1536px), container-query against the nearest cq or cq-inline ancestor (cq-sm 380px, cq-md 600px, cq-lg 900px), and state (hover, focus, focus-visible, active, disabled, group-hover, dark, print, motion-reduce, first, last, odd, even). A bare cq: prefix no longer exists. Nothing outside this list exists; do not invent classes.',
         stats: { total: list.length, families },
         classes: list,
       },

@@ -50,6 +50,7 @@ export function applyTheme(theme: 'light' | 'dark') {
     btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
     btn.setAttribute('title', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
   });
+  document.dispatchEvent(new CustomEvent('ai-theme-change', { detail: { theme } }));
 }
 
 export function currentTheme(): 'light' | 'dark' {
@@ -93,10 +94,9 @@ const VERSION = typeof __LLMCSS_VERSION__ === 'string' ? __LLMCSS_VERSION__ : ''
 const CHANGELOG = 'https://github.com/maku-au/llmcss/blob/main/CHANGELOG.md';
 // Version sits between two vertical dividers as plain mono text, not a badge.
 const VERSION_BADGE = VERSION
-  ? `<span class="hidden md:inline-flex items-center">
+  ? `<span class="hidden md:inline-flex items-center gap-2">
       <span class="divider-vertical"></span>
       <a href="${CHANGELOG}" class="font-mono text-xs text-muted tabular" title="Changelog">v${VERSION}</a>
-      <span class="divider-vertical"></span>
     </span>`
   : '';
 
@@ -110,14 +110,14 @@ const BRAND = `<a href="/" class="brand">
 // own row under md.
 function headerHtml(licensed: boolean): string {
   const search = searchHtml();
-  return `<div class="container container-lg navbar-inner">
+  return `<div class="container container-w-lg navbar-inner">
     ${BRAND}
     ${VERSION_BADGE}
-    <nav class="nav-links hidden lg:flex" id="desktop-nav" aria-label="Primary">
+    <nav class="nav-links hidden lg:flex lg:mx-auto" id="desktop-nav" aria-label="Primary">
       ${NAV.map(([href, id, label]) => navLink(href, id, label)).join('\n      ')}
     </nav>
-    ${search ? `<div class="navbar-search w-full order-last md:w-auto md:order-none md:ml-auto">${search}</div>` : ''}
-    <div class="flex items-center gap-2 ${search ? 'ml-auto md:ml-0' : 'ml-auto'}">
+    ${search ? `<div class="navbar-search w-full order-last md:w-auto md:order-none md:ml-auto lg:ml-0">${search}</div>` : ''}
+    <div class="flex items-center gap-2 ${search ? 'ml-auto md:ml-0' : 'ml-auto lg:ml-0'}">
       ${stylerBtn('open-styler-btn', 'hidden lg:inline-flex')}
       <button type="button" id="theme-mode-toggle" class="btn btn-outline btn-sm btn-icon">${currentTheme() === 'dark' ? SUN : MOON}</button>
       <span class="hidden lg:inline-flex">${proCtaHtml(licensed)}</span>
@@ -164,7 +164,7 @@ export function footerHtml(): string {
   // so text-secondary would freeze the hover state. .footer-list a owns both.
   const link = (href: string, label: string) => `<a href="${href}">${label}</a>`;
   const cmd = (href: string, label: string) => `<a href="${href}" class="footer-cmd">${label}</a>`;
-  return `<div class="container container-lg">
+  return `<div class="container container-w-lg">
       <div class="footer-grid">
         <div class="footer-brand">
           ${BRAND}

@@ -43,6 +43,120 @@ const proHtmlCache = new Map<string, string>();
 const proCssCache = new Map<string, string>();
 
 // ============================================================================
+// PRO PREVIEW IMAGES
+// Pro markup never reaches an unlicensed browser, so the gallery shows a
+// screenshot rendered server side by shoot-pro-previews.mjs. The manifest
+// carries the pixel size of every image so a card reserves its space and the
+// stream does not jump while the images load.
+// ============================================================================
+interface PreviewImage {
+  src: string;
+  width: number;
+  height: number;
+}
+
+interface PreviewRecord {
+  id: string;
+  name: string;
+  kind: 'section' | 'kit';
+  skin: string;
+  src: string;
+  width: number;
+  height: number;
+  src390: string;
+  width390: number;
+  height390: number;
+  // Only present when the shoot ran in both themes. Keys are light, light390,
+  // dark and dark390; the light pair duplicates the flat fields above.
+  images?: Partial<Record<'light' | 'light390' | 'dark' | 'dark390', PreviewImage>>;
+}
+
+const previewManifest = new Map<string, PreviewRecord>();
+
+async function loadPreviewManifest() {
+  try {
+    const res = await fetch('/previews/index.json', { cache: 'no-cache' });
+    if (!res.ok) return;
+    const data = await res.json();
+    for (const rec of (data.previews || []) as PreviewRecord[]) {
+      if (rec && rec.id && rec.src) previewManifest.set(rec.id, rec);
+    }
+  } catch {
+    // Previews are optional chrome. Without them the locked stub still renders.
+  }
+}
+
+// A locked Pro entry only gets an image while the browser has no license.
+function previewFor(id: string, tier: string | undefined): PreviewRecord | undefined {
+  if (tier !== 'pro' || getBrowserToken()) return undefined;
+  return previewManifest.get(id);
+}
+
+// The phone render is used when the canvas switcher is on 375, and also when the
+// browser itself is at phone width, where the 1280 shot would be unreadable.
+function narrowPreview(): boolean {
+  return currentViewport === '375' || window.matchMedia('(max-width: 700px)').matches;
+}
+
+// The gallery is a wall of screenshots, so a light shot on a dark page reads as
+// a bug. Dark renders are optional in the manifest; every lookup falls back to
+// the light image rather than leaving the card empty.
+function darkPreviewActive(): boolean {
+  return document.documentElement.getAttribute('data-ai-theme') === 'dark';
+}
+
+function darkImage(rec: PreviewRecord, narrow: boolean): PreviewImage | undefined {
+  const img = rec.images && rec.images[narrow ? 'dark390' : 'dark'];
+  return img && img.src ? img : undefined;
+}
+
+// Attribute stem for one combination. The dark stems are only written when the
+// manifest has that render, so a missing attribute is the fallback signal.
+function previewStem(narrow: boolean, dark: boolean): string {
+  const base = narrow ? 'data-preview-narrow' : 'data-preview-wide';
+  return dark ? `${base}-dark` : base;
+}
+
+function previewImageTag(rec: PreviewRecord, alt: string): string {
+  const narrow = narrowPreview();
+  const chosen = darkPreviewActive() ? darkImage(rec, narrow) : undefined;
+  const src = chosen ? chosen.src : narrow ? rec.src390 : rec.src;
+  const w = chosen ? chosen.width : narrow ? rec.width390 : rec.width;
+  const h = chosen ? chosen.height : narrow ? rec.height390 : rec.height;
+  const wideDark = darkImage(rec, false);
+  const narrowDark = darkImage(rec, true);
+  const darkAttrs =
+    (wideDark
+      ? ` data-preview-wide-dark="${wideDark.src}" data-preview-wide-dark-w="${wideDark.width}" data-preview-wide-dark-h="${wideDark.height}"`
+      : '') +
+    (narrowDark
+      ? ` data-preview-narrow-dark="${narrowDark.src}" data-preview-narrow-dark-w="${narrowDark.width}" data-preview-narrow-dark-h="${narrowDark.height}"`
+      : '');
+  return `<img class="template-preview" src="${src}" alt="${alt}" loading="lazy" width="${w}" height="${h}"` +
+    ` data-preview-wide="${rec.src}" data-preview-wide-w="${rec.width}" data-preview-wide-h="${rec.height}"` +
+    ` data-preview-narrow="${rec.src390}" data-preview-narrow-w="${rec.width390}" data-preview-narrow-h="${rec.height390}"` +
+    `${darkAttrs}>`;
+}
+
+// The 375 viewport button swaps in the phone width render rather than scaling
+// the desktop one down, and the theme toggle swaps in the dark render.
+function syncPreviewViewport() {
+  const narrow = narrowPreview();
+  const dark = darkPreviewActive();
+  document.querySelectorAll<HTMLImageElement>('.template-preview').forEach((img) => {
+    let stem = previewStem(narrow, dark);
+    if (dark && !img.getAttribute(stem)) stem = previewStem(narrow, false);
+    const src = img.getAttribute(stem);
+    const w = img.getAttribute(`${stem}-w`);
+    const h = img.getAttribute(`${stem}-h`);
+    if (!src) return;
+    if (img.getAttribute('src') !== src) img.setAttribute('src', src);
+    if (w) img.setAttribute('width', w);
+    if (h) img.setAttribute('height', h);
+  });
+}
+
+// ============================================================================
 // TOAST NOTIFICATIONS
 // ============================================================================
 function showToast(message: string, type: 'success' | 'info' | 'error' = 'success') {
@@ -134,6 +248,7 @@ function applyThemeSettings() {
   root.setAttribute('data-ai-theme', activeTheme);
   localStorage.setItem('cssai-theme', activeTheme);
   applyDisplayFont(getActiveFontId());
+  syncPreviewViewport();
 }
 
 // ============================================================================
@@ -233,9 +348,38 @@ async function blueprintHtml(bp: PageBlueprint): Promise<string | null> {
   return data.html as string;
 }
 
+// Full size image preview. Used for a locked Pro section card and for the
+// Preview page button on a locked Pro kit, where the assembled blueprint would
+// otherwise be a column of stubs.
+function openImagePreview(title: string, rec: PreviewRecord) {
+  if (!fullPreviewModal || !fullPreviewContent || !fullPreviewTitle) return;
+
+  fullPreviewTitle.textContent = `${title} - Preview`;
+  const copyBtn = document.getElementById('copy-preview-html');
+  if (copyBtn) copyBtn.hidden = true;
+  fullPreviewModal.querySelector('.blueprint-modal-dialog')?.classList.add('is-image');
+
+  fullPreviewContent.innerHTML = `
+    <div class="preview-modal-image">
+      <img class="preview-modal-img" src="${rec.src}" alt="${title} full preview" width="${rec.width}" height="${rec.height}">
+    </div>
+  `;
+
+  fullPreviewModal.classList.add('is-open');
+}
+
 async function openFullPreview(bp: PageBlueprint) {
   if (!fullPreviewModal || !fullPreviewContent || !fullPreviewTitle) return;
 
+  const rec = previewFor(bp.id, bp.tier);
+  if (rec) {
+    openImagePreview(bp.name, rec);
+    return;
+  }
+
+  const copyBtn = document.getElementById('copy-preview-html');
+  if (copyBtn) copyBtn.hidden = false;
+  fullPreviewModal.querySelector('.blueprint-modal-dialog')?.classList.remove('is-image');
   fullPreviewTitle.textContent = `${bp.name} - Live Assembled Blueprint`;
   const fullHtml = await blueprintHtml(bp);
 
@@ -335,8 +479,11 @@ function renderTemplates() {
   templatesStream.innerHTML = items.map(({ template, recipeIndex }) => {
     const isPro = template.tier === 'pro';
     const tierBadge = isPro ? `<span class="docs-pro-tag">PRO</span>` : '';
+    // With a preview image the Unlock Pro control moves into the overlay bar at
+    // the bottom of the frame, so the header keeps only the neutral toggles.
+    const preview = previewFor(template.id, template.tier);
     const copyBtn = isPro
-      ? `<button class="btn btn-primary btn-xs unlock-pro-btn" data-id="${template.id}">Unlock Pro</button>`
+      ? (preview ? '' : `<button class="btn btn-primary btn-xs unlock-pro-btn" data-id="${template.id}">Unlock Pro</button>`)
       : `<button class="btn btn-outline btn-xs copy-html-btn" data-id="${template.id}">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
             <span>Copy HTML</span>
@@ -354,7 +501,7 @@ npx llmcss template get ${template.id}</code></pre>`
           <h3 class="template-title">${template.name}</h3>
           ${tierBadge}
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 template-actions">
           <button class="btn btn-ghost btn-xs template-guidance-toggle" data-target="guidance-${template.id}" aria-expanded="false">
             <span>Guidance</span>
           </button>
@@ -408,8 +555,12 @@ npx llmcss template get ${template.id}</code></pre>`
 
       <!-- Live Preview Canvas -->
       <div class="template-canvas" data-vw="${currentViewport}">
-        <div class="template-frame ${templateKind(template) === 'wireframe' ? 'is-wireframe-mode' : ''}">
-          ${template.html}
+        <div class="template-frame ${templateKind(template) === 'wireframe' ? 'is-wireframe-mode' : ''}${preview ? ' has-preview' : ''}">
+          ${preview ? `${previewImageTag(preview, `${template.name} preview`)}
+          <div class="template-preview-bar">
+            <button class="btn btn-ghost btn-xs preview-full-btn" data-id="${template.id}">Preview full size</button>
+            <button class="btn btn-primary btn-xs unlock-pro-btn" data-id="${template.id}">Unlock Pro</button>
+          </div>` : template.html}
         </div>
       </div>
 
@@ -429,6 +580,7 @@ npx llmcss template get ${template.id}</code></pre>`
 
   // Wire event handlers
   attachTemplateCardHandlers();
+  syncPreviewViewport();
   void hydrateProTemplates();
 }
 
@@ -481,6 +633,17 @@ async function hydrateProTemplates() {
       unlock.classList.remove('unlock-pro-btn');
       unlock.classList.add('copy-html-btn');
       unlock.setAttribute('data-id', t.id);
+    } else {
+      // The Unlock Pro control lived in the preview overlay, which the real
+      // markup has just replaced, so put a Copy HTML back in the header.
+      const actions = card.querySelector('.template-actions');
+      if (actions && !actions.querySelector('.copy-html-btn')) {
+        const copy = document.createElement('button');
+        copy.className = 'btn btn-outline btn-xs copy-html-btn';
+        copy.setAttribute('data-id', t.id);
+        copy.textContent = 'Copy HTML';
+        actions.insertBefore(copy, actions.querySelector('.template-code-toggle'));
+      }
     }
   }
   attachTemplateCardHandlers();
@@ -522,6 +685,16 @@ function attachTemplateCardHandlers() {
         return;
       }
       copyToClipboard(t.html, `${t.name} HTML`, e.currentTarget as HTMLElement);
+    });
+  });
+
+  // Open the rendered screenshot at full size in the blueprint preview modal
+  document.querySelectorAll('.preview-full-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-id');
+      const t = wireframeTemplates.find((x) => x.id === id);
+      const rec = id ? previewFor(id, t?.tier) : undefined;
+      if (rec) openImagePreview(t ? t.name : rec.name, rec);
     });
   });
 
@@ -628,6 +801,8 @@ async function init() {
   themeToggle = document.getElementById('theme-mode-toggle');
   bindFontSwitchers(() => applyThemeSettings());
   applyThemeSettings();
+  // Loaded before the first render so locked Pro cards reserve the image height
+  await loadPreviewManifest();
   syncModeButtons();
   updateCategoryButtons();
 
@@ -715,6 +890,10 @@ async function init() {
     });
   });
 
+  // The header toggle lives in chrome.ts, which announces the change so the
+  // locked Pro previews can swap to their dark renders.
+  document.addEventListener('ai-theme-change', () => syncPreviewViewport());
+
   // 6. Viewport Controls
   const viewportButtons = document.querySelectorAll('.js-viewport-btn');
   viewportButtons.forEach((btn) => {
@@ -725,6 +904,7 @@ async function init() {
       document.querySelectorAll('.template-canvas').forEach((c) => {
         c.setAttribute('data-vw', currentViewport);
       });
+      syncPreviewViewport();
     });
   });
 

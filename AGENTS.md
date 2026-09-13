@@ -8,11 +8,11 @@ Entry point. Load this as a system prompt to generate LLMCSS markup. Exhaustive 
 ```
 
 <!-- stats:start -->
-- **Classes:** 1407 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
-- **Tokens:** 82 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
+- **Classes:** 2312 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Tokens:** 107 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
 - **States:** 36 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
-- **Components:** 125 (122 free, 3 themed Pro): 54 primitive, 44 application, 22 marketing, 5 ecommerce.
-- **Section templates:** 26 (18 free wireframe, 8 themed Pro).
+- **Components:** 122, all MIT: 54 primitive, 42 application, 21 marketing, 5 ecommerce.
+- **Section templates:** 29 (18 free wireframe, 11 themed Pro).
 - **Page blueprints:** 6 (4 free, 2 Pro).
 <!-- stats:end -->
 
@@ -22,7 +22,7 @@ Entry point. Load this as a system prompt to generate LLMCSS markup. Exhaustive 
 | Class universe | Every class is listed in [classes.json](https://llmcss.io/classes.json). Not in that list means it does not exist. |
 | Tokens | The `--ai-*` custom properties are listed in [tokens.json](https://llmcss.io/tokens.json). |
 | State classes | `is-*`, listed in [states.json](https://llmcss.io/states.json). `is-active`, `is-open`, `is-loading`, `is-selected`, `is-disabled`, `is-error`, `is-streaming` and more. |
-| Responsive | Variant prefixes `sm:` 640px, `md:` 768px, `lg:` 1024px, `xl:` 1280px, `cq:` container query. Written `md:grid-cols-2`. Only the variants classes.json lists for that class exist. |
+| Variants | Written `<variant>:<class>`, for example `md:grid-cols-2`. Breakpoints, container tiers and states are in the Variants section below. Only the variants classes.json lists for that class exist. |
 | Theme | `data-ai-theme="light"` or `"dark"` on `<html>` or any container. Dark never activates from the OS setting. |
 | Skin | `data-ai-skin="obsidian\|editorial\|executive\|fintech\|enterprise"` on `<html>` or any container. Changes surfaces, radius and type. |
 | Accent | `data-ai-accent="emerald\|violet\|rose\|teal\|steel\|amber"`. Composes with any skin and outranks it. Absent means the blue default. |
@@ -30,6 +30,23 @@ Entry point. Load this as a system prompt to generate LLMCSS markup. Exhaustive 
 | Focus ring | `data-ai-focus="neutral\|thin\|none"` on `<html>`. Absent means the accent ring. |
 | Runtime needed for | `data-ai-toggle`, `data-ai-dismiss`, `data-ai-tab`, `data-ai-step`, `data-ai-password-toggle`, combobox, scrollspy, split pane, and the `<ai-*>` custom elements. Everything else is CSS-only. |
 | The one validation rule | Every token in a `class` attribute is checked against classes.json. `is-*` states, `js-*` hook classes, and custom element tags (`<ai-modal>` and friends) are exempt. An unknown class is a warning unless you pass `--strict`; a stray `ai-` prefix is always flagged, with a fix. |
+
+## Variants
+
+Written `<variant>:<class>`, for example `md:grid-cols-2`, `cq-md:grid-cols-3`, `hover:surface-1`.
+
+| Variant | Fires when |
+|---|---|
+| `sm:` `md:` `lg:` `xl:` `2xl:` | viewport is at least 640, 768, 1024, 1280, 1536px |
+| `cq-sm:` `cq-md:` `cq-lg:` | nearest `cq` or `cq-inline` ancestor is at least 380, 600, 900px |
+| `hover:` `focus:` `focus-visible:` `active:` `disabled:` | the element is in that interaction state |
+| `group-hover:` | an ancestor carrying `group` is hovered |
+| `dark:` `print:` `motion-safe:` `motion-reduce:` | `data-ai-theme="dark"`, print media, or the motion preference |
+| `first:` `last:` `odd:` `even:` | position among siblings |
+
+A variant exists for a class only when classes.json lists it in that class's `variants` array.
+
+Spacing and sizing steps: `0`, `px`, `0.5`, `1`, `1.5`, `2`, `2.5`, `3`, `3.5`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, `14`, `16`, `20`, `24`, `28`, `32`, `36`, `40`, `48`, `56`, `64`, `72`, `80`, `96`.
 
 ## Runtime attributes
 
@@ -53,7 +70,7 @@ The runtime also syncs `aria-expanded` on every trigger and `aria-selected` on t
 |---|---|---|
 | `is-open` | `.modal`, `.drawer`, `.dropdown`, `.accordion-item`, `.popover`, `.combobox`, `.command-palette` | `open` on the container, `aria-expanded="true"` on the trigger |
 | `is-active` | `.tab`, `.tab-panel`, `.nav-link`, `.sidebar-item`, `.pagination-link`, `.step-item`, `.scrollspy-link` | `aria-selected="true"` on a tab, `aria-current="page"` on a nav or sidebar link |
-| `is-current` | `.breadcrumb-item`, `.order-step` | `aria-current="page"` |
+| `is-current` | `.breadcrumb-item`, `.orderline-step` | `aria-current="page"` |
 | `is-disabled` | `.list-group-item`, `.pagination-link` | `aria-disabled="true"` |
 | `is-error` | `.input`, `.select`, `.textarea`, `.empty-state` | `aria-invalid="true"` |
 | `is-loading` | `.btn`, `.kpi-card`, `.kpi-value` | `aria-busy="true"` |
@@ -194,7 +211,7 @@ Table:
 
 Buttons: `btn` plus one of `btn-primary`, `btn-secondary`, `btn-outline`, `btn-ghost`, `btn-accent`, `btn-danger`, plus an optional size `btn-xs`, `btn-sm`, `btn-lg`, `btn-xl`, or `btn-icon`.
 
-Layout: `container` or `container-sm|md|lg|xl` for page width, `grid` with `grid-cols-2|3|4` or `grid-auto-fit` plus `grid-min-xs|sm|md|lg`, `flex` with `flex-col`, `items-center`, `justify-between`, and `gap-1` through `gap-12`.
+Layout: `container` for page width, `container-sm|md|lg|xl|2xl` for a fluid-then-capped wrapper, `container-w-sm|md|lg|xl|full` for a hard max-width cap, `grid` with `grid-cols-2|3|4` or `grid-auto-fit` plus `grid-min-xs|sm|md|lg`, `flex` with `flex-col`, `items-center`, `justify-between`, and `gap-1` through `gap-12`.
 
 ## Never do this
 
@@ -249,4 +266,4 @@ Rationale per law, and the four archetype token blocks: [docs/AGENT_RULES.md](do
 
 ## Pro
 
-Pro is themed section templates, page kits, and three themed composed blocks. Everything else, including the command palette, cart drawer, agent chrome, bento heroes, and pricing matrix, is MIT with full HTML in `registry.json`. Pro ids carry `tier: "pro"` with `locked: true` and `html: null`. `npx llmcss add <pro-id>` and `npx llmcss template get <pro-id>` exit 1 with a login hint until `npx llmcss login <token>`; the CLI then fetches `GET /r/pro/{id}.json` with `Authorization: Bearer <token>`. MCP `get_component_markup` and `get_wireframe_template` return `{ locked: true, html: null, message }` for a Pro id without a token. Never write Pro markup from memory.
+Pro is themed section templates and page kits. There are no Pro components: the whole component catalog, including the command palette, cart drawer, agent chrome, bento heroes, and pricing matrix, is MIT with full HTML in `registry.json`. Pro ids live in `templates.json` only, carrying `tier: "pro"` with `locked: true` and `html: null`. `npx llmcss template get <pro-id>` and `npx llmcss template blueprint <pro-kit>` exit 1 with a login hint until `npx llmcss login <token>`; the CLI then fetches `GET /r/pro/{id}.json` with `Authorization: Bearer <token>`. `npx llmcss add` never needs a token. MCP `get_wireframe_template` and `get_page_blueprint` return `{ locked: true, html: null, message }` for a Pro id without a token. Never write Pro markup from memory.

@@ -90,19 +90,18 @@ const rl = readline.createInterface({
 const TOOLS = [
   {
     name: 'search_components',
-    description: 'Search the LLMCSS component catalog by keyword, tag, or category.',
+    description: 'Search the LLMCSS component catalog by keyword, tag, or category. Every catalog component is free and MIT; Pro is themed section templates and page kits, searched with list_wireframe_templates.',
     inputSchema: {
       type: 'object',
       properties: {
         query: { type: 'string', description: 'Keyword to match against name, tags, or description' },
         category: { type: 'string', enum: ['primitive', 'marketing', 'application', 'ecommerce'], description: 'Optional category filter' },
-        tier: { type: 'string', enum: ['free', 'pro'], description: 'Filter by free or pro tier' },
       },
     },
   },
   {
     name: 'get_component_markup',
-    description: 'Retrieve the semantic HTML markup, metadata, and CSS dependencies for a component.',
+    description: 'Retrieve the semantic HTML markup, metadata, and CSS dependencies for a component. Every component is free and MIT, so no license token is ever needed here.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -208,7 +207,7 @@ const TOOLS = [
   },
   {
     name: 'get_wireframe_template',
-    description: 'Retrieve clean semantic HTML markup and placement guidance for a section template. Themed Pro ids need a license token.',
+    description: 'Retrieve clean semantic HTML markup and placement guidance for a section template. Themed Pro ids (themed-*) need a license token; this is the only path to themed markup, including themed-editorial-article-header, themed-fintech-ledger-row and themed-obsidian-status-rail.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -299,8 +298,7 @@ function handleToolCall(name, args = {}) {
       const results = components.filter((c) => {
         const matchesQ = !q || aliasTargets.includes(c.id) || c.id.includes(q) || c.name.toLowerCase().includes(q) || c.tags.some(t => t.toLowerCase().includes(q));
         const matchesCat = !args.category || c.category === args.category;
-        const matchesTier = !args.tier || c.tier === args.tier;
-        return matchesQ && matchesCat && matchesTier;
+        return matchesQ && matchesCat;
       }).map(c => ({
         id: c.id,
         name: c.name,
@@ -317,19 +315,18 @@ function handleToolCall(name, args = {}) {
     case 'get_component_markup': {
       const comp = components.find((c) => c.id === args.id);
       if (!comp) {
+        // Themed ids are section templates, not components. Point the caller
+        // at the tool that can actually resolve them.
+        const asTemplate = wireframeTemplates.find((t) => t.id === args.id);
+        if (asTemplate) {
+          return {
+            isError: true,
+            content: [{ type: 'text', text: `"${args.id}" is a section template, not a component. Call get_wireframe_template with that id.` }],
+          };
+        }
         return {
           isError: true,
           content: [{ type: 'text', text: `Component "${args.id}" not found in the LLMCSS registry.` }],
-        };
-      }
-      if (comp.tier === 'pro') {
-        const out = mcpFetchPro(comp.id);
-        if (out) return { content: [{ type: 'text', text: out }] };
-        return {
-          content: [{
-            type: 'text',
-            text: mcpLockedPayload(comp.id, { name: comp.name, category: comp.category, description: comp.description }),
-          }],
         };
       }
       return {
