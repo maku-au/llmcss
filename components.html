@@ -21,9 +21,19 @@
   <link rel="stylesheet" href="/src/css/site.css" />
   <script>
     (function () {
-      var t = localStorage.getItem('cssai-theme');
+      // Reads llmcss-* first, falls back once to the legacy cssai-* key and
+      // rewrites it under the new name so the migration happens on first load.
+      function pref(name) {
+        var v = localStorage.getItem('llmcss-' + name);
+        if (v === null) {
+          v = localStorage.getItem('cssai-' + name);
+          if (v !== null) localStorage.setItem('llmcss-' + name, v);
+        }
+        return v;
+      }
+      var t = pref('theme');
       if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-ai-theme', t);
-      var f = localStorage.getItem('cssai-focus');
+      var f = pref('focus');
       if (f && f !== 'accent') document.documentElement.setAttribute('data-ai-focus', f);
     })();
   </script>
@@ -47,9 +57,9 @@
           </p>
         </div>
         <div class="segmented" role="group" aria-label="Preview width">
-          <button type="button" class="segmented-btn js-viewport-btn is-active" data-width="100%">Full</button>
-          <button type="button" class="segmented-btn js-viewport-btn" data-width="768px">768</button>
-          <button type="button" class="segmented-btn js-viewport-btn" data-width="375px">375</button>
+          <button type="button" class="segmented-btn js-viewport-btn is-active" data-width="100%" aria-pressed="true">Full</button>
+          <button type="button" class="segmented-btn js-viewport-btn" data-width="768px" aria-pressed="false">768</button>
+          <button type="button" class="segmented-btn js-viewport-btn" data-width="375px" aria-pressed="false">375</button>
         </div>
       </div>
     </div>
@@ -67,45 +77,27 @@
           <div class="flex flex-col gap-4">
             <div>
               <span class="docs-nav-label">Components</span>
-              <div class="docs-nav-stack">
-                <button class="docs-nav-btn is-active js-filter-category" data-cat="all">
+              <p class="docs-nav-note">All <span data-ai-stat="total">122</span> components are MIT. Pro is themed templates, in the <a href="/templates">gallery</a>.</p>
+              <div class="docs-nav-stack" role="group" aria-label="Filter by category">
+                <button type="button" class="docs-nav-btn is-active js-filter-category" data-cat="all" aria-pressed="true">
                   <span>All</span>
                   <span class="docs-count" id="count-all"></span>
                 </button>
-                <button class="docs-nav-btn js-filter-category" data-cat="primitive">
+                <button type="button" class="docs-nav-btn js-filter-category" data-cat="primitive" aria-pressed="false">
                   <span>Primitives</span>
                   <span class="docs-count" id="count-primitive"></span>
                 </button>
-                <button class="docs-nav-btn js-filter-category" data-cat="marketing">
+                <button type="button" class="docs-nav-btn js-filter-category" data-cat="marketing" aria-pressed="false">
                   <span>Marketing</span>
                   <span class="docs-count" id="count-marketing"></span>
                 </button>
-                <button class="docs-nav-btn js-filter-category" data-cat="application">
+                <button type="button" class="docs-nav-btn js-filter-category" data-cat="application" aria-pressed="false">
                   <span>Application</span>
                   <span class="docs-count" id="count-application"></span>
                 </button>
-                <button class="docs-nav-btn js-filter-category" data-cat="ecommerce">
+                <button type="button" class="docs-nav-btn js-filter-category" data-cat="ecommerce" aria-pressed="false">
                   <span>E-Commerce</span>
                   <span class="docs-count" id="count-ecommerce"></span>
-                </button>
-              </div>
-            </div>
-
-            <div class="docs-nav-group">
-              <span class="docs-nav-label">Tiers</span>
-              <div class="docs-nav-stack">
-                <button class="docs-nav-btn js-filter-tier is-active" data-tier="all">
-                  <span>All Tiers</span>
-                  <span class="docs-count" id="count-tier-all"></span>
-                </button>
-                <button class="docs-nav-btn js-filter-tier" data-tier="free">
-                  <span>Free (MIT)</span>
-                  <span class="docs-count" id="count-tier-free"></span>
-                </button>
-                <button class="docs-nav-btn js-filter-tier" data-tier="pro">
-                  <span>Pro</span>
-                  <span class="docs-count" id="count-tier-pro">3</span>
-                  <span class="docs-pro-tag">PRO</span>
                 </button>
               </div>
             </div>
@@ -141,196 +133,10 @@
   </section>
 
   <!-- ==========================================================================
-       PRICING & FREEMIUM TIERS (#pricing)
-       ========================================================================== -->
-  <section id="pricing" class="section section-shift border-t">
-    <div class="container container-w-md">
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <h2 class="font-display font-bold">
-          Free MIT core. Pro is $9/month.
-        </h2>
-        <p class="text-secondary mt-2">
-          You keep the CSS you copy. Pro is a subscription catalog, not a lock-in runtime.
-        </p>
-      </div>
-      <div id="pro-offer"></div>
-      <div hidden>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Free Tier Card -->
-        <div class="card p-8">
-          <div class="flex justify-between items-center">
-            <h3 class="card-title">Community (Free)</h3>
-            <span class="badge badge-neutral">MIT License</span>
-          </div>
-          <div class="pricing-amount">
-            <span class="pricing-price text-4xl font-bold">$0</span>
-            <span class="pricing-period text-secondary">/ forever</span>
-          </div>
-          <p class="text-sm text-secondary">Everything needed to build production web applications.</p>
-          <ul class="pricing-features my-6">
-            <li>✓ Full Modern CSS Engine (`@layer`)</li>
-            <li>✓ 31 Essential Free Primitives &amp; Sections</li>
-            <li>✓ Complete Animation &amp; Motion Primitives</li>
-            <li>✓ Native Container Queries &amp; Grids</li>
-            <li>✓ Free CLI Access (`npx llmcss add`)</li>
-            <li>✓ Stdio MCP Server Tooling</li>
-          </ul>
-          <a href="#collection" class="btn btn-outline w-full">Start Building Free</a>
-        </div>
-
-        <!-- Pro Tier Card -->
-        <div class="card card-pro p-8 shadow-md">
-          <div class="flex justify-between items-center">
-            <h3 class="card-title">LLMCSS Pro</h3>
-            <span class="badge badge-solid">RECOMMENDED</span>
-          </div>
-          <div class="pricing-amount">
-            <span class="pricing-price text-4xl font-bold">$9</span>
-            <span class="pricing-period text-secondary">/ month</span>
-          </div>
-          <p class="text-sm text-secondary">For professional engineers, agencies, and autonomous agent workflows.</p>
-          <ul class="pricing-features my-6">
-            <li>✓ Everything in Community</li>
-            <li>✓ Themed section templates and page kits</li>
-            <li>✓ Skin-specific composed blocks</li>
-            <li>✓ Private CLI token (`llmcss login`)</li>
-            <li>✓ Token-gated registry, MCP, and zip backup</li>
-          </ul>
-          <a href="/api/checkout.php" class="btn btn-primary w-full">
-            Subscribe ($9/mo USD)
-          </a>
-        </div>
-      </div>
-      <p class="text-xs text-muted text-center mt-8 max-w-xl mx-auto">
-        Digital goods: Pro is a downloadable catalog. Refunds follow Polar’s policy. The MIT core stays free either way.
-      </p>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       FAQ SECTION
-       ========================================================================== -->
-  <section class="section surface-0 border-t">
-    <div class="container max-w-4xl">
-      <div class="text-center mb-10">
-        <h2 class="font-display font-bold tracking-tight">
-          Frequently Asked Questions
-        </h2>
-      </div>
-
-      <div class="accordion mx-auto">
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-1">
-            <span>How does LLMCSS avoid the generic "AI-generated" look?</span>
-            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="accordion-content" id="faq-1">
-            <p>
-              Most AI models default to electric blue/purple gradients, huge rounded pill buttons, and arbitrary utility classes. LLMCSS enforces human craftsmanship through crisp architectural radii (2px-10px), subtle physical borders, real elevation physics, and expressive display typography.
-            </p>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-2">
-            <span>Why is pure CSS with variables better for LLMs than Tailwind?</span>
-            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="accordion-content" id="faq-2">
-            <p>
-              Tailwind requires LLMs to output 40 to 80 class names per card, consuming huge context budgets and causing frequent class name hallucinations. LLMCSS uses semantic class composition (e.g. <code>kpi-card</code>) with CSS variables, reducing prompt token generation by approximately 68%.
-            </p>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-3">
-            <span>Do I need a build step or Node.js to use LLMCSS?</span>
-            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="accordion-content" id="faq-3">
-            <p>
-              No. LLMCSS is written in standard modern CSS using <code>@layer</code> and CSS variables. You can import it directly via static stylesheet link, CDN, or install it via the CLI.
-            </p>
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-4">
-            <span>How do autonomous agents connect via MCP?</span>
-            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="accordion-content" id="faq-4">
-            <p>
-              Configure <code>npx llmcss-mcp</code> in your editor or agent environment. The stdio MCP server gives coding agents direct tools to search components, inspect semantic markup, and validate CSS against design tokens.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
        FOOTER
        ========================================================================== -->
   </main>
   <footer id="site-footer" class="footer footer-compact"></footer>
-  <!-- PRO SUBSCRIPTION PAYWALL MODAL -->
-  <div id="license-modal" class="modal">
-    <div class="modal-backdrop" data-ai-dismiss="modal"></div>
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3 class="modal-title">Activate Pro license</h3>
-        <button class="modal-close" data-ai-dismiss="modal" type="button">&times;</button>
-      </div>
-      <div class="modal-body">
-        <p class="text-sm text-secondary">Paste your <code>llmcss_live_</code> token to unlock Pro markup in this gallery.</p>
-        <input id="license-token-input" class="input mt-4" type="text" autocomplete="off" placeholder="llmcss_live_..." />
-        <p id="license-status" class="text-sm mt-3"></p>
-        <div class="flex gap-2 mt-4">
-          <button type="button" class="btn btn-primary" id="license-activate-btn">Activate</button>
-          <a href="/api/checkout.php" class="btn btn-outline">Get Pro</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="pro-pricing-modal" class="modal">
-    <div class="modal-backdrop" data-ai-dismiss="modal"></div>
-    <div class="modal-box modal-box-lg">
-      <div class="modal-header">
-        <h3 class="modal-title">LLMCSS Pro</h3>
-        <button class="modal-close" data-ai-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="text-center mb-6">
-          <h2 class="text-2xl">Unlock the Pro catalog</h2>
-          <p class="text-secondary mt-1">
-            License token + zip after Polar checkout. Cancel anytime. Digital goods: see the refund note on this page.
-          </p>
-        </div>
-
-        <div class="card card-pro p-6 max-w-md mx-auto">
-          <div class="flex justify-between items-center">
-            <h3 class="card-title">Pro</h3>
-            <span class="badge badge-solid">$9 / month</span>
-          </div>
-          <div class="pricing-amount my-3">
-            <span class="pricing-price text-4xl">$9</span>
-            <span class="pricing-period">/ month</span>
-          </div>
-          <p class="text-sm text-secondary">Billed monthly via Polar. Token is shown once on the success page.</p>
-          <ul class="pricing-features my-4 gap-2">
-            <li>✓ Themed section templates and page kits</li>
-            <li>✓ Token-gated registry + MCP</li>
-            <li>✓ Zip backup of the Pro catalog</li>
-          </ul>
-          <a href="/api/checkout.php" class="btn btn-primary w-full">Subscribe with Polar ($9/mo)</a>
-          <p class="text-xs text-muted mt-3">You will return to <a href="/account">/account</a> with a one-time token.</p>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- ==========================================================================
        GLOBAL CORE DESIGN SYSTEM STYLER DRAWER
@@ -343,10 +149,10 @@
           <span class="styler-title">Theme &amp; Token Canvas</span>
         </div>
         <div class="flex items-center gap-2">
-          <button id="styler-theme-toggle" class="btn btn-ghost btn-icon btn-xs" title="Toggle Light/Dark Mode">
+          <button type="button" id="styler-theme-toggle" class="btn btn-ghost btn-icon btn-xs" title="Toggle Light/Dark Mode" aria-label="Toggle light or dark mode">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
           </button>
-          <button class="btn btn-ghost btn-icon btn-xs text-muted" data-ai-dismiss="drawer" aria-label="Close Styler">
+          <button type="button" class="btn btn-ghost btn-icon btn-xs text-muted" data-ai-dismiss="drawer" aria-label="Close Styler">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
           </button>
         </div>
@@ -357,32 +163,41 @@
         <div class="styler-section">
           <div class="styler-section-header">
             <span class="styler-section-title">Theme Palette</span>
-            <span class="styler-section-val" id="styler-active-theme-label">Minimal</span>
+            <span class="styler-section-val" id="styler-active-theme-label">unset</span>
           </div>
-          <div class="styler-theme-grid" id="styler-theme-grid">
-            <button class="styler-theme-btn is-active" data-skin="modern">
+          <!-- Names and order follow the documented data-ai-skin values in
+               states.json. The mono span is the literal attribute value, so the
+               label can never drift from what you write in your markup. -->
+          <div class="styler-theme-grid" id="styler-theme-grid" role="group" aria-label="Theme palette">
+            <button type="button" class="styler-theme-btn is-active" data-skin="modern" aria-pressed="true">
               <span class="styler-swatch-pip"></span>
-              <span class="styler-theme-name">Minimal</span>
+              <span class="styler-theme-name">Default</span>
+              <span class="styler-theme-value">unset</span>
             </button>
-            <button class="styler-theme-btn" data-skin="executive">
-              <span class="styler-swatch-pip"></span>
-              <span class="styler-theme-name">Slate</span>
-            </button>
-            <button class="styler-theme-btn" data-skin="fintech">
-              <span class="styler-swatch-pip"></span>
-              <span class="styler-theme-name">Titanium</span>
-            </button>
-            <button class="styler-theme-btn" data-skin="obsidian">
+            <button type="button" class="styler-theme-btn" data-skin="obsidian" aria-pressed="false">
               <span class="styler-swatch-pip"></span>
               <span class="styler-theme-name">Obsidian</span>
+              <span class="styler-theme-value">obsidian</span>
             </button>
-            <button class="styler-theme-btn" data-skin="editorial">
+            <button type="button" class="styler-theme-btn" data-skin="editorial" aria-pressed="false">
               <span class="styler-swatch-pip"></span>
               <span class="styler-theme-name">Editorial</span>
+              <span class="styler-theme-value">editorial</span>
             </button>
-            <button class="styler-theme-btn" data-skin="enterprise">
+            <button type="button" class="styler-theme-btn" data-skin="executive" aria-pressed="false">
+              <span class="styler-swatch-pip"></span>
+              <span class="styler-theme-name">Executive</span>
+              <span class="styler-theme-value">executive</span>
+            </button>
+            <button type="button" class="styler-theme-btn" data-skin="fintech" aria-pressed="false">
+              <span class="styler-swatch-pip"></span>
+              <span class="styler-theme-name">Fintech</span>
+              <span class="styler-theme-value">fintech</span>
+            </button>
+            <button type="button" class="styler-theme-btn" data-skin="enterprise" aria-pressed="false">
               <span class="styler-swatch-pip"></span>
               <span class="styler-theme-name">Enterprise</span>
+              <span class="styler-theme-value">enterprise</span>
             </button>
           </div>
         </div>
@@ -401,11 +216,11 @@
             <span class="styler-section-title">Corner Geometry</span>
             <span class="styler-section-val" id="styler-radius-label">Balanced (4-8px)</span>
           </div>
-          <div class="styler-segmented-track">
-            <button class="styler-segmented-item js-styler-radius-btn" data-radius="sharp">Sharp</button>
-            <button class="styler-segmented-item js-styler-radius-btn" data-radius="precision">Precision</button>
-            <button class="styler-segmented-item js-styler-radius-btn is-active" data-radius="balanced">Balanced</button>
-            <button class="styler-segmented-item js-styler-radius-btn" data-radius="smooth">Smooth</button>
+          <div class="styler-segmented-track" role="group" aria-label="Corner geometry">
+            <button type="button" class="styler-segmented-item js-styler-radius-btn" data-radius="sharp" aria-pressed="false">Sharp</button>
+            <button type="button" class="styler-segmented-item js-styler-radius-btn" data-radius="precision" aria-pressed="false">Precision</button>
+            <button type="button" class="styler-segmented-item js-styler-radius-btn is-active" data-radius="balanced" aria-pressed="true">Balanced</button>
+            <button type="button" class="styler-segmented-item js-styler-radius-btn" data-radius="smooth" aria-pressed="false">Smooth</button>
           </div>
         </div>
 
@@ -415,10 +230,10 @@
             <span class="styler-section-title">Interface Density</span>
             <span class="styler-section-val" id="styler-density-label">Standard (1.0x)</span>
           </div>
-          <div class="styler-segmented-track">
-            <button class="styler-segmented-item js-styler-density-btn" data-density="compact">Compact</button>
-            <button class="styler-segmented-item js-styler-density-btn is-active" data-density="standard">Standard</button>
-            <button class="styler-segmented-item js-styler-density-btn" data-density="spacious">Spacious</button>
+          <div class="styler-segmented-track" role="group" aria-label="Interface density">
+            <button type="button" class="styler-segmented-item js-styler-density-btn" data-density="compact" aria-pressed="false">Compact</button>
+            <button type="button" class="styler-segmented-item js-styler-density-btn is-active" data-density="standard" aria-pressed="true">Standard</button>
+            <button type="button" class="styler-segmented-item js-styler-density-btn" data-density="spacious" aria-pressed="false">Spacious</button>
           </div>
         </div>
 
@@ -428,11 +243,11 @@
             <span class="styler-section-title">Focus ring</span>
             <span class="styler-section-val" id="styler-focus-label">Accent</span>
           </div>
-          <div class="styler-segmented-track">
-            <button class="styler-segmented-item js-styler-focus-btn is-active" data-focus="accent">Accent</button>
-            <button class="styler-segmented-item js-styler-focus-btn" data-focus="neutral">Neutral</button>
-            <button class="styler-segmented-item js-styler-focus-btn" data-focus="thin">Thin</button>
-            <button class="styler-segmented-item js-styler-focus-btn" data-focus="none">Off</button>
+          <div class="styler-segmented-track" role="group" aria-label="Focus ring">
+            <button type="button" class="styler-segmented-item js-styler-focus-btn is-active" data-focus="accent" aria-pressed="true">Accent</button>
+            <button type="button" class="styler-segmented-item js-styler-focus-btn" data-focus="neutral" aria-pressed="false">Neutral</button>
+            <button type="button" class="styler-segmented-item js-styler-focus-btn" data-focus="thin" aria-pressed="false">Thin</button>
+            <button type="button" class="styler-segmented-item js-styler-focus-btn" data-focus="none" aria-pressed="false">Off</button>
           </div>
         </div>
 
@@ -442,14 +257,14 @@
           <div class="styler-section-header">
             <span class="styler-section-title">Primary Accent</span>
           </div>
-          <div class="styler-swatch-row">
-            <button class="styler-accent-swatch is-active" data-accent="default" title="Default Blue"></button>
-            <button class="styler-accent-swatch" data-accent="steel" title="Slate Steel"></button>
-            <button class="styler-accent-swatch" data-accent="teal" title="Fintech Teal"></button>
-            <button class="styler-accent-swatch" data-accent="emerald" title="Emerald"></button>
-            <button class="styler-accent-swatch" data-accent="violet" title="Violet"></button>
-            <button class="styler-accent-swatch" data-accent="rose" title="Rose"></button>
-            <button class="styler-accent-swatch" data-accent="amber" title="Amber"></button>
+          <div class="styler-swatch-row" role="group" aria-label="Primary accent">
+            <button type="button" class="styler-accent-swatch is-active" data-accent="default" title="Default Blue" aria-label="Default Blue" aria-pressed="true"></button>
+            <button type="button" class="styler-accent-swatch" data-accent="steel" title="Slate Steel" aria-label="Slate Steel" aria-pressed="false"></button>
+            <button type="button" class="styler-accent-swatch" data-accent="teal" title="Fintech Teal" aria-label="Fintech Teal" aria-pressed="false"></button>
+            <button type="button" class="styler-accent-swatch" data-accent="emerald" title="Emerald" aria-label="Emerald" aria-pressed="false"></button>
+            <button type="button" class="styler-accent-swatch" data-accent="violet" title="Violet" aria-label="Violet" aria-pressed="false"></button>
+            <button type="button" class="styler-accent-swatch" data-accent="rose" title="Rose" aria-label="Rose" aria-pressed="false"></button>
+            <button type="button" class="styler-accent-swatch" data-accent="amber" title="Amber" aria-label="Amber" aria-pressed="false"></button>
           </div>
         </div>
 
@@ -457,12 +272,12 @@
         <div class="styler-section styler-section-divided">
           <div class="flex justify-between items-center">
             <span class="styler-section-title">CSS Blueprint</span>
-            <button class="btn btn-outline btn-xs" id="copy-styler-css-btn">Copy CSS</button>
+            <button type="button" class="btn btn-outline btn-xs" id="copy-styler-css-btn">Copy CSS</button>
           </div>
           <details class="styler-code-disclosure mt-1">
             <summary class="text-xs text-muted">
               <span>View generated :root tokens</span>
-              <span class="styler-code-caret">▾</span>
+              <svg class="styler-code-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
             </summary>
             <pre class="styler-code-output"><code id="styler-css-output">:root {
   /* Default LLMCSS tokens active */
@@ -472,8 +287,8 @@
       </div>
 
       <div class="drawer-footer">
-        <button class="btn btn-ghost btn-xs text-muted" id="reset-styler-btn">Reset Defaults</button>
-        <button class="btn btn-primary btn-xs" data-ai-dismiss="drawer">Done</button>
+        <button type="button" class="btn btn-ghost btn-xs text-muted" id="reset-styler-btn">Reset Defaults</button>
+        <button type="button" class="btn btn-primary btn-xs" data-ai-dismiss="drawer">Done</button>
       </div>
     </div>
   </div>

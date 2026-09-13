@@ -243,6 +243,102 @@ function llmcss_ensure_zip(): string {
     return $zipPath;
 }
 
+/**
+ * The Pro registry index, the same source llmcss_ensure_zip() packs. Every id
+ * offered to a buyer is taken from here, never from the request.
+ */
+function llmcss_pro_index(): array {
+    static $items = null;
+    if (is_array($items)) return $items;
+    $items = [];
+    $path = llmcss_pro_registry() . '/index.json';
+    if (is_readable($path)) {
+        $json = json_decode((string)file_get_contents($path), true);
+        if (is_array($json) && isset($json['items']) && is_array($json['items'])) {
+            $items = $json['items'];
+        }
+    }
+    return $items;
+}
+
+function llmcss_pro_ids_of_kind(string $kind): array {
+    $ids = [];
+    foreach (llmcss_pro_index() as $item) {
+        if (!is_array($item)) continue;
+        if (($item['kind'] ?? '') !== $kind) continue;
+        $id = $item['id'] ?? null;
+        if (is_string($id) && $id !== '') $ids[] = $id;
+    }
+    return $ids;
+}
+
+/**
+ * Section ids that make up one page kit. The Pro registry kit file wins when it
+ * carries a sections list; otherwise the public blueprint manifest is read,
+ * which is generated from src/registry/templates-themed.mjs and ships beside
+ * this api directory in the docroot.
+ */
+function llmcss_kit_sections(string $kitId): array {
+    $kitFile = llmcss_pro_file($kitId);
+    if ($kitFile !== null) {
+        $json = json_decode((string)file_get_contents($kitFile), true);
+        if (is_array($json) && isset($json['sections']) && is_array($json['sections'])) {
+            return array_values(array_filter($json['sections'], 'is_string'));
+        }
+    }
+    foreach ([__DIR__ . '/../templates.json', __DIR__ . '/../public/templates.json'] as $manifest) {
+        if (!is_readable($manifest)) continue;
+        $json = json_decode((string)file_get_contents($manifest), true);
+        if (!is_array($json)) continue;
+        $blueprints = $json['pageBlueprints'] ?? $json['blueprints'] ?? [];
+        if (!is_array($blueprints)) continue;
+        foreach ($blueprints as $bp) {
+            if (!is_array($bp) || ($bp['id'] ?? '') !== $kitId) continue;
+            if (isset($bp['sections']) && is_array($bp['sections'])) {
+                return array_values(array_filter($bp['sections'], 'is_string'));
+            }
+        }
+    }
+    return [];
+}
+
+/**
+ * Builds (and caches) a zip holding one page kit plus the section files it is
+ * composed from. Returns null when the id is not a kit in the Pro registry.
+ */
+function llmcss_ensure_kit_zip(string $kitId): ?string {
+    if (!in_array($kitId, llmcss_pro_ids_of_kind('kit'), true)) return null;
+    $kitFile = llmcss_pro_file($kitId);
+    if ($kitFile === null || !class_exists('ZipArchive')) return null;
+
+    $registry = llmcss_pro_registry();
+    $dir = llmcss_data_dir() . '/zips';
+    if (!is_dir($dir)) mkdir($dir, 0700, true);
+    $zipPath = $dir . '/llmcss-pro-' . $kitId . '.zip';
+
+    $need = !is_file($zipPath);
+    if (!$need) {
+        $need = filemtime($zipPath) < (int)@filemtime($registry . '/index.json');
+    }
+    if ($need) {
+        $allowed = llmcss_pro_ids_of_kind('section');
+        $zip = new ZipArchive();
+        if ($zip->open($zipPath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
+            $zip->addFile($kitFile, 'registry/' . basename($kitFile));
+            foreach (llmcss_kit_sections($kitId) as $sectionId) {
+                if (!in_array($sectionId, $allowed, true)) continue;
+                $f = llmcss_pro_file($sectionId);
+                if ($f !== null) $zip->addFile($f, 'registry/' . basename($f));
+            }
+            $license = dirname($registry) . '/LICENSE';
+            if (is_file($license)) $zip->addFile($license, 'LICENSE');
+            $zip->close();
+            @chmod($zipPath, 0600);
+        }
+    }
+    return is_file($zipPath) ? $zipPath : null;
+}
+
 function llmcss_find_active_by_token(string $token): ?array {
     if (!str_starts_with($token, 'llmcss_live_')) return null;
     $hash = llmcss_token_hash($token);

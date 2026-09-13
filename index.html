@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LLMCSS | The Non-AI Looking UI Framework for Agents &amp; Humans</title>
-  <meta name="description" content="Native CSS for agents and humans. MIT core. Pro themed kits at $9/mo." />
+  <title>LLMCSS | A CSS library your agent cannot hallucinate</title>
+  <meta name="description" content="122 MIT components in one stylesheet, no build step. Every class name is published in classes.json, so an agent looks up what exists instead of inventing it, and npx llmcss validate fails the file if it does not." />
   <meta property="og:title" content="LLMCSS" />
-  <meta property="og:description" content="Native CSS for agents and humans. MIT core. Pro themed kits at $9/mo." />
+  <meta property="og:description" content="122 MIT components in one stylesheet, no build step. Every class name is published in classes.json, so an agent looks up what exists instead of inventing it, and npx llmcss validate fails the file if it does not." />
   <meta property="og:url" content="https://llmcss.io/" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://llmcss.io/og.png" />
@@ -21,9 +21,25 @@
   <link rel="stylesheet" href="/src/css/site.css" />
   <script>
     (function () {
-      var t = localStorage.getItem('cssai-theme');
+      // Preferences moved from cssai-* to llmcss-*. Read the new key, fall back
+      // to the old one once, and migrate it so the old key is never read again.
+      function pref(key) {
+        var v = null;
+        try {
+          v = localStorage.getItem('llmcss-' + key);
+          if (v === null) {
+            var legacy = localStorage.getItem('cssai-' + key);
+            if (legacy !== null) {
+              localStorage.setItem('llmcss-' + key, legacy);
+              v = legacy;
+            }
+          }
+        } catch (e) { /* storage blocked */ }
+        return v;
+      }
+      var t = pref('theme');
       if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-ai-theme', t);
-      var f = localStorage.getItem('cssai-focus');
+      var f = pref('focus');
       if (f && f !== 'accent') document.documentElement.setAttribute('data-ai-focus', f);
     })();
   </script>
@@ -40,26 +56,31 @@
     <div class="container relative z-10">
       <div class="text-center max-w-4xl mx-auto">
         <h1 class="hero-title">
-          Tactile, human-crafted interfaces for AI agents &amp; engineers.
+          A CSS library your agent cannot hallucinate.
         </h1>
 
         <p class="text-secondary mt-4 text-lg leading-relaxed max-w-2xl mx-auto">
-          An open modern CSS system engineered to eliminate the generic AI look. Powered by native container queries, cascading CSS variables, light-DOM web components, and a dedicated stdio MCP server.
+          <span data-ai-stat="total">122</span> MIT components in one stylesheet, no build step. Every class name is published in classes.json, so an agent looks up what exists instead of inventing it, and <code>npx llmcss validate</code> fails the file if it does not.
         </p>
 
         <!-- CTA Action Buttons -->
         <div class="flex justify-center items-center flex-wrap gap-4 mt-8">
-          <a href="/quickstart" class="btn btn-primary btn-lg">Quickstart</a>
+          <a href="/quickstart" class="btn btn-primary btn-lg">Docs</a>
           <a href="/components" class="btn btn-outline btn-lg">Browse components</a>
         </div>
       </div>
 
-      <div class="docs-hero-dock max-w-xl mx-auto">
-        <div class="docs-hero-dock-card col-span-full">
+      <div class="docs-hero-dock docs-hero-dock-split max-w-3xl mx-auto">
+        <div class="docs-hero-dock-card">
           <span class="docs-hero-dock-title">Install</span>
-          <pre class="mt-3 text-sm"><code>&lt;link rel="stylesheet" href="https://llmcss.io/llmcss.css" /&gt;
+          <pre class="code-block mt-3 text-sm"><code>&lt;link rel="stylesheet" href="https://llmcss.io/llmcss.css" /&gt;
 npx llmcss add btn-variants</code></pre>
-          <p class="text-xs text-muted mt-3">CSS-only by default. Optional runtime for <code>data-ai-toggle</code> and <code>&lt;modal&gt;</code> is in Quickstart.</p>
+          <p class="text-xs text-muted mt-3">CSS-only by default. Optional runtime for <code>data-ai-toggle</code> and <code>&lt;modal&gt;</code> is in the <a href="/quickstart#runtime">Docs</a>.</p>
+        </div>
+        <div class="docs-hero-dock-card">
+          <span class="docs-hero-dock-title">Point your agent at it</span>
+          <pre class="code-block mt-3 text-sm"><code>claude mcp add llmcss -- npx -y llmcss-mcp</code></pre>
+          <p class="text-xs text-muted mt-3">Or paste <a href="/llms.txt">llmcss.io/llms.txt</a> into any chat. <a href="/quickstart#agents">Cursor, Copilot, Codex, Gemini and nine more.</a></p>
         </div>
       </div>
     </div>
@@ -73,10 +94,10 @@ npx llmcss add btn-variants</code></pre>
       <div class="flex justify-between items-center flex-wrap gap-4">
         <span class="text-xs font-semibold text-muted tracking-wider uppercase">Compatible ecosystem</span>
         <div class="flex flex-wrap items-center gap-6">
-          <span class="docs-ecosystem-item">
+          <a href="/quickstart#first-page" class="docs-ecosystem-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 9h16"/><path d="M9 4v16"/></svg>
             Vanilla HTML5
-          </span>
+          </a>
           <span class="docs-ecosystem-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="m4.93 7.5 14.14 9"/><path d="m4.93 16.5 14.14-9"/></svg>
             Astro SSR
@@ -93,18 +114,18 @@ npx llmcss add btn-variants</code></pre>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
             Vue / Nuxt
           </span>
-          <span class="docs-ecosystem-item">
+          <a href="/quickstart#runtime" class="docs-ecosystem-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 4-4-4-4"/><path d="m8 8-4 4 4 4"/><path d="m14 4-4 16"/></svg>
             Web Components
-          </span>
-          <span class="docs-ecosystem-item">
+          </a>
+          <a href="/quickstart#mcp" class="docs-ecosystem-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 8 6 4-6 4Z"/></svg>
             Stdio MCP
-          </span>
-          <span class="docs-ecosystem-item">
+          </a>
+          <a href="/quickstart#install" class="docs-ecosystem-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/></svg>
             Zero-Build CDN
-          </span>
+          </a>
         </div>
       </div>
     </div>
@@ -117,7 +138,7 @@ npx llmcss add btn-variants</code></pre>
     <div class="container container-w-lg">
       <div class="text-center max-w-3xl mx-auto">
         <h2 class="section-title">
-          Designed to eliminate the generic AI look.
+          Tactile, human-crafted interfaces.
         </h2>
         <p class="text-secondary mt-3 text-base">
           Most AI-generated sites feature puffy gradients, massive radius pills, and 80-class Tailwind strings. LLMCSS fixes this at the architectural layer.
@@ -128,7 +149,7 @@ npx llmcss add btn-variants</code></pre>
         <div class="docs-philosophy-card">
           <h3 class="font-semibold text-lg">Zero-Token Cascading Theme Variables</h3>
           <p class="text-secondary text-sm leading-normal">
-            Cascading CSS variables on root automatically handle dark mode and skins. Cuts LLM output token bloat by ~68% compared to Tailwind's repetitious <code>dark:</code> utilities.
+            Cascading CSS variables on root automatically handle dark mode and skins. One semantic class where a utility framework needs twenty, and no repeated <code>dark:</code> prefix on every styled attribute.
           </p>
         </div>
 
@@ -140,7 +161,7 @@ npx llmcss add btn-variants</code></pre>
         </div>
 
         <div class="docs-philosophy-card">
-          <h3 class="font-semibold text-lg">Sub-2.5KB Dual-Mode Micro-Runtime</h3>
+          <h3 class="font-semibold text-lg">Optional Dual-Mode Micro-Runtime</h3>
           <p class="text-secondary text-sm leading-normal">
             Zero React/Emotion lock-in. Full Light-DOM Web Components (<code>&lt;modal&gt;</code>) and data-attribute delegation without any external dependencies.
           </p>
@@ -163,11 +184,11 @@ npx llmcss add btn-variants</code></pre>
     <div class="container container-w-lg">
       <div class="text-center max-w-2xl mx-auto mb-8">
         <h2 class="section-title">
-          How LLMCSS outclasses other frameworks.
+          Where LLMCSS differs.
         </h2>
       </div>
 
-      <div class="docs-matrix">
+      <div class="docs-matrix overflow-x-auto">
         <table class="matrix-table">
           <thead>
             <tr>
@@ -175,55 +196,58 @@ npx llmcss add btn-variants</code></pre>
               <th>Tailwind CSS</th>
               <th>Bootstrap / Bulma</th>
               <th>Chakra UI / MUI</th>
-              <th class="docs-matrix-win">LLMCSS (Our Engine)</th>
+              <th class="docs-matrix-win">LLMCSS</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="matrix-feature-col">Token Cost for AI Agents</td>
-              <td><span class="mark mark-no" role="img" aria-label="No"></span>20-50+ classes per component; high token cost</td>
-              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Moderate; frequent v4 vs v5 hallucination</td>
-              <td><span class="mark mark-no" role="img" aria-label="No"></span>Verbose JSX props bloat context window</td>
-              <td class="docs-matrix-win"><span class="mark mark-yes" role="img" aria-label="Yes"></span>~68% Token Savings via semantic composition</td>
-            </tr>
-            <tr>
-              <td class="matrix-feature-col">Dark Mode Architecture</td>
-              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Repetitive <code>dark:</code> prefix on every styled attribute</td>
-              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Global CSS swap or JS toggle</td>
-              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Runtime JS context (Emotion / styled-components)</td>
-              <td class="docs-matrix-win"><span class="mark mark-yes" role="img" aria-label="Yes"></span>0-Token Cascading CSS Variables</td>
-            </tr>
-            <tr>
-              <td class="matrix-feature-col">Responsive Strategy</td>
-              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Viewport <code>@media</code> defaults (opt-in container plugin)</td>
-              <td><span class="mark mark-no" role="img" aria-label="No"></span>Rigid 12-column float/flex grid</td>
-              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Style props with responsive arrays</td>
-              <td class="docs-matrix-win"><span class="mark mark-yes" role="img" aria-label="Yes"></span>Native Container Queries (<code>.cq</code>)</td>
-            </tr>
-            <tr>
-              <td class="matrix-feature-col">Motion &amp; Animations</td>
-              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>4 basic utility keyframes (spin, ping, pulse, bounce)</td>
-              <td><span class="mark mark-no" role="img" aria-label="No"></span>Minimal fade/collapse transitions</td>
-              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Framer Motion dependency (&gt;40KB JS)</td>
-              <td class="docs-matrix-win"><span class="mark mark-yes" role="img" aria-label="Yes"></span>Pure Native CSS Motion Engine (&lt;1.5KB gzipped)</td>
-            </tr>
-            <tr>
-              <td class="matrix-feature-col">JavaScript Runtime</td>
-              <td><span class="mark mark-yes" role="img" aria-label="Yes"></span>0KB runtime</td>
-              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Bootstrap: ~60KB bundle with Popper.js / Bulma: 0KB but no interactivity</td>
-              <td><span class="mark mark-no" role="img" aria-label="No"></span>150-300KB+ (React + CSS-in-JS + animation libs)</td>
-              <td class="docs-matrix-win"><span class="mark mark-yes" role="img" aria-label="Yes"></span>&lt;2.5KB gzipped Micro-Runtime (Dual-Mode)</td>
-            </tr>
             <tr>
               <td class="matrix-feature-col">Agent Tooling (MCP / Linter)</td>
               <td><span class="mark mark-no" role="img" aria-label="No"></span>None built-in</td>
               <td><span class="mark mark-no" role="img" aria-label="No"></span>None</td>
               <td><span class="mark mark-no" role="img" aria-label="No"></span>None</td>
-              <td class="docs-matrix-win"><span class="mark mark-yes" role="img" aria-label="Yes"></span>Stdio MCP Server + CLI Linter</td>
+              <td class="docs-matrix-win"><span class="mark mark-yes" role="img" aria-label="Yes"></span>Stdio MCP server, CLI validator and audit</td>
+            </tr>
+            <tr>
+              <td class="matrix-feature-col">Markup Cost for AI Agents</td>
+              <td><span class="mark mark-no" role="img" aria-label="No"></span>Long utility strings on every element</td>
+              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Short class lists, but v4 and v5 names are easy to confuse</td>
+              <td><span class="mark mark-no" role="img" aria-label="No"></span>Verbose JSX props carry the styling</td>
+              <td class="docs-matrix-win"><span class="mark mark-yes" role="img" aria-label="Yes"></span>One semantic class where a utility framework needs twenty</td>
+            </tr>
+            <tr>
+              <td class="matrix-feature-col">Dark Mode Architecture</td>
+              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Repeated <code>dark:</code> prefix on every styled attribute</td>
+              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Global CSS swap or JS toggle</td>
+              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Runtime JS theme context (Emotion / styled-components)</td>
+              <td class="docs-matrix-win"><span class="mark mark-yes" role="img" aria-label="Yes"></span>Cascading CSS variables, no extra classes in the markup</td>
+            </tr>
+            <tr>
+              <td class="matrix-feature-col">Responsive Strategy</td>
+              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Container queries in core since v4; utilities are viewport-first by default</td>
+              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Flexbox grid, optional CSS grid</td>
+              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Style props with responsive arrays</td>
+              <td class="docs-matrix-win"><span class="mark mark-yes" role="img" aria-label="Yes"></span>Container queries on the component (<code>cq</code>, <code>cq-md:</code>)</td>
+            </tr>
+            <tr>
+              <td class="matrix-feature-col">Motion &amp; Animations</td>
+              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Utility keyframes: spin, ping, pulse, bounce</td>
+              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Fade and collapse transitions</td>
+              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Chakra ships its own animation layer; MUI uses CSS transitions and bundles no motion library</td>
+              <td class="docs-matrix-win"><span class="mark mark-yes" role="img" aria-label="Yes"></span>CSS transitions and keyframes in the stylesheet, no JS</td>
+            </tr>
+            <tr>
+              <td class="matrix-feature-col">JavaScript Runtime</td>
+              <td><span class="mark mark-yes" role="img" aria-label="Yes"></span>No runtime</td>
+              <td><span class="mark mark-warn" role="img" aria-label="Partial"></span>Bootstrap ships a JS bundle with Popper; Bulma ships none and has no interactivity</td>
+              <td><span class="mark mark-no" role="img" aria-label="No"></span>React plus a CSS-in-JS runtime</td>
+              <td class="docs-matrix-win"><span class="mark mark-yes" role="img" aria-label="Yes"></span>One optional 7KB gzipped script for <code>data-ai-toggle</code> and the custom elements</td>
             </tr>
           </tbody>
         </table>
       </div>
+      <p class="text-xs text-muted mt-4 text-center">
+        Compared against Tailwind CSS v4, Bootstrap 5.3, Bulma 1.0, Chakra UI v3 and MUI v6, September 2026.
+      </p>
     </div>
   </section>
 
@@ -267,7 +291,7 @@ npx llmcss add btn-variants</code></pre>
             <p class="text-secondary text-xs leading-relaxed">Heroes, feature grids, pricing tables, logo rails, testimonials, FAQs, and footers.</p>
           </div>
           <div class="flex items-center justify-between text-xs">
-            <span class="text-muted font-mono tabular"><span data-ai-stat="marketing">22</span> components</span>
+            <span class="text-muted font-mono tabular"><span data-ai-stat="marketing">21</span> components</span>
             <span class="text-accent font-medium">Explore &rarr;</span>
           </div>
         </a>
@@ -277,7 +301,7 @@ npx llmcss add btn-variants</code></pre>
             <p class="text-secondary text-xs leading-relaxed">KPI cards, data tables, sidebars, notification stacks, command palettes, and container-query cards.</p>
           </div>
           <div class="flex items-center justify-between text-xs">
-            <span class="text-muted font-mono tabular"><span data-ai-stat="application">44</span> components</span>
+            <span class="text-muted font-mono tabular"><span data-ai-stat="application">42</span> components</span>
             <span class="text-accent font-medium">Explore &rarr;</span>
           </div>
         </a>
@@ -291,6 +315,61 @@ npx llmcss add btn-variants</code></pre>
             <span class="text-accent font-medium">Explore &rarr;</span>
           </div>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FAQ
+       ========================================================================== -->
+  <section id="faq" class="py-24 border-b">
+    <div class="container container-w-md">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="section-title">
+          Questions people ask first.
+        </h2>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-item is-open" open>
+          <button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="true" aria-controls="faq-tailwind">
+            <span>Why not just use Tailwind?</span>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="accordion-content" id="faq-tailwind">
+            Tailwind is a good utility engine for people. It does not hand an agent a list of the class names it will accept, so the agent writes them from memory and you find out at review time. LLMCSS publishes every class in <a href="/classes.json">classes.json</a>, and <code>npx llmcss validate page.html</code> fails the file when a class in it does not exist.
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-build">
+            <span>Do I need a build step?</span>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="accordion-content" id="faq-build">
+            No. One <code>&lt;link&gt;</code> tag to the stylesheet is the whole install: no config file, no plugin, no purge pass. The runtime is a second script tag and it is optional, needed only for <code>data-ai-toggle</code> and the custom elements.
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-agents">
+            <span>How do agents connect to it?</span>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="accordion-content" id="faq-agents">
+            Three ways, none of which needs an account. Paste <a href="/llms.txt">llms.txt</a> into any chat, keep <a href="https://github.com/maku-au/llmcss/blob/main/AGENTS.md">AGENTS.md</a> in the repo for agents that read it on their own, or add the MCP server with <code>claude mcp add llmcss -- npx -y llmcss-mcp</code>. The line for every other editor is in the <a href="/quickstart#agents">Docs</a>.
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" data-ai-toggle="accordion" aria-expanded="false" aria-controls="faq-pro">
+            <span>What is Pro?</span>
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="accordion-content" id="faq-pro">
+            Themed sections and page kits: finished, skinned HTML you paste in, rather than another component. It is $9 a month through Polar and you can cancel any time. There are no Pro components, and the MIT core keeps working either way.
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -321,17 +400,32 @@ npx llmcss add btn-variants</code></pre>
   <!-- PRO SUBSCRIPTION PAYWALL MODAL -->
   <div id="pro-pricing-modal" class="modal">
     <div class="modal-backdrop" data-ai-dismiss="modal"></div>
-    <div class="modal-box modal-box-lg">
+    <div class="modal-box modal-box-lg" role="dialog" aria-modal="true" aria-labelledby="pro-pricing-modal-title">
       <div class="modal-header">
-        <h3 class="modal-title">LLMCSS Pro</h3>
-        <button class="modal-close" data-ai-dismiss="modal">&times;</button>
+        <h3 class="modal-title" id="pro-pricing-modal-title">LLMCSS Pro</h3>
+        <button class="modal-close" data-ai-dismiss="modal" aria-label="Close">&times;</button>
       </div>
       <div class="modal-body">
         <div class="text-center mb-6">
-          <h2 class="text-3xl">Unlock the Pro catalog</h2>
+          <h2 class="text-3xl">What you get</h2>
           <p class="text-secondary mt-1">
-            License token + zip after Polar checkout. Cancel anytime. Digital goods: see the refund note on this page.
+            Today: <span data-ai-stat="themedSections">11</span> themed sections and <span data-ai-stat="kits">2</span> page kits. You get the HTML per id or as one zip. Cancel any time in Polar; the MIT core keeps working either way.
           </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          <div>
+            <div class="docs-kit-shot">
+              <img src="/previews/kit-obsidian-saas.png" width="1280" height="2479" loading="lazy" alt="Obsidian SaaS landing kit rendered in the Obsidian skin" />
+            </div>
+            <p class="text-xs text-muted mt-2">Obsidian SaaS, 6 sections</p>
+          </div>
+          <div>
+            <div class="docs-kit-shot">
+              <img src="/previews/kit-fintech-dashboard.png" width="1280" height="481" loading="lazy" alt="Fintech Dashboard kit rendered in the Fintech skin" />
+            </div>
+            <p class="text-xs text-muted mt-2">Fintech Dashboard, 2 sections</p>
+          </div>
         </div>
 
         <div class="card card-pro p-6 max-w-md mx-auto">
@@ -345,9 +439,9 @@ npx llmcss add btn-variants</code></pre>
           </div>
           <p class="text-sm text-secondary">Billed monthly via Polar. Token is shown once on the success page.</p>
           <ul class="pricing-features">
-            <li>✓ Themed section templates and page kits</li>
-            <li>✓ Token-gated registry + MCP</li>
-            <li>✓ Zip backup of the Pro catalog</li>
+            <li>Themed sections and page kits</li>
+            <li>Token-gated registry and MCP</li>
+            <li>Zip backup of the Pro catalog</li>
           </ul>
           <a href="/api/checkout.php" class="btn btn-primary w-full">Get Pro · $9/mo</a>
           <p class="text-xs text-muted mt-3">You will return here to <a href="/account">/account</a> with a one-time token.</p>
@@ -367,10 +461,10 @@ npx llmcss add btn-variants</code></pre>
           <span class="styler-title">Theme &amp; Token Canvas</span>
         </div>
         <div class="flex items-center gap-2">
-          <button id="styler-theme-toggle" class="btn btn-ghost btn-icon btn-xs" title="Toggle Light/Dark Mode">
+          <button type="button" id="styler-theme-toggle" class="btn btn-ghost btn-icon btn-xs" title="Toggle Light/Dark Mode" aria-label="Toggle light or dark mode">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
           </button>
-          <button class="btn btn-ghost btn-icon btn-xs text-muted" data-ai-dismiss="drawer" aria-label="Close Styler">
+          <button type="button" class="btn btn-ghost btn-icon btn-xs text-muted" data-ai-dismiss="drawer" aria-label="Close Styler">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
           </button>
         </div>
@@ -381,44 +475,41 @@ npx llmcss add btn-variants</code></pre>
         <div class="styler-section">
           <div class="styler-section-header">
             <span class="styler-section-title">Theme Palette</span>
-            <span class="styler-section-val" id="styler-active-theme-label">Minimal</span>
+            <span class="styler-section-val" id="styler-active-theme-label">unset</span>
           </div>
-          <div class="styler-theme-grid" id="styler-theme-grid">
-            <button class="styler-theme-btn is-active" data-skin="modern">
+          <!-- Names and order follow the documented data-ai-skin values in
+               states.json. The mono span is the literal attribute value, so the
+               label can never drift from what you write in your markup. -->
+          <div class="styler-theme-grid" id="styler-theme-grid" role="group" aria-label="Theme palette">
+            <button type="button" class="styler-theme-btn is-active" data-skin="modern" aria-pressed="true">
               <span class="styler-swatch-pip"></span>
-              <span class="styler-theme-name">Minimal</span>
+              <span class="styler-theme-name">Default</span>
+              <span class="styler-theme-value">unset</span>
             </button>
-            <button class="styler-theme-btn" data-skin="executive">
-              <span class="styler-swatch-pip"></span>
-              <span class="styler-theme-name">Slate</span>
-            </button>
-            <button class="styler-theme-btn" data-skin="fintech">
-              <span class="styler-swatch-pip"></span>
-              <span class="styler-theme-name">Titanium</span>
-            </button>
-            <button class="styler-theme-btn" data-skin="obsidian">
+            <button type="button" class="styler-theme-btn" data-skin="obsidian" aria-pressed="false">
               <span class="styler-swatch-pip"></span>
               <span class="styler-theme-name">Obsidian</span>
+              <span class="styler-theme-value">obsidian</span>
             </button>
-            <button class="styler-theme-btn" data-skin="editorial">
+            <button type="button" class="styler-theme-btn" data-skin="editorial" aria-pressed="false">
               <span class="styler-swatch-pip"></span>
               <span class="styler-theme-name">Editorial</span>
+              <span class="styler-theme-value">editorial</span>
             </button>
-            <button class="styler-theme-btn" data-skin="enterprise">
+            <button type="button" class="styler-theme-btn" data-skin="executive" aria-pressed="false">
+              <span class="styler-swatch-pip"></span>
+              <span class="styler-theme-name">Executive</span>
+              <span class="styler-theme-value">executive</span>
+            </button>
+            <button type="button" class="styler-theme-btn" data-skin="fintech" aria-pressed="false">
+              <span class="styler-swatch-pip"></span>
+              <span class="styler-theme-name">Fintech</span>
+              <span class="styler-theme-value">fintech</span>
+            </button>
+            <button type="button" class="styler-theme-btn" data-skin="enterprise" aria-pressed="false">
               <span class="styler-swatch-pip"></span>
               <span class="styler-theme-name">Enterprise</span>
-            </button>
-            <button class="styler-theme-btn" data-skin="emerald">
-              <span class="styler-swatch-pip"></span>
-              <span class="styler-theme-name">Emerald</span>
-            </button>
-            <button class="styler-theme-btn" data-skin="violet">
-              <span class="styler-swatch-pip"></span>
-              <span class="styler-theme-name">Violet</span>
-            </button>
-            <button class="styler-theme-btn" data-skin="rose">
-              <span class="styler-swatch-pip"></span>
-              <span class="styler-theme-name">Rose</span>
+              <span class="styler-theme-value">enterprise</span>
             </button>
           </div>
         </div>
@@ -437,11 +528,11 @@ npx llmcss add btn-variants</code></pre>
             <span class="styler-section-title">Corner Geometry</span>
             <span class="styler-section-val" id="styler-radius-label">Balanced (4-8px)</span>
           </div>
-          <div class="styler-segmented-track">
-            <button class="styler-segmented-item js-styler-radius-btn" data-radius="sharp">Sharp</button>
-            <button class="styler-segmented-item js-styler-radius-btn" data-radius="precision">Precision</button>
-            <button class="styler-segmented-item js-styler-radius-btn is-active" data-radius="balanced">Balanced</button>
-            <button class="styler-segmented-item js-styler-radius-btn" data-radius="smooth">Smooth</button>
+          <div class="styler-segmented-track" role="group" aria-label="Corner geometry">
+            <button type="button" class="styler-segmented-item js-styler-radius-btn" data-radius="sharp" aria-pressed="false">Sharp</button>
+            <button type="button" class="styler-segmented-item js-styler-radius-btn" data-radius="precision" aria-pressed="false">Precision</button>
+            <button type="button" class="styler-segmented-item js-styler-radius-btn is-active" data-radius="balanced" aria-pressed="true">Balanced</button>
+            <button type="button" class="styler-segmented-item js-styler-radius-btn" data-radius="smooth" aria-pressed="false">Smooth</button>
           </div>
         </div>
 
@@ -451,10 +542,10 @@ npx llmcss add btn-variants</code></pre>
             <span class="styler-section-title">Interface Density</span>
             <span class="styler-section-val" id="styler-density-label">Standard (1.0x)</span>
           </div>
-          <div class="styler-segmented-track">
-            <button class="styler-segmented-item js-styler-density-btn" data-density="compact">Compact</button>
-            <button class="styler-segmented-item js-styler-density-btn is-active" data-density="standard">Standard</button>
-            <button class="styler-segmented-item js-styler-density-btn" data-density="spacious">Spacious</button>
+          <div class="styler-segmented-track" role="group" aria-label="Interface density">
+            <button type="button" class="styler-segmented-item js-styler-density-btn" data-density="compact" aria-pressed="false">Compact</button>
+            <button type="button" class="styler-segmented-item js-styler-density-btn is-active" data-density="standard" aria-pressed="true">Standard</button>
+            <button type="button" class="styler-segmented-item js-styler-density-btn" data-density="spacious" aria-pressed="false">Spacious</button>
           </div>
         </div>
 
@@ -464,11 +555,11 @@ npx llmcss add btn-variants</code></pre>
             <span class="styler-section-title">Focus ring</span>
             <span class="styler-section-val" id="styler-focus-label">Accent</span>
           </div>
-          <div class="styler-segmented-track">
-            <button class="styler-segmented-item js-styler-focus-btn is-active" data-focus="accent">Accent</button>
-            <button class="styler-segmented-item js-styler-focus-btn" data-focus="neutral">Neutral</button>
-            <button class="styler-segmented-item js-styler-focus-btn" data-focus="thin">Thin</button>
-            <button class="styler-segmented-item js-styler-focus-btn" data-focus="none">Off</button>
+          <div class="styler-segmented-track" role="group" aria-label="Focus ring">
+            <button type="button" class="styler-segmented-item js-styler-focus-btn is-active" data-focus="accent" aria-pressed="true">Accent</button>
+            <button type="button" class="styler-segmented-item js-styler-focus-btn" data-focus="neutral" aria-pressed="false">Neutral</button>
+            <button type="button" class="styler-segmented-item js-styler-focus-btn" data-focus="thin" aria-pressed="false">Thin</button>
+            <button type="button" class="styler-segmented-item js-styler-focus-btn" data-focus="none" aria-pressed="false">Off</button>
           </div>
         </div>
 
@@ -478,27 +569,27 @@ npx llmcss add btn-variants</code></pre>
           <div class="styler-section-header">
             <span class="styler-section-title">Primary Accent</span>
           </div>
-          <div class="styler-swatch-row">
-            <button class="styler-accent-swatch is-active" data-accent="default" title="Default Blue"></button>
-            <button class="styler-accent-swatch" data-accent="steel" title="Slate Steel"></button>
-            <button class="styler-accent-swatch" data-accent="teal" title="Fintech Teal"></button>
-            <button class="styler-accent-swatch" data-accent="emerald" title="Emerald"></button>
-            <button class="styler-accent-swatch" data-accent="violet" title="Violet"></button>
-            <button class="styler-accent-swatch" data-accent="rose" title="Rose"></button>
-            <button class="styler-accent-swatch" data-accent="amber" title="Amber"></button>
+          <div class="styler-swatch-row" role="group" aria-label="Primary accent">
+            <button type="button" class="styler-accent-swatch is-active" data-accent="default" title="Default Blue" aria-label="Default Blue" aria-pressed="true"></button>
+            <button type="button" class="styler-accent-swatch" data-accent="steel" title="Slate Steel" aria-label="Slate Steel" aria-pressed="false"></button>
+            <button type="button" class="styler-accent-swatch" data-accent="teal" title="Fintech Teal" aria-label="Fintech Teal" aria-pressed="false"></button>
+            <button type="button" class="styler-accent-swatch" data-accent="emerald" title="Emerald" aria-label="Emerald" aria-pressed="false"></button>
+            <button type="button" class="styler-accent-swatch" data-accent="violet" title="Violet" aria-label="Violet" aria-pressed="false"></button>
+            <button type="button" class="styler-accent-swatch" data-accent="rose" title="Rose" aria-label="Rose" aria-pressed="false"></button>
+            <button type="button" class="styler-accent-swatch" data-accent="amber" title="Amber" aria-label="Amber" aria-pressed="false"></button>
           </div>
         </div>
 
-        <!-- 5. Token Export Blueprint -->
+        <!-- 5. Token export -->
         <div class="styler-section styler-section-divided">
           <div class="flex justify-between items-center">
-            <span class="styler-section-title">CSS Blueprint</span>
-            <button class="btn btn-outline btn-xs" id="copy-styler-css-btn">Copy CSS</button>
+            <span class="styler-section-title">Token export</span>
+            <button type="button" class="btn btn-outline btn-xs" id="copy-styler-css-btn">Copy CSS</button>
           </div>
           <details class="styler-code-disclosure mt-1">
             <summary class="text-xs text-muted">
               <span>View generated :root tokens</span>
-              <span class="styler-code-caret">▾</span>
+              <svg class="styler-code-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
             </summary>
             <pre class="styler-code-output"><code id="styler-css-output">:root {
   /* Default LLMCSS tokens active */
@@ -508,8 +599,8 @@ npx llmcss add btn-variants</code></pre>
       </div>
 
       <div class="drawer-footer">
-        <button class="btn btn-ghost btn-xs text-muted" id="reset-styler-btn">Reset Defaults</button>
-        <button class="btn btn-primary btn-xs" data-ai-dismiss="drawer">Done</button>
+        <button type="button" class="btn btn-ghost btn-xs text-muted" id="reset-styler-btn">Reset Defaults</button>
+        <button type="button" class="btn btn-primary btn-xs" data-ai-dismiss="drawer">Done</button>
       </div>
     </div>
   </div>

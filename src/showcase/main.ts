@@ -2,80 +2,67 @@ import '../css/index.css';
 import '../runtime/index';
 import { components } from '../registry/components';
 import { applyDisplayFont, bindFontSwitchers, getActiveFontId, DISPLAY_FONTS } from './fonts';
-import { mountChrome, catalogStats, currentTheme } from './chrome';
-import { getBrowserToken, setBrowserToken, validateToken } from './license';
+import { mountChrome, applyTheme, currentTheme, readPref, writePref, catalogStats } from './chrome';
+import { addCopyButtons, copyToClipboard, showToast } from './copy';
 
 // ============================================================================
 // STATE DEFINITIONS
 // ============================================================================
 let activeCategory = 'all';
-let activeTier = 'all';
 let searchQuery = '';
 let currentViewport = '100%';
 
-// Core Styler State (persisted in localStorage)
-let activeSkin = localStorage.getItem('cssai-skin') || 'modern';
-let activeTheme = localStorage.getItem('cssai-theme') || document.documentElement.getAttribute('data-ai-theme') || 'light';
-let activeRadius = localStorage.getItem('cssai-radius') || 'balanced';
-let activeDensity = localStorage.getItem('cssai-density') || 'standard';
-let activeAccent = localStorage.getItem('cssai-accent') || 'default';
+// Core Styler State. readPref and writePref live in chrome.ts and speak the
+// llmcss-* keys, falling back once to the legacy cssai-* name.
+let activeSkin = readPref('skin') || 'modern';
+let activeTheme = readPref('theme') || document.documentElement.getAttribute('data-ai-theme') || 'light';
+let activeRadius = readPref('radius') || 'balanced';
+let activeDensity = readPref('density') || 'standard';
+let activeAccent = readPref('accent') || 'default';
 
 // Per-Component Customization State
 interface ComponentCustomization {
   variant?: string;
   size?: string;
   state?: string;
-  radius?: string;
   density?: string;
   accent?: string;
-  speed?: string;
   elevation?: string;
 }
 
 const componentCustomizations: Record<string, ComponentCustomization> = {};
 
+// Selected layout variant per component id. '' means the default layout.
+// Kept in its own map, not inside ComponentCustomization, so resetting the
+// customizer can never silently reset the layout: the two controls have
+// different contracts. The customizer is preview only; a variant is a registry
+// snippet, so it changes what Copy HTML, the Code panel and the CLI hand back.
+const componentVariants: Record<string, string> = {};
+
+type CatalogComponent = (typeof components)[number];
+type CatalogVariant = NonNullable<CatalogComponent['variants']>[number];
+
+function selectedVariant(comp: CatalogComponent): CatalogVariant | null {
+  const id = componentVariants[comp.id];
+  if (!id) return null;
+  return (comp.variants || []).find((v) => v.id === id) || null;
+}
+
+/** The registry snippet the card is currently showing, before customization. */
+function baseHtmlFor(comp: CatalogComponent): string {
+  return selectedVariant(comp)?.html ?? comp.html;
+}
+
+/** Canonical reference for the CLI snippet and the permalink: id or id:variant. */
+function refFor(comp: CatalogComponent): string {
+  const v = selectedVariant(comp);
+  return v ? `${comp.id}:${v.id}` : comp.id;
+}
+
 // DOM Elements
 const streamEl = document.getElementById('components-stream');
 let searchInput = document.getElementById('catalog-search') as HTMLInputElement | null;
-const skinSwitcher = document.getElementById('skin-switcher') as HTMLSelectElement | null;
 let themeToggle = document.getElementById('theme-mode-toggle');
-const proHtmlCache = new Map<string, string>();
-const proCssCache = new Map<string, string>();
-const toastContainer = document.getElementById('toast-container');
-
-// ============================================================================
-// TOAST NOTIFICATIONS & MICRO-FEEDBACK
-// ============================================================================
-function showToast(message: string, type: 'success' | 'info' | 'error' = 'success') {
-  const toast = document.createElement('div');
-  toast.className = `toast toast-${type}`;
-  toast.innerHTML = `
-    <span class="toast-message">${message}</span>
-    <button class="toast-close">&times;</button>
-  `;
-  toastContainer?.appendChild(toast);
-  setTimeout(() => {
-    toast.style.opacity = '0';
-    setTimeout(() => toast.remove(), 200);
-  }, 2800);
-}
-
-function copyToClipboard(text: string, label: string, triggerBtn?: HTMLElement) {
-  navigator.clipboard.writeText(text).then(() => {
-    showToast(`Copied ${label} to clipboard!`);
-    if (triggerBtn) {
-      const originalText = triggerBtn.textContent;
-      triggerBtn.textContent = '✓ Copied!';
-      triggerBtn.style.borderColor = 'var(--ai-accent)';
-      setTimeout(() => {
-        triggerBtn.textContent = originalText;
-        triggerBtn.style.borderColor = '';
-      }, 1500);
-    }
-  }).catch(() => {
-    showToast(`Failed to copy to clipboard`, 'error');
-  });
-}
 
 function escapeHtml(str: string): string {
   return str
@@ -98,67 +85,24 @@ function applyGlobalTokens() {
   } else {
     root.setAttribute('data-ai-skin', activeSkin);
   }
-  localStorage.setItem('cssai-skin', activeSkin);
-
-  if (skinSwitcher) {
-    skinSwitcher.value = activeSkin;
-  }
+  writePref('skin', activeSkin);
 
   // 2. Light / Dark Theme Mode
   activeTheme = currentTheme();
   root.setAttribute('data-ai-theme', activeTheme);
-  localStorage.setItem('cssai-theme', activeTheme);
+  writePref('theme', activeTheme);
   updateThemeToggleIcon(activeTheme);
 
-  // 3. Corner Geometry (Radius Scale)
-  const radiusMap: Record<string, Record<string, string>> = {
-    sharp: {
-      '--ai-radius-none': '0px',
-      '--ai-radius-xs': '0px',
-      '--ai-radius-sm': '0px',
-      '--ai-radius-md': '0px',
-      '--ai-radius-lg': '0px',
-      '--ai-radius-xl': '0px',
-      '--ai-radius-2xl': '0px',
-      '--ai-radius-base': '0px',
-    },
-    precision: {
-      '--ai-radius-none': '0px',
-      '--ai-radius-xs': '2px',
-      '--ai-radius-sm': '3px',
-      '--ai-radius-md': '4px',
-      '--ai-radius-lg': '6px',
-      '--ai-radius-xl': '8px',
-      '--ai-radius-2xl': '10px',
-      '--ai-radius-base': '2px',
-    },
-    balanced: {
-      '--ai-radius-none': '0px',
-      '--ai-radius-xs': '3px',
-      '--ai-radius-sm': '4px',
-      '--ai-radius-md': '6px',
-      '--ai-radius-lg': '8px',
-      '--ai-radius-xl': '10px',
-      '--ai-radius-2xl': '12px',
-      '--ai-radius-base': '4px',
-    },
-    smooth: {
-      '--ai-radius-none': '0px',
-      '--ai-radius-xs': '4px',
-      '--ai-radius-sm': '6px',
-      '--ai-radius-md': '8px',
-      '--ai-radius-lg': '12px',
-      '--ai-radius-xl': '16px',
-      '--ai-radius-2xl': '20px',
-      '--ai-radius-base': '6px',
-    },
-  };
-
-  const currentRadiusTokens = radiusMap[activeRadius] || radiusMap.balanced;
-  Object.entries(currentRadiusTokens).forEach(([prop, val]) => {
-    root.style.setProperty(prop, val);
-  });
-  localStorage.setItem('cssai-radius', activeRadius);
+  // 3. Corner Geometry (Radius Scale). The library ships the four archetypes
+  // as a [data-ai-radius] block in tokens.css, so this is an attribute, not a
+  // pile of inline custom properties. "precision" is the stock :root scale and
+  // is expressed by removing the attribute, the same way "standard" density is.
+  if (activeRadius === 'precision') {
+    root.removeAttribute('data-ai-radius');
+  } else {
+    root.setAttribute('data-ai-radius', activeRadius);
+  }
+  writePref('radius', activeRadius);
 
   // 4. Spacing Density
   if (activeDensity === 'compact') {
@@ -189,7 +133,7 @@ function applyGlobalTokens() {
       '--ai-space-8',
     ].forEach((p) => root.style.removeProperty(p));
   }
-  localStorage.setItem('cssai-density', activeDensity);
+  writePref('density', activeDensity);
 
   // 5. Accent Override.
   // Accents live in the stylesheet as data-ai-accent, so the Styler only sets
@@ -205,7 +149,7 @@ function applyGlobalTokens() {
   }
   // Clear any inline accent left by an older build of the Styler.
   ['--ai-accent', '--ai-accent-hover', '--ai-accent-subtle', '--ai-accent-rgb'].forEach((p) => root.style.removeProperty(p));
-  localStorage.setItem('cssai-accent', activeAccent);
+  writePref('accent', activeAccent);
 
   applyDisplayFont(getActiveFontId());
 
@@ -213,33 +157,30 @@ function applyGlobalTokens() {
   updateCoreStylerUI();
 }
 
+// Every Styler control is a toggle button in a named group, so is-active and
+// aria-pressed always move together. setPressed is the single place that pairs
+// them, and nothing sets is-active without it.
+function setPressed(el: Element, on: boolean) {
+  el.classList.toggle('is-active', on);
+  el.setAttribute('aria-pressed', on ? 'true' : 'false');
+}
+
 function updateCoreStylerUI() {
   // Theme Grid
   document.querySelectorAll('#styler-theme-grid .styler-theme-btn').forEach((btn) => {
-    const skin = btn.getAttribute('data-skin');
-    btn.classList.toggle('is-active', skin === activeSkin);
+    setPressed(btn, btn.getAttribute('data-skin') === activeSkin);
   });
 
+  // The header reads out the literal data-ai-skin value. modern is the stock
+  // theme and sets no attribute at all, so it reads "unset".
   const activeThemeLabel = document.getElementById('styler-active-theme-label');
   if (activeThemeLabel) {
-    const skinNames: Record<string, string> = {
-      modern: 'Minimal',
-      executive: 'Slate',
-      fintech: 'Titanium',
-      obsidian: 'Obsidian',
-      editorial: 'Editorial',
-      enterprise: 'Enterprise',
-      emerald: 'Emerald',
-      violet: 'Violet',
-      rose: 'Rose',
-    };
-    activeThemeLabel.textContent = skinNames[activeSkin] || activeSkin;
+    activeThemeLabel.textContent = activeSkin === 'modern' ? 'unset' : activeSkin;
   }
 
   // Radius Pills
   document.querySelectorAll('.js-styler-radius-btn').forEach((btn) => {
-    const rad = btn.getAttribute('data-radius');
-    btn.classList.toggle('is-active', rad === activeRadius);
+    setPressed(btn, btn.getAttribute('data-radius') === activeRadius);
   });
   const radiusLabel = document.getElementById('styler-radius-label');
   if (radiusLabel) {
@@ -255,8 +196,7 @@ function updateCoreStylerUI() {
 
   // Density Pills
   document.querySelectorAll('.js-styler-density-btn').forEach((btn) => {
-    const den = btn.getAttribute('data-density');
-    btn.classList.toggle('is-active', den === activeDensity);
+    setPressed(btn, btn.getAttribute('data-density') === activeDensity);
   });
   const densityLabel = document.getElementById('styler-density-label');
   if (densityLabel) {
@@ -270,8 +210,7 @@ function updateCoreStylerUI() {
 
   // Accent Swatches
   document.querySelectorAll('.styler-accent-swatch').forEach((btn) => {
-    const acc = btn.getAttribute('data-accent');
-    btn.classList.toggle('is-active', acc === activeAccent);
+    setPressed(btn, btn.getAttribute('data-accent') === activeAccent);
   });
 
   // Exported CSS Blueprint in Styler Drawer
@@ -372,15 +311,6 @@ function getCustomizerGroupsForComponent(comp: (typeof components)[0]): Customiz
           { label: 'Disabled', value: 'disabled' },
         ],
       },
-      {
-        name: 'Corner',
-        prop: 'radius',
-        options: [
-          { label: 'Default', value: 'default' },
-          { label: 'Sharp 0px', value: 'sharp' },
-          { label: 'Smooth', value: 'smooth' },
-        ],
-      },
     ];
   }
 
@@ -390,27 +320,18 @@ function getCustomizerGroupsForComponent(comp: (typeof components)[0]): Customiz
         name: 'Elevation',
         prop: 'elevation',
         options: [
-          { label: 'Flat Border', value: 'flat' },
-          { label: 'Shadow MD', value: 'elevated' },
-          { label: 'Specular Pro', value: 'specular' },
+          { label: 'Flat', value: 'flat' },
+          { label: 'shadow-lg', value: 'elevated' },
+          { label: 'shadow-xl', value: 'specular' },
         ],
       },
       {
-        name: 'Padding',
+        name: 'Density',
         prop: 'density',
         options: [
           { label: 'Compact', value: 'compact' },
           { label: 'Standard', value: 'standard' },
           { label: 'Spacious', value: 'spacious' },
-        ],
-      },
-      {
-        name: 'Corner',
-        prop: 'radius',
-        options: [
-          { label: 'Default', value: 'default' },
-          { label: 'Sharp 0px', value: 'sharp' },
-          { label: 'Round 12px', value: 'smooth' },
         ],
       },
     ];
@@ -427,23 +348,16 @@ function getCustomizerGroupsForComponent(comp: (typeof components)[0]): Customiz
           { label: 'Pulse Radar Dot', value: 'pulse' },
         ],
       },
-      {
-        name: 'Speed',
-        prop: 'speed',
-        options: [
-          { label: 'Fast (0.4s)', value: 'fast' },
-          { label: 'Normal (0.8s)', value: 'normal' },
-          { label: 'Relaxed (1.5s)', value: 'slow' },
-        ],
-      },
+      // Loader speed is fixed in animations.css and has no class or attribute
+      // to drive it, so the customizer does not pretend to offer one.
       {
         name: 'Accent',
         prop: 'accent',
         options: [
-          { label: 'Blue', value: 'blue' },
-          { label: 'Teal', value: 'teal' },
-          { label: 'Emerald', value: 'emerald' },
-          { label: 'Rose', value: 'rose' },
+          { label: 'Default', value: 'default' },
+          { label: 'teal', value: 'teal' },
+          { label: 'emerald', value: 'emerald' },
+          { label: 'rose', value: 'rose' },
         ],
       },
     ];
@@ -455,18 +369,18 @@ function getCustomizerGroupsForComponent(comp: (typeof components)[0]): Customiz
         name: 'Mode',
         prop: 'variant',
         options: [
-          { label: 'Determinate (68%)', value: 'determinate' },
-          { label: 'AI Shimmer Stream', value: 'indeterminate' },
-          { label: 'Striped Bar', value: 'striped' },
+          { label: 'Determinate', value: 'determinate' },
+          { label: 'Indeterminate', value: 'indeterminate' },
+          { label: 'Striped', value: 'striped' },
         ],
       },
       {
-        name: 'Accent',
+        name: 'Tone',
         prop: 'accent',
         options: [
-          { label: 'Blue', value: 'blue' },
-          { label: 'Success Green', value: 'emerald' },
-          { label: 'Destructive Red', value: 'rose' },
+          { label: 'Accent', value: 'default' },
+          { label: 'progress-bar-success', value: 'success' },
+          { label: 'progress-bar-warning', value: 'warning' },
         ],
       },
     ];
@@ -475,12 +389,12 @@ function getCustomizerGroupsForComponent(comp: (typeof components)[0]): Customiz
   if (id === 'interactive-slider') {
     return [
       {
-        name: 'Accent Color',
+        name: 'Accent',
         prop: 'accent',
         options: [
-          { label: 'Accent Blue', value: 'blue' },
-          { label: 'Fintech Teal', value: 'teal' },
-          { label: 'Forest Emerald', value: 'emerald' },
+          { label: 'Default', value: 'default' },
+          { label: 'teal', value: 'teal' },
+          { label: 'emerald', value: 'emerald' },
         ],
       },
       {
@@ -515,26 +429,31 @@ function getCustomizerGroupsForComponent(comp: (typeof components)[0]): Customiz
     ];
   }
 
-  // Generic fallback customizer for all other components
+  // Generic fallback customizer. Every option here maps to a documented
+  // data-ai-* attribute or a published utility class, so the markup the card
+  // copies out is markup you can paste anywhere. Corner radius is deliberately
+  // absent: the library has no radius attribute, and setting --ai-radius-* on a
+  // wrapper would mean shipping an inline style in the copied snippet.
   return [
     {
-      name: 'Corner Radius',
-      prop: 'radius',
+      name: 'Skin',
+      prop: 'variant',
       options: [
-        { label: 'Default', value: 'default' },
-        { label: 'Sharp 0px', value: 'sharp' },
-        { label: 'Precision 3px', value: 'precision' },
-        { label: 'Smooth 10px', value: 'smooth' },
+        { label: 'Inherit', value: 'inherit' },
+        { label: 'obsidian', value: 'obsidian' },
+        { label: 'editorial', value: 'editorial' },
+        { label: 'executive', value: 'executive' },
+        { label: 'fintech', value: 'fintech' },
+        { label: 'enterprise', value: 'enterprise' },
       ],
     },
     {
-      name: 'Local Skin',
-      prop: 'variant',
+      name: 'Density',
+      prop: 'density',
       options: [
-        { label: 'Inherit Theme', value: 'inherit' },
-        { label: 'Slate', value: 'executive' },
-        { label: 'Titanium', value: 'fintech' },
-        { label: 'Obsidian', value: 'obsidian' },
+        { label: 'Compact', value: 'compact' },
+        { label: 'Standard', value: 'standard' },
+        { label: 'Spacious', value: 'spacious' },
       ],
     },
   ];
@@ -545,23 +464,22 @@ function renderCustomizerBar(comp: (typeof components)[0]): string {
   const current = componentCustomizations[comp.id] || {};
 
   return `
-    <div class="demo-toolbar" id="customize-${comp.id}" style="display: none;">
-      <div class="flex items-center gap-2" style="margin-right: var(--ai-space-2);">
-        <span class="badge badge-neutral font-mono" style="font-size: 0.625rem;">Customizer</span>
-      </div>
+    <div class="demo-toolbar hidden" id="customize-${comp.id}" hidden>
+      <span class="badge badge-neutral font-mono text-xs">Customizer</span>
       ${groups
         .map((g) => {
           const activeVal = current[g.prop] || g.options[0].value;
           return `
           <div class="demo-toolbar-group">
             <span class="demo-toolbar-label">${g.name}:</span>
-            <div class="demo-pills">
+            <div class="demo-pills" role="group" aria-label="${g.name} for ${comp.name}">
               ${g.options
                 .map(
                   (opt) => `
-                <button class="demo-pill ${opt.value === activeVal ? 'is-active' : ''}" 
-                        data-id="${comp.id}" 
-                        data-prop="${g.prop}" 
+                <button type="button" class="demo-pill ${opt.value === activeVal ? 'is-active' : ''}"
+                        aria-pressed="${opt.value === activeVal}"
+                        data-id="${comp.id}"
+                        data-prop="${g.prop}"
                         data-val="${opt.value}">
                   ${opt.label}
                 </button>
@@ -573,16 +491,19 @@ function renderCustomizerBar(comp: (typeof components)[0]): string {
         `;
         })
         .join('')}
-      <button class="btn btn-ghost btn-xs reset-customizer-btn" data-id="${comp.id}" style="margin-left: auto; font-size: 0.6875rem;">Reset</button>
+      <button type="button" class="btn btn-ghost btn-xs reset-customizer-btn ml-auto" data-id="${comp.id}">Reset</button>
     </div>
   `;
 }
 
 function generateCustomizedHtml(comp: (typeof components)[0]): string {
   const custom = componentCustomizations[comp.id];
-  if (!custom) return comp.html;
+  // The base is whatever layout the card is showing. None of the components
+  // with a bespoke rewrite below ships variants, so the rewrites never collide
+  // with a selection, and the generic wrapper at the end works on any variant.
+  if (!custom) return baseHtmlFor(comp);
 
-  let html = comp.html;
+  let html = baseHtmlFor(comp);
 
   // 1. Button modifications
   if (comp.id === 'btn-variants' || comp.id === 'btn-sizes') {
@@ -606,10 +527,10 @@ function generateCustomizedHtml(comp: (typeof components)[0]): string {
     const disabledAttr = custom.state === 'disabled' ? 'disabled' : '';
     const errorMarkup =
       custom.state === 'error'
-        ? '<span class="form-error" style="margin-top: 0.25rem;">Please enter a valid engineering email.</span>'
+        ? '<span class="form-error mt-1">Please enter a valid engineering email.</span>'
         : '<span class="form-hint">We\'ll send your workspace invite here.</span>';
 
-    return `<div class="grid gap-4" style="max-width: 24rem;">
+    return `<div class="grid gap-4 max-w-sm">
   <div class="form-group">
     <label class="form-label" for="user-email">Email Address</label>
     <input type="email" id="user-email" class="input ${stateClass}" placeholder="name@company.com" value="${custom.state === 'focused' ? 'alex.chen@acme.dev' : ''}" ${disabledAttr} />
@@ -626,7 +547,7 @@ function generateCustomizedHtml(comp: (typeof components)[0]): string {
     const stateClass = custom.state === 'focused' ? 'is-focused' : custom.state === 'error' ? 'is-error' : '';
     const disabledAttr = custom.state === 'disabled' ? 'disabled' : '';
 
-    return `<div class="form-group" style="max-width: 28rem;">
+    return `<div class="form-group max-w-md">
   <label class="form-label">Project URL</label>
   <div class="input-group">
     <span class="input-addon">https://</span>
@@ -655,79 +576,76 @@ function generateCustomizedHtml(comp: (typeof components)[0]): string {
 </div>`;
   }
 
-  // 2. Loaders modification
+  // 2. Loaders modification. Every loader colour in the library comes from
+  // --ai-accent, so the accent is a documented data-ai-accent attribute on the
+  // row rather than a hand-mixed hex.
   if (comp.id === 'animated-loaders') {
     const v = custom.variant || 'spinner';
-    const speedStyle = custom.speed === 'fast' ? 'animation-duration: 0.4s;' : custom.speed === 'slow' ? 'animation-duration: 1.6s;' : '';
-    const colorMap: Record<string, string> = {
-      blue: 'var(--ai-accent)',
-      teal: '#0f766e',
-      emerald: 'var(--ai-success)',
-      rose: 'var(--ai-danger)',
-    };
-    const accentColor = colorMap[custom.accent || 'blue'] || 'var(--ai-accent)';
+    const accent = custom.accent && custom.accent !== 'default' ? ` data-ai-accent="${custom.accent}"` : '';
 
     if (v === 'ring') {
-      return `<div class="flex items-center gap-4">
-  <div class="spinner-ring" style="border-top-color: ${accentColor}; ${speedStyle}"></div>
-  <span class="text-xs font-mono text-secondary">Dual Orbit Loader (${custom.speed || 'normal'})</span>
+      return `<div class="flex items-center gap-4"${accent}>
+  <div class="spinner-ring"></div>
+  <span class="text-xs font-mono text-secondary">Dual orbit loader</span>
 </div>`;
     }
     if (v === 'pulse') {
-      return `<div class="flex items-center gap-3">
-  <span class="pulse-dot status-pip is-streaming" style="background-color: ${accentColor}; ${speedStyle}"></span>
-  <span class="text-xs font-mono text-secondary">Status Pip (Breathing LED)</span>
+      return `<div class="flex items-center gap-3"${accent}>
+  <span class="status-pip is-streaming"></span>
+  <span class="text-xs font-mono text-secondary">Status pip, streaming</span>
 </div>`;
     }
-    return `<div class="flex items-center gap-4">
-  <span class="spinner" style="border-color: ${accentColor}; border-top-color: transparent; ${speedStyle}"></span>
-  <span class="text-xs font-mono text-secondary">Arc Motion Spinner</span>
+    return `<div class="flex items-center gap-4"${accent}>
+  <span class="spinner"></span>
+  <span class="text-xs font-mono text-secondary">Arc motion spinner</span>
 </div>`;
   }
 
-  // 3. Progress bar modification
+  // 3. Progress bar modification. progress-indeterminate and progress-striped
+  // are parent modifiers, and the fill tone has its own published classes.
   if (comp.id === 'progress-bars') {
     const v = custom.variant || 'determinate';
-    const colorMap: Record<string, string> = {
-      blue: 'var(--ai-accent)',
-      emerald: 'var(--ai-success)',
-      rose: 'var(--ai-danger)',
-    };
-    const barBg = colorMap[custom.accent || 'blue'] || 'var(--ai-accent)';
+    const tone =
+      custom.accent === 'success' ? ' progress-bar-success' : custom.accent === 'warning' ? ' progress-bar-warning' : '';
 
     if (v === 'indeterminate') {
-      return `<div class="progress progress-indeterminate" style="max-width: 24rem;">
-  <div class="progress-bar" style="background-color: ${barBg};"></div>
+      return `<div class="progress progress-indeterminate max-w-sm">
+  <div class="progress-bar${tone}"></div>
 </div>`;
     }
     if (v === 'striped') {
-      return `<div class="progress progress-striped" style="max-width: 24rem;">
-  <div class="progress-bar" style="width: 75%; background-color: ${barBg};"></div>
+      return `<div class="progress progress-striped max-w-sm">
+  <div class="progress-bar w-3/4${tone}"></div>
 </div>`;
     }
-    return `<div class="progress" style="max-width: 24rem;">
-  <div class="progress-bar" style="width: 68%; background-color: ${barBg};"></div>
+    return `<div class="progress max-w-sm">
+  <div class="progress-bar w-2/3${tone}"></div>
 </div>`;
   }
 
-  // 4. Container / Elevation / Radius wrapper injection
-  let styleOverrides = '';
-  if (custom.radius === 'sharp') styleOverrides += '--ai-radius-base: 0px; --ai-radius-md: 0px; --ai-radius-lg: 0px; ';
-  if (custom.radius === 'smooth') styleOverrides += '--ai-radius-base: 8px; --ai-radius-md: 12px; --ai-radius-lg: 16px; ';
-  if (custom.elevation === 'elevated') styleOverrides += 'box-shadow: var(--ai-shadow-lg); ';
-  if (custom.elevation === 'specular') styleOverrides += 'box-shadow: 0 0 0 1px var(--ai-border-strong), 0 8px 24px rgba(0,0,0,0.12); ';
-  if (custom.density === 'compact') styleOverrides += 'padding: var(--ai-space-3) !important; ';
-  if (custom.density === 'spacious') styleOverrides += 'padding: var(--ai-space-8) !important; ';
+  // 4. Wrapper knobs. Everything here is either a documented data-ai-*
+  // attribute (states.json) or a published utility class (classes.json), so the
+  // snippet the card copies out is markup you can paste into your own page.
+  const SKINS = ['obsidian', 'editorial', 'executive', 'fintech', 'enterprise'];
+  const ACCENT_VALUES = ['emerald', 'violet', 'rose', 'teal', 'steel', 'amber'];
 
-  const localSkinAttr = custom.variant && custom.variant !== 'inherit' ? `data-ai-skin="${custom.variant}"` : '';
+  const attrs: string[] = [];
+  if (custom.variant && SKINS.includes(custom.variant)) attrs.push(`data-ai-skin="${custom.variant}"`);
+  if (custom.accent && ACCENT_VALUES.includes(custom.accent)) attrs.push(`data-ai-accent="${custom.accent}"`);
+  if (custom.density === 'compact' || custom.density === 'spacious') {
+    attrs.push(`data-ai-density="${custom.density}"`);
+  }
 
-  if (styleOverrides || localSkinAttr) {
-    return `<div ${localSkinAttr} style="${styleOverrides}width: 100%; transition: all var(--ai-duration-fast);">
+  const classes = ['w-full', 'max-w-full'];
+  if (custom.elevation === 'elevated') classes.push('shadow-lg');
+  if (custom.elevation === 'specular') classes.push('shadow-xl');
+
+  if (attrs.length === 0 && classes.length === 2) return html;
+
+  const openTag = ['<div', ...attrs, `class="${classes.join(' ')}">`].join(' ');
+  return `${openTag}
   ${html}
 </div>`;
-  }
-
-  return html;
 }
 
 function applyComponentCustomization(id: string) {
@@ -742,7 +660,16 @@ function applyComponentCustomization(id: string) {
     previewContainer.innerHTML = customizedHtml;
   }
 
-  // Preview only. Copy HTML stays the registry snippet.
+  // The code panel and the Copy HTML button both show the customised markup,
+  // so what you read is what lands on your clipboard.
+  const panel = document.getElementById(`code-${id}`);
+  if (panel) {
+    panel.innerHTML = `<div class="flex justify-between items-center mb-2">
+            <span class="text-xs font-mono text-muted">HTML</span>
+          </div>
+          <pre><code>${escapeHtml(customizedHtml)}</code></pre>`;
+    addCopyButtons(panel);
+  }
 
   // Re-bind events inside preview if slider or controls
   rebindPreviewControls(id);
@@ -772,7 +699,6 @@ function updateSidebarCounts() {
   const marketing = components.filter((c) => c.category === 'marketing').length;
   const application = components.filter((c) => c.category === 'application').length;
   const ecommerce = components.filter((c) => c.category === 'ecommerce').length;
-  const freeCount = components.filter((c) => c.tier === 'free').length;
 
   const countAll = document.getElementById('count-all');
   if (countAll) countAll.textContent = String(total);
@@ -789,49 +715,167 @@ function updateSidebarCounts() {
   const countEcom = document.getElementById('count-ecommerce');
   if (countEcom) countEcom.textContent = String(ecommerce);
 
-  const countTierAll = document.getElementById('count-tier-all');
-  if (countTierAll) countTierAll.textContent = String(total);
+  // Category and tier counts are component counts and stay that way: a variant
+  // is not a component. The layout total gets one muted line of its own, and
+  // the number comes from stats.json through the same data-ai-stat hook the
+  // rest of the site uses, so it is never typed here.
+  const stack = countAll?.closest('.docs-nav-stack');
+  if (stack && !document.getElementById('catalog-variant-note')) {
+    const note = document.createElement('p');
+    note.className = 'docs-nav-note';
+    note.id = 'catalog-variant-note';
+    note.innerHTML = `<span data-ai-stat="variants">${catalogStats.variants}</span> layout variants, addressed <span class="font-mono">id:variant</span>.`;
+    stack.insertAdjacentElement('afterend', note);
+  }
+}
 
-  const countTierFree = document.getElementById('count-tier-free');
-  if (countTierFree) countTierFree.textContent = String(freeCount);
-  const countTierPro = document.getElementById('count-tier-pro');
-  if (countTierPro) countTierPro.textContent = String(components.filter((c) => c.tier === 'pro').length);
+// Keeps the address bar in step with the catalog so a filtered view can be
+// pasted to someone else. replaceState, not pushState: filtering is not a
+// navigation, and the back button should still leave the page.
+function syncUrlToFilters() {
+  const url = new URL(window.location.href);
+  const q = searchQuery.trim();
+  if (q) url.searchParams.set('q', q);
+  else url.searchParams.delete('q');
+  if (activeCategory && activeCategory !== 'all') url.searchParams.set('cat', activeCategory);
+  else url.searchParams.delete('cat');
+  history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+}
+
+function readFiltersFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const q = params.get('q');
+  if (q) searchQuery = q;
+  const cat = params.get('cat');
+  const known = ['all', 'primitive', 'marketing', 'application', 'ecommerce'];
+  if (cat && known.includes(cat)) activeCategory = cat;
+}
+
+// A segmented control in the card header, Default first. It sits in the same
+// row as the action buttons because that row already owns "controls that change
+// the preview", and a closed select would hide the one thing worth saying at
+// rest: how many layouts there are. The header wraps at 400px, which is why the
+// control comes first in source order and the buttons follow it.
+function renderVariantControl(comp: CatalogComponent): string {
+  const list = comp.variants || [];
+  if (list.length === 0) return '';
+  const active = componentVariants[comp.id] || '';
+  const button = (value: string, label: string) => {
+    const on = value === active;
+    return `<button type="button" class="segmented-btn js-variant-btn${on ? ' is-active' : ''}"
+                    aria-pressed="${on}" data-id="${comp.id}" data-variant="${value}">${label}</button>`;
+  };
+  return `<div class="segmented docs-variant-group" role="group" aria-label="Layout for ${escapeHtml(comp.name)}">
+              ${button('', 'Default')}
+              ${list.map((v) => button(v.id, escapeHtml(v.name))).join('\n              ')}
+            </div>`;
+}
+
+// The variant's own line lives under the demo, not in the header: it changes on
+// every click, and a changing line inside a fixed header reads as a glitch.
+function renderVariantNote(comp: CatalogComponent): string {
+  if (!(comp.variants || []).length) return '';
+  const v = selectedVariant(comp);
+  return `<p class="docs-variant-note" id="variant-note-${comp.id}">${v ? escapeHtml(v.description) : ''}</p>`;
+}
+
+// Swap one card to another layout in place. A full re-render would lose the
+// scroll position and the open customizer, and would rebuild 122 cards to
+// change one, so this touches only the card that was clicked.
+function selectVariant(id: string, variantId: string) {
+  const comp = components.find((c) => c.id === id);
+  if (!comp || !(comp.variants || []).length) return;
+  if (variantId && !(comp.variants || []).some((v) => v.id === variantId)) return;
+
+  componentVariants[id] = variantId;
+  const card = document.getElementById(`comp-${id}`);
+  if (!card) return;
+
+  card.querySelectorAll('.js-variant-btn').forEach((b) => {
+    setPressed(b, (b.getAttribute('data-variant') || '') === variantId);
+  });
+
+  const html = generateCustomizedHtml(comp);
+
+  const preview = card.querySelector('.demo-canvas > div');
+  if (preview) preview.innerHTML = html;
+
+  const panel = document.getElementById(`code-${id}`);
+  if (panel) {
+    panel.innerHTML = `<div class="flex justify-between items-center mb-2">
+            <span class="text-xs font-mono text-muted">HTML</span>
+          </div>
+          <pre><code>${escapeHtml(html)}</code></pre>`;
+    addCopyButtons(panel);
+  }
+
+  const note = document.getElementById(`variant-note-${id}`);
+  if (note) note.textContent = selectedVariant(comp)?.description || '';
+
+  const permalink = card.querySelector<HTMLAnchorElement>('.js-permalink');
+  if (permalink) permalink.setAttribute('href', `#comp-${refFor(comp)}`);
+
+  rebindPreviewControls(id);
+
+  // A copied URL always reproduces what is on screen. replaceState, not
+  // pushState: the back button should leave the page, not walk back through
+  // eight variant clicks.
+  const url = new URL(window.location.href);
+  history.replaceState(null, '', `${url.pathname}${url.search}#comp-${refFor(comp)}`);
 }
 
 function renderComponents() {
   if (!streamEl) return;
   const filtered = components.filter((comp) => {
     const matchCat = activeCategory === 'all' || comp.category === activeCategory;
-    const matchTier = activeTier === 'all' || comp.tier === activeTier;
     const q = searchQuery.toLowerCase().trim();
+    // Typing "topbar" has to land on the app shell card already showing the
+    // topbar layout, not on the card showing a sidebar with a control the
+    // reader has not noticed yet. So a variant match also opens that variant.
+    const variantHit = (comp.variants || []).find(
+      (v) =>
+        v.id.includes(q) ||
+        v.name.toLowerCase().includes(q) ||
+        v.description.toLowerCase().includes(q)
+    );
     const matchSearch =
       !q ||
       comp.id.includes(q) ||
       comp.name.toLowerCase().includes(q) ||
       comp.description.toLowerCase().includes(q) ||
-      comp.tags.some((t) => t.toLowerCase().includes(q));
+      comp.tags.some((t) => t.toLowerCase().includes(q)) ||
+      // Class names are what people actually search for: btn-outline,
+      // card-footer, is-loading. Match the snippet itself.
+      comp.html.toLowerCase().includes(q) ||
+      Boolean(variantHit);
 
-    return matchCat && matchTier && matchSearch;
+    if (q && matchCat && variantHit && !componentVariants[comp.id]) {
+      componentVariants[comp.id] = variantHit.id;
+    }
+
+    return matchCat && matchSearch;
   });
 
   const resultEl = document.getElementById('catalog-result-count');
   if (resultEl) {
+    // Component counts only. A variant is not a component, so the figure that
+    // people trust in the page header keeps its shape.
     resultEl.textContent = `${filtered.length} of ${components.length}`;
   }
 
+  syncUrlToFilters();
+
   if (filtered.length === 0) {
-    streamEl.innerHTML = `<div class="empty-state" style="padding: 3rem 1rem; text-align: center; border: 1px dashed var(--ai-border); border-radius: var(--ai-radius-md);">
-      <h3 class="font-display" style="font-size: 1.125rem;">No matches${searchQuery ? ` for “${escapeHtml(searchQuery)}”` : ''}</h3>
-      <p class="text-sm text-secondary" style="margin-top: 0.35rem;">Try another query or reset filters.</p>
-      <button type="button" class="btn btn-outline btn-sm" id="reset-catalog-btn" style="margin-top: 1rem;">Reset</button>
+    streamEl.innerHTML = `<div class="empty-state border border-dashed rounded-md">
+      <p class="empty-state-title">No matches${searchQuery ? ` for “${escapeHtml(searchQuery)}”` : ''}</p>
+      <p class="empty-state-description">Try another query, or search a class name such as btn-outline.</p>
+      <button type="button" class="btn btn-outline btn-sm" id="reset-catalog-btn">Reset</button>
     </div>`;
     document.getElementById('reset-catalog-btn')?.addEventListener('click', () => {
       activeCategory = 'all';
-      activeTier = 'all';
       searchQuery = '';
       if (searchInput) searchInput.value = '';
-      document.querySelectorAll('.js-filter-category').forEach((b) => b.classList.toggle('is-active', b.getAttribute('data-cat') === 'all'));
-      document.querySelectorAll('.js-filter-tier').forEach((b) => b.classList.toggle('is-active', b.getAttribute('data-tier') === 'all'));
+      document.querySelectorAll('.js-filter-category').forEach((b) => setPressed(b, b.getAttribute('data-cat') === 'all'));
       renderComponents();
     });
     return;
@@ -839,83 +883,85 @@ function renderComponents() {
 
   streamEl.innerHTML = filtered
     .map((comp) => {
-      const isPro = comp.tier === 'pro';
-      const tierBadge = isPro ? `<span class="docs-pro-tag">PRO</span>` : ``;
       const currentHtml = generateCustomizedHtml(comp);
 
       return `
-      <article class="demo-card" id="comp-${comp.id}">
+      <article class="demo-card scroll-mt-24" id="comp-${comp.id}">
         <div class="demo-header">
           <div class="flex items-center gap-3">
             <div>
-              <div class="flex items-center gap-2">
-                <h3 class="font-semibold" style="font-size: 0.9375rem; color: var(--ai-text-primary);">${comp.name}</h3>
-                ${tierBadge}
-              </div>
-              <p class="text-xs text-secondary" style="margin-top: 0.15rem;">${comp.description}</p>
+              <h3 class="text-sm font-semibold">${comp.name}</h3>
+              <p class="text-xs text-secondary mt-1">${comp.description}</p>
             </div>
           </div>
-          <div class="flex items-center gap-2">
-            <button class="btn btn-outline btn-xs toggle-customize-btn" data-id="${comp.id}" title="Toggle Component Styling Options">
+          <div class="flex items-center gap-2 flex-wrap">
+            ${renderVariantControl(comp)}
+            <button type="button" class="btn btn-outline btn-xs toggle-customize-btn" data-id="${comp.id}" aria-expanded="false" aria-controls="customize-${comp.id}" title="Toggle Component Styling Options">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
               <span>Customize</span>
             </button>
-            <button class="btn btn-outline btn-xs template-code-toggle" data-id="${comp.id}">
+            <button type="button" class="btn btn-outline btn-xs template-code-toggle" data-id="${comp.id}" aria-expanded="false" aria-controls="code-${comp.id}">
               Code
             </button>
-            <button class="btn btn-outline btn-xs copy-cli-btn" data-id="${comp.id}">
+            <button type="button" class="btn btn-outline btn-xs copy-cli-btn" data-id="${comp.id}">
               CLI
             </button>
-            ${
-              isPro
-                ? `<button class="btn btn-primary btn-xs unlock-pro-btn" data-id="${comp.id}">
-                     Unlock Pro
-                   </button>`
-                : `<button class="btn btn-primary btn-xs copy-html-btn" data-id="${comp.id}">
-                     Copy HTML
-                   </button>`
-            }
+            <a class="btn btn-ghost btn-xs js-permalink" data-id="${comp.id}" href="#comp-${refFor(comp)}" aria-label="Link to ${comp.name}">#</a>
+            <button type="button" class="btn btn-primary btn-xs copy-html-btn" data-id="${comp.id}">
+              Copy HTML
+            </button>
           </div>
         </div>
-        ${isPro ? '' : renderCustomizerBar(comp)}
-        <div class="demo-canvas ${comp.id === 'dropdown-menu' ? 'preview-has-dropdown' : ''}" style="width: ${currentViewport};">
-          <div style="width: 100%; max-width: 100%;">
+        ${renderCustomizerBar(comp)}
+        <div class="demo-canvas ${comp.id === 'dropdown-menu' ? 'preview-has-dropdown' : ''}">
+          <div class="w-full max-w-full">
             ${currentHtml}
           </div>
         </div>
+        ${renderVariantNote(comp)}
         <div class="demo-code" id="code-${comp.id}">
-          ${
-            isPro
-              ? `<div class="flex justify-between items-center" style="margin-bottom: var(--ai-space-2);">
-            <span class="text-xs font-mono text-muted">Pro source is not public</span>
-          </div>
-          <pre><code>Subscribe at https://llmcss.io then:
-npx llmcss login &lt;token&gt;
-npx llmcss add ${comp.id}</code></pre>`
-              : `<div class="flex justify-between items-center" style="margin-bottom: var(--ai-space-2);">
+          <div class="flex justify-between items-center mb-2">
             <span class="text-xs font-mono text-muted">HTML</span>
           </div>
-          <pre><code>${escapeHtml(comp.html)}</code></pre>`
-          }
+          <pre><code>${escapeHtml(currentHtml)}</code></pre>
         </div>
       </article>
       `;
     })
     .join('');
 
+  applyViewportWidth();
+  addCopyButtons(streamEl);
   bindComponentEvents();
 }
 
+// The preview width control is a live measurement, not a style choice, so it
+// is applied as a DOM property after render rather than baked into the markup.
+function applyViewportWidth() {
+  document.querySelectorAll<HTMLElement>('.demo-canvas').forEach((canvas) => {
+    canvas.style.width = currentViewport;
+  });
+}
+
 function bindComponentEvents() {
+  // Layout variant segmented control
+  document.querySelectorAll('.js-variant-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      selectVariant(btn.getAttribute('data-id') || '', btn.getAttribute('data-variant') || '');
+    });
+  });
+
   // Toggle Customizer bar
   document.querySelectorAll('.toggle-customize-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-id');
       const bar = document.getElementById(`customize-${id}`);
       if (bar) {
-        const isHidden = bar.style.display === 'none' || !bar.style.display;
-        bar.style.display = isHidden ? 'flex' : 'none';
-        btn.classList.toggle('is-active', isHidden);
+        const show = bar.hidden;
+        bar.hidden = !show;
+        bar.classList.toggle('hidden', !show);
+        btn.classList.toggle('is-active', show);
+        btn.setAttribute('aria-expanded', String(show));
       }
     });
   });
@@ -935,12 +981,10 @@ function bindComponentEvents() {
       // Update active state among siblings
       const parentGroup = btn.closest('.demo-pills');
       if (parentGroup) {
-        parentGroup.querySelectorAll('.demo-pill').forEach((b) => b.classList.remove('is-active'));
-        btn.classList.add('is-active');
+        parentGroup.querySelectorAll('.demo-pill').forEach((b) => setPressed(b, b === btn));
       }
 
       applyComponentCustomization(id);
-      showToast(`Updated ${id} styling`, 'info');
     });
   });
 
@@ -955,8 +999,7 @@ function bindComponentEvents() {
       if (bar) {
         bar.querySelectorAll('.demo-toolbar-group').forEach((g) => {
           const firstPill = g.querySelector('.demo-pill');
-          g.querySelectorAll('.demo-pill').forEach((b) => b.classList.remove('is-active'));
-          firstPill?.classList.add('is-active');
+          g.querySelectorAll('.demo-pill').forEach((b) => setPressed(b, b === firstPill));
         });
       }
       showToast(`Reset ${id} to defaults`, 'info');
@@ -969,8 +1012,9 @@ function bindComponentEvents() {
       const id = btn.getAttribute('data-id');
       const panel = document.getElementById(`code-${id}`);
       if (panel) {
-        panel.classList.toggle('is-expanded');
-        btn.classList.toggle('is-active', panel.classList.contains('is-expanded'));
+        const open = panel.classList.toggle('is-expanded');
+        btn.classList.toggle('is-active', open);
+        btn.setAttribute('aria-expanded', String(open));
       }
     });
   });
@@ -981,26 +1025,16 @@ function bindComponentEvents() {
       const id = btn.getAttribute('data-id');
       const comp = components.find((c) => c.id === id);
       if (!comp) return;
-      if (comp.tier === 'pro' && !getBrowserToken()) {
-        showToast('Pro source is not public. Subscribe to unlock.', 'error');
-        return;
-      }
+      // Copy what the card is actually showing: the selected layout, with any
+      // customizer wrapper, not the registry default.
+      const html = generateCustomizedHtml(comp);
+      const v = selectedVariant(comp);
+      const label = v ? `${comp.name}, ${v.name.toLowerCase()} layout` : comp.name;
       if (comp.css) {
-        copyToClipboard(`<style>\n${comp.css}</style>\n${comp.html}`, `${comp.name} HTML + CSS`, btn);
+        copyToClipboard(`<style>\n${comp.css}</style>\n${html}`, `${label} HTML + CSS`, btn);
         return;
       }
-      copyToClipboard(comp.html, `${comp.name} HTML`, btn);
-    });
-  });
-
-  document.querySelectorAll<HTMLElement>('.unlock-pro-btn').forEach((btn) => {
-    btn.addEventListener('click', async () => {
-      if (getBrowserToken()) {
-        await hydrateProCards();
-        return;
-      }
-      const modal = document.getElementById('license-modal');
-      modal?.classList.add('is-open');
+      copyToClipboard(html, `${label} HTML`, btn);
     });
   });
 
@@ -1009,8 +1043,8 @@ function bindComponentEvents() {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-id');
       const comp = components.find((c) => c.id === id);
-      const cmd = comp?.tier === 'pro' ? `npx llmcss login <token>\nnpx llmcss add ${id}` : `npx llmcss add ${id}`;
-      copyToClipboard(cmd, 'CLI command', btn);
+      // The snippet names the layout on screen: `npx llmcss add parent:variant`.
+      copyToClipboard(`npx llmcss add ${comp ? refFor(comp) : id}`, 'CLI command', btn);
     });
   });
 
@@ -1033,33 +1067,14 @@ function bindComponentEvents() {
 // Category filter handlers
 document.querySelectorAll('.js-filter-category').forEach((btn) => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.js-filter-category').forEach((b) => b.classList.remove('is-active'));
-    btn.classList.add('is-active');
+    document.querySelectorAll('.js-filter-category').forEach((b) => setPressed(b, b === btn));
     activeCategory = btn.getAttribute('data-cat') || 'all';
     renderComponents();
-    hydrateProCards();
   });
 });
 
-// Tier filter handlers
-document.querySelectorAll('.js-filter-tier').forEach((btn) => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.js-filter-tier').forEach((b) => b.classList.remove('is-active'));
-    btn.classList.add('is-active');
-    activeTier = btn.getAttribute('data-tier') || 'all';
-    renderComponents();
-    hydrateProCards();
-  });
-});
-
-// Search input handler
-if (searchInput) {
-  searchInput.addEventListener('input', () => {
-    searchQuery = searchInput?.value || '';
-    renderComponents();
-    hydrateProCards();
-  });
-}
+// The catalog search field is injected by mountChrome, so its handler is bound
+// in boot() once the chrome exists. Binding here would attach to nothing.
 
 // Theme toggle line icons
 const SUN_LINE_ICON = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`;
@@ -1076,25 +1091,31 @@ function updateThemeToggleIcon(theme: string) {
   if (stylerToggle) {
     stylerToggle.innerHTML = theme === 'dark' ? SUN_LINE_ICON : MOON_LINE_ICON;
     stylerToggle.setAttribute('title', theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+    stylerToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode');
   }
 }
 
-// Dark/Light mode toggle
-function toggleLightDarkMode() {
-  activeTheme = activeTheme === 'dark' ? 'light' : 'dark';
-  applyGlobalTokens();
-  showToast(`Switched to ${activeTheme} mode`, 'info');
+// chrome.ts owns the theme: applyTheme writes the attribute, persists the
+// preference and repaints the header button. Both toggles go through it, then
+// re-read the stored value, so neither can be undone by the other.
+function syncThemeFromStorage() {
+  activeTheme = currentTheme();
+  updateThemeToggleIcon(activeTheme);
+  updateCoreStylerUI();
 }
 
-themeToggle?.addEventListener('click', toggleLightDarkMode);
-document.getElementById('styler-theme-toggle')?.addEventListener('click', toggleLightDarkMode);
+// The Styler drawer's own toggle. Persist first: applyGlobalTokens re-reads the
+// stored theme, so flipping a local variable before it would be overwritten.
+function toggleLightDarkMode() {
+  const next = currentTheme() === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+  syncThemeFromStorage();
+  showToast(`Switched to ${next} mode`, 'info');
+}
 
-// Skin switcher handler (Synchronized with Core Styler)
-skinSwitcher?.addEventListener('change', () => {
-  activeSkin = skinSwitcher.value;
-  applyGlobalTokens();
-  showToast(`Applied "${activeSkin}" theme`, 'info');
-});
+// The header toggle is injected by mountChrome, so it is bound in boot() once
+// the chrome exists. The Styler toggle is static markup and binds here.
+document.getElementById('styler-theme-toggle')?.addEventListener('click', toggleLightDarkMode);
 
 // Global shortcut '/' to focus search (guards against input field hijacking)
 window.addEventListener('keydown', (e) => {
@@ -1121,12 +1142,9 @@ window.addEventListener('keydown', (e) => {
 // Viewport width switcher
 document.querySelectorAll('.js-viewport-btn').forEach((btn) => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.js-viewport-btn').forEach((b) => b.classList.remove('is-active'));
-    btn.classList.add('is-active');
+    document.querySelectorAll('.js-viewport-btn').forEach((b) => setPressed(b, b === btn));
     currentViewport = btn.getAttribute('data-width') || '100%';
-    document.querySelectorAll<HTMLElement>('.demo-canvas').forEach((canvas) => {
-      canvas.style.width = currentViewport;
-    });
+    applyViewportWidth();
   });
 });
 
@@ -1135,7 +1153,7 @@ document.querySelectorAll('#styler-theme-grid .styler-theme-btn').forEach((btn) 
   btn.addEventListener('click', () => {
     activeSkin = btn.getAttribute('data-skin') || 'modern';
     applyGlobalTokens();
-    showToast(`Switched to ${btn.textContent?.trim()} theme`, 'info');
+    showToast(activeSkin === 'modern' ? 'Cleared data-ai-skin' : `Applied data-ai-skin="${activeSkin}"`, 'info');
   });
 });
 
@@ -1202,125 +1220,72 @@ document.querySelectorAll('.docs-hero-dock .segmented-btn').forEach((btn) => {
   });
 });
 
-// Validate a token once per page load, not on every render
-const tokenChecks = new Map<string, Promise<boolean>>();
-function tokenIsValid(token: string): Promise<boolean> {
-  let p = tokenChecks.get(token);
-  if (!p) {
-    p = validateToken(token).then((r) => r.valid).catch(() => false);
-    tokenChecks.set(token, p);
-  }
-  return p;
+// A deep link such as /components?cat=primitive#comp-btn-variants only works
+// once the catalog has rendered, so the jump happens after the first render.
+// The cards carry scroll-mt-24, which keeps the target clear of the header.
+//
+// #comp-hero-split:centered opens that layout. The hash is parsed, never used
+// as a fragment target: the card id stays comp-hero-split, because a colon is
+// legal in an id attribute and a nightmare in querySelector.
+function readHashRef(): { id: string; variant: string } | null {
+  const raw = decodeURIComponent(window.location.hash.replace(/^#/, ''));
+  if (!raw.startsWith('comp-')) return null;
+  const ref = raw.slice('comp-'.length);
+  const cut = ref.lastIndexOf(':');
+  if (cut < 0) return { id: ref, variant: '' };
+  return { id: ref.slice(0, cut), variant: ref.slice(cut + 1) };
 }
 
-async function hydrateProCards() {
-  const token = getBrowserToken();
-  if (!token || !streamEl) return;
-  if (!(await tokenIsValid(token))) return;
-
-  for (const comp of components) {
-    if (comp.tier !== 'pro') continue;
-    const card = document.getElementById(`comp-${comp.id}`);
-    if (!card) continue;
-    let html = proHtmlCache.get(comp.id);
-    if (!html) {
-      const res = await fetch(`/r/pro/${comp.id}.json`, {
-        headers: { Authorization: 'Bearer ' + token, Accept: 'application/json' },
-        cache: 'no-store',
-      });
-      if (!res.ok) continue;
-      const data = await res.json().catch(() => ({}));
-      if (!data.html) continue;
-      html = data.html as string;
-      proHtmlCache.set(comp.id, html);
-      if (data.css) proCssCache.set(comp.id, data.css as string);
-    }
-    comp.html = html;
-    const css = proCssCache.get(comp.id) || '';
-    comp.css = css || undefined;
-    // Pro CSS is not in the public stylesheet; inject it once per component
-    if (css && !document.getElementById(`pro-css-${comp.id}`)) {
-      const style = document.createElement('style');
-      style.id = `pro-css-${comp.id}`;
-      style.textContent = css;
-      document.head.appendChild(style);
-    }
-    const canvas = card.querySelector('.demo-canvas > div');
-    if (canvas) canvas.innerHTML = html;
-    const panel = card.querySelector(`#code-${comp.id}`);
-    if (panel) {
-      panel.innerHTML = `<div class="flex justify-between items-center" style="margin-bottom: var(--ai-space-2);">
-            <span class="text-xs font-mono text-muted">HTML</span>
-          </div>
-          <pre><code>${escapeHtml(html)}</code></pre>${
-            css
-              ? `<div class="flex justify-between items-center" style="margin: var(--ai-space-3) 0 var(--ai-space-2);">
-            <span class="text-xs font-mono text-muted">CSS</span>
-          </div>
-          <pre><code>${escapeHtml(css)}</code></pre>`
-              : ''
-          }`;
-    }
-    const unlock = card.querySelector('.unlock-pro-btn') as HTMLElement | null;
-    if (unlock) {
-      unlock.textContent = 'Copy HTML';
-      unlock.classList.remove('unlock-pro-btn');
-      unlock.classList.add('copy-html-btn');
-      unlock.removeAttribute('data-ai-toggle');
-      unlock.removeAttribute('data-ai-target');
-      unlock.setAttribute('data-id', comp.id);
-    }
-  }
-  bindComponentEvents();
+// Runs before the first render so the card is built showing the right layout
+// rather than swapping under the reader a frame later.
+function applyHashVariant() {
+  const hit = readHashRef();
+  if (!hit || !hit.variant) return;
+  const comp = components.find((c) => c.id === hit.id);
+  if (!comp || !(comp.variants || []).some((v) => v.id === hit.variant)) return;
+  componentVariants[hit.id] = hit.variant;
 }
 
-async function activateBrowserLicense(token: string): Promise<boolean> {
-  const data = await validateToken(token);
-  if (!data.valid) return false;
-  setBrowserToken(token);
-  return true;
+function scrollToHashedCard() {
+  const hit = readHashRef();
+  if (!hit) return;
+  const target = document.getElementById(`comp-${hit.id}`);
+  if (!target) return;
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
-
-document.getElementById('license-activate-btn')?.addEventListener('click', async () => {
-  const input = document.getElementById('license-token-input') as HTMLInputElement | null;
-  const status = document.getElementById('license-status');
-  const token = (input?.value || '').trim();
-  if (status) status.textContent = 'Checking...';
-  const ok = await activateBrowserLicense(token);
-  if (status) {
-    status.innerHTML = ok
-      ? '<span class="badge badge-success">Active</span>'
-      : '<span class="badge badge-danger">Not valid</span>';
-  }
-  if (ok) {
-    await hydrateProCards();
-    showToast('Pro catalog unlocked in this browser', 'success');
-  }
-});
 
 async function boot() {
   await mountChrome();
   searchInput = document.getElementById('catalog-search') as HTMLInputElement | null;
   themeToggle = document.getElementById('theme-mode-toggle');
+  // chrome.ts flips and persists the theme on this button; this listener runs
+  // after it and re-syncs the Styler icon, labels and exported CSS. It must not
+  // flip again, or the two handlers would cancel each other out.
+  themeToggle?.addEventListener('click', () => {
+    syncThemeFromStorage();
+    showToast(`Switched to ${activeTheme} mode`, 'info');
+  });
   bindFontSwitchers(() => applyGlobalTokens());
   applyGlobalTokens();
   updateSidebarCounts();
+
+  readFiltersFromUrl();
+  if (searchInput && searchQuery) searchInput.value = searchQuery;
+  document
+    .querySelectorAll('.js-filter-category')
+    .forEach((b) => setPressed(b, b.getAttribute('data-cat') === activeCategory));
+
+  applyHashVariant();
   renderComponents();
-  await hydrateProCards();
+  scrollToHashedCard();
+
   let searchTimer: number | undefined;
   searchInput?.addEventListener('input', () => {
     window.clearTimeout(searchTimer);
     searchTimer = window.setTimeout(() => {
       searchQuery = searchInput?.value || '';
       renderComponents();
-      hydrateProCards();
     }, 150);
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === '/' && document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'TEXTAREA') {
-      e.preventDefault();
-      searchInput?.focus();
-    }
   });
   console.log(`[LLMCSS Showcase] Initialized successfully with ${components.length} components.`);
 }

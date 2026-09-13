@@ -73,17 +73,19 @@ function loadPreviewFaces() {
   document.head.appendChild(link);
 }
 
+// Each option renders in its own face through a font-preview-<id> class in
+// showcase.css, never an inline style attribute. The site ships none of those.
 function pickerHtml(currentId: string): string {
   const current = DISPLAY_FONTS.find((f) => f.id === currentId) || DISPLAY_FONTS[0];
   const group = (kind: 'sans' | 'serif', label: string) =>
     `<li class="dropdown-header">${label}</li>` +
     DISPLAY_FONTS.filter((f) => f.kind === kind)
       .map(
-        (f) => `<li><button type="button" class="dropdown-item font-option${f.id === currentId ? ' is-active' : ''}" role="option" aria-selected="${f.id === currentId}" data-font="${f.id}" style="font-family: ${f.family};">${f.name}<span class="font-option-check">${CHECK}</span></button></li>`
+        (f) => `<li><button type="button" class="dropdown-item font-option font-preview-${f.id}${f.id === currentId ? ' is-active' : ''}" role="option" aria-selected="${f.id === currentId}" data-font="${f.id}">${f.name}<span class="font-option-check">${CHECK}</span></button></li>`
       )
       .join('');
   return `<button type="button" class="btn btn-outline btn-sm w-full justify-between dropdown-trigger font-trigger" data-ai-toggle="dropdown" aria-haspopup="listbox" aria-expanded="false" aria-label="Title font: ${current.name}">
-      <span class="font-trigger-label" style="font-family: ${current.family};">${current.name}</span>${CHEVRON}
+      <span class="font-trigger-label font-preview-${current.id}">${current.name}</span>${CHEVRON}
     </button>
     <ul class="dropdown-menu font-menu" role="listbox" aria-label="Title font">
       ${group('sans', 'Sans')}
@@ -97,7 +99,8 @@ function syncPickers(fontId: string) {
     const label = picker.querySelector<HTMLElement>('.font-trigger-label');
     if (label) {
       label.textContent = font.name;
-      label.style.fontFamily = font.family;
+      // Swap the preview class rather than writing an inline font-family.
+      DISPLAY_FONTS.forEach((f) => label.classList.toggle(`font-preview-${f.id}`, f.id === font.id));
     }
     picker.querySelector('.font-trigger')?.setAttribute('aria-label', `Title font: ${font.name}`);
     picker.querySelectorAll<HTMLElement>('.font-option').forEach((opt) => {

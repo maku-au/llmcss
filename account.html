@@ -21,9 +21,25 @@
   <link rel="stylesheet" href="/src/css/site.css" />
   <script>
     (function () {
-      var t = localStorage.getItem('cssai-theme');
+      // Preferences moved from cssai-* to llmcss-*. Read the new key, fall back
+      // to the old one once, and migrate it so the old key is never read again.
+      function pref(key) {
+        var v = null;
+        try {
+          v = localStorage.getItem('llmcss-' + key);
+          if (v === null) {
+            var legacy = localStorage.getItem('cssai-' + key);
+            if (legacy !== null) {
+              localStorage.setItem('llmcss-' + key, legacy);
+              v = legacy;
+            }
+          }
+        } catch (e) { /* storage blocked */ }
+        return v;
+      }
+      var t = pref('theme');
       if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-ai-theme', t);
-      var f = localStorage.getItem('cssai-focus');
+      var f = pref('focus');
       if (f && f !== 'accent') document.documentElement.setAttribute('data-ai-focus', f);
     })();
   </script>
@@ -38,23 +54,34 @@
       <a href="https://polar.sh">Polar</a> policy. Questions: webmaster@llmcss.io
     </p>
 
-    <div id="status-box" class="card p-6 mt-8" hidden></div>
-    <div id="reveal-box" class="card p-6 mt-6" hidden></div>
+    <!-- The panels below are repainted by account.ts. The live regions are the
+         persistent wrappers, never the markup the script replaces, so a screen
+         reader still announces each repaint. -->
+    <div id="status-box" class="card p-6 mt-8" hidden>
+      <div id="license-status" role="status" aria-live="polite"></div>
+      <div id="entitlement" class="mt-6"></div>
+      <p id="zip-status" class="text-xs text-muted mt-4" role="status" aria-live="polite"></p>
+    </div>
+
+    <div id="reveal-box" class="card p-6 mt-6" hidden>
+      <div id="reveal-body" role="status" aria-live="polite"></div>
+      <p id="reveal-zip-status" class="text-xs text-muted mt-3" role="status" aria-live="polite"></p>
+    </div>
 
     <div class="card p-6 mt-6">
       <h2 class="card-title">Paste a token</h2>
       <form id="validate-form" class="flex flex-col gap-3 mt-4">
-        <input id="token-input" class="input" type="text" autocomplete="off" placeholder="llmcss_live_..." />
+        <input id="token-input" class="input" type="text" autocomplete="off" aria-label="License token" placeholder="llmcss_live_..." />
         <button class="btn btn-primary" type="submit" id="validate-btn">Validate</button>
       </form>
-      <p id="validate-out" class="text-sm mt-3"></p>
+      <p id="validate-out" class="text-sm mt-3" role="status" aria-live="polite"></p>
     </div>
 
     <div class="card p-6 mt-6">
       <h2 class="card-title">Use it</h2>
       <p class="text-sm text-secondary mt-2">Unlock themed templates in the <a href="/templates">gallery</a>, or in the CLI:</p>
       <pre class="mt-3"><code>npx llmcss login &lt;token&gt;
-npx llmcss add tool-trace</code></pre>
+npx llmcss template get themed-hero-obsidian</code></pre>
     </div>
   </main>
   <footer id="site-footer" class="footer footer-compact"></footer>

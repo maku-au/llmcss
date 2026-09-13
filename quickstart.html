@@ -21,9 +21,19 @@
   <link rel="stylesheet" href="/src/css/site.css" />
   <script>
     (function () {
-      var t = localStorage.getItem('cssai-theme');
+      // Reads llmcss-* first, falls back once to the legacy cssai-* key and
+      // rewrites it under the new name so the migration happens on first load.
+      function pref(name) {
+        var v = localStorage.getItem('llmcss-' + name);
+        if (v === null) {
+          v = localStorage.getItem('cssai-' + name);
+          if (v !== null) localStorage.setItem('llmcss-' + name, v);
+        }
+        return v;
+      }
+      var t = pref('theme');
       if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-ai-theme', t);
-      var f = localStorage.getItem('cssai-focus');
+      var f = pref('focus');
       if (f === 'neutral' || f === 'thin' || f === 'none') document.documentElement.setAttribute('data-ai-focus', f);
     })();
   </script>
@@ -132,6 +142,7 @@
                 <a class="docs-nav-btn scrollspy-link" href="#components"><span>Components</span></a>
                 <a class="docs-nav-btn scrollspy-link" href="#runtime"><span>Runtime and states</span></a>
                 <a class="docs-nav-btn scrollspy-link" href="#templates"><span>Templates and recipes</span></a>
+                <a class="docs-nav-btn scrollspy-link" href="#motion"><span>Motion addon</span></a>
               </div>
             </div>
             <div class="docs-nav-group">
@@ -245,6 +256,94 @@
             <p class="text-sm text-muted mt-3">A variant exists for a class only when <a href="/classes.json">classes.json</a> lists it in that class's <code>variants</code> array. If a class is not in that file, it does not exist.</p>
           </section>
 
+          <section class="scroll-mt-24 docs-step" id="motion">
+            <h2>Motion addon</h2>
+            <p class="text-secondary mt-2">Animation classes ship in a second stylesheet so the 50KB core budget never has to pay for them. Load it after the core sheet; every component keeps animating the way it already does today without it.</p>
+            <pre class="code-block"><code>&lt;link rel="stylesheet" href="https://llmcss.io/llmcss.css" /&gt;
+&lt;link rel="stylesheet" href="https://llmcss.io/llmcss-motion.css" /&gt;
+
+&lt;!-- Pin a release instead of tracking latest (served immutable): --&gt;
+&lt;link rel="stylesheet" href="https://llmcss.io/v/0.4.0/llmcss-motion.css" /&gt;</code></pre>
+            <p class="text-secondary mt-4">Motion is evidence that something changed, never a decoration on a steady state. There is no <code>animate-pulse</code>, no <code>repeat-infinite</code>, no parallax scroll effect and no glow or drop shadow pulse: the audit's Law 2 already bans the look, and the addon does not ship the mechanism to build it.</p>
+
+            <h3 class="mt-6">Entrances and exits</h3>
+            <p class="text-secondary mt-2">Fourteen one-shot <code>animate-*</code> classes, tuned with the same <code>duration-*</code>, <code>delay-*</code> and <code>ease-*</code> words that already tune a transition, plus <code>once</code> for a single iteration and <code>repeat-2</code> or <code>repeat-3</code> for a bounded replay. There is no <code>repeat-infinite</code>.</p>
+            <pre class="code-block"><code>&lt;div class="grid grid-cols-2 md:grid-cols-3 gap-3"&gt;
+  &lt;div class="panel p-4 animate-fade-in"&gt;
+    &lt;p class="text-sm"&gt;animate-fade-in&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="panel p-4 animate-slide-up duration-slow ease-overshoot"&gt;
+    &lt;p class="text-sm"&gt;animate-slide-up duration-slow ease-overshoot&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="panel p-4 animate-scale-in delay-150"&gt;
+    &lt;p class="text-sm"&gt;animate-scale-in delay-150&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="panel p-4 animate-rise once"&gt;
+    &lt;p class="text-sm"&gt;animate-rise once&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;button class="btn btn-outline animate-nudge repeat-2"&gt;Try again&lt;/button&gt;</code></pre>
+
+            <h3 class="mt-6">Staggered children</h3>
+            <p class="text-secondary mt-2">Put <code>stagger</code> on the parent and <code>animate-rise</code> on each child; the delay comes from child position, capped at the twelfth child so a long list never arrives a second late. <code>stagger-fast</code> and <code>stagger-slow</code> change the step.</p>
+            <pre class="code-block"><code>&lt;ul class="stagger flex flex-col gap-3"&gt;
+  &lt;li class="animate-rise flex items-center justify-between"&gt;
+    &lt;span&gt;Dana Whitfield&lt;/span&gt;
+    &lt;span class="badge badge-neutral"&gt;Owner&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li class="animate-rise flex items-center justify-between"&gt;
+    &lt;span&gt;Priya Raman&lt;/span&gt;
+    &lt;span class="badge badge-neutral"&gt;Admin&lt;/span&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+            <h3 class="mt-6">State transitions</h3>
+            <p class="text-secondary mt-2"><code>animate-collapse-in</code> and <code>animate-collapse-out</code> animate height from zero using grid rows. <code>transition-discrete</code> lets <code>display</code> and overlay transition together on a popover or an <code>[open]</code> element. <code>transition-size</code> animates <code>height: auto</code> directly.</p>
+            <pre class="code-block"><code>&lt;details class="collapse panel p-5"&gt;
+  &lt;summary class="font-semibold"&gt;What happens when a run is cancelled?&lt;/summary&gt;
+  &lt;div class="animate-collapse-in duration-fast"&gt;
+    &lt;p class="text-sm mt-3"&gt;Partial output stays for 24 hours, then is deleted.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/details&gt;
+
+&lt;div class="popover-anchor popover-toggle"&gt;
+  &lt;div class="popover transition-discrete"&gt;
+    &lt;p class="text-sm"&gt;Opens and closes as one discrete transition.&lt;/p&gt;
+    &lt;div class="popover-arrow"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button class="btn btn-outline btn-sm" aria-haspopup="true"&gt;Cluster status&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+
+            <h3 class="mt-6">Scroll reveals</h3>
+            <p class="text-secondary mt-2"><code>reveal</code>, <code>reveal-up</code> and <code>reveal-scale</code> are pure CSS scroll-driven animations, played by <code>animation-timeline: view()</code> inside an <code>@supports</code> guard. Wherever that is missing the element renders plainly visible, never hidden. Scrolling back up replays a reveal in reverse; there is no pure CSS once-only.</p>
+            <pre class="code-block"><code>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-4"&gt;
+  &lt;div class="panel p-5 reveal-up"&gt;
+    &lt;h3 class="font-semibold"&gt;Progress linked&lt;/h3&gt;
+    &lt;p class="text-sm"&gt;Stops the instant the reader stops scrolling.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="panel p-5 reveal-scale delay-150"&gt;
+    &lt;h3 class="font-semibold"&gt;Degrades to visible&lt;/h3&gt;
+    &lt;p class="text-sm"&gt;No rule outside the support query hides this content.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+            <h3 class="mt-6">View transitions</h3>
+            <p class="text-secondary mt-2">Six name-only helpers, <code>vt-hero</code>, <code>vt-title</code>, <code>vt-media</code>, <code>vt-panel</code>, <code>vt-name</code> and <code>vt-none</code>, hand the browser a <code>view-transition-name</code>. A name has to be unique per document per snapshot. The addon does not ship the <code>@view-transition</code> at-rule: it is document scoped, so shipping it would turn on cross-document transitions for every site that merely links the file.</p>
+            <pre class="code-block"><code>&lt;a class="card p-5 lift flex flex-col gap-3" href="#release-notes"&gt;
+  &lt;div class="vt-media skeleton skeleton-rect rounded-md"&gt;&lt;/div&gt;
+  &lt;h3 class="vt-title font-semibold"&gt;Release 0.4.0&lt;/h3&gt;
+&lt;/a&gt;
+&lt;div class="panel p-5 flex flex-col gap-3" id="release-notes"&gt;
+  &lt;div class="vt-media skeleton skeleton-rect rounded-md"&gt;&lt;/div&gt;
+  &lt;h3 class="vt-title font-semibold"&gt;Release 0.4.0&lt;/h3&gt;
+&lt;/div&gt;</code></pre>
+            <p class="text-sm text-muted mt-3">Turn cross-document transitions on yourself with <code>@view-transition { navigation: auto; }</code> in your own stylesheet.</p>
+
+            <h3 class="mt-6">Reduced motion</h3>
+            <p class="text-secondary mt-2">The core kill switch forces every animation to a 0.01ms duration for a reduced-motion user, and <code>animation-fill-mode: both</code> lands the element on its final frame: entrances appear, exits disappear, nothing travels. No addon rule leaves content hidden. The reveal family goes further and sits entirely inside <code>prefers-reduced-motion: no-preference</code>, so a reduced-motion reader never depends on the kill switch at all. Use <code>motion-reduce:animate-fade-in</code> in place of a slide or scale when a fade is the better fallback.</p>
+          </section>
+
           <section class="scroll-mt-24 docs-step" id="components">
             <h2>Components</h2>
             <p class="text-secondary mt-2">Every component is MIT with its full HTML in the registry, so there is nothing to unlock and nothing to guess. Copy the markup from the <a href="/components">gallery</a>, write it to disk with the CLI, or fetch it as JSON.</p>
@@ -254,7 +353,10 @@ npx llmcss add btn-variants          # writes components/primitive/btn-variants.
 
 curl https://llmcss.io/registry.json
 curl https://llmcss.io/r/btn-variants.json</code></pre>
-            <p class="text-sm text-muted mt-3">Categories are primitive, application, marketing and ecommerce. Full metadata for one id: <code>npx llmcss info &lt;id&gt;</code>.</p>
+            <p class="text-secondary mt-4">Some components ship more than one layout. Ask for one by reference, <code>component:variant</code>, on any command that takes a component id.</p>
+            <pre class="code-block"><code>npx llmcss variants hero-split
+npx llmcss add hero-split:centered   # writes components/marketing/hero-split-centered.html</code></pre>
+            <p class="text-sm text-muted mt-3">Categories are primitive, application, marketing and ecommerce. Full metadata for one id, plus its variant references: <code>npx llmcss info &lt;id&gt;</code>.</p>
           </section>
 
           <section class="scroll-mt-24 docs-step" id="runtime">
@@ -305,16 +407,21 @@ npx llmcss audit index.html</code></pre>
             <p class="text-secondary mt-6">A clean file prints one line per command. A file with findings prints the line number, the category and the fix, then exits 1.</p>
             <pre class="code-block"><code>$ npx llmcss validate index.html
 
-  Validating index.html for LLMCSS standards...
+  ✦ Validating index.html for LLMCSS standards...
 
-  0 issues found! File conforms to LLMCSS standards.
+  Line 1: warning Unknown class "btn-primry". Use "btn-primary".
+  Line 2: error Removed ai- prefix "ai-badge". Use "badge".
+
+  ✗ 1 error, 1 warning. Run `npx llmcss lint --fix index.html` to migrate the renamed classes.
 
 $ npx llmcss audit index.html
 
-  LLMCSS Design Quality Audit: index.html
+  ✦ LLMCSS Design Quality Audit: index.html
 
-  Line 42 [NESTED_CONTAINERS]: .card inside another .card
-    Fix: Use whitespace, a hairline divider, or a surface shift instead.</code></pre>
+  Found 1 design quality issues:
+
+  Line 0 [Cardocalypse]: 1 card is nested inside another card. Use whitespace, divider, or a surface shift instead.
+    Fix: Flatten hierarchy: use whitespace or hairline rules instead of nesting cards.</code></pre>
           </section>
 
           <section class="scroll-mt-24 docs-step" id="cli">
@@ -347,7 +454,7 @@ npx llmcss login &lt;token&gt;           # save a Pro license token</code></pre>
     }
   }
 }</code></pre>
-            <p class="text-sm text-secondary mt-3">Tools: <code>search_components</code>, <code>get_component_markup</code>, <code>validate_markup</code>, <code>list_classes</code>, <code>list_tokens</code>, <code>list_states</code>, <code>llmcss_get_harness</code>, <code>llmcss_slop_audit</code>, <code>list_wireframe_templates</code>, <code>get_wireframe_template</code>, <code>get_page_blueprint</code>.</p>
+            <p class="text-sm text-secondary mt-3">Tools: <code>search_components</code>, <code>get_component_markup</code>, <code>validate_markup</code>, <code>list_classes</code>, <code>list_tokens</code>, <code>list_states</code>, <code>llmcss_get_harness</code>, <code>llmcss_slop_audit</code>, <code>list_wireframe_templates</code>, <code>get_wireframe_template</code>, <code>get_page_blueprint</code>, plus two compatibility aliases (<code>cssai_get_harness</code>, <code>cssai_slop_audit</code>).</p>
           </section>
 
           <!-- ==================================================================
@@ -387,6 +494,10 @@ npx llmcss login &lt;token&gt;           # save a Pro license token</code></pre>
 { "mcpServers": { "llmcss": { "command": "npx", "args": ["-y", "llmcss-mcp"] } } }
 
 // .cursor/rules/llmcss.mdc
+---
+description: LLMCSS class and token rules
+alwaysApply: true
+---
 Always follow AGENTS.md. Never invent a class outside classes.json.</code></pre>
                 </div>
               </div>
@@ -451,7 +562,7 @@ args = ["-y", "llmcss-mcp"]</code></pre>
                   <!-- Zed has revised the context_servers schema more than once; if this
                        key is rejected, add the server through the agent panel UI instead. -->
                   <pre class="code-block mt-3"><code>// ~/.config/zed/settings.json
-{ "context_servers": { "llmcss": { "command": { "path": "npx", "args": ["-y", "llmcss-mcp"] } } } }</code></pre>
+{ "context_servers": { "llmcss": { "source": "custom", "command": { "path": "npx", "args": ["-y", "llmcss-mcp"] } } } }</code></pre>
                 </div>
               </div>
 
@@ -538,6 +649,7 @@ curl https://llmcss.io/classes.json</code></pre>
 
   </main>
   <footer id="site-footer" class="footer footer-compact"></footer>
+  <div class="toast-container" id="toast-container" role="status" aria-live="polite"></div>
   <script type="module" src="/src/showcase/docs.ts"></script>
 </body>
 </html>

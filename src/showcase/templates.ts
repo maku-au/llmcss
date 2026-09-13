@@ -7,7 +7,7 @@ import {
 } from '../registry/templates';
 import type { WireframeTemplate, PageBlueprint } from '../registry/schema';
 import { applyDisplayFont, bindFontSwitchers, getActiveFontId } from './fonts';
-import { mountChrome, currentTheme } from './chrome';
+import { mountChrome, currentTheme, readPref, writePref } from './chrome';
 import { getBrowserToken, setBrowserToken, validateToken } from './license';
 
 // ============================================================================
@@ -18,29 +18,81 @@ let activeBlueprintId: string | null = null;
 let searchQuery = '';
 let currentViewport = 'full';
 
-// Gallery mode. Wireframe lists the free structural sections, Themed lists the Pro styled ones.
-const MODE_STORAGE_KEY = 'cssai-template-mode';
+// Gallery mode. Wireframe lists the free structural sections, Themed lists the
+// Pro styled ones. A first visit opens on Themed, which is what is for sale; a
+// returning visitor keeps whichever mode they last chose. readPref and
+// writePref in chrome.ts prefix the key and migrate the old cssai-* one.
+const MODE_PREF_KEY = 'template-mode';
 let previewMode: 'wireframe' | 'themed' =
-  localStorage.getItem(MODE_STORAGE_KEY) === 'themed' ? 'themed' : 'wireframe';
+  readPref(MODE_PREF_KEY) === 'wireframe' ? 'wireframe' : 'themed';
 
-// Theme state persisted in localStorage
-let activeSkin = localStorage.getItem('cssai-skin') || 'modern';
-let activeTheme = localStorage.getItem('cssai-theme') || document.documentElement.getAttribute('data-ai-theme') || 'light';
+// Theme state persisted in localStorage. skin, radius and density share their
+// keys with the Styler on the components page (main.ts), so a choice made in
+// one drawer survives the jump to the other.
+let activeSkin = readPref('skin') || 'modern';
+let activeTheme = readPref('theme') || document.documentElement.getAttribute('data-ai-theme') || 'light';
+let activeRadius = readPref('radius') || 'balanced';
+let activeDensity = readPref('density') || 'standard';
 
 // DOM Elements
 const templatesStream = document.getElementById('templates-stream');
 const blueprintNav = document.getElementById('blueprint-nav');
 const blueprintBanner = document.getElementById('blueprint-banner');
 const categoryNav = document.getElementById('category-nav');
-let searchInput = document.getElementById('template-search') as HTMLInputElement | null;
-const skinSwitcher = document.getElementById('skin-switcher') as HTMLSelectElement | null;
-let themeToggle = document.getElementById('theme-mode-toggle');
+const upsellStrip = document.getElementById('template-upsell');
+const upsellLine = document.getElementById('template-upsell-line');
+// The header search field is rendered by chrome.ts, so it only exists after
+// mountChrome resolves. Looked up once there, not here.
+let searchInput: HTMLInputElement | null = null;
 const toastContainer = document.getElementById('toast-container');
 const fullPreviewModal = document.getElementById('blueprint-preview-modal');
 const fullPreviewContent = document.getElementById('blueprint-preview-content');
 const fullPreviewTitle = document.getElementById('blueprint-preview-title');
 const proHtmlCache = new Map<string, string>();
 const proCssCache = new Map<string, string>();
+
+// ============================================================================
+// RUNTIME OVERLAY BRIDGE
+// src/runtime/attributes.ts owns every .modal and .drawer on the page: it keeps
+// the open stack, traps Tab inside the panel, makes the rest of the body inert,
+// closes the topmost overlay on Escape and returns focus to the trigger. A
+// script that opens one with a raw classList write gets none of that, so every
+// open and close here goes through the published API.
+// ============================================================================
+interface OverlayApi {
+  open(el: Element | string): void;
+  close(el: Element | string): void;
+}
+
+function overlayApi(): OverlayApi | null {
+  const api = (window as unknown as { LLMCSS?: Partial<OverlayApi> }).LLMCSS;
+  return api && typeof api.open === 'function' && typeof api.close === 'function'
+    ? (api as OverlayApi)
+    : null;
+}
+
+function openOverlay(el: Element | null, trigger?: HTMLElement | null) {
+  if (!el) return;
+  // The runtime remembers whatever holds focus at open time and restores it on
+  // close, so put focus on the control the visitor actually pressed first.
+  if (trigger && trigger.isConnected) trigger.focus({ preventScroll: true });
+  const api = overlayApi();
+  if (api) api.open(el);
+  else el.classList.add('is-open');
+}
+
+function closeOverlay(el: Element | null) {
+  if (!el) return;
+  const api = overlayApi();
+  if (api) api.close(el);
+  else el.classList.remove('is-open');
+}
+
+// Selection state on a toggle row: the class paints it, aria-pressed announces it.
+function setPressed(btn: Element, on: boolean) {
+  btn.classList.toggle('is-active', on);
+  btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+}
 
 // ============================================================================
 // PRO PREVIEW IMAGES
@@ -159,16 +211,23 @@ function syncPreviewViewport() {
 // ============================================================================
 // TOAST NOTIFICATIONS
 // ============================================================================
+// The container carries role="status" aria-live="polite", so a toast appended
+// to it is read out without stealing focus. An error is the one case worth
+// interrupting for, so that toast is a role="alert" of its own.
 function showToast(message: string, type: 'success' | 'info' | 'error' = 'success') {
+  if (!toastContainer) return;
   const toast = document.createElement('div');
   toast.className = `toast toast-${type}`;
+  if (type === 'error') toast.setAttribute('role', 'alert');
   toast.innerHTML = `
     <span class="toast-message">${message}</span>
-    <button class="toast-close">&times;</button>
+    <button type="button" class="toast-close" aria-label="Dismiss">&times;</button>
   `;
-  toastContainer?.appendChild(toast);
+  toast.querySelector('.toast-close')?.addEventListener('click', () => toast.remove());
+  toastContainer.appendChild(toast);
   setTimeout(() => {
-    toast.style.opacity = '0';
+    // The exit fade is a class in toasts.css, not an inline style write
+    toast.classList.add('is-leaving');
     setTimeout(() => toast.remove(), 200);
   }, 2800);
 }
@@ -178,11 +237,9 @@ function copyToClipboard(text: string, label: string, triggerBtn?: HTMLElement) 
     showToast(`Copied ${label} to clipboard!`);
     if (triggerBtn) {
       const originalText = triggerBtn.textContent;
-      triggerBtn.textContent = '✓ Copied!';
-      triggerBtn.style.borderColor = 'var(--ai-accent)';
+      triggerBtn.textContent = 'Copied';
       setTimeout(() => {
         triggerBtn.textContent = originalText;
-        triggerBtn.style.borderColor = '';
       }, 1500);
     }
   }).catch(() => {
@@ -215,6 +272,40 @@ function templatesInMode(mode: 'wireframe' | 'themed' = previewMode): WireframeT
   return wireframeTemplates.filter((t) => templateKind(t) === mode);
 }
 
+function blueprintsInMode(mode: 'wireframe' | 'themed'): PageBlueprint[] {
+  return pageBlueprints.filter((bp) => blueprintKind(bp) === mode);
+}
+
+// Wireframe mode hides everything that is for sale, so the strip above the
+// stream shows two page kit renders and counts what a license adds. The counts
+// come from the catalog, never typed.
+function syncUpsellStrip() {
+  if (!upsellStrip) return;
+  if (upsellLine) {
+    const sections = templatesInMode('themed').length;
+    const kits = blueprintsInMode('themed').length;
+    upsellLine.textContent =
+      `${sections} themed section${sections === 1 ? '' : 's'}, ${kits} page kit${kits === 1 ? '' : 's'}`;
+  }
+  upsellStrip.hidden = previewMode !== 'wireframe';
+}
+
+// One entry point for a mode change so the sidebar rows and the upsell button
+// leave the page in the same state.
+function setPreviewMode(mode: 'wireframe' | 'themed') {
+  if (mode === previewMode) return;
+  previewMode = mode;
+  writePref(MODE_PREF_KEY, mode);
+  // Drop a category that has no sections in the mode we are moving to
+  if (activeCategory !== 'all' && !templatesInMode().some((t) => t.section === activeCategory)) {
+    activeCategory = 'all';
+  }
+  syncModeButtons();
+  renderBlueprintNav();
+  updateCategoryButtons();
+  renderTemplates();
+}
+
 // Reflect the current mode on the segmented toggle. The toggle is locked while a
 // blueprint is active because the blueprint already decides the mode.
 function syncModeButtons() {
@@ -223,14 +314,31 @@ function syncModeButtons() {
   if (wireframeCount) wireframeCount.textContent = String(templatesInMode('wireframe').length);
   if (themedCount) themedCount.textContent = String(templatesInMode('themed').length);
   document.querySelectorAll('.js-preview-mode-btn').forEach((btn) => {
-    btn.classList.toggle('is-active', btn.getAttribute('data-mode') === previewMode);
+    setPressed(btn, btn.getAttribute('data-mode') === previewMode);
     btn.toggleAttribute('disabled', !!activeBlueprintId);
   });
+  syncUpsellStrip();
 }
 
 // ============================================================================
 // GLOBAL THEME & TOKEN ENGINE
+// The Styler drawer on this page drives the same three globals as the one on
+// the components page and applies them the same way main.ts does.
 // ============================================================================
+
+const RADIUS_LABELS: Record<string, string> = {
+  sharp: 'Sharp (0px)',
+  precision: 'Precision (2-4px)',
+  balanced: 'Balanced (4-8px)',
+  smooth: 'Smooth (8-14px)',
+};
+
+const DENSITY_LABELS: Record<string, string> = {
+  compact: 'Compact (0.85x)',
+  standard: 'Standard (1.0x)',
+  spacious: 'Spacious (1.2x)',
+};
+
 function applyThemeSettings() {
   const root = document.documentElement;
 
@@ -240,34 +348,112 @@ function applyThemeSettings() {
   } else {
     root.setAttribute('data-ai-skin', activeSkin);
   }
-  localStorage.setItem('cssai-skin', activeSkin);
-  if (skinSwitcher) skinSwitcher.value = activeSkin;
+  writePref('skin', activeSkin);
 
-  // Light / Dark Mode
+  // Light / Dark Mode. chrome.ts owns the header toggle and is the source of
+  // truth; this page mirrors it so the head bootstrap reads the same value.
   activeTheme = currentTheme();
   root.setAttribute('data-ai-theme', activeTheme);
-  localStorage.setItem('cssai-theme', activeTheme);
+  writePref('theme', activeTheme);
+
+  // Corner geometry is a documented library attribute now: the four archetypes
+  // are a [data-ai-radius] block in tokens.css. "precision" is the stock :root
+  // scale, so it is expressed by removing the attribute.
+  if (activeRadius === 'precision') {
+    root.removeAttribute('data-ai-radius');
+  } else {
+    root.setAttribute('data-ai-radius', activeRadius);
+  }
+  writePref('radius', activeRadius);
+
+  // Spacing density is a documented library attribute. Standard is the stock
+  // scale and is expressed by removing the attribute.
+  if (activeDensity === 'compact' || activeDensity === 'spacious') {
+    root.setAttribute('data-ai-density', activeDensity);
+  } else {
+    root.removeAttribute('data-ai-density');
+  }
+  writePref('density', activeDensity);
+
   applyDisplayFont(getActiveFontId());
+  syncStylerControls();
   syncPreviewViewport();
 }
 
+// Reflect skin, geometry and density on the drawer controls and their readouts.
+function syncStylerControls() {
+  document.querySelectorAll('.styler-theme-grid .styler-theme-btn').forEach((btn) => {
+    setPressed(btn, btn.getAttribute('data-skin') === activeSkin);
+  });
+  const skinLabel = document.getElementById('styler-skin-label');
+  // The readout is the literal attribute value; modern sets none at all.
+  if (skinLabel) skinLabel.textContent = activeSkin === 'modern' ? 'none' : activeSkin;
+
+  document.querySelectorAll('.js-styler-radius-btn').forEach((btn) => {
+    setPressed(btn, btn.getAttribute('data-radius') === activeRadius);
+  });
+  const radiusLabel = document.getElementById('styler-radius-label');
+  if (radiusLabel) radiusLabel.textContent = RADIUS_LABELS[activeRadius] || RADIUS_LABELS.balanced;
+
+  document.querySelectorAll('.js-styler-density-btn').forEach((btn) => {
+    setPressed(btn, btn.getAttribute('data-density') === activeDensity);
+  });
+  const densityLabel = document.getElementById('styler-density-label');
+  if (densityLabel) densityLabel.textContent = DENSITY_LABELS[activeDensity] || DENSITY_LABELS.standard;
+}
+
+// The focus ring row is bound by chrome.ts, which owns that preference.
+function bindStylerControls() {
+  document.querySelectorAll('.styler-theme-grid .styler-theme-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      activeSkin = btn.getAttribute('data-skin') || 'modern';
+      applyThemeSettings();
+      showToast(
+        activeSkin === 'modern' ? 'Cleared data-ai-skin' : `Applied data-ai-skin="${activeSkin}"`,
+        'info'
+      );
+    });
+  });
+
+  document.querySelectorAll('.js-styler-radius-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      activeRadius = btn.getAttribute('data-radius') || 'balanced';
+      applyThemeSettings();
+      showToast(`Applied ${btn.textContent?.trim()} corner geometry`, 'info');
+    });
+  });
+
+  document.querySelectorAll('.js-styler-density-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      activeDensity = btn.getAttribute('data-density') || 'standard';
+      applyThemeSettings();
+      showToast(`Applied ${btn.textContent?.trim()} spacing density`, 'info');
+    });
+  });
+}
+
 // ============================================================================
-// BLUEPRINT RECIPES CONTROLLER
+// PAGE KIT CONTROLLER
+// blueprint stays the internal id, data attribute and CLI verb; a reader sees
+// "kit" for a whole page and "section" for a single template.
 // ============================================================================
-// One sidebar row per page recipe, free recipes first then the Pro kits, with an
-// All sections row at the top that clears the recipe filter.
+// One sidebar row per page kit, free kits first then the Pro ones, with an
+// All sections row at the top that clears the kit filter.
 function renderBlueprintNav() {
   if (!blueprintNav) return;
-  const free = pageBlueprints.filter((bp) => blueprintKind(bp) === 'wireframe');
-  const pro = pageBlueprints.filter((bp) => blueprintKind(bp) === 'themed');
-  const row = (bp: PageBlueprint) => `
-    <button type="button" class="docs-nav-btn blueprint-nav-btn${activeBlueprintId === bp.id ? ' is-active' : ''}" data-blueprint="${bp.id}">
+  const free = blueprintsInMode('wireframe');
+  const pro = blueprintsInMode('themed');
+  const row = (bp: PageBlueprint) => {
+    const on = activeBlueprintId === bp.id;
+    return `
+    <button type="button" class="docs-nav-btn blueprint-nav-btn${on ? ' is-active' : ''}" data-blueprint="${bp.id}" aria-pressed="${on}">
       <span>${bp.name}</span>
       <span class="docs-count">${bp.sections.length}</span>
       ${bp.tier === 'pro' ? '<span class="docs-pro-tag">PRO</span>' : ''}
     </button>`;
+  };
   blueprintNav.innerHTML = `
-    <button type="button" class="docs-nav-btn blueprint-nav-btn${activeBlueprintId ? '' : ' is-active'}" data-blueprint="all">
+    <button type="button" class="docs-nav-btn blueprint-nav-btn${activeBlueprintId ? '' : ' is-active'}" data-blueprint="all" aria-pressed="${!activeBlueprintId}">
       <span>All sections</span>
       <span class="docs-count">${templatesInMode().length}</span>
     </button>
@@ -312,13 +498,14 @@ function renderBlueprintBanner() {
   `;
 
   document.getElementById('copy-blueprint-html-btn')?.addEventListener('click', async (e) => {
+    const trigger = e.currentTarget as HTMLElement;
     if (bp.tier === 'pro' && !getBrowserToken()) {
-      document.getElementById('license-modal')?.classList.add('is-open');
+      openOverlay(document.getElementById('license-modal'), trigger);
       return;
     }
     const fullHtml = await blueprintHtml(bp);
     if (fullHtml) {
-      copyToClipboard(fullHtml, `${bp.name} (Full Page HTML)`, e.currentTarget as HTMLElement);
+      copyToClipboard(fullHtml, `${bp.name} (Full Page HTML)`, trigger);
     }
   });
 
@@ -326,8 +513,8 @@ function renderBlueprintBanner() {
     copyToClipboard(cli, 'CLI Command', e.currentTarget as HTMLElement);
   });
 
-  document.getElementById('preview-blueprint-full-btn')?.addEventListener('click', () => {
-    void openFullPreview(bp);
+  document.getElementById('preview-blueprint-full-btn')?.addEventListener('click', (e) => {
+    void openFullPreview(bp, e.currentTarget as HTMLElement);
   });
 }
 
@@ -337,21 +524,27 @@ async function blueprintHtml(bp: PageBlueprint): Promise<string | null> {
   if (cached) return cached;
   const token = getBrowserToken();
   if (!token) return assembleBlueprintHtml(bp.id);
-  const res = await fetch(`/r/pro/${bp.id}.json`, {
-    headers: { Authorization: 'Bearer ' + token, Accept: 'application/json' },
-    cache: 'no-store',
-  });
-  if (!res.ok) return assembleBlueprintHtml(bp.id);
-  const data = await res.json().catch(() => ({}));
-  if (!data.html) return assembleBlueprintHtml(bp.id);
-  proHtmlCache.set(bp.id, data.html as string);
-  return data.html as string;
+  // Offline or a rejected request falls back to the public assembly rather than
+  // rejecting into the caller, which would leave the preview modal empty.
+  try {
+    const res = await fetch(`/r/pro/${bp.id}.json`, {
+      headers: { Authorization: 'Bearer ' + token, Accept: 'application/json' },
+      cache: 'no-store',
+    });
+    if (!res.ok) return assembleBlueprintHtml(bp.id);
+    const data = await res.json().catch(() => ({}));
+    if (!data.html) return assembleBlueprintHtml(bp.id);
+    proHtmlCache.set(bp.id, data.html as string);
+    return data.html as string;
+  } catch {
+    return assembleBlueprintHtml(bp.id);
+  }
 }
 
 // Full size image preview. Used for a locked Pro section card and for the
 // Preview page button on a locked Pro kit, where the assembled blueprint would
 // otherwise be a column of stubs.
-function openImagePreview(title: string, rec: PreviewRecord) {
+function openImagePreview(title: string, rec: PreviewRecord, trigger?: HTMLElement | null) {
   if (!fullPreviewModal || !fullPreviewContent || !fullPreviewTitle) return;
 
   fullPreviewTitle.textContent = `${title} - Preview`;
@@ -365,31 +558,31 @@ function openImagePreview(title: string, rec: PreviewRecord) {
     </div>
   `;
 
-  fullPreviewModal.classList.add('is-open');
+  openOverlay(fullPreviewModal, trigger);
 }
 
-async function openFullPreview(bp: PageBlueprint) {
+async function openFullPreview(bp: PageBlueprint, trigger?: HTMLElement | null) {
   if (!fullPreviewModal || !fullPreviewContent || !fullPreviewTitle) return;
 
   const rec = previewFor(bp.id, bp.tier);
   if (rec) {
-    openImagePreview(bp.name, rec);
+    openImagePreview(bp.name, rec, trigger);
     return;
   }
 
   const copyBtn = document.getElementById('copy-preview-html');
   if (copyBtn) copyBtn.hidden = false;
   fullPreviewModal.querySelector('.blueprint-modal-dialog')?.classList.remove('is-image');
-  fullPreviewTitle.textContent = `${bp.name} - Live Assembled Blueprint`;
+  fullPreviewTitle.textContent = `${bp.name} - full page kit`;
   const fullHtml = await blueprintHtml(bp);
 
-  fullPreviewContent.innerHTML = `
-    <div class="template-assembled ${blueprintKind(bp) === 'wireframe' ? 'is-wireframe-mode' : ''}">
+  fullPreviewContent.innerHTML = fullHtml
+    ? `<div class="template-assembled ${blueprintKind(bp) === 'wireframe' ? 'is-wireframe-mode' : ''}">
       ${fullHtml}
-    </div>
-  `;
+    </div>`
+    : '<p class="p-6 text-sm text-muted">This page kit could not be assembled. Try again, or copy it from the CLI.</p>';
 
-  fullPreviewModal.classList.add('is-open');
+  openOverlay(fullPreviewModal, trigger);
 }
 
 // ============================================================================
@@ -449,16 +642,16 @@ function renderTemplates() {
   const countEl = document.getElementById('templates-result-count');
   if (countEl) {
     countEl.textContent = activeBlueprintId
-      ? `${items.length} in order`
-      : `${items.length} of ${templatesInMode().length} ${previewMode}`;
+      ? `${items.length} sections in order`
+      : `${items.length} of ${templatesInMode().length} ${previewMode} sections`;
   }
 
   if (items.length === 0) {
     templatesStream.innerHTML = `
-      <div class="empty-state" style="padding: 4rem 1rem; text-align: center; background: var(--ai-surface-0); border: 1px dashed var(--ai-border); border-radius: var(--ai-radius-lg);">
-        <h3 style="font-family: var(--ai-font-display); font-size: 1.125rem; font-weight: 700;">No templates match</h3>
-        <p style="font-size: 0.875rem; color: var(--ai-text-secondary); margin-top: 0.25rem;">Clear search or choose All.</p>
-        <button class="btn btn-outline btn-sm mt-4" id="reset-filter-btn">Reset Filters</button>
+      <div class="empty-state">
+        <h3 class="empty-state-title">No sections match</h3>
+        <p class="empty-state-description">Clear the search, or choose All.</p>
+        <button class="btn btn-outline btn-sm" id="reset-filter-btn">Reset filters</button>
       </div>
     `;
     document.getElementById('reset-filter-btn')?.addEventListener('click', () => {
@@ -502,11 +695,11 @@ npx llmcss template get ${template.id}</code></pre>`
           ${tierBadge}
         </div>
         <div class="flex items-center gap-2 template-actions">
-          <button class="btn btn-ghost btn-xs template-guidance-toggle" data-target="guidance-${template.id}" aria-expanded="false">
+          <button type="button" class="btn btn-ghost btn-xs template-guidance-toggle" data-target="guidance-${template.id}" aria-expanded="false" aria-controls="guidance-${template.id}">
             <span>Guidance</span>
           </button>
           ${copyBtn}
-          <button class="btn btn-ghost btn-xs template-code-toggle" data-target="code-${template.id}">
+          <button type="button" class="btn btn-ghost btn-xs template-code-toggle" data-target="code-${template.id}" aria-expanded="false" aria-controls="code-${template.id}" aria-label="Markup">
             <span>&lt;/&gt;</span>
           </button>
         </div>
@@ -567,7 +760,7 @@ npx llmcss template get ${template.id}</code></pre>`
       <!-- Expandable Code Panel -->
       <div class="template-code" id="code-${template.id}">
         <div class="flex justify-between items-center mb-2">
-          <span style="font-family: var(--ai-font-mono); font-size: 0.75rem; color: var(--ai-text-muted);">
+          <span class="font-mono text-xs text-muted">
             npx llmcss template get ${template.id}
           </span>
           <button class="btn btn-ghost btn-xs copy-snippet-btn" data-id="${template.id}">Copy</button>
@@ -596,16 +789,22 @@ async function hydrateProTemplates() {
     if (!card) continue;
     let html = proHtmlCache.get(t.id);
     if (!html) {
-      const res = await fetch(`/r/pro/${t.id}.json`, {
-        headers: { Authorization: 'Bearer ' + token, Accept: 'application/json' },
-        cache: 'no-store',
-      });
-      if (!res.ok) continue;
-      const data = await res.json().catch(() => ({}));
-      if (!data.html) continue;
-      html = data.html as string;
-      proHtmlCache.set(t.id, html);
-      if (data.css) proCssCache.set(t.id, data.css as string);
+      // One section that fails to load leaves its locked card in place; the
+      // rest of the catalog still hydrates.
+      try {
+        const res = await fetch(`/r/pro/${t.id}.json`, {
+          headers: { Authorization: 'Bearer ' + token, Accept: 'application/json' },
+          cache: 'no-store',
+        });
+        if (!res.ok) continue;
+        const data = await res.json().catch(() => ({}));
+        if (!data.html) continue;
+        html = data.html as string;
+        proHtmlCache.set(t.id, html);
+        if (data.css) proCssCache.set(t.id, data.css as string);
+      } catch {
+        continue;
+      }
     }
     t.html = html;
     const css = proCssCache.get(t.id) || '';
@@ -620,62 +819,77 @@ async function hydrateProTemplates() {
     const panel = card.querySelector(`#code-${t.id}`);
     if (panel) {
       panel.innerHTML = `<div class="flex justify-between items-center mb-2">
-          <span style="font-family: var(--ai-font-mono); font-size: 0.75rem; color: var(--ai-text-muted);">
+          <span class="font-mono text-xs text-muted">
             npx llmcss template get ${t.id}
           </span>
           <button class="btn btn-ghost btn-xs copy-snippet-btn" data-id="${t.id}">Copy</button>
         </div>
         <pre><code>${escapeHtml(html)}</code></pre>`;
     }
+    const copyHtmlBtn = () => {
+      const copy = document.createElement('button');
+      copy.type = 'button';
+      copy.className = 'btn btn-outline btn-xs copy-html-btn';
+      copy.setAttribute('data-id', t.id);
+      copy.textContent = 'Copy HTML';
+      return copy;
+    };
     const unlock = card.querySelector('.unlock-pro-btn') as HTMLElement | null;
     if (unlock) {
-      unlock.textContent = 'Copy HTML';
-      unlock.classList.remove('unlock-pro-btn');
-      unlock.classList.add('copy-html-btn');
-      unlock.setAttribute('data-id', t.id);
+      // Replace the node rather than re-labelling it. The old element is already
+      // in the bound set with the Unlock handler on it, and a bound element is
+      // never bound again, so re-labelling would leave a dead control.
+      unlock.replaceWith(copyHtmlBtn());
     } else {
       // The Unlock Pro control lived in the preview overlay, which the real
       // markup has just replaced, so put a Copy HTML back in the header.
       const actions = card.querySelector('.template-actions');
       if (actions && !actions.querySelector('.copy-html-btn')) {
-        const copy = document.createElement('button');
-        copy.className = 'btn btn-outline btn-xs copy-html-btn';
-        copy.setAttribute('data-id', t.id);
-        copy.textContent = 'Copy HTML';
-        actions.insertBefore(copy, actions.querySelector('.template-code-toggle'));
+        actions.insertBefore(copyHtmlBtn(), actions.querySelector('.template-code-toggle'));
       }
     }
   }
   attachTemplateCardHandlers();
 }
 
+// attachTemplateCardHandlers runs after every render and again after Pro
+// hydration, which swaps some controls in place and leaves others alone. A
+// second addEventListener on a surviving button would fire its action twice, so
+// every element is bound once and skipped after that, the way the combobox
+// runtime tracks wired elements.
+const boundCardControls = new WeakSet<Element>();
+
+function bindOnce(selector: string, bind: (el: Element) => void) {
+  document.querySelectorAll(selector).forEach((el) => {
+    if (boundCardControls.has(el)) return;
+    boundCardControls.add(el);
+    bind(el);
+  });
+}
+
+// One disclosure toggle: flip the panel, then report the new state on the
+// button. aria-controls points at the panel id, which the card markup carries.
+function bindDisclosure(btn: Element) {
+  btn.addEventListener('click', () => {
+    const targetId = btn.getAttribute('data-target');
+    if (!targetId) return;
+    const el = document.getElementById(targetId);
+    if (!el) return;
+    const open = el.classList.toggle('is-open');
+    btn.classList.toggle('is-active', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+}
+
 function attachTemplateCardHandlers() {
   // Guidance toggles
-  document.querySelectorAll('.template-guidance-toggle').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const targetId = btn.getAttribute('data-target');
-      if (targetId) {
-        const el = document.getElementById(targetId);
-        el?.classList.toggle('is-open');
-        btn.classList.toggle('is-active', el?.classList.contains('is-open'));
-      }
-    });
-  });
+  bindOnce('.template-guidance-toggle', bindDisclosure);
 
   // Code toggles
-  document.querySelectorAll('.template-code-toggle').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const targetId = btn.getAttribute('data-target');
-      if (targetId) {
-        const el = document.getElementById(targetId);
-        el?.classList.toggle('is-open');
-        btn.classList.toggle('is-active', el?.classList.contains('is-open'));
-      }
-    });
-  });
+  bindOnce('.template-code-toggle', bindDisclosure);
 
   // Copy HTML
-  document.querySelectorAll('.copy-html-btn').forEach((btn) => {
+  bindOnce('.copy-html-btn', (btn) => {
     btn.addEventListener('click', (e) => {
       const id = btn.getAttribute('data-id');
       const t = wireframeTemplates.find((x) => x.id === id);
@@ -689,27 +903,27 @@ function attachTemplateCardHandlers() {
   });
 
   // Open the rendered screenshot at full size in the blueprint preview modal
-  document.querySelectorAll('.preview-full-btn').forEach((btn) => {
+  bindOnce('.preview-full-btn', (btn) => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-id');
       const t = wireframeTemplates.find((x) => x.id === id);
       const rec = id ? previewFor(id, t?.tier) : undefined;
-      if (rec) openImagePreview(t ? t.name : rec.name, rec);
+      if (rec) openImagePreview(t ? t.name : rec.name, rec, btn as HTMLElement);
     });
   });
 
-  document.querySelectorAll('.unlock-pro-btn').forEach((btn) => {
+  bindOnce('.unlock-pro-btn', (btn) => {
     btn.addEventListener('click', async () => {
       if (getBrowserToken()) {
         await hydrateProTemplates();
         return;
       }
-      document.getElementById('license-modal')?.classList.add('is-open');
+      openOverlay(document.getElementById('license-modal'), btn as HTMLElement);
     });
   });
 
   // Copy Code snippet
-  document.querySelectorAll('.copy-snippet-btn').forEach((btn) => {
+  bindOnce('.copy-snippet-btn', (btn) => {
     btn.addEventListener('click', (e) => {
       const id = btn.getAttribute('data-id');
       const t = wireframeTemplates.find((x) => x.id === id);
@@ -723,7 +937,7 @@ function attachTemplateCardHandlers() {
   });
 
   // Copy CLI command
-  document.querySelectorAll('.copy-cli-btn').forEach((btn) => {
+  bindOnce('.copy-cli-btn', (btn) => {
     btn.addEventListener('click', (e) => {
       const id = btn.getAttribute('data-id');
       if (id) {
@@ -737,7 +951,7 @@ function attachTemplateCardHandlers() {
   });
 
   // Jump to pair
-  document.querySelectorAll('.jump-to-pair').forEach((btn) => {
+  bindOnce('.jump-to-pair', (btn) => {
     btn.addEventListener('click', () => {
       const jumpId = btn.getAttribute('data-jump');
       if (jumpId) {
@@ -782,36 +996,51 @@ function updateCategoryButtons() {
     // A category with nothing in this mode is dropped rather than shown as a dead row
     (btn as HTMLElement).hidden = count === 0;
     btn.toggleAttribute('disabled', !!activeBlueprintId);
-    if (activeBlueprintId) {
-      btn.classList.remove('is-active');
-    } else if (cat === activeCategory) {
-      btn.classList.add('is-active');
-    } else {
-      btn.classList.remove('is-active');
-    }
+    setPressed(btn, !activeBlueprintId && cat === activeCategory);
   });
 }
 
 // ============================================================================
 // INITIALIZATION
 // ============================================================================
+// A plain line in the stream when the catalog itself cannot be drawn. No box,
+// no icon: the page keeps its header, sidebar and Styler either way.
+function renderStreamFailure() {
+  if (!templatesStream) return;
+  templatesStream.innerHTML =
+    '<p class="text-sm text-muted">The template gallery could not be loaded. Reload the page, or run npx llmcss template list.</p>';
+}
+
 async function init() {
-  await mountChrome();
+  // The header, footer and preview manifest are all network work. Either one
+  // failing used to abort init and leave a blank gallery, so each is contained
+  // and the render below runs regardless.
+  try {
+    await mountChrome();
+  } catch {
+    // Header and footer are progressive chrome; the gallery works without them.
+  }
+  // chrome.ts has just rendered the header, so the search field exists now
   searchInput = document.getElementById('template-search') as HTMLInputElement | null;
-  themeToggle = document.getElementById('theme-mode-toggle');
   bindFontSwitchers(() => applyThemeSettings());
+  bindStylerControls();
   applyThemeSettings();
   // Loaded before the first render so locked Pro cards reserve the image height
   await loadPreviewManifest();
-  syncModeButtons();
-  updateCategoryButtons();
 
-  // 1. Render Blueprints
-  renderBlueprintNav();
-  renderBlueprintBanner();
+  try {
+    syncModeButtons();
+    updateCategoryButtons();
 
-  // 2. Render Initial Templates
-  renderTemplates();
+    // 1. Render Blueprints
+    renderBlueprintNav();
+    renderBlueprintBanner();
+
+    // 2. Render Initial Templates
+    renderTemplates();
+  } catch {
+    renderStreamFailure();
+  }
 
   document.getElementById('license-activate-btn')?.addEventListener('click', async () => {
     const input = document.getElementById('license-token-input') as HTMLInputElement | null;
@@ -826,8 +1055,12 @@ async function init() {
     }
     if (data.valid) {
       setBrowserToken(token);
-      await hydrateProTemplates();
-      showToast('Pro catalog unlocked in this browser', 'success');
+      try {
+        await hydrateProTemplates();
+        showToast('Pro catalog unlocked in this browser', 'success');
+      } catch {
+        showToast('License accepted, but the Pro catalog did not load. Reload the page.', 'error');
+      }
     }
   });
 
@@ -853,8 +1086,8 @@ async function init() {
     if (!btn) return;
     const id = btn.getAttribute('data-blueprint');
     activeBlueprintId = !id || id === 'all' ? null : id;
-    // Free recipes are built from wireframe sections and Pro kits from themed ones,
-    // so the mode follows the blueprint while one is active
+    // Free kits are built from wireframe sections and Pro kits from themed ones,
+    // so the mode follows the kit while one is active
     const bp = activeBlueprintId ? pageBlueprints.find((b) => b.id === activeBlueprintId) : null;
     if (bp) previewMode = blueprintKind(bp);
     syncModeButtons();
@@ -876,31 +1109,29 @@ async function init() {
     btn.addEventListener('click', () => {
       if (activeBlueprintId) return;
       const mode = btn.getAttribute('data-mode') as 'wireframe' | 'themed';
-      if (!mode || mode === previewMode) return;
-      previewMode = mode;
-      localStorage.setItem(MODE_STORAGE_KEY, mode);
-      // Drop a category that has no sections in the mode we are moving to
-      if (activeCategory !== 'all' && !templatesInMode().some((t) => t.section === activeCategory)) {
-        activeCategory = 'all';
-      }
-      syncModeButtons();
-      renderBlueprintNav();
-      updateCategoryButtons();
-      renderTemplates();
+      if (mode === 'wireframe' || mode === 'themed') setPreviewMode(mode);
     });
   });
 
-  // The header toggle lives in chrome.ts, which announces the change so the
-  // locked Pro previews can swap to their dark renders.
-  document.addEventListener('ai-theme-change', () => syncPreviewViewport());
+  // The same flip from the wireframe upsell strip, which also drops any kit
+  // filter so the themed sections are what lands on screen.
+  document.getElementById('show-themed-btn')?.addEventListener('click', () => {
+    activeBlueprintId = null;
+    renderBlueprintBanner();
+    setPreviewMode('themed');
+  });
+
+  // The header toggle lives in chrome.ts, which announces the change so this
+  // page can mirror the value and swap the locked Pro previews to their dark
+  // renders. applyThemeSettings ends in syncPreviewViewport.
+  document.addEventListener('ai-theme-change', () => applyThemeSettings());
 
   // 6. Viewport Controls
   const viewportButtons = document.querySelectorAll('.js-viewport-btn');
   viewportButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       currentViewport = btn.getAttribute('data-viewport') || 'full';
-      viewportButtons.forEach((b) => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
+      viewportButtons.forEach((b) => setPressed(b, b === btn));
       document.querySelectorAll('.template-canvas').forEach((c) => {
         c.setAttribute('data-vw', currentViewport);
       });
@@ -908,27 +1139,17 @@ async function init() {
     });
   });
 
-  // 7. Light/Dark Mode Toggle
-  themeToggle?.addEventListener('click', () => {
-    activeTheme = activeTheme === 'light' ? 'dark' : 'light';
-    applyThemeSettings();
-  });
+  // 7. Light/Dark Mode. chrome.ts owns #theme-mode-toggle and persists the
+  // choice; a second handler here only set activeTheme, which applyThemeSettings
+  // then read back from storage, so it did nothing. The ai-theme-change listener
+  // above is the page's hook into that toggle.
 
-  // 8. Skin Switcher Dropdown
-  skinSwitcher?.addEventListener('change', (e) => {
-    activeSkin = (e.target as HTMLSelectElement).value;
-    applyThemeSettings();
-  });
-
-  const closePreview = () => fullPreviewModal?.classList.remove('is-open');
-  document.querySelectorAll('[data-dismiss="modal"]').forEach((btn) => {
-    btn.addEventListener('click', closePreview);
-  });
+  // 8. Preview modal. The Close button carries data-ai-dismiss="modal" and
+  // Escape is the runtime's, so the only thing left here is the scrim: the
+  // preview modal paints its own backdrop instead of holding a .modal-backdrop
+  // child, so a click on the overlay itself is routed to the runtime close.
   fullPreviewModal?.addEventListener('click', (e) => {
-    if (e.target === fullPreviewModal) closePreview();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closePreview();
+    if (e.target === fullPreviewModal) closeOverlay(fullPreviewModal);
   });
   const copyPreview = document.getElementById('copy-preview-html');
   copyPreview?.addEventListener('click', async (e) => {
@@ -938,6 +1159,7 @@ async function init() {
     const trigger = e.currentTarget as HTMLElement;
     const html = await blueprintHtml(bp);
     if (html) copyToClipboard(html, 'Page HTML', trigger);
+    else showToast('That page kit could not be assembled to copy', 'error');
   });
 
   // 10. Copy All Blueprint CLI

@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Templates | LLMCSS</title>
-  <meta name="description" content="Free wireframe sections plus Pro themed templates and page kits built from LLMCSS primitives." />
+  <meta name="description" content="Free wireframe sections plus Pro themed sections and page kits built from LLMCSS primitives." />
   <meta property="og:title" content="Templates | LLMCSS" />
-  <meta property="og:description" content="Wireframe sections and page blueprints built from LLMCSS primitives." />
+  <meta property="og:description" content="Wireframe sections, themed sections and page kits built from LLMCSS primitives." />
   <meta property="og:url" content="https://llmcss.io/templates" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://llmcss.io/og.png" />
@@ -21,9 +21,25 @@
   <link rel="stylesheet" href="/src/css/site.css" />
   <script>
     (function () {
-      var t = localStorage.getItem('cssai-theme');
+      // Preferences moved from cssai-* to llmcss-*. Read the new key, fall back
+      // to the old one once, and migrate it so the old key is never read again.
+      function pref(key) {
+        var v = null;
+        try {
+          v = localStorage.getItem('llmcss-' + key);
+          if (v === null) {
+            var legacy = localStorage.getItem('cssai-' + key);
+            if (legacy !== null) {
+              localStorage.setItem('llmcss-' + key, legacy);
+              v = legacy;
+            }
+          }
+        } catch (e) { /* storage blocked */ }
+        return v;
+      }
+      var t = pref('theme');
       if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-ai-theme', t);
-      var f = localStorage.getItem('cssai-focus');
+      var f = pref('focus');
       if (f && f !== 'accent') document.documentElement.setAttribute('data-ai-focus', f);
     })();
   </script>
@@ -43,13 +59,13 @@
         <div class="min-w-0">
           <h1 class="text-2xl leading-tight tracking-tight">Templates</h1>
           <p class="text-sm text-muted mt-1">
-            <span class="docs-meta-figure" id="templates-result-count"></span>Copy any section as HTML, or pick a page recipe to get a whole page in build order.
+            <span class="docs-meta-figure" id="templates-result-count"></span>Copy any section as HTML, or pick a page kit to get a whole page in build order.
           </p>
         </div>
         <div class="segmented" role="group" aria-label="Preview width">
-          <button type="button" class="segmented-btn js-viewport-btn is-active" data-viewport="full">Full</button>
-          <button type="button" class="segmented-btn js-viewport-btn" data-viewport="768">768</button>
-          <button type="button" class="segmented-btn js-viewport-btn" data-viewport="375">375</button>
+          <button type="button" class="segmented-btn js-viewport-btn is-active" data-viewport="full" aria-pressed="true">Full</button>
+          <button type="button" class="segmented-btn js-viewport-btn" data-viewport="768" aria-pressed="false">768</button>
+          <button type="button" class="segmented-btn js-viewport-btn" data-viewport="375" aria-pressed="false">375</button>
         </div>
       </div>
     </div>
@@ -65,64 +81,64 @@
         <aside class="docs-sidebar">
           <div class="flex flex-col gap-4">
             <div>
-              <span class="docs-nav-label">Sections</span>
-              <div class="docs-nav-stack">
-                <button type="button" class="docs-nav-btn js-preview-mode-btn is-active" data-mode="wireframe" aria-describedby="preview-mode-hint">
+              <span class="docs-nav-label" id="preview-mode-label">Sections</span>
+              <div class="docs-nav-stack" role="group" aria-labelledby="preview-mode-label">
+                <button type="button" class="docs-nav-btn js-preview-mode-btn" data-mode="wireframe" aria-pressed="false" aria-describedby="preview-mode-hint">
                   <span>Wireframe</span>
                   <span class="docs-count" id="count-mode-wireframe"></span>
                 </button>
-                <button type="button" class="docs-nav-btn js-preview-mode-btn" data-mode="themed" aria-describedby="preview-mode-hint">
+                <button type="button" class="docs-nav-btn js-preview-mode-btn is-active" data-mode="themed" aria-pressed="true" aria-describedby="preview-mode-hint">
                   <span>Themed</span>
                   <span class="docs-count" id="count-mode-themed"></span>
                 </button>
               </div>
-              <p class="docs-nav-note" id="preview-mode-hint">Wireframe is the free structure. Themed is the Pro styled set, unlocked with a license.</p>
+              <p class="docs-nav-note" id="preview-mode-hint">Wireframe sections are the free structure. Themed sections and page kits are the Pro styled set, unlocked with a license.</p>
             </div>
 
             <div class="docs-nav-group">
-              <span class="docs-nav-label">Category</span>
-              <div class="docs-nav-stack" id="category-nav">
-                <button type="button" class="docs-nav-btn is-active" data-category="all">
+              <span class="docs-nav-label" id="category-nav-label">Category</span>
+              <div class="docs-nav-stack" role="group" aria-labelledby="category-nav-label" id="category-nav">
+                <button type="button" class="docs-nav-btn is-active" data-category="all" aria-pressed="true">
                   <span>All</span>
                   <span class="docs-count"></span>
                 </button>
-                <button type="button" class="docs-nav-btn" data-category="header">
+                <button type="button" class="docs-nav-btn" data-category="header" aria-pressed="false">
                   <span>Headers</span>
                   <span class="docs-count"></span>
                 </button>
-                <button type="button" class="docs-nav-btn" data-category="hero">
+                <button type="button" class="docs-nav-btn" data-category="hero" aria-pressed="false">
                   <span>Heroes</span>
                   <span class="docs-count"></span>
                 </button>
-                <button type="button" class="docs-nav-btn" data-category="features">
+                <button type="button" class="docs-nav-btn" data-category="features" aria-pressed="false">
                   <span>Features</span>
                   <span class="docs-count"></span>
                 </button>
-                <button type="button" class="docs-nav-btn" data-category="social-proof">
+                <button type="button" class="docs-nav-btn" data-category="social-proof" aria-pressed="false">
                   <span>Social proof</span>
                   <span class="docs-count"></span>
                 </button>
-                <button type="button" class="docs-nav-btn" data-category="comparison">
+                <button type="button" class="docs-nav-btn" data-category="comparison" aria-pressed="false">
                   <span>Comparison</span>
                   <span class="docs-count"></span>
                 </button>
-                <button type="button" class="docs-nav-btn" data-category="pricing">
+                <button type="button" class="docs-nav-btn" data-category="pricing" aria-pressed="false">
                   <span>Pricing</span>
                   <span class="docs-count"></span>
                 </button>
-                <button type="button" class="docs-nav-btn" data-category="faq">
+                <button type="button" class="docs-nav-btn" data-category="faq" aria-pressed="false">
                   <span>FAQ</span>
                   <span class="docs-count"></span>
                 </button>
-                <button type="button" class="docs-nav-btn" data-category="cta">
+                <button type="button" class="docs-nav-btn" data-category="cta" aria-pressed="false">
                   <span>CTA</span>
                   <span class="docs-count"></span>
                 </button>
-                <button type="button" class="docs-nav-btn" data-category="footer">
+                <button type="button" class="docs-nav-btn" data-category="footer" aria-pressed="false">
                   <span>Footer</span>
                   <span class="docs-count"></span>
                 </button>
-                <button type="button" class="docs-nav-btn" data-category="app-shell">
+                <button type="button" class="docs-nav-btn" data-category="app-shell" aria-pressed="false">
                   <span>App shell</span>
                   <span class="docs-count"></span>
                 </button>
@@ -130,8 +146,8 @@
             </div>
 
             <div class="docs-nav-group">
-              <span class="docs-nav-label">Page recipes</span>
-              <div class="docs-nav-stack" id="blueprint-nav">
+              <span class="docs-nav-label" id="blueprint-nav-label">Page kits</span>
+              <div class="docs-nav-stack" role="group" aria-labelledby="blueprint-nav-label" id="blueprint-nav">
                 <!-- Rendered dynamically by templates.ts -->
               </div>
             </div>
@@ -140,6 +156,19 @@
 
         <!-- Templates Stream -->
         <div class="min-w-0">
+          <!-- Wireframe mode only: what a license adds, shown rather than described.
+               Counts and the visible/hidden state are set by templates.ts. -->
+          <div class="template-upsell-strip" id="template-upsell" hidden>
+            <div class="template-upsell-shots">
+              <img class="template-upsell-shot" src="/previews/kit-obsidian-saas.png" alt="Obsidian SaaS Landing page kit" loading="lazy" width="1280" height="2479" />
+              <img class="template-upsell-shot" src="/previews/kit-fintech-dashboard.png" alt="Fintech Dashboard page kit" loading="lazy" width="1280" height="481" />
+            </div>
+            <div class="template-upsell-main">
+              <p class="template-upsell-line" id="template-upsell-line"></p>
+              <p class="template-upsell-note">Styled, ready to ship, and included with Pro.</p>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm template-upsell-action" id="show-themed-btn">Show themed</button>
+          </div>
           <div id="blueprint-banner" hidden></div>
           <div id="templates-stream">
             <!-- Rendered dynamically by templates.ts -->
@@ -149,38 +178,10 @@
     </div>
   </section>
 
-  <!-- ==========================================================================
-       FULL BLUEPRINT ASSEMBLED PREVIEW MODAL
-       ========================================================================== -->
-  <div class="blueprint-modal" id="blueprint-preview-modal" role="dialog" aria-modal="true" aria-labelledby="blueprint-preview-title">
-    <div class="blueprint-modal-dialog">
-      <div class="blueprint-modal-header">
-        <h3 id="blueprint-preview-title" class="blueprint-modal-title">
-          Preview full page
-        </h3>
-        <div class="flex items-center gap-2">
-          <button type="button" class="btn btn-outline btn-xs" id="copy-preview-html">Copy page HTML</button>
-          <button class="btn btn-ghost btn-xs" data-dismiss="modal" aria-label="Close preview">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
-            <span>Close</span>
-          </button>
-        </div>
-      </div>
-      <div class="blueprint-modal-body" id="blueprint-preview-content">
-        <!-- Live assembled markup rendered here -->
-      </div>
-    </div>
-  </div>
-
-  
-
-  <!-- ==========================================================================
-       CORE STYLER DRAWER (UNBLURRED LIVE INSPECTOR)
-       ========================================================================== -->
     </main>
   <footer id="site-footer" class="footer footer-compact"></footer>
 
-<div class="drawer drawer-no-lock" id="core-styler-drawer" aria-hidden="true">
+<div class="drawer drawer-no-lock" id="core-styler-drawer">
     <div class="drawer-backdrop" data-ai-dismiss="drawer"></div>
     <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="styler-drawer-title">
       <div class="drawer-header">
@@ -195,33 +196,53 @@
         <!-- Theme Palette -->
         <div class="styler-section">
           <div class="styler-section-header">
-            <span class="styler-section-title">Production Theme</span>
-            <span class="styler-section-val" id="styler-skin-label">Modern Studio</span>
+            <span class="styler-section-title">Skin</span>
+            <span class="styler-section-val" id="styler-skin-label">none</span>
           </div>
-          <div class="styler-theme-grid">
-            <button class="styler-theme-btn is-active" data-skin="modern">
+          <!-- Names and values are the five documented data-ai-skin archetypes in
+               themes.css, in that order. The default state sets no attribute. -->
+          <div class="styler-theme-grid" role="group" aria-label="Skin">
+            <button class="styler-theme-btn is-active" type="button" data-skin="modern" aria-pressed="true">
               <span class="styler-swatch-pip"></span>
-              <span class="styler-theme-name">Modern</span>
+              <span class="flex flex-col min-w-0">
+                <span class="styler-theme-name">Default</span>
+                <span class="font-mono text-xs text-muted">none</span>
+              </span>
             </button>
-            <button class="styler-theme-btn" data-skin="obsidian">
+            <button class="styler-theme-btn" type="button" data-skin="obsidian" aria-pressed="false">
               <span class="styler-swatch-pip"></span>
-              <span class="styler-theme-name">Obsidian</span>
+              <span class="flex flex-col min-w-0">
+                <span class="styler-theme-name">Obsidian</span>
+                <span class="font-mono text-xs text-muted">obsidian</span>
+              </span>
             </button>
-            <button class="styler-theme-btn" data-skin="executive">
+            <button class="styler-theme-btn" type="button" data-skin="editorial" aria-pressed="false">
               <span class="styler-swatch-pip"></span>
-              <span class="styler-theme-name">Executive</span>
+              <span class="flex flex-col min-w-0">
+                <span class="styler-theme-name">Editorial</span>
+                <span class="font-mono text-xs text-muted">editorial</span>
+              </span>
             </button>
-            <button class="styler-theme-btn" data-skin="fintech">
+            <button class="styler-theme-btn" type="button" data-skin="executive" aria-pressed="false">
               <span class="styler-swatch-pip"></span>
-              <span class="styler-theme-name">Fintech</span>
+              <span class="flex flex-col min-w-0">
+                <span class="styler-theme-name">Executive</span>
+                <span class="font-mono text-xs text-muted">executive</span>
+              </span>
             </button>
-            <button class="styler-theme-btn" data-skin="editorial">
+            <button class="styler-theme-btn" type="button" data-skin="fintech" aria-pressed="false">
               <span class="styler-swatch-pip"></span>
-              <span class="styler-theme-name">Editorial</span>
+              <span class="flex flex-col min-w-0">
+                <span class="styler-theme-name">Fintech</span>
+                <span class="font-mono text-xs text-muted">fintech</span>
+              </span>
             </button>
-            <button class="styler-theme-btn" data-skin="enterprise">
+            <button class="styler-theme-btn" type="button" data-skin="enterprise" aria-pressed="false">
               <span class="styler-swatch-pip"></span>
-              <span class="styler-theme-name">Enterprise</span>
+              <span class="flex flex-col min-w-0">
+                <span class="styler-theme-name">Enterprise</span>
+                <span class="font-mono text-xs text-muted">enterprise</span>
+              </span>
             </button>
           </div>
         </div>
@@ -234,17 +255,32 @@
           <div id="styler-font-switcher" class="dropdown font-picker"></div>
         </div>
 
-        <!-- Geometry -->
+        <!-- Geometry. js-styler-radius-btn is the hook main.ts uses on the
+             components page, so both pages drive the same radius tokens. -->
         <div class="styler-section">
           <div class="styler-section-header">
             <span class="styler-section-title">Corner Geometry</span>
-            <span class="styler-section-val">Balanced (4-8px)</span>
+            <span class="styler-section-val" id="styler-radius-label">Balanced (4-8px)</span>
           </div>
-          <div class="styler-segmented-track">
-            <button class="styler-segmented-item" data-radius="sharp">Sharp</button>
-            <button class="styler-segmented-item" data-radius="precision">Precision</button>
-            <button class="styler-segmented-item is-active" data-radius="balanced">Balanced</button>
-            <button class="styler-segmented-item" data-radius="smooth">Smooth</button>
+          <div class="styler-segmented-track" role="group" aria-label="Corner geometry">
+            <button type="button" class="styler-segmented-item js-styler-radius-btn" data-radius="sharp" aria-pressed="false">Sharp</button>
+            <button type="button" class="styler-segmented-item js-styler-radius-btn" data-radius="precision" aria-pressed="false">Precision</button>
+            <button type="button" class="styler-segmented-item js-styler-radius-btn is-active" data-radius="balanced" aria-pressed="true">Balanced</button>
+            <button type="button" class="styler-segmented-item js-styler-radius-btn" data-radius="smooth" aria-pressed="false">Smooth</button>
+          </div>
+        </div>
+
+        <!-- Spacing density. Applied as data-ai-density on the root, which is
+             the documented library attribute; standard removes it. -->
+        <div class="styler-section">
+          <div class="styler-section-header">
+            <span class="styler-section-title">Density</span>
+            <span class="styler-section-val" id="styler-density-label">Standard (1.0x)</span>
+          </div>
+          <div class="styler-segmented-track" role="group" aria-label="Spacing density">
+            <button type="button" class="styler-segmented-item js-styler-density-btn" data-density="compact" aria-pressed="false">Compact</button>
+            <button type="button" class="styler-segmented-item js-styler-density-btn is-active" data-density="standard" aria-pressed="true">Standard</button>
+            <button type="button" class="styler-segmented-item js-styler-density-btn" data-density="spacious" aria-pressed="false">Spacious</button>
           </div>
         </div>
 
@@ -270,6 +306,34 @@
     </div>
   </div>
 
+  <!-- ==========================================================================
+       FULL BLUEPRINT ASSEMBLED PREVIEW MODAL
+       Carries the library modal class so the runtime overlay stack owns it:
+       focus trap, focus restore, inert background and Escape come for free.
+       The blueprint-modal rules sit later in @layer components and still win
+       where the two disagree (scrim, z-index, padding, dialog size).
+       It sits outside <main> so the runtime can make the page content inert.
+       ========================================================================== -->
+  <div class="modal blueprint-modal" id="blueprint-preview-modal" role="dialog" aria-modal="true" aria-labelledby="blueprint-preview-title">
+    <div class="blueprint-modal-dialog">
+      <div class="blueprint-modal-header">
+        <h3 id="blueprint-preview-title" class="blueprint-modal-title">
+          Preview full page
+        </h3>
+        <div class="flex items-center gap-2">
+          <button type="button" class="btn btn-outline btn-xs" id="copy-preview-html">Copy page HTML</button>
+          <button type="button" class="btn btn-ghost btn-xs" data-ai-dismiss="modal" aria-label="Close preview">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+            <span>Close</span>
+          </button>
+        </div>
+      </div>
+      <div class="blueprint-modal-body" id="blueprint-preview-content">
+        <!-- Live assembled markup rendered here -->
+      </div>
+    </div>
+  </div>
+
   <div id="license-modal" class="modal">
     <div class="modal-backdrop" data-ai-dismiss="modal"></div>
     <div class="modal-box">
@@ -289,8 +353,9 @@
     </div>
   </div>
 
-  <!-- Toast Notification Container -->
-  <div class="toast-container" id="toast-container"></div>
+  <!-- Toast Notification Container. The stack is the live region, so a toast
+       appended to it is announced without moving focus. -->
+  <div class="toast-container" id="toast-container" role="status" aria-live="polite"></div>
 
   <!-- Entry Script -->
   <script type="module" src="/src/showcase/templates.ts"></script>
