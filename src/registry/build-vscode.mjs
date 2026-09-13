@@ -152,7 +152,7 @@ function buildSnippets(classes, components) {
 
   // One snippet per component id: prefix ai-<id>, body is the component markup.
   for (const comp of components) {
-    if (!comp.html) continue; // Pro components ship without source in the public registry
+    if (!comp.html || comp.tier === 'pro') continue; // Themed Pro markup is not in this repo
     const key = `LLMCSS ${comp.name}`;
     snippets[key] = {
       prefix: `ai-${comp.id}`,

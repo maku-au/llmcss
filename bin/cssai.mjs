@@ -53,6 +53,30 @@ function originBase() {
   return (process.env.LLMCSS_ORIGIN || 'https://llmcss.io').replace(/\/$/, '');
 }
 
+function requireProToken() {
+  const token = getStoredToken();
+  if (!token) {
+    console.log('\n\x1b[33m⚠️  This is an LLMCSS PRO item.\x1b[0m');
+    console.log('Themed templates and components are not in the public repo. Subscribe, then login.\n');
+    console.log('1. Get a license at: \x1b[36mhttps://llmcss.io/#pricing\x1b[0m');
+    console.log('2. Run: \x1b[32mnpx llmcss login <token>\x1b[0m\n');
+    process.exit(1);
+  }
+  return token;
+}
+
+function fetchProJson(id) {
+  const token = requireProToken();
+  const { code, json } = httpJson(`${originBase()}/r/pro/${id}.json`, {
+    Authorization: `Bearer ${token}`,
+  });
+  if (code !== 200 || !json || !json.html) {
+    console.error('Pro registry rejected this token (HTTP ' + code + ').');
+    process.exit(1);
+  }
+  return json;
+}
+
 function httpJson(url, headers = {}) {
   const args = ['-sS', '-L', '--max-time', '20', '-w', '\n%{http_code}', '-H', 'Accept: application/json'];
   for (const [k, v] of Object.entries(headers)) args.push('-H', `${k}: ${v}`);
@@ -184,27 +208,12 @@ switch (command) {
       process.exit(1);
     }
 
-    // License Check for Pro Components
     let html = comp.html;
     let extraCss = comp.css || '';
     if (comp.tier === 'pro') {
-      const token = getStoredToken();
-      if (!token) {
-        console.log('\n\x1b[33m⚠️  This is an LLMCSS PRO component.\x1b[0m');
-        console.log('Source is not in the public repo. Subscribe, then login.\n');
-        console.log('1. Get a license at: \x1b[36mhttps://llmcss.io/#pricing\x1b[0m');
-        console.log('2. Run: \x1b[32mnpx llmcss login <token>\x1b[0m\n');
-        process.exit(1);
-      }
-      const { code, json } = httpJson(`${originBase()}/r/pro/${compId}.json`, {
-        Authorization: `Bearer ${token}`,
-      });
-      if (code !== 200 || !json || !json.html) {
-        console.error('Pro registry rejected this token (HTTP ' + code + ').');
-        process.exit(1);
-      }
-      html = json.html;
-      extraCss = json.css || '';
+      const fetched = fetchProJson(compId);
+      html = fetched.html;
+      extraCss = fetched.css || '';
     }
 
     // Target Output
@@ -518,28 +527,15 @@ switch (command) {
     lines.forEach((line, idx) => {
       const lineNum = idx + 1;
 
-      // 1. Nested cards
-      if (/<(?:div|section|article)[^>]*\bclass=["'][^"']*\bai-card\b[^"']*["'][^>]*>/i.test(line)) {
-        let depth = 1;
-        for (let j = idx + 1; j < Math.min(idx + 50, lines.length); j++) {
-          if (/<(?:div|section|article)[^>]*\bclass=["'][^"']*\bai-card\b/i.test(lines[j])) {
-            slopFindings.push({
-              line: j + 1,
-              category: 'Cardocalypse',
-              tell: 'Nested card container detected inside parent .ai-card',
-              fix: 'Flatten hierarchy: use whitespace (--ai-space-6) or hairline dividers instead of nesting cards.',
-            });
-            break;
-          }
-          if (/<\/(?:div|section|article)>/i.test(lines[j])) {
-            depth--;
-            if (depth <= 0) break;
-          }
-        }
-      }
+      // Class tokens for every class/className attribute on this line, used by
+      // the checks below so a hyphenated sibling class (ai-card-header,
+      // ai-marquee-track, ai-pulse-dot-danger, ...) can never match a check
+      // meant for its exact base class.
+      const lineClassTokens = Array.from(line.matchAll(/\bclass(?:Name)?=["']([^"']+)["']/g))
+        .flatMap((m) => m[1].split(/\s+/).filter(Boolean));
 
-      // 2. Continuous pulsing dots
-      if (/ai-pulse-dot\b/.test(line) && !/is-streaming|ai-pulse-dot-streaming/.test(line)) {
+      // 1. Continuous pulsing dots
+      if (lineClassTokens.includes('ai-pulse-dot') && !lineClassTokens.includes('ai-pulse-dot-streaming') && !/is-streaming/.test(line)) {
         slopFindings.push({
           line: lineNum,
           category: 'Pulsing Status Dots',
@@ -548,7 +544,7 @@ switch (command) {
         });
       }
 
-      // 3. Colored left-border stripes
+      // 2. Colored left-border stripes
       if (/border-left:\s*[2-9]px\s+solid/i.test(line)) {
         slopFindings.push({
           line: lineNum,
@@ -558,7 +554,7 @@ switch (command) {
         });
       }
 
-      // 4. Electric purple/cyan gradients
+      // 3. Electric purple/cyan gradients
       if (/linear-gradient.*(#8b5cf6|#a855f7|#06b6d4|#3b82f6)/i.test(line)) {
         slopFindings.push({
           line: lineNum,
@@ -568,8 +564,8 @@ switch (command) {
         });
       }
 
-      // 5. Auto-scrolling marquees
-      if (/ai-marquee\b/.test(line)) {
+      // 4. Auto-scrolling marquees
+      if (lineClassTokens.includes('ai-marquee')) {
         slopFindings.push({
           line: lineNum,
           category: 'Auto-Scrolling Marquee',
@@ -578,25 +574,23 @@ switch (command) {
         });
       }
 
-      // 6. Hallucinated legacy classes
+      // 5. Hallucinated legacy classes
       const legacyClasses = ['btn', 'btn-primary', 'flex', 'grid', 'card', 'badge', 'spinner'];
-      const classAttrMatches = Array.from(line.matchAll(/\bclass(?:Name)?=["']([^"']+)["']/g));
-      for (const m of classAttrMatches) {
-        const tokens = m[1].split(/\s+/).filter(Boolean);
-        for (const legacy of legacyClasses) {
-          if (tokens.includes(legacy)) {
-            slopFindings.push({
-              line: lineNum,
-              category: 'Unprefixed / Hallucinated Class',
-              tell: `Class "${legacy}" without "ai-" prefix`,
-              fix: `Use LLMCSS standard ".ai-${legacy}".`,
-            });
-          }
+      for (const legacy of legacyClasses) {
+        if (lineClassTokens.includes(legacy)) {
+          slopFindings.push({
+            line: lineNum,
+            category: 'Unprefixed / Hallucinated Class',
+            tell: `Class "${legacy}" without "ai-" prefix`,
+            fix: `Use LLMCSS standard ".ai-${legacy}".`,
+          });
         }
       }
 
-      // 7. Badge eyebrows directly above headings
-      if (/<(?:span|div)[^>]*\bclass=["'][^"']*\b(?:ai-badge|ai-hero-badge)\b[^"']*["'][^>]*>/i.test(line) && !line.includes('ai-product-badge-float')) {
+      // 6. Badge eyebrows directly above headings
+      if (/<(?:span|div)[^>]*\bclass=["'][^"']*["'][^>]*>/i.test(line) &&
+          (lineClassTokens.includes('ai-badge') || lineClassTokens.includes('ai-hero-badge')) &&
+          !lineClassTokens.includes('ai-product-badge-float')) {
         for (let j = idx + 1; j < Math.min(idx + 5, lines.length); j++) {
           if (/<h[1-4]\b/i.test(lines[j])) {
             slopFindings.push({
@@ -610,7 +604,7 @@ switch (command) {
         }
       }
 
-      // 8. Square grid backgrounds / AI graph paper patterns
+      // 7. Square grid backgrounds / AI graph paper patterns
       if (/background-size:\s*\d+px\s+\d+px/i.test(line) ||
           /linear-gradient\([^)]*(?:to right|90deg)[^)]*1px/i.test(line)) {
         const surrounding = lines.slice(Math.max(0, idx - 4), Math.min(lines.length, idx + 5)).join(' ');
@@ -665,12 +659,12 @@ switch (command) {
         }
       }
       console.log('\nTip: Run `llmcss template get <id>` to retrieve clean markup.');
-      console.log('     Run `llmcss template blueprints` to inspect full-page recipes.\n');
+      console.log('     Run `llmcss template blueprints` to inspect full-page blueprints.\n');
       break;
     }
 
     if (sub === 'blueprints' || sub === 'blueprint-list') {
-      console.log('\n✦ LLMCSS Page Composition Blueprints (4 Recipes)\n');
+      console.log(`\n✦ LLMCSS Page Composition Blueprints (${pageBlueprints.length})\n`);
       for (const bp of pageBlueprints) {
         console.log(`\x1b[1;36m${bp.name}\x1b[0m (\x1b[33m${bp.id}\x1b[0m)`);
         console.log(`  ${bp.description}`);
@@ -687,6 +681,15 @@ switch (command) {
         console.error('Please specify a blueprint id: `llmcss template blueprint <name>`');
         console.error('Available: ' + pageBlueprints.map((b) => b.id).join(', '));
         process.exit(1);
+      }
+      const bp = pageBlueprints.find((b) => b.id === bpId);
+      if (!bp) {
+        console.error(`Blueprint "${bpId}" not found. Available: ${pageBlueprints.map((b) => b.id).join(', ')}`);
+        process.exit(1);
+      }
+      if (bp.tier === 'pro') {
+        console.log(fetchProJson(bpId).html);
+        break;
       }
       const html = assembleBlueprintHtml(bpId);
       if (!html) {
@@ -709,6 +712,10 @@ switch (command) {
       if (!found) {
         console.error(`Template "${templateId}" not found. Run \`llmcss template list\` to see available templates.`);
         process.exit(1);
+      }
+      if (found.tier === 'pro') {
+        console.log(fetchProJson(found.id).html);
+        break;
       }
       console.log(found.html);
       break;
@@ -1072,7 +1079,7 @@ Commands:
   llmcss info <component-id>     Output raw component metadata & schema
   llmcss templates               List all wireframe section templates
   llmcss template get <id>       Output clean semantic HTML for a wireframe section
-  llmcss template blueprints     List full-page composition blueprints / recipes
+  llmcss template blueprints     List full-page composition blueprints
   llmcss template blueprint <id> Generate full assembled HTML for a page blueprint
   llmcss harness [archetype]     Output Design Direction Harness & agent prompt directives
   llmcss audit <file>            Run automated design quality audit on HTML/CSS file

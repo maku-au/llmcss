@@ -35,6 +35,34 @@ function manifestMissing(name) {
   return { isError: true, content: [{ type: 'text', text: 'Manifest ' + name + ' is not available locally or at the origin.' }] };
 }
 
+function mcpFetchPro(id) {
+  const token = mcpToken();
+  if (!token) return null;
+  try {
+    const origin = (process.env.LLMCSS_ORIGIN || 'https://llmcss.io').replace(/\/$/, '');
+    const out = execFileSync('curl', [
+      '-sS', '-L', '--max-time', '20',
+      '-H', 'Accept: application/json',
+      '-H', 'Authorization: Bearer ' + token,
+      origin + '/r/pro/' + id + '.json',
+    ], { encoding: 'utf8' });
+    return out;
+  } catch {
+    return null;
+  }
+}
+
+function mcpLockedPayload(id, extra = {}) {
+  return JSON.stringify({
+    id,
+    tier: 'pro',
+    locked: true,
+    html: null,
+    message: 'Pro source is not in the public catalog. Subscribe at https://llmcss.io then GET /r/pro/' + id + '.json with Authorization: Bearer <token>.',
+    ...extra,
+  }, null, 2);
+}
+
 function mcpToken() {
   if (process.env.LLMCSS_TOKEN) return process.env.LLMCSS_TOKEN;
   if (process.env.CSSAI_API_KEY) return process.env.CSSAI_API_KEY;
@@ -179,7 +207,7 @@ const TOOLS = [
   },
   {
     name: 'get_wireframe_template',
-    description: 'Retrieve clean semantic HTML markup and placement guidance for a specific wireframe section template.',
+    description: 'Retrieve clean semantic HTML markup and placement guidance for a section template. Themed Pro ids need a license token.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -196,8 +224,7 @@ const TOOLS = [
       properties: {
         blueprint: {
           type: 'string',
-          enum: ['saas-landing', 'developer-tool', 'editorial-manifesto', 'dashboard-shell'],
-          description: 'Blueprint recipe ID'
+          description: 'Blueprint recipe ID (free: saas-landing, developer-tool, editorial-manifesto, dashboard-shell; Pro kits: kit-obsidian-saas, kit-fintech-dashboard)'
         },
       },
       required: ['blueprint'],
@@ -307,37 +334,13 @@ function handleToolCall(name, args = {}) {
         };
       }
       if (comp.tier === 'pro') {
-        const token = mcpToken();
-        if (token) {
-          try {
-            const origin = (process.env.LLMCSS_ORIGIN || 'https://llmcss.io').replace(/\/$/, '');
-            const out = execFileSync('curl', [
-              '-sS', '-L', '--max-time', '20',
-              '-H', 'Accept: application/json',
-              '-H', 'Authorization: Bearer ' + token,
-              origin + '/r/pro/' + comp.id + '.json',
-            ], { encoding: 'utf8' });
-            return { content: [{ type: 'text', text: out }] };
-          } catch {
-            /* fall through to locked payload */
-          }
-        }
+        const out = mcpFetchPro(comp.id);
+        if (out) return { content: [{ type: 'text', text: out }] };
         return {
-          content: [
-            {
-              type: 'text',
-              text: JSON.stringify({
-                id: comp.id,
-                name: comp.name,
-                category: comp.category,
-                tier: 'pro',
-                locked: true,
-                description: comp.description,
-                html: null,
-                message: 'Pro source is not in the public catalog. Subscribe at https://llmcss.io then GET /r/pro/' + comp.id + '.json with Authorization: Bearer <token>.',
-              }, null, 2),
-            },
-          ],
+          content: [{
+            type: 'text',
+            text: mcpLockedPayload(comp.id, { name: comp.name, category: comp.category, description: comp.description }),
+          }],
         };
       }
       return {
@@ -617,6 +620,16 @@ function handleToolCall(name, args = {}) {
           content: [{ type: 'text', text: `Wireframe template "${id}" not found.` }],
         };
       }
+      if (found.tier === 'pro') {
+        const out = mcpFetchPro(found.id);
+        if (out) return { content: [{ type: 'text', text: out }] };
+        return {
+          content: [{
+            type: 'text',
+            text: mcpLockedPayload(found.id, { name: found.name, section: found.section, placement: found.placement }),
+          }],
+        };
+      }
       return {
         content: [{
           type: 'text',
@@ -639,6 +652,16 @@ function handleToolCall(name, args = {}) {
         return {
           isError: true,
           content: [{ type: 'text', text: `Blueprint "${bpId}" not found. Available: ${pageBlueprints.map((b) => b.id).join(', ')}` }],
+        };
+      }
+      if (bp.tier === 'pro') {
+        const out = mcpFetchPro(bp.id);
+        if (out) return { content: [{ type: 'text', text: out }] };
+        return {
+          content: [{
+            type: 'text',
+            text: mcpLockedPayload(bp.id, { name: bp.name, description: bp.description, sections: bp.sections }),
+          }],
         };
       }
       const html = assembleBlueprintHtml(bpId);

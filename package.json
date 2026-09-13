@@ -1,7 +1,7 @@
 {
   "name": "llmcss",
-  "version": "0.2.0",
-  "description": "Native CSS for agents and humans. MIT core; Pro is a paid catalog.",
+  "version": "0.3.0",
+  "description": "Native CSS for agents and humans. MIT core; Pro is themed templates and kits.",
   "type": "module",
   "style": "dist/llmcss.css",
   "bin": {

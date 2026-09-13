@@ -3,6 +3,7 @@ import { components } from '../src/registry/data.mjs';
 import { wireframeTemplates, pageBlueprints, assembleBlueprintHtml } from '../src/registry/templates-data.mjs';
 import { execSync } from 'child_process';
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 
 console.log('🧪 Starting LLMCSS Comprehensive Test Suite...\n');
@@ -118,12 +119,29 @@ console.log('✓ Stdio MCP server passed JSON-RPC initialization, tool discovery
 
 // Test 5: Pro Gate Verification
 console.log('\n5. Testing Monetization Pro Gate in CLI...');
+const tmpAdd = fs.mkdtempSync(path.join(os.tmpdir(), 'llmcss-add-'));
 try {
-  execSync('node bin/cssai.mjs add bento-editorial-pro', { encoding: 'utf-8', stdio: 'pipe' });
-  assert.fail('Expected pro installation without license to fail');
+  execSync(`node ${path.resolve('bin/cssai.mjs')} add bento-editorial-pro`, {
+    encoding: 'utf-8',
+    stdio: 'pipe',
+    cwd: tmpAdd,
+  });
+  const outFile = path.join(tmpAdd, 'components', 'marketing', 'bento-editorial-pro.html');
+  assert(fs.existsSync(outFile), 'Expected former Pro component to install without a token');
+  const html = fs.readFileSync(outFile, 'utf-8');
+  assert(!html.includes('Unlock Pro'), 'Former Pro markup should not be the locked card');
+  console.log('✓ CLI installs former Pro components without a license.');
+} finally {
+  fs.rmSync(tmpAdd, { recursive: true, force: true });
+}
+try {
+  execSync('node bin/cssai.mjs add themed-editorial-article-header', { encoding: 'utf-8', stdio: 'pipe' });
+  assert.fail('Expected themed Pro installation without license to fail');
 } catch (err) {
-  assert(err.status === 1, 'Expected exit code 1 on unlicensed pro install');
-  console.log('✓ CLI correctly blocked unlicensed Pro component installation.');
+  assert(err.status === 1, 'Expected exit code 1 on unlicensed themed Pro install');
+  const msg = String(err.stderr || err.stdout || '');
+  assert(/PRO/i.test(msg), 'Unlicensed themed add should mention Pro');
+  console.log('✓ CLI correctly blocked unlicensed themed Pro installation.');
 }
 
 // Test 6: CSS Engine Modern Capabilities (Container Queries & Animations)
@@ -148,8 +166,21 @@ console.log('\n7. Testing public/registry.json build artifact...');
 assert(fs.existsSync('public/registry.json'), 'Missing public/registry.json');
 const registryJson = JSON.parse(fs.readFileSync('public/registry.json', 'utf-8'));
 assert(registryJson.stats.total === components.length, 'Registry JSON total mismatch');
-assert(registryJson.stats.pro >= 6, 'Registry JSON should have at least 6 pro components');
-console.log(`✓ Verified public/registry.json (${registryJson.stats.total} components, ${registryJson.stats.pro} pro).`);
+assert(registryJson.stats.pro === components.filter((c) => c.tier === 'pro').length, 'Registry JSON pro count mismatch');
+assert(registryJson.stats.pro >= 3, 'Registry JSON should list themed Pro components');
+const bento = components.find((c) => c.id === 'bento-editorial-pro');
+assert(bento && bento.tier === 'free', 'bento-editorial-pro should be free');
+const split = components.find((c) => c.id === 'split-pane');
+assert(split && !/<script/i.test(split.html), 'split-pane HTML must not include an inline script');
+const commandCss = fs.readFileSync('src/css/components/command.css', 'utf-8');
+assert(commandCss.includes('.ai-command-palette'), 'Missing .ai-command-palette in command.css');
+const chatCss = fs.readFileSync('src/css/components/chat.css', 'utf-8');
+assert(chatCss.includes('.ai-chat-container'), 'Missing .ai-chat-container in chat.css');
+const cartCss = fs.readFileSync('src/css/components/cart.css', 'utf-8');
+assert(cartCss.includes('.ai-cart-item'), 'Missing .ai-cart-item in cart.css');
+const agentCss = fs.readFileSync('src/css/components/agent-extra.css', 'utf-8');
+assert(agentCss.includes('.ai-split'), 'Missing .ai-split in agent-extra.css');
+console.log(`✓ Verified public/registry.json (${registryJson.stats.total} components, ${registryJson.stats.pro} pro) and former Pro CSS.`);
 
 // Test 8: llms.txt & Agent Rules
 console.log('\n8. Testing Agent Context Artifacts...');
@@ -307,7 +338,7 @@ for (const tmpl of wireframeTemplates) {
   assert(tmpl.html && tmpl.html.length > 20, `Missing HTML for ${tmpl.id}`);
 }
 
-assert(pageBlueprints.length === 4, `Expected 4 page blueprints, found ${pageBlueprints.length}`);
+assert(pageBlueprints.length === 6, `Expected 6 page blueprints, found ${pageBlueprints.length}`);
 for (const bp of pageBlueprints) {
   assert(bp.id && bp.name && bp.description && bp.recommendedFor, `Missing metadata on blueprint ${bp.id}`);
   assert(Array.isArray(bp.sections) && bp.sections.length > 0, `Missing sections array on blueprint ${bp.id}`);
@@ -323,8 +354,11 @@ const templatesJsonPath = path.resolve('public/templates.json');
 assert(fs.existsSync(templatesJsonPath), 'Missing public/templates.json');
 const templatesJson = JSON.parse(fs.readFileSync(templatesJsonPath, 'utf-8'));
 assert(templatesJson.wireframeTemplates.length === wireframeTemplates.length, 'templates.json has wrong template count');
-assert(templatesJson.pageBlueprints.length === 4, 'templates.json has wrong blueprint count');
-console.log(`✓ Verified ${wireframeTemplates.length} wireframe templates, 4 blueprints, placement guidance schema, and public/templates.json.`);
+assert(templatesJson.pageBlueprints.length === pageBlueprints.length, 'templates.json has wrong blueprint count');
+assert(templatesJson.stats.proTemplates === 8, 'templates.json should list 8 themed Pro sections');
+const lockedTpl = templatesJson.wireframeTemplates.find((t) => t.id === 'themed-hero-obsidian');
+assert(lockedTpl && lockedTpl.locked === true && lockedTpl.html === null, 'Themed templates must be locked in templates.json');
+console.log(`✓ Verified ${wireframeTemplates.length} section templates, ${pageBlueprints.length} blueprints, placement guidance schema, and public/templates.json.`);
 
 // Test 16: CLI & MCP Wireframe Template Extraction
 console.log('\n16. Testing CLI & MCP Wireframe Template Tooling...');
