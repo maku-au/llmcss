@@ -1,0 +1,13 @@
+{
+  "id": "approval-bar",
+  "name": "Approval Bar",
+  "description": "Pending action bar with a warning accent and pip, the tool call in mono, and quiet deny, outline edit and primary allow once actions.",
+  "category": "application",
+  "tier": "free",
+  "tags": [
+    "agent",
+    "approval",
+    "bar"
+  ],
+  "html": "<div class=\"ai-approval\">\n  <div class=\"ai-approval-main\">\n    <span class=\"ai-approval-status\">\n      <span class=\"ai-status-pip ai-status-pip-warning\" aria-hidden=\"true\"></span>\n      Needs approval\n    </span>\n    <span class=\"ai-approval-action\">write_file <span class=\"ai-approval-target\">src/auth.ts</span></span>\n    <p class=\"ai-approval-note\">Replaces the session helper and rewrites two call sites. Review the diff before allowing.</p>\n  </div>\n  <div class=\"ai-approval-actions\">\n    <button class=\"ai-btn ai-btn-ghost ai-btn-sm ai-approval-deny\" type=\"button\">Deny</button>\n    <button class=\"ai-btn ai-btn-outline ai-btn-sm\" type=\"button\">Edit</button>\n    <button class=\"ai-btn ai-btn-primary ai-btn-sm\" type=\"button\">Allow once</button>\n  </div>\n</div>"
+}

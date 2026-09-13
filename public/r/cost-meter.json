@@ -1,0 +1,15 @@
+{
+  "id": "cost-meter",
+  "name": "Cost Meter",
+  "description": "Spend and token meter with warn and hard stop notches on the bar, a period label, and a projection at the current rate.",
+  "category": "application",
+  "tier": "free",
+  "tags": [
+    "cost",
+    "budget",
+    "meter",
+    "usage",
+    "billing"
+  ],
+  "html": "<div class=\"ai-cost\">\n  <div class=\"ai-cost-head\">\n    <div>\n      <h3 class=\"ai-cost-title\" id=\"ai-cost-label\">Agent spend</h3>\n      <p class=\"ai-cost-period\">Billing period 1 Sep to 30 Sep 2026, 18 days left</p>\n    </div>\n    <span class=\"ai-badge ai-badge-warning\">Warn threshold passed</span>\n  </div>\n\n  <p class=\"ai-cost-value\" data-tabular>\n    $184.20\n    <span class=\"ai-cost-limit\">of a $250.00 limit</span>\n  </p>\n\n  <div class=\"ai-cost-track\" role=\"meter\" aria-labelledby=\"ai-cost-label\" aria-valuenow=\"184.2\" aria-valuemin=\"0\" aria-valuemax=\"250\" aria-valuetext=\"184.20 US dollars of a 250.00 dollar limit\" style=\"--ai-cost-pct: 73.7%; --ai-threshold-warn: 70%; --ai-threshold-danger: 90%;\">\n    <span class=\"ai-cost-fill\"></span>\n    <span class=\"ai-cost-mark is-warn\" aria-hidden=\"true\"></span>\n    <span class=\"ai-cost-mark is-danger\" aria-hidden=\"true\"></span>\n  </div>\n\n  <ul class=\"ai-cost-legend\">\n    <li>\n      <span class=\"ai-status-pip ai-status-pip-warning\"></span>\n      Warn at <span data-tabular>$175.00</span>\n    </li>\n    <li>\n      <span class=\"ai-status-pip ai-status-pip-danger\"></span>\n      Hard stop at <span data-tabular>$225.00</span>\n    </li>\n  </ul>\n\n  <hr class=\"ai-divider\">\n\n  <dl class=\"ai-cost-rows\">\n    <div class=\"ai-cost-row\">\n      <dt>Tokens</dt>\n      <dd data-tabular>12.4M of 20.0M</dd>\n    </div>\n    <div class=\"ai-cost-row\">\n      <dt>Runs</dt>\n      <dd data-tabular>318</dd>\n    </div>\n    <div class=\"ai-cost-row\">\n      <dt>Median cost per run</dt>\n      <dd data-tabular>$0.58</dd>\n    </div>\n    <div class=\"ai-cost-row\">\n      <dt>Projected at this rate</dt>\n      <dd data-tabular>$307.00</dd>\n    </div>\n  </dl>\n\n  <p class=\"ai-cost-note\">Runs are queued rather than dropped once the hard stop is reached. Raise the limit in workspace billing.</p>\n</div>"
+}

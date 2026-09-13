@@ -1,0 +1,13 @@
+{
+  "id": "mcp-widget-shell",
+  "name": "MCP Widget Shell",
+  "description": "Card shell for an MCP tool result with schema badge and copy.",
+  "category": "application",
+  "tier": "free",
+  "tags": [
+    "mcp",
+    "widget",
+    "agent"
+  ],
+  "html": "<div class=\"ai-card\" style=\"padding: var(--ai-space-4);\">\n  <div class=\"ai-flex ai-justify-between ai-items-center\">\n    <div class=\"ai-flex ai-items-center ai-gap-2\">\n      <span class=\"ai-badge ai-badge-mono\">MCP</span>\n      <span class=\"ai-font-semibold ai-text-sm\">get_component_markup</span>\n    </div>\n    <button class=\"ai-btn ai-btn-ghost ai-btn-xs\" type=\"button\">Copy JSON</button>\n  </div>\n  <p class=\"ai-text-xs ai-text-secondary\" style=\"margin-top: var(--ai-space-3);\">id=btn-variants · tier=free · 489 bytes html</p>\n  <pre style=\"margin-top: var(--ai-space-3); font-size: 0.75rem; background: var(--ai-surface-1); padding: var(--ai-space-3); border-radius: var(--ai-radius-sm);\"><code>{ \"id\": \"btn-variants\", \"tier\": \"free\" }</code></pre>\n</div>"
+}

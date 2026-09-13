@@ -10,5 +10,5 @@
     "cta",
     "input"
   ],
-  "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-3 ai-items-center\">\n  <button class=\"ai-btn ai-btn-primary\">Primary Action</button>\n  <button class=\"ai-btn ai-btn-secondary\">Secondary</button>\n  <button class=\"ai-btn ai-btn-outline\">Outline</button>\n  <button class=\"ai-btn ai-btn-ghost\">Ghost</button>\n  <button class=\"ai-btn ai-btn-accent\">Accent Blue</button>\n  <button class=\"ai-btn ai-btn-danger\">Destructive</button>\n  <button class=\"ai-btn ai-btn-primary is-loading\">Loading</button>\n</div>"
+  "html": "<div class=\"ai-flex ai-flex-wrap ai-gap-3 ai-items-center\">\n  <button class=\"ai-btn ai-btn-primary\">Primary Action</button>\n  <button class=\"ai-btn ai-btn-secondary\">Secondary</button>\n  <button class=\"ai-btn ai-btn-outline\">Outline</button>\n  <button class=\"ai-btn ai-btn-ghost\">Ghost</button>\n  <button class=\"ai-btn ai-btn-accent\">Accent Blue</button>\n  <button class=\"ai-btn ai-btn-danger\">Destructive</button>\n  <button class=\"ai-btn ai-btn-primary is-loading\" aria-busy=\"true\">Loading</button>\n</div>"
 }

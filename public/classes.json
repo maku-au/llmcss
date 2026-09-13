@@ -1,17 +1,18 @@
 {
  "version": "0.1.0",
- "generatedAt": "2026-09-12T05:32:17.555Z",
+ "generatedAt": "2026-09-13T03:10:22.582Z",
  "note": "Every ai-* class in llmcss.css. variants lists the responsive (sm 640px, md 768px, lg 1024px, xl 1280px) and container-query (cq) prefixes that exist for the class, written as ai-md:name. Nothing outside this list exists; do not invent classes.",
  "stats": {
-  "total": 1243,
+  "total": 1407,
   "families": {
-   "spacing": 238,
+   "spacing": 240,
    "utilities": 44,
    "position": 26,
-   "accordions": 5,
+   "accordions": 6,
    "alerts": 6,
-   "marketing": 68,
+   "marketing": 75,
    "application": 29,
+   "agent-extra": 120,
    "layout": 16,
    "badges": 28,
    "forms-extra": 31,
@@ -21,14 +22,17 @@
    "display": 8,
    "borders": 22,
    "navigation": 24,
-   "typography": 47,
-   "buttons": 12,
+   "typography": 50,
+   "buttons": 11,
    "extras": 40,
    "cards": 13,
+   "cart": 6,
    "tables": 12,
-   "inputs": 14,
-   "commerce-extra": 29,
+   "chat": 19,
+   "inputs": 13,
+   "commerce-extra": 28,
    "grid": 87,
+   "command": 9,
    "flex": 65,
    "interaction": 102,
    "themes": 7,
@@ -405,6 +409,12 @@
    "variants": []
   },
   {
+   "class": "ai-accordion-boxed",
+   "family": "accordions",
+   "file": "components/accordions.css",
+   "variants": []
+  },
+  {
    "class": "ai-accordion-chevron",
    "family": "accordions",
    "file": "components/accordions.css",
@@ -492,6 +502,54 @@
    "class": "ai-app-shell",
    "family": "application",
    "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "ai-approval",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-approval-action",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-approval-actions",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-approval-deny",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-approval-main",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-approval-note",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-approval-status",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-approval-target",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
    "variants": []
   },
   {
@@ -952,8 +1010,8 @@
   },
   {
    "class": "ai-btn",
-   "family": "buttons",
-   "file": "components/buttons.css",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
    "variants": []
   },
   {
@@ -1107,6 +1165,12 @@
    "variants": []
   },
   {
+   "class": "ai-capitalize",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
    "class": "ai-card",
    "family": "cards",
    "file": "components/cards.css",
@@ -1179,9 +1243,153 @@
    "variants": []
   },
   {
+   "class": "ai-cart-details",
+   "family": "cart",
+   "file": "components/cart.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cart-item",
+   "family": "cart",
+   "file": "components/cart.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cart-name",
+   "family": "cart",
+   "file": "components/cart.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cart-stepper",
+   "family": "cart",
+   "file": "components/cart.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cart-subtext",
+   "family": "cart",
+   "file": "components/cart.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cart-thumb",
+   "family": "cart",
+   "file": "components/cart.css",
+   "variants": []
+  },
+  {
    "class": "ai-cell-num",
    "family": "tables",
    "file": "components/tables.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-avatar",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-avatar-assistant",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-body",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-bubble",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-bubble-assistant",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-bubble-user",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-composer",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-container",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-header",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-input-bar",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-messages",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-meta",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-msg",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-msg-user",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-note",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-role",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-time",
+   "family": "chat",
+   "file": "components/chat.css",
+   "variants": []
+  },
+  {
+   "class": "ai-chat-tool",
+   "family": "chat",
+   "file": "components/chat.css",
    "variants": []
   },
   {
@@ -1192,8 +1400,8 @@
   },
   {
    "class": "ai-checkbox-input",
-   "family": "inputs",
-   "file": "components/inputs.css",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
    "variants": []
   },
   {
@@ -1709,9 +1917,141 @@
    "variants": []
   },
   {
+   "class": "ai-command-box",
+   "family": "command",
+   "file": "components/command.css",
+   "variants": []
+  },
+  {
+   "class": "ai-command-group-heading",
+   "family": "command",
+   "file": "components/command.css",
+   "variants": []
+  },
+  {
+   "class": "ai-command-input",
+   "family": "command",
+   "file": "components/command.css",
+   "variants": []
+  },
+  {
+   "class": "ai-command-input-wrapper",
+   "family": "command",
+   "file": "components/command.css",
+   "variants": []
+  },
+  {
+   "class": "ai-command-item",
+   "family": "command",
+   "file": "components/command.css",
+   "variants": []
+  },
+  {
+   "class": "ai-command-item-left",
+   "family": "command",
+   "file": "components/command.css",
+   "variants": []
+  },
+  {
+   "class": "ai-command-kbd",
+   "family": "command",
+   "file": "components/command.css",
+   "variants": []
+  },
+  {
+   "class": "ai-command-list",
+   "family": "command",
+   "file": "components/command.css",
+   "variants": []
+  },
+  {
    "class": "ai-command-palette",
-   "family": "utilities",
-   "file": "utilities.css",
+   "family": "command",
+   "file": "components/command.css",
+   "variants": []
+  },
+  {
+   "class": "ai-composer",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-composer-count",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-composer-file",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-composer-file-name",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-composer-file-size",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-composer-files",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-composer-hint",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-composer-input",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-composer-model",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-composer-quota",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-composer-send",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-composer-tokens",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-composer-toolbar",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-composer-tools",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
    "variants": []
   },
   {
@@ -1778,6 +2118,84 @@
    "class": "ai-contrast-more",
    "family": "utilities",
    "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cost",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cost-fill",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cost-head",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cost-legend",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cost-limit",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cost-mark",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cost-note",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cost-period",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cost-row",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cost-rows",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cost-title",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cost-track",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-cost-value",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
    "variants": []
   },
   {
@@ -1868,6 +2286,96 @@
    "class": "ai-detail",
    "family": "dashboard",
    "file": "components/dashboard.css",
+   "variants": []
+  },
+  {
+   "class": "ai-diff",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-diff-body",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-diff-code",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-diff-fold",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-diff-footer",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-diff-gutter",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-diff-header",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-diff-hunk",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-diff-marker",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-diff-note",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-diff-path",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-diff-row",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-diff-stat",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-diff-stat-add",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-diff-stat-del",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
    "variants": []
   },
   {
@@ -2300,6 +2808,30 @@
    "variants": []
   },
   {
+   "class": "ai-footer-blurb",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-footer-bottom",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-footer-brand",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-footer-cmd",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
    "class": "ai-footer-col",
    "family": "marketing",
    "file": "components/marketing.css",
@@ -2324,7 +2856,19 @@
    "variants": []
   },
   {
+   "class": "ai-footer-heading",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
    "class": "ai-footer-list",
+   "family": "marketing",
+   "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-footer-stat",
    "family": "marketing",
    "file": "components/marketing.css",
    "variants": []
@@ -3050,8 +3594,8 @@
   },
   {
    "class": "ai-input",
-   "family": "commerce-extra",
-   "file": "components/commerce-extra.css",
+   "family": "chat",
+   "file": "components/chat.css",
    "variants": []
   },
   {
@@ -3423,6 +3967,12 @@
    "variants": []
   },
   {
+   "class": "ai-lowercase",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
    "class": "ai-m-0",
    "family": "spacing",
    "file": "utilities.css",
@@ -3528,6 +4078,12 @@
    "class": "ai-marquee-track",
    "family": "animations",
    "file": "animations.css",
+   "variants": []
+  },
+  {
+   "class": "ai-matrix-category-header",
+   "family": "marketing",
+   "file": "components/marketing.css",
    "variants": []
   },
   {
@@ -3950,6 +4506,90 @@
    "variants": []
   },
   {
+   "class": "ai-model-body",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-model-context",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-model-head",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-model-legend",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-model-list",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-model-meta",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-model-name",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-model-note",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-model-picker",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-model-price",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-model-provider",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-model-radio",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-model-row",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-model-tag",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
    "class": "ai-modeless",
    "family": "modals",
    "file": "components/modals.css",
@@ -4271,6 +4911,12 @@
    "class": "ai-navbar-search",
    "family": "marketing",
    "file": "components/marketing.css",
+   "variants": []
+  },
+  {
+   "class": "ai-normal-case",
+   "family": "utilities",
+   "file": "utilities.css",
    "variants": []
   },
   {
@@ -4933,6 +5579,18 @@
    "variants": []
   },
   {
+   "class": "ai-pb-20",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-pb-24",
+   "family": "spacing",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
    "class": "ai-pb-3",
    "family": "spacing",
    "file": "utilities.css",
@@ -4996,6 +5654,60 @@
    "class": "ai-pe-8",
    "family": "spacing",
    "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-permission-box",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-permission-cap",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-permission-expiry",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-permission-lead",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-permission-remember",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-permission-remember-hint",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-permission-resource",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-permission-risk",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-permission-scope",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
    "variants": []
   },
   {
@@ -6013,6 +6725,66 @@
    "variants": []
   },
   {
+   "class": "ai-run-actions",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-run-cancel",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-run-header",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-run-id",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-run-main",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-run-meta",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-run-state",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-run-steps",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-run-timer",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-run-title",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
    "class": "ai-saturate-0",
    "family": "utilities",
    "file": "utilities.css",
@@ -6667,6 +7439,54 @@
    "variants": []
   },
   {
+   "class": "ai-split",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-split-handle",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-split-note",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-split-output",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-split-pane",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-split-steps",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-split-title",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-split-vertical",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
    "class": "ai-sr-only",
    "family": "display",
    "file": "utilities.css",
@@ -7276,6 +8096,78 @@
    "variants": []
   },
   {
+   "class": "ai-trace",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-trace-args",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-trace-bar",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-trace-header",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-trace-list",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-trace-meta",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-trace-name",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-trace-row",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-trace-sep",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-trace-status",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-trace-time",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-trace-title",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
    "class": "ai-tracking-normal",
    "family": "typography",
    "file": "utilities.css",
@@ -7463,6 +8355,12 @@
   },
   {
    "class": "ai-truncate",
+   "family": "typography",
+   "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-uppercase",
    "family": "typography",
    "file": "utilities.css",
    "variants": []
@@ -7689,6 +8587,96 @@
    "class": "ai-w-var",
    "family": "sizing",
    "file": "utilities.css",
+   "variants": []
+  },
+  {
+   "class": "ai-workspace",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-workspace-body",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-workspace-count",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-workspace-file",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-workspace-file-name",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-workspace-files",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-workspace-head",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-workspace-label",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-workspace-pane",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-workspace-step",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-workspace-steps",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-workspace-turn",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-workspace-turn-body",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-workspace-turn-role",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
+   "variants": []
+  },
+  {
+   "class": "ai-workspace-turn-user",
+   "family": "agent-extra",
+   "file": "components/agent-extra.css",
    "variants": []
   },
   {

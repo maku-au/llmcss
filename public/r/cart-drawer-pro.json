@@ -1,0 +1,15 @@
+{
+  "id": "cart-drawer-pro",
+  "name": "Slide-Out Cart Drawer",
+  "description": "Full slide-out shopping bag drawer with line items, quantity steppers, subtotal, and checkout CTA.",
+  "category": "ecommerce",
+  "tier": "free",
+  "tags": [
+    "cart",
+    "drawer",
+    "checkout",
+    "ecommerce"
+  ],
+  "html": "<button class=\"ai-btn ai-btn-primary\" data-ai-toggle=\"drawer\" data-ai-target=\"#cart-demo\">\n  Open Cart Drawer\n</button>\n\n<div id=\"cart-demo\" class=\"ai-drawer\">\n  <div class=\"ai-drawer-backdrop\" data-ai-dismiss=\"drawer\"></div>\n  <div class=\"ai-drawer-panel\">\n    <div class=\"ai-drawer-header\">\n      <div class=\"ai-flex ai-items-center ai-gap-2\">\n        <h3 class=\"ai-drawer-title\">Shopping Bag</h3>\n        <span class=\"ai-badge ai-badge-default\">2 items</span>\n      </div>\n      <button class=\"ai-modal-close\" data-ai-dismiss=\"drawer\">&times;</button>\n    </div>\n    <div class=\"ai-drawer-body\">\n      <div class=\"ai-cart-item\">\n        <img class=\"ai-cart-thumb\" src=\"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=150&auto=format&fit=crop&q=80\" alt=\"Headphones\" />\n        <div class=\"ai-cart-details\">\n          <span class=\"ai-cart-name\">Aether Precision Studio</span>\n          <span class=\"ai-cart-subtext\">Matte Obsidian / Bluetooth 5.4</span>\n          <div class=\"ai-flex ai-justify-between ai-items-center\" style=\"margin-top: 0.5rem;\">\n            <div class=\"ai-cart-stepper\">\n              <button>-</button>\n              <span style=\"padding: 0 0.5rem; font-size: 0.8125rem;\">1</span>\n              <button>+</button>\n            </div>\n            <span class=\"ai-font-bold\">$349.00</span>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"ai-drawer-footer\">\n      <div class=\"ai-flex ai-justify-between ai-items-center\" style=\"margin-bottom: var(--ai-space-4);\">\n        <span class=\"ai-text-sm ai-text-secondary\">Subtotal</span>\n        <span class=\"ai-font-display ai-font-bold\" style=\"font-size: 1.25rem;\">$349.00</span>\n      </div>\n      <button class=\"ai-btn ai-btn-primary ai-w-full ai-btn-lg\">Checkout Now</button>\n    </div>\n  </div>\n</div>",
+  "webComponentHtml": "<ai-drawer id=\"cart-demo\">\n  <div class=\"ai-drawer-backdrop\"></div>\n  <div class=\"ai-drawer-panel\">\n    <div class=\"ai-drawer-header\">\n      <h3 class=\"ai-drawer-title\">Shopping Bag</h3>\n      <button class=\"ai-modal-close\" data-ai-dismiss=\"drawer\">&times;</button>\n    </div>\n    <div class=\"ai-drawer-body\">\n      <p>Cart contents here</p>\n    </div>\n  </div>\n</ai-drawer>"
+}

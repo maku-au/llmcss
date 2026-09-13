@@ -1,0 +1,15 @@
+{
+  "id": "split-pane",
+  "name": "Split Pane",
+  "description": "Two resizable panes joined by a keyboard adjustable separator, horizontal by default and stacked on the vertical variant.",
+  "category": "application",
+  "tier": "free",
+  "tags": [
+    "layout",
+    "split",
+    "resize",
+    "panes",
+    "workspace"
+  ],
+  "html": "<div class=\"ai-split\" style=\"--ai-split-a: 58%;\">\n  <section class=\"ai-split-pane\" aria-label=\"Plan\">\n    <h3 class=\"ai-split-title\">Plan</h3>\n    <ol class=\"ai-split-steps\">\n      <li>Read the failing spec in billing/invoice-total.spec.ts</li>\n      <li>Extract the tax rate lookup into taxRateFor()</li>\n      <li>Round once, on the tax line only</li>\n      <li>Re-run the billing suite</li>\n    </ol>\n  </section>\n  <div class=\"ai-split-handle\" role=\"separator\" tabindex=\"0\" aria-orientation=\"vertical\" aria-label=\"Resize plan and output panes\" aria-valuenow=\"58\" aria-valuemin=\"20\" aria-valuemax=\"80\"></div>\n  <section class=\"ai-split-pane\" aria-label=\"Output\">\n    <h3 class=\"ai-split-title\">Output</h3>\n    <pre class=\"ai-split-output\"><code>PASS  billing/invoice-total.spec.ts\n  rounds tax once (4 ms)\n  keeps subtotal unrounded (2 ms)\n\nTests: 24 passed, 24 total</code></pre>\n  </section>\n</div>\n\n<div class=\"ai-split ai-split-vertical\" style=\"--ai-split-a: 45%; margin-top: var(--ai-space-4);\">\n  <section class=\"ai-split-pane\" aria-label=\"Request\">\n    <h3 class=\"ai-split-title\">Request</h3>\n    <p class=\"ai-split-note\">Drag the divider, or focus it and use the arrow keys. Without the script the panes still render at their declared ratio.</p>\n  </section>\n  <div class=\"ai-split-handle\" role=\"separator\" tabindex=\"0\" aria-orientation=\"horizontal\" aria-label=\"Resize request and response panes\" aria-valuenow=\"45\" aria-valuemin=\"20\" aria-valuemax=\"80\"></div>\n  <section class=\"ai-split-pane\" aria-label=\"Response\">\n    <h3 class=\"ai-split-title\">Response</h3>\n    <p class=\"ai-split-note\">Set the ratio in CSS with --ai-split-a and leave --ai-split-b as the flexible remainder.</p>\n  </section>\n</div>"
+}

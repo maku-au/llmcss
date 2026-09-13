@@ -1,6 +1,6 @@
 {
  "version": "0.1.0",
- "generatedAt": "2026-09-12T05:32:17.555Z",
+ "generatedAt": "2026-09-13T03:10:22.582Z",
  "note": "State classes are set by the author for static markup or by the runtime for interactive components. usedBy lists the classes that appear in the same selector.",
  "states": [
   {
@@ -22,6 +22,14 @@
     "ai-tab-panel",
     "ai-tabs-pills",
     "ai-tree-leaf"
+   ]
+  },
+  {
+   "class": "is-added",
+   "usedBy": [
+    "ai-diff-gutter",
+    "ai-diff-marker",
+    "ai-diff-row"
    ]
   },
   {
@@ -79,6 +87,7 @@
   {
    "class": "is-danger",
    "usedBy": [
+    "ai-cost-mark",
     "ai-dropdown-item"
    ]
   },
@@ -87,6 +96,18 @@
    "usedBy": [
     "ai-list-group-item",
     "ai-pagination-link"
+   ]
+  },
+  {
+   "class": "is-done",
+   "usedBy": [
+    "ai-approval",
+    "ai-approval-status",
+    "ai-run-header",
+    "ai-run-timer",
+    "ai-status-pip",
+    "ai-trace-row",
+    "ai-trace-status"
    ]
   },
   {
@@ -102,7 +123,9 @@
     "ai-empty-state-icon",
     "ai-input",
     "ai-select",
-    "ai-textarea"
+    "ai-textarea",
+    "ai-trace-row",
+    "ai-trace-status"
    ]
   },
   {
@@ -149,6 +172,7 @@
     "ai-accordion-trigger",
     "ai-combobox",
     "ai-combobox-list",
+    "ai-command-palette",
     "ai-drawer",
     "ai-drawer-no-lock",
     "ai-dropdown",
@@ -181,6 +205,15 @@
    ]
   },
   {
+   "class": "is-removed",
+   "usedBy": [
+    "ai-diff-code",
+    "ai-diff-gutter",
+    "ai-diff-marker",
+    "ai-diff-row"
+   ]
+  },
+  {
    "class": "is-required",
    "usedBy": [
     "ai-form-label"
@@ -195,7 +228,8 @@
   {
    "class": "is-selected",
    "usedBy": [
-    "ai-calendar-day"
+    "ai-calendar-day",
+    "ai-command-item"
    ]
   },
   {
@@ -210,9 +244,13 @@
   {
    "class": "is-streaming",
    "usedBy": [
+    "ai-chat-body",
+    "ai-chat-msg",
     "ai-pulse-dot",
     "ai-pulse-dot-streaming",
-    "ai-status-pip"
+    "ai-status-pip",
+    "ai-trace-row",
+    "ai-trace-status"
    ]
   },
   {
@@ -264,6 +302,12 @@
    "usedBy": [
     "ai-password",
     "ai-password-toggle"
+   ]
+  },
+  {
+   "class": "is-warn",
+   "usedBy": [
+    "ai-cost-mark"
    ]
   }
  ],

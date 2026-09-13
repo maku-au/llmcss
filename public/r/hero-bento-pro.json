@@ -1,0 +1,13 @@
+{
+  "id": "hero-bento-pro",
+  "name": "Asymmetric Bento Hero",
+  "description": "Flagship bento grid hero with tactile borders, live interactive code previews, and luxury surface physics.",
+  "category": "marketing",
+  "tier": "free",
+  "tags": [
+    "hero",
+    "bento",
+    "luxury"
+  ],
+  "html": "<section class=\"ai-hero\">\n  <div class=\"ai-container\">\n    <div class=\"ai-text-center\" style=\"max-width: 48rem; margin: 0 auto var(--ai-space-12);\">\n      <h1 class=\"ai-hero-title\">Architected for deep intelligence</h1>\n      <p class=\"ai-hero-lead\" style=\"margin: 0 auto;\">\n        Give your agentic coding workflows the aesthetic craft of top-tier product studios.\n      </p>\n    </div>\n    <div class=\"ai-bento-grid\">\n      <div class=\"ai-card-bento ai-bento-col-2\">\n        <div>\n          <h3 class=\"ai-card-title\" style=\"font-size: 1.5rem;\">Infinite Skinning Architecture</h3>\n          <p class=\"ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Switch between Minimalist Obsidian, Warm Editorial, Neo-Brutalist, and Swiss Modern with a single data-attribute.</p>\n        </div>\n        <div style=\"background-color: var(--ai-surface-1); padding: var(--ai-space-4); border-radius: var(--ai-radius-md); margin-top: var(--ai-space-6); border: 1px solid var(--ai-border);\">\n          <pre><code>&lt;html data-ai-skin=\"editorial\"&gt;\n  &lt;!-- Instant warm ivory surfaces &amp; serif display --&gt;\n&lt;/html&gt;</code></pre>\n        </div>\n      </div>\n      <div class=\"ai-card-bento\">\n        <div>\n          <h3 class=\"ai-card-title\">MCP Server Ready</h3>\n          <p class=\"ai-text-secondary\" style=\"margin-top: var(--ai-space-2);\">Native Model Context Protocol integration allows autonomous AI agents to query and assemble sections dynamically.</p>\n        </div>\n        <div class=\"ai-flex ai-items-center ai-gap-2\" style=\"margin-top: var(--ai-space-6);\">\n          <span class=\"ai-badge ai-badge-success ai-badge-dot\">MCP Connected</span>\n          <span class=\"ai-badge ai-badge-outline\">Port 8080</span>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>"
+}
