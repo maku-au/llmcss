@@ -363,17 +363,17 @@ export const faqCtaTemplates = [
   <div class="container">
     <div class="max-w-2xl mx-auto text-center">
       <div class="stats-band mb-10">
-        <div class="stat is-primary">
-          <div class="stat-value font-mono">0 kb</div>
-          <div class="stat-label">JavaScript shipped for a static page</div>
+        <div class="stat">
+          <div class="stat-value font-mono">0 KB</div>
+          <div class="stat-label">JavaScript on a static page</div>
         </div>
         <div class="stat">
-          <div class="stat-value font-mono">50 kb</div>
-          <div class="stat-label">Gzipped budget for the whole stylesheet</div>
+          <div class="stat-value font-mono">50 KB</div>
+          <div class="stat-label">Stylesheet gzip budget</div>
         </div>
         <div class="stat">
           <div class="stat-value font-mono">12</div>
-          <div class="stat-label">Design laws the audit enforces</div>
+          <div class="stat-label">Laws the audit enforces</div>
         </div>
       </div>
       <h2 id="cta-stats-heading" class="section-title mb-4">Ship the interface, not the framework</h2>

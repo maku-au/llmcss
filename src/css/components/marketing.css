@@ -722,7 +722,10 @@
     border-top: 1px solid var(--ai-border);
     padding-top: var(--ai-space-4);
   }
-  .stat-value {
+  /* Only a band with one dominant figure bottom-aligns the values so mixed
+     sizes share a baseline. Equal figures sit directly under the rule; labels
+     of different lengths then never push them apart. */
+  .stats-band:has(.is-primary) .stat-value {
     margin-top: auto;
   }
   .stat-value {

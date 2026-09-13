@@ -68,6 +68,42 @@ function refFor(comp: CatalogComponent): string {
   return v ? `${comp.id}:${v.id}` : comp.id;
 }
 
+// Which motion demos earn a Replay control. Membership is read off the snippet,
+// never off a list of ids, so an entrance demo added next year gets the button
+// the day it lands. Only one-shot entrances qualify: they have played and
+// finished before the reader has scrolled to the card, which is the whole
+// defect. animate-collapse-in is triggered by the disclosure, animate-sweep is
+// gated on a loading surface, lift and press are transitions, and the reveal-*
+// classes drive themselves from a view() timeline, so none of those four need
+// a replay and none of them gets one.
+const ENTRANCE_SELECTOR = [
+  '.animate-fade-in',
+  '.animate-slide-up',
+  '.animate-slide-down',
+  '.animate-slide-left',
+  '.animate-slide-right',
+  '.animate-scale-in',
+  '.animate-rise',
+  '.stagger',
+].join(', ');
+
+const entranceMotionCache = new Map<string, boolean>();
+
+// Parsed, not pattern matched. Several snippets print their own class names as
+// copy inside <code>, and a text search would hand Replay to a demo that only
+// talks about an entrance. Cached because the catalog re-renders on every
+// keystroke in the search field.
+function hasEntranceMotion(comp: CatalogComponent): boolean {
+  if (comp.addon !== MOTION_CATEGORY) return false;
+  const cached = entranceMotionCache.get(comp.id);
+  if (cached !== undefined) return cached;
+  const probe = document.createElement('template');
+  probe.innerHTML = [comp.html, ...(comp.variants || []).map((v) => v.html)].join('\n');
+  const found = probe.content.querySelector(ENTRANCE_SELECTOR) !== null;
+  entranceMotionCache.set(comp.id, found);
+  return found;
+}
+
 // DOM Elements
 const streamEl = document.getElementById('components-stream');
 let searchInput = document.getElementById('catalog-search') as HTMLInputElement | null;
@@ -700,6 +736,99 @@ function rebindPreviewControls(id: string) {
 }
 
 // ============================================================================
+// MOTION REPLAY
+// ============================================================================
+
+// Restart every animation inside one demo. Re-rendering the subtree is the
+// mechanism, not a class toggle: a finished animation cannot be rewound by
+// adding a class back, and a stagger cascade only runs again if its children
+// are new nodes, because the per-child delay comes from nth-child.
+function replayMotion(id: string, btn?: HTMLButtonElement) {
+  const comp = components.find((c) => c.id === id);
+  if (!comp) return;
+  const host = document.querySelector<HTMLElement>(`#comp-${id} .demo-canvas > div`);
+  if (!host) return;
+
+  // Same source as the card's first paint: generateCustomizedHtml reads the
+  // selected layout through baseHtmlFor and re-applies the customizer wrapper,
+  // so a replay never silently drops a variant or a Styler knob. The code panel
+  // is untouched on purpose, because the markup has not changed.
+  host.innerHTML = generateCustomizedHtml(comp);
+  addCopyButtons(host);
+  rebindPreviewControls(id);
+
+  if (btn) holdUntilSettled(btn, host);
+}
+
+// The button is inert while its own animation plays, so a second click cannot
+// land mid-flight and restart half a cascade. The durations are measured on the
+// new subtree rather than read from a table, so duration-slow and delay-150 are
+// respected for free. With the addon stylesheet absent nothing is animating,
+// the list is empty and the button stays enabled, which is the right answer:
+// there is nothing to wait for.
+function holdUntilSettled(btn: HTMLButtonElement, root: HTMLElement) {
+  if (typeof root.getAnimations !== 'function') return;
+  const running = root.getAnimations({ subtree: true }).filter((a) => a.playState === 'running');
+  if (running.length === 0) return;
+
+  btn.disabled = true;
+  let released = false;
+  const release = () => {
+    if (released) return;
+    released = true;
+    btn.disabled = false;
+  };
+  Promise.all(running.map((a) => a.finished.catch(() => undefined))).then(release);
+  // A cap, so an animation that never reaches a finished state cannot strand
+  // the control. Every entrance in the addon is well under this.
+  window.setTimeout(release, 4000);
+}
+
+// First sight, once per card per page load. The entrance has already finished
+// by the time the reader scrolls down to the card, so the first time a demo is
+// half on screen its subtree is rebuilt and the animation it documents is
+// actually seen. Skipped outright under prefers-reduced-motion: an animation
+// nobody asked for is exactly what that setting is about. The Replay button
+// still works there, because that one is asked for.
+const autoReplayedCanvases = new WeakSet<Element>();
+const autoReplayedIds = new Set<string>();
+let motionSightObserver: IntersectionObserver | null = null;
+
+function motionSight(): IntersectionObserver | null {
+  if (typeof IntersectionObserver === 'undefined') return null;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return null;
+  if (motionSightObserver) return motionSightObserver;
+  motionSightObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        observer.unobserve(entry.target);
+        if (autoReplayedCanvases.has(entry.target)) return;
+        autoReplayedCanvases.add(entry.target);
+        const id = entry.target.closest('.demo-card')?.id.replace(/^comp-/, '') || '';
+        // The id set is what makes this once per page load. The WeakSet only
+        // covers one element: filtering rebuilds every card, and a fresh
+        // canvas would otherwise read as a demo nobody had seen yet.
+        if (!id || autoReplayedIds.has(id)) return;
+        autoReplayedIds.add(id);
+        replayMotion(id);
+      });
+    },
+    { threshold: 0.5 }
+  );
+  return motionSightObserver;
+}
+
+function observeMotionCards() {
+  const observer = motionSight();
+  if (!observer) return;
+  document.querySelectorAll('.js-motion-replay').forEach((btn) => {
+    const canvas = btn.closest('.demo-card')?.querySelector('.demo-canvas');
+    if (canvas) observer.observe(canvas);
+  });
+}
+
+// ============================================================================
 // COMPONENT RENDERING & SIDEBAR
 // ============================================================================
 function updateSidebarCounts() {
@@ -791,6 +920,20 @@ function renderVariantControl(comp: CatalogComponent): string {
               ${button('', 'Default')}
               ${list.map((v) => button(v.id, escapeHtml(v.name))).join('\n              ')}
             </div>`;
+}
+
+// Replay sits first among the action buttons on the demos that earn it, before
+// Customize, because it is the control that makes the card legible at all. The
+// rotate glyph is inline SVG like every other icon in this header, so a font
+// gap can never render tofu.
+const REPLAY_ICON = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>`;
+
+function renderReplayControl(comp: CatalogComponent): string {
+  if (!hasEntranceMotion(comp)) return '';
+  return `<button type="button" class="btn btn-outline btn-xs js-motion-replay" data-id="${comp.id}" aria-label="Replay the animation">
+              ${REPLAY_ICON}
+              <span>Replay</span>
+            </button>`;
 }
 
 // The variant's own line lives under the demo, not in the header: it changes on
@@ -937,6 +1080,7 @@ function renderComponents() {
   applyViewportWidth();
   addCopyButtons(streamEl);
   bindComponentEvents();
+  observeMotionCards();
 }
 
 // One demo card, identical for a catalog component and an addon demo. The
@@ -956,6 +1100,7 @@ function cardHtml(comp: CatalogComponent): string {
           </div>
           <div class="flex items-center gap-2 flex-wrap">
             ${renderVariantControl(comp)}
+            ${renderReplayControl(comp)}
             <button type="button" class="btn btn-outline btn-xs toggle-customize-btn" data-id="${comp.id}" aria-expanded="false" aria-controls="customize-${comp.id}" title="Toggle Component Styling Options">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
               <span>Customize</span>
@@ -1002,6 +1147,15 @@ function bindComponentEvents() {
   document.querySelectorAll('.js-variant-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       selectVariant(btn.getAttribute('data-id') || '', btn.getAttribute('data-variant') || '');
+    });
+  });
+
+  // Replay an entrance demo. Bound the same way every other card control is:
+  // renderComponents replaces the whole stream, so these nodes are new on every
+  // render and a second listener can never stack on a surviving button.
+  document.querySelectorAll<HTMLButtonElement>('.js-motion-replay').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      replayMotion(btn.getAttribute('data-id') || '', btn);
     });
   });
 

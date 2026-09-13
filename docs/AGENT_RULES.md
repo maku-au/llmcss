@@ -7,7 +7,7 @@ Source of truth, in this order: [classes.json](https://llmcss.io/classes.json) f
 ## Where classes live
 
 <!-- stats:start -->
-- **Classes:** 2304 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
+- **Classes:** 2305 classes across 40 families, listed in [classes.json](https://llmcss.io/classes.json).
 - **Tokens:** 107 `--ai-*` custom properties, listed in [tokens.json](https://llmcss.io/tokens.json).
 - **States:** 38 `is-*` classes, listed in [states.json](https://llmcss.io/states.json).
 - **Components:** 122, all MIT: 54 primitive, 42 application, 21 marketing, 5 ecommerce.
@@ -39,7 +39,7 @@ The family a class belongs to tells you which stylesheet file defines it and rou
 | `extras` | 40 | `components/extras.css` |
 | `animations` | 33 | `animations.css` |
 | `forms-extra` | 31 | `components/forms-extra.css` |
-| `application` | 29 | `components/application.css` |
+| `application` | 30 | `components/application.css` |
 | `badges` | 28 | `components/badges.css` |
 | `commerce-extra` | 28 | `components/commerce-extra.css` |
 | `navigation` | 24 | `components/navigation.css` |
@@ -109,7 +109,7 @@ The author writes these in static markup; the runtime sets the same classes at r
 | `is-muted` | `.calendar-day` |
 | `is-nested` | `.scrollspy-link` |
 | `is-open` | `.accordion-chevron`, `.accordion-content`, `.accordion-item`, `.accordion-trigger`, `.combobox`, `.combobox-list`, `.command-palette`, `.drawer`, `.drawer-no-lock`, `.dropdown`, `.dropdown-menu`, `.modal`, `.modeless`, `.popover`, `.popover-toggle` |
-| `is-primary` | `.kpi-card`, `.stat`, `.stat-value` |
+| `is-primary` | `.kpi-card`, `.stat`, `.stat-value`, `.stats-band` |
 | `is-read` | `.notification-dot` |
 | `is-ready` | `.combobox`, `.combobox-list` |
 | `is-removed` | `.diff-code`, `.diff-gutter`, `.diff-marker`, `.diff-row` |

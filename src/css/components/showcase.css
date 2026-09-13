@@ -1296,6 +1296,16 @@ a.docs-ecosystem-item {
   .demo-header .docs-variant-group {
     flex-wrap: wrap;
     max-width: 100%;
+    /* Same 1.75rem height as the xs action buttons beside it. */
+    padding: 2px;
+  }
+  .demo-header .docs-variant-group .segmented-btn {
+    display: inline-flex;
+    align-items: center;
+    height: calc(1.75rem - 6px);
+    padding: 0 var(--ai-space-2);
+    font-size: 0.75rem;
+    line-height: 1;
   }
   /* Sits under the demo canvas, not in the header: it changes on every click
      and a changing line in a fixed header reads as a glitch. */

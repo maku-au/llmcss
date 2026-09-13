@@ -296,6 +296,20 @@
     font-weight: 600;
   }
 
+  /* Compact size, 1.75rem tall overall, so a segmented control sits level
+     with btn-xs in a toolbar or a card header. */
+  .segmented-sm {
+    padding: 2px;
+  }
+  .segmented-sm .segmented-btn {
+    display: inline-flex;
+    align-items: center;
+    height: calc(1.75rem - 6px);
+    padding: 0 var(--ai-space-2);
+    font-size: 0.75rem;
+    line-height: 1;
+  }
+
   /* --------------------------------------------------------------------------
      Filter Toolbar with Tags
      -------------------------------------------------------------------------- */

@@ -1,9 +1,9 @@
 {
  "version": "0.4.0",
- "generatedAt": "2026-09-13T06:36:50.077Z",
+ "generatedAt": "2026-09-13T06:43:48.038Z",
  "note": "Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the prefixes that exist for the class, written as md:name: responsive (sm 640px, md 768px, lg 1024px, xl 1280px, 2xl 1536px), container-query against the nearest cq or cq-inline ancestor (cq-sm 380px, cq-md 600px, cq-lg 900px), and state (hover, focus, focus-visible, active, disabled, group-hover, dark, print, motion-reduce, first, last, odd, even). A bare cq: prefix no longer exists. Nothing outside this list exists; do not invent classes.",
  "stats": {
-  "total": 2304,
+  "total": 2305,
   "families": {
    "spacing": 688,
    "interaction": 184,
@@ -13,7 +13,7 @@
    "alerts": 6,
    "typography": 108,
    "marketing": 75,
-   "application": 29,
+   "application": 30,
    "agent-extra": 120,
    "layout": 63,
    "grid": 107,
@@ -13516,6 +13516,12 @@
   },
   {
    "class": "segmented-input",
+   "family": "application",
+   "file": "components/application.css",
+   "variants": []
+  },
+  {
+   "class": "segmented-sm",
    "family": "application",
    "file": "components/application.css",
    "variants": []

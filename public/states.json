@@ -1,6 +1,6 @@
 {
  "version": "0.4.0",
- "generatedAt": "2026-09-13T06:36:50.077Z",
+ "generatedAt": "2026-09-13T06:43:48.038Z",
  "note": "State classes are set by the author for static markup or by the runtime for interactive components. usedBy lists the classes that appear in the same selector.",
  "states": [
   {
@@ -197,7 +197,8 @@
    "usedBy": [
     "kpi-card",
     "stat",
-    "stat-value"
+    "stat-value",
+    "stats-band"
    ]
   },
   {

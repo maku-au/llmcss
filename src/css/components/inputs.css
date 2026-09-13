@@ -188,10 +188,12 @@
     height: 0;
   }
 
+  /* 36 by 20: reads as a control next to 14px body copy, not a button.
+     The coarse-pointer rule on .switch supplies the 44px hit area. */
   .switch-track {
     position: relative;
-    width: 2.75rem;
-    height: 1.5rem;
+    width: 2.25rem;
+    height: 1.25rem;
     background-color: var(--ai-surface-2);
     border: 1px solid var(--ai-border);
     border-radius: var(--ai-radius-full);
@@ -203,8 +205,8 @@
     position: absolute;
     top: 2px;
     left: 2px;
-    width: calc(1.5rem - 6px);
-    height: calc(1.5rem - 6px);
+    width: calc(1.25rem - 6px);
+    height: calc(1.25rem - 6px);
     background-color: #ffffff;
     border-radius: 50%;
     box-shadow: var(--ai-shadow-sm);
@@ -217,7 +219,7 @@
   }
 
   .switch-input:checked + .switch-track .switch-thumb {
-    transform: translateX(1.25rem);
+    transform: translateX(1rem);
   }
 
   /* Custom Checkbox */

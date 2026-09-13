@@ -1,6 +1,6 @@
 {
   "version": "0.4.0",
-  "generatedAt": "2026-09-13T06:36:49.938Z",
+  "generatedAt": "2026-09-13T06:43:47.910Z",
   "stats": {
     "totalTemplates": 55,
     "freeTemplates": 44,
@@ -927,7 +927,7 @@
           "wireframe-footer-columns"
         ]
       },
-      "html": "<section class=\"section py-20 border-t surface-0\" aria-labelledby=\"cta-stats-heading\">\n  <div class=\"container\">\n    <div class=\"max-w-2xl mx-auto text-center\">\n      <div class=\"stats-band mb-10\">\n        <div class=\"stat is-primary\">\n          <div class=\"stat-value font-mono\">0 kb</div>\n          <div class=\"stat-label\">JavaScript shipped for a static page</div>\n        </div>\n        <div class=\"stat\">\n          <div class=\"stat-value font-mono\">50 kb</div>\n          <div class=\"stat-label\">Gzipped budget for the whole stylesheet</div>\n        </div>\n        <div class=\"stat\">\n          <div class=\"stat-value font-mono\">12</div>\n          <div class=\"stat-label\">Design laws the audit enforces</div>\n        </div>\n      </div>\n      <h2 id=\"cta-stats-heading\" class=\"section-title mb-4\">Ship the interface, not the framework</h2>\n      <p class=\"section-lead mx-auto mb-8\">\n        One stylesheet, a class manifest your agent can read, and a validator that fails the build when the markup drifts. Install it in the time it takes to read this paragraph.\n      </p>\n      <a href=\"/quickstart\" class=\"btn btn-primary btn-lg\">Read the quickstart</a>\n    </div>\n  </div>\n</section>"
+      "html": "<section class=\"section py-20 border-t surface-0\" aria-labelledby=\"cta-stats-heading\">\n  <div class=\"container\">\n    <div class=\"max-w-2xl mx-auto text-center\">\n      <div class=\"stats-band mb-10\">\n        <div class=\"stat\">\n          <div class=\"stat-value font-mono\">0 KB</div>\n          <div class=\"stat-label\">JavaScript on a static page</div>\n        </div>\n        <div class=\"stat\">\n          <div class=\"stat-value font-mono\">50 KB</div>\n          <div class=\"stat-label\">Stylesheet gzip budget</div>\n        </div>\n        <div class=\"stat\">\n          <div class=\"stat-value font-mono\">12</div>\n          <div class=\"stat-label\">Laws the audit enforces</div>\n        </div>\n      </div>\n      <h2 id=\"cta-stats-heading\" class=\"section-title mb-4\">Ship the interface, not the framework</h2>\n      <p class=\"section-lead mx-auto mb-8\">\n        One stylesheet, a class manifest your agent can read, and a validator that fails the build when the markup drifts. Install it in the time it takes to read this paragraph.\n      </p>\n      <a href=\"/quickstart\" class=\"btn btn-primary btn-lg\">Read the quickstart</a>\n    </div>\n  </div>\n</section>"
     },
     {
       "id": "wireframe-cta-newsletter",

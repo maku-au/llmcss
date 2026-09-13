@@ -3813,9 +3813,9 @@
   "prefix": "ai-family-application",
   "scope": "html,javascriptreact,typescriptreact,vue,svelte,php,erb,twig,django-html,handlebars,astro",
   "body": [
-   "${1|app-content,app-header,app-main,app-shell,auth-card,auth-wrap,density-compact,filter-tag,filter-tags,filter-toolbar,health-row,inbox-item,kpi-card,kpi-label,kpi-trend,segmented,segmented-btn,segmented-input,settings-row,sidebar,sidebar-badge,sidebar-header,sidebar-icon,sidebar-item,sidebar-nav,sidebar-section-title,step-item,step-label,stepper|}"
+   "${1|app-content,app-header,app-main,app-shell,auth-card,auth-wrap,density-compact,filter-tag,filter-tags,filter-toolbar,health-row,inbox-item,kpi-card,kpi-label,kpi-trend,segmented,segmented-btn,segmented-input,segmented-sm,settings-row,sidebar,sidebar-badge,sidebar-header,sidebar-icon,sidebar-item,sidebar-nav,sidebar-section-title,step-item,step-label,stepper|}"
   ],
-  "description": "application classes (29)"
+  "description": "application classes (30)"
  },
  "LLMCSS badges classes": {
   "prefix": "ai-family-badges",
