@@ -1,6 +1,6 @@
 {
  "version": "0.4.0",
- "generatedAt": "2026-09-13T06:46:59.909Z",
+ "generatedAt": "2026-09-13T06:47:27.076Z",
  "note": "Every class in llmcss.css. Class names carry no namespace prefix as of 0.4.0. variants lists the prefixes that exist for the class, written as md:name: responsive (sm 640px, md 768px, lg 1024px, xl 1280px, 2xl 1536px), container-query against the nearest cq or cq-inline ancestor (cq-sm 380px, cq-md 600px, cq-lg 900px), and state (hover, focus, focus-visible, active, disabled, group-hover, dark, print, motion-reduce, first, last, odd, even). A bare cq: prefix no longer exists. Nothing outside this list exists; do not invent classes.",
  "stats": {
   "total": 2305,
