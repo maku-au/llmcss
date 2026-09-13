@@ -214,7 +214,7 @@ export const ecommerceVariants = {
       html: `<div class="cq max-w-3xl">
   <div class="grid grid-cols-1 cq-md:grid-cols-2 gap-6">
     <div class="flex flex-col gap-3">
-      <div class="carousel carousel-peek snap-x" tabindex="0" role="group" aria-label="Aether Precision photographs">
+      <div class="carousel snap-x" tabindex="0" role="group" aria-label="Aether Precision photographs">
         <figure class="product-media snap-start m-0 rounded-lg" id="pc-shot-desk">
           <img class="product-img" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80" alt="Aether Precision headphones resting on a studio desk" />
         </figure>
